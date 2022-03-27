@@ -9,16 +9,24 @@ namespace Rectify11Installer
     {
         private static WelcomePage WelcomePage = new WelcomePage();
         private static EulaPage EulaPage = new EulaPage();
+        private static ConfirmOperationPage ConfirmOpPage = new ConfirmOperationPage();
+        private static ProgressPage ProgressPage = new ProgressPage();
+
+        private WizardPage CurrentPage;
+
+        //Visual studio does not understand that we assign "CurrentPage" in Navigate()
+#pragma warning disable CS8618
         public Form1()
+#pragma warning restore CS8618
         {
             InitializeComponent();
 
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
 
-            EulaPage.DenyButton.Click += DenyButton_Click;
-            EulaPage.AcceptButton.Click += AcceptButton_Click;
             Navigate(WelcomePage);
+
+            SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
         }
 
         #region EULA Page
@@ -50,6 +58,7 @@ namespace Rectify11Installer
         #region Welcome Page
         private void InstallButton_Click(object? sender, EventArgs e)
         {
+
             Navigate(EulaPage);
         }
         private void UninstallButton_Click(object? sender, EventArgs e)
@@ -76,13 +85,51 @@ namespace Rectify11Installer
         #region Navigation
         private void Navigate(WizardPage page)
         {
+            CurrentPage = page;
+
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(page);
 
             lblTopText.Text = page.WizardTopText;
+
+            if (page == EulaPage)
+            {
+                btnBack.Visible = true;
+                btnNext.Visible = true;
+
+                btnBack.Enabled = true;
+                btnNext.Visible = true;
+
+                btnBack.ButtonText = "Disagree";
+                btnNext.ButtonText = "Agree";
+            }
+            else if (page == ConfirmOpPage)
+            {
+                btnBack.Visible = true;
+                btnNext.Visible = true;
+
+                btnBack.Enabled = true;
+                btnNext.Enabled = true;
+
+                btnBack.ButtonText = "Back";
+                btnNext.ButtonText = "Install";
+            }
+            else
+            {
+                btnBack.Visible = false;
+                btnNext.Visible = false;
+
+                btnBack.Enabled = false;
+                btnNext.Visible = false;
+
+                btnBack.ButtonText = "Back";
+                btnNext.ButtonText = "Next";
+            }
+
+            FixColors();
         }
         #endregion
-
+        bool Inited = false;
         private void Form1_Shown(object sender, EventArgs e)
         {
             var buildNumber = Environment.OSVersion.Version.Build;
@@ -145,26 +192,38 @@ namespace Rectify11Installer
 
             }
 
+            FixColors();
+            Inited = true;
+        }
+
+        private void FixColors()
+        {
             if (Theme.IsUsingDarkMode)
             {
                 this.ForeColor = Color.White;
+                foreach (var item in GetAllControls(this))
+                {
+                    if (item is not RichTextBox)
+                    {
+                        item.ForeColor = Color.White;
+                    }
+                }
             }
             else
             {
                 this.ForeColor = Color.Gray;
-                foreach (var item in GetAllTextBoxControls(this))
+                foreach (var item in GetAllControls(this))
                 {
                     item.ForeColor = Color.Black;
                 }
             }
         }
-
-        private IEnumerable<Control> GetAllTextBoxControls(Control container)
+        private IEnumerable<Control> GetAllControls(Control container)
         {
             List<Control> controlList = new List<Control>();
             foreach (Control c in container.Controls)
             {
-                controlList.AddRange(GetAllTextBoxControls(c));
+                controlList.AddRange(GetAllControls(c));
                 controlList.Add(c);
             }
             return controlList;
@@ -261,9 +320,45 @@ namespace Rectify11Installer
          ref MARGINS pMarInset);
         #endregion
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
+            if (CurrentPage == EulaPage)
+            {
+                //We have disagreed with the license
+                Navigate(WelcomePage);
+            }
+            else if (CurrentPage == ConfirmOpPage)
+            {
+                //The user clicked on "Back" when on the confirm install/uninstall page
+                Navigate(EulaPage);
+            }
+        }
 
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (CurrentPage == EulaPage)
+            {
+                //We are about to install it
+                Navigate(ConfirmOpPage);
+
+                //Change text
+                ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on top of this Windows 11 Installation";
+            }
+            else if(CurrentPage == ConfirmOpPage)
+            {
+                //Install/Uninstall Rectify11
+                Navigate(ProgressPage);
+            }
+        }
+        private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            switch (e.Category)
+            {
+                case UserPreferenceCategory.General:
+                    Form1_Shown(null, null);
+                    lblTopText.Invalidate();
+                    break;
+            }
         }
     }
 }

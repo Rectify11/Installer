@@ -33,8 +33,11 @@
             this.lblTopText = new AeroWizard.ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlBottom = new System.Windows.Forms.Panel();
+            this.btnBack = new Rectify11Installer.Controls.WinUIButton();
+            this.btnNext = new Rectify11Installer.Controls.WinUIButton();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlTop.SuspendLayout();
+            this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -66,14 +69,44 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(51, 60);
             this.panel1.TabIndex = 8;
+            this.panel1.Visible = false;
             // 
             // pnlBottom
             // 
+            this.pnlBottom.Controls.Add(this.btnBack);
+            this.pnlBottom.Controls.Add(this.btnNext);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 390);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(596, 60);
             this.pnlBottom.TabIndex = 5;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.Enabled = false;
+            this.btnBack.ForeColor = System.Drawing.Color.Black;
+            this.btnBack.Location = new System.Drawing.Point(428, 16);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 1;
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Visible = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext.ButtonText = "Next";
+            this.btnNext.ForeColor = System.Drawing.Color.Black;
+            this.btnNext.Location = new System.Drawing.Point(509, 16);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 0;
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Visible = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // pnlMain
             // 
@@ -101,6 +134,7 @@
             this.Text = "Rectify11 Setup";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.pnlTop.ResumeLayout(false);
+            this.pnlBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -114,5 +148,7 @@
         private Panel pnlMain;
         private AeroWizard.ThemedLabel lblTopText;
         private Panel panel1;
+        private Controls.WinUIButton btnBack;
+        private Controls.WinUIButton btnNext;
     }
 }

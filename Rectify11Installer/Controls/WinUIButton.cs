@@ -27,7 +27,7 @@ namespace Rectify11Installer.Controls
             set
             {
                 _ButtonText = value;
-                Invalidate();
+                InvalidateEx();
             }
         }
         protected override void OnPaint(PaintEventArgs args)
@@ -37,6 +37,9 @@ namespace Rectify11Installer.Controls
             {
                 CurrentState = ButtonState.Disabled;
             }
+
+            //Hack to fix black borders, but we lose transpancy
+            args.Graphics.Clear(Theme.IsUsingDarkMode ? Color.Black : Color.White);
 
             if (Theme.IsUsingDarkMode)
             {
@@ -106,7 +109,7 @@ namespace Rectify11Installer.Controls
             }
 
             CurrentState = ButtonState.Hover;
-            Invalidate();
+            InvalidateEx();
         }
 
         protected override void OnMouseLeave(EventArgs e)
@@ -119,7 +122,7 @@ namespace Rectify11Installer.Controls
             }
 
             CurrentState = ButtonState.Normal;
-            Invalidate();
+            InvalidateEx();
         }
 
         protected override void OnMouseDown(MouseEventArgs mevent)
@@ -132,7 +135,7 @@ namespace Rectify11Installer.Controls
             }
 
             CurrentState = ButtonState.HoverClicked;
-            Invalidate();
+            InvalidateEx();
         }
 
         protected override void OnMouseUp(MouseEventArgs mevent)
@@ -145,9 +148,18 @@ namespace Rectify11Installer.Controls
             }
 
             CurrentState = ButtonState.Normal;
-            Invalidate();
+            InvalidateEx();
         }
 
+        private void InvalidateEx()
+        {
+            if (Parent == null)
+                return;
+
+            Rectangle rc = new Rectangle(this.Location, this.Size);
+
+            Parent.Invalidate(rc, true);
+        }
         enum ButtonState
         {
             Normal,
@@ -159,7 +171,7 @@ namespace Rectify11Installer.Controls
         public WinUIButton()
         {
             BackColor = Color.Transparent;
-            SetStyle(ControlStyles.Opaque, true);
+            SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
         }
         protected override CreateParams CreateParams
         {

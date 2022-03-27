@@ -1,5 +1,4 @@
-﻿using Rectify11Installer.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
 {
-    public partial class EulaPage : WizardPage
+    public partial class ProgressPage : WizardPage
     {
-        public EulaPage()
+        public ProgressPage()
         {
             InitializeComponent();
         }
