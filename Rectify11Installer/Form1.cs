@@ -85,34 +85,19 @@ namespace Rectify11Installer
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            RegistryKey? registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
-            var buildNumber = uint.Parse(registryKey.GetValue("CurrentBuild").ToString());
+            var buildNumber = Environment.OSVersion.Version.Build;
 
             SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             DarkMode.AllowDarkModeForWindow(this.Handle, true);
 
-            //Enable dark title bar
-            if (buildNumber < 18362)
-            {
-                SetPropW(this.Handle, "UseImmersiveDarkModeColors", new IntPtr(1));
-            }
-            else
-            {
-                WindowCompositionAttributeData d = new WindowCompositionAttributeData();
-                d.Attribute = WindowCompositionAttribute.WCA_USEDARKMODECOLORS;
-                int size = Marshal.SizeOf(typeof(bool));
-                IntPtr ptr = Marshal.AllocHGlobal(size);
-                Marshal.StructureToPtr(true, ptr, false);
-
-                d.Data = ptr;
-                d.SizeOfData = size;
-                SetWindowCompositionAttribute(this.Handle, ref d);
-            }
-            if (Marshal.GetLastWin32Error() != 0) { throw new Win32Exception(); }
+            SetTitlebarColor();
 
             try
             {
                 //mica
+
+
+                bool extend = Theme.IsUsingDarkMode;
 
                 if (buildNumber >= 22523)
                 {
@@ -127,8 +112,21 @@ namespace Rectify11Installer
                 }
 
                 MARGINS m = new MARGINS();
-                m.cyTopHeight = this.Height - pnlBottom.Height;
-                m.cyBottomHeight = pnlBottom.Height;
+                if (extend)
+                {
+                    m.cyTopHeight = this.Height - pnlBottom.Height;
+                    m.cyBottomHeight = pnlBottom.Height;
+
+                    BackColor = Color.Black;
+                }
+                else
+                {
+                    BackColor = Color.White;
+                    pnlTop.BackColor = Color.White;
+
+                    m.cyTopHeight = pnlTop.Height;
+                    panel1.BackColor = Color.Black;
+                }
                 DwmExtendFrameIntoClientArea(this.Handle, ref m);
             }
             catch
@@ -146,6 +144,55 @@ namespace Rectify11Installer
             {
 
             }
+
+            if (Theme.IsUsingDarkMode)
+            {
+                this.ForeColor = Color.White;
+            }
+            else
+            {
+                this.ForeColor = Color.Gray;
+                foreach (var item in GetAllTextBoxControls(this))
+                {
+                    item.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private IEnumerable<Control> GetAllTextBoxControls(Control container)
+        {
+            List<Control> controlList = new List<Control>();
+            foreach (Control c in container.Controls)
+            {
+                controlList.AddRange(GetAllTextBoxControls(c));
+                controlList.Add(c);
+            }
+            return controlList;
+        }
+
+        private void SetTitlebarColor()
+        {
+            bool darkTheme = Theme.IsUsingDarkMode;
+            var buildNumber = Environment.OSVersion.Version.Build;
+
+            //Enable dark title bar
+            if (buildNumber < 18362)
+            {
+                SetPropW(this.Handle, "UseImmersiveDarkModeColors", new IntPtr(darkTheme ? 1 : 0));
+            }
+            else
+            {
+                WindowCompositionAttributeData d = new WindowCompositionAttributeData();
+                d.Attribute = WindowCompositionAttribute.WCA_USEDARKMODECOLORS;
+                int size = Marshal.SizeOf(typeof(bool));
+                IntPtr ptr = Marshal.AllocHGlobal(size);
+                Marshal.StructureToPtr(darkTheme, ptr, false);
+
+                d.Data = ptr;
+                d.SizeOfData = size;
+                SetWindowCompositionAttribute(this.Handle, ref d);
+            }
+            if (Marshal.GetLastWin32Error() != 0) { throw new Win32Exception(); }
         }
 
 

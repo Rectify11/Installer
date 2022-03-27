@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rectify11Installer.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace Rectify11Installer.Pages
 {
     public partial class EulaPage : WizardPage
     {
-        public Button DenyButton
+        public WinUIButton DenyButton
         {
             get
             {
@@ -23,7 +24,7 @@ namespace Rectify11Installer.Pages
                 btnCancel = value;
             }
         }
-        public Button AcceptButton
+        public WinUIButton AcceptButton
         {
             get
             {
