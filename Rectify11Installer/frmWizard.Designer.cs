@@ -1,6 +1,6 @@
 ﻿namespace Rectify11Installer
 {
-    partial class Form1
+    partial class frmWizard
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblTopText = new AeroWizard.ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.navigationButton1 = new Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.BtnBack = new Rectify11Installer.Controls.WinUIButton();
             this.BtnNext = new Rectify11Installer.Controls.WinUIButton();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlTop.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,12 +66,25 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.navigationButton1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(51, 60);
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
+            // 
+            // navigationButton1
+            // 
+            this.navigationButton1.BackColor = System.Drawing.Color.Transparent;
+            this.navigationButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.navigationButton1.Location = new System.Drawing.Point(12, 12);
+            this.navigationButton1.Name = "navigationButton1";
+            this.navigationButton1.NavigationButtonType = Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButtonType.back;
+            this.navigationButton1.Size = new System.Drawing.Size(30, 30);
+            this.navigationButton1.TabIndex = 0;
+            this.navigationButton1.Text = "navigationButton1";
+            this.navigationButton1.Click += new System.EventHandler(this.NavigationButton1_Click);
             // 
             // pnlBottom
             // 
@@ -116,7 +131,7 @@
             this.pnlMain.Size = new System.Drawing.Size(596, 330);
             this.pnlMain.TabIndex = 11;
             // 
-            // Form1
+            // frmWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -129,11 +144,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rectify11 Setup";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.pnlTop.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.pnlBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -148,5 +164,6 @@
         private Panel panel1;
         private Controls.WinUIButton BtnBack;
         private Controls.WinUIButton BtnNext;
+        private Controls.FunnyExplorer.Controls.NavigationButton navigationButton1;
     }
 }

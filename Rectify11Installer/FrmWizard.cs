@@ -5,7 +5,7 @@ using Rectify11Installer.Pages;
 
 namespace Rectify11Installer
 {
-    public partial class Form1 : Form
+    public partial class frmWizard : Form
     {
         private static readonly WelcomePage WelcomePage = new();
         private static readonly EulaPage EulaPage = new();
@@ -16,7 +16,7 @@ namespace Rectify11Installer
 
         //Visual studio does not understand that we assign "CurrentPage" in Navigate()
 #pragma warning disable CS8618
-        public Form1()
+        public frmWizard()
 #pragma warning restore CS8618
         {
             InitializeComponent();
@@ -28,33 +28,6 @@ namespace Rectify11Installer
 
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
         }
-
-        #region EULA Page
-        private void AcceptButton_Click(object? sender, EventArgs e)
-        {
-            var pg = new TaskDialogPage()
-            {
-                Icon = TaskDialogIcon.ShieldErrorRedBar,
-
-                Text = "You have attempted to navigate to a missing page. This operation has been stopped as it could cause a buffer overrun attack to your computer. Press OK to go back to the application's configured welcome page. If this does not solve the issue, please contact the author of this application.",
-                Heading = "Security Failure",
-                Caption = "Windows Forms",
-                Footnote = new TaskDialogFootnote()
-                {
-                    Text = "Build #11"
-                },
-                Expander = new TaskDialogExpander()
-                {
-                    Text = "Faulting Module Name: Win32UIDemo.exe"
-                }
-            };
-            TaskDialog.ShowDialog(this, pg);
-        }
-        private void DenyButton_Click(object? sender, EventArgs e)
-        {
-            Navigate(WelcomePage);
-        }
-        #endregion
         #region Welcome Page
         private void InstallButton_Click(object? sender, EventArgs e)
         {
@@ -102,6 +75,8 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Disagree";
                 BtnNext.ButtonText = "Agree";
+
+                panel1.Visible = true;
             }
             else if (page == ConfirmOpPage)
             {
@@ -113,6 +88,7 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Install";
+                panel1.Visible = true;
             }
             else
             {
@@ -124,19 +100,35 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Next";
+                panel1.Visible = false;
             }
 
             FixColors();
+        }
+        internal void Complete(RectifyInstallerCompleteInstallerEnum type, string errorDescription)
+        {
+            
         }
         #endregion
         private void Form1_Shown(object sender, EventArgs e)
         {
             var buildNumber = Environment.OSVersion.Version.Build;
 
-            _ = SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
-            _ = DarkMode.AllowDarkModeForWindow(this.Handle, true);
+            // _ = SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
+            try
+            {
+                _ = DarkMode.AllowDarkModeForWindow(this.Handle, true);
+            }
+            catch
+            {
 
-            SetTitlebarColor();
+            }
+
+            try
+            {
+                SetTitlebarColor();
+            }
+            catch { }
 
             try
             {
@@ -342,7 +334,7 @@ namespace Rectify11Installer
                 Navigate(ConfirmOpPage);
 
                 //Change text
-                ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on top of this Windows 11 Installation";
+                ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on top of this Windows 11 Installation\n\nIt is recommended to save your work before installing.";
             }
             else if(CurrentPage == ConfirmOpPage)
             {
@@ -359,6 +351,11 @@ namespace Rectify11Installer
                     lblTopText.Invalidate();
                     break;
             }
+        }
+
+        private void NavigationButton1_Click(object sender, EventArgs e)
+        {
+            BtnBack_Click(sender, e);
         }
     }
 }

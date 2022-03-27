@@ -10,10 +10,13 @@
     <Compile Update="Controls\DarkAwareButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Controls\NavigationButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="FrmWizard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Pages\ConfirmOperationPage.cs">
