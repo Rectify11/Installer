@@ -2,11 +2,12 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6-windows</TargetFramework>
+		<TargetFramework>net5.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
