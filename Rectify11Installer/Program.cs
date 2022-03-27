@@ -8,9 +8,7 @@ namespace Rectify11Installer
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            DarkMode.fnAllowDarkModeForApp(DarkMode.PreferredAppMode.AllowDark);
+            _ = DarkMode.fnAllowDarkModeForApp(DarkMode.PreferredAppMode.AllowDark);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

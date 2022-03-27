@@ -10,11 +10,11 @@ namespace Rectify11Installer
     public class DarkMode
     {
         [DllImport("uxtheme.dll", EntryPoint = "#135")]
-        public static extern int fnAllowDarkModeForApp(PreferredAppMode allow);
+        internal static extern int fnAllowDarkModeForApp(PreferredAppMode allow);
         [DllImport("uxtheme.dll", EntryPoint = "#133")]
-        public static extern int AllowDarkModeForWindow(IntPtr handle, bool allow);
+        internal static extern int AllowDarkModeForWindow(IntPtr handle, bool allow);
 
-        public enum PreferredAppMode
+        internal enum PreferredAppMode
         {
             Default,
             AllowDark,

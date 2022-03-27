@@ -21,7 +21,7 @@ namespace Rectify11Installer
                 }
                 var registryValue = (int)registryValueObject;
 
-                return registryValue > 0 ? false : true;
+                return registryValue <= 0;
             }
         }
     }

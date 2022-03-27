@@ -33,8 +33,8 @@
             this.lblTopText = new AeroWizard.ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlBottom = new System.Windows.Forms.Panel();
-            this.btnBack = new Rectify11Installer.Controls.WinUIButton();
-            this.btnNext = new Rectify11Installer.Controls.WinUIButton();
+            this.BtnBack = new Rectify11Installer.Controls.WinUIButton();
+            this.BtnNext = new Rectify11Installer.Controls.WinUIButton();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlTop.SuspendLayout();
             this.pnlBottom.SuspendLayout();
@@ -73,40 +73,40 @@
             // 
             // pnlBottom
             // 
-            this.pnlBottom.Controls.Add(this.btnBack);
-            this.pnlBottom.Controls.Add(this.btnNext);
+            this.pnlBottom.Controls.Add(this.BtnBack);
+            this.pnlBottom.Controls.Add(this.BtnNext);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 390);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(596, 60);
             this.pnlBottom.TabIndex = 5;
             // 
-            // btnBack
+            // BtnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.Transparent;
-            this.btnBack.ButtonText = "Back";
-            this.btnBack.Enabled = false;
-            this.btnBack.ForeColor = System.Drawing.Color.Black;
-            this.btnBack.Location = new System.Drawing.Point(428, 16);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Visible = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.BtnBack.BackColor = System.Drawing.Color.Transparent;
+            this.BtnBack.ButtonText = "Back";
+            this.BtnBack.Enabled = false;
+            this.BtnBack.ForeColor = System.Drawing.Color.White;
+            this.BtnBack.Location = new System.Drawing.Point(428, 16);
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(75, 23);
+            this.BtnBack.TabIndex = 1;
+            this.BtnBack.UseVisualStyleBackColor = false;
+            this.BtnBack.Visible = false;
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
-            // btnNext
+            // BtnNext
             // 
-            this.btnNext.BackColor = System.Drawing.Color.Transparent;
-            this.btnNext.ButtonText = "Next";
-            this.btnNext.ForeColor = System.Drawing.Color.Black;
-            this.btnNext.Location = new System.Drawing.Point(509, 16);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
-            this.btnNext.TabIndex = 0;
-            this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Visible = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.BtnNext.BackColor = System.Drawing.Color.Transparent;
+            this.BtnNext.ButtonText = "Next";
+            this.BtnNext.ForeColor = System.Drawing.Color.White;
+            this.BtnNext.Location = new System.Drawing.Point(509, 16);
+            this.BtnNext.Name = "BtnNext";
+            this.BtnNext.Size = new System.Drawing.Size(75, 23);
+            this.BtnNext.TabIndex = 0;
+            this.BtnNext.UseVisualStyleBackColor = false;
+            this.BtnNext.Visible = false;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // pnlMain
             // 
@@ -141,14 +141,12 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
         private Panel pnlTop;
         private Panel pnlBottom;
         private Panel pnlMain;
         private AeroWizard.ThemedLabel lblTopText;
         private Panel panel1;
-        private Controls.WinUIButton btnBack;
-        private Controls.WinUIButton btnNext;
+        private Controls.WinUIButton BtnBack;
+        private Controls.WinUIButton BtnNext;
     }
 }

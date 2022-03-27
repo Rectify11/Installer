@@ -11,7 +11,7 @@ namespace Rectify11Installer.Controls
         protected override void CreateHandle()
         {
             base.CreateHandle();
-            Form1.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
+            _ = Form1.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             FlatStyle = FlatStyle.System;
         }
     }

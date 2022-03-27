@@ -156,7 +156,7 @@ namespace Rectify11Installer.Controls
             if (Parent == null)
                 return;
 
-            Rectangle rc = new Rectangle(this.Location, this.Size);
+            Rectangle rc = new(this.Location, this.Size);
 
             Parent.Invalidate(rc, true);
         }

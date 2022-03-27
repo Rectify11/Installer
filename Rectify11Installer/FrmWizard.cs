@@ -7,10 +7,10 @@ namespace Rectify11Installer
 {
     public partial class Form1 : Form
     {
-        private static WelcomePage WelcomePage = new WelcomePage();
-        private static EulaPage EulaPage = new EulaPage();
-        private static ConfirmOperationPage ConfirmOpPage = new ConfirmOperationPage();
-        private static ProgressPage ProgressPage = new ProgressPage();
+        private static readonly WelcomePage WelcomePage = new();
+        private static readonly EulaPage EulaPage = new();
+        private static readonly ConfirmOperationPage ConfirmOpPage = new();
+        private static readonly ProgressPage ProgressPage = new();
 
         private WizardPage CurrentPage;
 
@@ -94,48 +94,47 @@ namespace Rectify11Installer
 
             if (page == EulaPage)
             {
-                btnBack.Visible = true;
-                btnNext.Visible = true;
+                BtnBack.Visible = true;
+                BtnNext.Visible = true;
 
-                btnBack.Enabled = true;
-                btnNext.Visible = true;
+                BtnBack.Enabled = true;
+                BtnNext.Visible = true;
 
-                btnBack.ButtonText = "Disagree";
-                btnNext.ButtonText = "Agree";
+                BtnBack.ButtonText = "Disagree";
+                BtnNext.ButtonText = "Agree";
             }
             else if (page == ConfirmOpPage)
             {
-                btnBack.Visible = true;
-                btnNext.Visible = true;
+                BtnBack.Visible = true;
+                BtnNext.Visible = true;
 
-                btnBack.Enabled = true;
-                btnNext.Enabled = true;
+                BtnBack.Enabled = true;
+                BtnNext.Enabled = true;
 
-                btnBack.ButtonText = "Back";
-                btnNext.ButtonText = "Install";
+                BtnBack.ButtonText = "Back";
+                BtnNext.ButtonText = "Install";
             }
             else
             {
-                btnBack.Visible = false;
-                btnNext.Visible = false;
+                BtnBack.Visible = false;
+                BtnNext.Visible = false;
 
-                btnBack.Enabled = false;
-                btnNext.Visible = false;
+                BtnBack.Enabled = false;
+                BtnNext.Visible = false;
 
-                btnBack.ButtonText = "Back";
-                btnNext.ButtonText = "Next";
+                BtnBack.ButtonText = "Back";
+                BtnNext.ButtonText = "Next";
             }
 
             FixColors();
         }
         #endregion
-        bool Inited = false;
         private void Form1_Shown(object sender, EventArgs e)
         {
             var buildNumber = Environment.OSVersion.Version.Build;
 
-            SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
-            DarkMode.AllowDarkModeForWindow(this.Handle, true);
+            _ = SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
+            _ = DarkMode.AllowDarkModeForWindow(this.Handle, true);
 
             SetTitlebarColor();
 
@@ -149,16 +148,16 @@ namespace Rectify11Installer
                 if (buildNumber >= 22523)
                 {
                     int micaValue = 0x02;
-                    DwmSetWindowAttribute(this.Handle, WindowCompositionAttribute.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
+                    _ = DwmSetWindowAttribute(this.Handle, WindowCompositionAttribute.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
                 }
 
                 else
                 {
                     int trueValue = 0x01;
-                    DwmSetWindowAttribute(this.Handle, WindowCompositionAttribute.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
+                    _ = DwmSetWindowAttribute(this.Handle, WindowCompositionAttribute.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
                 }
 
-                MARGINS m = new MARGINS();
+                MARGINS m = new();
                 if (extend)
                 {
                     m.cyTopHeight = this.Height - pnlBottom.Height;
@@ -174,7 +173,7 @@ namespace Rectify11Installer
                     m.cyTopHeight = pnlTop.Height;
                     panel1.BackColor = Color.Black;
                 }
-                DwmExtendFrameIntoClientArea(this.Handle, ref m);
+                _ = DwmExtendFrameIntoClientArea(this.Handle, ref m);
             }
             catch
             {
@@ -193,7 +192,6 @@ namespace Rectify11Installer
             }
 
             FixColors();
-            Inited = true;
         }
 
         private void FixColors()
@@ -220,7 +218,7 @@ namespace Rectify11Installer
         }
         private IEnumerable<Control> GetAllControls(Control container)
         {
-            List<Control> controlList = new List<Control>();
+            List<Control> controlList = new();
             foreach (Control c in container.Controls)
             {
                 controlList.AddRange(GetAllControls(c));
@@ -241,15 +239,17 @@ namespace Rectify11Installer
             }
             else
             {
-                WindowCompositionAttributeData d = new WindowCompositionAttributeData();
-                d.Attribute = WindowCompositionAttribute.WCA_USEDARKMODECOLORS;
+                WindowCompositionAttributeData d = new()
+                {
+                    Attribute = WindowCompositionAttribute.WCA_USEDARKMODECOLORS
+                };
                 int size = Marshal.SizeOf(typeof(bool));
                 IntPtr ptr = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(darkTheme, ptr, false);
 
                 d.Data = ptr;
                 d.SizeOfData = size;
-                SetWindowCompositionAttribute(this.Handle, ref d);
+                _ = SetWindowCompositionAttribute(this.Handle, ref d);
             }
             if (Marshal.GetLastWin32Error() != 0) { throw new Win32Exception(); }
         }
@@ -258,17 +258,17 @@ namespace Rectify11Installer
         #region Win32
 
         [DllImport("uxtheme.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string? pszSubIdList);
+        internal static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string? pszSubIdList);
         [DllImport("dwmapi.dll")]
-        public static extern int DwmSetWindowAttribute(IntPtr hwnd, WindowCompositionAttribute dwAttribute, ref int pvAttribute, int cbAttribute);
+        internal static extern int DwmSetWindowAttribute(IntPtr hwnd, WindowCompositionAttribute dwAttribute, ref int pvAttribute, int cbAttribute);
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        public static extern bool SetPropW(IntPtr hwnd, string prop, IntPtr value);
+        internal static extern bool SetPropW(IntPtr hwnd, string prop, IntPtr value);
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
 
         // Import dwmapi.dll and define DwmSetWindowAttribute in C# corresponding to the native function.
         [DllImport("dwmapi.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        private static extern long DwmSetWindowAttribute(IntPtr hwnd,
+        internal static extern long DwmSetWindowAttribute(IntPtr hwnd,
                                                          DWMWINDOWATTRIBUTE attribute,
                                                          ref DWM_WINDOW_CORNER_PREFERENCE pvAttribute,
                                                          uint cbAttribute);
@@ -320,7 +320,7 @@ namespace Rectify11Installer
          ref MARGINS pMarInset);
         #endregion
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
             if (CurrentPage == EulaPage)
             {
@@ -334,7 +334,7 @@ namespace Rectify11Installer
             }
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private void BtnNext_Click(object sender, EventArgs e)
         {
             if (CurrentPage == EulaPage)
             {
@@ -355,7 +355,7 @@ namespace Rectify11Installer
             switch (e.Category)
             {
                 case UserPreferenceCategory.General:
-                    Form1_Shown(null, null);
+                    Form1_Shown(this, new EventArgs());
                     lblTopText.Invalidate();
                     break;
             }
