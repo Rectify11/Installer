@@ -1,4 +1,6 @@
-﻿namespace Win32UIDemo.Pages
+﻿using Rectify11Installer.Controls;
+
+namespace Rectify11Installer.Pages
 {
     partial class WelcomePage
     {
@@ -31,8 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.cmbInstallNOW = new Win32UIDemo.CommandLinkButton();
-            this.cmbUninstall = new Win32UIDemo.CommandLinkButton();
+            this.cmbInstallNOW = new Rectify11Installer.Controls.CommandLinkButton();
+            this.cmbUninstall = new Rectify11Installer.Controls.CommandLinkButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +53,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::Win32UIDemo.Properties.Resources.rectify11Installer;
+            this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(8, 165);
             this.pictureBox1.Name = "pictureBox1";

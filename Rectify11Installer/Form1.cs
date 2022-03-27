@@ -1,9 +1,9 @@
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Win32UIDemo.Pages;
+using Rectify11Installer.Pages;
 
-namespace Win32UIDemo
+namespace Rectify11Installer
 {
     public partial class Form1 : Form
     {

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Win32UIDemo
+namespace Rectify11Installer
 {
     public class DarkMode
     {

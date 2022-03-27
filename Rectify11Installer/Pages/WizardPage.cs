@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Win32UIDemo.Pages
+namespace Rectify11Installer.Pages
 {
     public partial class WizardPage : UserControl
     {

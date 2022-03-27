@@ -1,4 +1,4 @@
-namespace Win32UIDemo
+namespace Rectify11Installer
 {
     internal static class Program
     {

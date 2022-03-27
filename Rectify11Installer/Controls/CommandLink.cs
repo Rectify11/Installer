@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Win32UIDemo
+namespace Rectify11Installer.Controls
 {
     public partial class CommandLinkButton : Button
     {
         private const int BS_COMMANDLINK = 0x0000000E;
-        private string note = null;
+        private string? note = "";
         protected override CreateParams CreateParams
         {
             get
@@ -21,8 +21,8 @@ namespace Win32UIDemo
                 return cParams;
             }
         }
-        [Category("Appearance"), Browsable(true), DefaultValue((string)null)]
-        public string Note
+        [Category("Appearance"), Browsable(true)]
+        public string? Note
         {
             get { return note; }
             set
@@ -40,6 +40,6 @@ namespace Win32UIDemo
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, nuint wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, nuint wParam, [MarshalAs(UnmanagedType.LPWStr)] string? lParam);
     }
 }

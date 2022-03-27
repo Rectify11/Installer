@@ -1,4 +1,4 @@
-﻿namespace Win32UIDemo.Pages
+﻿namespace Rectify11Installer.Pages
 {
     partial class EulaPage
     {

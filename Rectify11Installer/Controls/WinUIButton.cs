@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Win32UIDemo.Controls
+namespace Rectify11Installer.Controls
 {
     public class WinUIButton : Button
     {
