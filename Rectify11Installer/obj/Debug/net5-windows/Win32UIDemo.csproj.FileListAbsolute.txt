@@ -1,8 +1,0 @@
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.csproj.AssemblyReference.cache
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.Form1.resources
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.Properties.Resources.resources
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.csproj.GenerateResource.cache
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.AssemblyInfoInputs.cache
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.AssemblyInfo.cs
-C:\Users\Misha\OneDrive\Source\C#\repos\Win32UIDemo\Win32UIDemo\obj\Debug\net5-windows\Win32UIDemo.csproj.CoreCompileInputs.cache

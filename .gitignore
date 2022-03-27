@@ -1,0 +1,6 @@
+# visual studio garbage
+.vs/
+
+# builds
+Rectify11Installer/bin/
+Rectify11Installer/obj
