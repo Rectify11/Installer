@@ -5,7 +5,7 @@ using Rectify11Installer.Pages;
 
 namespace Rectify11Installer
 {
-    public partial class frmWizard : Form
+    public partial class FrmWizard : Form
     {
         private static readonly WelcomePage WelcomePage = new();
         private static readonly EulaPage EulaPage = new();
@@ -16,7 +16,7 @@ namespace Rectify11Installer
 
         //Visual studio does not understand that we assign "CurrentPage" in Navigate()
 #pragma warning disable CS8618
-        public frmWizard()
+        public FrmWizard()
 #pragma warning restore CS8618
         {
             InitializeComponent();
@@ -107,7 +107,16 @@ namespace Rectify11Installer
         }
         internal void Complete(RectifyInstallerCompleteInstallerEnum type, string errorDescription)
         {
-            
+            var pg = new FinishPage();
+            if (type == RectifyInstallerCompleteInstallerEnum.Success)
+            {
+                pg.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take affect.";
+            }
+            else
+            {
+                pg.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
+            }
+            Navigate(pg);
         }
         #endregion
         private void Form1_Shown(object sender, EventArgs e)
@@ -336,7 +345,7 @@ namespace Rectify11Installer
                 //Change text
                 ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on top of this Windows 11 Installation\n\nIt is recommended to save your work before installing.";
             }
-            else if(CurrentPage == ConfirmOpPage)
+            else if (CurrentPage == ConfirmOpPage)
             {
                 //Install/Uninstall Rectify11
                 Navigate(ProgressPage);

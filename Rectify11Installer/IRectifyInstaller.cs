@@ -44,9 +44,9 @@ namespace Rectify11Installer
 
     internal class RectifyInstaller : IRectifyInstaller
     {
-        private readonly frmWizard Wizard;
+        private readonly FrmWizard Wizard;
         private readonly ProgressPage ProgressPage;
-        internal RectifyInstaller(frmWizard wizard, ProgressPage pg)
+        internal RectifyInstaller(FrmWizard wizard, ProgressPage pg)
         {
             this.Wizard = wizard;
             this.ProgressPage = pg;
@@ -54,7 +54,10 @@ namespace Rectify11Installer
 
         public void CompleteInstaller(RectifyInstallerCompleteInstallerEnum type, string ErrorDescription = "")
         {
-            throw new NotImplementedException();
+            ProgressPage.Invoke((MethodInvoker)delegate ()
+            {
+                Wizard.Complete(type, ErrorDescription);
+            });    
         }
 
         public void SetProgress(int val)

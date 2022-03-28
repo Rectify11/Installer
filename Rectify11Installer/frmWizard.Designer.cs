@@ -1,6 +1,6 @@
 ﻿namespace Rectify11Installer
 {
-    partial class frmWizard
+    partial class FrmWizard
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWizard));
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblTopText = new AeroWizard.ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
