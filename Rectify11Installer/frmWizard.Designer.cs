@@ -63,6 +63,7 @@
             this.lblTopText.Size = new System.Drawing.Size(545, 60);
             this.lblTopText.TabIndex = 7;
             this.lblTopText.Text = "Welcome to Rectify11 Installer";
+            this.lblTopText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -131,7 +132,7 @@
             this.pnlMain.Size = new System.Drawing.Size(596, 330);
             this.pnlMain.TabIndex = 11;
             // 
-            // frmWizard
+            // FrmWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -144,7 +145,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmWizard";
+            this.Name = "FrmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rectify11 Setup";
             this.Shown += new System.EventHandler(this.Form1_Shown);

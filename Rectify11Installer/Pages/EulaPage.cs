@@ -1,4 +1,5 @@
-﻿using Rectify11Installer.Controls;
+﻿using Microsoft.Win32;
+using Rectify11Installer.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,26 @@ namespace Rectify11Installer.Pages
         public EulaPage()
         {
             InitializeComponent();
+            SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+        }
+
+        private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            switch (e.Category)
+            {
+                case UserPreferenceCategory.General:
+                    if (Theme.IsUsingDarkMode)
+                    {
+                        richTextBox1.BackColor = Color.Black;
+                        richTextBox1.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        richTextBox1.BackColor = Color.White;
+                        richTextBox1.ForeColor = Color.Black;
+                    }
+                    break;
+            }
         }
     }
 }

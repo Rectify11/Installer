@@ -25,6 +25,9 @@
     <Compile Update="Pages\EulaPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Pages\FinishPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Pages\ProgressPage.cs">
       <SubType>UserControl</SubType>
     </Compile>

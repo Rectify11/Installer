@@ -62,6 +62,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblText);
             this.Name = "FinishPage";
+            this.WizardTopText = "Finished";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

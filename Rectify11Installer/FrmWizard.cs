@@ -11,6 +11,7 @@ namespace Rectify11Installer
         private static readonly EulaPage EulaPage = new();
         private static readonly ConfirmOperationPage ConfirmOpPage = new();
         private static readonly ProgressPage ProgressPage = new();
+        private static FinishPage? FinishPage;
 
         private WizardPage CurrentPage;
 
@@ -90,6 +91,11 @@ namespace Rectify11Installer
                 BtnNext.ButtonText = "Install";
                 panel1.Visible = true;
             }
+            else if (page == FinishPage)
+            {
+                BtnNext.Visible = true;
+                BtnNext.ButtonText = "Finish";
+            }
             else
             {
                 BtnBack.Visible = false;
@@ -105,18 +111,18 @@ namespace Rectify11Installer
 
             FixColors();
         }
-        internal void Complete(RectifyInstallerCompleteInstallerEnum type, string errorDescription)
+        internal void Complete(RectifyInstallerWizardCompleteInstallerEnum type, string errorDescription)
         {
-            var pg = new FinishPage();
-            if (type == RectifyInstallerCompleteInstallerEnum.Success)
+            FinishPage = new FinishPage();
+            if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
             {
-                pg.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take affect.";
+                FinishPage.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take affect.";
             }
             else
             {
-                pg.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
+                FinishPage.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
             }
-            Navigate(pg);
+            Navigate(FinishPage);
         }
         #endregion
         private void Form1_Shown(object sender, EventArgs e)
@@ -349,6 +355,20 @@ namespace Rectify11Installer
             {
                 //Install/Uninstall Rectify11
                 Navigate(ProgressPage);
+
+                IRectifyInstaller installer = new RectifyInstaller();
+                installer.SetParentWizard(new RectifyInstallerWizard(this, ProgressPage));
+
+                var thread = new Thread(delegate ()
+                {
+                    installer.Install();
+                });
+                thread.Start();
+            }
+            else if (CurrentPage == FinishPage)
+            {
+                //We are done
+                Application.Exit();
             }
         }
         private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)

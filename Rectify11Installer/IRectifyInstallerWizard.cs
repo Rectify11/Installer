@@ -13,7 +13,7 @@ namespace Rectify11Installer
     //
     //
 
-    public interface IRectifyInstaller
+    public interface IRectifyInstallerWizard
     {
         /// <summary>
         /// Sets progress bar value
@@ -28,9 +28,9 @@ namespace Rectify11Installer
         /// <summary>
         /// Tell the installer that it's work is completed.
         /// </summary>
-        void CompleteInstaller(RectifyInstallerCompleteInstallerEnum type, string ErrorDescription = "");
+        void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, string ErrorDescription = "");
     }
-    public enum RectifyInstallerCompleteInstallerEnum
+    public enum RectifyInstallerWizardCompleteInstallerEnum
     {
         Success,
         Fail
@@ -38,21 +38,21 @@ namespace Rectify11Installer
 
     //
     //
-    //   RectifyInstaller implementation
+    //   RectifyInstallerWizard implementation
     //
     //
 
-    internal class RectifyInstaller : IRectifyInstaller
+    internal class RectifyInstallerWizard : IRectifyInstallerWizard
     {
         private readonly FrmWizard Wizard;
         private readonly ProgressPage ProgressPage;
-        internal RectifyInstaller(FrmWizard wizard, ProgressPage pg)
+        internal RectifyInstallerWizard(FrmWizard wizard, ProgressPage pg)
         {
             this.Wizard = wizard;
             this.ProgressPage = pg;
         }
 
-        public void CompleteInstaller(RectifyInstallerCompleteInstallerEnum type, string ErrorDescription = "")
+        public void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, string ErrorDescription = "")
         {
             ProgressPage.Invoke((MethodInvoker)delegate ()
             {
@@ -75,5 +75,26 @@ namespace Rectify11Installer
                 ProgressPage.CurrentProgressText.Text = text;
             });
         }
+    }
+
+    //
+    //
+    //   RectifyInstaller Interface
+    //
+    //
+    /// <summary>
+    /// The class implementing this interface is what installs Rectify11
+    /// </summary>
+    public interface IRectifyInstaller
+    {
+        /// <summary>
+        /// Used for storing the IRectifyInstallerWizard instance
+        /// </summary>
+        /// <param name="wiz"></param>
+        void SetParentWizard(IRectifyInstallerWizard wiz);
+        /// <summary>
+        /// Install Rectify11
+        /// </summary>
+        void Install();
     }
 }
