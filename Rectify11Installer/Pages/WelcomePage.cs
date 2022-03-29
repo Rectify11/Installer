@@ -4,7 +4,7 @@ namespace Rectify11Installer.Pages
 {
     public partial class WelcomePage : WizardPage
     {
-        public CommandLinkButton InstallButton
+        public FakeCommandLink InstallButton
         {
             get
             {
@@ -15,7 +15,7 @@ namespace Rectify11Installer.Pages
                 cmbInstallNOW = value;
             }
         }
-        public CommandLinkButton UninstallButton
+        public FakeCommandLink UninstallButton
         {
             get
             {

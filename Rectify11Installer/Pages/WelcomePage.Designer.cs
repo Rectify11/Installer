@@ -33,8 +33,8 @@ namespace Rectify11Installer.Pages
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.cmbInstallNOW = new Rectify11Installer.Controls.CommandLinkButton();
-            this.cmbUninstall = new Rectify11Installer.Controls.CommandLinkButton();
+            this.cmbInstallNOW = new Rectify11Installer.Controls.FakeCommandLink();
+            this.cmbUninstall = new Rectify11Installer.Controls.FakeCommandLink();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +55,7 @@ namespace Rectify11Installer.Pages
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 165);
+            this.pictureBox1.Location = new System.Drawing.Point(8, 168);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.TabIndex = 11;
@@ -63,34 +63,36 @@ namespace Rectify11Installer.Pages
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.cmbInstallNOW);
             this.flowLayoutPanel1.Controls.Add(this.cmbUninstall);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(306, 63);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(280, 63);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(283, 228);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(309, 228);
             this.flowLayoutPanel1.TabIndex = 13;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // cmbInstallNOW
             // 
-            this.cmbInstallNOW.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbInstallNOW.BackColor = System.Drawing.Color.Transparent;
             this.cmbInstallNOW.Location = new System.Drawing.Point(3, 3);
             this.cmbInstallNOW.Name = "cmbInstallNOW";
-            this.cmbInstallNOW.Note = "Installs Rectify11 on this Windows 11 Installation";
-            this.cmbInstallNOW.Size = new System.Drawing.Size(249, 77);
+            this.cmbInstallNOW.Note = "Installs Rectify11 on top Windows 11 Installation";
+            this.cmbInstallNOW.Size = new System.Drawing.Size(295, 80);
             this.cmbInstallNOW.TabIndex = 7;
-            this.cmbInstallNOW.Text = "Install Now";
-            this.cmbInstallNOW.UseVisualStyleBackColor = true;
+            this.cmbInstallNOW.Text = "Install Rectify11";
             // 
             // cmbUninstall
             // 
-            this.cmbUninstall.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmbUninstall.Location = new System.Drawing.Point(3, 86);
+            this.cmbUninstall.BackColor = System.Drawing.Color.Transparent;
+            this.cmbUninstall.Enabled = false;
+            this.cmbUninstall.Location = new System.Drawing.Point(3, 89);
             this.cmbUninstall.Name = "cmbUninstall";
             this.cmbUninstall.Note = "Restores the classic Windows 11 look.";
-            this.cmbUninstall.Size = new System.Drawing.Size(249, 77);
+            this.cmbUninstall.Size = new System.Drawing.Size(295, 80);
             this.cmbUninstall.TabIndex = 8;
             this.cmbUninstall.Text = "Uninstall Rectify11";
-            this.cmbUninstall.UseVisualStyleBackColor = true;
             // 
             // WelcomePage
             // 
@@ -113,7 +115,7 @@ namespace Rectify11Installer.Pages
         private Label label2;
         private PictureBox pictureBox1;
         private FlowLayoutPanel flowLayoutPanel1;
-        private CommandLinkButton cmbInstallNOW;
-        private CommandLinkButton cmbUninstall;
+        private FakeCommandLink cmbInstallNOW;
+        private FakeCommandLink cmbUninstall;
     }
 }

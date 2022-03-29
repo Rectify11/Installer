@@ -10,6 +10,9 @@
     <Compile Update="Controls\DarkAwareButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Controls\FakeCommandLink.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Controls\NavigationButton.cs">
       <SubType>Component</SubType>
     </Compile>
