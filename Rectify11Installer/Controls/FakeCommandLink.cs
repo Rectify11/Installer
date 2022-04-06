@@ -110,8 +110,13 @@ namespace Rectify11Installer.Controls
         private void TheMouseEnter(object? sender, EventArgs e)
         {
             //fader.Stop();
-            
-            BackColor = Color.FromArgb(64, 40, 40, 40);
+
+
+
+            int t = 64;
+            if (Theme.IsUsingDarkMode)
+                t = 255;
+            BackColor = Color.FromArgb(t, 40, 40, 40);
             //fadeIn = false;
             //fader.Start();
         }

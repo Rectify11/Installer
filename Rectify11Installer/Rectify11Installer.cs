@@ -16,10 +16,17 @@ namespace Rectify11Installer
                 throw new Exception("SetParentWizard() in IRectifyInstaller was not called!");
             }
 
-            _Wizard.SetProgressText("Installing SecureUXTheme");
+            _Wizard.SetProgressText("Copying files");
+            if (Directory.Exists("tmp"))
+                Directory.Delete("tmp", true);
+            Directory.CreateDirectory("tmp");
 
-            Thread.Sleep(1000);
-            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "not implemented!");
+            File.Copy(@"C:\windows\systemresources\shell32.dll.mun", "tmp/shell32.dll.mun");
+            File.Copy(@"C:\windows\systemresources\imageres.dll.mun", "tmp/imageres.dll.mun");
+
+
+
+            //_Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "not implemented!");
         }
 
         public void SetParentWizard(IRectifyInstallerWizard wiz)

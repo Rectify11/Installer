@@ -9,6 +9,7 @@ namespace Rectify11Installer
     {
         private static readonly WelcomePage WelcomePage = new();
         private static readonly EulaPage EulaPage = new();
+        private static readonly InstalllOptnsPage InstallOptions = new();
         private static readonly ConfirmOperationPage ConfirmOpPage = new();
         private static readonly ProgressPage ProgressPage = new();
         private static FinishPage? FinishPage;
@@ -95,6 +96,18 @@ namespace Rectify11Installer
             {
                 BtnNext.Visible = true;
                 BtnNext.ButtonText = "Finish";
+            }
+            else if (page == InstallOptions)
+            {
+                BtnBack.Visible = true;
+                BtnNext.Visible = true;
+
+                BtnBack.Enabled = true;
+                BtnNext.Enabled = true;
+
+                BtnBack.ButtonText = "Back";
+                BtnNext.ButtonText = "Next";
+                panel1.Visible = true;
             }
             else
             {
@@ -337,13 +350,26 @@ namespace Rectify11Installer
             else if (CurrentPage == ConfirmOpPage)
             {
                 //The user clicked on "Back" when on the confirm install/uninstall page
+                Navigate(InstallOptions);
+            }
+            else if (CurrentPage == InstallOptions)
+            {
+                //The user clicked on "Back" when on the confirm install/uninstall page
                 Navigate(EulaPage);
             }
+            
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
             if (CurrentPage == EulaPage)
+            {
+                //Show install options page
+                Navigate(InstallOptions);
+
+
+            }
+            else if (CurrentPage == InstallOptions)
             {
                 //We are about to install it
                 Navigate(ConfirmOpPage);
