@@ -16,6 +16,19 @@ namespace Rectify11Installer
 
         private WizardPage CurrentPage;
 
+        private bool HideCloseButton = false;
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                if (HideCloseButton)
+                    myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        }
+
         //Visual studio does not understand that we assign "CurrentPage" in Navigate()
 #pragma warning disable CS8618
         public FrmWizard()
@@ -29,32 +42,67 @@ namespace Rectify11Installer
             Navigate(WelcomePage);
 
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+
+            navigationButton1.Location = new Point(
+                panel1.Width / 2 - navigationButton1.Size.Width / 2,
+                panel1.Height / 2 - navigationButton1.Size.Height / 2);
         }
         #region Welcome Page
+
+        private bool CheckIfUpdatesPending()
+        {
+            WUApiLib.ISystemInformation systemInfo = new WUApiLib.SystemInformation();
+
+            if (systemInfo.RebootRequired)
+            {
+                var pg = new TaskDialogPage()
+                {
+                    Icon = TaskDialogIcon.ShieldErrorRedBar,
+
+                    Text = "You cannot install Rectify11 as Windows Updates are pending.",
+                    Heading = "Compatibility Error",
+                    Caption = "Rectify11 Setup",
+                };
+                TaskDialog.ShowDialog(this, pg);
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         private void InstallButton_Click(object? sender, EventArgs e)
         {
+            if (CheckIfUpdatesPending())
+            {
+                Navigate(EulaPage);
+            }
 
-            Navigate(EulaPage);
         }
+
         private void UninstallButton_Click(object? sender, EventArgs e)
         {
-            var pg = new TaskDialogPage()
+            if (CheckIfUpdatesPending())
             {
-                Icon = TaskDialogIcon.ShieldErrorRedBar,
+                var pg = new TaskDialogPage()
+                {
+                    Icon = TaskDialogIcon.ShieldErrorRedBar,
 
-                Text = "Uninstall button has not yet been implemented in this Rectify11 Build",
-                Heading = "Security Failure",
-                Caption = "Rectify11 rounded edition",
-                Footnote = new TaskDialogFootnote()
-                {
-                    Text = "Build #10"
-                },
-                Expander = new TaskDialogExpander()
-                {
-                    Text = "Faulting Module Name: Win32UIDemo.exe"
-                }
-            };
-            TaskDialog.ShowDialog(this, pg);
+                    Text = "Uninstall button has not yet been implemented in this Rectify11 Build",
+                    Heading = "Security Failure",
+                    Caption = "Rectify11 rounded edition",
+                    Footnote = new TaskDialogFootnote()
+                    {
+                        Text = "Build #10"
+                    },
+                    Expander = new TaskDialogExpander()
+                    {
+                        Text = "Faulting Module Name: Win32UIDemo.exe"
+                    }
+                };
+                TaskDialog.ShowDialog(this, pg);
+            }
         }
         #endregion
         #region Navigation
@@ -63,6 +111,7 @@ namespace Rectify11Installer
             CurrentPage = page;
 
             pnlMain.Controls.Clear();
+            page.Dock= DockStyle.Fill;
             pnlMain.Controls.Add(page);
 
             lblTopText.Text = page.WizardTopText;
@@ -136,6 +185,10 @@ namespace Rectify11Installer
                 FinishPage.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
             }
             Navigate(FinishPage);
+
+            HideCloseButton = false;
+            ControlBox = true;
+            pnlBottom.Visible = true;
         }
         #endregion
         private void Form1_Shown(object sender, EventArgs e)
@@ -357,7 +410,7 @@ namespace Rectify11Installer
                 //The user clicked on "Back" when on the confirm install/uninstall page
                 Navigate(EulaPage);
             }
-            
+
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -384,7 +437,9 @@ namespace Rectify11Installer
 
                 IRectifyInstaller installer = new RectifyInstaller();
                 installer.SetParentWizard(new RectifyInstallerWizard(this, ProgressPage));
-
+                HideCloseButton = true;
+                ControlBox = false;
+                pnlBottom.Visible = false;
                 var thread = new Thread(delegate ()
                 {
                     installer.Install();
@@ -411,6 +466,13 @@ namespace Rectify11Installer
         private void NavigationButton1_Click(object sender, EventArgs e)
         {
             BtnBack_Click(sender, e);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (HideCloseButton)
+                e.Cancel = true;
+            base.OnClosing(e);
         }
     }
 }

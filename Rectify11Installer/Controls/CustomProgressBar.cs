@@ -10,7 +10,12 @@ namespace Rectify11Installer.Controls
     {
         public CustomProgressBar()
         {
-            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+
+            if (Theme.IsUsingDarkMode)
+            {
+                BackColor = Color.FromArgb(36, 36, 36);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)

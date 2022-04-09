@@ -8,6 +8,13 @@ namespace Rectify11Installer
         [STAThread]
         static void Main()
         {
+            if (Environment.OSVersion.Version.Build >= 22000) { }
+            else
+            {
+                Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;
+                MessageBox.Show("Rectify11 installer is only supported on Windows 11 or greater.", "Compatibility Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             _ = DarkMode.fnAllowDarkModeForApp(DarkMode.PreferredAppMode.AllowDark);
 
             Application.EnableVisualStyles();

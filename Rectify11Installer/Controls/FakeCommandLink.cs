@@ -68,6 +68,11 @@ namespace Rectify11Installer.Controls
             pictureBox1.BackColor = Color.Transparent;
             lblTitle.BackColor = Color.Transparent;
             lblBody.BackColor = Color.Transparent;
+
+            if (Theme.IsUsingDarkMode)
+            {
+                pictureBox1.Image = Properties.Resources.Dark_CommandLinkGlyph_Normal; 
+            }
         }
 
         private void TheMouseClick(object? sender, EventArgs e)
@@ -81,7 +86,16 @@ namespace Rectify11Installer.Controls
             if (Enabled)
             {
                 BackColor = Color.Transparent;
-                pictureBox1.Image = Properties.Resources.CommandLinkGlyph_Normal;
+
+                if (Theme.IsUsingDarkMode)
+                {
+                    pictureBox1.Image = Properties.Resources.Dark_CommandLinkGlyph_Normal;
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.CommandLinkGlyph_Normal;
+                }
+               
 
                 lblTitle.ForeColor = DefaultText;
                 lblBody.ForeColor = DefaultText;
@@ -92,7 +106,15 @@ namespace Rectify11Installer.Controls
             if (Enabled)
             {
                 BackColor = Color.FromArgb(64, 20, 20, 20);
-                pictureBox1.Image = Properties.Resources.CommandLinkGlyph_Pressed;
+                if (Theme.IsUsingDarkMode)
+                {
+                    pictureBox1.Image = Properties.Resources.Dark_CommandLinkGlyph_Pressed;
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.CommandLinkGlyph_Pressed;
+                }
+              
 
                 lblTitle.ForeColor = PressedText;
                 lblBody.ForeColor = PressedText;

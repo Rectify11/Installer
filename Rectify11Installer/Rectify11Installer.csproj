@@ -8,10 +8,23 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<LangVersion>10.0</LangVersion>
+		<ApplicationIcon>r11.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="AeroWizard" Version="2.3.1" />
+	  <COMReference Include="WUApiLib">
+	    <VersionMinor>0</VersionMinor>
+	    <VersionMajor>2</VersionMajor>
+	    <Guid>b596cc9f-56e5-419e-a622-e01bb457431e</Guid>
+	    <Lcid>0</Lcid>
+	    <WrapperTool>tlbimp</WrapperTool>
+	    <Isolated>false</Isolated>
+	    <EmbedInteropTypes>true</EmbedInteropTypes>
+	  </COMReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="r11.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -27,6 +40,16 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="files\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="files\UserCPL_IconGroup1.ico">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

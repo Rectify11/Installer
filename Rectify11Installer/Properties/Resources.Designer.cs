@@ -173,6 +173,36 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dark_CommandLinkGlyph_Hot {
+            get {
+                object obj = ResourceManager.GetObject("Dark_CommandLinkGlyph_Hot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dark_CommandLinkGlyph_Normal {
+            get {
+                object obj = ResourceManager.GetObject("Dark_CommandLinkGlyph_Normal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dark_CommandLinkGlyph_Pressed {
+            get {
+                object obj = ResourceManager.GetObject("Dark_CommandLinkGlyph_Pressed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eula {
             get {
                 object obj = ResourceManager.GetObject("eula", resourceCulture);
