@@ -179,10 +179,12 @@ namespace Rectify11Installer
             if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
             {
                 FinishPage.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take affect.";
+                FinishPage.CopyButtonVisible = false;
             }
             else
             {
                 FinishPage.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
+                FinishPage.CopyButtonVisible = true;
             }
             Navigate(FinishPage);
 

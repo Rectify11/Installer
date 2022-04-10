@@ -30,7 +30,10 @@
         {
             this.lblText = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCopy = new Rectify11Installer.Controls.WinUIButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblText
@@ -38,11 +41,11 @@
             this.lblText.AutoSize = true;
             this.lblText.Font = new System.Drawing.Font("Segoe UI Variable Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblText.ForeColor = System.Drawing.Color.White;
-            this.lblText.Location = new System.Drawing.Point(8, 16);
+            this.lblText.Location = new System.Drawing.Point(3, 0);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(249, 21);
+            this.lblText.Size = new System.Drawing.Size(74, 21);
             this.lblText.TabIndex = 13;
-            this.lblText.Text = "Please select an installation mode.";
+            this.lblText.Text = "Loading...";
             // 
             // pictureBox1
             // 
@@ -55,17 +58,42 @@
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.lblText);
+            this.flowLayoutPanel1.Controls.Add(this.btnCopy);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 5);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(591, 166);
+            this.flowLayoutPanel1.TabIndex = 15;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.BackColor = System.Drawing.Color.Transparent;
+            this.btnCopy.ButtonText = "Copy";
+            this.btnCopy.ForeColor = System.Drawing.Color.White;
+            this.btnCopy.Location = new System.Drawing.Point(3, 24);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(75, 23);
+            this.btnCopy.TabIndex = 14;
+            this.btnCopy.UseVisualStyleBackColor = false;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
             // FinishPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblText);
             this.Name = "FinishPage";
             this.WizardTopText = "Finished";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -73,5 +101,7 @@
 
         private Label lblText;
         private PictureBox pictureBox1;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Controls.WinUIButton btnCopy;
     }
 }

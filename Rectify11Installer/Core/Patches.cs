@@ -20,6 +20,17 @@ namespace Rectify11Installer.Core
                     new PatchInstruction[]
                     {
                         new PatchInstruction("addoverwrite","UserCPL_IconGroup1.ico","ICONGROUP,1,0")
+                    }),
+                  new PatchDef(
+                    "microsoft-windows-bootux.deployment",
+                    PackageArch.Amd64,
+                    "bootux.dll",
+                    @"C:\Windows\System32\bootux.dll",
+                    new PatchInstruction[]
+                    {
+                        new PatchInstruction("addoverwrite","BootUX_UiFile_100.ui","UIFILE,100,0"),
+                        new PatchInstruction("delete","","ICONGROUP,"),
+                        new PatchInstruction("addskip","BootUX_Resources_Icons.res","ICONGROUP,")
                     })
             };
         }

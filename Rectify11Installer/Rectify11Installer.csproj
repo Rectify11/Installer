@@ -43,10 +43,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="files\" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <None Update="files\BootUX_UiFile_100.ui">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="files\BootUX_Resources_Icons.res">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="files\UserCPL_IconGroup1.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

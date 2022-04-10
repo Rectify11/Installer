@@ -56,7 +56,7 @@ namespace Rectify11Installer
                     var usr = GetAMD64Package(item.WinSxSPackageName);
                     if (usr == null)
                     {
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "Cannot find Microsoft.Windows.UserCPL package in the WinSxS folder!");
+                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.WinSxSPackageName} package in the WinSxS folder!");
                         return;
                     }
 
@@ -70,7 +70,7 @@ namespace Rectify11Installer
 
                     if (!File.Exists(WinSxSFilePath))
                     {
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "Cannot find UserCPL DLL");
+                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.DllName}");
                         return;
                     }
 
@@ -82,15 +82,19 @@ namespace Rectify11Installer
 
                     foreach (var patch in item.PatchInstructions)
                     {
+                        var r = Application.StartupPath + @"\files\" + patch.Resource;
+                        if (string.IsNullOrEmpty(patch.Resource))
+                            r = null;
+
                         //This is where we mod the file
                         if (!ReshackAddRes(@"C:\Program Files (x86)\Resource Hacker\ResourceHacker.exe",
                             fileProper,
                             fileProper,
                             patch.Action, //"addoverwrite",
-                            Application.StartupPath + @"\files\"+patch.Resource, //UserCPL_IconGroup1.ico
+                            r,
                             patch.GroupAndLocation))//ICONGROUP,1,0
                         {
-                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "Resource hacker failed at DLL: usercpl.dll.mun\nCommand line:\n" + LastCmd);
+                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + LastCmd);
                             return;
                         }
                     }
@@ -202,9 +206,20 @@ namespace Rectify11Installer
             return p;
         }
         private string? LastCmd;
-        public bool ReshackAddRes(string reshackerPath, string filename, string destination, string action, string resource, string type)
+        public bool ReshackAddRes(string reshackerPath, string filename, string destination, string action, string? resource, string type)
         {
-            LastCmd = " -open " + filename + " -save " + destination + " -action " + action + " -resource " + resource + " -mask " + type;
+            string cmd = "";
+
+            cmd += " -open " + filename;
+            cmd += " -save " + destination;
+            cmd += " -action " + action;
+            if (resource != null)
+            {
+                cmd += " -resource " + resource;
+            }
+            cmd += " -mask " + type;
+
+            LastCmd = cmd;
             Process reshackFileProcess = new Process();
             ProcessStartInfo reshackFileStartInfo = new ProcessStartInfo
             {
@@ -220,7 +235,7 @@ namespace Rectify11Installer
                 // Do not show a command window.
                 CreateNoWindow = true,
 
-                Arguments = LastCmd
+                Arguments = cmd
             };
             reshackFileProcess.EnableRaisingEvents = true;
             reshackFileProcess.StartInfo = reshackFileStartInfo;

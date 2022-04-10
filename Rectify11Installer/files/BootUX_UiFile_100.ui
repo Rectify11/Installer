@@ -1,0 +1,944 @@
+<duixml>
+	<Element resid="main" sheet="styles" layout="filllayout()">
+		<BUXFrame class="buxframe" id="atom(buxframe)"/>
+	</Element>
+	<Element resid="mainportrait" sheet="stylesportrait" layout="filllayout()">
+		<BUXFrame class="buxframe" id="atom(buxframe)"/>
+	</Element>
+	<stylesheets>
+		<style resid="styles">
+			<TouchEdit2 innerborderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20798" background="ARGB(255, 0, 0, 0)" foreground="20803" height="32rp" accessible="true" minsize="size(64rp,0rp)" font="resstr(107, library(dui70.dll))" selectionforegroundcolor="20807" selectionbackgroundcolor="20112" showclearbuttonminwidth="119rp"/>
+			<if mousewithin="true">
+				<TouchEdit2 background="ARGB(64, 160, 160, 160)" foreground="20804" bordercolor="20799"/>
+			</if>
+			<if keywithin="true">
+				<TouchEdit2 background="ARGB(64, 160, 160, 160)" foreground="20805" bordercolor="20800"/>
+			</if>
+			<if Enabled="false">
+				<TouchEdit2 bordercolor="20800" background="ARGB(255, 64, 64, 64)" foreground="20804"/>
+			</if>
+			<if id="atom(TouchEdit_TextContainer)">
+				<Element background="20575"/>
+			</if>
+			<if id="atom(TouchEdit_PromptText)">
+				<RichText background="20575" padding="rect(10rp,5rp,10rp,0rp)" foreground="20808" constrainlayout="narrow"/>
+			</if>
+			<TouchEditInner background="20575" padding="rect(10rp,5rp,10rp,0rp)" accessible="true" accrole="text"/>
+			<if class="TouchEdit_Button">
+				<TouchButton padding="rect(0rp,0rp,0rp,0rp)" margin="rect(0rp,0rp,0rp,0rp)" width="32rp" background="ARGB(255, 0, 0, 0)" font="resstr(108, library(dui70.dll))" foreground="20815" contentalign="middlecenter" layoutpos="none" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575" minsize="size(0rp,0rp)"/>
+				<if keyfocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="ARGB(255, 255, 255, 255)" bordercolor="20575"/>
+				</if>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="ARGB(255, 255, 255, 255)" bordercolor="20575"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="ARGB(255, 255, 255, 255)" bordercolor="20575"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)" foreground="ARGB(255, 160, 160, 160)" bordercolor="20575"/>
+				</if>
+				<if id="atom(TouchEdit_Button_Clear)">
+					<TouchButton content="resstr(109, library(dui70.dll))" accname="resstr(150, library(dui70.dll))"/>
+				</if>
+				<if id="atom(TouchEdit_Button_PasswordReveal)">
+					<TouchButton content="resstr(110, library(dui70.dll))" accname="resstr(151, library(dui70.dll))" accdesc="resstr(IDS_TOUCHEDIT_BUTTON_PASSWORDREVEAL_ACCDESC, library(dui70.dll))" tooltip="true"/>
+				</if>
+			</if>
+			<BUXTitle visible="false" layoutpos="none"/>
+			<if class="buxframe">
+				<BUXFrame contentalign="wrapleft" background="black" accessible="true" accrole="pane"/>
+			</if>
+			<if class="frame::pagecontent">
+				<Element padding="rect(0,0,0,0)" contentalign="wrapleft"/>
+			</if>
+			<RichText Typography="ss20=1,dlig=1,kern=1"/>
+			<if id="atom(main)">
+				<Element contentalign="middlecenter" background="blue" foreground="red"/>
+			</if>
+			<if id="atom(buxframe)">
+				<Element contentalign="middlecenter" background="black" foreground="red"/>
+			</if>
+			<BUXText background="20575" padding="rect(0,0,0,0)"/>
+			<BUXFormattedText background="20575" padding="rect(0,0,0,0)"/>
+			<BUXLiveText background="20575" padding="rect(0,0,0,0)"/>
+			<ModernProgressRing foreground="white" height="20rp" width="20rp"/>
+			<if class="frame::backbutton">
+				<TouchButton accessible="true" accrole="pushbutton" layoutpos="top" contentalign="middlecenter" content="icon(102,40rp,40rp,1,1)"/>
+				<LegacyButton accessible="true" accrole="pushbutton" layoutpos="top" contentalign="middlecenter" content="icon(102,40rp,40rp,1,1)"/>
+				<if mousewithin="true">
+					<TouchButton content="icon(104,40rp,40rp,1,1)"/>
+					<LegacyButton content="icon(104,40rp,40rp,1,1)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton content="icon(103,40rp,40rp,1,1)"/>
+					<LegacyButton content="icon(103,40rp,40rp,1,1)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="middlecenter|focusrect"/>
+					<LegacyButton contentalign="middlecenter|focusrect"/>
+				</if>
+			</if>
+			<if class="frame::backbutton::image">
+				<Element width="60rp" height="60rp" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="frame::pagemargins">
+				<Element padding="rect(15rp,0,0,0)"/>
+			</if>
+			<if class="prep::spacer">
+				<Element padding="rect(10rp,10rp,0,0)"/>
+			</if>
+			<if class="edit::spacer">
+				<Element padding="rect(0,5rp,0,0)"/>
+			</if>
+			<if class="bitlocker::spacer">
+				<Element padding="rect(0,15rp,0,0)"/>
+			</if>
+			<if class="bitlocker::spacer2">
+				<Element padding="rect(0,10rp,0,0)"/>
+			</if>
+			<if class="usbbitlocker::spacer">
+				<Element padding="rect(10rp,55rp,0,0)"/>
+			</if>
+			<if class="static::headerdescription::spacer">
+				<Element height="15rp"/>
+			</if>
+			<if class="static::descriptionheader::spacer">
+				<Element height="10rp"/>
+			</if>
+			<if class="static::headerdescription::largespacer">
+				<Element height="20rp"/>
+			</if>
+			<if class="static::status">
+				<BUXText accessible="true" padding="rect(8rp,0,0,0)" accrole="statictext" linespacing="20rp" baseline="15rp" font="resstr(304)" foreground="20992"/>
+			</if>
+			<if class="static::status::noringonit">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" accrole="statictext" linespacing="20rp" baseline="15rp" linepadding="5rp" font="resstr(304)" foreground="20992"/>
+			</if>
+			<if class="static::status::progress">
+				<BUXStatus padding="rect(10rp,55rp,0,0)"/>
+			</if>
+			<if class="static::bullet">
+				<BUXText baseline="15rp" linespacing="20rp" padding="rect(11rp,0,0,0)" accrole="statictext" font="resstr(305)" foreground="20993"/>
+			</if>
+			<if class="static::bullet::spacer">
+				<Element height="5rp"/>
+			</if>
+			<if class="collection::dataonly">
+				<OSButtonCollection visible="false" layoutpos="none" accessible="false" pagecount="1"/>
+			</if>
+			<if class="menutile">
+				<BUXButton margin="rect(0,0,16rp,6rp)" width="404rp" height="134rp" dpifudge="true"/>
+				<TouchButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<LegacyButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton bordercolor="20999"/>
+					<LegacyButton bordercolor="20999"/>
+				</if>
+			</if>
+			<if class="menutile::spacer">
+				<Element height="10rp"/>
+			</if>
+			<if class="menutile::image">
+				<Element background="ARGB(0, 0, 0, 0)" margin="rect(0,0,0,0)" padding="rect(25rp,25rp,25rp,25rp)" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="menutile::description">
+				<BUXText font="resstr(310)" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" foreground="20993" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<BUXFormattedText font="resstr(310)" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" foreground="20993" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+					<BUXFormattedText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="menutile::description::OS">
+				<BUXText font="resstr(310)" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" foreground="20993" width="270rp" contentalign="topleft|wrapleft|editcontrol"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="keyboardtile">
+				<BUXButton margin="rect(0,0,16rp,1rp)" width="384rp" height="74rp"/>
+				<TouchButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<LegacyButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton bordercolor="20999"/>
+					<LegacyButton bordercolor="20999"/>
+				</if>
+			</if>
+			<if class="keyboardtile::image">
+				<Element padding="rect(0,10rp,0,0)" background="20575" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="menuoption">
+				<TouchButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<LegacyButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<if mousefocused="true">
+					<TouchButton foreground="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="wrapleft|focusrect"/>
+					<LegacyButton contentalign="wrapleft|focusrect"/>
+				</if>
+			</if>
+			<if class="menuoption::unwrapped">
+				<TouchButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<LegacyButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<if mousefocused="true">
+					<TouchButton foreground="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="wrapleft|focusrect"/>
+					<LegacyButton contentalign="wrapleft|focusrect"/>
+				</if>
+			</if>
+			<if class="payloadmenuoption">
+				<TouchButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<LegacyButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<if mousefocused="true">
+					<TouchButton foreground="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="wrapleft|focusrect"/>
+					<LegacyButton contentalign="wrapleft|focusrect"/>
+				</if>
+			</if>
+			<if class="usertile">
+				<BUXButton margin="rect(0,16rp,0,0)" height="54rp"/>
+				<TouchButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<LegacyButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton bordercolor="20999"/>
+					<LegacyButton bordercolor="20999"/>
+				</if>
+			</if>
+			<if class="usertile::image">
+				<Element padding="rect(0,10rp,0,0)" background="20575" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="commitbutton">
+				<TouchButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="ARGB(255, 0, 0, 0)" foreground="21022" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21026" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<LegacyButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="ARGB(255, 0, 0, 0)" foreground="21022" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21026" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<if keyfocused="true">
+					<TouchButton contentalign="focusrect"/>
+					<LegacyButton contentalign="focusrect"/>
+				</if>
+				<if mousewithin="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)" foreground="ARGB(255, 160, 160, 160)" bordercolor="ARGB(255, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)" foreground="ARGB(255, 160, 160, 160)" bordercolor="ARGB(255, 160, 160, 160)"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="ARGB(255, 64, 64, 64)" foreground="ARGB(255, 64, 64, 64)" bordercolor="21029"/>
+					<LegacyButton background="ARGB(255, 64, 64, 64)" foreground="ARGB(255, 64, 64, 64)" bordercolor="21029"/>
+				</if>
+			</if>
+			<if class="commitbutton::header">
+				<BUXText font="resstr(312)" padding="rect(8rp,1rp,8rp,0)" baseline="15rp" linespacing="20rp" contentalign="topcenter" layoutpos="client" minsize="size(82rp,0)"/>
+			</if>
+			<if class="commitbutton::secondary">
+				<TouchButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="21006" foreground="21010" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21014" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<LegacyButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="21006" foreground="21010" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21014" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<if keyfocused="true">
+					<TouchButton contentalign="focusrect"/>
+					<LegacyButton contentalign="focusrect"/>
+				</if>
+				<if mousewithin="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="21011" bordercolor="21015"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)" foreground="21011" bordercolor="21015"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="21007" foreground="21011" bordercolor="21015"/>
+					<LegacyButton background="21007" foreground="21011" bordercolor="21015"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)" foreground="21012" bordercolor="21012"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)" foreground="21012" bordercolor="21012"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="ARGB(255, 64, 64, 64)" foreground="21013" bordercolor="21017"/>
+					<LegacyButton background="ARGB(255, 64, 64, 64)" foreground="21013" bordercolor="21017"/>
+				</if>
+			</if>
+			<if class="commitbutton::hadjspacer">
+				<Element width="20rp"/>
+			</if>
+			<if class="commitbutton::clustered">
+				<Element padding="rect(0,0,0,4rp)"/>
+			</if>
+			<if class="commitbuttonpair::clustered">
+				<Element padding="rect(0,0,0,5rp)"/>
+			</if>
+			<BUXPage background="ARGB(255, 0, 0, 0)"/>
+			<ChooseOSPage background="ARGB(255, 0, 0, 0)"/>
+			<ManualBitlockerKeyPage background="ARGB(255, 0, 0, 0)"/>
+			<UsbBitlockerKeyPage background="ARGB(255, 0, 0, 0)"/>
+			<if class="nullpage">
+				<BUXPage padding="rect(0,0,0,0)"/>
+			</if>
+			<if class="commitpage">
+				<BUXPage padding="rect(5rp,35rp,0,0)"/>
+				<UsbBitlockerKeyPage padding="rect(5rp,35rp,0,0)"/>
+			</if>
+			<if class="commitpage::description">
+				<BUXPage padding="rect(5rp,30rp,0,0)"/>
+			</if>
+			<if class="passwordpage">
+				<BUXPage padding="rect(5rp,35rp,0,0)"/>
+				<ManualBitlockerKeyPage padding="rect(5rp,35rp,0,0)"/>
+			</if>
+			<if class="passwordpage::description">
+				<ManualBitlockerKeyPage padding="rect(5rp,30rp,0,0)"/>
+			</if>
+			<if class="choicepage">
+				<BUXPage padding="rect(3rp,23rp,0rp,0)"/>
+			</if>
+			<if class="choicepage::description">
+				<BUXPage padding="rect(3rp,30rp,0,0)"/>
+				<ChooseOSPage padding="rect(3rp,30rp,0,0)"/>
+			</if>
+			<if class="choicepage::spacer">
+				<Element height="8rp"/>
+			</if>
+			<if class="choicepage::header::spacer">
+				<Element height="15rp"/>
+			</if>
+			<if class="menupage">
+				<BUXPage padding="rect(3rp,33rp,0,0)"/>
+			</if>
+			<if class="menupage::description">
+				<BUXPage padding="rect(3rp,30rp,0,0)"/>
+			</if>
+			<if class="menupage::spacer">
+				<Element height="18rp"/>
+			</if>
+			<if class="progresspage">
+				<BUXPage padding="rect(10rp,40rp,0,0)"/>
+			</if>
+			<GridOverlay visible="false" background="20575" gridpitch="5rp" charactergridpitch="20rp" verticalguides="180;950;1000" horizontalguides="100;750"/>
+			<if class="frame::backbutton">
+				<BUXButton padding="rect(0,10rp,0,0)"/>
+			</if>
+			<if class="frame::framemargins">
+				<Element padding="rect(90rp,40rp,0,0)"/>
+			</if>
+			<if class="frame::pageheader">
+				<BUXText padding="rect(15rp,0,0,0)" width="775rp" contentalign="topleft|endellipsis" font="resstr(300)" baseline="60rp" linespacing="75rp" height="75rp" foreground="20991"/>
+			</if>
+			<BUXEdit padding="rect(10rp,0,0,3rp)" width="780rp" font="resstr(301)"/>
+			<if class="static::header">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" baseline="30rp" linespacing="35rp" linepadding="5rp" accrole="statictext" font="resstr(302)" foreground="20992" width="780rp" contentalign="topleft|wrapleft"/>
+				<BUXFormattedText accessible="true" padding="rect(10rp,0,0,0)" baseline="30rp" linespacing="35rp" linepadding="5rp" accrole="statictext" font="resstr(302)" foreground="20992" width="780rp" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::description">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="780rp" contentalign="topleft|wrapleft"/>
+				<BUXFormattedText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="780rp" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::description::nudged">
+				<BUXText padding="rect(12rp,0,0,0)" accessible="true" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="780rp" contentalign="topleft|wrapleft"/>
+				<BUXFormattedText padding="rect(12rp,0,0,0)" accessible="true" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="780rp" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::description::withurl">
+				<BUXText padding="rect(10rp,0,0,0)" accessible="true" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="780rp" contentalign="topleft|wrapleft|editcontrol"/>
+			</if>
+			<if class="static::bulletitem">
+				<BUXText accessible="true" padding="rect(5rp,0,0,0)" baseline="15rp" linespacing="20rp" accrole="statictext" width="765rp" font="resstr(306)" foreground="20993" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::error">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" accrole="statictext" width="765rp" font="resstr(307)" foreground="21001" layoutpos="top"/>
+				<BUXLiveText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" accrole="statictext" width="765rp" font="resstr(307)" foreground="21001" layoutpos="top"/>
+			</if>
+			<if class="collection::wrapped">
+				<BUXButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="6" height="450rp"/>
+				<OSButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="6" height="450rp"/>
+			</if>
+			<if class="payloadcollection::wrapped">
+				<BUXButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="5" height="400rp"/>
+			</if>
+			<if class="keyboardcollection::wrapped">
+				<BUXButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="12" height="480rp"/>
+			</if>
+			<if class="collection::unwrapped">
+				<BUXButtonCollection padding="rect(0,30rp,0,0)" accessible="false" pagecount="5" height="400rp"/>
+			</if>
+			<if class="menutile::header">
+				<BUXText font="resstr(309)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<BUXFormattedText font="resstr(309)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+					<BUXFormattedText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="menutile::header::OS">
+				<BUXText font="resstr(309)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|editcontrol"/>
+				<BUXFormattedText font="resstr(309)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|editcontrol"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+					<BUXFormattedText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="keyboardtile::header">
+				<BUXText font="resstr(309)" height="70rp" padding="rect(7rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="333rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="menuoption">
+				<BUXButtonCollectionFlipper background="20575" DesiredX="5rp" DesiredY="490rp"/>
+			</if>
+			<if class="menuoption::header">
+				<BUXText font="resstr(313)" baseline="35rp" linespacing="45rp" width="770rp" contentalign="wrapleft"/>
+			</if>
+			<if class="payloadmenuoption">
+				<BUXButtonCollectionFlipper background="20575" DesiredX="5rp" DesiredY="420rp"/>
+			</if>
+			<if class="menuoption::unwrapped">
+				<BUXButtonCollectionFlipper background="20575" DesiredX="5rp" DesiredY="440rp"/>
+			</if>
+			<if class="usertile::header">
+				<BUXText padding="rect(7rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" font="resstr(311)" foreground="20992" width="343rp" contentalign="topleft"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="edit::commitbutton::spacer">
+				<Element padding="rect(0,44rp,0,0)" width="780rp"/>
+				<BUXStatus padding="rect(10rp,49rp,0,0)"/>
+			</if>
+			<if class="commitbutton::spacer">
+				<Element padding="rect(0,49rp,0,0)" width="780rp"/>
+			</if>
+			<if class="description::commitbutton::spacer">
+				<Element padding="rect(0,44rp,0,0)" width="780rp"/>
+			</if>
+			<if class="status::flippable">
+				<BUXStatus width="780rp" height="60rp" padding="rect(10rp,0,0,10rp)"/>
+			</if>
+			<if class="status::flippable2">
+				<BUXStatus width="780rp" height="55rp" padding="rect(10rp,0,0,10rp)"/>
+			</if>
+			<if class="status::flippable3">
+				<BUXStatus width="780rp" height="80rp" padding="rect(10rp,0,0,5rp)"/>
+			</if>
+			<if class="menupage::content">
+				<Element height="454rp"/>
+			</if>
+			<if class="page::infolinkarea">
+				<BUXAnchor background="20575" layoutpos="absolute" DesiredX="5rp" DesiredY="530rp"/>
+			</if>
+			<if class="infolinkarea::unwrapped">
+				<BUXAnchor background="20575" layoutpos="absolute" DesiredX="5rp" DesiredY="480rp"/>
+			</if>
+		</style>
+		<style resid="stylesportrait">
+			<TouchEdit2 innerborderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20798" background="20793" foreground="20803" height="32rp" accessible="true" minsize="size(64rp,0rp)" font="resstr(107, library(dui70.dll))" selectionforegroundcolor="20807" selectionbackgroundcolor="20112" showclearbuttonminwidth="119rp"/>
+			<if mousewithin="true">
+				<TouchEdit2 background="ARGB(64, 160, 160, 160)" foreground="20804" bordercolor="20799"/>
+			</if>
+			<if keywithin="true">
+				<TouchEdit2 background="ARGB(64, 160, 160, 160)" foreground="20805" bordercolor="20800"/>
+			</if>
+			<if Enabled="false">
+				<TouchEdit2 bordercolor="ARGB(255, 64, 64, 64)" background="21033" foreground="20806"/>
+			</if>
+			<if id="atom(TouchEdit_TextContainer)">
+				<Element background="20575"/>
+			</if>
+			<if id="atom(TouchEdit_PromptText)">
+				<RichText background="20575" padding="rect(10rp,5rp,10rp,0rp)" foreground="20808" constrainlayout="narrow"/>
+			</if>
+			<TouchEditInner background="20575" padding="rect(10rp,5rp,10rp,0rp)" accessible="true" accrole="text"/>
+			<if class="TouchEdit_Button">
+				<TouchButton padding="rect(0rp,0rp,0rp,0rp)" margin="rect(0rp,0rp,0rp,0rp)" width="32rp" background="ARGB(255, 0, 0, 0)" font="resstr(108, library(dui70.dll))" foreground="20815" contentalign="middlecenter" layoutpos="none" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575" minsize="size(0rp,0rp)"/>
+				<if keyfocused="true">
+					<TouchButton background="20812" foreground="20815" bordercolor="20575"/>
+				</if>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="20816" bordercolor="20575"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="20816" bordercolor="20575"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)" foreground="20817" bordercolor="20575"/>
+				</if>
+				<if id="atom(TouchEdit_Button_Clear)">
+					<TouchButton content="resstr(109, library(dui70.dll))" accname="resstr(150, library(dui70.dll))"/>
+				</if>
+				<if id="atom(TouchEdit_Button_PasswordReveal)">
+					<TouchButton content="resstr(110, library(dui70.dll))" accname="resstr(151, library(dui70.dll))" accdesc="resstr(IDS_TOUCHEDIT_BUTTON_PASSWORDREVEAL_ACCDESC, library(dui70.dll))" tooltip="true"/>
+				</if>
+			</if>
+			<BUXTitle visible="false" layoutpos="none"/>
+			<if class="buxframe">
+				<BUXFrame contentalign="wrapleft" background="black" accessible="true" accrole="pane"/>
+			</if>
+			<if class="frame::pagecontent">
+				<Element padding="rect(0,0,0,0)" contentalign="wrapleft"/>
+			</if>
+			<RichText Typography="ss20=1,dlig=1,kern=1"/>
+			<if id="atom(main)">
+				<Element contentalign="middlecenter" background="blue" foreground="red"/>
+			</if>
+			<if id="atom(buxframe)">
+				<Element contentalign="middlecenter" background="black" foreground="red"/>
+			</if>
+			<BUXText background="20575" padding="rect(0,0,0,0)"/>
+			<BUXFormattedText background="20575" padding="rect(0,0,0,0)"/>
+			<BUXLiveText background="20575" padding="rect(0,0,0,0)"/>
+			<ModernProgressRing foreground="white" height="20rp" width="20rp"/>
+			<if class="frame::backbutton">
+				<TouchButton accessible="true" accrole="pushbutton" layoutpos="top" contentalign="middlecenter" content="icon(102,40rp,40rp,1,1)"/>
+				<LegacyButton accessible="true" accrole="pushbutton" layoutpos="top" contentalign="middlecenter" content="icon(102,40rp,40rp,1,1)"/>
+				<if mousewithin="true">
+					<TouchButton content="icon(104,40rp,40rp,1,1)"/>
+					<LegacyButton content="icon(104,40rp,40rp,1,1)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton content="icon(103,40rp,40rp,1,1)"/>
+					<LegacyButton content="icon(103,40rp,40rp,1,1)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="middlecenter|focusrect"/>
+					<LegacyButton contentalign="middlecenter|focusrect"/>
+				</if>
+			</if>
+			<if class="frame::backbutton::image">
+				<Element width="60rp" height="60rp" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="frame::pagemargins">
+				<Element padding="rect(15rp,0,0,0)"/>
+			</if>
+			<if class="prep::spacer">
+				<Element padding="rect(10rp,10rp,0,0)"/>
+			</if>
+			<if class="edit::spacer">
+				<Element padding="rect(0,5rp,0,0)"/>
+			</if>
+			<if class="bitlocker::spacer">
+				<Element padding="rect(0,15rp,0,0)"/>
+			</if>
+			<if class="bitlocker::spacer2">
+				<Element padding="rect(0,10rp,0,0)"/>
+			</if>
+			<if class="usbbitlocker::spacer">
+				<Element padding="rect(10rp,55rp,0,0)"/>
+			</if>
+			<if class="static::headerdescription::spacer">
+				<Element height="15rp"/>
+			</if>
+			<if class="static::descriptionheader::spacer">
+				<Element height="10rp"/>
+			</if>
+			<if class="static::headerdescription::largespacer">
+				<Element height="20rp"/>
+			</if>
+			<if class="static::status">
+				<BUXText accessible="true" padding="rect(8rp,0,0,0)" accrole="statictext" linespacing="20rp" baseline="15rp" font="resstr(304)" foreground="20992"/>
+			</if>
+			<if class="static::status::noringonit">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" accrole="statictext" linespacing="20rp" baseline="15rp" linepadding="5rp" font="resstr(304)" foreground="20992"/>
+			</if>
+			<if class="static::status::progress">
+				<BUXStatus padding="rect(10rp,55rp,0,0)"/>
+			</if>
+			<if class="static::bullet">
+				<BUXText baseline="15rp" linespacing="20rp" padding="rect(11rp,0,0,0)" accrole="statictext" font="resstr(305)" foreground="20993"/>
+			</if>
+			<if class="static::bullet::spacer">
+				<Element height="5rp"/>
+			</if>
+			<if class="collection::dataonly">
+				<OSButtonCollection visible="false" layoutpos="none" accessible="false" pagecount="1"/>
+			</if>
+			<if class="menutile">
+				<BUXButton margin="rect(0,0,16rp,6rp)" width="404rp" height="134rp" dpifudge="true"/>
+				<TouchButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<LegacyButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton bordercolor="20999"/>
+					<LegacyButton bordercolor="20999"/>
+				</if>
+			</if>
+			<if class="menutile::spacer">
+				<Element height="10rp"/>
+			</if>
+			<if class="menutile::image">
+				<Element background="20995" margin="rect(0,0,0,0)" padding="rect(25rp,25rp,25rp,25rp)" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="menutile::description">
+				<BUXText font="resstr(310)" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" foreground="20993" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<BUXFormattedText font="resstr(310)" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" foreground="20993" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+					<BUXFormattedText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="menutile::description::OS">
+				<BUXText font="resstr(310)" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" foreground="20993" width="270rp" contentalign="topleft|wrapleft|editcontrol"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="keyboardtile">
+				<BUXButton margin="rect(0,0,16rp,1rp)" width="384rp" height="74rp"/>
+				<TouchButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<LegacyButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton bordercolor="20999"/>
+					<LegacyButton bordercolor="20999"/>
+				</if>
+			</if>
+			<if class="keyboardtile::image">
+				<Element padding="rect(0,10rp,0,0)" background="20575" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="menuoption">
+				<TouchButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<LegacyButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<if mousefocused="true">
+					<TouchButton foreground="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="wrapleft|focusrect"/>
+					<LegacyButton contentalign="wrapleft|focusrect"/>
+				</if>
+			</if>
+			<if class="menuoption::unwrapped">
+				<TouchButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<LegacyButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<if mousefocused="true">
+					<TouchButton foreground="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="wrapleft|focusrect"/>
+					<LegacyButton contentalign="wrapleft|focusrect"/>
+				</if>
+			</if>
+			<if class="payloadmenuoption">
+				<TouchButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<LegacyButton padding="rect(10rp,0,10rp,0)" contentalign="wrapleft" foreground="21003" accessible="true" accrole="pushbutton"/>
+				<if mousefocused="true">
+					<TouchButton foreground="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton foreground="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton contentalign="wrapleft|focusrect"/>
+					<LegacyButton contentalign="wrapleft|focusrect"/>
+				</if>
+			</if>
+			<if class="usertile">
+				<BUXButton margin="rect(0,16rp,0,0)" height="54rp"/>
+				<TouchButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<LegacyButton padding="rect(10rp,0,5rp,0)" accessible="true" accrole="pushbutton" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="20575"/>
+				<if mousefocused="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)"/>
+				</if>
+				<if keyfocused="true">
+					<TouchButton bordercolor="20999"/>
+					<LegacyButton bordercolor="20999"/>
+				</if>
+			</if>
+			<if class="usertile::image">
+				<Element padding="rect(0,10rp,0,0)" background="20575" contentalign="middlecenter" accrole="graphic"/>
+			</if>
+			<if class="commitbutton">
+				<TouchButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="21018" foreground="21022" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21026" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<LegacyButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="21018" foreground="21022" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21026" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<if keyfocused="true">
+					<TouchButton contentalign="focusrect"/>
+					<LegacyButton contentalign="focusrect"/>
+				</if>
+				<if mousewithin="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)" foreground="21023" bordercolor="21027"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)" foreground="21024" bordercolor="21024"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)" foreground="21024" bordercolor="21024"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="ARGB(255, 64, 64, 64)" foreground="21025" bordercolor="21029"/>
+					<LegacyButton background="ARGB(255, 64, 64, 64)" foreground="21025" bordercolor="21029"/>
+				</if>
+			</if>
+			<if class="commitbutton::header">
+				<BUXText font="resstr(312)" padding="rect(8rp,1rp,8rp,0)" baseline="15rp" linespacing="20rp" contentalign="topcenter" layoutpos="client" minsize="size(82rp,0)"/>
+			</if>
+			<if class="commitbutton::secondary">
+				<TouchButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="21006" foreground="21010" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21014" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<LegacyButton padding="rect(2rp,3rp,2rp,4rp)" accessible="true" accrole="pushbutton" background="21006" foreground="21010" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="21014" EdgeHighlightThickness="rect(1rp,1rp,1rp,1rp)" EdgeHighlightColor="20575"/>
+				<if keyfocused="true">
+					<TouchButton contentalign="focusrect"/>
+					<LegacyButton contentalign="focusrect"/>
+				</if>
+				<if mousewithin="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="21011" bordercolor="21015"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)" foreground="21011" bordercolor="21015"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="ARGB(64, 160, 160, 160)" foreground="21011" bordercolor="21015"/>
+					<LegacyButton background="ARGB(64, 160, 160, 160)" foreground="21011" bordercolor="21015"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="ARGB(32, 160, 160, 160)" foreground="21012" bordercolor="21012"/>
+					<LegacyButton background="ARGB(32, 160, 160, 160)" foreground="21012" bordercolor="21012"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="ARGB(255, 64, 64, 64)" foreground="21013" bordercolor="21017"/>
+					<LegacyButton background="ARGB(255, 64, 64, 64)" foreground="21013" bordercolor="21017"/>
+				</if>
+			</if>
+			<if class="commitbutton::hadjspacer">
+				<Element width="20rp"/>
+			</if>
+			<if class="commitbutton::clustered">
+				<Element padding="rect(0,0,0,4rp)"/>
+			</if>
+			<if class="commitbuttonpair::clustered">
+				<Element padding="rect(0,0,0,5rp)"/>
+			</if>
+			<BUXPage background="ARGB(255, 0, 0, 0)"/>
+			<ChooseOSPage background="ARGB(255, 0, 0, 0)"/>
+			<ManualBitlockerKeyPage background="ARGB(255, 0, 0, 0)"/>
+			<UsbBitlockerKeyPage background="ARGB(255, 0, 0, 0)"/>
+			<if class="nullpage">
+				<BUXPage padding="rect(0,0,0,0)"/>
+			</if>
+			<if class="commitpage">
+				<BUXPage padding="rect(5rp,35rp,0,0)"/>
+				<UsbBitlockerKeyPage padding="rect(5rp,35rp,0,0)"/>
+			</if>
+			<if class="commitpage::description">
+				<BUXPage padding="rect(5rp,30rp,0,0)"/>
+			</if>
+			<if class="passwordpage">
+				<BUXPage padding="rect(5rp,35rp,0,0)"/>
+				<ManualBitlockerKeyPage padding="rect(5rp,35rp,0,0)"/>
+			</if>
+			<if class="passwordpage::description">
+				<ManualBitlockerKeyPage padding="rect(5rp,30rp,0,0)"/>
+			</if>
+			<if class="choicepage">
+				<BUXPage padding="rect(3rp,23rp,0rp,0)"/>
+			</if>
+			<if class="choicepage::description">
+				<BUXPage padding="rect(3rp,30rp,0,0)"/>
+				<ChooseOSPage padding="rect(3rp,30rp,0,0)"/>
+			</if>
+			<if class="choicepage::spacer">
+				<Element height="8rp"/>
+			</if>
+			<if class="choicepage::header::spacer">
+				<Element height="15rp"/>
+			</if>
+			<if class="menupage">
+				<BUXPage padding="rect(3rp,33rp,0,0)"/>
+			</if>
+			<if class="menupage::description">
+				<BUXPage padding="rect(3rp,30rp,0,0)"/>
+			</if>
+			<if class="menupage::spacer">
+				<Element height="18rp"/>
+			</if>
+			<if class="progresspage">
+				<BUXPage padding="rect(10rp,40rp,0,0)"/>
+			</if>
+			<GridOverlay visible="false" background="20575" gridpitch="5rp" charactergridpitch="20rp" verticalguides="120;710" horizontalguides="100;960"/>
+			<if class="frame::backbutton">
+				<BUXButton padding="rect(0,15rp,0,0)"/>
+			</if>
+			<if class="frame::framemargins">
+				<Element padding="rect(30rp,40rp,0,0)"/>
+			</if>
+			<if class="frame::pageheader">
+				<BUXText padding="rect(15rp,0,0,0)" width="603rp" contentalign="topleft|wrapleft" font="resstr(314)" baseline="60rp" linespacing="75rp" height="75rp" foreground="20991"/>
+			</if>
+			<BUXEdit padding="rect(10rp,0,0,3rp)" width="598rp" font="resstr(301)"/>
+			<if class="static::header">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" baseline="30rp" linespacing="35rp" linepadding="5rp" accrole="statictext" font="resstr(315)" foreground="20992" width="598rp" contentalign="topleft|wrapleft"/>
+				<BUXFormattedText accessible="true" padding="rect(10rp,0,0,0)" baseline="30rp" linespacing="35rp" linepadding="5rp" accrole="statictext" font="resstr(315)" foreground="20992" width="598rp" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::description">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="598rp" contentalign="topleft|wrapleft"/>
+				<BUXFormattedText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="598rp" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::description::nudged">
+				<BUXText padding="rect(12rp,0,0,0)" accessible="true" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="598rp" contentalign="topleft|wrapleft"/>
+				<BUXFormattedText padding="rect(12rp,0,0,0)" accessible="true" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="598rp" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::description::withurl">
+				<BUXText padding="rect(10rp,0,0,0)" accessible="true" baseline="15rp" linespacing="20rp" linepadding="5rp" accrole="statictext" font="resstr(303)" foreground="20993" width="598rp" contentalign="topleft|wrapleft|editcontrol"/>
+			</if>
+			<if class="static::bulletitem">
+				<BUXText accessible="true" padding="rect(5rp,0,0,0)" baseline="15rp" linespacing="20rp" accrole="statictext" width="583rp" font="resstr(306)" foreground="20993" contentalign="topleft|wrapleft"/>
+			</if>
+			<if class="static::error">
+				<BUXText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" accrole="statictext" width="583rp" font="resstr(307)" foreground="21001" layoutpos="top"/>
+				<BUXLiveText accessible="true" padding="rect(10rp,0,0,0)" baseline="15rp" linespacing="20rp" accrole="statictext" width="583rp" font="resstr(307)" foreground="21001" layoutpos="top"/>
+			</if>
+			<if class="collection::wrapped">
+				<BUXButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="5" height="710rp"/>
+				<OSButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="5" height="710rp"/>
+			</if>
+			<if class="payloadcollection::wrapped">
+				<BUXButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="5" height="710rp"/>
+			</if>
+			<if class="keyboardcollection::wrapped">
+				<BUXButtonCollection padding="rect(0rp,10rp,0,0)" accessible="false" pagecount="9" height="685rp"/>
+			</if>
+			<if class="collection::unwrapped">
+				<BUXButtonCollection padding="rect(0,30rp,0,0)" accessible="false" pagecount="10" height="730rp"/>
+			</if>
+			<if class="menutile::header">
+				<BUXText font="resstr(316)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<BUXFormattedText font="resstr(316)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+					<BUXFormattedText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="menutile::header::OS">
+				<BUXText font="resstr(316)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|editcontrol"/>
+				<BUXFormattedText font="resstr(316)" padding="rect(10rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="270rp" contentalign="topleft|wrapleft|editcontrol"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+					<BUXFormattedText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="keyboardtile::header">
+				<BUXText font="resstr(316)" height="70rp" padding="rect(7rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" foreground="20992" width="333rp" contentalign="topleft|wrapleft|endellipsis|wordellipsis"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="menuoption">
+				<BUXButtonCollectionFlipper background="20575" DesiredX="5rp" DesiredY="770rp"/>
+			</if>
+			<if class="menuoption::header">
+				<BUXText font="resstr(317)" baseline="35rp" linespacing="45rp" width="588rp" contentalign="wrapleft"/>
+			</if>
+			<if class="payloadmenuoption">
+				<BUXButtonCollectionFlipper background="20575" DesiredX="5rp" DesiredY="770rp"/>
+			</if>
+			<if class="menuoption::unwrapped">
+				<BUXButtonCollectionFlipper background="20575" DesiredX="5rp" DesiredY="770rp"/>
+			</if>
+			<if class="usertile::header">
+				<BUXText padding="rect(7rp,5rp,0,0)" baseline="25rp" linespacing="30rp" linepadding="5rp" font="resstr(318)" foreground="20992" width="343rp" contentalign="topleft"/>
+				<if Pressed="true">
+					<BUXText foreground="ARGB(255, 160, 160, 160)"/>
+				</if>
+			</if>
+			<if class="edit::commitbutton::spacer">
+				<Element padding="rect(0,44rp,0,0)" width="598rp"/>
+				<BUXStatus padding="rect(10rp,49rp,0,0)"/>
+			</if>
+			<if class="commitbutton::spacer">
+				<Element padding="rect(0,49rp,0,0)" width="598rp"/>
+			</if>
+			<if class="description::commitbutton::spacer">
+				<Element padding="rect(0,44rp,0,0)" width="598rp"/>
+			</if>
+			<if class="status::flippable">
+				<BUXStatus width="598rp" height="60rp" padding="rect(10rp,0,0,10rp)"/>
+			</if>
+			<if class="status::flippable2">
+				<BUXStatus width="598rp" height="55rp" padding="rect(10rp,0,0,10rp)"/>
+			</if>
+			<if class="status::flippable3">
+				<BUXStatus width="598rp" height="80rp" padding="rect(10rp,0,0,5rp)"/>
+			</if>
+			<if class="menupage::content">
+				<Element height="700rp"/>
+			</if>
+			<if class="page::infolinkarea">
+				<BUXAnchor background="20575" layoutpos="absolute" DesiredX="5rp" DesiredY="810rp"/>
+			</if>
+			<if class="infolinkarea::unwrapped">
+				<BUXAnchor background="20575" layoutpos="absolute" DesiredX="5rp" DesiredY="810rp"/>
+			</if>
+		</style>
+	</stylesheets>
+</duixml>
