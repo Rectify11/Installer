@@ -21,13 +21,13 @@
 [X] dmdskres.dll
 [X] dsquery.dll
 [X] dsuiext.dll
-[ ] easeofaccessdialog.exe
-[ ] edputil.dll
-[ ] explorerframe.dll
-[ ] filemgmt.dll
-[ ] firewallcontrolpanel.dll
-[ ] gpedit.dll
-[ ] ieframe.dll
+[X] easeofaccessdialog.exe
+[X] edputil.dll
+[X] explorerframe.dll
+[X] filemgmt.dll
+[X] firewallcontrolpanel.dll
+[X] gpedit.dll
+[X] ieframe.dll
 [ ] imageres.dll
 [ ] imagesp1.dll
 [ ] inetcpl.cpl

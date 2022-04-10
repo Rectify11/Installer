@@ -174,7 +174,142 @@
 		</Commands>
 	</Patch>
 
+	<Patch Package="microsoft-windows-sethc" HardlinkTarget="C:\Windows\SystemResources\easeofaccessdialog.exe.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="EaseOfAccessDialog_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
 
+	<Patch Package="microsoft-windows-edp-util" HardlinkTarget="C:\Windows\SystemResources\edputil.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Edputil_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-explorerframe" HardlinkTarget="C:\Windows\SystemResources\explorerframe.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ExplorerFrame_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\filemgmt.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Filemgmt_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="networking-mpssvc-ui" HardlinkTarget="C:\Windows\SystemResources\firewallcontrolpanel.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="FirewallControlPanel_Icon.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-g..policy-admin-gpedit" HardlinkTarget="C:\Windows\SystemResources\gpedit.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Gpedit_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-ieframe" HardlinkTarget="C:\Windows\SystemResources\ieframe.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="IEFrame_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-imageres" HardlinkTarget="C:\Windows\SystemResources\imageres.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Imageres_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\imagesp1.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ImageSP1_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\imagesp1.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ImageSP1_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+
+	<Patch Package="microsoft-windows-i..nternetcontrolpanel" HardlinkTarget="C:\Windows\SystemResources\inetcpl.cpl.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="INetCPL_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-intl" HardlinkTarget="C:\Windows\SystemResources\intl.cpl.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Intl_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<!--<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\iscigd.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Iscigd_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>-->
+
+	<Patch Package="microsoft-windows-i..i_initiator_service" HardlinkTarget="C:\Windows\SystemResources\iscsicli.exe.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Iscicli.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-iscsi_initiator_ui" HardlinkTarget="C:\Windows\SystemResources\iscsicpl.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Iscsicpl_dll_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-iscsi_initiator_ui" HardlinkTarget="C:\Windows\SystemResources\iscsicpl.exe" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Iscicpl_Exe_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-keymgr" HardlinkTarget="C:\Windows\SystemResources\keymgr.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Keymgr_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-magnify" HardlinkTarget="C:\Windows\SystemResources\magnify.exe.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Magnify_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-main" HardlinkTarget="C:\Windows\SystemResources\main.cpl.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Main_CPL_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+	
+	
+	
 
 
 	<Patch Package="microsoft-windows-themecpl" HardlinkTarget="C:\Windows\SystemResources\themecpl.dll.mun" Arch="amd64">
