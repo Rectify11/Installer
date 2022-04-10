@@ -49,13 +49,13 @@ namespace Rectify11Installer
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show($"A fatal error occured: {e.ToString()}\nPlease report this as a bug\n", "Runtime Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"A fatal error occured: {(Exception)e.ExceptionObject}\nPlease report this as a bug\n", "Runtime Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            MessageBox.Show($"A fatal error occured: {e.ToString()}\nPlease report this as a bug\n", "Runtime Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"A fatal error occured: {e.Exception}\nPlease report this as a bug\n", "Runtime Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
     }
