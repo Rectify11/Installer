@@ -94,7 +94,7 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-cttune" HardlinkTarget="C:\Windows\SystemResources\cctune.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-cttune" HardlinkTarget="C:\Windows\SystemResources\cttune.exe.mun" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="CCTune_Icons.res" mask="ICONGROUP,"></Command>
