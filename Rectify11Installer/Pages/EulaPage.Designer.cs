@@ -31,7 +31,7 @@ namespace Rectify11Installer.Pages
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EulaPage));
-            this.richTextBox1 = new DarkRichTextBox();
+            this.richTextBox1 = new Rectify11Installer.Controls.DarkRichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();

@@ -37,9 +37,9 @@ namespace Rectify11Installer.Win32
                     FileName = "takeown.exe",
 
                     // Do not write error output to standard stream.
-                    RedirectStandardError = false,
+                    RedirectStandardError = true,
                     // Do not write output to Process.StandardOutput Stream.
-                    RedirectStandardOutput = false,
+                    RedirectStandardOutput = true,
                     // Do not read input from Process.StandardInput (i/e; the keyboard).
                     RedirectStandardInput = false,
 
@@ -47,15 +47,18 @@ namespace Rectify11Installer.Win32
                     // Do not show a command window.
                     CreateNoWindow = true,
 
-                    Arguments = "/f " + fileName +" /a"
+                    Arguments = "/f " + fileName + " /a /r"
                 };
 
                 takeOwnProcess.EnableRaisingEvents = true;
                 takeOwnProcess.StartInfo = takeOwnStartInfo;
+                takeOwnProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
+                takeOwnProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
 
                 // Start the process.
                 takeOwnProcess.Start();
-
+                takeOwnProcess.BeginOutputReadLine();
+                takeOwnProcess.BeginErrorReadLine();
                 // Wait for the process to exit.
                 takeOwnProcess.WaitForExit();
 
@@ -85,9 +88,9 @@ namespace Rectify11Installer.Win32
                 grantFullControlStartInfo.FileName = "icacls.exe";
 
                 // Do not write error output to standard stream.
-                grantFullControlStartInfo.RedirectStandardError = false;
+                grantFullControlStartInfo.RedirectStandardError = true;
                 // Do not write output to Process.StandardOutput Stream.
-                grantFullControlStartInfo.RedirectStandardOutput = false;
+                grantFullControlStartInfo.RedirectStandardOutput = true;
                 // Do not read input from Process.StandardInput (i/e; the keyboard).
                 grantFullControlStartInfo.RedirectStandardInput = false;
 
@@ -95,15 +98,17 @@ namespace Rectify11Installer.Win32
                 // Do not show a command window.
                 grantFullControlStartInfo.CreateNoWindow = true;
 
-                grantFullControlStartInfo.Arguments = fileName + " /grant " + userName + ":(F)";
+                grantFullControlStartInfo.Arguments = fileName + " /grant " + userName + ":(F) /T";
+                grantFullControlProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
+                grantFullControlProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
 
                 grantFullControlProcess.EnableRaisingEvents = true;
                 grantFullControlProcess.StartInfo = grantFullControlStartInfo;
 
                 // Start the process.
                 grantFullControlProcess.Start();
-
-                // Wait for the process to finish.
+                grantFullControlProcess.BeginOutputReadLine();
+                grantFullControlProcess.BeginErrorReadLine();
                 grantFullControlProcess.WaitForExit();
 
                 int exitCode = grantFullControlProcess.ExitCode;
@@ -120,6 +125,13 @@ namespace Rectify11Installer.Win32
                 grantFullControlProcess.Dispose();
                 return grantFullControlSuccessful;
             }
+
+            private static void GrantFullControlProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
+            {
+                if (e.Data != null)
+                    File.AppendAllText("install.log", e.Data+"\n");
+            }
+
             public static bool ResetPermissions(string fileName)
             {
                 Process resetPermissionsProcess = new Process();

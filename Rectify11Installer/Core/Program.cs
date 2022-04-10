@@ -17,6 +17,8 @@ namespace Rectify11Installer
             }
             _ = DarkMode.fnAllowDarkModeForApp(DarkMode.PreferredAppMode.AllowDark);
 
+            if (File.Exists("install.log"))
+                File.Delete("install.log");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
