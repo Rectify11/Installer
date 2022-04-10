@@ -64,11 +64,11 @@ namespace Rectify11Installer
                     _Wizard.SetProgress((i * 100) / patches.Length);
 
                     var WinSxSFilePath = usr.Path + @"\" + item.DllName;
-                    string dir = Path.GetFileName(usr.Path);
-                    string file = dir + "/" + item.DllName;
+                    string WinsxsDir = Path.GetFileName(usr.Path);
+                    string file = WinsxsDir + "/" + item.DllName;
 
                     string fileProper = "C:/Windows/Rectify11/Tmp/" + file; //relative path to the file location
-                    string backupDirW = backupDir + "/" + dir; //backup dir where the file is located at
+                    string backupDirW = backupDir + "/" + WinsxsDir; //backup dir where the file is located at
 
                     if (!File.Exists(WinSxSFilePath))
                     {
@@ -76,11 +76,14 @@ namespace Rectify11Installer
                         return;
                     }
 
-                    Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/" + dir);
+                    Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/" + WinsxsDir);
                     File.Copy(WinSxSFilePath, fileProper, true);
 
                     Directory.CreateDirectory(backupDirW);
-                    File.Copy(WinSxSFilePath, backupDirW + "/" + item.DllName, true);
+                    //backup
+
+                    if (!File.Exists(backupDirW + "/" + item.DllName))
+                        File.Copy(WinSxSFilePath, backupDirW + "/" + item.DllName, true);
 
                     foreach (var patch in item.PatchInstructions)
                     {
@@ -118,6 +121,9 @@ namespace Rectify11Installer
 
                     //copy new file over
                     File.Move(fileProper, WinSxSFilePath, true);
+
+                    //cleanup tmp folder
+                    Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
 
                     //create hardlink
                     if (!Pinvoke.CreateHardLinkA(item.Systempath, WinSxSFilePath, IntPtr.Zero))

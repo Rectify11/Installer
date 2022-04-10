@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Patches>
+	<Patch
+	Package="microsoft-windows-usercpl"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\usercpl.dll.mun">
+		<Commands>
+			<Command action="addoverwrite" resource="UserCPL_IconGroup1.ico" mask="ICONGROUP,1,0"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-bootux.deployment"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\System32\bootux.dll">
+		<Commands>
+			<Command action="addoverwrite" resource="BootUX_UiFile_100.ui" mask="UIFILE,100,0"></Command>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="BootUX_Resources_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-themeui"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\themeui.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ThemeUI_Icons.res" mask="ICONGROUP,"></Command>
+			<Command action="delete" mask="Image,"></Command>
+			<Command action="addskip" resource="ThemeUI_Images.res" mask="Image,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-themecpl"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\themecpl.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Themecpl_Icons.res" mask="ICONGROUP,"></Command>
+			<Command action="delete" mask="IMAGE,"></Command>
+			<Command action="addskip" resource="Themecpl_Images.res" mask="IMAGE,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-van"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\van.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Van_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-accessibilitycpl"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\accessibilitycpl.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="accessibilitycpl_Icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="UIFILE,"></Command>
+			<Command action="addskip" resource="accessibilitycpl_uifile.res" mask="UIFILE,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-aclui"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\aclui.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="aclui_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-healthcentercpl"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\actioncentercpl.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ActioncenterCPL_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-appwiz"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\appwiz.cpl.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Appwiz_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="networking-mpssvc-admin"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\authfwgp.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="authfwgp_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+Package="microsoft-windows-icm-ui"
+Arch="amd64"
+HardlinkTarget="C:\Windows\SystemResources\colorui.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ColorUI_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+</Patches>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Rectify11Installer.Core
 {
@@ -11,125 +12,111 @@ namespace Rectify11Installer.Core
         public static PatchDef[] GetAll()
         {
             List<PatchDef> p = new List<PatchDef>();
-            p.Add(new PatchDef(
-                    "microsoft-windows-usercpl",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\usercpl.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("addoverwrite","UserCPL_IconGroup1.ico","ICONGROUP,1,0")
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-bootux.deployment",
-                    PackageArch.Amd64,
-                    @"C:\Windows\System32\bootux.dll",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("addoverwrite","BootUX_UiFile_100.ui","UIFILE,100,0"),
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","BootUX_Resources_Icons.res","ICONGROUP,")
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-themeui",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\themeui.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","ThemeUI_Icons.res","ICONGROUP,"),
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(File.ReadAllText("rectify11.xml"));
 
-                        new PatchInstruction("delete","","Image,"),
-                        new PatchInstruction("addskip","ThemeUI_Images.res","Image,"),
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-themecpl",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\themecpl.dll.mun",
-                    new PatchInstruction[]
+            var patchesTag = doc.GetElementsByTagName("Patches");
+            if (patchesTag.Count != 1)
+            {
+                throw new Exception("There needs to be only 1 <Patches> Tag");
+            }
+            var patches = patchesTag[0];
+            if (patches != null)
+            {
+                foreach (XmlNode patch in patches.ChildNodes)
+                {
+                    if (patch != null)
                     {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","Themecpl_Icons.res","ICONGROUP,"),
+                        if (patch.Attributes == null)
+                        {
+                            throw new Exception("<Patch> tag has no attributes!");
+                        }
+                        else
+                        {
+                            var packageNameAttrib = patch.Attributes["Package"];
+                            if (packageNameAttrib == null)
+                                throw new Exception("<Patch> tag missing Package attribute!");
+                            var archAttrib = patch.Attributes["Arch"];
+                            if (archAttrib == null)
+                                throw new Exception("<Patch> tag missing Arch attribute!");
+                            var hardLinkTargetAttrib = patch.Attributes["HardlinkTarget"];
+                            if (hardLinkTargetAttrib == null)
+                                throw new Exception("<Patch> tag missing HardlinkTarget attribute!");
 
-                        new PatchInstruction("delete","","Image,"),
-                        new PatchInstruction("addskip","Themecpl_Images.res","Image,"),
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-van",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\van.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","Van_Icons.res","ICONGROUP,"),
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-accessibilitycpl",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\accessibilitycpl.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","accessibilitycpl_Icons.res","ICONGROUP,"),
+                            var packageName = packageNameAttrib.Value;
+                            var arch = archAttrib.Value;
+                            PackageArch archProper;
+                            if (arch == "amd64")
+                            {
+                                archProper = PackageArch.Amd64;
+                            }
+                            else
+                            {
+                                throw new Exception("Unknown arch value: " + arch);
+                            }
 
-                        new PatchInstruction("delete","","UIFILE,"),
-                        new PatchInstruction("addskip","accessibilitycpl_uifile.res","UIFILE,"),
-                    }));
+                            var hardlinkTarget = hardLinkTargetAttrib.Value;
 
-            p.Add(new PatchDef(
-                    "microsoft-windows-aclui",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\aclui.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","aclui_icons.res","ICONGROUP,"),
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-aclui",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\aclui.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","aclui_icons.res","ICONGROUP,"),
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-healthcentercpl",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\actioncentercpl.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","ActioncenterCPL_icons.res","ICONGROUP,"),
-                    }));
-            p.Add(new PatchDef(
-                    "microsoft-windows-appwiz",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\appwiz.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","Appwiz_Icons.res","ICONGROUP,"),
-                    }));
-            p.Add(new PatchDef(
-                    "networking-mpssvc-admin",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\authfwgp.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","authfwgp_Icons.res","ICONGROUP,"),
-                    }));
+                            var instructions = new List<PatchInstruction>();
 
-            p.Add(new PatchDef(
-                    "microsoft-windows-icm-ui",
-                    PackageArch.Amd64,
-                    @"C:\Windows\SystemResources\colorui.dll.mun",
-                    new PatchInstruction[]
-                    {
-                        new PatchInstruction("delete","","ICONGROUP,"),
-                        new PatchInstruction("addskip","ColorUI_Icons.res","ICONGROUP,"),
-                    }));
+                            var commandsTag = patch.ChildNodes[0];
+                            if (commandsTag != null)
+                            {
+                                if (commandsTag.Name != "Commands")
+                                {
+                                    throw new Exception("Unknown node under <Patch>: " + commandsTag.Name);
+                                }
+
+                                foreach (XmlNode item in commandsTag.ChildNodes)
+                                {
+                                    if (item != null)
+                                    {
+                                        if (item.Name != "Command")
+                                        {
+                                            throw new Exception("Unknown node under <Patch>: " + commandsTag.Name);
+                                        }
+
+                                        if (item.Attributes != null)
+                                        {
+                                            var action = item.Attributes["action"];
+                                            if (action == null)
+                                                throw new Exception("Attribute: action is required under Command tag");
+                                            var resource = item.Attributes["resource"];
+
+                                            var mask = item.Attributes["mask"];
+                                            if (mask == null)
+                                                throw new Exception("Attribute: mask is required under Command tag");
+
+                                            string resourceProper = resource == null ? "" : resource.InnerText;
+
+                                            instructions.Add(new PatchInstruction(action.InnerText, resourceProper, mask.InnerText));
+                                        }
+                                        else
+                                        {
+                                            throw new Exception("<Command> tag requires attributes");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Tag under <Commands> null!");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("Tag under <Patch> null!");
+                            }
+
+                            p.Add(new PatchDef(packageName, archProper, hardlinkTarget, instructions.ToArray()));
+                        }
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("Root tag: <Patches> is null");
+            }
+
 
             return p.ToArray();
         }
