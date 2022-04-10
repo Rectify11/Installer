@@ -125,6 +125,58 @@
 		</Commands>
 	</Patch>
 
+	<Patch Package="microsoft-windows-devicecenter" HardlinkTarget="C:\Windows\SystemResources\devicecenter.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="DeviceCenter_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-devicepairingdll" HardlinkTarget="C:\Windows\SystemResources\DevicePairing.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="DevicePairing_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-devicepairingdll" HardlinkTarget="C:\Windows\SystemResources\DevicePairing.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="DevicePairing_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-devicepairingfolder" HardlinkTarget="C:\Windows\SystemResources\DevicePairingFolder.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="DevicePairingFolder_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-diskmanagement" HardlinkTarget="C:\Windows\SystemResources\dmdskres.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Dmdskres_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-dsquery" HardlinkTarget="C:\Windows\SystemResources\dsquery.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Dsquery_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="ds-ui-ext" HardlinkTarget="C:\Windows\SystemResources\dsuiext.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Dsuiext_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+
+
+
 	<Patch Package="microsoft-windows-themecpl" HardlinkTarget="C:\Windows\SystemResources\themecpl.dll.mun" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>

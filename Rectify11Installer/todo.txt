@@ -14,13 +14,13 @@
 [X] dataexchange.dll
 [X] dccw.exe
 [X] ddores.dll
-[ ] devicecenter.dll
-[ ] devicepairing.dll
-[ ] devicepairingfolder.dll
-[ ] dfrgui.exe
-[ ] dmdskres.dll
-[ ] dsquery.dll
-[ ] dsuiext.dll
+[X] devicecenter.dll
+[X] devicepairing.dll
+[X] devicepairingfolder.dll
+[X] dfrgui.exe
+[X] dmdskres.dll
+[X] dsquery.dll
+[X] dsuiext.dll
 [ ] easeofaccessdialog.exe
 [ ] edputil.dll
 [ ] explorerframe.dll
