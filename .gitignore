@@ -1,5 +1,6 @@
 # visual studio garbage
 .vs/
+*.user
 
 # builds
 Rectify11Installer/bin/
