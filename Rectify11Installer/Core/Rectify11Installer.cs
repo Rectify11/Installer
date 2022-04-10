@@ -40,7 +40,7 @@ namespace Rectify11Installer
                 var backupDir = @"C:\Windows\Rectify11\Backup";
                 _Wizard.SetProgressText("Taking ownership of system files");
                 _Wizard.SetProgress(1);
-                TakeOwnership(@"C:\Windows\SystemResources\");
+                TakeOwnership(@"C:\Windows\SystemResources\", true);
 
                 Directory.CreateDirectory(@"C:/Windows/Rectify11/Tmp/");
                 #endregion
@@ -108,10 +108,10 @@ namespace Rectify11Installer
 
 
                     //Take ownership of orginal file
-                    TakeOwnership(usr.Path);
-                    TakeOwnership(WinSxSFilePath);
-                    TakeOwnership(fileProper);
-                    TakeOwnership(item.Systempath);
+                    TakeOwnership(usr.Path, true);
+                    //TakeOwnership(WinSxSFilePath, false);
+                    //TakeOwnership(fileProper, false); //path to temp file
+                    //TakeOwnership(item.Systempath, false);
 
                     //Delete old hardlink
                     File.Delete(item.Systempath);
@@ -181,11 +181,15 @@ namespace Rectify11Installer
             return null;
         }
 
-        private void TakeOwnership(string path)
+        private void TakeOwnership(string path, bool recursive)
         {
-            _ = PatcherHelper.TakeOwnership(path);
-            _ = PatcherHelper.GrantFullControl(path, "Administrators");
-            _ = PatcherHelper.GrantFullControl(path, "SYSTEM");
+            if (path.ToLower().StartsWith(@"c:\windows\systemresources"))
+            {
+                ;
+            }
+            _ = PatcherHelper.TakeOwnership(path, recursive);
+            _ = PatcherHelper.GrantFullControl(path, "Administrators", recursive);
+            _ = PatcherHelper.GrantFullControl(path, "SYSTEM", recursive);
             // _ = PatcherHelper.GrantFullControl(path, "Everyone");
         }
         public void SetParentWizard(IRectifyInstallerWizard wiz)

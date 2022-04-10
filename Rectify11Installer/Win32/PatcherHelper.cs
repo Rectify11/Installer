@@ -30,7 +30,7 @@ namespace Rectify11Installer.Win32
                 MOVEFILE_CREATE_HARDLINK = 0x00000010,
                 MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
             }
-            public static bool TakeOwnership(string fileName)
+            public static bool TakeOwnership(string fileName, bool recursive)
             {
                 Process takeOwnProcess = new Process();
                 ProcessStartInfo takeOwnStartInfo = new ProcessStartInfo
@@ -48,8 +48,11 @@ namespace Rectify11Installer.Win32
                     // Do not show a command window.
                     CreateNoWindow = true,
 
-                    Arguments = "/f " + fileName + " /a /r"
+                    Arguments = "/f " + fileName + " /a "
                 };
+
+                if (recursive)
+                    takeOwnStartInfo.Arguments += "/r";
 
                 takeOwnProcess.EnableRaisingEvents = true;
                 takeOwnProcess.StartInfo = takeOwnStartInfo;
@@ -83,7 +86,7 @@ namespace Rectify11Installer.Win32
 
                 return takeOwnSuccessful;
             }
-            public static bool GrantFullControl(string fileName, string userName)
+            public static bool GrantFullControl(string fileName, string userName, bool recursive)
             {
                 Process grantFullControlProcess = new Process();
                 ProcessStartInfo grantFullControlStartInfo = new ProcessStartInfo();
@@ -101,7 +104,8 @@ namespace Rectify11Installer.Win32
                 // Do not show a command window.
                 grantFullControlStartInfo.CreateNoWindow = true;
 
-                grantFullControlStartInfo.Arguments = fileName + " /grant " + userName + ":(F) /T";
+                grantFullControlStartInfo.Arguments = fileName + " /grant " + userName + ":(F) ";
+                if (recursive) grantFullControlStartInfo.Arguments += "/T";
                 grantFullControlProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
                 grantFullControlProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
 

@@ -27,6 +27,8 @@ namespace Rectify11Installer.Core
                         fs = new FileStream("installer.log", FileMode.Create, FileAccess.Write);
                     }
 
+
+                    fs.Position = 0;
                     byte[] bt = Encoding.ASCII.GetBytes(Text);
                     fs.Write(bt, 0, bt.Length);
                     fs.Flush();

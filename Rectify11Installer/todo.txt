@@ -28,46 +28,46 @@
 [X] firewallcontrolpanel.dll
 [X] gpedit.dll
 [X] ieframe.dll
-[ ] imageres.dll
-[ ] imagesp1.dll
-[ ] inetcpl.cpl
-[ ] intl.cpl
-[ ] iscigd.dll
-[ ] iscsicli.exe
-[ ] iscsicpl.dll
-[ ] iscsicpl.exe
-[ ] keymgr.dll
-[ ] magnify.exe
-[ ] main.cpl
-[ ] mdminst.dll
-[ ] mmcbase.dll
-[ ] mmcndmgr.dll
-[ ] mmres.dll
-[ ] mmsys.cpl
-[ ] msdt.exe
-[ ] mssvp.dll
-[ ] mstsc.exe
-[ ] mstscax.dll
-[ ] msxml3.dll
-[ ] mycomput.dll
-[ ] mydocs.dll
-[ ] netcenter.dll
-[ ] netshell.dll
-[ ] networkexplorer.dll
-[ ] newdev.dll
-[ ] ntshrui.dll
-[ ] powercpl.dll
-[ ] printui.dll
-[ ] prnfldr.dll
-[ ] rasdlg.dll
-[ ] rasgcw.dll
-[ ] rasplap.dll
-[ ] rastls.dll
-[ ] rastlsext.dll
-[ ] remotepg.dll
-[ ] sensorscpl.dll
-[ ] sethc.exe
-[ ] shell32.dll
+[X] imageres.dll
+[X] imagesp1.dll
+[X] inetcpl.cpl
+[X] intl.cpl
+[X] iscigd.dll
+[X] iscsicli.exe
+[X] iscsicpl.dll
+[X] iscsicpl.exe
+[X] keymgr.dll
+[X] magnify.exe
+[X] main.cpl
+[X] mdminst.dll
+[X] mmcbase.dll
+[X] mmcndmgr.dll
+[X] mmres.dll
+[X] mmsys.cpl
+[X] msdt.exe
+[X] mssvp.dll
+[X] mstsc.exe
+[X] mstscax.dll
+[X] msxml3.dll
+[X] mycomput.dll
+[X] mydocs.dll
+[X] netcenter.dll
+[X] netshell.dll
+[X] networkexplorer.dll
+[X] newdev.dll
+[X] ntshrui.dll
+[X] powercpl.dll
+[X] printui.dll
+[X] prnfldr.dll
+[X] rasdlg.dll
+[X] rasgcw.dll
+[X] rasplap.dll
+[X] rastls.dll
+[X] rastlsext.dll
+[X] remotepg.dll
+[X] sensorscpl.dll
+[X] sethc.exe
+[X] shell32.dll
 [ ] shrpubw.exe
 [ ] sppcomapi.dll
 [ ] srchadmin.dll

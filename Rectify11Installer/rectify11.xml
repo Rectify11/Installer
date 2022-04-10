@@ -307,6 +307,225 @@
 			<Command action="addskip" resource="Main_CPL_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
+
+	<Patch Package="microsoft-windows-unimodem-config" HardlinkTarget="C:\Windows\SystemResources\mdminst.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Mdminst_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-m..-management-console" HardlinkTarget="C:\Windows\SystemResources\mmcbase.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="MmcBase_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-m..console-nodemanager" HardlinkTarget="C:\Windows\SystemResources\mmcndmgr.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Mmcndmgr_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+
+	<Patch Package="microsoft-windows-mmres" HardlinkTarget="C:\Windows\SystemResources\mmres.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="MMRes_Icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="PNG,"></Command>
+			<Command action="addskip" resource="MMRes_Png.res" mask="PNG,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-mmsys" HardlinkTarget="C:\Windows\SystemResources\mmsys.cpl.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Mmsys_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-msdt" HardlinkTarget="C:\Windows\SystemResources\msdt.exe.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Msdt_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="windowssearchengine" HardlinkTarget="C:\Windows\SystemResources\mssvp.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Mssvp_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-t..minalservicesclient" HardlinkTarget="C:\Windows\SystemResources\mstsc.exe.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Mstsc_Icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="BITMAP,"></Command>
+			<Command action="addskip" resource="Mstsc_Bitmap.res" mask="BITMAP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-t..s-clientactivexcore" HardlinkTarget="C:\Windows\SystemResources\mstscax.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Mstscax_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-msxml30" HardlinkTarget="C:\Windows\SystemResources\msxml3.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Msxml3_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-c..termanagementsnapin" HardlinkTarget="C:\Windows\SystemResources\mycomput.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="MyComput_Icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="BITMAP,"></Command>
+			<Command action="addskip" resource="MyComput_Bitmap.res" mask="BITMAP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-mydocs" HardlinkTarget="C:\Windows\SystemResources\mydocs.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Mydocs_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-networkcenter" HardlinkTarget="C:\Windows\SystemResources\netcenter.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="NetCenter_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-netshell" HardlinkTarget="C:\Windows\SystemResources\netshell.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Netshell_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-networkexplorer" HardlinkTarget="C:\Windows\SystemResources\networkexplorer.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Networkexplorer_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-newdev" HardlinkTarget="C:\Windows\SystemResources\newdev.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Newdev_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-ntshrui" HardlinkTarget="C:\Windows\SystemResources\ntshrui.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Ntshrui_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-powercpl" HardlinkTarget="C:\Windows\SystemResources\powercpl.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Powercpl_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-p..randprintui-printui" HardlinkTarget="C:\Windows\SystemResources\printui.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Printui_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-p..randprintui-prnfldr" HardlinkTarget="C:\Windows\SystemResources\prnfldr.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Prnfldr_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-rasdlg" HardlinkTarget="C:\Windows\SystemResources\rasdlg.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Rasdlg_Icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="BITMAP,"></Command>
+			<Command action="addskip" resource="Rasdlg_Bitmap.res" mask="BITMAP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-rasgetconnectedwizard" HardlinkTarget="C:\Windows\SystemResources\rasgcw.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Rasgcw_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-rasplap" HardlinkTarget="C:\Windows\SystemResources\rasplap.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="BITMAP,"></Command>
+			<Command action="addskip" resource="Rasplap_Bitmap.res" mask="BITMAP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-onecoreuap-rastls" HardlinkTarget="C:\Windows\SystemResources\rastls.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Rastls_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-rastls" HardlinkTarget="C:\Windows\SystemResources\rastlsext.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Rastlsext_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-t..services-remotepage" HardlinkTarget="C:\Windows\SystemResources\remotepg.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Remotepg_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-mobilepc-sensors-cpl" HardlinkTarget="C:\Windows\SystemResources\sensorscpl.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Sensorscpl_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-sethc" HardlinkTarget="C:\Windows\SystemResources\sethc.exe.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Sethc_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-shell32" HardlinkTarget="C:\Windows\SystemResources\shell32.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Shell32_icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="UIFILE,"></Command>
+			<Command action="addskip" resource="Shell32_uifile.res" mask="UIFILE,"></Command>
+		</Commands>
+	</Patch>
 	
 	
 	
