@@ -152,7 +152,7 @@ namespace Rectify11Installer
 
 
 
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "The rest of the installer is not implemented! but we changed the user account control panel");
+                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "NOTE: The installation was successful. But, this is a error because the rest of the installer is not implemeneted (ie... install ExplorerPatcher/Themes)");
                 return;
             }
             catch (Exception ex)

@@ -14,21 +14,33 @@ namespace Rectify11Installer.Core
         {
             lock (Text)
             {
-                if (!File.Exists("installer.log"))
+                try
                 {
-                    File.WriteAllText("installer.log", "");
-                }
-                Text += s + "\n";
+                    if (!File.Exists("installer.log"))
+                    {
+                        File.WriteAllText("installer.log", "");
+                    }
+                    Text += s + "\n";
 
-                if (fs == null)
-                {
-                    fs = new FileStream("installer.log", FileMode.Create, FileAccess.Write);
+                    if (fs == null)
+                    {
+                        fs = new FileStream("installer.log", FileMode.Create, FileAccess.Write);
+                    }
+
+                    byte[] bt = Encoding.ASCII.GetBytes(Text);
+                    fs.Write(bt, 0, bt.Length);
+                    fs.Flush();
                 }
-            
-                byte[] bt = Encoding.ASCII.GetBytes(Text);
-                fs.Write(bt, 0, bt.Length);
-                fs.Flush();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("A error occured while trying to write to the log file. It is safe to ignore this message.\n" + ex.ToString(), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+        public static void CloseLog()
+        {
+            if (fs != null)
+                fs.Close();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Rectify11Installer.Pages;
+﻿using Rectify11Installer.Core;
+using Rectify11Installer.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,7 @@ namespace Rectify11Installer
 
         public void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, string ErrorDescription = "")
         {
+            Logger.CloseLog();
             ProgressPage.Invoke((MethodInvoker)delegate ()
             {
                 Wizard.Complete(type, ErrorDescription);
