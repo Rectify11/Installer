@@ -1,9 +1,9 @@
 [x] accessibilitycpl.dll
 [X] aclui.dll
-[ ] actioncentercpl.dll
-[ ] appwiz.cpl
-[ ] authfwgp.dll
-[ ] colorui.dll
+[X] actioncentercpl.dll
+[X] appwiz.cpl
+[X] authfwgp.dll
+[X] colorui.dll
 [ ] comdlg32.dll
 [ ] comres.dll
 [ ] connect.dll

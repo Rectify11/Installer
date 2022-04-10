@@ -309,11 +309,11 @@ namespace Rectify11Installer
         /// <param name="packageName">The package name. Ex: microsoft-windows-usercpl</param>
         /// <param name="packageArch">The package arch</param>
         /// <param name="dllToPatch">The name of the DLL in the package to be patched. Example: usercpl.dll.mun</param>
-        public PatchDef(string packageName, PackageArch packageArch, string dllToPatch, string SystemPath, PatchInstruction[] instructions)
+        public PatchDef(string packageName, PackageArch packageArch, string SystemPath, PatchInstruction[] instructions)
         {
             this.WinSxSPackageName = packageName;
             this.WinSxSPackageArch = packageArch;
-            this.DllName = dllToPatch;
+            this.DllName = Path.GetFileName(SystemPath);
             this.Systempath = SystemPath;
             this.PatchInstructions = instructions;
         }
