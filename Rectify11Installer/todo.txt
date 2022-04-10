@@ -68,21 +68,21 @@
 [X] sensorscpl.dll
 [X] sethc.exe
 [X] shell32.dll
-[ ] shrpubw.exe
-[ ] sppcomapi.dll
-[ ] srchadmin.dll
-[ ] srpuxnativesnapin.dll
-[ ] sud.dll
-[ ] synccenter.dll
-[ ] sysdm.cpl
-[ ] sysmon.ocx
-[ ] tapiui.dll
-[ ] taskmgr.exe
+[X] shrpubw.exe
+[X] sppcomapi.dll
+[X] srchadmin.dll
+[X] srpuxnativesnapin.dll
+[X] sud.dll
+[X] synccenter.dll
+[X] sysdm.cpl
+[X] sysmon.ocx
+[X] tapiui.dll
+[X] taskmgr.exe
 [X] themecpl.dll
 [X] themeui.dll
-[ ] timedate.cpl
-[ ] timedate.dll
-[ ] tlsext.dll
+[X] timedate.cpl
+[-] timedate.dll
+[-] tlsext.dll
 [X] usercpl.dll
 [X] VAN.dll
 [ ] vault.dll
