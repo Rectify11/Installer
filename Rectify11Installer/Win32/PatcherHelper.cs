@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rectify11Installer.Win32
 {
+    using Rectify11Installer.Core;
     using System;
     using System.Diagnostics;
     using System.Runtime.InteropServices;
@@ -55,7 +56,7 @@ namespace Rectify11Installer.Win32
                 takeOwnProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
                 takeOwnProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
 
-                File.AppendAllText("install.log", "Running process: takeown " + takeOwnStartInfo.Arguments + "\n");
+                Logger.WriteLine("Running process: takeown " + takeOwnStartInfo.Arguments + "\n");
 
                 // Start the process.
                 takeOwnProcess.Start();
@@ -107,7 +108,7 @@ namespace Rectify11Installer.Win32
                 grantFullControlProcess.EnableRaisingEvents = true;
                 grantFullControlProcess.StartInfo = grantFullControlStartInfo;
 
-                File.AppendAllText("install.log", "Running process: icacls " + grantFullControlStartInfo.Arguments+"\n");
+                Logger.WriteLine("Running process: icacls " + grantFullControlStartInfo.Arguments+"\n");
 
                 // Start the process.
                 grantFullControlProcess.Start();
@@ -133,7 +134,9 @@ namespace Rectify11Installer.Win32
             private static void GrantFullControlProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
             {
                 if (e.Data != null)
-                    File.AppendAllText("install.log", e.Data+"\n");
+                {
+                    Logger.WriteLine(e.Data);
+                }
             }
 
             public static bool ResetPermissions(string fileName)
@@ -238,7 +241,7 @@ namespace Rectify11Installer.Win32
                     cmd += " -resource " + resource;
                 }
                 cmd += " -mask " + type;
-                File.AppendAllText("install.log", "Running process: " + reshackerPath + " " + cmd + "\n");
+                Logger.WriteLine("Running process: " + reshackerPath + " " + cmd + "\n");
 
                 LastCmd = cmd;
                 Process reshackFileProcess = new Process();
