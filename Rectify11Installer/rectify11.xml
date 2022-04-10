@@ -146,7 +146,7 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-defrag-adminui" HardlinkTarget="C:\Windows\SystemResources\dfrgui.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-defrag-adminui" HardlinkTarget="C:\Windows\SystemResources\dfrgui.exe.mun" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="dfrgui_Icons.res" mask="ICONGROUP,"></Command>
