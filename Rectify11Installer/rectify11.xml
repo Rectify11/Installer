@@ -2,60 +2,6 @@
 
 <Patches>
 	<Patch
-	Package="microsoft-windows-usercpl"
-	Arch="amd64"
-	HardlinkTarget="C:\Windows\SystemResources\usercpl.dll.mun">
-		<Commands>
-			<Command action="addoverwrite" resource="UserCPL_IconGroup1.ico" mask="ICONGROUP,1,0"></Command>
-		</Commands>
-	</Patch>
-
-	<Patch
-	Package="microsoft-windows-bootux.deployment"
-	Arch="amd64"
-	HardlinkTarget="C:\Windows\System32\bootux.dll">
-		<Commands>
-			<Command action="addoverwrite" resource="BootUX_UiFile_100.ui" mask="UIFILE,100,0"></Command>
-			<Command action="delete" mask="ICONGROUP,"></Command>
-			<Command action="addskip" resource="BootUX_Resources_Icons.res" mask="ICONGROUP,"></Command>
-		</Commands>
-	</Patch>
-
-	<Patch
-	Package="microsoft-windows-themeui"
-	Arch="amd64"
-	HardlinkTarget="C:\Windows\SystemResources\themeui.dll.mun">
-		<Commands>
-			<Command action="delete" mask="ICONGROUP,"></Command>
-			<Command action="addskip" resource="ThemeUI_Icons.res" mask="ICONGROUP,"></Command>
-			<Command action="delete" mask="Image,"></Command>
-			<Command action="addskip" resource="ThemeUI_Images.res" mask="Image,"></Command>
-		</Commands>
-	</Patch>
-
-	<Patch
-	Package="microsoft-windows-themecpl"
-	Arch="amd64"
-	HardlinkTarget="C:\Windows\SystemResources\themecpl.dll.mun">
-		<Commands>
-			<Command action="delete" mask="ICONGROUP,"></Command>
-			<Command action="addskip" resource="Themecpl_Icons.res" mask="ICONGROUP,"></Command>
-			<Command action="delete" mask="IMAGE,"></Command>
-			<Command action="addskip" resource="Themecpl_Images.res" mask="IMAGE,"></Command>
-		</Commands>
-	</Patch>
-
-	<Patch
-	Package="microsoft-windows-van"
-	Arch="amd64"
-	HardlinkTarget="C:\Windows\SystemResources\van.dll.mun">
-		<Commands>
-			<Command action="delete" mask="ICONGROUP,"></Command>
-			<Command action="addskip" resource="Van_Icons.res" mask="ICONGROUP,"></Command>
-		</Commands>
-	</Patch>
-
-	<Patch
 	Package="microsoft-windows-accessibilitycpl"
 	Arch="amd64"
 	HardlinkTarget="C:\Windows\SystemResources\accessibilitycpl.dll.mun">
@@ -109,12 +55,159 @@
 	</Patch>
 
 	<Patch
+Package="microsoft-windows-bootux.deployment"
+Arch="amd64"
+HardlinkTarget="C:\Windows\System32\bootux.dll">
+		<Commands>
+			<Command action="addoverwrite" resource="BootUX_UiFile_100.ui" mask="UIFILE,100,0"></Command>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="BootUX_Resources_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
 Package="microsoft-windows-icm-ui"
 Arch="amd64"
 HardlinkTarget="C:\Windows\SystemResources\colorui.dll.mun">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ColorUI_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-comdlg32"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\comdlg32.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Comdlg_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-com-complus.res"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\comres.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Comres_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-getconnectedwizards"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\connect.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Connect_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-cryptui-dll"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\cryptui.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="CryptUI_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-cryptuiwizard-dll"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\cryptuiwizard.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="CryptUIWizard_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-cttune"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\cctune.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="CCTune_Icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="IMAGE,"></Command>
+			<Command action="addskip" resource="CCTune_Image.res" mask="IMAGE,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-dataexchange-api"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\dataexchange.dll.mun">
+		<Commands>
+			<Command action="delete" mask="PNG,"></Command>
+			<Command action="addskip" resource="DataExchange_PNG.res" mask="PNG,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-icm-dccw"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\dccw.exe.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="DCCW_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+Package="microsoft-windows-ddores"
+Arch="amd64"
+HardlinkTarget="C:\Windows\SystemResources\ddores.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ddores_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+	Package="microsoft-windows-themecpl"
+	Arch="amd64"
+	HardlinkTarget="C:\Windows\SystemResources\themecpl.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Themecpl_Icons.res" mask="ICONGROUP,"></Command>
+			<Command action="delete" mask="IMAGE,"></Command>
+			<Command action="addskip" resource="Themecpl_Images.res" mask="IMAGE,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+Package="microsoft-windows-themeui"
+Arch="amd64"
+HardlinkTarget="C:\Windows\SystemResources\themeui.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ThemeUI_Icons.res" mask="ICONGROUP,"></Command>
+			<Command action="delete" mask="Image,"></Command>
+			<Command action="addskip" resource="ThemeUI_Images.res" mask="Image,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+Package="microsoft-windows-usercpl"
+Arch="amd64"
+HardlinkTarget="C:\Windows\SystemResources\usercpl.dll.mun">
+		<Commands>
+			<Command action="addoverwrite" resource="UserCPL_IconGroup1.ico" mask="ICONGROUP,1,0"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch
+Package="microsoft-windows-van"
+Arch="amd64"
+HardlinkTarget="C:\Windows\SystemResources\van.dll.mun">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Van_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 </Patches>

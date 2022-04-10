@@ -3,16 +3,17 @@
 [X] actioncentercpl.dll
 [X] appwiz.cpl
 [X] authfwgp.dll
+[X] bootux.dll
 [X] colorui.dll
-[ ] comdlg32.dll
-[ ] comres.dll
-[ ] connect.dll
-[ ] cryptui.dll
-[ ] cryptuiwizard.dll
-[ ] cttune.exe
-[ ] dataexchange.dll
-[ ] dccw.exe
-[ ] ddores.dll
+[X] comdlg32.dll
+[X] comres.dll
+[X] connect.dll
+[X] cryptui.dll
+[X] cryptuiwizard.dll
+[X] cttune.exe
+[X] dataexchange.dll
+[X] dccw.exe
+[X] ddores.dll
 [ ] devicecenter.dll
 [ ] devicepairing.dll
 [ ] devicepairingfolder.dll
