@@ -657,4 +657,68 @@
 			<Command action="addskip" resource="Van_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
+
+	<Patch Package="microsoft-windows-security-vault-cpl" HardlinkTarget="C:\Windows\SystemResources\vault.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Vault_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-w..ig-registrar-wizard_31bf3856ad364e35" HardlinkTarget="C:\Windows\SystemResources\wcnwiz.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Wcnwiz_icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="IMAGE,"></Command>
+			<Command action="addskip" resource="Wcnwiz_image.res" mask="IMAGE,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-performancetoolsgui" HardlinkTarget="C:\Windows\SystemResources\wdc.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Wdc_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<!--<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wscedit.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Wscedit_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>-->
+
+	<Patch Package="microsoft-windows-s..center-controlpanel" HardlinkTarget="C:\Windows\SystemResources\wscui.cpl.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Wscui_cpl_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<!--<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wscui.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Wscui_dll_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+		(does not exist)
+	</Patch>-->
+
+	<Patch Package="microsoft-windows-s..rationmanagement-ui" HardlinkTarget="C:\Windows\SystemResources\wsecedit.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Wsecedit_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<!--
+	<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wuapi.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Wuapi_icons.res" mask="ICONGROUP,"></Command>
+
+			<Command action="delete" mask="BITMAP,"></Command>
+			<Command action="addskip" resource="Wuapi_bitmap.res" mask="BITMAP,"></Command>
+		</Commands>
+	</Patch>-->
 </Patches>

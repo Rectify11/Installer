@@ -85,11 +85,11 @@
 [-] tlsext.dll
 [X] usercpl.dll
 [X] VAN.dll
-[ ] vault.dll
-[ ] wcnwiz.dll
-[ ] wdc.dll
-[ ] wscedit.dll
-[ ] wscui.cpl
-[ ] wscui.dll
-[ ] wsecedit.dll
-[ ] wuapi.dll
+[X] vault.dll
+[X] wcnwiz.dll
+[X] wdc.dll
+[X] wscedit.dll
+[X] wscui.cpl
+[-] wscui.dll
+[X] wsecedit.dll
+[X] wuapi.dll
