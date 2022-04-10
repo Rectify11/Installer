@@ -55,6 +55,8 @@ namespace Rectify11Installer.Win32
                 takeOwnProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
                 takeOwnProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
 
+                File.AppendAllText("install.log", "Running process: takeown " + takeOwnStartInfo.Arguments + "\n");
+
                 // Start the process.
                 takeOwnProcess.Start();
                 takeOwnProcess.BeginOutputReadLine();
@@ -104,6 +106,8 @@ namespace Rectify11Installer.Win32
 
                 grantFullControlProcess.EnableRaisingEvents = true;
                 grantFullControlProcess.StartInfo = grantFullControlStartInfo;
+
+                File.AppendAllText("install.log", "Running process: icacls " + grantFullControlStartInfo.Arguments+"\n");
 
                 // Start the process.
                 grantFullControlProcess.Start();
@@ -220,6 +224,65 @@ namespace Rectify11Installer.Win32
                 // Now clean up after ourselves.
                 resetOwnerProcess.Dispose();
                 return resetOwnerSuccessful;
+            }
+            public static string? LastCmd;
+            public static bool ReshackAddRes(string reshackerPath, string filename, string destination, string action, string? resource, string type)
+            {
+                string cmd = "";
+
+                cmd += " -open " + filename;
+                cmd += " -save " + destination;
+                cmd += " -action " + action;
+                if (resource != null)
+                {
+                    cmd += " -resource " + resource;
+                }
+                cmd += " -mask " + type;
+                File.AppendAllText("install.log", "Running process: " + reshackerPath + " " + cmd + "\n");
+
+                LastCmd = cmd;
+                Process reshackFileProcess = new Process();
+                ProcessStartInfo reshackFileStartInfo = new ProcessStartInfo
+                {
+                    FileName = reshackerPath,
+                    // Do not write error output to standard stream.
+                    RedirectStandardError = true,
+                    // Do not write output to Process.StandardOutput Stream.
+                    RedirectStandardOutput = true,
+                    // Do not read input from Process.StandardInput (i/e; the keyboard).
+                    RedirectStandardInput = false,
+
+                    UseShellExecute = false,
+                    // Do not show a command window.
+                    CreateNoWindow = true,
+
+                    Arguments = cmd
+                };
+                reshackFileProcess.EnableRaisingEvents = true;
+                reshackFileProcess.StartInfo = reshackFileStartInfo;
+                reshackFileProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
+                reshackFileProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
+
+                // Start the process.
+                reshackFileProcess.Start();
+                reshackFileProcess.BeginOutputReadLine();
+                reshackFileProcess.BeginErrorReadLine();
+                // Wait for the process to finish.
+                reshackFileProcess.WaitForExit();
+
+                int exitCode = reshackFileProcess.ExitCode;
+                bool reshackFileSuccessful = true;
+
+                // Now we need to see if the process was successful.
+                if (exitCode != 0)
+                {
+                    reshackFileProcess.Kill();
+                    reshackFileSuccessful = false;
+                }
+
+                // Now clean up after ourselves.
+                reshackFileProcess.Dispose();
+                return reshackFileSuccessful;
             }
         }
     }

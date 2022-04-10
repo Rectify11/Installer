@@ -92,14 +92,14 @@ namespace Rectify11Installer
                             r = null;
 
                         //This is where we mod the file
-                        if (!ReshackAddRes(@"C:\Program Files (x86)\Resource Hacker\ResourceHacker.exe",
+                        if (!PatcherHelper.ReshackAddRes(@"C:\Program Files (x86)\Resource Hacker\ResourceHacker.exe",
                             fileProper,
                             fileProper,
                             patch.Action, //"addoverwrite",
                             r,
                             patch.GroupAndLocation))//ICONGROUP,1,0
                         {
-                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + LastCmd);
+                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd+"\nSee installer.log for more information");
                             return;
                         }
                     }
@@ -215,59 +215,7 @@ namespace Rectify11Installer
 
             return p;
         }
-        private string? LastCmd;
-        public bool ReshackAddRes(string reshackerPath, string filename, string destination, string action, string? resource, string type)
-        {
-            string cmd = "";
-
-            cmd += " -open " + filename;
-            cmd += " -save " + destination;
-            cmd += " -action " + action;
-            if (resource != null)
-            {
-                cmd += " -resource " + resource;
-            }
-            cmd += " -mask " + type;
-
-            LastCmd = cmd;
-            Process reshackFileProcess = new Process();
-            ProcessStartInfo reshackFileStartInfo = new ProcessStartInfo
-            {
-                FileName = reshackerPath,
-                // Do not write error output to standard stream.
-                RedirectStandardError = false,
-                // Do not write output to Process.StandardOutput Stream.
-                RedirectStandardOutput = false,
-                // Do not read input from Process.StandardInput (i/e; the keyboard).
-                RedirectStandardInput = false,
-
-                UseShellExecute = false,
-                // Do not show a command window.
-                CreateNoWindow = true,
-
-                Arguments = cmd
-            };
-            reshackFileProcess.EnableRaisingEvents = true;
-            reshackFileProcess.StartInfo = reshackFileStartInfo;
-            // Start the process.
-            reshackFileProcess.Start();
-            // Wait for the process to finish.
-            reshackFileProcess.WaitForExit();
-
-            int exitCode = reshackFileProcess.ExitCode;
-            bool reshackFileSuccessful = true;
-
-            // Now we need to see if the process was successful.
-            if (exitCode != 0)
-            {
-                reshackFileProcess.Kill();
-                reshackFileSuccessful = false;
-            }
-
-            // Now clean up after ourselves.
-            reshackFileProcess.Dispose();
-            return reshackFileSuccessful;
-        }
+     
 
         private class Package
         {
