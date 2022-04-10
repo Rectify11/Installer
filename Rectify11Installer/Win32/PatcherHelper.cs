@@ -47,7 +47,7 @@ namespace Rectify11Installer.Win32
                     // Do not show a command window.
                     CreateNoWindow = true,
 
-                    Arguments = "/f " + fileName + " /a"
+                    Arguments = "/f " + fileName +" /a"
                 };
 
                 takeOwnProcess.EnableRaisingEvents = true;
@@ -71,6 +71,10 @@ namespace Rectify11Installer.Win32
 
                 // Now clean up after ourselves.
                 takeOwnProcess.Dispose();
+
+                if (!takeOwnSuccessful)
+                    Debugger.Break();
+
                 return takeOwnSuccessful;
             }
             public static bool GrantFullControl(string fileName, string userName)
@@ -154,6 +158,9 @@ namespace Rectify11Installer.Win32
                     resetPermissionsProcess.Kill();
                     resetPermissionsSuccessful = false;
                 }
+
+                if (!resetPermissionsSuccessful)
+                    Debugger.Break();
 
                 // Now clean up after ourselves.
                 resetPermissionsProcess.Dispose();

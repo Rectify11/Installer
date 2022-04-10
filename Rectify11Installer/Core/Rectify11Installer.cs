@@ -95,10 +95,11 @@ namespace Rectify11Installer
                         }
                     }
 
-                    
+
 
 
                     //Take ownership of orginal file
+                    TakeOwnership(usr.Path);
                     TakeOwnership(WinSxSFilePath);
                     TakeOwnership(fileProper);
                     TakeOwnership(item.Systempath);
@@ -169,8 +170,9 @@ namespace Rectify11Installer
         private void TakeOwnership(string path)
         {
             _ = PatcherHelper.TakeOwnership(path);
-            _ = PatcherHelper.GrantFullControl(path, "SYSTEM");
             _ = PatcherHelper.GrantFullControl(path, "Administrators");
+            _ = PatcherHelper.GrantFullControl(path, "SYSTEM");
+            // _ = PatcherHelper.GrantFullControl(path, "Everyone");
         }
         public void SetParentWizard(IRectifyInstallerWizard wiz)
         {
