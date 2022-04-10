@@ -45,11 +45,11 @@ namespace Rectify11Installer
                 Directory.CreateDirectory(@"C:/Windows/Rectify11/Tmp/");
                 #endregion
 
+                var patches = Patches.GetAll();
 
 
-
-
-                foreach (var item in Patches.GetAll())
+                int i = 0;
+                foreach (var item in patches)
                 {
                     //get the package
 
@@ -60,6 +60,8 @@ namespace Rectify11Installer
                         return;
                     }
 
+                    _Wizard.SetProgressText("Patching file: " + item.DllName);
+                    _Wizard.SetProgress((i * 100) / patches.Length);
 
                     var WinSxSFilePath = usr.Path + @"\" + item.DllName;
                     string dir = Path.GetFileName(usr.Path);
@@ -138,6 +140,8 @@ namespace Rectify11Installer
                             return;
                         }
                     }
+
+                    i++;
                 }
 
 
