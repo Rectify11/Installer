@@ -3,6 +3,7 @@
 [X] actioncentercpl.dll
 [X] appwiz.cpl
 [X] authfwgp.dll
+[X] autoplay.dll
 [X] bootux.dll
 [X] colorui.dll
 [X] comdlg32.dll

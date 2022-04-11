@@ -42,11 +42,25 @@
 		</Commands>
 	</Patch>
 
+	<Patch Package="microsoft-windows-autoplay" HardlinkTarget="C:\Windows\System32\autoplay.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="autoplay_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
 	<Patch Package="microsoft-windows-bootux.deployment" HardlinkTarget="C:\Windows\System32\bootux.dll" Arch="amd64">
 		<Commands>
 			<Command action="addoverwrite" resource="BootUX_UiFile_100.ui" mask="UIFILE,100,0"></Command>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="BootUX_Resources_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-icm-ui" HardlinkTarget="C:\Windows\System32\colorcpl.exe" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="ColorCPL_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
@@ -206,6 +220,13 @@
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="FirewallControlPanel_Icon.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-securestartup-cpl" HardlinkTarget="C:\Windows\System32\fvecpl.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Fvecpl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
@@ -503,6 +524,13 @@
 		</Commands>
 	</Patch>
 
+	<Patch Package="microsoft-windows-backup-cpl" HardlinkTarget="C:\Windows\System32\sdcpl.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Sdcpl_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
 	<Patch Package="microsoft-windows-mobilepc-sensors-cpl" HardlinkTarget="C:\Windows\SystemResources\sensorscpl.dll.mun" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
@@ -597,6 +625,13 @@
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Taskmgr_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-tapicore" HardlinkTarget="C:\Windows\System32\telephon.cpl" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Telephon_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 	
