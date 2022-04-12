@@ -83,71 +83,76 @@ namespace Rectify11Installer
                     //backup
 
                     if (!File.Exists(backupDirW + "/" + item.DllName))
+                    {
                         File.Copy(WinSxSFilePath, backupDirW + "/" + item.DllName, true);
 
-                    foreach (var patch in item.PatchInstructions)
-                    {
-                        var r = Application.StartupPath + @"\files\" + patch.Resource;
-                        if (string.IsNullOrEmpty(patch.Resource))
-                            r = null;
+                        //for now: we will only patch files that don't exist in the backup directory
+                        //this is too save time during developent
 
-                        //This is where we mod the file
-                        if (!PatcherHelper.ReshackAddRes(@"C:\Program Files (x86)\Resource Hacker\ResourceHacker.exe",
-                            fileProper,
-                            fileProper,
-                            patch.Action, //"addoverwrite",
-                            r,
-                            patch.GroupAndLocation))//ICONGROUP,1,0
+                        foreach (var patch in item.PatchInstructions)
                         {
-                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd+"\nSee installer.log for more information");
+                            var r = Application.StartupPath + @"\files\" + patch.Resource;
+                            if (string.IsNullOrEmpty(patch.Resource))
+                                r = null;
+
+                            //This is where we mod the file
+                            if (!PatcherHelper.ReshackAddRes(@"C:\Program Files (x86)\Resource Hacker\ResourceHacker.exe",
+                                fileProper,
+                                fileProper,
+                                patch.Action, //"addoverwrite",
+                                r,
+                                patch.GroupAndLocation))//ICONGROUP,1,0
+                            {
+                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd + "\nSee installer.log for more information");
+                                return;
+                            }
+                        }
+
+
+
+
+                        //Take ownership of orginal file
+                        TakeOwnership(usr.Path, true);
+                        //TakeOwnership(WinSxSFilePath, false);
+                        //TakeOwnership(fileProper, false); //path to temp file
+                        //TakeOwnership(item.Systempath, false);
+
+                        //Delete old hardlink
+                        File.Delete(item.Systempath);
+
+                        //rename old file
+                        File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
+
+                        //copy new file over
+                        File.Move(fileProper, WinSxSFilePath, true);
+
+                        //cleanup tmp folder
+                        Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
+
+                        //create hardlink
+                        if (!Pinvoke.CreateHardLinkA(item.Systempath, WinSxSFilePath, IntPtr.Zero))
+                        {
+                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "CreateHardLinkW() failed: " + new Win32Exception().Message);
                             return;
                         }
-                    }
 
-
-
-
-                    //Take ownership of orginal file
-                    TakeOwnership(usr.Path, true);
-                    //TakeOwnership(WinSxSFilePath, false);
-                    //TakeOwnership(fileProper, false); //path to temp file
-                    //TakeOwnership(item.Systempath, false);
-
-                    //Delete old hardlink
-                    File.Delete(item.Systempath);
-
-                    //rename old file
-                    File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
-
-                    //copy new file over
-                    File.Move(fileProper, WinSxSFilePath, true);
-
-                    //cleanup tmp folder
-                    Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
-
-                    //create hardlink
-                    if (!Pinvoke.CreateHardLinkA(item.Systempath, WinSxSFilePath, IntPtr.Zero))
-                    {
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "CreateHardLinkW() failed: " + new Win32Exception().Message);
-                        return;
-                    }
-
-                    //schedule .bak for deletion
-                    try
-                    {
-                        File.Delete(WinSxSFilePath + ".bak");
-                    }
-                    catch
-                    {
-                        //delete it first
-                        if (!Pinvoke.MoveFileEx(WinSxSFilePath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                        //schedule .bak for deletion
+                        try
                         {
-                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "Deleting usrcpl.man failed: " + new Win32Exception().Message);
-                            return;
+                            File.Delete(WinSxSFilePath + ".bak");
                         }
-                    }
+                        catch
+                        {
+                            //delete it first
+                            if (!Pinvoke.MoveFileEx(WinSxSFilePath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                            {
+                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "Deleting usrcpl.man failed: " + new Win32Exception().Message);
+                                return;
+                            }
+                        }
 
-                    i++;
+                        i++;
+                    }
                 }
 
 

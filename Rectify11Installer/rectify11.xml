@@ -153,10 +153,20 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-devicepairingdll" HardlinkTarget="C:\Windows\SystemResources\DevicePairing.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-devicepairingfolder" HardlinkTarget="C:\Windows\SystemResources\devicepairingfolder.dll.mun" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
-			<Command action="addskip" resource="DevicePairing_Icons.res" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="DevicePairingFolder_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-pnpdevicemanager" HardlinkTarget="C:\Windows\System32\devmgr.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="delete" mask="BITMAP,"></Command>
+			
+			<Command action="addskip" resource="devmgr_res.res" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="devmgr_res.res" mask="BITMAP,"></Command>
 		</Commands>
 	</Patch>
 
@@ -164,6 +174,13 @@
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="dfrgui_Icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-diagcpl" HardlinkTarget="C:\Windows\System32\diagcpl.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="diagcpl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
@@ -209,6 +226,13 @@
 		</Commands>
 	</Patch>
 
+	<!--<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\fhcpl.dll.mun" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="Filemgmt_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>-->
+
 	<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\filemgmt.dll.mun" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
@@ -223,7 +247,7 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-securestartup-cpl" HardlinkTarget="C:\Windows\System32\fvecpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-securestartup-cpl" HardlinkTarget="C:\Windows\System32\fvecpl.dll" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Fvecpl_icons.res" mask="ICONGROUP,"></Command>
@@ -565,6 +589,13 @@
 		</Commands>
 	</Patch>
 
+	<Patch Package="microsoft-windows-s..spaces-controlpanel" HardlinkTarget="C:\Windows\System32\SpaceControl.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="SpaceControl_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
 	<Patch Package="microsoft-windows-security-spp-ux" HardlinkTarget="C:\Windows\SystemResources\sppcomapi.dll.mun" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
@@ -679,6 +710,14 @@
 			<Command action="addskip" resource="Tlsext_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>-->
+
+
+	<Patch Package="microsoft-windows-t..lservices-workspace" HardlinkTarget="C:\Windows\System32\tsworkspace.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="TSWorkspace_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
 	
 	<Patch Package="microsoft-windows-usercpl" HardlinkTarget="C:\Windows\SystemResources\usercpl.dll.mun" Arch="amd64">
 		<Commands>
@@ -714,6 +753,13 @@
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wdc_icons.res" mask="ICONGROUP,"></Command>
+		</Commands>
+	</Patch>
+
+	<Patch Package="microsoft-windows-e..riseclientsync-host" HardlinkTarget="C:\Windows\System32\WorkFoldersControl.dll" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP,"></Command>
+			<Command action="addskip" resource="WorkfoldersControl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 

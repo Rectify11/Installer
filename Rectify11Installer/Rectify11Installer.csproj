@@ -115,7 +115,13 @@
 	  <None Update="files\DevicePairing_Icons.res">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="files\devmgr_res.res">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="files\dfrgui_Icons.res">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="files\diagcpl_icons.res">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="files\Dmdskres_Icons.res">
@@ -295,6 +301,9 @@
 	  <None Update="files\Shrpubw_icons.res">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="files\SpaceControl_icons.res">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="files\Sppcomapi_icons.res">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
@@ -352,6 +361,9 @@
 	  <None Update="files\Tlsext_icons.res">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="files\TSWorkspace_icons.res">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="files\UserCPL_IconGroup1.ico">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
@@ -368,6 +380,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="files\Wdc_icons.res">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="files\WorkfoldersControl_icons.res">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="files\Wscedit_icons.res">
