@@ -1,4 +1,6 @@
-﻿namespace Rectify11Installer
+﻿using AeroWizard;
+
+namespace Rectify11Installer
 {
     partial class FrmWizard
     {
@@ -30,7 +32,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWizard));
             this.pnlTop = new System.Windows.Forms.Panel();
-            this.lblTopText = new Label();
+            this.lblTopText = new ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.navigationButton1 = new Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
@@ -162,7 +164,7 @@
         private Panel pnlTop;
         private Panel pnlBottom;
         private Panel pnlMain;
-        private Label lblTopText;
+        private ThemedLabel lblTopText;
         private Panel panel1;
         private Controls.WinUIButton BtnBack;
         private Controls.WinUIButton BtnNext;
