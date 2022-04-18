@@ -32,7 +32,7 @@ namespace Rectify11Installer
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWizard));
             this.pnlTop = new System.Windows.Forms.Panel();
-            this.lblTopText = new ThemedLabel();
+            this.lblTopText = new AeroWizard.ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.navigationButton1 = new Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
@@ -58,7 +58,7 @@ namespace Rectify11Installer
             // lblTopText
             // 
             this.lblTopText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTopText.Font = new System.Drawing.Font("Segoe UI Variable Display", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTopText.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTopText.ForeColor = System.Drawing.Color.White;
             this.lblTopText.Location = new System.Drawing.Point(51, 0);
             this.lblTopText.Name = "lblTopText";

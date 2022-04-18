@@ -30,32 +30,22 @@ namespace Rectify11Installer.Pages
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.cmbInstallNOW = new Rectify11Installer.Controls.FakeCommandLink();
             this.cmbUninstall = new Rectify11Installer.Controls.FakeCommandLink();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(8, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(249, 21);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Please select an installation mode.";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 168);
+            this.pictureBox1.Location = new System.Drawing.Point(234, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.TabIndex = 11;
@@ -67,9 +57,9 @@ namespace Rectify11Installer.Pages
             this.flowLayoutPanel1.Controls.Add(this.cmbInstallNOW);
             this.flowLayoutPanel1.Controls.Add(this.cmbUninstall);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(280, 63);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(161, 201);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(309, 228);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(309, 126);
             this.flowLayoutPanel1.TabIndex = 13;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -78,26 +68,49 @@ namespace Rectify11Installer.Pages
             this.cmbInstallNOW.BackColor = System.Drawing.Color.Transparent;
             this.cmbInstallNOW.Location = new System.Drawing.Point(3, 3);
             this.cmbInstallNOW.Name = "cmbInstallNOW";
-            this.cmbInstallNOW.Note = "Installs Rectify11 on top Windows 11 Installation";
-            this.cmbInstallNOW.Size = new System.Drawing.Size(295, 80);
+            this.cmbInstallNOW.Note = "Rectifize your current Windows 11 installation";
+            this.cmbInstallNOW.Size = new System.Drawing.Size(295, 52);
             this.cmbInstallNOW.TabIndex = 7;
-            this.cmbInstallNOW.Text = "Install Rectify11";
+            this.cmbInstallNOW.Text = "Install Now";
             // 
             // cmbUninstall
             // 
             this.cmbUninstall.BackColor = System.Drawing.Color.Transparent;
             this.cmbUninstall.Enabled = false;
-            this.cmbUninstall.Location = new System.Drawing.Point(3, 89);
+            this.cmbUninstall.Location = new System.Drawing.Point(3, 61);
             this.cmbUninstall.Name = "cmbUninstall";
-            this.cmbUninstall.Note = "Restores the classic Windows 11 look.";
-            this.cmbUninstall.Size = new System.Drawing.Size(295, 80);
+            this.cmbUninstall.Note = "Restores the original Windows 11 look.";
+            this.cmbUninstall.Size = new System.Drawing.Size(295, 52);
             this.cmbUninstall.TabIndex = 8;
             this.cmbUninstall.Text = "Uninstall Rectify11";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(0, 177);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(593, 21);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Please select what you would like to do";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(2, 153);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(593, 23);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Rectifize for Windows 11";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // WelcomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -106,16 +119,15 @@ namespace Rectify11Installer.Pages
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private Label label2;
         private PictureBox pictureBox1;
         private FlowLayoutPanel flowLayoutPanel1;
         private FakeCommandLink cmbInstallNOW;
         private FakeCommandLink cmbUninstall;
+        private Label label2;
+        private Label label1;
     }
 }
