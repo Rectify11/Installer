@@ -115,10 +115,25 @@ namespace Rectify11Installer
                         TakeOwnership(usr.Path, true);
                         //TakeOwnership(WinSxSFilePath, false);
                         //TakeOwnership(fileProper, false); //path to temp file
-                        //TakeOwnership(item.Systempath, false);
+                        TakeOwnership(item.Systempath, false);
+
+                        //Rename old hardlink
+                        File.Move(item.Systempath, item.Systempath + ".bak");
 
                         //Delete old hardlink
-                        File.Delete(item.Systempath);
+                        try
+                        {
+                            File.Delete(item.Systempath + ".bak");
+                        }
+                        catch
+                        {
+                            //schedule .bak file for deletion
+                            if (!Pinvoke.MoveFileEx(item.Systempath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                            {
+                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
+                                return;
+                            }
+                        }
 
                         //rename old file
                         File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
@@ -146,7 +161,7 @@ namespace Rectify11Installer
                             //delete it first
                             if (!Pinvoke.MoveFileEx(WinSxSFilePath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
                             {
-                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "Deleting usrcpl.man failed: " + new Win32Exception().Message);
+                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
                                 return;
                             }
                         }
