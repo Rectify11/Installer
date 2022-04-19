@@ -10,15 +10,13 @@ using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
 {
-    public partial class InstalllOptnsPage : WizardPage
+    public partial class InstalllOptnsPage : WizardPage, IRectifyInstalllerOptions
     {
-        public bool ShouldInstallExplorerPatcher
-        {
-            get
-            {
-                return chkExploderPatcher.Checked;
-            }
-        }
+        public bool ShouldInstallExplorerPatcher { get => chkThemes.Checked; }
+        public bool ShouldInstallThemes { get => chkThemes.Checked; }
+        public bool ShouldInstallWallpaper { get => chkWallpaper.Checked; }
+        public bool ShouldInstallWinver { get => chkWinVer.Checked; }
+        public bool DoSafeInstall { get => radSafe.Checked; }
         public InstalllOptnsPage()
         {
             InitializeComponent();

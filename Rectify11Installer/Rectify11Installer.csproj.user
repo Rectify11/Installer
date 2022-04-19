@@ -7,10 +7,7 @@
     <Compile Update="Controls\CustomProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Controls\DarkAwareButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Controls\DarkRichTextBox.cs">
+    <Compile Update="Controls\DarkAwareControls.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Controls\FakeCommandLink.cs">

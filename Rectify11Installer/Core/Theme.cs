@@ -24,5 +24,22 @@ namespace Rectify11Installer
                 return registryValue <= 0;
             }
         }
+        public static event EventHandler? OnThemeChanged;
+
+        static Theme()
+        {
+            SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+        }
+
+        private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            switch (e.Category)
+            {
+                case UserPreferenceCategory.General:
+                    if (OnThemeChanged != null)
+                        OnThemeChanged.Invoke(sender, e);
+                    break;
+            }
+        }
     }
 }

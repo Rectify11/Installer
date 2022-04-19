@@ -31,7 +31,7 @@ namespace Rectify11Installer.Pages
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new DarkAwareFlowLayoutPanel();
             this.cmbInstallNOW = new Rectify11Installer.Controls.FakeCommandLink();
             this.cmbUninstall = new Rectify11Installer.Controls.FakeCommandLink();
             this.label2 = new System.Windows.Forms.Label();
@@ -130,7 +130,7 @@ namespace Rectify11Installer.Pages
 
         #endregion
         private PictureBox pictureBox1;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private DarkAwareFlowLayoutPanel flowLayoutPanel1;
         private FakeCommandLink cmbInstallNOW;
         private FakeCommandLink cmbUninstall;
         private Label label2;

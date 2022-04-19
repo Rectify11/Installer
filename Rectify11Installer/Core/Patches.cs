@@ -45,7 +45,12 @@ namespace Rectify11Installer.Core
                                 if (hardLinkTargetAttrib == null)
                                     throw new Exception("<Patch> tag missing HardlinkTarget attribute!");
 
+                                var disableOnSafeMode = patch.Attributes["DisableOnSafeMode"];
+                                if (disableOnSafeMode == null)
+                                    throw new Exception("<Patch> tag missing DisableOnSafeMode attribute!");
+
                                 var packageName = packageNameAttrib.Value;
+                                var disableOnSafeModeProper = bool.Parse(disableOnSafeMode.InnerText);
                                 var arch = archAttrib.Value;
                                 PackageArch archProper;
                                 if (arch == "amd64")
@@ -109,7 +114,7 @@ namespace Rectify11Installer.Core
                                     throw new Exception("Tag under <Patch> null!");
                                 }
 
-                                p.Add(new PatchDef(packageName, archProper, hardlinkTarget, instructions.ToArray()));
+                                p.Add(new PatchDef(packageName, archProper, hardlinkTarget, instructions.ToArray(), disableOnSafeModeProper));
                             }
                         }
                     }

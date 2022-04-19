@@ -431,7 +431,7 @@ namespace Rectify11Installer
                 Navigate(ConfirmOpPage);
 
                 //Change text
-                ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on top of this Windows 11 Installation\n\nIt is recommended to save your work before installing.";
+                ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on this Windows 11 Installation\n\nIt is recommended to save your work before installing.";
             }
             else if (CurrentPage == ConfirmOpPage)
             {
@@ -443,9 +443,10 @@ namespace Rectify11Installer
                 HideCloseButton = true;
                 ControlBox = false;
                 pnlBottom.Visible = false;
+                IRectifyInstalllerOptions options = InstallOptions;
                 var thread = new Thread(delegate ()
                 {
-                    installer.Install();
+                    installer.Install(options);
                 });
                 thread.Start();
             }

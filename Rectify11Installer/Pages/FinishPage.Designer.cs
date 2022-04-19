@@ -1,4 +1,6 @@
-﻿namespace Rectify11Installer.Pages
+﻿using Rectify11Installer.Controls;
+
+namespace Rectify11Installer.Pages
 {
     partial class FinishPage
     {
@@ -30,7 +32,7 @@
         {
             this.lblText = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new DarkAwareFlowLayoutPanel();
             this.btnCopy = new Rectify11Installer.Controls.WinUIButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -101,7 +103,7 @@
 
         private Label lblText;
         private PictureBox pictureBox1;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private DarkAwareFlowLayoutPanel flowLayoutPanel1;
         private Controls.WinUIButton btnCopy;
     }
 }

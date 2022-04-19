@@ -97,6 +97,15 @@ namespace Rectify11Installer
         /// <summary>
         /// Install Rectify11
         /// </summary>
-        void Install();
+        void Install(IRectifyInstalllerOptions options);
+    }
+
+    public interface IRectifyInstalllerOptions
+    {
+        public bool ShouldInstallExplorerPatcher { get; }
+        public bool ShouldInstallThemes { get; }
+        public bool ShouldInstallWallpaper { get; }
+        public bool ShouldInstallWinver { get; }
+        public bool DoSafeInstall { get; }
     }
 }

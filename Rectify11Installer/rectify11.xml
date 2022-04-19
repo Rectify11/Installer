@@ -4,7 +4,7 @@
 <!--Please keep this file sorted by DLL name (A-Z)-->
 
 <Patches>
-	<Patch Package="microsoft-windows-accessibilitycpl" HardlinkTarget="C:\Windows\SystemResources\accessibilitycpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-accessibilitycpl" HardlinkTarget="C:\Windows\SystemResources\accessibilitycpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="accessibilitycpl_Icons.res" mask="ICONGROUP,"></Command>
@@ -14,42 +14,42 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-aclui" HardlinkTarget="C:\Windows\SystemResources\aclui.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-aclui" HardlinkTarget="C:\Windows\SystemResources\aclui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="aclui_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-healthcentercpl" HardlinkTarget="C:\Windows\SystemResources\actioncentercpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-healthcentercpl" HardlinkTarget="C:\Windows\SystemResources\actioncentercpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ActioncenterCPL_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-appwiz" HardlinkTarget="C:\Windows\SystemResources\appwiz.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-appwiz" HardlinkTarget="C:\Windows\SystemResources\appwiz.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Appwiz_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="networking-mpssvc-admin" HardlinkTarget="C:\Windows\SystemResources\authfwgp.dll.mun" Arch="amd64">
+	<Patch Package="networking-mpssvc-admin" HardlinkTarget="C:\Windows\SystemResources\authfwgp.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="authfwgp_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-autoplay" HardlinkTarget="C:\Windows\System32\autoplay.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-autoplay" HardlinkTarget="C:\Windows\System32\autoplay.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="autoplay_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-bootux.deployment" HardlinkTarget="C:\Windows\System32\bootux.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-bootux.deployment" HardlinkTarget="C:\Windows\System32\bootux.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="addoverwrite" resource="BootUX_UiFile_100.ui" mask="UIFILE,100,0"></Command>
 			<Command action="delete" mask="ICONGROUP,"></Command>
@@ -57,28 +57,28 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-icm-ui" HardlinkTarget="C:\Windows\System32\colorcpl.exe" Arch="amd64">
+	<Patch Package="microsoft-windows-icm-ui" HardlinkTarget="C:\Windows\System32\colorcpl.exe" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ColorCPL_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-icm-ui" HardlinkTarget="C:\Windows\SystemResources\colorui.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-icm-ui" HardlinkTarget="C:\Windows\SystemResources\colorui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ColorUI_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-comdlg32" HardlinkTarget="C:\Windows\SystemResources\comdlg32.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-comdlg32" HardlinkTarget="C:\Windows\SystemResources\comdlg32.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Comdlg_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-com-complus.res" HardlinkTarget="C:\Windows\SystemResources\comres.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-com-complus.res" HardlinkTarget="C:\Windows\SystemResources\comres.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Comres_icons.res" mask="ICONGROUP,"></Command>
@@ -86,7 +86,7 @@
 	</Patch>
 
 	<Patch
-	Package="microsoft-windows-getconnectedwizards" HardlinkTarget="C:\Windows\SystemResources\connect.dll.mun" Arch="amd64">
+	Package="microsoft-windows-getconnectedwizards" HardlinkTarget="C:\Windows\SystemResources\connect.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Connect_Icons.res" mask="ICONGROUP,"></Command>
@@ -94,21 +94,21 @@
 	</Patch>
 
 	<Patch
-	Package="microsoft-windows-cryptui-dll" HardlinkTarget="C:\Windows\SystemResources\cryptui.dll.mun" Arch="amd64">
+	Package="microsoft-windows-cryptui-dll" HardlinkTarget="C:\Windows\SystemResources\cryptui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="CryptUI_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-cryptuiwizard-dll" HardlinkTarget="C:\Windows\SystemResources\cryptuiwizard.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-cryptuiwizard-dll" HardlinkTarget="C:\Windows\SystemResources\cryptuiwizard.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="CryptUIWizard_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-cttune" HardlinkTarget="C:\Windows\SystemResources\cttune.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-cttune" HardlinkTarget="C:\Windows\SystemResources\cttune.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="CCTune_Icons.res" mask="ICONGROUP,"></Command>
@@ -118,49 +118,49 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-dataexchange-api" HardlinkTarget="C:\Windows\SystemResources\dataexchange.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-dataexchange-api" HardlinkTarget="C:\Windows\SystemResources\dataexchange.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="PNG,"></Command>
 			<Command action="addskip" resource="DataExchange_PNG.res" mask="PNG,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-icm-dccw" HardlinkTarget="C:\Windows\SystemResources\dccw.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-icm-dccw" HardlinkTarget="C:\Windows\SystemResources\dccw.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="DCCW_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-ddores" HardlinkTarget="C:\Windows\SystemResources\ddores.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-ddores" HardlinkTarget="C:\Windows\SystemResources\ddores.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ddores_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-devicecenter" HardlinkTarget="C:\Windows\SystemResources\devicecenter.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-devicecenter" HardlinkTarget="C:\Windows\SystemResources\devicecenter.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="DeviceCenter_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-devicepairingdll" HardlinkTarget="C:\Windows\SystemResources\DevicePairing.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-devicepairingdll" HardlinkTarget="C:\Windows\SystemResources\DevicePairing.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="DevicePairing_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-devicepairingfolder" HardlinkTarget="C:\Windows\SystemResources\devicepairingfolder.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-devicepairingfolder" HardlinkTarget="C:\Windows\SystemResources\devicepairingfolder.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="DevicePairingFolder_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-pnpdevicemanager" HardlinkTarget="C:\Windows\System32\devmgr.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-pnpdevicemanager" HardlinkTarget="C:\Windows\System32\devmgr.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="delete" mask="BITMAP,"></Command>
@@ -170,119 +170,119 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-defrag-adminui" HardlinkTarget="C:\Windows\SystemResources\dfrgui.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-defrag-adminui" HardlinkTarget="C:\Windows\SystemResources\dfrgui.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="dfrgui_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-diagcpl" HardlinkTarget="C:\Windows\System32\diagcpl.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-diagcpl" HardlinkTarget="C:\Windows\System32\diagcpl.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="diagcpl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-diskmanagement" HardlinkTarget="C:\Windows\SystemResources\dmdskres.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-diskmanagement" HardlinkTarget="C:\Windows\SystemResources\dmdskres.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Dmdskres_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-dsquery" HardlinkTarget="C:\Windows\SystemResources\dsquery.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-dsquery" HardlinkTarget="C:\Windows\SystemResources\dsquery.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Dsquery_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="ds-ui-ext" HardlinkTarget="C:\Windows\SystemResources\dsuiext.dll.mun" Arch="amd64">
+	<Patch Package="ds-ui-ext" HardlinkTarget="C:\Windows\SystemResources\dsuiext.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Dsuiext_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-sethc" HardlinkTarget="C:\Windows\SystemResources\easeofaccessdialog.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-sethc" HardlinkTarget="C:\Windows\SystemResources\easeofaccessdialog.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="EaseOfAccessDialog_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-edp-util" HardlinkTarget="C:\Windows\SystemResources\edputil.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-edp-util" HardlinkTarget="C:\Windows\SystemResources\edputil.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Edputil_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-explorerframe" HardlinkTarget="C:\Windows\SystemResources\explorerframe.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-explorerframe" HardlinkTarget="C:\Windows\SystemResources\explorerframe.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ExplorerFrame_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<!--<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\fhcpl.dll.mun" Arch="amd64">
+	<!--<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\fhcpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Filemgmt_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>-->
 
-	<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\filemgmt.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\filemgmt.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Filemgmt_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="networking-mpssvc-ui" HardlinkTarget="C:\Windows\SystemResources\firewallcontrolpanel.dll.mun" Arch="amd64">
+	<Patch Package="networking-mpssvc-ui" HardlinkTarget="C:\Windows\SystemResources\firewallcontrolpanel.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="FirewallControlPanel_Icon.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-securestartup-cpl" HardlinkTarget="C:\Windows\System32\fvecpl.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-securestartup-cpl" HardlinkTarget="C:\Windows\System32\fvecpl.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Fvecpl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-g..policy-admin-gpedit" HardlinkTarget="C:\Windows\SystemResources\gpedit.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-g..policy-admin-gpedit" HardlinkTarget="C:\Windows\SystemResources\gpedit.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Gpedit_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-ieframe" HardlinkTarget="C:\Windows\SystemResources\ieframe.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-ieframe" HardlinkTarget="C:\Windows\SystemResources\ieframe.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="IEFrame_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-imageres" HardlinkTarget="C:\Windows\SystemResources\imageres.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-imageres" HardlinkTarget="C:\Windows\SystemResources\imageres.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Imageres_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\imagesp1.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\imagesp1.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ImageSP1_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\imagesp1.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\imagesp1.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ImageSP1_Icons.res" mask="ICONGROUP,"></Command>
@@ -290,84 +290,84 @@
 	</Patch>
 
 
-	<Patch Package="microsoft-windows-i..nternetcontrolpanel" HardlinkTarget="C:\Windows\SystemResources\inetcpl.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-i..nternetcontrolpanel" HardlinkTarget="C:\Windows\SystemResources\inetcpl.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="INetCPL_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-intl" HardlinkTarget="C:\Windows\SystemResources\intl.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-intl" HardlinkTarget="C:\Windows\SystemResources\intl.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Intl_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<!--<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\iscigd.dll.mun" Arch="amd64">
+	<!--<Patch Package="microsoft-windows-imagesp1" HardlinkTarget="C:\Windows\SystemResources\iscigd.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Iscigd_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>-->
 
-	<Patch Package="microsoft-windows-i..i_initiator_service" HardlinkTarget="C:\Windows\SystemResources\iscsicli.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-i..i_initiator_service" HardlinkTarget="C:\Windows\SystemResources\iscsicli.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Iscicli.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-iscsi_initiator_ui" HardlinkTarget="C:\Windows\SystemResources\iscsicpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-iscsi_initiator_ui" HardlinkTarget="C:\Windows\SystemResources\iscsicpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Iscsicpl_dll_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-iscsi_initiator_ui" HardlinkTarget="C:\Windows\SystemResources\iscsicpl.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-iscsi_initiator_ui" HardlinkTarget="C:\Windows\SystemResources\iscsicpl.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Iscicpl_Exe_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-keymgr" HardlinkTarget="C:\Windows\SystemResources\keymgr.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-keymgr" HardlinkTarget="C:\Windows\SystemResources\keymgr.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Keymgr_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-magnify" HardlinkTarget="C:\Windows\SystemResources\magnify.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-magnify" HardlinkTarget="C:\Windows\SystemResources\magnify.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Magnify_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-main" HardlinkTarget="C:\Windows\SystemResources\main.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-main" HardlinkTarget="C:\Windows\SystemResources\main.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Main_CPL_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-unimodem-config" HardlinkTarget="C:\Windows\SystemResources\mdminst.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-unimodem-config" HardlinkTarget="C:\Windows\SystemResources\mdminst.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Mdminst_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-m..-management-console" HardlinkTarget="C:\Windows\SystemResources\mmcbase.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-m..-management-console" HardlinkTarget="C:\Windows\SystemResources\mmcbase.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="MmcBase_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-m..console-nodemanager" HardlinkTarget="C:\Windows\SystemResources\mmcndmgr.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-m..console-nodemanager" HardlinkTarget="C:\Windows\SystemResources\mmcndmgr.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Mmcndmgr_Icons.res" mask="ICONGROUP,"></Command>
@@ -375,7 +375,7 @@
 	</Patch>
 
 
-	<Patch Package="microsoft-windows-mmres" HardlinkTarget="C:\Windows\SystemResources\mmres.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-mmres" HardlinkTarget="C:\Windows\SystemResources\mmres.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="MMRes_Icons.res" mask="ICONGROUP,"></Command>
@@ -385,28 +385,28 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-mmsys" HardlinkTarget="C:\Windows\SystemResources\mmsys.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-mmsys" HardlinkTarget="C:\Windows\SystemResources\mmsys.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Mmsys_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-msdt" HardlinkTarget="C:\Windows\SystemResources\msdt.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-msdt" HardlinkTarget="C:\Windows\SystemResources\msdt.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Msdt_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="windowssearchengine" HardlinkTarget="C:\Windows\SystemResources\mssvp.dll.mun" Arch="amd64">
+	<Patch Package="windowssearchengine" HardlinkTarget="C:\Windows\SystemResources\mssvp.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Mssvp_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-t..minalservicesclient" HardlinkTarget="C:\Windows\SystemResources\mstsc.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-t..minalservicesclient" HardlinkTarget="C:\Windows\SystemResources\mstsc.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Mstsc_Icons.res" mask="ICONGROUP,"></Command>
@@ -416,21 +416,21 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-t..s-clientactivexcore" HardlinkTarget="C:\Windows\SystemResources\mstscax.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-t..s-clientactivexcore" HardlinkTarget="C:\Windows\SystemResources\mstscax.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Mstscax_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-msxml30" HardlinkTarget="C:\Windows\SystemResources\msxml3.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-msxml30" HardlinkTarget="C:\Windows\SystemResources\msxml3.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Msxml3_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-c..termanagementsnapin" HardlinkTarget="C:\Windows\SystemResources\mycomput.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-c..termanagementsnapin" HardlinkTarget="C:\Windows\SystemResources\mycomput.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="MyComput_Icons.res" mask="ICONGROUP,"></Command>
@@ -440,70 +440,70 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-mydocs" HardlinkTarget="C:\Windows\SystemResources\mydocs.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-mydocs" HardlinkTarget="C:\Windows\SystemResources\mydocs.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Mydocs_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-networkcenter" HardlinkTarget="C:\Windows\SystemResources\netcenter.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-networkcenter" HardlinkTarget="C:\Windows\SystemResources\netcenter.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="NetCenter_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-netshell" HardlinkTarget="C:\Windows\SystemResources\netshell.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-netshell" HardlinkTarget="C:\Windows\SystemResources\netshell.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Netshell_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-networkexplorer" HardlinkTarget="C:\Windows\SystemResources\networkexplorer.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-networkexplorer" HardlinkTarget="C:\Windows\SystemResources\networkexplorer.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Networkexplorer_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-newdev" HardlinkTarget="C:\Windows\SystemResources\newdev.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-newdev" HardlinkTarget="C:\Windows\SystemResources\newdev.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Newdev_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-ntshrui" HardlinkTarget="C:\Windows\SystemResources\ntshrui.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-ntshrui" HardlinkTarget="C:\Windows\SystemResources\ntshrui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Ntshrui_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-powercpl" HardlinkTarget="C:\Windows\SystemResources\powercpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-powercpl" HardlinkTarget="C:\Windows\SystemResources\powercpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Powercpl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-p..randprintui-printui" HardlinkTarget="C:\Windows\SystemResources\printui.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-p..randprintui-printui" HardlinkTarget="C:\Windows\SystemResources\printui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Printui_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-p..randprintui-prnfldr" HardlinkTarget="C:\Windows\SystemResources\prnfldr.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-p..randprintui-prnfldr" HardlinkTarget="C:\Windows\SystemResources\prnfldr.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Prnfldr_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-rasdlg" HardlinkTarget="C:\Windows\SystemResources\rasdlg.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-rasdlg" HardlinkTarget="C:\Windows\SystemResources\rasdlg.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Rasdlg_Icons.res" mask="ICONGROUP,"></Command>
@@ -513,63 +513,63 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-rasgetconnectedwizard" HardlinkTarget="C:\Windows\SystemResources\rasgcw.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-rasgetconnectedwizard" HardlinkTarget="C:\Windows\SystemResources\rasgcw.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Rasgcw_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-rasplap" HardlinkTarget="C:\Windows\SystemResources\rasplap.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-rasplap" HardlinkTarget="C:\Windows\SystemResources\rasplap.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="BITMAP,"></Command>
 			<Command action="addskip" resource="Rasplap_Bitmap.res" mask="BITMAP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-onecoreuap-rastls" HardlinkTarget="C:\Windows\SystemResources\rastls.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-onecoreuap-rastls" HardlinkTarget="C:\Windows\SystemResources\rastls.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Rastls_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-rastls" HardlinkTarget="C:\Windows\SystemResources\rastlsext.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-rastls" HardlinkTarget="C:\Windows\SystemResources\rastlsext.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Rastlsext_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-t..services-remotepage" HardlinkTarget="C:\Windows\SystemResources\remotepg.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-t..services-remotepage" HardlinkTarget="C:\Windows\SystemResources\remotepg.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Remotepg_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-backup-cpl" HardlinkTarget="C:\Windows\System32\sdcpl.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-backup-cpl" HardlinkTarget="C:\Windows\System32\sdcpl.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Sdcpl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-mobilepc-sensors-cpl" HardlinkTarget="C:\Windows\SystemResources\sensorscpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-mobilepc-sensors-cpl" HardlinkTarget="C:\Windows\SystemResources\sensorscpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Sensorscpl_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-sethc" HardlinkTarget="C:\Windows\SystemResources\sethc.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-sethc" HardlinkTarget="C:\Windows\SystemResources\sethc.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Sethc_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-shell32" HardlinkTarget="C:\Windows\SystemResources\shell32.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-shell32" HardlinkTarget="C:\Windows\SystemResources\shell32.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Shell32_icons.res" mask="ICONGROUP,"></Command>
@@ -579,7 +579,7 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\shrpubw.exe.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-sharedfoldersui" HardlinkTarget="C:\Windows\SystemResources\shrpubw.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Shrpubw_icons.res" mask="ICONGROUP,"></Command>
@@ -589,84 +589,85 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-s..spaces-controlpanel" HardlinkTarget="C:\Windows\System32\SpaceControl.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-s..spaces-controlpanel" HardlinkTarget="C:\Windows\System32\SpaceControl.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="SpaceControl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-security-spp-ux" HardlinkTarget="C:\Windows\SystemResources\sppcomapi.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-security-spp-ux" HardlinkTarget="C:\Windows\SystemResources\sppcomapi.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Sppcomapi_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="desktop_shell-search-srchadmin" HardlinkTarget="C:\Windows\SystemResources\srchadmin.dll.mun" Arch="amd64">
+	<Patch Package="desktop_shell-search-srchadmin" HardlinkTarget="C:\Windows\SystemResources\srchadmin.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Srchadmin_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="srpuxnativesnapin" HardlinkTarget="C:\Windows\SystemResources\srpuxnativesnapin.dll.mun" Arch="amd64">
+	<Patch Package="srpuxnativesnapin" HardlinkTarget="C:\Windows\SystemResources\srpuxnativesnapin.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Srpuxnativesnapin_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-sud" HardlinkTarget="C:\Windows\SystemResources\sud.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-sud" HardlinkTarget="C:\Windows\SystemResources\sud.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Sud_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-mobsync" HardlinkTarget="C:\Windows\SystemResources\synccenter.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-mobsync" HardlinkTarget="C:\Windows\SystemResources\synccenter.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Synccenter_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-sysdm" HardlinkTarget="C:\Windows\SystemResources\sysdm.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-sysdm" HardlinkTarget="C:\Windows\SystemResources\sysdm.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Sysdm_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-performancetoolsgui" HardlinkTarget="C:\Windows\SystemResources\sysmon.ocx.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-performancetoolsgui" HardlinkTarget="C:\Windows\SystemResources\sysmon.ocx.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Sysmon_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-tapicore" HardlinkTarget="C:\Windows\SystemResources\tapiui.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-tapicore" HardlinkTarget="C:\Windows\SystemResources\tapiui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Tapiui_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-advancedtaskmanager" HardlinkTarget="C:\Windows\SystemResources\taskmgr.exe.mun" Arch="amd64">
+	<!--This causes problems on XAML task manager-->
+	<!--<Patch Package="microsoft-windows-advancedtaskmanager" HardlinkTarget="C:\Windows\SystemResources\taskmgr.exe.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Taskmgr_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
-	</Patch>
+	</Patch>-->
 
-	<Patch Package="microsoft-windows-tapicore" HardlinkTarget="C:\Windows\System32\telephon.cpl" Arch="amd64">
+	<Patch Package="microsoft-windows-tapicore" HardlinkTarget="C:\Windows\System32\telephon.cpl" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Telephon_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 	
-	<Patch Package="microsoft-windows-themecpl" HardlinkTarget="C:\Windows\SystemResources\themecpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-themecpl" HardlinkTarget="C:\Windows\SystemResources\themecpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Themecpl_Icons.res" mask="ICONGROUP,"></Command>
@@ -675,7 +676,7 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-themeui" HardlinkTarget="C:\Windows\SystemResources\themeui.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-themeui" HardlinkTarget="C:\Windows\SystemResources\themeui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="ThemeUI_Icons.res" mask="ICONGROUP,"></Command>
@@ -684,7 +685,7 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-timedate" HardlinkTarget="C:\Windows\SystemResources\timedate.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-timedate" HardlinkTarget="C:\Windows\SystemResources\timedate.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Timedate_cpl_icons.res" mask="ICONGROUP,"></Command>
@@ -694,7 +695,7 @@
 	</Patch>
 
 	<!--
-	<Patch Package="microsoft-windows-themeui" HardlinkTarget="C:\Windows\SystemResources\timedate.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-themeui" HardlinkTarget="C:\Windows\SystemResources\timedate.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Timedate_dll_icons.res" mask="ICONGROUP,"></Command>
@@ -704,7 +705,7 @@
 	</Patch>-->
 
 	<!--
-		<Patch Package="microsoft-windows-timedate" HardlinkTarget="C:\Windows\SystemResources\tlsext.cpl.mun" Arch="amd64">
+		<Patch Package="microsoft-windows-timedate" HardlinkTarget="C:\Windows\SystemResources\tlsext.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Tlsext_icons.res" mask="ICONGROUP,"></Command>
@@ -712,34 +713,34 @@
 	</Patch>-->
 
 
-	<Patch Package="microsoft-windows-t..lservices-workspace" HardlinkTarget="C:\Windows\System32\tsworkspace.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-t..lservices-workspace" HardlinkTarget="C:\Windows\System32\tsworkspace.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="TSWorkspace_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 	
-	<Patch Package="microsoft-windows-usercpl" HardlinkTarget="C:\Windows\SystemResources\usercpl.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-usercpl" HardlinkTarget="C:\Windows\SystemResources\usercpl.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="addoverwrite" resource="UserCPL_IconGroup1.ico" mask="ICONGROUP,1,0"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\van.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\van.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Van_Icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-security-vault-cpl" HardlinkTarget="C:\Windows\SystemResources\vault.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-security-vault-cpl" HardlinkTarget="C:\Windows\SystemResources\vault.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Vault_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-w..ig-registrar-wizard_31bf3856ad364e35" HardlinkTarget="C:\Windows\SystemResources\wcnwiz.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-w..ig-registrar-wizard_31bf3856ad364e35" HardlinkTarget="C:\Windows\SystemResources\wcnwiz.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wcnwiz_icons.res" mask="ICONGROUP,"></Command>
@@ -749,35 +750,35 @@
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-performancetoolsgui" HardlinkTarget="C:\Windows\SystemResources\wdc.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-performancetoolsgui" HardlinkTarget="C:\Windows\SystemResources\wdc.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wdc_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<Patch Package="microsoft-windows-e..riseclientsync-host" HardlinkTarget="C:\Windows\System32\WorkFoldersControl.dll" Arch="amd64">
+	<Patch Package="microsoft-windows-e..riseclientsync-host" HardlinkTarget="C:\Windows\System32\WorkFoldersControl.dll" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="WorkfoldersControl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<!--<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wscedit.dll.mun" Arch="amd64">
+	<!--<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wscedit.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wscedit_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>-->
 
-	<Patch Package="microsoft-windows-s..center-controlpanel" HardlinkTarget="C:\Windows\SystemResources\wscui.cpl.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-s..center-controlpanel" HardlinkTarget="C:\Windows\SystemResources\wscui.cpl.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wscui_cpl_icons.res" mask="ICONGROUP,"></Command>
 		</Commands>
 	</Patch>
 
-	<!--<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wscui.dll.mun" Arch="amd64">
+	<!--<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wscui.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wscui_dll_Icons.res" mask="ICONGROUP,"></Command>
@@ -785,7 +786,7 @@
 		(does not exist)
 	</Patch>-->
 
-	<Patch Package="microsoft-windows-s..rationmanagement-ui" HardlinkTarget="C:\Windows\SystemResources\wsecedit.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-s..rationmanagement-ui" HardlinkTarget="C:\Windows\SystemResources\wsecedit.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wsecedit_icons.res" mask="ICONGROUP,"></Command>
@@ -793,7 +794,7 @@
 	</Patch>
 
 	<!--
-	<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wuapi.dll.mun" Arch="amd64">
+	<Patch Package="microsoft-windows-van" HardlinkTarget="C:\Windows\SystemResources\wuapi.dll.mun" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP,"></Command>
 			<Command action="addskip" resource="Wuapi_icons.res" mask="ICONGROUP,"></Command>

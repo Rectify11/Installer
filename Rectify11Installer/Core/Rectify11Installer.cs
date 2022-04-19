@@ -15,7 +15,7 @@ namespace Rectify11Installer
     public class RectifyInstaller : IRectifyInstaller
     {
         private IRectifyInstallerWizard? _Wizard;
-        public void Install()
+        public void Install(IRectifyInstalllerOptions options)
         {
             if (_Wizard == null)
             {
@@ -51,128 +51,135 @@ namespace Rectify11Installer
                 int i = 0;
                 foreach (var item in patches)
                 {
-                    //get the package
-
-                    var usr = GetAMD64Package(item.WinSxSPackageName);
-                    if (usr == null)
+                    if (item.DisableOnSafeMode && options.DoSafeInstall)
                     {
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.WinSxSPackageName} package in the WinSxS folder!");
-                        return;
+
                     }
-
-                    _Wizard.SetProgressText("Patching file: " + item.DllName);
-                    _Wizard.SetProgress((i * 100) / patches.Length);
-
-                    var WinSxSFilePath = usr.Path + @"\" + item.DllName;
-                    string WinsxsDir = Path.GetFileName(usr.Path);
-                    string file = WinsxsDir + "/" + item.DllName;
-
-                    string fileProper = "C:/Windows/Rectify11/Tmp/" + file; //relative path to the file location
-                    string backupDirW = backupDir + "/" + WinsxsDir; //backup dir where the file is located at
-
-                    if (!File.Exists(WinSxSFilePath))
+                    else
                     {
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.DllName}");
-                        return;
-                    }
+                        //get the package
 
-                    Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/" + WinsxsDir);
-                    File.Copy(WinSxSFilePath, fileProper, true);
-
-                    Directory.CreateDirectory(backupDirW);
-                    //backup
-
-                    if (!File.Exists(backupDirW + "/" + item.DllName))
-                    {
-                        File.Copy(WinSxSFilePath, backupDirW + "/" + item.DllName, true);
-
-                        //for now: we will only patch files that don't exist in the backup directory
-                        //this is too save time during developent
-
-                        foreach (var patch in item.PatchInstructions)
+                        var usr = GetAMD64Package(item.WinSxSPackageName);
+                        if (usr == null)
                         {
-                            var r = Application.StartupPath + @"\files\" + patch.Resource;
-                            if (string.IsNullOrEmpty(patch.Resource))
-                                r = null;
-
-                            //This is where we mod the file
-                            if (!PatcherHelper.ReshackAddRes(@"files/ResourceHacker.exe",
-                                fileProper,
-                                fileProper,
-                                patch.Action, //"addoverwrite",
-                                r,
-                                patch.GroupAndLocation))//ICONGROUP,1,0
-                            {
-                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd + "\nSee installer.log for more information");
-                                return;
-                            }
-                        }
-
-
-
-
-                        //Take ownership of orginal file
-                        TakeOwnership(usr.Path, true);
-                        //TakeOwnership(WinSxSFilePath, false);
-                        //TakeOwnership(fileProper, false); //path to temp file
-                        TakeOwnership(item.Systempath, false);
-
-                        //Rename old hardlink
-                        File.Move(item.Systempath, item.Systempath + ".bak");
-
-                        //Delete old hardlink
-                        try
-                        {
-                            File.Delete(item.Systempath + ".bak");
-                        }
-                        catch
-                        {
-                            //schedule .bak file for deletion
-                            if (!Pinvoke.MoveFileEx(item.Systempath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
-                            {
-                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
-                                return;
-                            }
-                        }
-
-                        //rename old file
-                        File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
-
-                        //copy new file over
-                        File.Move(fileProper, WinSxSFilePath, true);
-
-                        //cleanup tmp folder
-                        Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
-
-                        //create hardlink
-                        if (!Pinvoke.CreateHardLinkA(item.Systempath, WinSxSFilePath, IntPtr.Zero))
-                        {
-                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "CreateHardLinkW() failed: " + new Win32Exception().Message);
+                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.WinSxSPackageName} package in the WinSxS folder!");
                             return;
                         }
 
-                        //schedule .bak for deletion
-                        try
+                        _Wizard.SetProgressText("Patching file: " + item.DllName);
+                        _Wizard.SetProgress((i * 100) / patches.Length);
+
+                        var WinSxSFilePath = usr.Path + @"\" + item.DllName;
+                        string WinsxsDir = Path.GetFileName(usr.Path);
+                        string file = WinsxsDir + "/" + item.DllName;
+
+                        string fileProper = "C:/Windows/Rectify11/Tmp/" + file; //relative path to the file location
+                        string backupDirW = backupDir + "/" + WinsxsDir; //backup dir where the file is located at
+
+                        if (!File.Exists(WinSxSFilePath))
                         {
-                            File.Delete(WinSxSFilePath + ".bak");
-                        }
-                        catch
-                        {
-                            //delete it first
-                            if (!Pinvoke.MoveFileEx(WinSxSFilePath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
-                            {
-                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
-                                return;
-                            }
+                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.DllName}");
+                            return;
                         }
 
-                        i++;
+                        Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/" + WinsxsDir);
+                        File.Copy(WinSxSFilePath, fileProper, true);
+
+                        Directory.CreateDirectory(backupDirW);
+                        //backup
+
+                        if (!File.Exists(backupDirW + "/" + item.DllName))
+                        {
+                            File.Copy(WinSxSFilePath, backupDirW + "/" + item.DllName, true);
+
+                            //for now: we will only patch files that don't exist in the backup directory
+                            //this is too save time during developent
+
+                            foreach (var patch in item.PatchInstructions)
+                            {
+                                var r = Application.StartupPath + @"\files\" + patch.Resource;
+                                if (string.IsNullOrEmpty(patch.Resource))
+                                    r = null;
+
+                                //This is where we mod the file
+                                if (!PatcherHelper.ReshackAddRes(@"files/ResourceHacker.exe",
+                                    fileProper,
+                                    fileProper,
+                                    patch.Action, //"addoverwrite",
+                                    r,
+                                    patch.GroupAndLocation))//ICONGROUP,1,0
+                                {
+                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd + "\nSee installer.log for more information");
+                                    return;
+                                }
+                            }
+
+
+
+
+                            //Take ownership of orginal file
+                            TakeOwnership(usr.Path, true);
+                            //TakeOwnership(WinSxSFilePath, false);
+                            //TakeOwnership(fileProper, false); //path to temp file
+                            TakeOwnership(item.Systempath, false);
+
+                            //Rename old hardlink
+                            File.Move(item.Systempath, item.Systempath + ".bak");
+
+                            //Delete old hardlink
+                            try
+                            {
+                                File.Delete(item.Systempath + ".bak");
+                            }
+                            catch
+                            {
+                                //schedule .bak file for deletion
+                                if (!Pinvoke.MoveFileEx(item.Systempath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                                {
+                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
+                                    return;
+                                }
+                            }
+
+                            //rename old file
+                            File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
+
+                            //copy new file over
+                            File.Move(fileProper, WinSxSFilePath, true);
+
+                            //cleanup tmp folder
+                            Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
+
+                            //create hardlink
+                            if (!Pinvoke.CreateHardLinkA(item.Systempath, WinSxSFilePath, IntPtr.Zero))
+                            {
+                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "CreateHardLinkW() failed: " + new Win32Exception().Message);
+                                return;
+                            }
+
+                            //schedule .bak for deletion
+                            try
+                            {
+                                File.Delete(WinSxSFilePath + ".bak");
+                            }
+                            catch
+                            {
+                                //delete it first
+                                if (!Pinvoke.MoveFileEx(WinSxSFilePath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                                {
+                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
+                                    return;
+                                }
+                            }
+
+                            i++;
+                        }
                     }
                 }
 
 
 
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "NOTE: The installation was successful. But, this is a error because the rest of the installer is not implemeneted (ie... install ExplorerPatcher/Themes)");
+                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, "");
                 return;
             }
             catch (Exception ex)
@@ -280,6 +287,10 @@ namespace Rectify11Installer
         /// What the patcher should do
         /// </summary>
         public PatchInstruction[] PatchInstructions { get; set; }
+        /// <summary>
+        /// Skip this patch when safe mode option is selected?
+        /// </summary>
+        public bool DisableOnSafeMode { get; set; }
 
         /// <summary>
         /// Represents a patch
@@ -287,13 +298,14 @@ namespace Rectify11Installer
         /// <param name="packageName">The package name. Ex: microsoft-windows-usercpl</param>
         /// <param name="packageArch">The package arch</param>
         /// <param name="dllToPatch">The name of the DLL in the package to be patched. Example: usercpl.dll.mun</param>
-        public PatchDef(string packageName, PackageArch packageArch, string SystemPath, PatchInstruction[] instructions)
+        public PatchDef(string packageName, PackageArch packageArch, string SystemPath, PatchInstruction[] instructions, bool DisableOnSafeMode)
         {
             this.WinSxSPackageName = packageName;
             this.WinSxSPackageArch = packageArch;
             this.DllName = Path.GetFileName(SystemPath);
             this.Systempath = SystemPath;
             this.PatchInstructions = instructions;
+            this.DisableOnSafeMode = DisableOnSafeMode;
         }
     }
     public class PatchInstruction
