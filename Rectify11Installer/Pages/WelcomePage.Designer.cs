@@ -53,13 +53,14 @@ namespace Rectify11Installer.Pages
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.cmbInstallNOW);
             this.flowLayoutPanel1.Controls.Add(this.cmbUninstall);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(161, 201);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(151, 204);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(309, 126);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(316, 126);
             this.flowLayoutPanel1.TabIndex = 13;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -68,7 +69,7 @@ namespace Rectify11Installer.Pages
             this.cmbInstallNOW.BackColor = System.Drawing.Color.Transparent;
             this.cmbInstallNOW.Location = new System.Drawing.Point(3, 3);
             this.cmbInstallNOW.Name = "cmbInstallNOW";
-            this.cmbInstallNOW.Note = "Rectifize your current Windows 11 installation";
+            this.cmbInstallNOW.Note = "Rectify your current Windows 11 installation";
             this.cmbInstallNOW.Size = new System.Drawing.Size(295, 52);
             this.cmbInstallNOW.TabIndex = 7;
             this.cmbInstallNOW.Text = "Install Now";
@@ -86,24 +87,28 @@ namespace Rectify11Installer.Pages
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(0, 177);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(593, 21);
+            this.label2.Size = new System.Drawing.Size(592, 21);
             this.label2.TabIndex = 12;
             this.label2.Text = "Please select what you would like to do";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(2, 153);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(593, 23);
+            this.label1.Size = new System.Drawing.Size(592, 23);
             this.label1.TabIndex = 14;
-            this.label1.Text = "Rectifize for Windows 11";
+            this.label1.Text = "Rectify11 Installer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // WelcomePage
@@ -115,6 +120,7 @@ namespace Rectify11Installer.Pages
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "WelcomePage";
+            this.WizardShowTitle = false;
             this.WizardTopText = "Welcome to Rectify11 Installer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);

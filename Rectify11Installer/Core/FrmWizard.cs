@@ -115,6 +115,7 @@ namespace Rectify11Installer
             pnlMain.Controls.Add(page);
 
             lblTopText.Text = page.WizardTopText;
+            lblTopText.Visible = page.WizardShowTitle;
 
             if (page == EulaPage)
             {
