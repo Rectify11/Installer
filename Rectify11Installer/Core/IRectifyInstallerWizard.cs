@@ -47,6 +47,7 @@ namespace Rectify11Installer
     {
         private readonly FrmWizard Wizard;
         private readonly ProgressPage ProgressPage;
+        private bool ShownCompletionPage = false;
         internal RectifyInstallerWizard(FrmWizard wizard, ProgressPage pg)
         {
             this.Wizard = wizard;
@@ -55,6 +56,9 @@ namespace Rectify11Installer
 
         public void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, string ErrorDescription = "")
         {
+            if (ShownCompletionPage)
+                return;
+            ShownCompletionPage = true;
             Logger.CloseLog();
             ProgressPage.Invoke((MethodInvoker)delegate ()
             {

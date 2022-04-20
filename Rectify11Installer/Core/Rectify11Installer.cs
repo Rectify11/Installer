@@ -92,14 +92,13 @@ namespace Rectify11Installer
                         File.Copy(WinSxSFilePath, fileProper, true);
 
                         Directory.CreateDirectory(backupDirW);
-                        //backup
 
                         if (!File.Exists(backupDirW + "/" + item.DllName))
                         {
                             File.Copy(WinSxSFilePath, backupDirW + "/" + item.DllName, true);
 
                             //for now: we will only patch files that don't exist in the backup directory
-                            //this is too save time during developent
+                            //this is to save time during developent and avoid overwriting orginal files with modified ones
 
                             foreach (var patch in item.PatchInstructions)
                             {
@@ -120,64 +119,7 @@ namespace Rectify11Installer
                                 }
                             }
 
-
-
-
-                            //Take ownership of orginal file
-                            TakeOwnership(usr.Path, true);
-                            //TakeOwnership(WinSxSFilePath, false);
-                            //TakeOwnership(fileProper, false); //path to temp file
-                            TakeOwnership(item.Systempath, false);
-
-                            //Rename old hardlink
-                            File.Move(item.Systempath, item.Systempath + ".bak");
-
-                            //Delete old hardlink
-                            try
-                            {
-                                File.Delete(item.Systempath + ".bak");
-                            }
-                            catch
-                            {
-                                //schedule .bak file for deletion
-                                if (!Pinvoke.MoveFileEx(item.Systempath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
-                                {
-                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
-                                    return;
-                                }
-                            }
-
-                            //rename old file
-                            File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
-
-                            //copy new file over
-                            File.Move(fileProper, WinSxSFilePath, true);
-
-                            //cleanup tmp folder
-                            Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
-
-                            //create hardlink
-                            if (!Pinvoke.CreateHardLinkA(item.Systempath, WinSxSFilePath, IntPtr.Zero))
-                            {
-                                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "CreateHardLinkW() failed: " + new Win32Exception().Message);
-                                return;
-                            }
-
-                            //schedule .bak for deletion
-                            try
-                            {
-                                File.Delete(WinSxSFilePath + ".bak");
-                            }
-                            catch
-                            {
-                                //delete it first
-                                if (!Pinvoke.MoveFileEx(WinSxSFilePath + ".bak", null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
-                                {
-                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
-                                    return;
-                                }
-                            }
-
+                            ReplaceFileInPackage(usr, item.Systempath, fileProper);
                             i++;
                         }
                     }
@@ -195,6 +137,69 @@ namespace Rectify11Installer
 
             //Thread.Sleep(5000);
             ////_Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "not implemented!");
+        }
+
+        private void ReplaceFileInPackage(Package usr, string hardlinkTarget, string source)
+        {
+            string dllName = Path.GetFileName(source);
+            var WinSxSFilePath = usr.Path + @"\" + dllName;
+            string WinsxsDir = Path.GetFileName(usr.Path);
+            string file = WinsxsDir + "/" + dllName;
+
+            string fileProper = "C:/Windows/Rectify11/Tmp/" + file; //relative path to the file location
+
+
+
+            //Take ownership of orginal file
+            TakeOwnership(usr.Path, true);
+            //TakeOwnership(WinSxSFilePath, false);
+            //TakeOwnership(fileProper, false); //path to temp file
+            TakeOwnership(hardlinkTarget, false);
+
+            //Rename old hardlink
+            File.Move(hardlinkTarget, hardlinkTarget + ".bak");
+
+            //Delete old hardlink
+            ScheduleForDeletion(hardlinkTarget + ".bak");
+
+            //rename old file
+            File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
+
+            //copy new file over
+            File.Move(fileProper, WinSxSFilePath, true);
+
+            //cleanup tmp folder
+            Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
+
+            //create hardlink
+            if (!Pinvoke.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
+            {
+                if (_Wizard != null)
+                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "CreateHardLinkW() failed: " + new Win32Exception().Message);
+                throw new Exception("failure while calling MoveFileEx()");
+            }
+
+            ScheduleForDeletion(WinSxSFilePath + ".bak");
+        }
+
+        private void ScheduleForDeletion(string path)
+        {
+
+            //schedule .bak for deletion
+            try
+            {
+                File.Delete(path);
+            }
+            catch
+            {
+                //delete it first
+                if (!Pinvoke.MoveFileEx(path, null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                {
+                    if (_Wizard != null)
+                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
+                    throw new Exception("failure while calling MoveFileEx()");
+                }
+            }
         }
 
         private Package? GetAMD64Package(string name)
