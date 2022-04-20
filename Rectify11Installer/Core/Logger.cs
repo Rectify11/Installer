@@ -44,5 +44,10 @@ namespace Rectify11Installer.Core
             if (fs != null)
                 fs.Close();
         }
+
+        public static void Warn(string v)
+        {
+            WriteLine("[WARNING] " + v);
+        }
     }
 }

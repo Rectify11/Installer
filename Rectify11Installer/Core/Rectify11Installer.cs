@@ -62,12 +62,12 @@ namespace Rectify11Installer
                         var usr = GetAMD64Package(item.WinSxSPackageName);
                         if (usr == null)
                         {
-                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.WinSxSPackageName} package in the WinSxS folder!");
-                            return;
+                            Logger.Warn("Cannot find package: " + item.WinSxSPackageName + ", which is needed to patch " + item.DllName);
+                            continue;
                         }
 
                         _Wizard.SetProgressText("Patching file: " + item.DllName);
-                        _Wizard.SetProgress((i * 100) / patches.Length);
+                        _Wizard.SetProgress(i * 100 / patches.Length);
 
                         var WinSxSFilePath = usr.Path + @"\" + item.DllName;
                         string WinsxsDir = Path.GetFileName(usr.Path);
@@ -78,8 +78,14 @@ namespace Rectify11Installer
 
                         if (!File.Exists(WinSxSFilePath))
                         {
-                            _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Cannot find {item.DllName}");
-                            return;
+                            Logger.Warn("Cannot find path in package: " + WinSxSFilePath + ", which is needed to patch " + item.DllName);
+                            continue;
+                        }
+
+                        if (!File.Exists(item.Systempath))
+                        {
+                            Logger.Warn("Hardlink target in package: " + item.WinSxSPackageName + ", which is not found at" + item.Systempath);
+                            continue;
                         }
 
                         Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/" + WinsxsDir);
@@ -246,7 +252,7 @@ namespace Rectify11Installer
 
             return p;
         }
-     
+
 
         private class Package
         {
