@@ -34,15 +34,15 @@ namespace Rectify11Installer.Pages
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblChoose = new System.Windows.Forms.Label();
             this.pnlContent = new Rectify11Installer.Controls.DarkAwareFlowLayoutPanel();
+            this.chkExplorerPatcher = new Rectify11Installer.Controls.DarkAwareCheckBox();
+            this.chkWallpaper = new Rectify11Installer.Controls.DarkAwareCheckBox();
+            this.chkWinVer = new Rectify11Installer.Controls.DarkAwareCheckBox();
             this.lblInstallMode = new System.Windows.Forms.Label();
             this.pnlInstallOptions = new Rectify11Installer.Controls.DarkAwareFlowLayoutPanel();
             this.radSafe = new Rectify11Installer.Controls.DarkAwareRadioButton();
             this.lblSafeDesc = new System.Windows.Forms.Label();
             this.radFull = new Rectify11Installer.Controls.DarkAwareRadioButton();
             this.lblFullDesc = new System.Windows.Forms.Label();
-            this.chkExplorerPatcher = new Rectify11Installer.Controls.DarkAwareCheckBox();
-            this.chkWallpaper = new Rectify11Installer.Controls.DarkAwareCheckBox();
-            this.chkWinVer = new Rectify11Installer.Controls.DarkAwareCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlContent.SuspendLayout();
             this.pnlInstallOptions.SuspendLayout();
@@ -98,6 +98,45 @@ namespace Rectify11Installer.Pages
             this.pnlContent.Size = new System.Drawing.Size(405, 277);
             this.pnlContent.TabIndex = 14;
             this.pnlContent.WrapContents = false;
+            // 
+            // chkExplorerPatcher
+            // 
+            this.chkExplorerPatcher.AutoSize = true;
+            this.chkExplorerPatcher.Checked = true;
+            this.chkExplorerPatcher.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkExplorerPatcher.ForeColor = System.Drawing.Color.White;
+            this.chkExplorerPatcher.Location = new System.Drawing.Point(3, 3);
+            this.chkExplorerPatcher.Name = "chkExplorerPatcher";
+            this.chkExplorerPatcher.Size = new System.Drawing.Size(143, 19);
+            this.chkExplorerPatcher.TabIndex = 16;
+            this.chkExplorerPatcher.Text = "Install ExplorerPatcher";
+            this.chkExplorerPatcher.UseVisualStyleBackColor = true;
+            // 
+            // chkWallpaper
+            // 
+            this.chkWallpaper.AutoSize = true;
+            this.chkWallpaper.Checked = true;
+            this.chkWallpaper.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWallpaper.ForeColor = System.Drawing.Color.White;
+            this.chkWallpaper.Location = new System.Drawing.Point(3, 53);
+            this.chkWallpaper.Name = "chkWallpaper";
+            this.chkWallpaper.Size = new System.Drawing.Size(116, 19);
+            this.chkWallpaper.TabIndex = 17;
+            this.chkWallpaper.Text = "Install wallpapers";
+            this.chkWallpaper.UseVisualStyleBackColor = true;
+            // 
+            // chkWinVer
+            // 
+            this.chkWinVer.AutoSize = true;
+            this.chkWinVer.Checked = true;
+            this.chkWinVer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWinVer.ForeColor = System.Drawing.Color.White;
+            this.chkWinVer.Location = new System.Drawing.Point(3, 78);
+            this.chkWinVer.Name = "chkWinVer";
+            this.chkWinVer.Size = new System.Drawing.Size(242, 19);
+            this.chkWinVer.TabIndex = 18;
+            this.chkWinVer.Text = "Install Rectify11 \"About Windows\" applet";
+            this.chkWinVer.UseVisualStyleBackColor = true;
             // 
             // lblInstallMode
             // 
@@ -171,45 +210,6 @@ namespace Rectify11Installer.Pages
             this.lblFullDesc.Text = "This option patches many system files, resulting in a more consistent experience." +
     " This may cause issues with:\r\n - Games with Anti-Cheat\r\n - Software that checks " +
     "file integrity";
-            // 
-            // chkExplorerPatcher
-            // 
-            this.chkExplorerPatcher.AutoSize = true;
-            this.chkExplorerPatcher.Checked = true;
-            this.chkExplorerPatcher.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkExplorerPatcher.ForeColor = System.Drawing.Color.White;
-            this.chkExplorerPatcher.Location = new System.Drawing.Point(3, 3);
-            this.chkExplorerPatcher.Name = "chkExplorerPatcher";
-            this.chkExplorerPatcher.Size = new System.Drawing.Size(143, 19);
-            this.chkExplorerPatcher.TabIndex = 16;
-            this.chkExplorerPatcher.Text = "Install ExplorerPatcher";
-            this.chkExplorerPatcher.UseVisualStyleBackColor = true;
-            // 
-            // chkWallpaper
-            // 
-            this.chkWallpaper.AutoSize = true;
-            this.chkWallpaper.Checked = true;
-            this.chkWallpaper.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWallpaper.ForeColor = System.Drawing.Color.White;
-            this.chkWallpaper.Location = new System.Drawing.Point(3, 53);
-            this.chkWallpaper.Name = "chkWallpaper";
-            this.chkWallpaper.Size = new System.Drawing.Size(116, 19);
-            this.chkWallpaper.TabIndex = 17;
-            this.chkWallpaper.Text = "Install wallpapers";
-            this.chkWallpaper.UseVisualStyleBackColor = true;
-            // 
-            // chkWinVer
-            // 
-            this.chkWinVer.AutoSize = true;
-            this.chkWinVer.Checked = true;
-            this.chkWinVer.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWinVer.ForeColor = System.Drawing.Color.White;
-            this.chkWinVer.Location = new System.Drawing.Point(3, 78);
-            this.chkWinVer.Name = "chkWinVer";
-            this.chkWinVer.Size = new System.Drawing.Size(142, 19);
-            this.chkWinVer.TabIndex = 18;
-            this.chkWinVer.Text = "Install Rectify11 Winer";
-            this.chkWinVer.UseVisualStyleBackColor = true;
             // 
             // InstalllOptnsPage
             // 
