@@ -181,7 +181,7 @@ namespace Rectify11Installer
             {
                 if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
                 {
-                    FinishPage.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take affect.";
+                    FinishPage.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take effect.";
                     FinishPage.CopyButtonVisible = false;
                 }
                 else
@@ -194,7 +194,7 @@ namespace Rectify11Installer
             {
                 if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
                 {
-                    FinishPage.MainText.Text = "Rectify11 was successfully uninstalled.\nPlease reboot for the changes to take affect.";
+                    FinishPage.MainText.Text = "Rectify11 was successfully uninstalled.\nPlease reboot for the changes to take effect.";
                     FinishPage.CopyButtonVisible = false;
                 }
                 else
