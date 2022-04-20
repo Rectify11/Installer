@@ -94,22 +94,36 @@ namespace Rectify11Installer
     public interface IRectifyInstaller
     {
         /// <summary>
-        /// Used for storing the IRectifyInstallerWizard instance
-        /// </summary>
-        /// <param name="wiz"></param>
-        void SetParentWizard(IRectifyInstallerWizard wiz);
-        /// <summary>
         /// Install Rectify11
         /// </summary>
-        void Install(IRectifyInstalllerOptions options);
+        /// <param name="options">Installer options</param>
+        void Install(IRectifyInstalllerInstallOptions options);
+        /// <summary>
+        /// Uninstall Rectify11
+        /// </summary>
+        /// <param name="options">Installer options</param>
+        void Uninstall(IRectifyInstalllerUninstallOptions options);
+        /// <summary>
+        /// Used for storing the IRectifyInstallerWizard instance
+        /// </summary>
+        /// <param name="wiz">The IRectifyInstallerWizard instance</param>
+        void SetParentWizard(IRectifyInstallerWizard wiz);
     }
 
-    public interface IRectifyInstalllerOptions
+    public interface IRectifyInstalllerInstallOptions
     {
         public bool ShouldInstallExplorerPatcher { get; }
         public bool ShouldInstallThemes { get; }
         public bool ShouldInstallWallpaper { get; }
         public bool ShouldInstallWinver { get; }
         public bool DoSafeInstall { get; }
+    }
+
+    public interface IRectifyInstalllerUninstallOptions
+    {
+        public bool RemoveExplorerPatcher { get; }
+        public bool RemoveThemesAndThemeTool { get; }
+        public bool RestoreWallpapers { get; }
+        public bool RestoreWinver { get; }
     }
 }

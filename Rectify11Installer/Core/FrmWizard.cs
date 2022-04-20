@@ -2,6 +2,7 @@ using Microsoft.Win32;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Rectify11Installer.Pages;
+using Rectify11Installer.Core;
 
 namespace Rectify11Installer
 {
@@ -12,6 +13,7 @@ namespace Rectify11Installer
         private static readonly InstalllOptnsPage InstallOptions = new();
         private static readonly ConfirmOperationPage ConfirmOpPage = new();
         private static readonly ProgressPage ProgressPage = new();
+        private static readonly UninstallConfirmPage UninstallConfirmPage = new();
         private static FinishPage? FinishPage;
 
         private WizardPage CurrentPage;
@@ -38,6 +40,7 @@ namespace Rectify11Installer
 
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
+            WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
 
             Navigate(WelcomePage);
 
@@ -85,23 +88,7 @@ namespace Rectify11Installer
         {
             if (CheckIfUpdatesPending())
             {
-                var pg = new TaskDialogPage()
-                {
-                    Icon = TaskDialogIcon.ShieldErrorRedBar,
-
-                    Text = "Uninstall button has not yet been implemented in this Rectify11 Build",
-                    Heading = "Security Failure",
-                    Caption = "Rectify11 rounded edition",
-                    Footnote = new TaskDialogFootnote()
-                    {
-                        Text = "Build #10"
-                    },
-                    Expander = new TaskDialogExpander()
-                    {
-                        Text = "Faulting Module Name: Win32UIDemo.exe"
-                    }
-                };
-                TaskDialog.ShowDialog(this, pg);
+                Navigate(UninstallConfirmPage);
             }
         }
         #endregion
@@ -157,6 +144,18 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Next";
+                panel1.Visible = true;
+            }
+            else if (page == UninstallConfirmPage)
+            {
+                BtnBack.Visible = true;
+                BtnNext.Visible = true;
+
+                BtnBack.Enabled = true;
+                BtnNext.Enabled = true;
+
+                BtnBack.ButtonText = "Back";
+                BtnNext.ButtonText = "Uninstall";
                 panel1.Visible = true;
             }
             else
@@ -398,9 +397,9 @@ namespace Rectify11Installer
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            if (CurrentPage == EulaPage)
+            if (CurrentPage == EulaPage || CurrentPage == UninstallConfirmPage)
             {
-                //We have disagreed with the license
+                //We have disagreed with the license or clicked back on uninstall page
                 Navigate(WelcomePage);
             }
             else if (CurrentPage == ConfirmOpPage)
@@ -413,7 +412,6 @@ namespace Rectify11Installer
                 //The user clicked on "Back" when on the confirm install/uninstall page
                 Navigate(EulaPage);
             }
-
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -433,22 +431,36 @@ namespace Rectify11Installer
                 //Change text
                 ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on this Windows 11 Installation\n\nIt is recommended to save your work before installing.";
             }
-            else if (CurrentPage == ConfirmOpPage)
+            else if (CurrentPage == ConfirmOpPage || CurrentPage == UninstallConfirmPage)
             {
                 //Install/Uninstall Rectify11
                 Navigate(ProgressPage);
 
                 IRectifyInstaller installer = new RectifyInstaller();
                 installer.SetParentWizard(new RectifyInstallerWizard(this, ProgressPage));
+
                 HideCloseButton = true;
                 ControlBox = false;
                 pnlBottom.Visible = false;
-                IRectifyInstalllerOptions options = InstallOptions;
-                var thread = new Thread(delegate ()
+
+                if (CurrentPage == ConfirmOpPage)
                 {
-                    installer.Install(options);
-                });
-                thread.Start();
+                    IRectifyInstalllerInstallOptions options = InstallOptions;
+                    var thread = new Thread(delegate ()
+                    {
+                        installer.Install(options);
+                    });
+                    thread.Start();
+                }
+                else
+                {
+                    IRectifyInstalllerUninstallOptions options = UninstallConfirmPage;
+                    var thread = new Thread(delegate ()
+                    {
+                        installer.Uninstall(options);
+                    });
+                    thread.Start();
+                }
             }
             else if (CurrentPage == FinishPage)
             {

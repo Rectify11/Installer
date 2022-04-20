@@ -72,7 +72,7 @@ namespace Rectify11Installer.Pages
             this.cmbInstallNOW.Note = "Rectify your current Windows 11 installation";
             this.cmbInstallNOW.Size = new System.Drawing.Size(295, 52);
             this.cmbInstallNOW.TabIndex = 7;
-            this.cmbInstallNOW.Text = "Install Now";
+            this.cmbInstallNOW.Text = "Update or Install Now";
             // 
             // cmbUninstall
             // 

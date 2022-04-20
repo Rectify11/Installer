@@ -15,7 +15,8 @@ namespace Rectify11Installer
     public class RectifyInstaller : IRectifyInstaller
     {
         private IRectifyInstallerWizard? _Wizard;
-        public void Install(IRectifyInstalllerOptions options)
+        #region Interface implementation
+        public void Install(IRectifyInstalllerInstallOptions options)
         {
             if (_Wizard == null)
             {
@@ -24,25 +25,14 @@ namespace Rectify11Installer
 
             try
             {
+                InstallStatus.IsRectify11Installed = true;
                 _Wizard.SetProgressText("Copying files");
 
                 #region Setup
-                if (Directory.Exists("tmp"))
-                    Directory.Delete("tmp", true);
-                if (Directory.Exists(@"C:/Windows/Rectify11/Tmp/"))
-                    Directory.Delete(@"C:/Windows/Rectify11/Tmp/", true);
-
-                Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/");
-                Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/Wow64");
-                Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/Amd64");
-                Directory.CreateDirectory(@"C:\Windows\Rectify11\");
-                Directory.CreateDirectory(@"C:\Windows\Rectify11\Backup");
-                var backupDir = @"C:\Windows\Rectify11\Backup";
                 _Wizard.SetProgressText("Taking ownership of system files");
                 _Wizard.SetProgress(1);
-                TakeOwnership(@"C:\Windows\SystemResources\", true);
-
-                Directory.CreateDirectory(@"C:/Windows/Rectify11/Tmp/");
+                TakeownAllFiles();
+                var backupDir = @"C:\Windows\Rectify11\Backup";
                 #endregion
 
                 var patches = Patches.GetAll();
@@ -125,8 +115,6 @@ namespace Rectify11Installer
                     }
                 }
 
-
-
                 _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, "");
                 return;
             }
@@ -134,11 +122,36 @@ namespace Rectify11Installer
             {
                 _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, ex.ToString());
             }
-
-            //Thread.Sleep(5000);
-            ////_Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "not implemented!");
         }
+        public void Uninstall(IRectifyInstalllerUninstallOptions options)
+        {
+            if (_Wizard == null)
+            {
+                throw new Exception("SetParentWizard() in IRectifyInstaller was not called!");
+            }
+        }
+        public void SetParentWizard(IRectifyInstallerWizard wiz)
+        {
+            _Wizard = wiz;
+        }
+        #endregion
+        #region Private methods
+        private void TakeownAllFiles()
+        {
+            if (Directory.Exists("tmp"))
+                Directory.Delete("tmp", true);
+            if (Directory.Exists(@"C:/Windows/Rectify11/Tmp/"))
+                Directory.Delete(@"C:/Windows/Rectify11/Tmp/", true);
 
+            Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/");
+            Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/Wow64");
+            Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/Amd64");
+            Directory.CreateDirectory(@"C:\Windows\Rectify11\");
+            Directory.CreateDirectory(@"C:\Windows\Rectify11\Backup");
+            TakeOwnership(@"C:\Windows\SystemResources\", true);
+
+            Directory.CreateDirectory(@"C:/Windows/Rectify11/Tmp/");
+        }
         private void ReplaceFileInPackage(Package usr, string hardlinkTarget, string source)
         {
             string dllName = Path.GetFileName(source);
@@ -181,7 +194,6 @@ namespace Rectify11Installer
 
             ScheduleForDeletion(WinSxSFilePath + ".bak");
         }
-
         private void ScheduleForDeletion(string path)
         {
 
@@ -201,7 +213,6 @@ namespace Rectify11Installer
                 }
             }
         }
-
         private Package? GetAMD64Package(string name)
         {
             var usercpl = FindPackage(name);
@@ -218,23 +229,13 @@ namespace Rectify11Installer
             }
             return null;
         }
-
         private void TakeOwnership(string path, bool recursive)
         {
-            if (path.ToLower().StartsWith(@"c:\windows\systemresources"))
-            {
-                ;
-            }
             _ = PatcherHelper.TakeOwnership(path, recursive);
             _ = PatcherHelper.GrantFullControl(path, "Administrators", recursive);
             _ = PatcherHelper.GrantFullControl(path, "SYSTEM", recursive);
             // _ = PatcherHelper.GrantFullControl(path, "Everyone");
         }
-        public void SetParentWizard(IRectifyInstallerWizard wiz)
-        {
-            _Wizard = wiz;
-        }
-
         private List<Package> FindPackage(string name)
         {
             List<Package> p = new List<Package>();
@@ -257,84 +258,6 @@ namespace Rectify11Installer
 
             return p;
         }
-
-
-        private class Package
-        {
-            public string Path { get; set; }
-            public PackageArch Arch { get; set; }
-            public Package(string Path, PackageArch Arch)
-            {
-                this.Path = Path;
-                this.Arch = Arch;
-            }
-        }
-    }
-
-    public enum PackageArch
-    {
-        Amd64,
-        Wow64
-    }
-    public class PatchDef
-    {
-        /// <summary>
-        /// The package name. Ex: microsoft-windows-usercpl
-        /// </summary>
-        public string WinSxSPackageName { get; set; }
-        /// <summary>
-        /// The package arch
-        /// </summary>
-        public PackageArch WinSxSPackageArch { get; set; }
-        /// <summary>
-        /// The name of the DLL in the package to be patched. Example: usercpl.dll.mun
-        /// </summary>
-        public string DllName { get; set; }
-        /// <summary>
-        /// The path where the hardlink by default points to. Example: C:\windows\systemresources\usercpl.dll.mun
-        /// </summary>
-        public string Systempath { get; set; }
-        /// <summary>
-        /// What the patcher should do
-        /// </summary>
-        public PatchInstruction[] PatchInstructions { get; set; }
-        /// <summary>
-        /// Skip this patch when safe mode option is selected?
-        /// </summary>
-        public bool DisableOnSafeMode { get; set; }
-
-        /// <summary>
-        /// Represents a patch
-        /// </summary>
-        /// <param name="packageName">The package name. Ex: microsoft-windows-usercpl</param>
-        /// <param name="packageArch">The package arch</param>
-        /// <param name="dllToPatch">The name of the DLL in the package to be patched. Example: usercpl.dll.mun</param>
-        public PatchDef(string packageName, PackageArch packageArch, string SystemPath, PatchInstruction[] instructions, bool DisableOnSafeMode)
-        {
-            this.WinSxSPackageName = packageName;
-            this.WinSxSPackageArch = packageArch;
-            this.DllName = Path.GetFileName(SystemPath);
-            this.Systempath = SystemPath;
-            this.PatchInstructions = instructions;
-            this.DisableOnSafeMode = DisableOnSafeMode;
-        }
-    }
-    public class PatchInstruction
-    {
-        /// <summary>
-        /// ResourceHacker action
-        /// </summary>
-        public string Action { get; set; }
-        /// <summary>
-        /// ResourceHacker resource ico
-        /// </summary>
-        public string Resource { get; set; }
-        public string GroupAndLocation { get; set; }
-        public PatchInstruction(string action, string resource, string type)
-        {
-            this.Action = action;
-            this.Resource = resource;
-            this.GroupAndLocation = type;
-        }
+        #endregion
     }
 }

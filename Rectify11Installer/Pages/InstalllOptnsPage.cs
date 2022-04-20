@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
 {
-    public partial class InstalllOptnsPage : WizardPage, IRectifyInstalllerOptions
+    public partial class InstalllOptnsPage : WizardPage, IRectifyInstalllerInstallOptions
     {
         public bool ShouldInstallExplorerPatcher { get => chkThemes.Checked; }
         public bool ShouldInstallThemes { get => chkThemes.Checked; }
