@@ -29,7 +29,7 @@ namespace Rectify11Installer
         /// <summary>
         /// Tell the installer that it's work is completed.
         /// </summary>
-        void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, string ErrorDescription = "");
+        void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, bool IsInstalling, string ErrorDescription = "");
     }
     public enum RectifyInstallerWizardCompleteInstallerEnum
     {
@@ -54,7 +54,7 @@ namespace Rectify11Installer
             this.ProgressPage = pg;
         }
 
-        public void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, string ErrorDescription = "")
+        public void CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum type, bool IsInstalling, string ErrorDescription = "")
         {
             if (ShownCompletionPage)
                 return;
@@ -62,7 +62,7 @@ namespace Rectify11Installer
             Logger.CloseLog();
             ProgressPage.Invoke((MethodInvoker)delegate ()
             {
-                Wizard.Complete(type, ErrorDescription);
+                Wizard.Complete(type, IsInstalling, ErrorDescription);
             });    
         }
 

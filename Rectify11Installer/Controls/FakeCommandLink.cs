@@ -95,10 +95,10 @@ namespace Rectify11Installer.Controls
                 {
                     pictureBox1.Image = Properties.Resources.CommandLinkGlyph_Normal;
                 }
-               
+                Color forecolor = Theme.IsUsingDarkMode ? DefaultBackColor : Color.Black;
 
-                lblTitle.ForeColor = DefaultText;
-                lblBody.ForeColor = DefaultText;
+                lblTitle.ForeColor = forecolor;
+                lblBody.ForeColor = forecolor;
             }
         }
         private void TheMouseDown(object? sender, MouseEventArgs e)

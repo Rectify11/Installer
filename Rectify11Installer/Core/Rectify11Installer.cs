@@ -15,9 +15,11 @@ namespace Rectify11Installer
     public class RectifyInstaller : IRectifyInstaller
     {
         private IRectifyInstallerWizard? _Wizard;
+        private bool IsInstalling = true;
         #region Interface implementation
         public void Install(IRectifyInstalllerInstallOptions options)
         {
+            IsInstalling = true;
             if (_Wizard == null)
             {
                 throw new Exception("SetParentWizard() in IRectifyInstaller was not called!");
@@ -26,7 +28,6 @@ namespace Rectify11Installer
             try
             {
                 InstallStatus.IsRectify11Installed = true;
-                _Wizard.SetProgressText("Copying files");
 
                 #region Setup
                 _Wizard.SetProgressText("Taking ownership of system files");
@@ -104,30 +105,87 @@ namespace Rectify11Installer
                                     r,
                                     patch.GroupAndLocation))//ICONGROUP,1,0
                                 {
-                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd + "\nSee installer.log for more information");
+                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd + "\nSee installer.log for more information");
                                     return;
                                 }
                             }
 
                             ReplaceFileInPackage(usr, item.Systempath, fileProper);
+
+                            //cleanup tmp folder
+                            Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
+
                             i++;
                         }
                     }
                 }
 
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, "");
+                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 return;
             }
             catch (Exception ex)
             {
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, ex.ToString());
+                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, ex.ToString());
             }
         }
         public void Uninstall(IRectifyInstalllerUninstallOptions options)
         {
+            IsInstalling = false;
             if (_Wizard == null)
             {
                 throw new Exception("SetParentWizard() in IRectifyInstaller was not called!");
+            }
+
+            try
+            {
+                #region Setup
+                _Wizard.SetProgressText("Taking ownership of system files");
+                _Wizard.SetProgress(1);
+                TakeownAllFiles();
+                var backupDir = @"C:\Windows\Rectify11\Backup";
+                #endregion
+
+                var patches = Patches.GetAll();
+                int i = 0;
+                foreach (var item in patches)
+                {
+
+
+                    _Wizard.SetProgressText("Restoring file: " + item.DllName);
+                    _Wizard.SetProgress(i * 100 / patches.Length);
+
+                    var usr = GetAMD64Package(item.WinSxSPackageName);
+                    if (usr == null)
+                    {
+                        Logger.Warn("Cannot find package: " + item.WinSxSPackageName + ", which is needed to patch " + item.DllName);
+                    }
+                    else
+                    {
+                        var backupFilePath = backupDir + @"\" + Path.GetFileName(usr.Path) + @"\" + item.DllName;
+
+                        if (!File.Exists(backupFilePath))
+                        {
+                            Logger.Warn("File backup path does not exist: " + backupFilePath);
+                        }
+                        else
+                        {
+                            ReplaceFileInPackage(usr, item.Systempath, backupFilePath);
+                        }
+                    }
+                    i++;
+                }
+
+                _Wizard.SetProgressText("Removing old backups");
+                _Wizard.SetProgress(99);
+                Directory.Delete(@"C:\Windows\Rectify11", true);
+
+                InstallStatus.IsRectify11Installed = false;
+                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
+                return;
+            }
+            catch (Exception ex)
+            {
+                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, ex.ToString());
             }
         }
         public void SetParentWizard(IRectifyInstallerWizard wiz)
@@ -156,11 +214,6 @@ namespace Rectify11Installer
         {
             string dllName = Path.GetFileName(source);
             var WinSxSFilePath = usr.Path + @"\" + dllName;
-            string WinsxsDir = Path.GetFileName(usr.Path);
-            string file = WinsxsDir + "/" + dllName;
-
-            string fileProper = "C:/Windows/Rectify11/Tmp/" + file; //relative path to the file location
-
 
 
             //Take ownership of orginal file
@@ -179,16 +232,13 @@ namespace Rectify11Installer
             File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
 
             //copy new file over
-            File.Move(fileProper, WinSxSFilePath, true);
-
-            //cleanup tmp folder
-            Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
+            File.Move(source, WinSxSFilePath, true);
 
             //create hardlink
             if (!Pinvoke.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
             {
                 if (_Wizard != null)
-                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "CreateHardLinkW() failed: " + new Win32Exception().Message);
+                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "CreateHardLinkW() failed: " + new Win32Exception().Message);
                 throw new Exception("failure while calling MoveFileEx()");
             }
 
@@ -208,7 +258,7 @@ namespace Rectify11Installer
                 if (!Pinvoke.MoveFileEx(path, null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
                 {
                     if (_Wizard != null)
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, "MoveFileEx() failed: " + new Win32Exception().Message);
+                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "MoveFileEx() failed: " + new Win32Exception().Message);
                     throw new Exception("failure while calling MoveFileEx()");
                 }
             }

@@ -30,7 +30,7 @@ namespace Rectify11Installer.Core
             set
             {
                 RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11");
-                key.SetValue("IsInstalled", value);
+                key.SetValue("IsInstalled", value ? 1 : 0);
             }
         }
 

@@ -173,19 +173,37 @@ namespace Rectify11Installer
 
             FixColors();
         }
-        internal void Complete(RectifyInstallerWizardCompleteInstallerEnum type, string errorDescription)
+        internal void Complete(RectifyInstallerWizardCompleteInstallerEnum type, bool IsInstalling, string errorDescription)
         {
             FinishPage = new FinishPage();
-            if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
+
+            if (IsInstalling)
             {
-                FinishPage.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take affect.";
-                FinishPage.CopyButtonVisible = false;
+                if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
+                {
+                    FinishPage.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take affect.";
+                    FinishPage.CopyButtonVisible = false;
+                }
+                else
+                {
+                    FinishPage.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
+                    FinishPage.CopyButtonVisible = true;
+                }
             }
             else
             {
-                FinishPage.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
-                FinishPage.CopyButtonVisible = true;
+                if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
+                {
+                    FinishPage.MainText.Text = "Rectify11 was successfully uninstalled.\nPlease reboot for the changes to take affect.";
+                    FinishPage.CopyButtonVisible = false;
+                }
+                else
+                {
+                    FinishPage.MainText.Text = "Uninstalling Rectify11 failed.\nThe error is: " + errorDescription;
+                    FinishPage.CopyButtonVisible = true;
+                }
             }
+
             Navigate(FinishPage);
 
             HideCloseButton = false;
