@@ -37,6 +37,9 @@
     <Compile Update="Pages\ProgressPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Pages\UninstallConfirmPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Pages\WelcomePage.cs">
       <SubType>UserControl</SubType>
     </Compile>

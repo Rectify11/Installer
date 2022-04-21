@@ -235,7 +235,7 @@ namespace Rectify11Installer
             File.Move(source, WinSxSFilePath, true);
 
             //create hardlink
-            if (!Pinvoke.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
+            if (!NativeMethods.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
             {
                 if (_Wizard != null)
                     _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "CreateHardLinkW() failed: " + new Win32Exception().Message);
@@ -255,7 +255,7 @@ namespace Rectify11Installer
             catch
             {
                 //delete it first
-                if (!Pinvoke.MoveFileEx(path, null, Pinvoke.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                if (!NativeMethods.MoveFileEx(path, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
                 {
                     if (_Wizard != null)
                         _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "MoveFileEx() failed: " + new Win32Exception().Message);

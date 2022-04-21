@@ -53,7 +53,6 @@ namespace Rectify11Installer.Pages
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.cmbInstallNOW);
             this.flowLayoutPanel1.Controls.Add(this.cmbUninstall);

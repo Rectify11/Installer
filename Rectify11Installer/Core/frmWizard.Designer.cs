@@ -99,6 +99,7 @@ namespace Rectify11Installer
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(596, 60);
             this.pnlBottom.TabIndex = 5;
+            this.pnlBottom.Visible = false;
             // 
             // BtnBack
             // 
@@ -108,7 +109,7 @@ namespace Rectify11Installer
             this.BtnBack.ForeColor = System.Drawing.Color.White;
             this.BtnBack.Location = new System.Drawing.Point(428, 16);
             this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(75, 23);
+            this.BtnBack.Size = new System.Drawing.Size(75, 21);
             this.BtnBack.TabIndex = 1;
             this.BtnBack.UseVisualStyleBackColor = false;
             this.BtnBack.Visible = false;
@@ -121,7 +122,7 @@ namespace Rectify11Installer
             this.BtnNext.ForeColor = System.Drawing.Color.White;
             this.BtnNext.Location = new System.Drawing.Point(509, 16);
             this.BtnNext.Name = "BtnNext";
-            this.BtnNext.Size = new System.Drawing.Size(75, 23);
+            this.BtnNext.Size = new System.Drawing.Size(75, 21);
             this.BtnNext.TabIndex = 0;
             this.BtnNext.UseVisualStyleBackColor = false;
             this.BtnNext.Visible = false;

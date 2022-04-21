@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Rectify11Installer.Pages;
 using Rectify11Installer.Core;
+using Rectify11Installer.Win32;
 
 namespace Rectify11Installer
 {
@@ -98,13 +99,19 @@ namespace Rectify11Installer
             CurrentPage = page;
 
             pnlMain.Controls.Clear();
-            page.Dock= DockStyle.Fill;
+            page.Dock = DockStyle.Fill;
             pnlMain.Controls.Add(page);
 
             lblTopText.Text = page.WizardTopText;
             lblTopText.Visible = page.WizardShowTitle;
 
-            if (page == EulaPage)
+            if (page == WelcomePage)
+            {
+                pnlBottom.Visible = false;
+                panel1.Visible = false;
+                UpdateFrame();
+            }
+            else if (page == EulaPage)
             {
                 BtnBack.Visible = true;
                 BtnNext.Visible = true;
@@ -116,6 +123,8 @@ namespace Rectify11Installer
                 BtnNext.ButtonText = "Agree";
 
                 panel1.Visible = true;
+                pnlBottom.Visible = true;
+                UpdateFrame();
             }
             else if (page == ConfirmOpPage)
             {
@@ -157,6 +166,8 @@ namespace Rectify11Installer
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Uninstall";
                 panel1.Visible = true;
+                pnlBottom.Visible = true;
+                UpdateFrame();
             }
             else
             {
@@ -209,6 +220,7 @@ namespace Rectify11Installer
             HideCloseButton = false;
             ControlBox = true;
             pnlBottom.Visible = true;
+            UpdateFrame();
         }
         #endregion
         private void Form1_Shown(object sender, EventArgs e)
@@ -250,23 +262,7 @@ namespace Rectify11Installer
                     _ = DwmSetWindowAttribute(this.Handle, WindowCompositionAttribute.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
                 }
 
-                MARGINS m = new();
-                if (extend)
-                {
-                    m.cyTopHeight = this.Height - pnlBottom.Height;
-                    m.cyBottomHeight = pnlBottom.Height;
-
-                    BackColor = Color.Black;
-                }
-                else
-                {
-                    BackColor = Color.White;
-                    pnlTop.BackColor = Color.White;
-
-                    m.cyTopHeight = pnlTop.Height;
-                    panel1.BackColor = Color.Black;
-                }
-                _ = DwmExtendFrameIntoClientArea(this.Handle, ref m);
+                UpdateFrame();
             }
             catch
             {
@@ -285,6 +281,39 @@ namespace Rectify11Installer
             }
 
             FixColors();
+        }
+
+        private void UpdateFrame()
+        {
+            bool DarkMode = Theme.IsUsingDarkMode;
+            MARGINS m = new();
+
+            if (DarkMode)
+            {
+                m.cyTopHeight = this.Height;
+
+                BackColor = Color.Black;
+            }
+            else
+            {
+                BackColor = Color.White;
+                pnlTop.BackColor = Color.White;
+                if (pnlBottom.Visible)
+                {
+                    pnlBottom.BackColor = Color.Black;
+                }
+                else
+                {
+                    pnlBottom.BackColor = Color.White;
+                }
+
+                panel1.BackColor = Color.Black;
+
+                m.cyTopHeight = pnlTop.Height;
+                m.cyBottomHeight = pnlBottom.Height;
+
+            }
+            _ = DwmExtendFrameIntoClientArea(this.Handle, ref m);
         }
 
         private void FixColors()
@@ -460,6 +489,7 @@ namespace Rectify11Installer
                 HideCloseButton = true;
                 ControlBox = false;
                 pnlBottom.Visible = false;
+                UpdateFrame();
 
                 if (CurrentPage == ConfirmOpPage)
                 {

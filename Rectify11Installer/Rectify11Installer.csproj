@@ -9,6 +9,7 @@
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<LangVersion>10.0</LangVersion>
 		<ApplicationIcon>r11.ico</ApplicationIcon>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
