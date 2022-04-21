@@ -233,9 +233,9 @@ namespace Rectify11Installer.Controls
             if (Parent == null)
                 return;
 
-            Rectangle rc = new(this.Location, this.Size);
             this.Invalidate();
-           // Parent.Invalidate(rc, true);
+            //Rectangle rc = new(this.Location, this.Size);
+            //Parent.Invalidate(rc, true);
         }
         enum ButtonState
         {

@@ -26,7 +26,7 @@ namespace Rectify11Installer.Pages
             else
             {
                 richTextBox1.BackColor = Color.White;
-                richTextBox1.ForeColor = Color.Black;
+                richTextBox1.ForeColor = Color.Red;
             }
         }
 
