@@ -480,6 +480,7 @@ namespace Rectify11Installer
             }
             else if (CurrentPage == ConfirmOpPage || CurrentPage == UninstallConfirmPage)
             {
+                var oldPage = CurrentPage;
                 //Install/Uninstall Rectify11
                 Navigate(ProgressPage);
 
@@ -491,7 +492,7 @@ namespace Rectify11Installer
                 pnlBottom.Visible = false;
                 UpdateFrame();
 
-                if (CurrentPage == ConfirmOpPage)
+                if (oldPage == ConfirmOpPage)
                 {
                     IRectifyInstalllerInstallOptions options = InstallOptions;
                     var thread = new Thread(delegate ()
@@ -500,7 +501,7 @@ namespace Rectify11Installer
                     });
                     thread.Start();
                 }
-                else
+                else if (oldPage == UninstallConfirmPage)
                 {
                     IRectifyInstalllerUninstallOptions options = UninstallConfirmPage;
                     var thread = new Thread(delegate ()
@@ -508,6 +509,18 @@ namespace Rectify11Installer
                         installer.Uninstall(options);
                     });
                     thread.Start();
+                }
+                else
+                {
+                    var pg = new TaskDialogPage()
+                    {
+                        Icon = TaskDialogIcon.ShieldErrorRedBar,
+
+                        Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: "+ CurrentPage.GetType().ToString()+"\nOld Page: "+ oldPage.GetType().ToString(),
+                        Heading = "Compatibility Error",
+                        Caption = "Rectify11 Setup",
+                    };
+                    TaskDialog.ShowDialog(this, pg);
                 }
             }
             else if (CurrentPage == FinishPage)

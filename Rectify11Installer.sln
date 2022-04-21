@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rectify11Installer", "Rectify11Installer\Rectify11Installer.csproj", "{7DD80A70-C6F1-4065-8F04-49D6E0918BC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rectify11InstallerWPF", "Rectify11InstallerWPF\Rectify11InstallerWPF.csproj", "{6B920D0D-E876-48AA-B4AB-F290CC529EAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7DD80A70-C6F1-4065-8F04-49D6E0918BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DD80A70-C6F1-4065-8F04-49D6E0918BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DD80A70-C6F1-4065-8F04-49D6E0918BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B920D0D-E876-48AA-B4AB-F290CC529EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B920D0D-E876-48AA-B4AB-F290CC529EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B920D0D-E876-48AA-B4AB-F290CC529EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B920D0D-E876-48AA-B4AB-F290CC529EAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -36,6 +36,7 @@ namespace Rectify11Installer
             this.panel1 = new System.Windows.Forms.Panel();
             this.navigationButton1 = new Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
+            this.themedLabel1 = new AeroWizard.ThemedLabel();
             this.BtnBack = new Rectify11Installer.Controls.WinUIButton();
             this.BtnNext = new Rectify11Installer.Controls.WinUIButton();
             this.pnlMain = new System.Windows.Forms.Panel();
@@ -92,6 +93,7 @@ namespace Rectify11Installer
             // 
             // pnlBottom
             // 
+            this.pnlBottom.Controls.Add(this.themedLabel1);
             this.pnlBottom.Controls.Add(this.BtnBack);
             this.pnlBottom.Controls.Add(this.BtnNext);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -100,6 +102,14 @@ namespace Rectify11Installer
             this.pnlBottom.Size = new System.Drawing.Size(596, 60);
             this.pnlBottom.TabIndex = 5;
             this.pnlBottom.Visible = false;
+            // 
+            // themedLabel1
+            // 
+            this.themedLabel1.Location = new System.Drawing.Point(2, 18);
+            this.themedLabel1.Name = "themedLabel1";
+            this.themedLabel1.Size = new System.Drawing.Size(317, 23);
+            this.themedLabel1.TabIndex = 2;
+            this.themedLabel1.Text = "Version: v2.9.1 (PRIVATE) WinForms branch";
             // 
             // BtnBack
             // 
@@ -170,5 +180,6 @@ namespace Rectify11Installer
         private Controls.WinUIButton BtnBack;
         private Controls.WinUIButton BtnNext;
         private Controls.FunnyExplorer.Controls.NavigationButton navigationButton1;
+        private ThemedLabel themedLabel1;
     }
 }
