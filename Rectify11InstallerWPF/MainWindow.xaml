@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rectify11InstallerWPF"
+        xmlns:controls="clr-namespace:Rectify11InstallerWPF.Controls"
         xmlns:wpfui="clr-namespace:WPFUI.Controls;assembly=WPFUI"
         Style="{StaticResource UiWindow}"
         mc:Ignorable="d"
@@ -26,7 +27,7 @@
 
             <TextBlock Grid.Row="0" FontSize="28" TextAlignment="Center">Loading</TextBlock>
             <Frame x:Name="mainFrame" Grid.Row="1" />
-                <Grid Grid.Row="2">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -35,7 +36,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="lblVersion" Grid.Column="0" VerticalAlignment="Center"></TextBlock>
                 <Button x:Name="btnBack" Grid.Column="2" Click="btnBack_Click">Back</Button>
-                <Button x:Name="btnForward" Grid.Column="3" Click="btnForward_Click">Next</Button>
+                <controls:RButton x:Name="btnForward" Grid.Column="3" Width="100"></controls:RButton>
             </Grid>
         </Grid>
     </Grid>

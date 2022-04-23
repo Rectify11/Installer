@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="rectify11Installer.png">
+    <Resource Include="rectify11Installer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

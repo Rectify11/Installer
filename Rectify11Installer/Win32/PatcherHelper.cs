@@ -242,7 +242,7 @@ namespace Rectify11Installer.Win32
                 cmd += " -action " + action;
                 if (resource != null)
                 {
-                    cmd += " -resource " + resource;
+                    cmd += " -resource \"" + resource+"\"";
                 }
                 cmd += " -mask " + type;
                 Logger.WriteLine("Running process: " + reshackerPath + " " + cmd + "\n");

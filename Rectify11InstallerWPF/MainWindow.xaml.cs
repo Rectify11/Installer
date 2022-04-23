@@ -33,8 +33,17 @@ namespace Rectify11InstallerWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var buildNumber = Environment.OSVersion.Version.Build;
-            WPFUI.Appearance.Background.ApplyDarkMode(this);
-          //  var x = WPFUI.Appearance.Background.Apply(this, WPFUI.Appearance.BackgroundType.Mica);
+
+            if (Theme.IsUsingDarkMode)
+                WPFUI.Appearance.Background.ApplyDarkMode(this);
+
+            WPFUI.Appearance.Watcher.Watch(
+         this,                           // Window class
+         WPFUI.Appearance.BackgroundType.Mica, // Background type
+         true                            // Whether to change accents automatically
+       );
+
+            //  var x = WPFUI.Appearance.Background.Apply(this, WPFUI.Appearance.BackgroundType.Mica);
             IntPtr handle = new WindowInteropHelper(Application.Current.MainWindow).Handle;
 
             try
@@ -63,6 +72,7 @@ namespace Rectify11InstallerWPF
 
             }
 
+            //mainFrame.Items.Add();
             mainFrame.Navigate(new Welcome());
         }
 
@@ -72,7 +82,7 @@ namespace Rectify11InstallerWPF
             DwmExtendFrameIntoClientArea(new WindowInteropHelper(Application.Current.MainWindow).Handle, ref m);
         }
 
-        
+
 
         #region Win32
 
