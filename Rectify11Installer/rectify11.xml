@@ -803,4 +803,262 @@
 			<Command action="addskip" resource="Wuapi_bitmap.res" mask="BITMAP,"></Command>
 		</Commands>
 	</Patch>-->
+	
+	
+	
+	<!--todo organize this-->
+	<Patch Package="microsoft-windows-audio-audiocore" HardlinkTarget="C:\Windows\System32\audiosrv.dll" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="audiosrv_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-cabview" HardlinkTarget="C:\Windows\System32\cabview.dll" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="cabview_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-calc" HardlinkTarget="C:\Windows\System32\calc.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="calc_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-coresystem-wpr" HardlinkTarget="C:\Windows\System32\wpr.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="wpr_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-d..ostic-user-resolver" HardlinkTarget="C:\Windows\System32\DFDWiz.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="DFDWiz_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-deployment" HardlinkTarget="C:\Windows\System32\setupugc.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="setupugc_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-directshow-dvdplay" HardlinkTarget="C:\Windows\System32\dvdplay.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="dvdplay_res.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-dpapi-keys" HardlinkTarget="C:\Windows\System32\dpapimig.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="dpapimig_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-driververifier" HardlinkTarget="C:\Windows\System32\verifiergui.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="verifiergui_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-e..crosoftedgedevtools" HardlinkTarget="C:\Windows\System32\MicrosoftEdgeDevTools.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="MicrosoftEdgeDevTools_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-e..microsoftedgebchost" HardlinkTarget="C:\Windows\System32\MicrosoftEdgeBCHost.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="MicrosoftEdgeBCHost_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-edge-microsoftedgecp" HardlinkTarget="C:\Windows\System32\MicrosoftEdgeCP.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="MicrosoftEdgeCP_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-efs-rekeywiz" HardlinkTarget="C:\Windows\System32\rekeywiz.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="rekeywiz_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-es-authentication" HardlinkTarget="C:\Windows\System32\EhStorAuthn.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="EhStorAuthn_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-filehistory-core" HardlinkTarget="C:\Windows\System32\fhmanagew.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="fhmanagew_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-fontview" HardlinkTarget="C:\Windows\System32\fontview.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="fontview_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-g..olicy-admin-admtmpl" HardlinkTarget="C:\Windows\System32\AdmTmpl.dll" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="AdmTmpl_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-g..policy-admin-appmgr" HardlinkTarget="C:\Windows\System32\appmgr.dll" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="appmgr_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-isoburn" HardlinkTarget="C:\Windows\System32\isoburn.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="isoburn_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-lpksetup" HardlinkTarget="C:\Windows\System32\lpksetup.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="lpksetup_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-nslookup" HardlinkTarget="C:\Windows\System32\nslookup.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="nslookup_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-p..installerandprintui" HardlinkTarget="C:\Windows\System32\printui.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="printui_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-p..ng-server-isolation" HardlinkTarget="C:\Windows\System32\PrintIsolationHost.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="PrintIsolationHost_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-parentalcontrols-ots" HardlinkTarget="C:\Windows\System32\ApproveChildRequest.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="ApproveChildRequest_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-printing-spooler-core" HardlinkTarget="C:\Windows\System32\spoolsv.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="spoolsv_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-proquota" HardlinkTarget="C:\Windows\System32\proquota.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="proquota_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-registry-editor" HardlinkTarget="C:\Windows\System32\regedt32.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="regedt32_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-remoteassistance-exe" HardlinkTarget="C:\Windows\System32\msra.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="msra_res.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-runonce" HardlinkTarget="C:\Windows\System32\runonce.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="runonce_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-s..client-ui-wscollect" HardlinkTarget="C:\Windows\System32\WSCollect.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="WSCollect_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-s..e-client-ui-wsreset" HardlinkTarget="C:\Windows\System32\WSReset.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="WSReset_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-s..estartup-change-pin" HardlinkTarget="C:\Windows\System32\bdechangepin.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="bdechangepin_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-s..nsemanager-shellext" HardlinkTarget="C:\Windows\System32\LicenseManagerShellext.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="LicenseManagerShellext_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-s..restartup-baaupdate" HardlinkTarget="C:\Windows\System32\baaupdate.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="baaupdate_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-s..up-drivepreparation" HardlinkTarget="C:\Windows\System32\BdeHdCfg.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="BdeHdCfg_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-securestartup-cpl" HardlinkTarget="C:\Windows\System32\BitLockerWizard.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="BitLockerWizard_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-securestartup-cpl" HardlinkTarget="C:\Windows\System32\BitLockerWizardElev.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="BitLockerWizardElev_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-securestartup-unlock" HardlinkTarget="C:\Windows\System32\bdeunlock.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="bdeunlock_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-security-secedit" HardlinkTarget="C:\Windows\System32\SecEdit.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="SecEdit_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-sigverif" HardlinkTarget="C:\Windows\System32\sigverif.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="delete" mask="BITMAP, "></Command>
+			<Command action="addskip" resource="sigverif_res.res" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="sigverif_res.res" mask="BITMAP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-windows-w..sition-uicomponents" HardlinkTarget="C:\Windows\System32\wiaacmgr.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="wiaacmgr_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
+	<Patch Package="microsoft-xbox-gameoverlay" HardlinkTarget="C:\Windows\System32\GamePanel.exe" DisableOnSafeMode="false" Arch="amd64">
+		<Commands>
+			<Command action="delete" mask="ICONGROUP, "></Command>
+			<Command action="addskip" resource="GamePanel_icons.res" mask="ICONGROUP, "></Command>
+		</Commands>
+	</Patch>
 </Patches>

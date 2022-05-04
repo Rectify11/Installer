@@ -98,7 +98,7 @@ namespace Rectify11Installer
                                     r = null;
 
                                 //This is where we mod the file
-                                if (!PatcherHelper.ReshackAddRes(@"files/ResourceHacker.exe",
+                                if (!PatcherHelper.ReshackAddRes(Application.StartupPath + @"/files/ResourceHacker.exe",
                                     fileProper,
                                     fileProper,
                                     patch.Action, //"addoverwrite",

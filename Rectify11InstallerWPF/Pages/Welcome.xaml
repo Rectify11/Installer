@@ -22,8 +22,8 @@
                 <Image Source="/Rectify11InstallerWPF;component/rectify11Installer.png" Stretch="Fill" Width="150" Height="150" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
                 <TextBlock TextAlignment="Center" FontFamily="Segoe UI" FontSize="32" Grid.Row="1">Rectify11 Installer</TextBlock>
                 <TextBlock TextAlignment="Center" FontFamily="Segoe UI Light" FontSize="24" Grid.Row="2">Please select what you would like to do</TextBlock>
-                <wpfui:Button Grid.Row="3" Width="250" Height="50" Icon="ArrowForward48" IconFilled="True">Update or Install Now</wpfui:Button>
-                <wpfui:Button Grid.Row="4" Width="250" Height="50" Icon="ArrowForward48" IconFilled="True">Uninstall Rectify11</wpfui:Button>
+                <wpfui:Button Grid.Row="3" Width="250" Height="50" Icon="ArrowForward48" IconFilled="True" Appearance="Secondary">Update or Install Now</wpfui:Button>
+                <wpfui:Button Grid.Row="4" Width="250" Height="50" Icon="ArrowForward48" IconFilled="True" Appearance="Secondary">Uninstall Rectify11</wpfui:Button>
             </Grid>
         </StackPanel>
     </Grid>
