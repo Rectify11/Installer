@@ -120,6 +120,38 @@ namespace Rectify11Installer
                     }
                 }
 
+                _Wizard.SetProgress(0);
+                _Wizard.SetProgressText("Installing Apps");
+
+                if (options.ShouldInstallWinver)
+                {
+                    var pkg = GetAMD64Package("microsoft-windows-winver");
+                    if (pkg != null)
+                    {
+                        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", Application.StartupPath + @"\files\winver.ex_");
+                    }
+                    else
+                    {
+                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find WinVer SxS package.");
+                        return;
+                    }
+                }
+
+                if (options.ShouldInstallWallpaper)
+                {
+                    var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
+                    if (pkg != null)
+                    {
+                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", Application.StartupPath + @"\files\img0.jpg");
+                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", Application.StartupPath + @"\files\img19.jpg");
+                    }
+                    else
+                    {
+                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find wallper SxS package.");
+                        return;
+                    }
+                }
+
                 _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 return;
             }
