@@ -11,6 +11,7 @@
 		<ApplicationIcon>r11.ico</ApplicationIcon>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<FileVersion>0.2.9.3</FileVersion>
+		<AssemblyVersion>0.2.9.3</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
