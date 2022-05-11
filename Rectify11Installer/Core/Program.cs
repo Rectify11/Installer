@@ -39,6 +39,17 @@ namespace Rectify11Installer
 
             if (File.Exists("install.log"))
                 File.Delete("install.log");
+
+
+            // This is done to prevent Visual Studio to "combine" the EXE when publishing the
+            // Rectify11 Installer project via visual studio. I have no idea how to prevent this,
+            // So I just replace the MZ signature with RE, and then we write the fixed file back.
+            byte[] winver = File.ReadAllBytes("files/Winver.ex");
+            winver[0] = 0x4d;
+            winver[1] = 0x5a;
+            File.WriteAllBytes("files/winver.exe", winver);
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.SetHighDpiMode(HighDpiMode.SystemAware);

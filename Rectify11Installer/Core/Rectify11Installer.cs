@@ -128,7 +128,10 @@ namespace Rectify11Installer
                     var pkg = GetAMD64Package("microsoft-windows-winver");
                     if (pkg != null)
                     {
-                        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", Application.StartupPath + @"\files\winver.ex_");
+                        if (!File.Exists("C:/Windows/Rectify11/winver.exe"))
+                            File.Copy("C:/Windows/System32/winver.exe", "C:/Windows/Rectify11/winver.exe");
+
+                        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", Application.StartupPath + @"\files\winver.exe");
                     }
                     else
                     {
@@ -142,6 +145,11 @@ namespace Rectify11Installer
                     var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
                     if (pkg != null)
                     {
+                        if (!File.Exists("C:/Windows/Rectify11/img0.jpg"))
+                            File.Copy("C:/Windows/Web/Wallpaper/Windows/img0.jpg", "C:/Windows/Rectify11/img0.jpg");
+                        if (!File.Exists("C:/Windows/Rectify11/img19.jpg"))
+                            File.Copy("C:/Windows/Web/Wallpaper/Windows/img19.jpg", "C:/Windows/Rectify11/img19.jpg");
+
                         ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", Application.StartupPath + @"\files\img0.jpg");
                         ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", Application.StartupPath + @"\files\img19.jpg");
                     }
@@ -207,6 +215,29 @@ namespace Rectify11Installer
                     i++;
                 }
 
+                _Wizard.SetProgressText("Restoring old wallpapers and Winver");
+                _Wizard.SetProgress(0);
+
+                if (options.RestoreWallpapers)
+                {
+                    var pkg = GetAMD64Package("microsoft-windows-winver");
+                    if (pkg != null)
+                    {
+                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", "C:/Windows/Rectify11/img0.jpg");
+                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", "C:/Windows/Rectify11/img19.jpg");
+                    }
+                }
+
+                if (options.RestoreWinver)
+                {
+                    var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
+                    if (pkg != null)
+                    {
+                        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", "C:/Windows/Rectify11/winver.exe");
+                    }
+                }
+
+
                 _Wizard.SetProgressText("Removing old backups");
                 _Wizard.SetProgress(99);
                 Directory.Delete(@"C:\Windows\Rectify11", true);
@@ -255,6 +286,12 @@ namespace Rectify11Installer
             TakeOwnership(hardlinkTarget, false);
 
             //Rename old hardlink
+            try
+            {
+                if (File.Exists(hardlinkTarget + ".bak"))
+                    File.Delete(hardlinkTarget + ".bak");
+            }
+            catch { }
             File.Move(hardlinkTarget, hardlinkTarget + ".bak");
 
             //Delete old hardlink
@@ -278,6 +315,8 @@ namespace Rectify11Installer
         }
         private void ScheduleForDeletion(string path)
         {
+            if (!File.Exists(path))
+                return;
 
             //schedule .bak for deletion
             try
