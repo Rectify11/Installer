@@ -10,7 +10,7 @@
 		<LangVersion>10.0</LangVersion>
 		<ApplicationIcon>r11.ico</ApplicationIcon>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<FileVersion>0.2.9.2</FileVersion>
+		<FileVersion>0.2.9.3</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
