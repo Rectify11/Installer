@@ -122,43 +122,43 @@ namespace Rectify11Installer
 
                 _Wizard.SetProgress(0);
                 _Wizard.SetProgressText("Installing Apps");
+                //This is commented out as it's broken
+                //if (options.ShouldInstallWinver)
+                //{
+                //    var pkg = GetAMD64Package("microsoft-windows-winver");
+                //    if (pkg != null)
+                //    {
+                //        if (!File.Exists("C:/Windows/Rectify11/winver.exe"))
+                //            File.Copy("C:/Windows/System32/winver.exe", "C:/Windows/Rectify11/winver.exe");
 
-                if (options.ShouldInstallWinver)
-                {
-                    var pkg = GetAMD64Package("microsoft-windows-winver");
-                    if (pkg != null)
-                    {
-                        if (!File.Exists("C:/Windows/Rectify11/winver.exe"))
-                            File.Copy("C:/Windows/System32/winver.exe", "C:/Windows/Rectify11/winver.exe");
+                //        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", Application.StartupPath + @"\files\winver.exe");
+                //    }
+                //    else
+                //    {
+                //        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find WinVer SxS package.");
+                //        return;
+                //    }
+                //}
 
-                        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", Application.StartupPath + @"\files\winver.exe");
-                    }
-                    else
-                    {
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find WinVer SxS package.");
-                        return;
-                    }
-                }
+                //if (options.ShouldInstallWallpaper)
+                //{
+                //    var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
+                //    if (pkg != null)
+                //    {
+                //        if (!File.Exists("C:/Windows/Rectify11/img0.jpg"))
+                //            File.Copy("C:/Windows/Web/Wallpaper/Windows/img0.jpg", "C:/Windows/Rectify11/img0.jpg");
+                //        if (!File.Exists("C:/Windows/Rectify11/img19.jpg"))
+                //            File.Copy("C:/Windows/Web/Wallpaper/Windows/img19.jpg", "C:/Windows/Rectify11/img19.jpg");
 
-                if (options.ShouldInstallWallpaper)
-                {
-                    var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
-                    if (pkg != null)
-                    {
-                        if (!File.Exists("C:/Windows/Rectify11/img0.jpg"))
-                            File.Copy("C:/Windows/Web/Wallpaper/Windows/img0.jpg", "C:/Windows/Rectify11/img0.jpg");
-                        if (!File.Exists("C:/Windows/Rectify11/img19.jpg"))
-                            File.Copy("C:/Windows/Web/Wallpaper/Windows/img19.jpg", "C:/Windows/Rectify11/img19.jpg");
-
-                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", Application.StartupPath + @"\files\img0.jpg");
-                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", Application.StartupPath + @"\files\img19.jpg");
-                    }
-                    else
-                    {
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find wallper SxS package.");
-                        return;
-                    }
-                }
+                //        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", Application.StartupPath + @"\files\img0.jpg");
+                //        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", Application.StartupPath + @"\files\img19.jpg");
+                //    }
+                //    else
+                //    {
+                //        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find wallper SxS package.");
+                //        return;
+                //    }
+                //}
 
                 _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 return;
@@ -218,13 +218,15 @@ namespace Rectify11Installer
                 _Wizard.SetProgressText("Restoring old wallpapers and Winver");
                 _Wizard.SetProgress(0);
 
+
+                //This is commented out as it's broken
                 if (options.RestoreWallpapers)
                 {
                     var pkg = GetAMD64Package("microsoft-windows-winver");
                     if (pkg != null)
                     {
-                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", "C:/Windows/Rectify11/img0.jpg");
-                        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", "C:/Windows/Rectify11/img19.jpg");
+                        //ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", "C:/Windows/Rectify11/img0.jpg");
+                        ///ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", "C:/Windows/Rectify11/img19.jpg");
                     }
                 }
 
@@ -233,7 +235,7 @@ namespace Rectify11Installer
                     var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
                     if (pkg != null)
                     {
-                        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", "C:/Windows/Rectify11/winver.exe");
+                        //ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", "C:/Windows/Rectify11/winver.exe");
                     }
                 }
 
