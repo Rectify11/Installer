@@ -109,7 +109,7 @@ namespace Rectify11Installer
             this.themedLabel1.Name = "themedLabel1";
             this.themedLabel1.Size = new System.Drawing.Size(317, 23);
             this.themedLabel1.TabIndex = 2;
-            this.themedLabel1.Text = "Version: v2.9.3 (public beta)";
+            this.themedLabel1.Text = "Version: v2.9.4 (public beta)";
             // 
             // BtnBack
             // 
@@ -162,6 +162,7 @@ namespace Rectify11Installer
             this.Name = "FrmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rectify11 Setup";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmWizard_FormClosing);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.pnlTop.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

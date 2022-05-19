@@ -213,6 +213,16 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap rectify {
+            get {
+                object obj = ResourceManager.GetObject("rectify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rectify11Installer {
             get {
                 object obj = ResourceManager.GetObject("rectify11Installer", resourceCulture);

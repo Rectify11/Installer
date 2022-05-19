@@ -13,7 +13,7 @@ namespace Rectify11Installer.Core
         {
             List<PatchDef> p = new List<PatchDef>();
             XmlDocument doc = new XmlDocument();
-            doc.LoadXml(File.ReadAllText("rectify11.xml"));
+            doc.LoadXml(File.ReadAllText(Application.StartupPath + "/rectify11.xml"));
 
             var patchesTag = doc.GetElementsByTagName("Patches");
             if (patchesTag.Count != 1)

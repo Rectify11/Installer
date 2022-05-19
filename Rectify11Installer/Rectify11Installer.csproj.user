@@ -19,6 +19,9 @@
     <Compile Update="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Core\FormBackground.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Core\FrmWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Pages\ProgressPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages\RebootPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Pages\UninstallConfirmPage.cs">

@@ -63,6 +63,7 @@ namespace Rectify11Installer
             ProgressPage.Invoke((MethodInvoker)delegate ()
             {
                 Wizard.Complete(type, IsInstalling, ErrorDescription);
+
             });    
         }
 
@@ -117,6 +118,18 @@ namespace Rectify11Installer
         public bool ShouldInstallWallpaper { get; }
         public bool ShouldInstallWinver { get; }
         public bool DoSafeInstall { get; }
+    }
+    public class InstallerOptions : IRectifyInstalllerInstallOptions
+    {
+        public bool ShouldInstallExplorerPatcher { get; set; }
+
+        public bool ShouldInstallThemes { get; set; }
+
+        public bool ShouldInstallWallpaper { get; set; }
+
+        public bool ShouldInstallWinver { get; set; }
+
+        public bool DoSafeInstall { get; set; }
     }
 
     public interface IRectifyInstalllerUninstallOptions

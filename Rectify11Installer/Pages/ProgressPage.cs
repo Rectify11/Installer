@@ -38,6 +38,20 @@ namespace Rectify11Installer.Pages
         public ProgressPage()
         {
             InitializeComponent();
+            Theme.OnThemeChanged += Theme_OnThemeChanged;
+            Theme_OnThemeChanged(null, new EventArgs());
+        }
+
+        private void Theme_OnThemeChanged(object? sender, EventArgs e)
+        {
+            if (Theme.IsUsingDarkMode)
+            {
+                lblCurrent.ForeColor = Color.White;
+            }
+            else
+            {
+                lblCurrent.ForeColor = Color.Black;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
