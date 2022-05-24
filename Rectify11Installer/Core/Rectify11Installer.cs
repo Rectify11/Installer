@@ -1,4 +1,5 @@
-﻿using Rectify11Installer.Core;
+﻿using Microsoft.Win32;
+using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using Rectify11Installer.Win32.Rectify11;
 using System;
@@ -14,13 +15,13 @@ namespace Rectify11Installer
 {
     public class RectifyInstaller : IRectifyInstaller
     {
-        private IRectifyInstallerWizard? _Wizard;
+        private IRectifyInstallerWizard? Wizard;
         private bool IsInstalling = true;
         #region Interface implementation
         public void Install(IRectifyInstalllerInstallOptions options)
         {
             IsInstalling = true;
-            if (_Wizard == null)
+            if (Wizard == null)
             {
                 throw new Exception("SetParentWizard() in IRectifyInstaller was not called!");
             }
@@ -30,9 +31,8 @@ namespace Rectify11Installer
                 InstallStatus.IsRectify11Installed = true;
 
                 #region Setup
-                _Wizard.SetProgressText("Taking ownership of system files");
-                _Wizard.SetProgress(1);
-                TakeownAllFiles();
+                Wizard.SetProgress(0);
+                Wizard.SetProgressText("Initializing...");
                 var backupDir = @"C:\Windows\Rectify11\Backup";
                 #endregion
 
@@ -40,6 +40,7 @@ namespace Rectify11Installer
 
 
                 int i = 0;
+                BeginXml();
                 foreach (var item in patches)
                 {
                     if (item.DisableOnSafeMode && options.DoSafeInstall)
@@ -57,8 +58,8 @@ namespace Rectify11Installer
                             continue;
                         }
 
-                        _Wizard.SetProgressText("Patching file: " + item.DllName);
-                        _Wizard.SetProgress(i * 100 / patches.Length);
+                        Wizard.SetProgressText("Patching file: " + item.DllName);
+                        Wizard.SetProgress(i * 100 / patches.Length);
 
                         var WinSxSFilePath = usr.Path + @"\" + item.DllName;
                         string WinsxsDir = Path.GetFileName(usr.Path);
@@ -105,23 +106,21 @@ namespace Rectify11Installer
                                     r,
                                     patch.GroupAndLocation))//ICONGROUP,1,0
                                 {
-                                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd + "\nSee installer.log for more information");
+                                    Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, $"Resource hacker failed at DLL: {item.DllName}\nCommand line:\n" + PatcherHelper.LastCmd + "\nSee installer.log for more information");
                                     return;
                                 }
                             }
 
                             ReplaceFileInPackage(usr, item.Systempath, fileProper);
 
-                            //cleanup tmp folder
-                            Directory.Delete("C:/Windows/Rectify11/Tmp/" + WinsxsDir + "/", true);
-
                             i++;
                         }
                     }
                 }
+                CommitXml();
 
-                _Wizard.SetProgress(0);
-                _Wizard.SetProgressText("Installing Apps");
+                Wizard.SetProgress(0);
+                Wizard.SetProgressText("Installing Apps");
                 //This is commented out as it's broken
                 //if (options.ShouldInstallWinver)
                 //{
@@ -160,18 +159,18 @@ namespace Rectify11Installer
                 //    }
                 //}
 
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
+                Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 return;
             }
             catch (Exception ex)
             {
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, ex.ToString());
+                Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, ex.ToString());
             }
         }
         public void Uninstall(IRectifyInstalllerUninstallOptions options)
         {
             IsInstalling = false;
-            if (_Wizard == null)
+            if (Wizard == null)
             {
                 throw new Exception("SetParentWizard() in IRectifyInstaller was not called!");
             }
@@ -179,20 +178,19 @@ namespace Rectify11Installer
             try
             {
                 #region Setup
-                _Wizard.SetProgressText("Taking ownership of system files");
-                _Wizard.SetProgress(1);
-                TakeownAllFiles();
+                Wizard.SetProgressText("Taking ownership of system files");
+                Wizard.SetProgress(1);
                 var backupDir = @"C:\Windows\Rectify11\Backup";
                 #endregion
-
+                BeginXml();
                 var patches = Patches.GetAll();
                 int i = 0;
                 foreach (var item in patches)
                 {
 
 
-                    _Wizard.SetProgressText("Restoring file: " + item.DllName);
-                    _Wizard.SetProgress(i * 100 / patches.Length);
+                    Wizard.SetProgressText("Restoring file: " + item.DllName);
+                    Wizard.SetProgress(i * 100 / patches.Length);
 
                     var usr = GetAMD64Package(item.WinSxSPackageName);
                     if (usr == null)
@@ -214,9 +212,10 @@ namespace Rectify11Installer
                     }
                     i++;
                 }
+                CommitXml();
 
-                _Wizard.SetProgressText("Restoring old wallpapers and Winver");
-                _Wizard.SetProgress(0);
+                Wizard.SetProgressText("Restoring old wallpapers and Winver");
+                Wizard.SetProgress(0);
 
 
                 //This is commented out as it's broken
@@ -240,80 +239,124 @@ namespace Rectify11Installer
                 }
 
 
-                _Wizard.SetProgressText("Removing old backups");
-                _Wizard.SetProgress(99);
-                Directory.Delete(@"C:\Windows\Rectify11", true);
+                Wizard.SetProgressText("Removing old backups");
+                Wizard.SetProgress(99);
+                //Directory.Delete(@"C:\Windows\Rectify11", true);
 
                 InstallStatus.IsRectify11Installed = false;
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
+                Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 return;
             }
             catch (Exception ex)
             {
-                _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, ex.ToString());
+                Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, ex.ToString());
             }
         }
         public void SetParentWizard(IRectifyInstallerWizard wiz)
         {
-            _Wizard = wiz;
+            Wizard = wiz;
         }
         #endregion
         #region Private methods
-        private void TakeownAllFiles()
+        private string PoqExecXml;
+        private void BeginXml()
         {
-            if (Directory.Exists("tmp"))
-                Directory.Delete("tmp", true);
-            if (Directory.Exists(@"C:/Windows/Rectify11/Tmp/"))
-                Directory.Delete(@"C:/Windows/Rectify11/Tmp/", true);
+            PoqExecXml = "<?xml version='1.0' encoding='utf-8'?>\n";
+            PoqExecXml += "<PendingTransaction Version=\"3.1\">";
+            PoqExecXml += "    <POQ postAction=\"reboot\">";
+        }
+        private void CommitXml()
+        {
+            PoqExecXml += "    </POQ>";
+            PoqExecXml += "</PendingTransaction>";
+            File.WriteAllText(@"C:\Windows\Rectify11\pending.xml", PoqExecXml);
 
-            Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/");
-            Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/Wow64");
-            Directory.CreateDirectory("C:/Windows/Rectify11/Tmp/Amd64");
-            Directory.CreateDirectory(@"C:\Windows\Rectify11\");
-            Directory.CreateDirectory(@"C:\Windows\Rectify11\Backup");
-            TakeOwnership(@"C:\Windows\SystemResources\", true);
-
-            Directory.CreateDirectory(@"C:/Windows/Rectify11/Tmp/");
+            RegistryKey? s = Registry.LocalMachine.OpenSubKey("SYSTEM", true);
+            if (s != null)
+            {
+                RegistryKey? c = s.OpenSubKey("CurrentControlSet", true);
+                if (c != null)
+                {
+                    RegistryKey? cc = c.OpenSubKey("Control", true);
+                    if (cc != null)
+                    {
+                        RegistryKey? sessionManager = cc.OpenSubKey("Session Manager", true);
+                        if (sessionManager != null)
+                        {
+                            sessionManager.SetValue("SetupExecute", @"C:\Windows\System32\poqexec.exe /display_progress \??\C:\Windows\Rectify11\pending.xml");
+                            sessionManager.Close();
+                        }
+                        else
+                        {
+                            throw new Exception("Failed to open key: Session Manager");
+                        }
+                        cc.Close();
+                    }
+                    else
+                    {
+                        throw new Exception("Failed to open key: Control");
+                    }
+                    c.Close();
+                }
+                else
+                {
+                    throw new Exception("Failed to open key: CurrentControlSet");
+                }
+                s.Close();
+            }
+            else
+            {
+                throw new Exception("Failed to open key: SYSTEM");
+            }
         }
         private void ReplaceFileInPackage(Package usr, string hardlinkTarget, string source)
         {
             string dllName = Path.GetFileName(source);
             var WinSxSFilePath = usr.Path + @"\" + dllName;
+            WinSxSFilePath = WinSxSFilePath.Replace(@"C:\Windows\", @"\SystemRoot\WinSxS\");
 
+            //all this does is:
+            //del {hardlink target}
+            //del {winsxs file}
 
-            //Take ownership of orginal file
-            TakeOwnership(usr.Path, true);
-            //TakeOwnership(WinSxSFilePath, false);
-            //TakeOwnership(fileProper, false); //path to temp file
-            TakeOwnership(hardlinkTarget, false);
+            //move {patched file} {winsxs file}
+            //hardlink {winsxs file} {hardlink target}
 
-            //Rename old hardlink
-            try
-            {
-                if (File.Exists(hardlinkTarget + ".bak"))
-                    File.Delete(hardlinkTarget + ".bak");
-            }
-            catch { }
-            File.Move(hardlinkTarget, hardlinkTarget + ".bak");
+            PoqExecXml += "<DeleteFile path=\"\\??\\" + hardlinkTarget + "\"/>\n";
+            PoqExecXml += "<DeleteFile path=\"" + WinSxSFilePath +"\"/>\n";
 
-            //Delete old hardlink
-            ScheduleForDeletion(hardlinkTarget + ".bak");
+            PoqExecXml += "<MoveFile source=\"\\??\\" + source+ "\" destination=\"\\??\\"+ WinSxSFilePath + "\">\n";
 
-            //rename old file
-            File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
+            PoqExecXml += "<HardlinkFile source=\"\\??\\" + WinSxSFilePath + "\" destination=\"\\??\\"+hardlinkTarget+"\">\n";
 
-            //copy new file over
-            File.Move(source, WinSxSFilePath, true);
+            //old code, does not work very well
+            ////Rename old hardlink
+            //try
+            //{
+            //    if (File.Exists(hardlinkTarget + ".bak"))
+            //        File.Delete(hardlinkTarget + ".bak");
+            //}
+            //catch { }
+            //File.Move(hardlinkTarget, hardlinkTarget + ".bak");
 
-            //create hardlink
-            if (!NativeMethods.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
-            {
-                if (_Wizard != null)
-                    _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "CreateHardLinkW() failed: " + new Win32Exception().Message);
-                throw new Exception("failure while calling MoveFileEx()");
-            }
+            ////Delete old hardlink
+            //ScheduleForDeletion(hardlinkTarget + ".bak");
 
-            ScheduleForDeletion(WinSxSFilePath + ".bak");
+            ////rename old file
+            //File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
+
+            ////copy new file over
+            //File.Move(source, WinSxSFilePath, true);
+
+            ////create hardlink
+            //if (!NativeMethods.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
+            //{
+            //    if (Wizard != null)
+            //        Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "CreateHardLinkW() failed: " + new Win32Exception().Message);
+            //    throw new Exception("failure while calling MoveFileEx()");
+            //}
+
+            //ScheduleForDeletion(WinSxSFilePath + ".bak");
         }
         private void ScheduleForDeletion(string path)
         {
@@ -330,8 +373,8 @@ namespace Rectify11Installer
                 //delete it first
                 if (!NativeMethods.MoveFileEx(path, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
                 {
-                    if (_Wizard != null)
-                        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "MoveFileEx() failed: " + new Win32Exception().Message);
+                    if (Wizard != null)
+                        Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "MoveFileEx() failed: " + new Win32Exception().Message);
                     throw new Exception("failure while calling MoveFileEx()");
                 }
             }
@@ -351,13 +394,6 @@ namespace Rectify11Installer
                 }
             }
             return null;
-        }
-        private void TakeOwnership(string path, bool recursive)
-        {
-            _ = PatcherHelper.TakeOwnership(path, recursive);
-            _ = PatcherHelper.GrantFullControl(path, "Administrators", recursive);
-            _ = PatcherHelper.GrantFullControl(path, "SYSTEM", recursive);
-            // _ = PatcherHelper.GrantFullControl(path, "Everyone");
         }
         private List<Package> FindPackage(string name)
         {
