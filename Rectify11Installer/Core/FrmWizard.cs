@@ -22,7 +22,6 @@ namespace Rectify11Installer
 
         private bool HideCloseButton = false;
         private const int CP_NOCLOSE_BUTTON = 0x200;
-        private bool setupMode;
 
         protected override CreateParams CreateParams
         {

@@ -83,7 +83,7 @@ namespace Rectify11Installer.Win32
             return r.Left == Left && r.Top == Top && r.Right == Right && r.Bottom == Bottom;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is RECT)
                 return Equals((RECT)obj);

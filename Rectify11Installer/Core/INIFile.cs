@@ -11,7 +11,19 @@ namespace Rectify11Installer.Core
     public class IniFile
     {
         string Path;
-        string EXE = Assembly.GetExecutingAssembly().GetName().Name;
+        string EXE
+        {
+            get
+            {
+                var name = Assembly.GetExecutingAssembly().GetName();
+                if (name == null)
+                    throw new Exception();
+                if (name.Name == null)
+                    throw new Exception();
+
+                return name.Name;
+            }
+        }
 
         [DllImport("kernel32", CharSet = CharSet.Unicode)]
         static extern long WritePrivateProfileString(string Section, string? Key, string? Value, string FilePath);

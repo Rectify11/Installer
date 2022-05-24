@@ -19,7 +19,7 @@ namespace Rectify11InstallerWPF.Pages
     /// <summary>
     /// Interaction logic for Welcome.xaml
     /// </summary>
-    public partial class Welcome : Page, INavigationItem
+    public partial class Welcome : Page
     {
         public Welcome()
         {
@@ -31,7 +31,5 @@ namespace Rectify11InstallerWPF.Pages
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Page Instance { get => this;set { throw new NotImplementedException(); } }
         public Type Page { get => this.GetType(); set => throw new NotImplementedException(); }
-
-        public event RoutedEventHandler Click;
     }
 }

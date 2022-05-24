@@ -258,7 +258,7 @@ namespace Rectify11Installer
         }
         #endregion
         #region Private methods
-        private string PoqExecXml;
+        private string? PoqExecXml;
         private void BeginXml()
         {
             PoqExecXml = "<?xml version='1.0' encoding='utf-8'?>\n";
