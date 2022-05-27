@@ -9,8 +9,17 @@ namespace Rectify11Installer
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            bool setupMode = false;
+            if (args.Length > 0)
+            {
+                var a = args[0];
+                if (a == "/setup")
+                {
+                    setupMode = true;
+                }
+            }
             if (Environment.OSVersion.Version.Build >= 22000) { }
             else
             {
@@ -57,7 +66,14 @@ namespace Rectify11Installer
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+            if (setupMode)
+            {
+                Application.Run(new SetupModeForm());
+            }
+            else
+            {
                 Application.Run(new FrmWizard());
+            }
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

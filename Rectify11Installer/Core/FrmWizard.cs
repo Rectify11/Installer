@@ -256,7 +256,7 @@ namespace Rectify11Installer
 
                 if (buildNumber >= 22523)
                 {
-                    int micaValue = 0x03;
+                    int micaValue = 0x02;
                     _ = DwmSetWindowAttribute(this.Handle, WindowCompositionAttribute.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
                 }
 
@@ -295,7 +295,7 @@ namespace Rectify11Installer
             {
                 m.cyTopHeight = this.Height;
 
-                BackColor = Color.Black;
+                //  BackColor = Color.Black;
             }
             else
             {
@@ -303,14 +303,14 @@ namespace Rectify11Installer
                 pnlTop.BackColor = Color.White;
                 if (pnlBottom.Visible)
                 {
-                    pnlBottom.BackColor = Color.Black;
+                    //pnlBottom.BackColor = Color.Black;
                 }
                 else
                 {
-                    pnlBottom.BackColor = Color.White;
+                    //pnlBottom.BackColor = Color.White;
                 }
 
-                panel1.BackColor = Color.Black;
+                //panel1.BackColor = Color.Black;
 
                 m.cyTopHeight = pnlTop.Height;
                 m.cyBottomHeight = pnlBottom.Height;
@@ -481,45 +481,132 @@ namespace Rectify11Installer
                 //Install/Uninstall Rectify11
                 Navigate(ProgressPage);
 
-                IRectifyInstaller installer = new RectifyInstaller();
-                installer.SetParentWizard(new RectifyInstallerWizard(this, ProgressPage));
-
-                HideCloseButton = true;
-                ControlBox = false;
-                pnlBottom.Visible = false;
-                UpdateFrame();
-
-                if (oldPage == ConfirmOpPage)
+                //Setup mode
+                if (true)
                 {
+                    var wizard = new RectifyInstallerWizard(this, ProgressPage);
+                    wizard.SetProgress(0);
+                    wizard.SetProgressText("Copying Files");
+
+                    try
+                    {
+                        if (!Directory.Exists(@"C:\Windows\Rectify11\"))
+                        {
+                            Directory.CreateDirectory(@"C:\Windows\Rectify11\");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Unable to create C:\Windows\Rectify11 folder:\n" + ex.ToString());
+                    }
+                    string iniPath = @"C:\Windows\Rectify11\work.ini";
+
+                    //delete old files
+                    if (File.Exists(iniPath))
+                        File.Delete(iniPath);
+
                     IRectifyInstalllerInstallOptions options = InstallOptions;
-                    var thread = new Thread(delegate ()
-                    {
-                        installer.Install(options);
-                    });
-                    thread.Start();
-                }
-                else if (oldPage == UninstallConfirmPage)
-                {
-                    IRectifyInstalllerUninstallOptions options = UninstallConfirmPage;
-                    var thread = new Thread(delegate ()
-                    {
-                        installer.Uninstall(options);
-                    });
-                    thread.Start();
-                }
-                else
-                {
-                    var pg = new TaskDialogPage()
-                    {
-                        Icon = TaskDialogIcon.ShieldErrorRedBar,
 
-                        Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
-                        Heading = "Compatibility Error",
-                        Caption = "Rectify11 Setup",
-                    };
-                    TaskDialog.ShowDialog(this, pg);
+                    if (oldPage == ConfirmOpPage)
+                    {
+                        //install
+
+                        try
+                        {
+                            IniFile f = new IniFile(iniPath);
+                            f.Write("InstallEP", options.ShouldInstallExplorerPatcher.ToString());
+                            f.Write("InstallThemes", options.ShouldInstallThemes.ToString());
+                            f.Write("InstallWP", options.ShouldInstallWallpaper.ToString());
+                            f.Write("InstallVer", options.ShouldInstallWinver.ToString());
+                            f.Write("DoSafeInstall", options.DoSafeInstall.ToString());
+                            f.Write("Mode", "Install");
+                        }
+                        catch (Exception ex)
+                        {
+                            wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to create:" + iniPath + "\n" + ex.ToString());
+                        }
+                        try
+                        {
+                            SetupMode.Enter();
+                        }
+                        catch (Exception ex)
+                        {
+                            wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
+                        }
+
+
+                        Navigate(new RebootPage());
+                    }
+                    else if (oldPage == UninstallConfirmPage)
+                    {
+                        //uninstall
+                        var pg = new TaskDialogPage()
+                        {
+                            Icon = TaskDialogIcon.ShieldErrorRedBar,
+
+                            Text = "An internal setup error has occured. Uninstall in Setup mode is not yet implemented. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
+                            Heading = "Compatibility Error",
+                            Caption = "Rectify11 Setup",
+                        };
+                    }
+                    else
+                    {
+                        var pg = new TaskDialogPage()
+                        {
+                            Icon = TaskDialogIcon.ShieldErrorRedBar,
+
+                            Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
+                            Heading = "Compatibility Error",
+                            Caption = "Rectify11 Setup",
+                        };
+                        TaskDialog.ShowDialog(this, pg);
+                    }
                 }
 
+                //Normal mode
+                if (false)
+                {
+                    IRectifyInstaller installer = new RectifyInstaller();
+                    installer.SetParentWizard(new RectifyInstallerWizard(this, ProgressPage));
+
+                    HideCloseButton = true;
+                    ControlBox = false;
+                    pnlBottom.Visible = false;
+                    UpdateFrame();
+
+                    if (oldPage == ConfirmOpPage)
+                    {
+                        IRectifyInstalllerInstallOptions options = InstallOptions;
+                        var thread = new Thread(delegate ()
+                        {
+                            installer.Install(options);
+                        });
+                        thread.Start();
+                    }
+                    else if (oldPage == UninstallConfirmPage)
+                    {
+                        IRectifyInstalllerUninstallOptions options = UninstallConfirmPage;
+                        var thread = new Thread(delegate ()
+                        {
+                            installer.Uninstall(options);
+                        });
+                        thread.Start();
+                    }
+                    else
+                    {
+                        var pg = new TaskDialogPage()
+                        {
+                            Icon = TaskDialogIcon.ShieldErrorRedBar,
+
+                            Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
+                            Heading = "Compatibility Error",
+                            Caption = "Rectify11 Setup",
+                        };
+                        TaskDialog.ShowDialog(this, pg);
+                    }
+
+
+                }
 
             }
             else if (CurrentPage == FinishPage)

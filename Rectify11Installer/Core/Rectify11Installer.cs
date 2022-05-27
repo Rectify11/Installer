@@ -58,8 +58,8 @@ namespace Rectify11Installer
                             continue;
                         }
 
-                        Wizard.SetProgressText("Patching file: " + item.DllName);
                         Wizard.SetProgress(i * 100 / patches.Length);
+                        Wizard.SetProgressText("Patching file: " + item.DllName);
 
                         var WinSxSFilePath = usr.Path + @"\" + item.DllName;
                         string WinsxsDir = Path.GetFileName(usr.Path);
@@ -187,10 +187,8 @@ namespace Rectify11Installer
                 int i = 0;
                 foreach (var item in patches)
                 {
-
-
-                    Wizard.SetProgressText("Restoring file: " + item.DllName);
                     Wizard.SetProgress(i * 100 / patches.Length);
+                    Wizard.SetProgressText("Restoring file: " + item.DllName);
 
                     var usr = GetAMD64Package(item.WinSxSPackageName);
                     if (usr == null)
@@ -238,9 +236,8 @@ namespace Rectify11Installer
                     }
                 }
 
-
-                Wizard.SetProgressText("Removing old backups");
                 Wizard.SetProgress(99);
+                Wizard.SetProgressText("Removing old backups");
                 //Directory.Delete(@"C:\Windows\Rectify11", true);
 
                 InstallStatus.IsRectify11Installed = false;
@@ -315,48 +312,33 @@ namespace Rectify11Installer
             var WinSxSFilePath = usr.Path + @"\" + dllName;
             WinSxSFilePath = WinSxSFilePath.Replace(@"C:\Windows\", @"\SystemRoot\WinSxS\");
 
-            //all this does is:
-            //del {hardlink target}
-            //del {winsxs file}
+            //Rename old hardlink
+            try
+            {
+                if (File.Exists(hardlinkTarget + ".bak"))
+                    File.Delete(hardlinkTarget + ".bak");
+            }
+            catch { }
+            File.Move(hardlinkTarget, hardlinkTarget + ".bak");
 
-            //move {patched file} {winsxs file}
-            //hardlink {winsxs file} {hardlink target}
+            //Delete old hardlink
+            ScheduleForDeletion(hardlinkTarget + ".bak");
 
-            PoqExecXml += "<DeleteFile path=\"\\??\\" + hardlinkTarget + "\"/>\n";
-            PoqExecXml += "<DeleteFile path=\"" + WinSxSFilePath +"\"/>\n";
+            //rename old file
+            File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
 
-            PoqExecXml += "<MoveFile source=\"\\??\\" + source+ "\" destination=\"\\??\\"+ WinSxSFilePath + "\">\n";
+            //copy new file over
+            File.Move(source, WinSxSFilePath, true);
 
-            PoqExecXml += "<HardlinkFile source=\"\\??\\" + WinSxSFilePath + "\" destination=\"\\??\\"+hardlinkTarget+"\">\n";
+            //create hardlink
+            if (!NativeMethods.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
+            {
+                if (Wizard != null)
+                    Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "CreateHardLinkW() failed: " + new Win32Exception().Message);
+                throw new Exception("failure while calling MoveFileEx()");
+            }
 
-            //old code, does not work very well
-            ////Rename old hardlink
-            //try
-            //{
-            //    if (File.Exists(hardlinkTarget + ".bak"))
-            //        File.Delete(hardlinkTarget + ".bak");
-            //}
-            //catch { }
-            //File.Move(hardlinkTarget, hardlinkTarget + ".bak");
-
-            ////Delete old hardlink
-            //ScheduleForDeletion(hardlinkTarget + ".bak");
-
-            ////rename old file
-            //File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
-
-            ////copy new file over
-            //File.Move(source, WinSxSFilePath, true);
-
-            ////create hardlink
-            //if (!NativeMethods.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
-            //{
-            //    if (Wizard != null)
-            //        Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "CreateHardLinkW() failed: " + new Win32Exception().Message);
-            //    throw new Exception("failure while calling MoveFileEx()");
-            //}
-
-            //ScheduleForDeletion(WinSxSFilePath + ".bak");
+            ScheduleForDeletion(WinSxSFilePath + ".bak");
         }
         private void ScheduleForDeletion(string path)
         {

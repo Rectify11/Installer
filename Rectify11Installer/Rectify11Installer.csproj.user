@@ -19,7 +19,13 @@
     <Compile Update="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Core\FailUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Core\FrmWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Core\SetupModeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Pages\ConfirmOperationPage.cs">

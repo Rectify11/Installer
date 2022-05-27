@@ -36,7 +36,6 @@ namespace Rectify11Installer
             this.panel1 = new System.Windows.Forms.Panel();
             this.navigationButton1 = new Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
-            this.themedLabel1 = new AeroWizard.ThemedLabel();
             this.BtnBack = new Rectify11Installer.Controls.WinUIButton();
             this.BtnNext = new Rectify11Installer.Controls.WinUIButton();
             this.pnlMain = new System.Windows.Forms.Panel();
@@ -58,6 +57,7 @@ namespace Rectify11Installer
             // 
             // lblTopText
             // 
+            this.lblTopText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.lblTopText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTopText.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTopText.ForeColor = System.Drawing.Color.White;
@@ -70,6 +70,7 @@ namespace Rectify11Installer
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.navigationButton1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -93,7 +94,7 @@ namespace Rectify11Installer
             // 
             // pnlBottom
             // 
-            this.pnlBottom.Controls.Add(this.themedLabel1);
+            this.pnlBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.pnlBottom.Controls.Add(this.BtnBack);
             this.pnlBottom.Controls.Add(this.BtnNext);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -103,21 +104,13 @@ namespace Rectify11Installer
             this.pnlBottom.TabIndex = 5;
             this.pnlBottom.Visible = false;
             // 
-            // themedLabel1
-            // 
-            this.themedLabel1.Location = new System.Drawing.Point(2, 18);
-            this.themedLabel1.Name = "themedLabel1";
-            this.themedLabel1.Size = new System.Drawing.Size(317, 23);
-            this.themedLabel1.TabIndex = 2;
-            this.themedLabel1.Text = "Version: v2.9.4.1 (public alpha)";
-            // 
             // BtnBack
             // 
             this.BtnBack.BackColor = System.Drawing.Color.Transparent;
             this.BtnBack.ButtonText = "Back";
             this.BtnBack.Enabled = false;
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(428, 16);
+            this.BtnBack.Location = new System.Drawing.Point(428, 20);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.Size = new System.Drawing.Size(75, 21);
             this.BtnBack.TabIndex = 1;
@@ -130,7 +123,7 @@ namespace Rectify11Installer
             this.BtnNext.BackColor = System.Drawing.Color.Transparent;
             this.BtnNext.ButtonText = "Next";
             this.BtnNext.ForeColor = System.Drawing.Color.White;
-            this.BtnNext.Location = new System.Drawing.Point(509, 16);
+            this.BtnNext.Location = new System.Drawing.Point(509, 20);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(75, 21);
             this.BtnNext.TabIndex = 0;
@@ -181,6 +174,5 @@ namespace Rectify11Installer
         private Controls.WinUIButton BtnBack;
         private Controls.WinUIButton BtnNext;
         private Controls.FunnyExplorer.Controls.NavigationButton navigationButton1;
-        private ThemedLabel themedLabel1;
     }
 }
