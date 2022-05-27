@@ -25,7 +25,7 @@ namespace Rectify11Installer.Core
 
             label1.Location = new Point(
     this.ClientSize.Width / 2 - label1.Size.Width / 2,
-    this.ClientSize.Height - label1.Size.Height - 20);
+    this.ClientSize.Height - label1.Size.Height - 40);
             label1.Anchor = AnchorStyles.None;
         }
         private void SetupModeForm_Shown(object sender, EventArgs e)

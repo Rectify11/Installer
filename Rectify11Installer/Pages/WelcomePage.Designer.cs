@@ -115,11 +115,11 @@ namespace Rectify11Installer.Pages
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 311);
+            this.label3.Location = new System.Drawing.Point(3, 315);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 15);
             this.label3.TabIndex = 15;
-            this.label3.Text = "Version: 2.9.5";
+            this.label3.Text = "Version: 2.9.6";
             // 
             // WelcomePage
             // 
