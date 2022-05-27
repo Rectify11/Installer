@@ -13,8 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup MSBuild Path
-      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
