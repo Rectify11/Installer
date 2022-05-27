@@ -13,11 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Setup MSBuild Path
+      uses: warrenbuckley/Setup-MSBuild@v1
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Restore NuGet Packages
+      run: nuget restore Rectify11Installer.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: msbuild Rectify11Installer.sln /p:Configuration=Release
