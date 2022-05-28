@@ -51,7 +51,6 @@ namespace Rectify11Installer.Controls
                 return parms;
             }
         }
-        bool i = false;
         protected unsafe override void OnPaint(PaintEventArgs args)
         {
             base.OnPaint(args);
@@ -110,7 +109,7 @@ namespace Rectify11Installer.Controls
             //TextRenderer.DrawText(args.Graphics, _ButtonText, Font, new Point(Width + 3, this.Height / 2), ForeColor, flags);
 
             var hdc = args.Graphics.GetHdc();
-            VisualStyleRenderer renderer = new VisualStyleRenderer(VisualStyleElement.Window.Caption.Active);
+            VisualStyleRenderer renderer = new(VisualStyleElement.Window.Caption.Active);
 
             IntPtr memoryHdc = NativeMethods.CreateCompatibleDC(hdc);
 
@@ -118,15 +117,14 @@ namespace Rectify11Installer.Controls
 
 
             // Create a device-independent bitmap and select it into our DC
-            NativeMethods.BITMAPINFO info = new NativeMethods.BITMAPINFO();
+            NativeMethods.BITMAPINFO info = new();
             info.biSize = Marshal.SizeOf(info);
             info.biWidth = buttonImage.Width;
             info.biHeight = -buttonImage.Height;
             info.biPlanes = 1;
             info.biBitCount = 32;
             info.biCompression = 0; // BI_RGB
-            int* pixels;
-            IntPtr dib = NativeMethods.CreateDIBSection(memoryHdc, info, 0, out pixels, IntPtr.Zero, 0);
+            IntPtr dib = NativeMethods.CreateDIBSection(memoryHdc, info, 0, out int* pixels, IntPtr.Zero, 0);
             for (int y = 0; y < buttonImage.Height; y++)
             {
                 for (int x = 0; x < buttonImage.Width; x++)
@@ -152,10 +150,12 @@ namespace Rectify11Installer.Controls
             NativeMethods.SelectObject(memoryHdc, dib);
 
             var rect = new RECT(0, 0, bounds.Right - bounds.Left, bounds.Bottom - bounds.Top);
-            var opt = new NativeMethods.DTTOPTS();
-            opt.dwSize = Marshal.SizeOf<NativeMethods.DTTOPTS>();
-            opt.crText = ColorTranslator.ToWin32(ForeColor);
-            opt.dwFlags = DTT_TEXTCOLOR | DTT_COMPOSITED;
+            var opt = new NativeMethods.DTTOPTS
+            {
+                dwSize = Marshal.SizeOf<NativeMethods.DTTOPTS>(),
+                crText = ColorTranslator.ToWin32(ForeColor),
+                dwFlags = DTT_TEXTCOLOR | DTT_COMPOSITED
+            };
 
             NativeMethods.SelectObject(memoryHdc, Font.ToHfont());
 

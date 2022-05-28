@@ -52,7 +52,7 @@ namespace Rectify11Installer
             }
         }
 
-        public static StylePart GetButtonPart(VisualStyle v)
+        public static StylePart? GetButtonPart(VisualStyle v)
         {
             foreach (var classes in v.Classes.Values)
             {
@@ -70,7 +70,5 @@ namespace Rectify11Installer
 
             return null;
         }
-
-        
     }
 }

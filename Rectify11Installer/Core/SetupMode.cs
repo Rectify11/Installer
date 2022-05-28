@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,8 +33,18 @@ namespace Rectify11Installer.Core
             setup.SetValue("SetupType", 1, RegistryValueKind.DWord); //reboot
             setup.SetValue("SetupPhase", 1, RegistryValueKind.DWord); //?
 
-            var path = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            setup.SetValue("CmdLine", $"\"{path}\" /setup", RegistryValueKind.String);
+            var mod = Process.GetCurrentProcess().MainModule;
+
+            if (mod != null)
+            {
+                var path = mod.FileName;
+                setup.SetValue("CmdLine", $"\"{path}\" /setup", RegistryValueKind.String);
+            }
+            else
+            {
+                Exit(); //This is done just in case if it gets enabled
+                throw new Exception("Process.GetCurrentProcess().MainModule returned null");
+            }
             setup.Close();
         }
 

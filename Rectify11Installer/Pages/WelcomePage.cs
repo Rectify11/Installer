@@ -29,6 +29,7 @@ namespace Rectify11Installer.Pages
         public WelcomePage()
         {
             InitializeComponent();
+            lblVersion.Text = "Version: " + ProductVersion;
         }
     }
 }
