@@ -1,4 +1,5 @@
-﻿using Rectify11Installer.Win32;
+﻿using libmsstyle;
+using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,8 +42,6 @@ namespace Rectify11Installer.Controls
         }
 
         public new EventHandler? Click;
-
-       // bool fadeIn = false;
         public FakeCommandLink()
         {
             InitializeComponent();
@@ -69,10 +68,30 @@ namespace Rectify11Installer.Controls
             lblTitle.BackColor = Color.Transparent;
             lblBody.BackColor = Color.Transparent;
 
-            if (Theme.IsUsingDarkMode)
+            SetState(ThemeParts.Normal);
+            pictureBox1.Image = GetGlyphImage(ThemeParts.Normal);
+        }
+        private void SetState(ThemeParts s)
+        {
+            VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+            if (currentTheme != null)
             {
-                pictureBox1.Image = Properties.Resources.Dark_CommandLinkGlyph_Normal; 
+                var part = Theme.GetCommandLinkPart(currentTheme);
+                var renderer2 = new PartRenderer(currentTheme, part);
+                BackgroundImage = renderer2.RenderPreview(s, Width, Height);
             }
+        }
+
+        private Bitmap GetGlyphImage(ThemeParts s)
+        {
+            VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+            if (currentTheme != null)
+            {
+                var part = Theme.GetCommandLinkGlyphPart(currentTheme);
+                var renderer2 = new PartRenderer(currentTheme, part);
+                return renderer2.RenderPreview(s,  pictureBox1.Width, pictureBox1.Height);
+            }
+            return null;
         }
 
         private void TheMouseClick(object? sender, EventArgs e)
@@ -85,16 +104,9 @@ namespace Rectify11Installer.Controls
         {
             if (Enabled)
             {
-                BackColor = Color.Transparent;
+                SetState(ThemeParts.Normal);
 
-                if (Theme.IsUsingDarkMode)
-                {
-                    pictureBox1.Image = Properties.Resources.Dark_CommandLinkGlyph_Normal;
-                }
-                else
-                {
-                    pictureBox1.Image = Properties.Resources.CommandLinkGlyph_Normal;
-                }
+                pictureBox1.Image = GetGlyphImage(ThemeParts.Normal);
                 Color forecolor = Theme.IsUsingDarkMode ? DefaultBackColor : Color.Black;
 
                 lblTitle.ForeColor = forecolor;
@@ -105,16 +117,9 @@ namespace Rectify11Installer.Controls
         {
             if (Enabled)
             {
-                BackColor = Color.FromArgb(64, 20, 20, 20);
-                if (Theme.IsUsingDarkMode)
-                {
-                    pictureBox1.Image = Properties.Resources.Dark_CommandLinkGlyph_Pressed;
-                }
-                else
-                {
-                    pictureBox1.Image = Properties.Resources.CommandLinkGlyph_Pressed;
-                }
-              
+                SetState(ThemeParts.Pressed);
+                pictureBox1.Image = GetGlyphImage(ThemeParts.Pressed);
+
 
                 lblTitle.ForeColor = PressedText;
                 lblBody.ForeColor = PressedText;
@@ -123,65 +128,14 @@ namespace Rectify11Installer.Controls
 
         private void TheMouseLeave(object? sender, EventArgs e)
         {
-            //fader.Stop();
-            //fadeIn = true;
-            //fader.Start();
-            BackColor = Color.Transparent;
+            SetState(ThemeParts.Normal);
+            pictureBox1.Image = GetGlyphImage(ThemeParts.Normal);
         }
 
         private void TheMouseEnter(object? sender, EventArgs e)
         {
-            //fader.Stop();
-
-
-
-            int t = 64;
-            if (Theme.IsUsingDarkMode)
-                t = 255;
-            BackColor = Color.FromArgb(t, 40, 40, 40);
-            //fadeIn = false;
-            //fader.Start();
-        }
-
-        //private void fader_Tick(object sender, EventArgs e)
-        //{
-            //if (fadeIn)
-            //{
-            //    var basee = BackColor;
-
-            //    BackColor = Color.FromArgb(basee.R - 1, basee.G - 1, basee.B - 1);
-
-            //    if (BackColor.R <= 0)
-            //    {
-            //        fader.Stop();
-            //    }
-
-            //  //  Wait(10);
-            //}
-            //else
-            //{
-            //    var basee = BackColor;// Color.FromArgb(40, 40, 40);
-
-            //    BackColor = Color.FromArgb(basee.R + 1, basee.G + 1, basee.B + 1);
-
-            //    if (BackColor.R >= 40)
-            //    {
-            //        fader.Stop();
-            //    }
-
-            //    Wait(10);
-            //}
-        //}
-
-        public static void Wait(int time)
-        {
-            Thread thread = new(delegate ()
-            {
-                System.Threading.Thread.Sleep(time);
-            });
-            thread.Start();
-            while (thread.IsAlive)
-                Application.DoEvents();
+            SetState(ThemeParts.Hot);
+            pictureBox1.Image = GetGlyphImage(ThemeParts.Hot);
         }
     }
 }

@@ -47,7 +47,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.CommandLinkGlyph_Normal;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(20, 20);
