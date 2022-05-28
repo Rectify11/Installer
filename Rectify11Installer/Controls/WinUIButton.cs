@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
 using Rectify11Installer.Win32;
 using System.Runtime.InteropServices;
+using libmsstyle;
 
 namespace Rectify11Installer.Controls
 {
-    public class WinUIButton : Button
+    public class WinUIButton : Control
     {
         private string _ButtonText = "";
         [Browsable(false), DesignerSerializationVisibility(
@@ -38,8 +39,8 @@ namespace Rectify11Installer.Controls
         }
         public WinUIButton()
         {
-            BackColor = Color.Transparent;
             SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            BackColor = Color.Transparent;
         }
         protected override CreateParams CreateParams
         {
@@ -50,8 +51,10 @@ namespace Rectify11Installer.Controls
                 return parms;
             }
         }
+        bool i = false;
         protected unsafe override void OnPaint(PaintEventArgs args)
         {
+            base.OnPaint(args);
             Bitmap? buttonImage = null;
             if (!Enabled)
             {
@@ -59,51 +62,43 @@ namespace Rectify11Installer.Controls
             }
 
             //Hack to fix black borders, but we lose transpancy
-           // args.Graphics.Clear(Theme.IsUsingDarkMode ? Color.Black : Color.White);
+            args.Graphics.Clear(Color.White);
 
+            VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+
+            //Update text borders
             if (Theme.IsUsingDarkMode)
-            {
                 ForeColor = Color.White;
-                switch (CurrentState)
-                {
-                    case ButtonState.Normal:
-                        buttonImage = Properties.Resources.Button_Dark_Normal_96;
-                        break;
-                    case ButtonState.Disabled:
-                        buttonImage = Properties.Resources.Button_Dark_Disabled_96;
-                        break;
-                    case ButtonState.Hover:
-                        buttonImage = Properties.Resources.Button_Dark_Hot_96;
-                        break;
-                    case ButtonState.HoverClicked:
-                        buttonImage = Properties.Resources.Button_Dark_Pressed_96;
-                        break;
-                    default:
-                        break;
-                }
+            else
+                ForeColor = Color.Black;
+
+            ThemeParts tpart = ThemeParts.Defaulted;
+            switch (CurrentState)
+            {
+                case ButtonState.Normal:
+                    tpart = ThemeParts.Normal;
+                    break;
+                case ButtonState.Disabled:
+                    tpart = ThemeParts.Disabled;
+                    break;
+                case ButtonState.Hover:
+                    tpart = ThemeParts.Hot;
+                    break;
+                case ButtonState.HoverClicked:
+                    tpart = ThemeParts.Pressed;
+                    break;
+                default:
+                    break;
+            }
+            if (DesignMode)
+            {
+                buttonImage = new Bitmap(Width, Height);
             }
             else
             {
-                //light
-                ForeColor = Color.Black;
-
-                switch (CurrentState)
-                {
-                    case ButtonState.Normal:
-                        buttonImage = Properties.Resources.Button_LightMode_Normal_96;
-                        break;
-                    case ButtonState.Disabled:
-                        buttonImage = Properties.Resources.Button_LightMode_Disabled_96;
-                        break;
-                    case ButtonState.Hover:
-                        buttonImage = Properties.Resources.Button_LightMode_Hot_96;
-                        break;
-                    case ButtonState.HoverClicked:
-                        buttonImage = Properties.Resources.Button_LightMode_Pressed_96;
-                        break;
-                    default:
-                        break;
-                }
+                var part = Theme.GetButtonPart(currentTheme);
+                var renderer2 = new PartRenderer(currentTheme, part);
+                buttonImage = renderer2.RenderPreview(tpart, Width, Height);
             }
 
             if (buttonImage == null)
@@ -111,13 +106,11 @@ namespace Rectify11Installer.Controls
                 return;
             }
 
-            //args.Graphics.DrawImage(buttonImage, 0, 0, Width, Height);
             //TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
             //TextRenderer.DrawText(args.Graphics, _ButtonText, Font, new Point(Width + 3, this.Height / 2), ForeColor, flags);
 
-            VisualStyleRenderer renderer = new VisualStyleRenderer(VisualStyleElement.Window.Caption.Active);
-
             var hdc = args.Graphics.GetHdc();
+            VisualStyleRenderer renderer = new VisualStyleRenderer(VisualStyleElement.Window.Caption.Active);
 
             IntPtr memoryHdc = NativeMethods.CreateCompatibleDC(hdc);
 
@@ -127,8 +120,8 @@ namespace Rectify11Installer.Controls
             // Create a device-independent bitmap and select it into our DC
             NativeMethods.BITMAPINFO info = new NativeMethods.BITMAPINFO();
             info.biSize = Marshal.SizeOf(info);
-            info.biWidth = bounds.Width;
-            info.biHeight = -bounds.Height;
+            info.biWidth = buttonImage.Width;
+            info.biHeight = -buttonImage.Height;
             info.biPlanes = 1;
             info.biBitCount = 32;
             info.biCompression = 0; // BI_RGB
@@ -140,17 +133,17 @@ namespace Rectify11Installer.Controls
                 {
                     var pixel = buttonImage.GetPixel(x, y);
                     var d = Theme.IsUsingDarkMode ? Color.Black : Color.White;
-                    if (pixel.A == 0)
-                    {
-                        pixel = d;
-                    }
-                    else
-                    {
-                        if (pixel.A != 255)
-                        {
-                            pixel = d;
-                        }
-                    }
+                    //if (pixel.A == 0)
+                    //{
+                    //    pixel = d;
+                    //}
+                    //else
+                    //{
+                    //    if (pixel.A != 255)
+                    //    {
+                    //        pixel = d;
+                    //    }
+                    //}
 
                     *pixels++ = pixel.ToArgb();
                 }
@@ -169,11 +162,12 @@ namespace Rectify11Installer.Controls
             var h = NativeMethods.DrawThemeTextEx(renderer.Handle, memoryHdc, NativeMethods.WP_CAPTION, NativeMethods.CS_ACTIVE, ButtonText, -1, (int)(TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine), ref rect, ref opt);
 
             const int SRCCOPY = 0x00CC0020;
-           NativeMethods.BitBlt(hdc, bounds.Left, bounds.Top, bounds.Width, bounds.Height, memoryHdc, 0, 0, SRCCOPY);
+            NativeMethods.BitBlt(hdc, bounds.Left, bounds.Top, bounds.Width, bounds.Height, memoryHdc, 0, 0, SRCCOPY);
             //NativeMethods.TransparentBlt(hdc, bounds.Left, bounds.Top, bounds.Width, bounds.Height, memoryHdc, 0, 0, bounds.Width, bounds.Height, (uint)Color.Magenta.ToArgb());
 
 
             args.Graphics.ReleaseHdc(hdc);
+
         }
 
         protected override void OnMouseEnter(EventArgs e)
@@ -200,6 +194,7 @@ namespace Rectify11Installer.Controls
 
             CurrentState = ButtonState.Normal;
             InvalidateEx();
+
         }
 
         protected override void OnMouseDown(MouseEventArgs mevent)
@@ -232,10 +227,18 @@ namespace Rectify11Installer.Controls
         {
             if (Parent == null)
                 return;
-
             this.Invalidate();
             //Rectangle rc = new(this.Location, this.Size);
             //Parent.Invalidate(rc, true);
+        }
+        private void InvalidateExEx()
+        {
+            if (Parent == null)
+                return;
+
+            this.Invalidate();
+            Rectangle rc = new(this.Location, this.Size);
+            Parent.Invalidate(rc, true);
         }
         enum ButtonState
         {
@@ -245,7 +248,7 @@ namespace Rectify11Installer.Controls
             HoverClicked
         }
 
-        protected override void OnPaintBackground(PaintEventArgs pevent)
+        protected override void OnPaintBackground(PaintEventArgs e)
         {
 
         }

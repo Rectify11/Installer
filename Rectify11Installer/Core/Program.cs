@@ -59,6 +59,17 @@ namespace Rectify11Installer
             winver[1] = 0x5a;
             File.WriteAllBytes(Application.StartupPath + "/files/winver.exe", winver);
 
+            try
+            {
+                Theme.LoadTheme();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failure while loading theming. The error details can be found below.\n" + ex.ToString(), "Initialization Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!setupMode)
+                    return;
+            }
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

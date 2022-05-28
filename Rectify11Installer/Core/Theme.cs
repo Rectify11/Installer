@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using libmsstyle;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Rectify11Installer
 {
     public class Theme
     {
+        public static VisualStyle DarkStyle = new VisualStyle();
+        public static VisualStyle LightStyle = new VisualStyle();
         public static bool IsUsingDarkMode
         {
             get
@@ -31,6 +34,13 @@ namespace Rectify11Installer
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
         }
 
+
+        public static void LoadTheme()
+        {
+            DarkStyle.Load(Application.StartupPath+"\\files\\Dark.msstyles");
+            LightStyle.Load(Application.StartupPath + "\\files\\light.msstyles");
+        }
+
         private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
         {
             switch (e.Category)
@@ -41,5 +51,26 @@ namespace Rectify11Installer
                     break;
             }
         }
+
+        public static StylePart GetButtonPart(VisualStyle v)
+        {
+            foreach (var classes in v.Classes.Values)
+            {
+                if (classes.ClassName == "Button")
+                {
+                    foreach (var parts in classes.Parts)
+                    {
+                        if (parts.Value.PartName == "PUSHBUTTON")
+                        {
+                            return parts.Value;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        
     }
 }

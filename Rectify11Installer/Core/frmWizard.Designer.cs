@@ -114,7 +114,6 @@ namespace Rectify11Installer
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.Size = new System.Drawing.Size(75, 21);
             this.BtnBack.TabIndex = 1;
-            this.BtnBack.UseVisualStyleBackColor = false;
             this.BtnBack.Visible = false;
             this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
@@ -127,7 +126,6 @@ namespace Rectify11Installer
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(75, 21);
             this.BtnNext.TabIndex = 0;
-            this.BtnNext.UseVisualStyleBackColor = false;
             this.BtnNext.Visible = false;
             this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 

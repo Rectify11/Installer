@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -283,7 +284,7 @@ namespace libmsstyle
             m_moduleHandle = Win32Api.LoadLibraryEx(file, IntPtr.Zero, Win32Api.LoadLibraryFlags.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE);
             if (m_moduleHandle == IntPtr.Zero)
             {
-                throw new Exception("Couldn't open file as PE resource!");
+                throw new Exception("Couldn't open file as PE resource! Error: "+new Win32Exception().Message);
             }
 
             byte[] cmap = ResourceAccess.GetResource(m_moduleHandle, "CMAP", "CMAP");

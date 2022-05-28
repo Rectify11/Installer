@@ -310,7 +310,6 @@ namespace Rectify11Installer
         {
             string dllName = Path.GetFileName(source);
             var WinSxSFilePath = usr.Path + @"\" + dllName;
-            WinSxSFilePath = WinSxSFilePath.Replace(@"C:\Windows\", @"\SystemRoot\WinSxS\");
 
             //Rename old hardlink
             try

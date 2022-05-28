@@ -16,5 +16,10 @@ namespace libmsstyle
         {
             Parts = new Dictionary<int, StylePart>();
         }
+
+        public override string ToString()
+        {
+            return ClassName;
+        }
     }
 }

@@ -95,7 +95,6 @@
             this.winuiButton1.Name = "winuiButton1";
             this.winuiButton1.Size = new System.Drawing.Size(75, 23);
             this.winuiButton1.TabIndex = 19;
-            this.winuiButton1.UseVisualStyleBackColor = false;
             this.winuiButton1.Click += new System.EventHandler(this.winuiButton1_Click);
             // 
             // RebootPage
