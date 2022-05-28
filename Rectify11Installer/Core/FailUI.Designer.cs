@@ -67,7 +67,7 @@
             this.darkAwareFlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.darkAwareFlowLayoutPanel1.Location = new System.Drawing.Point(52, 89);
             this.darkAwareFlowLayoutPanel1.Name = "darkAwareFlowLayoutPanel1";
-            this.darkAwareFlowLayoutPanel1.Size = new System.Drawing.Size(601, 188);
+            this.darkAwareFlowLayoutPanel1.Size = new System.Drawing.Size(601, 311);
             this.darkAwareFlowLayoutPanel1.TabIndex = 2;
             this.darkAwareFlowLayoutPanel1.WrapContents = false;
             // 
@@ -95,7 +95,7 @@
             this.btnRestart.BackColor = System.Drawing.Color.Transparent;
             this.btnRestart.ButtonText = "Restart now";
             this.btnRestart.ForeColor = System.Drawing.Color.White;
-            this.btnRestart.Location = new System.Drawing.Point(578, 283);
+            this.btnRestart.Location = new System.Drawing.Point(578, 406);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(75, 23);
             this.btnRestart.TabIndex = 3;

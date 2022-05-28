@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,21 @@ namespace Rectify11Installer.Controls
     }
     public class DarkAwareFlowLayoutPanel : FlowLayoutPanel
     {
+        private bool _ForceDark = false;
+        [Description("Force Dark Mode UI")]
+        [DefaultValue(false)]
+        public bool ForceDark
+        {
+            get
+            {
+                return _ForceDark;
+            }
+            set
+            {
+                _ForceDark = value;
+                UpdateTheming();
+            }
+        }
         public DarkAwareFlowLayoutPanel()
         {
             Theme.OnThemeChanged += delegate (object? sender, EventArgs e)
@@ -48,7 +64,7 @@ namespace Rectify11Installer.Controls
         }
         private void UpdateTheming()
         {
-            if (Theme.IsUsingDarkMode)
+            if (Theme.IsUsingDarkMode || ForceDark)
             {
                 FrmWizard.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             }
