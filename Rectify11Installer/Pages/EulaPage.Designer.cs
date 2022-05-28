@@ -48,6 +48,7 @@ namespace Rectify11Installer.Pages
             this.richTextBox1.Size = new System.Drawing.Size(423, 306);
             this.richTextBox1.TabIndex = 14;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
             // 
             // pictureBox1
             // 

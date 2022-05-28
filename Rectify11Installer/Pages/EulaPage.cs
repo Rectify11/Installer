@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,12 @@ namespace Rectify11Installer.Pages
                     }
                     break;
             }
+        }
+
+        private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            if (e.LinkText != null)
+                Process.Start(new ProcessStartInfo() { FileName=e.LinkText, UseShellExecute=true});
         }
     }
 }
