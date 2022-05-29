@@ -30,52 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.ProgressBar = new Rectify11Installer.Controls.CustomProgressBar();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblDescript = new System.Windows.Forms.Label();
-            this.lblCurrent = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ProgressBar
             // 
-            this.ProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ProgressBar.Location = new System.Drawing.Point(0, 307);
+            this.ProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.ProgressBar.Error = false;
+            this.ProgressBar.Location = new System.Drawing.Point(117, 228);
             this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(596, 23);
+            this.ProgressBar.Size = new System.Drawing.Size(428, 23);
             this.ProgressBar.TabIndex = 14;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Variable Display", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(10, 8);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(241, 32);
-            this.lblTitle.TabIndex = 15;
-            this.lblTitle.Text = "Did you know that...";
-            // 
-            // lblDescript
-            // 
-            this.lblDescript.Font = new System.Drawing.Font("Segoe UI Variable Text Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDescript.ForeColor = System.Drawing.Color.White;
-            this.lblDescript.Location = new System.Drawing.Point(10, 52);
-            this.lblDescript.Name = "lblDescript";
-            this.lblDescript.Size = new System.Drawing.Size(586, 196);
-            this.lblDescript.TabIndex = 16;
-            this.lblDescript.Text = "Rectify11 has better Win32 DPI support because we scale controls correctly.";
-            // 
-            // lblCurrent
-            // 
-            this.lblCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCurrent.AutoSize = true;
-            this.lblCurrent.Font = new System.Drawing.Font("Segoe UI Variable Text Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCurrent.ForeColor = System.Drawing.Color.White;
-            this.lblCurrent.Location = new System.Drawing.Point(3, 283);
-            this.lblCurrent.Name = "lblCurrent";
-            this.lblCurrent.Size = new System.Drawing.Size(115, 21);
-            this.lblCurrent.TabIndex = 17;
-            this.lblCurrent.Text = "Starting installer";
             // 
             // timer1
             // 
@@ -83,26 +51,48 @@
             this.timer1.Interval = 6000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(-13, 153);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(653, 35);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Initializing...";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(226, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // ProgressPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblCurrent);
-            this.Controls.Add(this.lblDescript);
-            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ProgressBar);
             this.Name = "ProgressPage";
-            this.WizardTopText = "Please wait";
+            this.WizardTopText = "Installing Rectify11";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private Controls.CustomProgressBar ProgressBar;
-        private Label lblTitle;
-        private Label lblDescript;
-        private Label lblCurrent;
         private System.Windows.Forms.Timer timer1;
+        private Label label1;
+        private PictureBox pictureBox1;
     }
 }

@@ -33,12 +33,11 @@
             // 
             // lblOperation
             // 
-            this.lblOperation.AutoSize = true;
             this.lblOperation.Font = new System.Drawing.Font("Segoe UI Variable Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblOperation.ForeColor = System.Drawing.Color.White;
             this.lblOperation.Location = new System.Drawing.Point(8, 16);
             this.lblOperation.Name = "lblOperation";
-            this.lblOperation.Size = new System.Drawing.Size(322, 21);
+            this.lblOperation.Size = new System.Drawing.Size(603, 193);
             this.lblOperation.TabIndex = 13;
             this.lblOperation.Text = "You are about to do the following operation: ";
             // 
@@ -50,7 +49,6 @@
             this.Name = "ConfirmOperationPage";
             this.WizardTopText = "Summary";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

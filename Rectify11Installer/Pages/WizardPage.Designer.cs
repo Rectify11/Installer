@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Name = "WizardPage";
-            this.Size = new System.Drawing.Size(596, 330);
+            this.Size = new System.Drawing.Size(640, 398);
             this.ResumeLayout(false);
 
         }

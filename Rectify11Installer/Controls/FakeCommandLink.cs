@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -115,16 +116,29 @@ namespace Rectify11Installer.Controls
             SetDoubleBuffered(lblTitle);
             SetDoubleBuffered(lblBody);
             SetDoubleBuffered(pictureBox1);
+            Invalidate();
         }
         private void SetState(ThemeParts s)
         {
-            VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
-            if (currentTheme != null)
+            //IsDesignMode and licesning did not work for me
+            if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
-                var part = Theme.GetCommandLinkPart(currentTheme);
-                var renderer2 = new PartRenderer(currentTheme, part);
-                BackgroundImage = renderer2.RenderPreview(s, Width, Height);
+                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                if (currentTheme != null)
+                {
+                    var part = Theme.GetCommandLinkPart(currentTheme);
+                    var renderer2 = new PartRenderer(currentTheme, part);
+                    BackgroundImage = renderer2.RenderPreview(s, Width, Height);
+                }
             }
+            else
+            {
+                //BackgroundImage = new Bitmap(Width, Height);
+                //Graphics g = Graphics.FromImage(BackgroundImage);
+                //Rectangle rect = new Rectangle(0, 0, Width, Height);
+                //LinearGradientBrush lBrush = new LinearGradientBrush(rect, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
+                //g.FillRectangle(lBrush, rect);
+            } 
         }
         public static void SetDoubleBuffered(System.Windows.Forms.Control c)
         {
@@ -140,13 +154,27 @@ namespace Rectify11Installer.Controls
         }
         private Bitmap? GetGlyphImage(ThemeParts s)
         {
-            VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
-            if (currentTheme != null)
+            if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
-                var part = Theme.GetCommandLinkGlyphPart(currentTheme);
-                var renderer2 = new PartRenderer(currentTheme, part);
-                return renderer2.RenderPreview(s, pictureBox1.Width, pictureBox1.Height);
+                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                if (currentTheme != null)
+                {
+                    var part = Theme.GetCommandLinkGlyphPart(currentTheme);
+                    var renderer2 = new PartRenderer(currentTheme, part);
+                    return renderer2.RenderPreview(s, pictureBox1.Width, pictureBox1.Height);
+                }
             }
+            else
+            {
+                //var b = new Bitmap(Width, Height);
+                //Graphics g = Graphics.FromImage(b);
+                //Rectangle rect = new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height);
+                //LinearGradientBrush lBrush = new LinearGradientBrush(rect, Color.Blue, Color.DodgerBlue, LinearGradientMode.BackwardDiagonal);
+                //g.FillRectangle(lBrush, rect);
+                //return b;
+            }
+
+          
             return null;
         }
 

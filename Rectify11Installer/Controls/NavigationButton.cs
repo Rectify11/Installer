@@ -1,7 +1,9 @@
 ﻿using libmsstyle;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,16 +103,28 @@ namespace Rectify11Installer.Controls
         }
         private void SetState(ThemeParts c)
         {
-            if (DesignMode)
+            //IsDesignMode and licesning did not work for me
+            if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
-                Glyph = new Bitmap(Width, Height);
+                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                if (currentTheme != null)
+                {
+                    var part = Theme.GetNavArrowPart(currentTheme, t);
+                    var renderer2 = new PartRenderer(currentTheme, part);
+                    Glyph = renderer2.RenderPreview(c, Width, Height);
+                }
+                else
+                {
+                    Glyph = new Bitmap(Width, Height);
+                }
             }
             else
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
-                var part = Theme.GetNavArrowPart(currentTheme, t);
-                var renderer2 = new PartRenderer(currentTheme, part);
-                Glyph = renderer2.RenderPreview(c, Width, Height);
+                Glyph = new Bitmap(Width, Height);
+                Graphics g = Graphics.FromImage(Glyph);
+                Rectangle rect = new Rectangle(0, 0, Width, Height);
+                LinearGradientBrush lBrush = new LinearGradientBrush(rect, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
+                g.FillRectangle(lBrush, rect);
             }
             this.Invalidate();
         }

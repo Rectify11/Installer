@@ -79,7 +79,7 @@ namespace Rectify11Installer
         {
             ProgressPage.Invoke((MethodInvoker)delegate ()
             {
-                ProgressPage.CurrentProgressText.Text = text;
+               // ProgressPage.CurrentProgressText.Text = text;
             });
         }
     }

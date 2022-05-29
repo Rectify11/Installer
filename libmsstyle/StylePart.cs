@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace libmsstyle
 {
-    public class StylePart
+    public class StylePart : IDisposable
     {
         public int PartId { get; set; }
         public string PartName { get; set; }
@@ -30,6 +30,11 @@ namespace libmsstyle
                     yield return imgProp;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            States.GetEnumerator().Dispose();
         }
     }
 }

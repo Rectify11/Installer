@@ -39,13 +39,16 @@ namespace Rectify11Installer.Pages
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.BackColor = System.Drawing.Color.Black;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(159, 21);
+            this.richTextBox1.Location = new System.Drawing.Point(20, 84);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(423, 306);
+            this.richTextBox1.Size = new System.Drawing.Size(598, 275);
             this.richTextBox1.TabIndex = 14;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
@@ -53,9 +56,9 @@ namespace Rectify11Installer.Pages
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.eula;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 177);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
@@ -64,7 +67,7 @@ namespace Rectify11Installer.Pages
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(158, 3);
+            this.label1.Location = new System.Drawing.Point(101, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(397, 15);
             this.label1.TabIndex = 20;

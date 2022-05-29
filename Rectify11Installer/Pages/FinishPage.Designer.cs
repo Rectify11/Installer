@@ -32,7 +32,7 @@ namespace Rectify11Installer.Pages
         {
             this.lblText = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new DarkAwareFlowLayoutPanel();
+            this.flowLayoutPanel1 = new Rectify11Installer.Controls.DarkAwareFlowLayoutPanel();
             this.btnCopy = new Rectify11Installer.Controls.WinUIButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -68,7 +68,7 @@ namespace Rectify11Installer.Pages
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(591, 166);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(632, 166);
             this.flowLayoutPanel1.TabIndex = 15;
             this.flowLayoutPanel1.WrapContents = false;
             // 

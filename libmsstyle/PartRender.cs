@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace libmsstyle
 {
-    public class PartRenderer
+    public class PartRenderer : IDisposable
     {
         private VisualStyle m_style;
         private StylePart m_part;
@@ -20,11 +20,15 @@ namespace libmsstyle
             m_part = part;
         }
 
+        public void Dispose()
+        {
+            m_part.Dispose();
+        }
+
         public Bitmap RenderPreview(ThemeParts t, int width, int height)
         {
             var idx = (int)t;
-            StyleState state;
-            if (!m_part.States.TryGetValue(idx, out state))
+            if (!m_part.States.TryGetValue(idx, out _))
             {
                 return null;
             }
@@ -34,7 +38,7 @@ namespace libmsstyle
             {
                 DrawBackground(g, idx);
             }
-
+            GC.Collect();
             return surface;
         }
 
@@ -55,15 +59,30 @@ namespace libmsstyle
 
         private void DrawBackgroundImageFill(Graphics g, int idx)
         {
-            var imageFileProp = m_part.States[0].Properties.Find((p) => p.Header.nameID == (int)IDENTIFIER.IMAGEFILE);
+            bool incor = false;
+            var imageFileProp = m_part.States[idx].Properties.Find((p) => p.Header.nameID == (int)IDENTIFIER.IMAGEFILE);
             if (imageFileProp == default(StyleProperty))
             {
-                imageFileProp = m_part.States[0].Properties.Find((p) => p.Header.nameID == (int)IDENTIFIER.IMAGEFILE1);
+                imageFileProp = m_part.States[idx].Properties.Find((p) => p.Header.nameID == (int)IDENTIFIER.IMAGEFILE1);
                 if (imageFileProp == default(StyleProperty))
                 {
-                    return;
+                    incor = true;
                 }
             }
+
+            if (incor)
+            {
+                imageFileProp = m_part.States[0].Properties.Find((p) => p.Header.nameID == (int)IDENTIFIER.IMAGEFILE);
+                if (imageFileProp == default(StyleProperty))
+                {
+                    imageFileProp = m_part.States[0].Properties.Find((p) => p.Header.nameID == (int)IDENTIFIER.IMAGEFILE1);
+                    if (imageFileProp == default(StyleProperty))
+                    {
+                        return;
+                    }
+                }
+            }
+          
 
             Image fullImage = null;
 

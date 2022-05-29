@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Rectify11Installer.Pages
 {
@@ -23,14 +15,17 @@ namespace Rectify11Installer.Pages
             progressBar1.Value -= 1;
             if (progressBar1.Value <= 0)
             {
-                winuiButton1_Click(this, new EventArgs());
                 timer1.Stop();
+                winuiButton1_Click(this, new EventArgs());
             }
         }
-
+        public void Start()
+        {
+            timer1.Start();
+        }
         private void winuiButton1_Click(object sender, EventArgs e)
         {
-            Process.Start("shutdown", "-r -t 0");
+            //Process.Start("shutdown", "-r -t 10");
         }
     }
 }

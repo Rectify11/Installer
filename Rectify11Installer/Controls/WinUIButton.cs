@@ -92,6 +92,11 @@ namespace Rectify11Installer.Controls
             if (DesignMode)
             {
                 buttonImage = new Bitmap(Width, Height);
+
+                Graphics g = Graphics.FromImage(buttonImage);
+                Rectangle rectt = new Rectangle(0, 0, Width, Height);
+                LinearGradientBrush lBrush = new LinearGradientBrush(rectt, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
+                g.FillRectangle(lBrush, rectt);
             }
             else
             {

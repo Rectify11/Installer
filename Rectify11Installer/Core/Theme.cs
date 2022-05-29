@@ -38,7 +38,7 @@ namespace Rectify11Installer
 
         public static void LoadTheme()
         {
-            DarkStyle.Load(Application.StartupPath+"\\files\\Dark.msstyles");
+            DarkStyle.Load(Application.StartupPath + "\\files\\Dark.msstyles");
             LightStyle.Load(Application.StartupPath + "\\files\\light.msstyles");
         }
 
@@ -134,6 +134,44 @@ namespace Rectify11Installer
                     foreach (var parts in classes.Parts)
                     {
                         if (parts.Value.PartName == PartStr)
+                        {
+                            return parts.Value;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public static StylePart? GetProgressbarBG(VisualStyle v)
+        {
+            foreach (var classes in v.Classes.Values)
+            {
+                if (classes.ClassName == "Progress")
+                {
+                    foreach (var parts in classes.Parts)
+                    {
+                        if (parts.Value.PartName == "BAR")
+                        {
+                            return parts.Value;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public static StylePart? GetProgressbarFill(VisualStyle v)
+        {
+            foreach (var classes in v.Classes.Values)
+            {
+                if (classes.ClassName == "Progress")
+                {
+                    foreach (var parts in classes.Parts)
+                    {
+                        if (parts.Value.PartName == "FILL")
                         {
                             return parts.Value;
                         }

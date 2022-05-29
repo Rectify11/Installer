@@ -21,6 +21,7 @@ namespace Rectify11Installer
         private static readonly ConfirmOperationPage ConfirmOpPage = new();
         private static readonly ProgressPage ProgressPage = new();
         private static readonly UninstallConfirmPage UninstallConfirmPage = new();
+        private static readonly RebootPage RebootPage = new();
         private static FinishPage? FinishPage;
 
         private WizardPage CurrentPage;
@@ -49,14 +50,14 @@ namespace Rectify11Installer
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
             WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
-
-            Navigate(WelcomePage);
+            Navigate(RebootPage);
+            RebootPage.Start();
 
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
 
             navigationButton1.Location = new Point(
-                panel1.Width / 2 - navigationButton1.Size.Width / 2,
-                panel1.Height / 2 - navigationButton1.Size.Height / 2);
+                pnlBackForwardButton.Width / 2 - navigationButton1.Size.Width / 2,
+                pnlBackForwardButton.Height / 2 - navigationButton1.Size.Height / 2);
         }
         #region Welcome Page
 
@@ -110,12 +111,12 @@ namespace Rectify11Installer
             pnlMain.Controls.Add(page);
 
             lblTopText.Text = page.WizardTopText;
-            lblTopText.Visible = page.WizardShowTitle;
+            pnlTop.Visible = page.WizardShowTitle;
 
             if (page == WelcomePage)
             {
                 pnlBottom.Visible = false;
-                panel1.Visible = false;
+                pnlBackForwardButton.Visible = false;
                 UpdateFrame();
             }
             else if (page == EulaPage)
@@ -129,12 +130,15 @@ namespace Rectify11Installer
                 BtnBack.ButtonText = "Disagree";
                 BtnNext.ButtonText = "Agree";
 
-                panel1.Visible = true;
+                pnlBackForwardButton.Visible = true;
                 pnlBottom.Visible = true;
+                pnlTop.Visible = true;
                 UpdateFrame();
             }
             else if (page == ConfirmOpPage)
             {
+                pnlBackForwardButton.Visible = true;
+
                 BtnBack.Visible = true;
                 BtnNext.Visible = true;
 
@@ -143,7 +147,9 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Install";
-                panel1.Visible = true;
+                pnlBackForwardButton.Visible = true;
+                pnlTop.Visible = true;
+                UpdateFrame();
             }
             else if (page == FinishPage)
             {
@@ -160,7 +166,13 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Next";
-                panel1.Visible = true;
+                pnlTop.Visible = false;
+                UpdateFrame();
+            }
+            else if (page == ProgressPage)
+            {
+                pnlBottom.Visible = false;
+                UpdateFrame();
             }
             else if (page == UninstallConfirmPage)
             {
@@ -172,10 +184,18 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Uninstall";
-                panel1.Visible = true;
+                pnlBackForwardButton.Visible = true;
                 pnlBottom.Visible = true;
                 UpdateFrame();
             }
+            else if(page == RebootPage)
+            {
+                pnlBottom.Visible = false;
+                pnlBackForwardButton.Visible = false;
+                pnlTop.Visible = true;
+                UpdateFrame();
+            }
+
             else
             {
                 BtnBack.Visible = false;
@@ -186,7 +206,7 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Next";
-                panel1.Visible = false;
+                pnlBackForwardButton.Visible = false;
             }
 
             FixColors();
@@ -480,7 +500,7 @@ namespace Rectify11Installer
                 Navigate(ConfirmOpPage);
 
                 //Change text
-                ConfirmOpPage.TextLable.Text = "You are about to do the following operation:\nInstall Rectify11 on this Windows 11 Installation\n\nIt is recommended to save your work before installing.";
+                ConfirmOpPage.TextLable.Text = "You are about to do the following:\n\nInstall Rectify11 on this Windows 11 Installation\n\nPlease close everything and save your work as a reboot will be required at the end of the installation.";
             }
             else if (CurrentPage == ConfirmOpPage || CurrentPage == UninstallConfirmPage)
             {
@@ -533,79 +553,81 @@ namespace Rectify11Installer
                 wizard.SetProgress(0);
                 wizard.SetProgressText("Copying Files");
 
-                try
-                {
-                    if (!Directory.Exists(@"C:\Windows\Rectify11\"))
-                    {
-                        Directory.CreateDirectory(@"C:\Windows\Rectify11\");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Unable to create C:\Windows\Rectify11 folder:\n" + ex.ToString());
-                }
-                string iniPath = @"C:\Windows\Rectify11\work.ini";
+                //try
+                //{
+                //    if (!Directory.Exists(@"C:\Windows\Rectify11\"))
+                //    {
+                //        Directory.CreateDirectory(@"C:\Windows\Rectify11\");
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Unable to create C:\Windows\Rectify11 folder:\n" + ex.ToString());
+                //}
+                //string iniPath = @"C:\Windows\Rectify11\work.ini";
 
-                //delete old files
-                if (File.Exists(iniPath))
-                    File.Delete(iniPath);
+                ////delete old files
+                //if (File.Exists(iniPath))
+                //    File.Delete(iniPath);
 
-                IRectifyInstalllerInstallOptions options = InstallOptions;
+                //IRectifyInstalllerInstallOptions options = InstallOptions;
 
-                if (oldPage == ConfirmOpPage)
-                {
-                    //install
+                //if (oldPage == ConfirmOpPage)
+                //{
+                //    //install
 
-                    try
-                    {
-                        IniFile f = new IniFile(iniPath);
-                        f.Write("InstallEP", options.ShouldInstallExplorerPatcher.ToString());
-                        f.Write("InstallThemes", options.ShouldInstallThemes.ToString());
-                        f.Write("InstallWP", options.ShouldInstallWallpaper.ToString());
-                        f.Write("InstallVer", options.ShouldInstallWinver.ToString());
-                        f.Write("DoSafeInstall", options.DoSafeInstall.ToString());
-                        f.Write("Mode", "Install");
-                    }
-                    catch (Exception ex)
-                    {
-                        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to create:" + iniPath + "\n" + ex.ToString());
-                    }
-                    try
-                    {
-                        SetupMode.Enter();
-                    }
-                    catch (Exception ex)
-                    {
-                        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
-                    }
+                //    try
+                //    {
+                //        IniFile f = new IniFile(iniPath);
+                //        f.Write("InstallEP", options.ShouldInstallExplorerPatcher.ToString());
+                //        f.Write("InstallThemes", options.ShouldInstallThemes.ToString());
+                //        f.Write("InstallWP", options.ShouldInstallWallpaper.ToString());
+                //        f.Write("InstallVer", options.ShouldInstallWinver.ToString());
+                //        f.Write("DoSafeInstall", options.DoSafeInstall.ToString());
+                //        f.Write("Mode", "Install");
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to create:" + iniPath + "\n" + ex.ToString());
+                //        return;
+                //    }
+                //    try
+                //    {
+                //        SetupMode.Enter();
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
+                //        return;
+                //    }
+                //    RebootPage.Start();
 
+                //    Navigate(RebootPage);
+                //}
+                //else if (oldPage == UninstallConfirmPage)
+                //{
+                //    //uninstall
+                //    var pg = new TaskDialogPage()
+                //    {
+                //        Icon = TaskDialogIcon.ShieldErrorRedBar,
 
-                    Navigate(new RebootPage());
-                }
-                else if (oldPage == UninstallConfirmPage)
-                {
-                    //uninstall
-                    var pg = new TaskDialogPage()
-                    {
-                        Icon = TaskDialogIcon.ShieldErrorRedBar,
+                //        Text = "An internal setup error has occured. Uninstall in Setup mode is not yet implemented. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
+                //        Heading = "Compatibility Error",
+                //        Caption = "Rectify11 Setup",
+                //    };
+                //}
+                //else
+                //{
+                //    var pg = new TaskDialogPage()
+                //    {
+                //        Icon = TaskDialogIcon.ShieldErrorRedBar,
 
-                        Text = "An internal setup error has occured. Uninstall in Setup mode is not yet implemented. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
-                        Heading = "Compatibility Error",
-                        Caption = "Rectify11 Setup",
-                    };
-                }
-                else
-                {
-                    var pg = new TaskDialogPage()
-                    {
-                        Icon = TaskDialogIcon.ShieldErrorRedBar,
-
-                        Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
-                        Heading = "Compatibility Error",
-                        Caption = "Rectify11 Setup",
-                    };
-                    TaskDialog.ShowDialog(this, pg);
-                }
+                //        Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
+                //        Heading = "Compatibility Error",
+                //        Caption = "Rectify11 Setup",
+                //    };
+                //    TaskDialog.ShowDialog(this, pg);
+                //}
 #endif
             }
             else if (CurrentPage == FinishPage)
