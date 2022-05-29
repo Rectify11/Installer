@@ -34,7 +34,7 @@ namespace Rectify11Installer
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblTopText = new AeroWizard.ThemedLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.navigationButton1 = new Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButton();
+            this.navigationButton1 = new Rectify11Installer.Controls.NavigationButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.BtnBack = new Rectify11Installer.Controls.WinUIButton();
             this.BtnNext = new Rectify11Installer.Controls.WinUIButton();
@@ -86,7 +86,7 @@ namespace Rectify11Installer
             this.navigationButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.navigationButton1.Location = new System.Drawing.Point(10, 15);
             this.navigationButton1.Name = "navigationButton1";
-            this.navigationButton1.NavigationButtonType = Rectify11Installer.Controls.FunnyExplorer.Controls.NavigationButtonType.back;
+            this.navigationButton1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
             this.navigationButton1.Size = new System.Drawing.Size(30, 30);
             this.navigationButton1.TabIndex = 0;
             this.navigationButton1.Text = "navigationButton1";
@@ -171,6 +171,6 @@ namespace Rectify11Installer
         private Panel panel1;
         private Controls.WinUIButton BtnBack;
         private Controls.WinUIButton BtnNext;
-        private Controls.FunnyExplorer.Controls.NavigationButton navigationButton1;
+        private Controls.NavigationButton navigationButton1;
     }
 }

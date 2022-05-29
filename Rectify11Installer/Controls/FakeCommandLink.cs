@@ -14,8 +14,48 @@ namespace Rectify11Installer.Controls
 {
     public partial class FakeCommandLink : UserControl
     {
-        private static readonly Color DefaultText = Color.White;//Color.FromArgb(65, 65, 65);
-        private static readonly Color PressedText = Color.FromArgb(96, 96, 96);
+        private static Color DefaultText
+        {
+            get
+            {
+                if (Theme.IsUsingDarkMode)
+                {
+                    return Color.FromArgb(192, 192, 192);
+                }
+                else
+                {
+                    return Color.FromArgb(64, 64, 64);
+                }
+            }
+        }
+        private static Color HotText
+        {
+            get
+            {
+                if (Theme.IsUsingDarkMode)
+                {
+                    return Color.FromArgb(255, 255, 255);
+                }
+                else
+                {
+                    return Color.FromArgb(0, 0, 0);
+                }
+            }
+        }
+        private static Color PressedText
+        {
+            get
+            {
+                if (Theme.IsUsingDarkMode)
+                {
+                    return Color.FromArgb(160, 160, 160);
+                }
+                else
+                {
+                    return Color.FromArgb(96, 96, 96);
+                }
+            }
+        }
 
         public string Note
         {
@@ -60,8 +100,6 @@ namespace Rectify11Installer.Controls
             this.MouseUp += new MouseEventHandler(TheMouseUp);
             base.Click += new EventHandler(TheMouseClick);
 
-            lblTitle.ForeColor = DefaultText;
-            lblBody.ForeColor = DefaultText;
             BackColor = Color.Transparent;
 
             pictureBox1.BackColor = Color.Transparent;
@@ -70,6 +108,13 @@ namespace Rectify11Installer.Controls
 
             SetState(ThemeParts.Normal);
             pictureBox1.Image = GetGlyphImage(ThemeParts.Normal);
+
+            lblTitle.ForeColor = DefaultText;
+            lblBody.ForeColor = DefaultText;
+
+            SetDoubleBuffered(lblTitle);
+            SetDoubleBuffered(lblBody);
+            SetDoubleBuffered(pictureBox1);
         }
         private void SetState(ThemeParts s)
         {
@@ -81,15 +126,26 @@ namespace Rectify11Installer.Controls
                 BackgroundImage = renderer2.RenderPreview(s, Width, Height);
             }
         }
+        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+        {
+            //Taxes: Remote Desktop Connection and painting
+            //http://blogs.msdn.com/oldnewthing/archive/2006/01/03/508694.aspx
+            if (SystemInformation.TerminalServerSession)
+                return;
+            var t = typeof(Control);
+            System.Reflection.PropertyInfo? aProp = t.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
-        private Bitmap GetGlyphImage(ThemeParts s)
+            if (aProp != null)
+                aProp.SetValue(c, true, null);
+        }
+        private Bitmap? GetGlyphImage(ThemeParts s)
         {
             VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
             if (currentTheme != null)
             {
                 var part = Theme.GetCommandLinkGlyphPart(currentTheme);
                 var renderer2 = new PartRenderer(currentTheme, part);
-                return renderer2.RenderPreview(s,  pictureBox1.Width, pictureBox1.Height);
+                return renderer2.RenderPreview(s, pictureBox1.Width, pictureBox1.Height);
             }
             return null;
         }
@@ -130,12 +186,18 @@ namespace Rectify11Installer.Controls
         {
             SetState(ThemeParts.Normal);
             pictureBox1.Image = GetGlyphImage(ThemeParts.Normal);
+
+            lblTitle.ForeColor = DefaultText;
+            lblBody.ForeColor = DefaultText;
         }
 
         private void TheMouseEnter(object? sender, EventArgs e)
         {
             SetState(ThemeParts.Hot);
             pictureBox1.Image = GetGlyphImage(ThemeParts.Hot);
+
+            lblTitle.ForeColor = HotText;
+            lblBody.ForeColor = HotText;
         }
     }
 }

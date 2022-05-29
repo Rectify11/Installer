@@ -9,6 +9,7 @@ using Rectify11Installer.Pages;
 using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using System.Diagnostics;
+using Rectify11Installer.Controls;
 
 namespace Rectify11Installer
 {
@@ -331,7 +332,8 @@ namespace Rectify11Installer
                 {
                     if (item is not RichTextBox)
                     {
-                        item.ForeColor = Color.White;
+                        if (item.Parent.GetType() != typeof(FakeCommandLink))
+                            item.ForeColor = Color.White;
                     }
                 }
             }
@@ -340,7 +342,8 @@ namespace Rectify11Installer
                 this.ForeColor = Color.Gray;
                 foreach (var item in GetAllControls(this))
                 {
-                    item.ForeColor = Color.Black;
+                    if (item.Parent.GetType() != typeof(FakeCommandLink))
+                        item.ForeColor = Color.Black;
                 }
             }
         }

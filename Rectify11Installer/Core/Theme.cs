@@ -1,5 +1,6 @@
 ﻿using libmsstyle;
 using Microsoft.Win32;
+using Rectify11Installer.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,6 +100,40 @@ namespace Rectify11Installer
                     foreach (var parts in classes.Parts)
                     {
                         if (parts.Value.PartName == "COMMANDLINKGLYPH")
+                        {
+                            return parts.Value;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public static StylePart? GetNavArrowPart(VisualStyle v, NavigationButtonType type)
+        {
+            foreach (var classes in v.Classes.Values)
+            {
+                if (classes.ClassName == "Navigation")
+                {
+                    string PartStr = "";
+                    switch (type)
+                    {
+                        case NavigationButtonType.Forward:
+                            PartStr = "FORWARDBUTTON";
+                            break;
+                        case NavigationButtonType.Backward:
+                            PartStr = "BACKBUTTON";
+                            break;
+                        case NavigationButtonType.Menu:
+                            PartStr = "MENUBUTTON";
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    foreach (var parts in classes.Parts)
+                    {
+                        if (parts.Value.PartName == PartStr)
                         {
                             return parts.Value;
                         }
