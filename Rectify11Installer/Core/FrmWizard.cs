@@ -50,8 +50,7 @@ namespace Rectify11Installer
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
             WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
-            Navigate(RebootPage);
-            RebootPage.Start();
+            Navigate(WelcomePage);
 
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
 
