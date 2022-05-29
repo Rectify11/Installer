@@ -53,10 +53,6 @@ namespace Rectify11Installer
             Navigate(WelcomePage);
 
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
-
-            navigationButton1.Location = new Point(
-                pnlBackForwardButton.Width / 2 - navigationButton1.Size.Width / 2,
-                pnlBackForwardButton.Height / 2 - navigationButton1.Size.Height / 2);
         }
         #region Welcome Page
 
@@ -115,7 +111,7 @@ namespace Rectify11Installer
             if (page == WelcomePage)
             {
                 pnlBottom.Visible = false;
-                pnlBackForwardButton.Visible = false;
+                navigationButton1.Visible = false;
                 UpdateFrame();
             }
             else if (page == EulaPage)
@@ -129,14 +125,14 @@ namespace Rectify11Installer
                 BtnBack.ButtonText = "Disagree";
                 BtnNext.ButtonText = "Agree";
 
-                pnlBackForwardButton.Visible = true;
+                navigationButton1.Visible = true;
                 pnlBottom.Visible = true;
                 pnlTop.Visible = true;
                 UpdateFrame();
             }
             else if (page == ConfirmOpPage)
             {
-                pnlBackForwardButton.Visible = true;
+                navigationButton1.Visible = true;
 
                 BtnBack.Visible = true;
                 BtnNext.Visible = true;
@@ -146,7 +142,7 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Install";
-                pnlBackForwardButton.Visible = true;
+                navigationButton1.Visible = true;
                 pnlTop.Visible = true;
                 UpdateFrame();
             }
@@ -183,14 +179,14 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Uninstall";
-                pnlBackForwardButton.Visible = true;
+                navigationButton1.Visible = true;
                 pnlBottom.Visible = true;
                 UpdateFrame();
             }
             else if(page == RebootPage)
             {
                 pnlBottom.Visible = false;
-                pnlBackForwardButton.Visible = false;
+                navigationButton1.Visible = false;
                 pnlTop.Visible = true;
                 UpdateFrame();
             }
@@ -205,7 +201,7 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Next";
-                pnlBackForwardButton.Visible = false;
+                navigationButton1.Visible = false;
             }
 
             FixColors();

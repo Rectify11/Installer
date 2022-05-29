@@ -33,22 +33,20 @@ namespace Rectify11Installer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWizard));
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblTopText = new AeroWizard.ThemedLabel();
-            this.pnlBackForwardButton = new System.Windows.Forms.Panel();
             this.navigationButton1 = new Rectify11Installer.Controls.NavigationButton();
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.BtnBack = new Rectify11Installer.Controls.WinUIButton();
             this.BtnNext = new Rectify11Installer.Controls.WinUIButton();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlTop.SuspendLayout();
-            this.pnlBackForwardButton.SuspendLayout();
             this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.Black;
+            this.pnlTop.Controls.Add(this.navigationButton1);
             this.pnlTop.Controls.Add(this.lblTopText);
-            this.pnlTop.Controls.Add(this.pnlBackForwardButton);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
@@ -61,30 +59,19 @@ namespace Rectify11Installer
             this.lblTopText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTopText.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTopText.ForeColor = System.Drawing.Color.White;
-            this.lblTopText.Location = new System.Drawing.Point(51, 0);
+            this.lblTopText.Location = new System.Drawing.Point(0, 0);
             this.lblTopText.Name = "lblTopText";
-            this.lblTopText.Size = new System.Drawing.Size(589, 60);
+            this.lblTopText.Size = new System.Drawing.Size(640, 60);
             this.lblTopText.TabIndex = 7;
             this.lblTopText.Text = "Welcome to Rectify11 Installer";
             this.lblTopText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlBackForwardButton
-            // 
-            this.pnlBackForwardButton.BackColor = System.Drawing.Color.Black;
-            this.pnlBackForwardButton.Controls.Add(this.navigationButton1);
-            this.pnlBackForwardButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlBackForwardButton.Location = new System.Drawing.Point(0, 0);
-            this.pnlBackForwardButton.Name = "pnlBackForwardButton";
-            this.pnlBackForwardButton.Size = new System.Drawing.Size(51, 60);
-            this.pnlBackForwardButton.TabIndex = 8;
-            this.pnlBackForwardButton.Visible = false;
             // 
             // navigationButton1
             // 
             this.navigationButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.navigationButton1.BackColor = System.Drawing.Color.Transparent;
             this.navigationButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.navigationButton1.Location = new System.Drawing.Point(10, 15);
+            this.navigationButton1.Location = new System.Drawing.Point(12, 12);
             this.navigationButton1.Name = "navigationButton1";
             this.navigationButton1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
             this.navigationButton1.Size = new System.Drawing.Size(30, 30);
@@ -158,7 +145,6 @@ namespace Rectify11Installer
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmWizard_FormClosing);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.pnlTop.ResumeLayout(false);
-            this.pnlBackForwardButton.ResumeLayout(false);
             this.pnlBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -170,7 +156,6 @@ namespace Rectify11Installer
         private Panel pnlBottom;
         private Panel pnlMain;
         private ThemedLabel lblTopText;
-        private Panel pnlBackForwardButton;
         private Controls.WinUIButton BtnBack;
         private Controls.WinUIButton BtnNext;
         private Controls.NavigationButton navigationButton1;
