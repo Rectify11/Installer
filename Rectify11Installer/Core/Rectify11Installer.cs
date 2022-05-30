@@ -139,25 +139,11 @@ namespace Rectify11Installer
                 //    }
                 //}
 
-                //if (options.ShouldInstallWallpaper)
-                //{
-                //    var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
-                //    if (pkg != null)
-                //    {
-                //        if (!File.Exists("C:/Windows/Rectify11/img0.jpg"))
-                //            File.Copy("C:/Windows/Web/Wallpaper/Windows/img0.jpg", "C:/Windows/Rectify11/img0.jpg");
-                //        if (!File.Exists("C:/Windows/Rectify11/img19.jpg"))
-                //            File.Copy("C:/Windows/Web/Wallpaper/Windows/img19.jpg", "C:/Windows/Rectify11/img19.jpg");
-
-                //        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", Application.StartupPath + @"\files\img0.jpg");
-                //        ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", Application.StartupPath + @"\files\img19.jpg");
-                //    }
-                //    else
-                //    {
-                //        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find wallper SxS package.");
-                //        return;
-                //    }
-                //}
+                if (options.ShouldInstallWallpaper)
+                {
+                    File.Copy(Application.StartupPath + @"\files\img0.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifylight.jpg", true);
+                    File.Copy(Application.StartupPath + @"\files\img19.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifydark.jpg", true);
+                }
 
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 return;
@@ -215,26 +201,20 @@ namespace Rectify11Installer
                 Wizard.SetProgressText("Restoring old wallpapers and Winver");
                 Wizard.SetProgress(0);
 
-
-                //This is commented out as it's broken
                 if (options.RestoreWallpapers)
                 {
-                    var pkg = GetAMD64Package("microsoft-windows-winver");
-                    if (pkg != null)
-                    {
-                        //ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img0.jpg", "C:/Windows/Rectify11/img0.jpg");
-                        ///ReplaceFileInPackage(pkg, @"C:\Windows\Web\Wallpaper\Windows\img19.jpg", "C:/Windows/Rectify11/img19.jpg");
-                    }
+                    File.Delete(@"C:\Windows\Web\wallpaper\Windows\rectifydark.jpg");
+                    File.Delete(@"C:\Windows\Web\wallpaper\Windows\rectifylight.jpg");
                 }
 
-                if (options.RestoreWinver)
-                {
-                    var pkg = GetAMD64Package("microsoft-windows-s..l-wallpaper-windows");
-                    if (pkg != null)
-                    {
-                        //ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", "C:/Windows/Rectify11/winver.exe");
-                    }
-                }
+                //if (options.RestoreWinver)
+                //{
+                //    var pkg = GetAMD64Package("microsoft-windows-winver");
+                //    if (pkg != null)
+                //    {
+                //        //ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", "C:/Windows/Rectify11/winver.exe");
+                //    }
+                //}
 
                 Wizard.SetProgress(99);
                 Wizard.SetProgressText("Removing old backups");

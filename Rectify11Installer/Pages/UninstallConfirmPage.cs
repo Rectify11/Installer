@@ -22,7 +22,5 @@ namespace Rectify11Installer.Pages
         public bool RemoveThemesAndThemeTool => chkRemoveThemes.Checked;
 
         public bool RestoreWallpapers => chkRestoreWallpaper.Checked;
-
-        public bool RestoreWinver => chkRestoreWinVer.Checked;
     }
 }

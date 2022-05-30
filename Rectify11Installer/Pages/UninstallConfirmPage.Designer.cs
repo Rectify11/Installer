@@ -28,31 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlContent = new Rectify11Installer.Controls.DarkAwareFlowLayoutPanel();
             this.chkExplorerPatcher = new Rectify11Installer.Controls.DarkAwareCheckBox();
             this.chkRemoveThemes = new Rectify11Installer.Controls.DarkAwareCheckBox();
             this.chkRestoreWallpaper = new Rectify11Installer.Controls.DarkAwareCheckBox();
-            this.chkRestoreWinVer = new Rectify11Installer.Controls.DarkAwareCheckBox();
-            this.lblChoose = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlContent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.darkAwareFlowLayoutPanel1 = new Rectify11Installer.Controls.DarkAwareFlowLayoutPanel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.darkAwareFlowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pnlContent
-            // 
-            this.pnlContent.AutoScroll = true;
-            this.pnlContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlContent.Controls.Add(this.chkExplorerPatcher);
-            this.pnlContent.Controls.Add(this.chkRemoveThemes);
-            this.pnlContent.Controls.Add(this.chkRestoreWallpaper);
-            this.pnlContent.Controls.Add(this.chkRestoreWinVer);
-            this.pnlContent.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pnlContent.Location = new System.Drawing.Point(190, 38);
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(405, 277);
-            this.pnlContent.TabIndex = 17;
-            this.pnlContent.WrapContents = false;
             // 
             // chkExplorerPatcher
             // 
@@ -71,11 +56,11 @@
             this.chkRemoveThemes.Checked = true;
             this.chkRemoveThemes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRemoveThemes.ForeColor = System.Drawing.Color.White;
-            this.chkRemoveThemes.Location = new System.Drawing.Point(3, 28);
+            this.chkRemoveThemes.Location = new System.Drawing.Point(3, 53);
             this.chkRemoveThemes.Name = "chkRemoveThemes";
-            this.chkRemoveThemes.Size = new System.Drawing.Size(196, 19);
+            this.chkRemoveThemes.Size = new System.Drawing.Size(111, 19);
             this.chkRemoveThemes.TabIndex = 0;
-            this.chkRemoveThemes.Text = "Remove Themetool and Themes";
+            this.chkRemoveThemes.Text = "Remove themes";
             this.chkRemoveThemes.UseVisualStyleBackColor = true;
             // 
             // chkRestoreWallpaper
@@ -84,72 +69,88 @@
             this.chkRestoreWallpaper.Checked = true;
             this.chkRestoreWallpaper.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRestoreWallpaper.ForeColor = System.Drawing.Color.White;
-            this.chkRestoreWallpaper.Location = new System.Drawing.Point(3, 53);
+            this.chkRestoreWallpaper.Location = new System.Drawing.Point(3, 28);
             this.chkRestoreWallpaper.Name = "chkRestoreWallpaper";
-            this.chkRestoreWallpaper.Size = new System.Drawing.Size(164, 19);
+            this.chkRestoreWallpaper.Size = new System.Drawing.Size(171, 19);
             this.chkRestoreWallpaper.TabIndex = 17;
-            this.chkRestoreWallpaper.Text = "Restore default wallpapers";
+            this.chkRestoreWallpaper.Text = "Delete Rectify11 Wallpapers";
             this.chkRestoreWallpaper.UseVisualStyleBackColor = true;
             // 
-            // chkRestoreWinVer
+            // label1
             // 
-            this.chkRestoreWinVer.AutoSize = true;
-            this.chkRestoreWinVer.Checked = true;
-            this.chkRestoreWinVer.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRestoreWinVer.ForeColor = System.Drawing.Color.White;
-            this.chkRestoreWinVer.Location = new System.Drawing.Point(3, 78);
-            this.chkRestoreWinVer.Name = "chkRestoreWinVer";
-            this.chkRestoreWinVer.Size = new System.Drawing.Size(239, 19);
-            this.chkRestoreWinVer.TabIndex = 18;
-            this.chkRestoreWinVer.Text = "Restore default \"About Windows\" applet";
-            this.chkRestoreWinVer.UseVisualStyleBackColor = true;
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(4, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(638, 23);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Choose what to remove";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblChoose
+            // label2
             // 
-            this.lblChoose.AutoSize = true;
-            this.lblChoose.ForeColor = System.Drawing.Color.White;
-            this.lblChoose.Location = new System.Drawing.Point(186, 15);
-            this.lblChoose.Name = "lblChoose";
-            this.lblChoose.Size = new System.Drawing.Size(133, 15);
-            this.lblChoose.TabIndex = 16;
-            this.lblChoose.Text = "Choose what to remove";
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(-2, 173);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(640, 45);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Choose what other features/programs will be removed. Icons are always restored ba" +
+    "ck.";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
+            // darkAwareFlowLayoutPanel1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 89);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.darkAwareFlowLayoutPanel1.AutoScroll = true;
+            this.darkAwareFlowLayoutPanel1.Controls.Add(this.chkExplorerPatcher);
+            this.darkAwareFlowLayoutPanel1.Controls.Add(this.chkRestoreWallpaper);
+            this.darkAwareFlowLayoutPanel1.Controls.Add(this.chkRemoveThemes);
+            this.darkAwareFlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.darkAwareFlowLayoutPanel1.Location = new System.Drawing.Point(148, 221);
+            this.darkAwareFlowLayoutPanel1.Name = "darkAwareFlowLayoutPanel1";
+            this.darkAwareFlowLayoutPanel1.Size = new System.Drawing.Size(340, 181);
+            this.darkAwareFlowLayoutPanel1.TabIndex = 23;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(265, -3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox2.TabIndex = 22;
+            this.pictureBox2.TabStop = false;
             // 
             // UninstallConfirmPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pnlContent);
-            this.Controls.Add(this.lblChoose);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.darkAwareFlowLayoutPanel1);
+            this.Controls.Add(this.pictureBox2);
             this.Name = "UninstallConfirmPage";
+            this.WizardShowTitle = false;
             this.WizardTopText = "Choose what to uninstall";
-            this.pnlContent.ResumeLayout(false);
-            this.pnlContent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.darkAwareFlowLayoutPanel1.ResumeLayout(false);
+            this.darkAwareFlowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private Controls.DarkAwareFlowLayoutPanel pnlContent;
         private Controls.DarkAwareCheckBox chkExplorerPatcher;
         private Controls.DarkAwareCheckBox chkRemoveThemes;
         private Controls.DarkAwareCheckBox chkRestoreWallpaper;
-        private Controls.DarkAwareCheckBox chkRestoreWinVer;
-        private Label lblChoose;
-        private PictureBox pictureBox1;
+        private Label label1;
+        private Label label2;
+        private Controls.DarkAwareFlowLayoutPanel darkAwareFlowLayoutPanel1;
+        private PictureBox pictureBox2;
     }
 }

@@ -26,6 +26,17 @@ namespace Rectify11Installer.Pages
                 cmbUninstall = value;
             }
         }
+        public Label VersionLabel
+        {
+            get
+            {
+                return lblVersion;
+            }
+            set
+            {
+                lblVersion = value;
+            }
+        }
         public WelcomePage()
         {
             InitializeComponent();

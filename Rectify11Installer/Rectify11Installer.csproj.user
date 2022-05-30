@@ -31,6 +31,9 @@
     <Compile Update="Pages\ConfirmOperationPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Pages\DebugPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Pages\EulaPage.cs">
       <SubType>UserControl</SubType>
     </Compile>

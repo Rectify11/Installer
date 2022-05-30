@@ -137,6 +137,5 @@ namespace Rectify11Installer
         public bool RemoveExplorerPatcher { get; }
         public bool RemoveThemesAndThemeTool { get; }
         public bool RestoreWallpapers { get; }
-        public bool RestoreWinver { get; }
     }
 }
