@@ -151,7 +151,7 @@
             this.navigationButton3.Size = new System.Drawing.Size(30, 30);
             this.navigationButton3.TabIndex = 38;
             this.navigationButton3.Text = "navigationButton3";
-            this.navigationButton3.Click += new System.EventHandler(this.navigationButton3_Click);
+            this.navigationButton3.Click += new System.EventHandler(this.MenuButton_Click);
             // 
             // contextMenuStrip1
             // 

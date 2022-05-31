@@ -1,6 +1,6 @@
 ﻿// This is used to simplify the creation of Rectify11.xml to avoid unnessesary steps
 
-List<Info> dllsToSearch = new List<Info>();
+List<Info> dllsToSearch = new();
 
 foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory() + "/stuff"))
 {

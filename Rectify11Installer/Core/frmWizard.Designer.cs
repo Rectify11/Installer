@@ -32,8 +32,8 @@ namespace Rectify11Installer
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWizard));
             this.pnlTop = new System.Windows.Forms.Panel();
-            this.lblTopText = new AeroWizard.ThemedLabel();
             this.navigationButton1 = new Rectify11Installer.Controls.NavigationButton();
+            this.lblTopText = new AeroWizard.ThemedLabel();
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.BtnBack = new Rectify11Installer.Controls.WinUIButton();
             this.BtnNext = new Rectify11Installer.Controls.WinUIButton();
@@ -53,6 +53,19 @@ namespace Rectify11Installer
             this.pnlTop.Size = new System.Drawing.Size(640, 60);
             this.pnlTop.TabIndex = 3;
             // 
+            // navigationButton1
+            // 
+            this.navigationButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.navigationButton1.BackColor = System.Drawing.Color.Black;
+            this.navigationButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.navigationButton1.Location = new System.Drawing.Point(12, 12);
+            this.navigationButton1.Name = "navigationButton1";
+            this.navigationButton1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
+            this.navigationButton1.Size = new System.Drawing.Size(30, 30);
+            this.navigationButton1.TabIndex = 0;
+            this.navigationButton1.Text = "navigationButton1";
+            this.navigationButton1.Click += new System.EventHandler(this.NavigationButton1_Click);
+            // 
             // lblTopText
             // 
             this.lblTopText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
@@ -65,19 +78,6 @@ namespace Rectify11Installer
             this.lblTopText.TabIndex = 7;
             this.lblTopText.Text = "Welcome to Rectify11 Installer";
             this.lblTopText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // navigationButton1
-            // 
-            this.navigationButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.navigationButton1.BackColor = System.Drawing.Color.Transparent;
-            this.navigationButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.navigationButton1.Location = new System.Drawing.Point(12, 12);
-            this.navigationButton1.Name = "navigationButton1";
-            this.navigationButton1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
-            this.navigationButton1.Size = new System.Drawing.Size(30, 30);
-            this.navigationButton1.TabIndex = 0;
-            this.navigationButton1.Text = "navigationButton1";
-            this.navigationButton1.Click += new System.EventHandler(this.NavigationButton1_Click);
             // 
             // pnlBottom
             // 
@@ -97,7 +97,7 @@ namespace Rectify11Installer
             this.BtnBack.BackColor = System.Drawing.Color.Transparent;
             this.BtnBack.ButtonText = "Back";
             this.BtnBack.Enabled = false;
-            this.BtnBack.ForeColor = System.Drawing.Color.White;
+            this.BtnBack.ForeColor = System.Drawing.Color.Black;
             this.BtnBack.Location = new System.Drawing.Point(472, 20);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.Size = new System.Drawing.Size(75, 21);
@@ -110,7 +110,7 @@ namespace Rectify11Installer
             this.BtnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnNext.BackColor = System.Drawing.Color.Transparent;
             this.BtnNext.ButtonText = "Next";
-            this.BtnNext.ForeColor = System.Drawing.Color.White;
+            this.BtnNext.ForeColor = System.Drawing.Color.Black;
             this.BtnNext.Location = new System.Drawing.Point(553, 20);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(75, 21);

@@ -17,7 +17,7 @@ namespace Rectify11Installer.Pages
             InitializeComponent();
         }
 
-        private void navigationButton3_Click(object sender, EventArgs e)
+        private void MenuButton_Click(object sender, EventArgs e)
         {
             contextMenuStrip1.Show(navigationButton3, new Point(10,10));
         }
