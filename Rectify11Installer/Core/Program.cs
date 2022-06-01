@@ -20,12 +20,22 @@ namespace Rectify11Installer
                     setupMode = true;
                 }
             }
-            if (Environment.OSVersion.Version.Build >= 22000) { }
-            else
+            if (!setupMode)
             {
-                Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;
-                MessageBox.Show("Rectify11 installer is only supported on Windows 11 or greater.", "Compatibility Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (Environment.OSVersion.Version.Build >= 21242) { }
+                else
+                {
+                    Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;
+                    var h = MessageBox.Show("Rectify11 installer is only tested on Windows 11. If you want to continue, press Yes. The Rectify11 team is not responsible for damaging your Windows installation.", "Compatibility Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (h == DialogResult.Yes)
+                    {
+
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
             }
 
             if (!File.Exists(Application.StartupPath + "/rectify11.xml"))
