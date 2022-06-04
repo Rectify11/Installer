@@ -559,81 +559,81 @@ namespace Rectify11Installer
                 wizard.SetProgress(0);
                 wizard.SetProgressText("Copying Files");
 
-                //try
-                //{
-                //    if (!Directory.Exists(@"C:\Windows\Rectify11\"))
-                //    {
-                //        Directory.CreateDirectory(@"C:\Windows\Rectify11\");
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Unable to create C:\Windows\Rectify11 folder:\n" + ex.ToString());
-                //}
-                //string iniPath = @"C:\Windows\Rectify11\work.ini";
+                try
+                {
+                    if (!Directory.Exists(@"C:\Windows\Rectify11\"))
+                    {
+                        Directory.CreateDirectory(@"C:\Windows\Rectify11\");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Unable to create C:\Windows\Rectify11 folder:\n" + ex.ToString());
+                }
+                string iniPath = @"C:\Windows\Rectify11\work.ini";
 
-                ////delete old files
-                //if (File.Exists(iniPath))
-                //    File.Delete(iniPath);
+                //delete old files
+                if (File.Exists(iniPath))
+                    File.Delete(iniPath);
 
-                //IRectifyInstalllerInstallOptions options = InstallOptions;
+                IRectifyInstalllerInstallOptions options = InstallOptions;
 
-                //if (oldPage == ConfirmOpPage)
-                //{
-                //    //install
+                if (oldPage == ConfirmOpPage)
+                {
+                    //install
 
-                //    try
-                //    {
-                //        IniFile f = new IniFile(iniPath);
-                //        f.Write("InstallEP", options.ShouldInstallExplorerPatcher.ToString());
-                //        f.Write("InstallThemes", options.ShouldInstallThemes.ToString());
-                //        f.Write("InstallWP", options.ShouldInstallWallpaper.ToString());
-                //        f.Write("InstallVer", options.ShouldInstallWinver.ToString());
-                //        f.Write("DoSafeInstall", options.DoSafeInstall.ToString());
-                //        f.Write("Mode", "Install");
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to create:" + iniPath + "\n" + ex.ToString());
-                //        return;
-                //    }
-                //    try
-                //    {
-                //        SetupMode.Enter();
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
-                //        return;
-                //    }
-                //    RebootPage.Start();
+                    try
+                    {
+                        IniFile f = new IniFile(iniPath);
+                        f.Write("InstallEP", options.ShouldInstallExplorerPatcher.ToString());
+                        f.Write("InstallThemes", options.ShouldInstallThemes.ToString());
+                        f.Write("InstallWP", options.ShouldInstallWallpaper.ToString());
+                        f.Write("InstallVer", options.ShouldInstallWinver.ToString());
+                        f.Write("DoSafeInstall", options.DoSafeInstall.ToString());
+                        f.Write("Mode", "Install");
+                    }
+                    catch (Exception ex)
+                    {
+                        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to create:" + iniPath + "\n" + ex.ToString());
+                        return;
+                    }
+                    try
+                    {
+                        SetupMode.Enter();
+                    }
+                    catch (Exception ex)
+                    {
+                        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
+                        return;
+                    }
+                    RebootPage.Start();
 
-                //    Navigate(RebootPage);
-                //}
-                //else if (oldPage == UninstallConfirmPage)
-                //{
-                //    //uninstall
-                //    var pg = new TaskDialogPage()
-                //    {
-                //        Icon = TaskDialogIcon.ShieldErrorRedBar,
+                    Navigate(RebootPage);
+                }
+                else if (oldPage == UninstallConfirmPage)
+                {
+                    //uninstall
+                    var pg = new TaskDialogPage()
+                    {
+                        Icon = TaskDialogIcon.ShieldErrorRedBar,
 
-                //        Text = "An internal setup error has occured. Uninstall in Setup mode is not yet implemented. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
-                //        Heading = "Compatibility Error",
-                //        Caption = "Rectify11 Setup",
-                //    };
-                //}
-                //else
-                //{
-                //    var pg = new TaskDialogPage()
-                //    {
-                //        Icon = TaskDialogIcon.ShieldErrorRedBar,
+                        Text = "An internal setup error has occured. Uninstall in Setup mode is not yet implemented. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
+                        Heading = "Compatibility Error",
+                        Caption = "Rectify11 Setup",
+                    };
+                }
+                else
+                {
+                    var pg = new TaskDialogPage()
+                    {
+                        Icon = TaskDialogIcon.ShieldErrorRedBar,
 
-                //        Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
-                //        Heading = "Compatibility Error",
-                //        Caption = "Rectify11 Setup",
-                //    };
-                //    TaskDialog.ShowDialog(this, pg);
-                //}
+                        Text = "An internal setup error has occured. This is caused by misconfiguration in the setup wizard. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
+                        Heading = "Compatibility Error",
+                        Caption = "Rectify11 Setup",
+                    };
+                    TaskDialog.ShowDialog(this, pg);
+                }
 #endif
             }
             else if (CurrentPage == FinishPage)
