@@ -83,6 +83,32 @@ namespace Rectify11Installer.Core
                     });
                     thread.Start();
                 }
+                else if (mode == "Uninstall")
+                {
+                    var options = new UninstallerOptions()
+                    {
+                        RemoveExplorerPatcher = ini.Read("DoSafeInstall") == bool.TrueString,
+                        RemoveThemesAndThemeTool = ini.Read("RemoveThemes") == bool.TrueString,
+                        RestoreWallpapers = ini.Read("RemoveWP") == bool.TrueString,
+                    };
+
+                    IRectifyInstaller installer = new RectifyInstaller();
+                    installer.SetParentWizard(this);
+
+                    var thread = new Thread(delegate ()
+                    {
+                        installer.Uninstall(options);
+                    });
+                    thread.Start();
+                }
+                else
+                {
+                    TopMost = false;
+                    var u = new FailUI();
+                    u.InfoLabel.Text = "Unknown setup mode: "+mode;
+                    u.Show();
+                    Cursor.Show();
+                }
             }
             catch(Exception ee)
             {

@@ -254,15 +254,11 @@ namespace Rectify11Installer
             ControlBox = true;
             pnlBottom.Visible = true;
             UpdateFrame();
-
-
         }
         #endregion
         private void Form1_Shown(object sender, EventArgs e)
         {
             var buildNumber = Environment.OSVersion.Version.Build;
-
-            // _ = SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             try
             {
                 _ = DarkMode.AllowDarkModeForWindow(this.Handle, true);
@@ -576,10 +572,9 @@ namespace Rectify11Installer
                 if (File.Exists(iniPath))
                     File.Delete(iniPath);
 
-                IRectifyInstalllerInstallOptions options = InstallOptions;
-
                 if (oldPage == ConfirmOpPage)
                 {
+                    IRectifyInstalllerInstallOptions options = InstallOptions;
                     //install
 
                     try
@@ -612,15 +607,32 @@ namespace Rectify11Installer
                 }
                 else if (oldPage == UninstallConfirmPage)
                 {
-                    //uninstall
-                    var pg = new TaskDialogPage()
+                    IRectifyInstalllerUninstallOptions options = UninstallConfirmPage;
+                    try
                     {
-                        Icon = TaskDialogIcon.ShieldErrorRedBar,
+                        IniFile f = new IniFile(iniPath);
+                        f.Write("RemoveEP", options.RemoveExplorerPatcher.ToString());
+                        f.Write("RemoveThemes", options.RemoveThemesAndThemeTool.ToString());
+                        f.Write("RemoveWP", options.RestoreWallpapers.ToString());
+                        f.Write("Mode", "Uninstall");
+                    }
+                    catch (Exception ex)
+                    {
+                        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to create:" + iniPath + "\n" + ex.ToString());
+                        return;
+                    }
+                    try
+                    {
+                        SetupMode.Enter();
+                    }
+                    catch (Exception ex)
+                    {
+                        wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
+                        return;
+                    }
+                    RebootPage.Start();
 
-                        Text = "An internal setup error has occured. Uninstall in Setup mode is not yet implemented. Error:\nUnknown CurrentPage Value: " + CurrentPage.GetType().ToString() + "\nOld Page: " + oldPage.GetType().ToString(),
-                        Heading = "Compatibility Error",
-                        Caption = "Rectify11 Setup",
-                    };
+                    Navigate(RebootPage);
                 }
                 else
                 {

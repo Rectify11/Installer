@@ -64,7 +64,7 @@ namespace Rectify11Installer
             {
                 Wizard.Complete(type, IsInstalling, ErrorDescription);
 
-            });    
+            });
         }
 
         public void SetProgress(int val)
@@ -79,7 +79,7 @@ namespace Rectify11Installer
         {
             ProgressPage.Invoke((MethodInvoker)delegate ()
             {
-               // ProgressPage.CurrentProgressText.Text = text;
+                // ProgressPage.CurrentProgressText.Text = text;
             });
         }
     }
@@ -137,5 +137,13 @@ namespace Rectify11Installer
         public bool RemoveExplorerPatcher { get; }
         public bool RemoveThemesAndThemeTool { get; }
         public bool RestoreWallpapers { get; }
+    }
+    public class UninstallerOptions : IRectifyInstalllerUninstallOptions
+    {
+        public bool RemoveExplorerPatcher { get; set; }
+
+        public bool RemoveThemesAndThemeTool { get; set; }
+
+        public bool RestoreWallpapers { get; set; }
     }
 }

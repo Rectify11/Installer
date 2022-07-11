@@ -34,9 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.darkAwareComboBox1 = new Rectify11Installer.Controls.DarkAwareComboBox();
-            this.darkAwareCheckBox1 = new Rectify11Installer.Controls.DarkAwareCheckBox();
-            this.darkAwareButton1 = new Rectify11Installer.Controls.DarkAwareButton();
             this.winuiButton1 = new Rectify11Installer.Controls.WinUIButton();
             this.navigationButton3 = new Rectify11Installer.Controls.NavigationButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -48,6 +45,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblOperation = new System.Windows.Forms.Label();
             this.navigationButton1 = new Rectify11Installer.Controls.NavigationButton();
+            this.winuiButton2 = new Rectify11Installer.Controls.WinUIButton();
+            this.winuiButton3 = new Rectify11Installer.Controls.WinUIButton();
             this.darkAwareFlowLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -102,33 +101,6 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // darkAwareComboBox1
-            // 
-            this.darkAwareComboBox1.FormattingEnabled = true;
-            this.darkAwareComboBox1.Location = new System.Drawing.Point(111, 359);
-            this.darkAwareComboBox1.Name = "darkAwareComboBox1";
-            this.darkAwareComboBox1.Size = new System.Drawing.Size(121, 23);
-            this.darkAwareComboBox1.TabIndex = 42;
-            // 
-            // darkAwareCheckBox1
-            // 
-            this.darkAwareCheckBox1.AutoSize = true;
-            this.darkAwareCheckBox1.Location = new System.Drawing.Point(112, 331);
-            this.darkAwareCheckBox1.Name = "darkAwareCheckBox1";
-            this.darkAwareCheckBox1.Size = new System.Drawing.Size(141, 19);
-            this.darkAwareCheckBox1.TabIndex = 41;
-            this.darkAwareCheckBox1.Text = "darkAwareCheckBox1";
-            this.darkAwareCheckBox1.UseVisualStyleBackColor = true;
-            // 
-            // darkAwareButton1
-            // 
-            this.darkAwareButton1.Location = new System.Drawing.Point(112, 304);
-            this.darkAwareButton1.Name = "darkAwareButton1";
-            this.darkAwareButton1.Size = new System.Drawing.Size(75, 23);
-            this.darkAwareButton1.TabIndex = 40;
-            this.darkAwareButton1.Text = "darkAwareButton1";
-            this.darkAwareButton1.UseVisualStyleBackColor = true;
             // 
             // winuiButton1
             // 
@@ -236,16 +208,37 @@
             this.navigationButton1.TabIndex = 45;
             this.navigationButton1.Text = "navigationButton1";
             // 
+            // winuiButton2
+            // 
+            this.winuiButton2.BackColor = System.Drawing.Color.Transparent;
+            this.winuiButton2.ButtonText = "Set installed flag";
+            this.winuiButton2.ForeColor = System.Drawing.Color.White;
+            this.winuiButton2.Location = new System.Drawing.Point(113, 303);
+            this.winuiButton2.Name = "winuiButton2";
+            this.winuiButton2.Size = new System.Drawing.Size(119, 23);
+            this.winuiButton2.TabIndex = 46;
+            this.winuiButton2.Click += new System.EventHandler(this.winuiButton2_Click);
+            // 
+            // winuiButton3
+            // 
+            this.winuiButton3.BackColor = System.Drawing.Color.Transparent;
+            this.winuiButton3.ButtonText = "Remove setup mode";
+            this.winuiButton3.ForeColor = System.Drawing.Color.White;
+            this.winuiButton3.Location = new System.Drawing.Point(113, 332);
+            this.winuiButton3.Name = "winuiButton3";
+            this.winuiButton3.Size = new System.Drawing.Size(119, 23);
+            this.winuiButton3.TabIndex = 47;
+            this.winuiButton3.Click += new System.EventHandler(this.winuiButton3_Click);
+            // 
             // DebugPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.winuiButton3);
+            this.Controls.Add(this.winuiButton2);
             this.Controls.Add(this.navigationButton1);
             this.Controls.Add(this.fakeCommandLink1);
             this.Controls.Add(this.darkAwareFlowLayoutPanel1);
-            this.Controls.Add(this.darkAwareComboBox1);
-            this.Controls.Add(this.darkAwareCheckBox1);
-            this.Controls.Add(this.darkAwareButton1);
             this.Controls.Add(this.winuiButton1);
             this.Controls.Add(this.navigationButton3);
             this.Controls.Add(this.navigationButton2);
@@ -259,7 +252,6 @@
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -270,9 +262,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
-        private Controls.DarkAwareComboBox darkAwareComboBox1;
-        private Controls.DarkAwareCheckBox darkAwareCheckBox1;
-        private Controls.DarkAwareButton darkAwareButton1;
         private Controls.WinUIButton winuiButton1;
         private Controls.NavigationButton navigationButton3;
         private Controls.NavigationButton navigationButton2;
@@ -284,5 +273,7 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem testToolStripMenuItem;
         private ToolStripMenuItem testToolStripMenuItem1;
+        private Controls.WinUIButton winuiButton2;
+        private Controls.WinUIButton winuiButton3;
     }
 }
