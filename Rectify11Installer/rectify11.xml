@@ -1029,12 +1029,12 @@
 			<Command action="addskip" resource="BitLockerWizardElev_icons.res" mask="ICONGROUP, "></Command>
 		</Commands>
 	</Patch>
-	<Patch Package="microsoft-windows-securestartup-unlock" HardlinkTarget="C:\Windows\System32\bdeunlock.exe" DisableOnSafeMode="false" Arch="amd64">
+	<!--<Patch Package="microsoft-windows-securestartup-unlock" HardlinkTarget="C:\Windows\System32\bdeunlock.exe" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP, "></Command>
 			<Command action="addskip" resource="bdeunlock_icons.res" mask="ICONGROUP, "></Command>
 		</Commands>
-	</Patch>
+	</Patch>-->
 	<Patch Package="microsoft-windows-security-secedit" HardlinkTarget="C:\Windows\System32\SecEdit.exe" DisableOnSafeMode="false" Arch="amd64">
 		<Commands>
 			<Command action="delete" mask="ICONGROUP, "></Command>
