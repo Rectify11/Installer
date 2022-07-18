@@ -103,6 +103,7 @@ namespace Rectify11Installer
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled;
 
             if (setupMode)
             {
