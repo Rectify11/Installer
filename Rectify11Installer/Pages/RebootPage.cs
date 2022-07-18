@@ -25,7 +25,7 @@ namespace Rectify11Installer.Pages
         }
         private void winuiButton1_Click(object sender, EventArgs e)
         {
-            //Process.Start("shutdown", "-r -t 10");
+            Process.Start("shutdown", "-r -t 10");
         }
     }
 }

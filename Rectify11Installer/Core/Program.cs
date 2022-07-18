@@ -36,6 +36,12 @@ namespace Rectify11Installer
                         return;
                     }
                 }
+
+                if (IsRunningFromNetworkDrive())
+                {
+                    MessageBox.Show("This application cannot run on a network drive.", "Compatibility Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             if (!File.Exists(Application.StartupPath + "/rectify11.xml"))
@@ -118,6 +124,16 @@ namespace Rectify11Installer
         {
             MessageBox.Show($"A fatal error occured: {e.Exception}\nPlease report this as a bug\n", "Runtime Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
+        }
+        private static bool IsRunningFromNetworkDrive()
+        {
+            var dir = AppDomain.CurrentDomain.BaseDirectory;
+            var driveLetter = dir.First();
+            if (!Char.IsLetter(driveLetter))
+                return true;
+            if (new DriveInfo(driveLetter.ToString()).DriveType == DriveType.Network)
+                return true;
+            return false;
         }
     }
 }
