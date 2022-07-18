@@ -64,10 +64,21 @@ namespace Rectify11Installer
             // This is done to prevent Visual Studio to "combine" the EXE when publishing the
             // Rectify11 Installer project via visual studio. I have no idea how to prevent this,
             // So I just replace the MZ signature with RE, and then we write the fixed file back.
-            byte[] winver = File.ReadAllBytes(Application.StartupPath + "/files/Winver.ex");
-            winver[0] = 0x4d;
-            winver[1] = 0x5a;
-            File.WriteAllBytes(Application.StartupPath + "/files/winver.exe", winver);
+            try
+            {
+                if (!File.Exists(Application.StartupPath + "/files/winver.exe"))
+                {
+                    byte[] winver = File.ReadAllBytes(Application.StartupPath + "/files/Winver.ex");
+                    winver[0] = 0x4d;
+                    winver[1] = 0x5a;
+                    File.WriteAllBytes(Application.StartupPath + "/files/winver.exe", winver);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Warning: Unpacking Winver.exe failed\n" + ex.ToString(), "Initialization Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
 
             try
             {
