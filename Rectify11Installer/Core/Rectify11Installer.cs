@@ -34,13 +34,14 @@ namespace Rectify11Installer
                 Wizard.SetProgress(0);
                 Wizard.SetProgressText("Initializing...");
                 var backupDir = @"C:\Windows\Rectify11\Backup";
+                File.Copy(Application.ExecutablePath, @"C:\Windows\Rectify11\rectify11setup.exe", true);
+                File.Copy(Application.StartupPath + @"\rectify11.xml", @"C:\Windows\Rectify11\rectify11.xml", true);
                 #endregion
 
                 var patches = Patches.GetAll();
 
 
                 int i = 0;
-                BeginXml();
                 foreach (var item in patches)
                 {
                     if (item.DisableOnSafeMode && options.DoSafeInstall)
@@ -117,7 +118,6 @@ namespace Rectify11Installer
                         }
                     }
                 }
-                CommitXml();
 
                 Wizard.SetProgress(0);
                 Wizard.SetProgressText("Installing Apps");
@@ -153,6 +153,17 @@ namespace Rectify11Installer
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, ex.ToString());
             }
         }
+        private void TakeOwnership(string path, bool recursive)
+        {
+            if (path.ToLower().StartsWith(@"c:\windows\systemresources"))
+            {
+                ;
+            }
+            _ = PatcherHelper.TakeOwnership(path, recursive);
+            _ = PatcherHelper.GrantFullControl(path, "Administrators", recursive);
+            _ = PatcherHelper.GrantFullControl(path, "SYSTEM", recursive);
+            // _ = PatcherHelper.GrantFullControl(path, "Everyone");
+        }
         public void Uninstall(IRectifyInstalllerUninstallOptions options)
         {
             IsInstalling = false;
@@ -168,7 +179,6 @@ namespace Rectify11Installer
                 Wizard.SetProgress(1);
                 var backupDir = @"C:\Windows\Rectify11\Backup";
                 #endregion
-                BeginXml();
                 var patches = Patches.GetAll();
                 int i = 0;
                 foreach (var item in patches)
@@ -196,7 +206,6 @@ namespace Rectify11Installer
                     }
                     i++;
                 }
-                CommitXml();
 
                 Wizard.SetProgressText("Restoring old wallpapers and Winver");
                 Wizard.SetProgress(0);
@@ -235,57 +244,6 @@ namespace Rectify11Installer
         }
         #endregion
         #region Private methods
-        private string? PoqExecXml;
-        private void BeginXml()
-        {
-            PoqExecXml = "<?xml version='1.0' encoding='utf-8'?>\n";
-            PoqExecXml += "<PendingTransaction Version=\"3.1\">";
-            PoqExecXml += "    <POQ postAction=\"reboot\">";
-        }
-        private void CommitXml()
-        {
-            PoqExecXml += "    </POQ>";
-            PoqExecXml += "</PendingTransaction>";
-            File.WriteAllText(@"C:\Windows\Rectify11\pending.xml", PoqExecXml);
-
-            RegistryKey? s = Registry.LocalMachine.OpenSubKey("SYSTEM", true);
-            if (s != null)
-            {
-                RegistryKey? c = s.OpenSubKey("CurrentControlSet", true);
-                if (c != null)
-                {
-                    RegistryKey? cc = c.OpenSubKey("Control", true);
-                    if (cc != null)
-                    {
-                        RegistryKey? sessionManager = cc.OpenSubKey("Session Manager", true);
-                        if (sessionManager != null)
-                        {
-                            sessionManager.SetValue("SetupExecute", @"C:\Windows\System32\poqexec.exe /display_progress \??\C:\Windows\Rectify11\pending.xml");
-                            sessionManager.Close();
-                        }
-                        else
-                        {
-                            throw new Exception("Failed to open key: Session Manager");
-                        }
-                        cc.Close();
-                    }
-                    else
-                    {
-                        throw new Exception("Failed to open key: Control");
-                    }
-                    c.Close();
-                }
-                else
-                {
-                    throw new Exception("Failed to open key: CurrentControlSet");
-                }
-                s.Close();
-            }
-            else
-            {
-                throw new Exception("Failed to open key: SYSTEM");
-            }
-        }
         private void ReplaceFileInPackage(Package usr, string hardlinkTarget, string source)
         {
             string dllName = Path.GetFileName(source);
@@ -310,7 +268,7 @@ namespace Rectify11Installer
             File.Move(source, WinSxSFilePath, true);
 
             //create hardlink
-            if (!NativeMethods.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
+            if (!Win32.NativeMethods.CreateHardLinkA(hardlinkTarget, WinSxSFilePath, IntPtr.Zero))
             {
                 if (Wizard != null)
                     Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "CreateHardLinkW() failed: " + new Win32Exception().Message);
@@ -332,7 +290,7 @@ namespace Rectify11Installer
             catch
             {
                 //delete it first
-                if (!NativeMethods.MoveFileEx(path, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
+                if (!Win32.NativeMethods.MoveFileEx(path, null, Win32.NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT))
                 {
                     if (Wizard != null)
                         Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "MoveFileEx() failed: " + new Win32Exception().Message);

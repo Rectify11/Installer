@@ -20,7 +20,7 @@ namespace Rectify11Installer.Core
         private void btnRestart_Click(object sender, EventArgs e)
         {
             TopMost = false;
-            Application.Exit();
+            SetupMode.RebootSystem();
         }
     }
 }

@@ -103,6 +103,7 @@ namespace Rectify11Installer.Core
                 }
                 else
                 {
+                    SetupMode.CommitRegistry();
                     TopMost = false;
                     var u = new FailUI();
                     u.InfoLabel.Text = "Unknown setup mode: "+mode;
@@ -113,6 +114,7 @@ namespace Rectify11Installer.Core
             catch(Exception ee)
             {
                 TopMost = false;
+                SetupMode.CommitRegistry();
                 var u = new FailUI();
                 u.InfoLabel.Text = ee.ToString();
                 u.Show();
@@ -124,11 +126,6 @@ namespace Rectify11Installer.Core
         private static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr hWndChildAfter, string className, string? windowTitle);
         [DllImport("user32.dll")]
         private static extern IntPtr GetDC(IntPtr hWnd);
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
         int progress = 0;
         public void SetProgress(int val)
         {
@@ -164,7 +161,7 @@ namespace Rectify11Installer.Core
                     label1.Text = "Installation success. Rebooting...";
                     TopMost = false;
                     cancelClose = false;
-                    Application.Exit();
+                    SetupMode.RebootSystem();
                 }
             });
         }
@@ -173,5 +170,7 @@ namespace Rectify11Installer.Core
         {
             e.Cancel = cancelClose;
         }
+
+
     }
 }
