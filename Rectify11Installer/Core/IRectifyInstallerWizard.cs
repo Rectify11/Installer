@@ -1,10 +1,5 @@
 ﻿using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rectify11Installer
 {

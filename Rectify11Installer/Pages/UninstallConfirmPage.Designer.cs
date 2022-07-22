@@ -45,7 +45,7 @@
             this.chkExplorerPatcher.ForeColor = System.Drawing.Color.White;
             this.chkExplorerPatcher.Location = new System.Drawing.Point(3, 3);
             this.chkExplorerPatcher.Name = "chkExplorerPatcher";
-            this.chkExplorerPatcher.Size = new System.Drawing.Size(158, 19);
+            this.chkExplorerPatcher.Size = new System.Drawing.Size(157, 19);
             this.chkExplorerPatcher.TabIndex = 16;
             this.chkExplorerPatcher.Text = "Uninstall ExplorerPatcher";
             this.chkExplorerPatcher.UseVisualStyleBackColor = true;
@@ -82,9 +82,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 150);
+            this.label1.Location = new System.Drawing.Point(-2, 150);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(638, 23);
+            this.label1.Size = new System.Drawing.Size(642, 23);
             this.label1.TabIndex = 25;
             this.label1.Text = "Choose what to remove";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,9 +93,9 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(-2, 173);
+            this.label2.Location = new System.Drawing.Point(0, 173);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(640, 45);
             this.label2.TabIndex = 24;
@@ -119,10 +119,10 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(265, -3);
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Location = new System.Drawing.Point(-2, -3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox2.Size = new System.Drawing.Size(642, 150);
             this.pictureBox2.TabIndex = 22;
             this.pictureBox2.TabStop = false;
             // 

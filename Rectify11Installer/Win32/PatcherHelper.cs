@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Rectify11Installer.Core;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Rectify11Installer.Win32
 {
-    using Rectify11Installer.Core;
-    using System;
-    using System.Diagnostics;
-    using System.Runtime.InteropServices;
-
     namespace Rectify11
     {
         public class PatcherHelper

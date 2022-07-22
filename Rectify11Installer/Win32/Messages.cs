@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rectify11Installer.Win32
+﻿namespace Rectify11Installer.Win32
 {
-	internal enum Messages : int
+    internal enum Messages : int
 	{
 		WM_NULL = 0x0000,
 		WM_CREATE = 0x0001,

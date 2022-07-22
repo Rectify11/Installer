@@ -45,10 +45,10 @@ namespace Rectify11Installer.Pages
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(254, 90);
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.Size = new System.Drawing.Size(648, 150);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
@@ -58,7 +58,7 @@ namespace Rectify11Installer.Pages
             this.flowLayoutPanel1.Controls.Add(this.cmbInstallNOW);
             this.flowLayoutPanel1.Controls.Add(this.cmbUninstall);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(185, 294);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(167, 242);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(316, 126);
             this.flowLayoutPanel1.TabIndex = 13;
@@ -89,9 +89,9 @@ namespace Rectify11Installer.Pages
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(11, 267);
+            this.label2.Location = new System.Drawing.Point(0, 204);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(640, 21);
             this.label2.TabIndex = 12;
@@ -104,9 +104,9 @@ namespace Rectify11Installer.Pages
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 243);
+            this.label1.Location = new System.Drawing.Point(0, 180);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(638, 23);
+            this.label1.Size = new System.Drawing.Size(640, 23);
             this.label1.TabIndex = 14;
             this.label1.Text = "Rectify11 Installer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

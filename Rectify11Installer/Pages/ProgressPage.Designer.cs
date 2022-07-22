@@ -40,7 +40,7 @@
             // 
             this.ProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.ProgressBar.Error = false;
-            this.ProgressBar.Location = new System.Drawing.Point(117, 228);
+            this.ProgressBar.Location = new System.Drawing.Point(109, 228);
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(428, 23);
             this.ProgressBar.TabIndex = 14;
@@ -57,9 +57,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(-13, 153);
+            this.label1.Location = new System.Drawing.Point(0, 153);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(653, 35);
+            this.label1.Size = new System.Drawing.Size(640, 35);
             this.label1.TabIndex = 19;
             this.label1.Text = "Initializing...";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -68,10 +68,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(226, 0);
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.Size = new System.Drawing.Size(640, 150);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 

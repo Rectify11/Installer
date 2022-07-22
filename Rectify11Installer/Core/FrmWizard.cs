@@ -343,7 +343,10 @@ namespace Rectify11Installer
                 m.cyBottomHeight = pnlBottom.Height;
 
             }
-            _ = DwmExtendFrameIntoClientArea(this.Handle, ref m);
+            if (Environment.OSVersion.Version.Build >= 19041)
+            {
+                _ = DwmExtendFrameIntoClientArea(this.Handle, ref m);
+            }
         }
         private void FixColors()
         {
@@ -554,7 +557,6 @@ namespace Rectify11Installer
                 var wizard = new RectifyInstallerWizard(this, ProgressPage);
                 wizard.SetProgress(0);
                 wizard.SetProgressText("Copying Files");
-
                 try
                 {
                     if (!Directory.Exists(@"C:\Windows\Rectify11\"))

@@ -54,7 +54,7 @@ namespace Rectify11Installer.Pages
             this.chkThemes.ForeColor = System.Drawing.Color.White;
             this.chkThemes.Location = new System.Drawing.Point(3, 28);
             this.chkThemes.Name = "chkThemes";
-            this.chkThemes.Size = new System.Drawing.Size(101, 19);
+            this.chkThemes.Size = new System.Drawing.Size(102, 19);
             this.chkThemes.TabIndex = 0;
             this.chkThemes.Text = "Install Themes";
             this.chkThemes.UseVisualStyleBackColor = true;
@@ -63,10 +63,10 @@ namespace Rectify11Installer.Pages
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(264, 0);
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(-3, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.Size = new System.Drawing.Size(644, 150);
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
@@ -78,7 +78,7 @@ namespace Rectify11Installer.Pages
             this.pnlContent.Controls.Add(this.chkWallpaper);
             this.pnlContent.Controls.Add(this.chkWinVer);
             this.pnlContent.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pnlContent.Location = new System.Drawing.Point(147, 224);
+            this.pnlContent.Location = new System.Drawing.Point(99, 219);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(155, 181);
             this.pnlContent.TabIndex = 14;
@@ -91,7 +91,7 @@ namespace Rectify11Installer.Pages
             this.chkExplorerPatcher.ForeColor = System.Drawing.Color.White;
             this.chkExplorerPatcher.Location = new System.Drawing.Point(3, 3);
             this.chkExplorerPatcher.Name = "chkExplorerPatcher";
-            this.chkExplorerPatcher.Size = new System.Drawing.Size(143, 19);
+            this.chkExplorerPatcher.Size = new System.Drawing.Size(142, 19);
             this.chkExplorerPatcher.TabIndex = 16;
             this.chkExplorerPatcher.Text = "Install ExplorerPatcher";
             this.chkExplorerPatcher.UseVisualStyleBackColor = true;
@@ -126,11 +126,11 @@ namespace Rectify11Installer.Pages
             // 
             this.radSafe.AutoSize = true;
             this.radSafe.Checked = true;
-            this.radSafe.Font = new System.Drawing.Font("Segoe UI Variable Small Semibol", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.radSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radSafe.ForeColor = System.Drawing.Color.White;
-            this.radSafe.Location = new System.Drawing.Point(308, 231);
+            this.radSafe.Location = new System.Drawing.Point(269, 220);
             this.radSafe.Name = "radSafe";
-            this.radSafe.Size = new System.Drawing.Size(205, 20);
+            this.radSafe.Size = new System.Drawing.Size(235, 19);
             this.radSafe.TabIndex = 1;
             this.radSafe.TabStop = true;
             this.radSafe.Text = "Safe installation (recommended)";
@@ -139,7 +139,7 @@ namespace Rectify11Installer.Pages
             // lblSafeDesc
             // 
             this.lblSafeDesc.ForeColor = System.Drawing.Color.White;
-            this.lblSafeDesc.Location = new System.Drawing.Point(308, 254);
+            this.lblSafeDesc.Location = new System.Drawing.Point(269, 243);
             this.lblSafeDesc.Name = "lblSafeDesc";
             this.lblSafeDesc.Size = new System.Drawing.Size(289, 30);
             this.lblSafeDesc.TabIndex = 2;
@@ -149,11 +149,11 @@ namespace Rectify11Installer.Pages
             // radFull
             // 
             this.radFull.AutoSize = true;
-            this.radFull.Font = new System.Drawing.Font("Segoe UI Variable Small Semibol", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.radFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radFull.ForeColor = System.Drawing.Color.White;
-            this.radFull.Location = new System.Drawing.Point(308, 287);
+            this.radFull.Location = new System.Drawing.Point(269, 276);
             this.radFull.Name = "radFull";
-            this.radFull.Size = new System.Drawing.Size(107, 20);
+            this.radFull.Size = new System.Drawing.Size(124, 19);
             this.radFull.TabIndex = 3;
             this.radFull.TabStop = true;
             this.radFull.Text = "Full installation";
@@ -162,7 +162,7 @@ namespace Rectify11Installer.Pages
             // lblFullDesc
             // 
             this.lblFullDesc.ForeColor = System.Drawing.Color.White;
-            this.lblFullDesc.Location = new System.Drawing.Point(308, 310);
+            this.lblFullDesc.Location = new System.Drawing.Point(269, 299);
             this.lblFullDesc.Name = "lblFullDesc";
             this.lblFullDesc.Size = new System.Drawing.Size(273, 95);
             this.lblFullDesc.TabIndex = 4;
@@ -187,7 +187,7 @@ namespace Rectify11Installer.Pages
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(-3, 176);
             this.label2.Name = "label2";

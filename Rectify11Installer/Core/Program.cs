@@ -1,5 +1,4 @@
 using Rectify11Installer.Core;
-using System.Diagnostics;
 
 namespace Rectify11Installer
 {

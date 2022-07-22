@@ -1,15 +1,6 @@
-﻿using Microsoft.Win32;
-using Rectify11Installer.Core;
-using Rectify11Installer.Win32;
+﻿using Rectify11Installer.Core;
 using Rectify11Installer.Win32.Rectify11;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rectify11Installer
 {
