@@ -61,12 +61,72 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] _7za_exe {
+            get {
+                object obj = ResourceManager.GetObject("7za.exe", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Dark_msstyles {
+            get {
+                object obj = ResourceManager.GetObject("Dark.msstyles", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap eula {
             get {
                 object obj = ResourceManager.GetObject("eula", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] files_7z {
+            get {
+                object obj = ResourceManager.GetObject("files.7z", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] light_msstyles {
+            get {
+                object obj = ResourceManager.GetObject("light.msstyles", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+        ///
+        ///&lt;!--Rectify11 Patch file list--&gt;
+        ///&lt;!--Please keep this file sorted by DLL name (A-Z)--&gt;
+        ///
+        ///&lt;Patches&gt;
+        ///	&lt;Patch Package=&quot;microsoft-windows-accessibilitycpl&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\accessibilitycpl.dll.mun&quot; DisableOnSafeMode=&quot;false&quot; Arch=&quot;amd64&quot;&gt;
+        ///		&lt;Commands&gt;
+        ///			&lt;Command action=&quot;delete&quot; mask=&quot;ICONGROUP,&quot;&gt;&lt;/Command&gt;
+        ///			&lt;Command action=&quot;addskip&quot; resource=&quot;accessibilitycpl_Icons.res&quot; mask=&quot;ICONGROUP,&quot;&gt;&lt;/Command&gt;
+        ///
+        ///			&lt;Command action=&quot;delete&quot; mask= [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string rectify11_xml {
+            get {
+                return ResourceManager.GetString("rectify11.xml", resourceCulture);
             }
         }
         

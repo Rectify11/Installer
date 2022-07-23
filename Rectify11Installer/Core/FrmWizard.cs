@@ -10,6 +10,7 @@ using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using System.Diagnostics;
 using Rectify11Installer.Controls;
+using Rectify11Installer.Win32.Rectify11;
 
 namespace Rectify11Installer
 {
@@ -172,7 +173,7 @@ namespace Rectify11Installer
 
                 BtnBack.ButtonText = "Back";
                 BtnNext.ButtonText = "Next";
-                pnlTop.Visible = false;
+                pnlTop.Visible = true;
                 UpdateFrame();
             }
             else if (page == ProgressPage)
@@ -557,6 +558,7 @@ namespace Rectify11Installer
                 var wizard = new RectifyInstallerWizard(this, ProgressPage);
                 wizard.SetProgress(0);
                 wizard.SetProgressText("Copying Files");
+                
                 try
                 {
                     if (!Directory.Exists(@"C:\Windows\Rectify11\"))

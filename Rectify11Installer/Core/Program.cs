@@ -43,11 +43,9 @@ namespace Rectify11Installer
                 }
             }
 
-            if (!File.Exists(Application.StartupPath + "/rectify11.xml"))
+            if (!File.Exists(Application.StartupPath + "\\rectify11.xml"))
             {
-                Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.ClientAreaEnabled;
-                MessageBox.Show("Failure while loading: Rectify11.xml. The error (0x2) occured. The file cannot be found", "Initialization Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                File.WriteAllText(Application.StartupPath + "\\rectify11.xml", Properties.Resources.rectify11_xml);
             }
 
             try
@@ -65,26 +63,11 @@ namespace Rectify11Installer
             if (File.Exists(Application.StartupPath + "/install.log"))
                 File.Delete(Application.StartupPath + "/install.log");
 
-
-            // This is done to prevent Visual Studio to "combine" the EXE when publishing the
-            // Rectify11 Installer project via visual studio. I have no idea how to prevent this,
-            // So I just replace the MZ signature with RE, and then we write the fixed file back.
-            try
+            if (!File.Exists(Application.StartupPath + "\\Dark.msstyles") && !File.Exists(Application.StartupPath + "\\light.msstyles"))
             {
-                if (!File.Exists(Application.StartupPath + "/files/winver.exe"))
-                {
-                    byte[] winver = File.ReadAllBytes(Application.StartupPath + "/files/Winver.ex");
-                    winver[0] = 0x4d;
-                    winver[1] = 0x5a;
-                    File.WriteAllBytes(Application.StartupPath + "/files/winver.exe", winver);
-                }
+                File.WriteAllBytes(Application.StartupPath + "\\Dark.msstyles", Properties.Resources.Dark_msstyles);
+                File.WriteAllBytes(Application.StartupPath + "\\light.msstyles", Properties.Resources.light_msstyles);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Warning: Unpacking Winver.exe failed\n" + ex.ToString(), "Initialization Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-
             try
             {
                 Theme.LoadTheme();

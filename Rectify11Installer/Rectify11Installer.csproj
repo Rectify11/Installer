@@ -13,7 +13,7 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<FileVersion>2.9.6.4</FileVersion>
 		<AssemblyVersion>2.9.6.4</AssemblyVersion>
-		<Version>2.9.6.4</Version>
+		<Version>2.9.6.5</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

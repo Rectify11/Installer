@@ -284,6 +284,60 @@ namespace Rectify11Installer.Win32
                 reshackFileProcess.Dispose();
                 return reshackFileSuccessful;
             }
+            public static bool SevenzExtract(string szpath, string destinationdir, string file)
+            {
+                string cmd = "";
+
+                cmd += " x";
+                cmd += " -o" + destinationdir;
+                cmd += " " + file;
+
+                Logger.WriteLine("Running process: " + szpath + " " + cmd + "\n");
+
+                LastCmd = cmd;
+                Process reshackFileProcess = new Process();
+                ProcessStartInfo reshackFileStartInfo = new ProcessStartInfo
+                {
+                    FileName = szpath,
+                    // Do not write error output to standard stream.
+                    RedirectStandardError = true,
+                    // Do not write output to Process.StandardOutput Stream.
+                    RedirectStandardOutput = true,
+                    // Do not read input from Process.StandardInput (i/e; the keyboard).
+                    RedirectStandardInput = false,
+
+                    UseShellExecute = false,
+                    // Do not show a command window.
+                    CreateNoWindow = true,
+
+                    Arguments = cmd
+                };
+                reshackFileProcess.EnableRaisingEvents = true;
+                reshackFileProcess.StartInfo = reshackFileStartInfo;
+                reshackFileProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
+                reshackFileProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
+
+                // Start the process.
+                reshackFileProcess.Start();
+                reshackFileProcess.BeginOutputReadLine();
+                reshackFileProcess.BeginErrorReadLine();
+                // Wait for the process to finish.
+                reshackFileProcess.WaitForExit();
+
+                int exitCode = reshackFileProcess.ExitCode;
+                bool reshackFileSuccessful = true;
+
+                // Now we need to see if the process was successful.
+                if (exitCode != 0)
+                {
+                    reshackFileProcess.Kill();
+                    reshackFileSuccessful = false;
+                }
+
+                // Now clean up after ourselves.
+                reshackFileProcess.Dispose();
+                return reshackFileSuccessful;
+            }
         }
     }
 }

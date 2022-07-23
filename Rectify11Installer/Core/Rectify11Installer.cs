@@ -30,9 +30,12 @@ namespace Rectify11Installer
                 #endregion
 
                 var patches = Patches.GetAll();
-
-
                 int i = 0;
+                string tempfldr = @"C:\Windows\Rectify11";
+                File.WriteAllBytes(Path.Combine(tempfldr, "7za.exe"), Properties.Resources._7za_exe);
+                File.WriteAllBytes(Path.Combine(tempfldr, "files.7z"), Properties.Resources.files_7z);
+                Wizard.SetProgressText("Extracting files");
+                PatcherHelper.SevenzExtract(Path.Combine(tempfldr, "7za.exe"), Path.Combine(tempfldr, "files"), Path.Combine(tempfldr, "files.7z"));
                 foreach (var item in patches)
                 {
                     if (item.DisableOnSafeMode && options.DoSafeInstall)
@@ -86,12 +89,12 @@ namespace Rectify11Installer
 
                             foreach (var patch in item.PatchInstructions)
                             {
-                                var r = Application.StartupPath + @"\files\" + patch.Resource;
+                                var r = tempfldr + @"\files\" + patch.Resource;
                                 if (string.IsNullOrEmpty(patch.Resource))
                                     r = null;
 
                                 //This is where we mod the file
-                                if (!PatcherHelper.ReshackAddRes(Application.StartupPath + @"/files/ResourceHacker.exe",
+                                if (!PatcherHelper.ReshackAddRes(tempfldr + @"\files\ResourceHacker.exe",
                                     fileProper,
                                     fileProper,
                                     patch.Action, //"addoverwrite",
@@ -132,11 +135,12 @@ namespace Rectify11Installer
 
                 if (options.ShouldInstallWallpaper)
                 {
-                    File.Copy(Application.StartupPath + @"\files\img0.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifylight.jpg", true);
-                    File.Copy(Application.StartupPath + @"\files\img19.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifydark.jpg", true);
+                    File.Copy(tempfldr + @"\files\img0.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifylight.jpg", true);
+                    File.Copy(tempfldr + @"\files\img19.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifydark.jpg", true);
                 }
 
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
+                Directory.Delete(tempfldr, true);
                 return;
             }
             catch (Exception ex)
