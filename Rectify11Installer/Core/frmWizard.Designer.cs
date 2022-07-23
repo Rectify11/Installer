@@ -85,7 +85,7 @@ namespace Rectify11Installer
             this.pnlBottom.Controls.Add(this.BtnBack);
             this.pnlBottom.Controls.Add(this.BtnNext);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 458);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 416);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(640, 60);
             this.pnlBottom.TabIndex = 5;
@@ -97,7 +97,7 @@ namespace Rectify11Installer
             this.BtnBack.BackColor = System.Drawing.Color.Transparent;
             this.BtnBack.ButtonText = "Back";
             this.BtnBack.Enabled = false;
-            this.BtnBack.ForeColor = System.Drawing.Color.Black;
+            this.BtnBack.ForeColor = System.Drawing.Color.White;
             this.BtnBack.Location = new System.Drawing.Point(472, 20);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.Size = new System.Drawing.Size(75, 21);
@@ -110,7 +110,7 @@ namespace Rectify11Installer
             this.BtnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnNext.BackColor = System.Drawing.Color.Transparent;
             this.BtnNext.ButtonText = "Next";
-            this.BtnNext.ForeColor = System.Drawing.Color.Black;
+            this.BtnNext.ForeColor = System.Drawing.Color.White;
             this.BtnNext.Location = new System.Drawing.Point(553, 20);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(75, 21);
@@ -123,7 +123,7 @@ namespace Rectify11Installer
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 60);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(640, 398);
+            this.pnlMain.Size = new System.Drawing.Size(640, 356);
             this.pnlMain.TabIndex = 11;
             // 
             // FrmWizard
@@ -131,7 +131,7 @@ namespace Rectify11Installer
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(640, 518);
+            this.ClientSize = new System.Drawing.Size(640, 476);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnlTop);

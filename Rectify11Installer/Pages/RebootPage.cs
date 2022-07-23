@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Rectify11Installer.Pages
+﻿namespace Rectify11Installer.Pages
 {
     public partial class RebootPage : WizardPage
     {
@@ -24,7 +22,7 @@ namespace Rectify11Installer.Pages
         }
         private void winuiButton1_Click(object sender, EventArgs e)
         {
-            Process.Start("shutdown", "-r -t 10");
+            Win32.NativeMethods.Reboot();
         }
     }
 }

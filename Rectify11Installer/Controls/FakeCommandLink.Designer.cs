@@ -37,11 +37,11 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Variable Small Semibol", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
             this.lblTitle.Location = new System.Drawing.Point(29, 2);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(42, 21);
+            this.lblTitle.Size = new System.Drawing.Size(44, 21);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Title";
             // 
@@ -56,11 +56,11 @@
             // lblBody
             // 
             this.lblBody.AutoSize = true;
-            this.lblBody.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBody.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblBody.ForeColor = System.Drawing.Color.Red;
             this.lblBody.Location = new System.Drawing.Point(33, 30);
             this.lblBody.Name = "lblBody";
-            this.lblBody.Size = new System.Drawing.Size(34, 16);
+            this.lblBody.Size = new System.Drawing.Size(33, 13);
             this.lblBody.TabIndex = 3;
             this.lblBody.Text = "body";
             // 
