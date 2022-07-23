@@ -50,7 +50,7 @@ namespace Rectify11Installer
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(640, 60);
+            this.pnlTop.Size = new System.Drawing.Size(640, 50);
             this.pnlTop.TabIndex = 3;
             // 
             // navigationButton1
@@ -58,7 +58,7 @@ namespace Rectify11Installer
             this.navigationButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.navigationButton1.BackColor = System.Drawing.Color.Black;
             this.navigationButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.navigationButton1.Location = new System.Drawing.Point(12, 12);
+            this.navigationButton1.Location = new System.Drawing.Point(10, 10);
             this.navigationButton1.Name = "navigationButton1";
             this.navigationButton1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
             this.navigationButton1.Size = new System.Drawing.Size(30, 30);
@@ -69,15 +69,14 @@ namespace Rectify11Installer
             // lblTopText
             // 
             this.lblTopText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.lblTopText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTopText.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTopText.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTopText.ForeColor = System.Drawing.Color.White;
-            this.lblTopText.Location = new System.Drawing.Point(0, 0);
+            this.lblTopText.Location = new System.Drawing.Point(45, 0);
             this.lblTopText.Name = "lblTopText";
-            this.lblTopText.Size = new System.Drawing.Size(640, 60);
+            this.lblTopText.Size = new System.Drawing.Size(640, 50);
             this.lblTopText.TabIndex = 7;
             this.lblTopText.Text = "Welcome to Rectify11 Installer";
-            this.lblTopText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTopText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlBottom
             // 
@@ -98,9 +97,9 @@ namespace Rectify11Installer
             this.BtnBack.ButtonText = "Back";
             this.BtnBack.Enabled = false;
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(472, 20);
+            this.BtnBack.Location = new System.Drawing.Point(472, 15);
             this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(75, 21);
+            this.BtnBack.Size = new System.Drawing.Size(75, 28);
             this.BtnBack.TabIndex = 1;
             this.BtnBack.Visible = false;
             this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
@@ -111,9 +110,9 @@ namespace Rectify11Installer
             this.BtnNext.BackColor = System.Drawing.Color.Transparent;
             this.BtnNext.ButtonText = "Next";
             this.BtnNext.ForeColor = System.Drawing.Color.White;
-            this.BtnNext.Location = new System.Drawing.Point(553, 20);
+            this.BtnNext.Location = new System.Drawing.Point(553, 15);
             this.BtnNext.Name = "BtnNext";
-            this.BtnNext.Size = new System.Drawing.Size(75, 21);
+            this.BtnNext.Size = new System.Drawing.Size(75, 28);
             this.BtnNext.TabIndex = 0;
             this.BtnNext.Visible = false;
             this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
@@ -121,9 +120,9 @@ namespace Rectify11Installer
             // pnlMain
             // 
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 60);
+            this.pnlMain.Location = new System.Drawing.Point(0, 50);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(640, 356);
+            this.pnlMain.Size = new System.Drawing.Size(640, 366);
             this.pnlMain.TabIndex = 11;
             // 
             // FrmWizard

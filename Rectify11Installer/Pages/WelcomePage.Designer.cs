@@ -93,7 +93,7 @@ namespace Rectify11Installer.Pages
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(188, 97);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(449, 23);
+            this.label1.Size = new System.Drawing.Size(437, 23);
             this.label1.TabIndex = 14;
             this.label1.Text = "Rectify11 Installer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -116,7 +116,7 @@ namespace Rectify11Installer.Pages
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(188, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(408, 52);
+            this.label3.Size = new System.Drawing.Size(392, 52);
             this.label3.TabIndex = 17;
             this.label3.Text = "The setup will go through the various steps required to install Rectify11 on your" +
     " PC, for a more consistent experience.";
