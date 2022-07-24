@@ -9,7 +9,7 @@ namespace Rectify11Installer.Controls
         {
             get
             {
-                if (Theme.IsUsingDarkMode)
+                if (Theme.DarkModeBool)
                 {
                     return Color.FromArgb(192, 192, 192);
                 }
@@ -23,7 +23,7 @@ namespace Rectify11Installer.Controls
         {
             get
             {
-                if (Theme.IsUsingDarkMode)
+                if (Theme.DarkModeBool)
                 {
                     return Color.FromArgb(255, 255, 255);
                 }
@@ -37,7 +37,7 @@ namespace Rectify11Installer.Controls
         {
             get
             {
-                if (Theme.IsUsingDarkMode)
+                if (Theme.DarkModeBool)
                 {
                     return Color.FromArgb(160, 160, 160);
                 }
@@ -113,7 +113,7 @@ namespace Rectify11Installer.Controls
             //IsDesignMode and licesning did not work for me
             if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                VisualStyle currentTheme = Theme.DarkModeBool ? Theme.DarkStyle : Theme.LightStyle;
                 if (currentTheme != null)
                 {
                     var part = Theme.GetCommandLinkPart(currentTheme);
@@ -146,7 +146,7 @@ namespace Rectify11Installer.Controls
         {
             if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                VisualStyle currentTheme = Theme.DarkModeBool ? Theme.DarkStyle : Theme.LightStyle;
                 if (currentTheme != null)
                 {
                     var part = Theme.GetCommandLinkGlyphPart(currentTheme);
@@ -181,7 +181,7 @@ namespace Rectify11Installer.Controls
                 SetState(ThemeParts.Normal);
 
                 pictureBox1.Image = GetGlyphImage(ThemeParts.Normal);
-                Color forecolor = Theme.IsUsingDarkMode ? DefaultBackColor : Color.Black;
+                Color forecolor = Theme.DarkModeBool ? DefaultBackColor : Color.Black;
 
                 lblTitle.ForeColor = forecolor;
                 lblBody.ForeColor = forecolor;

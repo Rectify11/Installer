@@ -18,7 +18,7 @@ namespace Rectify11Installer.Controls
         }
         private void UpdateTheming()
         {
-            if (Theme.IsUsingDarkMode)
+            if (Theme.DarkModeBool)
             {
                 FrmWizard.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             }
@@ -59,7 +59,7 @@ namespace Rectify11Installer.Controls
         }
         private void UpdateTheming()
         {
-            if (Theme.IsUsingDarkMode || ForceDark)
+            if (Theme.DarkModeBool || ForceDark)
             {
                 FrmWizard.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             }
@@ -86,7 +86,7 @@ namespace Rectify11Installer.Controls
         }
         private void UpdateTheming()
         {
-            if (Theme.IsUsingDarkMode)
+            if (Theme.DarkModeBool)
             {
                 FrmWizard.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             }
@@ -113,7 +113,7 @@ namespace Rectify11Installer.Controls
         }
         private void UpdateTheming()
         {
-            if (Theme.IsUsingDarkMode)
+            if (Theme.DarkModeBool)
             {
                 FrmWizard.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             }
@@ -140,7 +140,7 @@ namespace Rectify11Installer.Controls
         }
         private void UpdateTheming()
         {
-            if (Theme.IsUsingDarkMode)
+            if (Theme.DarkModeBool)
             {
                 FrmWizard.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             }
@@ -167,7 +167,7 @@ namespace Rectify11Installer.Controls
         }
         private void UpdateTheming()
         {
-            if (Theme.IsUsingDarkMode)
+            if (Theme.DarkModeBool)
             {
                 FrmWizard.SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
             }

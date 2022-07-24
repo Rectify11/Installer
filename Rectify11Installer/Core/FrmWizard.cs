@@ -279,8 +279,7 @@ namespace Rectify11Installer
             {
                 //mica
 
-
-                bool extend = Theme.IsUsingDarkMode;
+                bool extend = Theme.DarkModeBool;
 
                 if (buildNumber >= 22523)
                 {
@@ -316,7 +315,7 @@ namespace Rectify11Installer
         }
         private void UpdateFrame()
         {
-            bool DarkMode = Theme.IsUsingDarkMode;
+            bool DarkMode = Theme.DarkModeBool;
             MARGINS m = new();
 
             if (DarkMode)
@@ -328,7 +327,7 @@ namespace Rectify11Installer
             else
             {
                 BackColor = Color.White;
-                pnlTop.BackColor = Color.White;
+                // pnlTop.BackColor = Color.White;
                 if (pnlBottom.Visible)
                 {
                     //pnlBottom.BackColor = Color.Black;
@@ -351,7 +350,7 @@ namespace Rectify11Installer
         }
         private void FixColors()
         {
-            if (Theme.IsUsingDarkMode)
+            if (Theme.DarkModeBool)
             {
                 this.ForeColor = Color.White;
                 foreach (var item in GetAllControls(this))
@@ -385,7 +384,7 @@ namespace Rectify11Installer
         }
         private void SetTitlebarColor()
         {
-            bool darkTheme = Theme.IsUsingDarkMode;
+            bool darkTheme = Theme.DarkModeBool;
             var buildNumber = Environment.OSVersion.Version.Build;
 
             //Enable dark title bar
@@ -497,7 +496,6 @@ namespace Rectify11Installer
             {
                 //Show install options page
                 Navigate(InstallOptions);
-
 
             }
             else if (CurrentPage == InstallOptions)

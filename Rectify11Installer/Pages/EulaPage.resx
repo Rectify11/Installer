@@ -57,13 +57,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>1. This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software
-2. Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author
-3. You cannot claim that you made the software
-4. This notice may not be removed or altered from any distribution.
-
-Copyright © 2022 Microsoft Corporation and the Rectify11 Team
-Windows 11 EULA: https://www.microsoft.com/en-us/UseTerms/Retail/Windows/11/UseTerms_Retail_Windows_11_English.htm</value>
-  </data>
 </root>

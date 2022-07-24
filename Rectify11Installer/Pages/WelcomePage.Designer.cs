@@ -45,7 +45,7 @@ namespace Rectify11Installer.Pages
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 146);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 146);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.TabIndex = 11;
@@ -54,7 +54,7 @@ namespace Rectify11Installer.Pages
             // cmbInstallNOW
             // 
             this.cmbInstallNOW.BackColor = System.Drawing.Color.Transparent;
-            this.cmbInstallNOW.Location = new System.Drawing.Point(188, 226);
+            this.cmbInstallNOW.Location = new System.Drawing.Point(209, 226);
             this.cmbInstallNOW.Name = "cmbInstallNOW";
             this.cmbInstallNOW.Note = "Rectify your current Windows 11 installation";
             this.cmbInstallNOW.Size = new System.Drawing.Size(294, 52);
@@ -65,7 +65,7 @@ namespace Rectify11Installer.Pages
             // 
             this.cmbUninstall.BackColor = System.Drawing.Color.Transparent;
             this.cmbUninstall.Enabled = false;
-            this.cmbUninstall.Location = new System.Drawing.Point(188, 284);
+            this.cmbUninstall.Location = new System.Drawing.Point(209, 284);
             this.cmbUninstall.Name = "cmbUninstall";
             this.cmbUninstall.Note = "Restores the original Windows 11 look.";
             this.cmbUninstall.Size = new System.Drawing.Size(294, 52);
@@ -78,9 +78,9 @@ namespace Rectify11Installer.Pages
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(188, 192);
+            this.label2.Location = new System.Drawing.Point(209, 192);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(452, 21);
+            this.label2.Size = new System.Drawing.Size(443, 21);
             this.label2.TabIndex = 12;
             this.label2.Text = "Please select what you would like to do";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -91,9 +91,9 @@ namespace Rectify11Installer.Pages
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(188, 97);
+            this.label1.Location = new System.Drawing.Point(209, 97);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(437, 23);
+            this.label1.Size = new System.Drawing.Size(174, 23);
             this.label1.TabIndex = 14;
             this.label1.Text = "Rectify11 Installer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -114,7 +114,7 @@ namespace Rectify11Installer.Pages
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(188, 120);
+            this.label3.Location = new System.Drawing.Point(209, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(392, 52);
             this.label3.TabIndex = 17;

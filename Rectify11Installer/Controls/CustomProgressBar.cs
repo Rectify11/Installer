@@ -10,7 +10,7 @@ namespace Rectify11Installer.Controls
         {
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
-            if (Theme.IsUsingDarkMode)
+            if (Theme.DarkModeBool)
             {
                 BackColor = Color.FromArgb(36, 36, 36);
             }
@@ -29,7 +29,7 @@ namespace Rectify11Installer.Controls
             }
             else
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                VisualStyle currentTheme = Theme.DarkModeBool ? Theme.DarkStyle : Theme.LightStyle;
 
                 var part = Theme.GetProgressbarBG(currentTheme);
                 var renderer2 = new PartRenderer(currentTheme, part);
@@ -47,7 +47,7 @@ namespace Rectify11Installer.Controls
             }
             else
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                VisualStyle currentTheme = Theme.DarkModeBool ? Theme.DarkStyle : Theme.LightStyle;
 
                 var part = Theme.GetProgressbarFill(currentTheme);
 

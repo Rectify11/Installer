@@ -8,6 +8,7 @@ namespace Rectify11Installer
     {
         public static VisualStyle DarkStyle = new VisualStyle();
         public static VisualStyle LightStyle = new VisualStyle();
+        public static bool DarkModeBool;
         public static bool IsUsingDarkMode
         {
             get
@@ -19,7 +20,7 @@ namespace Rectify11Installer
                     return false;
                 }
                 var registryValue = (int)registryValueObject;
-
+                DarkModeBool = registryValue <= 0;
                 return registryValue <= 0;
             }
         }
@@ -57,6 +58,24 @@ namespace Rectify11Installer
                     foreach (var parts in classes.Parts)
                     {
                         if (parts.Value.PartName == "PUSHBUTTON")
+                        {
+                            return parts.Value;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+        public static StylePart? GetGrpBox(VisualStyle v)
+        {
+            foreach (var classes in v.Classes.Values)
+            {
+                if (classes.ClassName == "Button")
+                {
+                    foreach (var parts in classes.Parts)
+                    {
+                        if (parts.Value.PartName == "GROUPBOX")
                         {
                             return parts.Value;
                         }

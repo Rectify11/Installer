@@ -79,6 +79,7 @@ namespace Rectify11Installer
                     return;
             }
 
+            Theme.DarkModeBool = Theme.IsUsingDarkMode;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

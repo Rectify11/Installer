@@ -73,7 +73,7 @@ namespace Rectify11Installer
             this.lblTopText.ForeColor = System.Drawing.Color.White;
             this.lblTopText.Location = new System.Drawing.Point(45, 0);
             this.lblTopText.Name = "lblTopText";
-            this.lblTopText.Size = new System.Drawing.Size(640, 50);
+            this.lblTopText.Size = new System.Drawing.Size(595, 50);
             this.lblTopText.TabIndex = 7;
             this.lblTopText.Text = "Welcome to Rectify11 Installer";
             this.lblTopText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -96,7 +96,7 @@ namespace Rectify11Installer
             this.BtnBack.BackColor = System.Drawing.Color.Transparent;
             this.BtnBack.ButtonText = "Back";
             this.BtnBack.Enabled = false;
-            this.BtnBack.ForeColor = System.Drawing.Color.White;
+            this.BtnBack.ForeColor = System.Drawing.Color.Black;
             this.BtnBack.Location = new System.Drawing.Point(472, 15);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.Size = new System.Drawing.Size(75, 28);
@@ -109,7 +109,7 @@ namespace Rectify11Installer
             this.BtnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnNext.BackColor = System.Drawing.Color.Transparent;
             this.BtnNext.ButtonText = "Next";
-            this.BtnNext.ForeColor = System.Drawing.Color.White;
+            this.BtnNext.ForeColor = System.Drawing.Color.Black;
             this.BtnNext.Location = new System.Drawing.Point(553, 15);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(75, 28);

@@ -98,7 +98,7 @@ namespace Rectify11Installer.Controls
             //IsDesignMode and licesning did not work for me
             if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                VisualStyle currentTheme = Theme.DarkModeBool ? Theme.DarkStyle : Theme.LightStyle;
                 if (currentTheme != null)
                 {
                     var part = Theme.GetNavArrowPart(currentTheme, t);

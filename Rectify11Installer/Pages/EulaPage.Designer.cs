@@ -30,33 +30,16 @@ namespace Rectify11Installer.Pages
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EulaPage));
-            this.richTextBox1 = new Rectify11Installer.Controls.DarkAwareRichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.richTextBoxEx1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.BackColor = System.Drawing.Color.Black;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(188, 79);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(449, 241);
-            this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.eula;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 83);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 83);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 149);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -67,20 +50,32 @@ namespace Rectify11Installer.Pages
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(186, 35);
+            this.label1.Location = new System.Drawing.Point(203, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(412, 41);
+            this.label1.Size = new System.Drawing.Size(418, 41);
             this.label1.TabIndex = 20;
             this.label1.Text = "Before you can install Rectify11, you must agree to this license agreement:";
+            // 
+            // richTextBoxEx1
+            // 
+            this.richTextBoxEx1.BackColor = System.Drawing.Color.Black;
+            this.richTextBoxEx1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxEx1.ForeColor = System.Drawing.Color.White;
+            this.richTextBoxEx1.Location = new System.Drawing.Point(203, 79);
+            this.richTextBoxEx1.Name = "richTextBoxEx1";
+            this.richTextBoxEx1.ReadOnly = true;
+            this.richTextBoxEx1.Size = new System.Drawing.Size(418, 239);
+            this.richTextBoxEx1.TabIndex = 21;
+            this.richTextBoxEx1.Text = "";
             // 
             // EulaPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.richTextBoxEx1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.richTextBox1);
             this.Name = "EulaPage";
             this.Size = new System.Drawing.Size(640, 436);
             this.WizardTopText = "License Agreement";
@@ -90,8 +85,8 @@ namespace Rectify11Installer.Pages
         }
 
         #endregion
-        private DarkAwareRichTextBox richTextBox1;
         private PictureBox pictureBox1;
         private Label label1;
+        private RichTextBox richTextBoxEx1;
     }
 }
