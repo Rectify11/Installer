@@ -11,9 +11,18 @@
 		<LangVersion>10.0</LangVersion>
 		<ApplicationIcon>r11.ico</ApplicationIcon>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<FileVersion>2.9.6.4</FileVersion>
-		<AssemblyVersion>2.9.6.4</AssemblyVersion>
-		<Version>2.9.6.5</Version>
+		<FileVersion>2.9.7.0</FileVersion>
+		<AssemblyVersion>2.9.7.0</AssemblyVersion>
+		<Version>2.9.7.0</Version>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DebugType>full</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>full</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
