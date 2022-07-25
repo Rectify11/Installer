@@ -689,9 +689,9 @@ namespace Rectify11Installer
                     {
                         Icon = TaskDialogIcon.Information,
 
-                        Text = "Info",
+                        Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then reboot.",
                         Heading = "Last step",
-                        Caption = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then reboot.",
+                        Caption = "Info",
                     };
                     TaskDialog.ShowDialog(this, pg);
                     var process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
