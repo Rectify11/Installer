@@ -267,13 +267,13 @@ namespace Rectify11Installer
                     File.Delete(hardlinkTarget + ".bak");
             }
             catch { }
-            File.Move(hardlinkTarget, hardlinkTarget + ".bak");
+            File.Move(hardlinkTarget, hardlinkTarget + ".bak", true);
 
             //Delete old hardlink
             ScheduleForDeletion(hardlinkTarget + ".bak");
 
             //rename old file
-            File.Move(WinSxSFilePath, WinSxSFilePath + ".bak");
+            File.Move(WinSxSFilePath, WinSxSFilePath + ".bak", true);
 
             //copy new file over
             File.Move(source, WinSxSFilePath, true);
