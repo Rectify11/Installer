@@ -58,11 +58,10 @@ namespace Rectify11Installer.Core
                     {
                         DoSafeInstall = ini.Read("DoSafeInstall") == bool.TrueString,
                         ShouldInstallExplorerPatcher = ini.Read("InstallEP") == bool.TrueString,
-                        ShouldInstallThemes = ini.Read("InstallThemes") == bool.TrueString,
+                        ShouldInstallASDF = ini.Read("InstallASDF") == bool.TrueString,
                         ShouldInstallWallpaper = ini.Read("InstallWP") == bool.TrueString,
                         ShouldInstallWinver = ini.Read("InstallVer") == bool.TrueString,
                     };
-
 
                     IRectifyInstaller installer = new RectifyInstaller();
                     installer.SetParentWizard(this);

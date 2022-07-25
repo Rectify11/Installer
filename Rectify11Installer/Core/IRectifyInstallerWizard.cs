@@ -109,7 +109,7 @@ namespace Rectify11Installer
     public interface IRectifyInstalllerInstallOptions
     {
         public bool ShouldInstallExplorerPatcher { get; }
-        public bool ShouldInstallThemes { get; }
+        public bool ShouldInstallASDF { get; }
         public bool ShouldInstallWallpaper { get; }
         public bool ShouldInstallWinver { get; }
         public bool DoSafeInstall { get; }
@@ -118,13 +118,28 @@ namespace Rectify11Installer
     {
         public bool ShouldInstallExplorerPatcher { get; set; }
 
-        public bool ShouldInstallThemes { get; set; }
+        public bool ShouldInstallASDF { get; set; }
 
         public bool ShouldInstallWallpaper { get; set; }
 
         public bool ShouldInstallWinver { get; set; }
 
         public bool DoSafeInstall { get; set; }
+    }
+
+    public interface IRectifyInstalllerThemeOptions
+    {
+        public bool Light { get; }
+        public bool Dark{ get; }
+        public bool Black { get; }
+    }
+    public class InstallerThemeOptions : IRectifyInstalllerThemeOptions
+    {
+        public bool Light { get; set; }
+
+        public bool Dark { get; set; }
+
+        public bool Black { get; set; }
     }
 
     public interface IRectifyInstalllerUninstallOptions

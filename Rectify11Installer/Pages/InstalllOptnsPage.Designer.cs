@@ -30,7 +30,6 @@ namespace Rectify11Installer.Pages
         /// </summary>
         private void InitializeComponent()
         {
-            this.chkThemes = new Rectify11Installer.Controls.DarkAwareCheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlContent = new Rectify11Installer.Controls.DarkAwareFlowLayoutPanel();
             this.chkExplorerPatcher = new Rectify11Installer.Controls.DarkAwareCheckBox();
@@ -42,23 +41,11 @@ namespace Rectify11Installer.Pages
             this.lblFullDesc = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkAsdf = new Rectify11Installer.Controls.DarkAwareCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlContent.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // chkThemes
-            // 
-            this.chkThemes.AutoSize = true;
-            this.chkThemes.Checked = true;
-            this.chkThemes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkThemes.ForeColor = System.Drawing.Color.White;
-            this.chkThemes.Location = new System.Drawing.Point(3, 28);
-            this.chkThemes.Name = "chkThemes";
-            this.chkThemes.Size = new System.Drawing.Size(102, 19);
-            this.chkThemes.TabIndex = 0;
-            this.chkThemes.Text = "Install Themes";
-            this.chkThemes.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -75,13 +62,13 @@ namespace Rectify11Installer.Pages
             // 
             this.pnlContent.AutoScroll = true;
             this.pnlContent.Controls.Add(this.chkExplorerPatcher);
-            this.pnlContent.Controls.Add(this.chkThemes);
             this.pnlContent.Controls.Add(this.chkWallpaper);
             this.pnlContent.Controls.Add(this.chkWinVer);
+            this.pnlContent.Controls.Add(this.chkAsdf);
             this.pnlContent.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.pnlContent.Location = new System.Drawing.Point(15, 136);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(292, 113);
+            this.pnlContent.Size = new System.Drawing.Size(187, 113);
             this.pnlContent.TabIndex = 14;
             // 
             // chkExplorerPatcher
@@ -103,7 +90,7 @@ namespace Rectify11Installer.Pages
             this.chkWallpaper.Checked = true;
             this.chkWallpaper.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWallpaper.ForeColor = System.Drawing.Color.White;
-            this.chkWallpaper.Location = new System.Drawing.Point(3, 53);
+            this.chkWallpaper.Location = new System.Drawing.Point(3, 28);
             this.chkWallpaper.Name = "chkWallpaper";
             this.chkWallpaper.Size = new System.Drawing.Size(116, 19);
             this.chkWallpaper.TabIndex = 17;
@@ -116,7 +103,7 @@ namespace Rectify11Installer.Pages
             this.chkWinVer.Checked = true;
             this.chkWinVer.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWinVer.ForeColor = System.Drawing.Color.White;
-            this.chkWinVer.Location = new System.Drawing.Point(3, 78);
+            this.chkWinVer.Location = new System.Drawing.Point(3, 53);
             this.chkWinVer.Name = "chkWinVer";
             this.chkWinVer.Size = new System.Drawing.Size(146, 19);
             this.chkWinVer.TabIndex = 18;
@@ -194,6 +181,19 @@ namespace Rectify11Installer.Pages
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             // 
+            // chkAsdf
+            // 
+            this.chkAsdf.AutoSize = true;
+            this.chkAsdf.Checked = true;
+            this.chkAsdf.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAsdf.ForeColor = System.Drawing.Color.White;
+            this.chkAsdf.Location = new System.Drawing.Point(3, 78);
+            this.chkAsdf.Name = "chkAsdf";
+            this.chkAsdf.Size = new System.Drawing.Size(144, 19);
+            this.chkAsdf.TabIndex = 19;
+            this.chkAsdf.Text = "Install AccentColorizer";
+            this.chkAsdf.UseVisualStyleBackColor = true;
+            // 
             // InstalllOptnsPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -214,8 +214,6 @@ namespace Rectify11Installer.Pages
         }
 
         #endregion
-
-        private DarkAwareCheckBox chkThemes;
         private PictureBox pictureBox1;
         private DarkAwareFlowLayoutPanel pnlContent;
         private DarkAwareRadioButton radSafe;
@@ -227,5 +225,6 @@ namespace Rectify11Installer.Pages
         private DarkAwareCheckBox chkWinVer;
         private Label label2;
         private GroupBox groupBox1;
+        private DarkAwareCheckBox chkAsdf;
     }
 }

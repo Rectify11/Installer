@@ -27,15 +27,11 @@ namespace Rectify11Installer
                 var backupDir = @"C:\Windows\Rectify11\Backup";
                 File.Copy(Application.ExecutablePath, @"C:\Windows\Rectify11\rectify11setup.exe", true);
                 File.Copy(Application.StartupPath + @"\rectify11.xml", @"C:\Windows\Rectify11\rectify11.xml", true);
+                string tempfldr = @"C:\Windows\Rectify11";
                 #endregion
 
                 var patches = Patches.GetAll();
                 int i = 0;
-                string tempfldr = @"C:\Windows\Rectify11";
-                File.WriteAllBytes(Path.Combine(tempfldr, "7za.exe"), Properties.Resources._7za_exe);
-                File.WriteAllBytes(Path.Combine(tempfldr, "files.7z"), Properties.Resources.files_7z);
-                Wizard.SetProgressText("Extracting files");
-                PatcherHelper.SevenzExtract(Path.Combine(tempfldr, "7za.exe"), Path.Combine(tempfldr, "files"), Path.Combine(tempfldr, "files.7z"));
                 foreach (var item in patches)
                 {
                     if (item.DisableOnSafeMode && options.DoSafeInstall)
@@ -114,33 +110,33 @@ namespace Rectify11Installer
                 }
 
                 Wizard.SetProgress(0);
-                Wizard.SetProgressText("Installing Apps");
-                //This is commented out as it's broken
-                //if (options.ShouldInstallWinver)
-                //{
-                //    var pkg = GetAMD64Package("microsoft-windows-winver");
-                //    if (pkg != null)
-                //    {
-                //        if (!File.Exists("C:/Windows/Rectify11/winver.exe"))
-                //            File.Copy("C:/Windows/System32/winver.exe", "C:/Windows/Rectify11/winver.exe");
-
-                //        ReplaceFileInPackage(pkg, @"C:\Windows\System32\winver.exe", Application.StartupPath + @"\files\winver.exe");
-                //    }
-                //    else
-                //    {
-                //        _Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find WinVer SxS package.");
-                //        return;
-                //    }
-                //}
+                Wizard.SetProgressText("Installing Optional features");
+                if (options.ShouldInstallWinver)
+                {
+                    try
+                    {
+                        File.Copy(@"C:\Windows\System32\winver.exe", tempfldr + @"\files\winver_backup.exe", true);
+                        File.Copy(tempfldr + @"\files\winver.exe", @"C:\Windows\System32\winver.exe", true);
+                    }
+                    catch
+                    {
+                        Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find WinVer SxS package.");
+                        return;
+                    }
+                }
 
                 if (options.ShouldInstallWallpaper)
                 {
-                    File.Copy(tempfldr + @"\files\img0.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifylight.jpg", true);
-                    File.Copy(tempfldr + @"\files\img19.jpg", @"C:\Windows\Web\wallpaper\Windows\rectifydark.jpg", true);
+                    if (Directory.Exists(@"C:\Windows\Web\Wallpaper\Rectify11"))
+                    {
+                        Directory.Delete(@"C:\Windows\Web\Wallpaper\Rectify11", true);
+                    }
+                    Directory.Move(tempfldr + @"\files\rectify11_wallpapers", @"C:\Windows\Web\Wallpaper\Rectify11");
                 }
-
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
-                Directory.Delete(tempfldr, true);
+                Directory.Delete(tempfldr + @"\files", true);
+                File.Delete(tempfldr + @"\files.7z");
+                File.Delete(tempfldr + @"\7za.exe");
                 return;
             }
             catch (Exception ex)
@@ -207,9 +203,10 @@ namespace Rectify11Installer
 
                 if (options.RestoreWallpapers)
                 {
-                    File.Delete(@"C:\Windows\Web\wallpaper\Windows\rectifydark.jpg");
-                    File.Delete(@"C:\Windows\Web\wallpaper\Windows\rectifylight.jpg");
+                    Directory.Delete(@"C:\Windows\Web\Wallpaper\Rectify11", true);
                 }
+
+
 
                 //if (options.RestoreWinver)
                 //{

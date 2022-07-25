@@ -49,6 +49,9 @@
     <Compile Update="Pages\RebootPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Pages\ThemeChoicePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Pages\UninstallConfirmPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -60,6 +63,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Core\frmWizard.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

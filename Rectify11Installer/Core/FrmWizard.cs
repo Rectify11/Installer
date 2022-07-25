@@ -21,6 +21,7 @@ namespace Rectify11Installer
         private static readonly InstalllOptnsPage InstallOptions = new();
         private static readonly ConfirmOperationPage ConfirmOpPage = new();
         private static readonly ProgressPage ProgressPage = new();
+        private static readonly ThemeChoicePage ThemeChoice = new();
         private static readonly UninstallConfirmPage UninstallConfirmPage = new();
         private static readonly RebootPage RebootPage = new();
         private static FinishPage? FinishPage;
@@ -139,6 +140,22 @@ namespace Rectify11Installer
 
                 navigationButton1.Visible = true;
                 pnlBottom.Visible = true;
+                pnlTop.Visible = true;
+                UpdateFrame();
+            }
+            else if (page == ThemeChoice)
+            {
+                navigationButton1.Visible = true;
+
+                BtnBack.Visible = true;
+                BtnNext.Visible = true;
+
+                BtnBack.Enabled = true;
+                BtnNext.Enabled = true;
+
+                BtnBack.ButtonText = "Back";
+                BtnNext.ButtonText = "Next";
+                navigationButton1.Visible = true;
                 pnlTop.Visible = true;
                 UpdateFrame();
             }
@@ -482,6 +499,11 @@ namespace Rectify11Installer
             else if (CurrentPage == ConfirmOpPage)
             {
                 //The user clicked on "Back" when on the confirm install/uninstall page
+                Navigate(ThemeChoice);
+            }
+            else if (CurrentPage == ThemeChoice)
+            {
+                //The user clicked on "Back" when on the confirm install/uninstall page
                 Navigate(InstallOptions);
             }
             else if (CurrentPage == InstallOptions)
@@ -499,6 +521,12 @@ namespace Rectify11Installer
 
             }
             else if (CurrentPage == InstallOptions)
+            {
+                //We are about to install it
+                Navigate(ThemeChoice);
+
+            }
+            else if (CurrentPage == ThemeChoice)
             {
                 //We are about to install it
                 Navigate(ConfirmOpPage);
@@ -577,13 +605,14 @@ namespace Rectify11Installer
                 if (oldPage == ConfirmOpPage)
                 {
                     IRectifyInstalllerInstallOptions options = InstallOptions;
+                    IRectifyInstalllerThemeOptions themeoptions = ThemeChoice;
                     //install
 
                     try
                     {
                         IniFile f = new IniFile(iniPath);
                         f.Write("InstallEP", options.ShouldInstallExplorerPatcher.ToString());
-                        f.Write("InstallThemes", options.ShouldInstallThemes.ToString());
+                        f.Write("InstallASDF", options.ShouldInstallASDF.ToString());
                         f.Write("InstallWP", options.ShouldInstallWallpaper.ToString());
                         f.Write("InstallVer", options.ShouldInstallWinver.ToString());
                         f.Write("DoSafeInstall", options.DoSafeInstall.ToString());
@@ -603,6 +632,49 @@ namespace Rectify11Installer
                         wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
                         return;
                     }
+
+                    // install most apps
+                    wizard.SetProgressText("Preparing Files...");
+                    string tempfldr = @"C:\Windows\Rectify11";
+                    File.WriteAllBytes(Path.Combine(tempfldr, "7za.exe"), Properties.Resources._7za_exe);
+                    File.WriteAllBytes(Path.Combine(tempfldr, "files.7z"), Properties.Resources.files_7z);
+                    if (Directory.Exists(tempfldr + @"\files"))
+                    {
+                        Directory.Delete(tempfldr + @"\files");
+                    }
+                    PatcherHelper.SevenzExtract(Path.Combine(tempfldr, "7za.exe"), Path.Combine(tempfldr, "files"), Path.Combine(tempfldr, "files.7z"));
+
+                    wizard.SetProgressText("Installing theme");
+                    var process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
+                    process.WaitForExit();
+                    Process.Start("reg.exe", "import " + tempfldr + @"\files\FIX.reg");
+                    if (themeoptions.Light)
+                    {
+                        // not implemented
+                    }
+                    else if (themeoptions.Dark)
+                    {
+                        // lmao
+                        File.Copy(tempfldr + @"\files\themes\dark\darkrectified.theme", @"C:\Windows\Resources\Themes\darkrectified.theme", true);
+                        File.Copy(tempfldr + @"\files\themes\dark\darkcolorized.theme", @"C:\Windows\Resources\Themes\darkcolorized.theme", true);
+                        if (Directory.Exists(@"C:\Windows\Resources\Themes\rectify11"))
+                        {
+                            Directory.Delete(@"C:\Windows\Resources\Themes\rectify11", true);
+                        }
+                        Directory.Move(tempfldr + @"\files\themes\dark\rectify11", @"C:\Windows\Resources\Themes\rectify11");
+                        var basee = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
+                        var themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes", RegistryKeyPermissionCheck.ReadWriteSubTree);
+                        if (themes != null)
+                        {
+                            themes.SetValue("CurrentTheme", @"%SystemRoot%\resources\Themes\darkrectified.theme", RegistryValueKind.String);
+                        }
+                        themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\ThemeManager", RegistryKeyPermissionCheck.ReadWriteSubTree);
+                        if (themes != null)
+                        {
+                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Dark.msstyles", RegistryValueKind.String);
+                        }
+                    }
+
                     RebootPage.Start();
 
                     Navigate(RebootPage);
@@ -631,6 +703,11 @@ namespace Rectify11Installer
                     {
                         wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, true, @"Failed to enter setup mode:\n" + ex.ToString());
                         return;
+                    }
+                    if (File.Exists(@"C:\Program Files (x86)\UltraUXThemePatcher\uninstall.exe"))
+                    {
+                        var process = Process.Start(@"C:\Program Files (x86)\UltraUXThemePatcher\uninstall.exe");
+                        process.WaitForExit();
                     }
                     RebootPage.Start();
 

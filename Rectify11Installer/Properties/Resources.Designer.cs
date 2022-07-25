@@ -71,12 +71,32 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blackPreview {
+            get {
+                object obj = ResourceManager.GetObject("blackPreview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Dark_msstyles {
             get {
                 object obj = ResourceManager.GetObject("Dark.msstyles", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap darkPreview {
+            get {
+                object obj = ResourceManager.GetObject("darkPreview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -121,6 +141,16 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lightPreview {
+            get {
+                object obj = ResourceManager.GetObject("lightPreview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
         ///
         ///&lt;!--Rectify11 Patch file list--&gt;
@@ -146,6 +176,16 @@ namespace Rectify11Installer.Properties {
         internal static System.Drawing.Bitmap rectify11Installer {
             get {
                 object obj = ResourceManager.GetObject("rectify11Installer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap themepage {
+            get {
+                object obj = ResourceManager.GetObject("themepage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
