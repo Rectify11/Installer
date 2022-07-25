@@ -1,4 +1,5 @@
-﻿using Rectify11Installer.Core;
+﻿using Microsoft.Win32;
+using Rectify11Installer.Core;
 using Rectify11Installer.Win32.Rectify11;
 using System.ComponentModel;
 
@@ -9,7 +10,7 @@ namespace Rectify11Installer
         private IRectifyInstallerWizard? Wizard;
         private bool IsInstalling = true;
         #region Interface implementation
-        public void Install(IRectifyInstalllerInstallOptions options)
+        public void Install(IRectifyInstalllerInstallOptions options, IRectifyInstalllerThemeOptions themeOptions)
         {
             IsInstalling = true;
             if (Wizard == null)
@@ -133,6 +134,24 @@ namespace Rectify11Installer
                     }
                     Directory.Move(tempfldr + @"\files\rectify11_wallpapers", @"C:\Windows\Web\Wallpaper\Rectify11");
                 }
+                var basee = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+                var themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\RunOnce", RegistryKeyPermissionCheck.ReadWriteSubTree);
+                if (themes != null)
+                {
+                    if (themeOptions.Light)
+                    {
+                        themes.SetValue("Rectify11", @"C:\Windows\Resources\Themes\lightrectified.theme", RegistryValueKind.String);
+                    }
+                    else if (themeOptions.Dark)
+                    {
+                        themes.SetValue("Rectify11", @"C:\Windows\Resources\Themes\darkrectified.theme", RegistryValueKind.String);
+                    }
+                    else if (themeOptions.Black)
+                    {
+                        themes.SetValue("Rectify11", @"C:\Windows\Resources\Themes\blacknonhighcontrastribbon.theme", RegistryValueKind.String);
+                    }
+                }
+                basee.Close();
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 Directory.Delete(tempfldr + @"\files", true);
                 File.Delete(tempfldr + @"\files.7z");

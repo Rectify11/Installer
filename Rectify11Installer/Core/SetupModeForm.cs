@@ -62,13 +62,19 @@ namespace Rectify11Installer.Core
                         ShouldInstallWallpaper = ini.Read("InstallWP") == bool.TrueString,
                         ShouldInstallWinver = ini.Read("InstallVer") == bool.TrueString,
                     };
+                    var themeoptions = new InstallerThemeOptions()
+                    {
+                        Light = ini.Read("LightTheme") == bool.TrueString,
+                        Dark = ini.Read("DarkTheme") == bool.TrueString,
+                        Black = ini.Read("BlackTheme") == bool.TrueString,
+                    };
 
                     IRectifyInstaller installer = new RectifyInstaller();
                     installer.SetParentWizard(this);
 
                     var thread = new Thread(delegate ()
                     {
-                        installer.Install(options);
+                        installer.Install(options, themeoptions);
                     });
                     thread.Start();
                 }

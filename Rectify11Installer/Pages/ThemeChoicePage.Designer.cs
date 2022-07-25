@@ -82,7 +82,6 @@
             // 
             this.pictureBox4.BackgroundImage = global::Rectify11Installer.Properties.Resources.blackPreview;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox4.Enabled = false;
             this.pictureBox4.Location = new System.Drawing.Point(3, 219);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(175, 108);
@@ -105,7 +104,6 @@
             // 
             this.pictureBox2.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Enabled = false;
             this.pictureBox2.Location = new System.Drawing.Point(3, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(175, 96);
@@ -125,7 +123,6 @@
             // 
             // darkAwareRadioButton3
             // 
-            this.darkAwareRadioButton3.Enabled = false;
             this.darkAwareRadioButton3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareRadioButton3.ForeColor = System.Drawing.Color.White;
             this.darkAwareRadioButton3.Location = new System.Drawing.Point(0, 219);
@@ -150,7 +147,6 @@
             // 
             // darkAwareRadioButton1
             // 
-            this.darkAwareRadioButton1.Enabled = false;
             this.darkAwareRadioButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareRadioButton1.ForeColor = System.Drawing.Color.White;
             this.darkAwareRadioButton1.Location = new System.Drawing.Point(0, 3);

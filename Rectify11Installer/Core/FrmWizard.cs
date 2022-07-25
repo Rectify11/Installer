@@ -3,14 +3,13 @@
 //File permission problems do occur unless you run this as trusted installer
 
 using Microsoft.Win32;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using Rectify11Installer.Pages;
-using Rectify11Installer.Core;
-using Rectify11Installer.Win32;
-using System.Diagnostics;
 using Rectify11Installer.Controls;
+using Rectify11Installer.Core;
+using Rectify11Installer.Pages;
 using Rectify11Installer.Win32.Rectify11;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Rectify11Installer
 {
@@ -61,7 +60,7 @@ namespace Rectify11Installer
         private void VersionLabel_Click(object? sender, EventArgs e)
         {
             clicks++;
-            if(clicks >= 5)
+            if (clicks >= 5)
             {
                 clicks = 0;
                 Navigate(new DebugPage());
@@ -212,7 +211,7 @@ namespace Rectify11Installer
                 pnlBottom.Visible = true;
                 UpdateFrame();
             }
-            else if(page == RebootPage)
+            else if (page == RebootPage)
             {
                 pnlBottom.Visible = false;
                 navigationButton1.Visible = false;
@@ -584,7 +583,7 @@ namespace Rectify11Installer
                 var wizard = new RectifyInstallerWizard(this, ProgressPage);
                 wizard.SetProgress(0);
                 wizard.SetProgressText("Copying Files");
-                
+
                 try
                 {
                     if (!Directory.Exists(@"C:\Windows\Rectify11\"))
@@ -616,6 +615,10 @@ namespace Rectify11Installer
                         f.Write("InstallWP", options.ShouldInstallWallpaper.ToString());
                         f.Write("InstallVer", options.ShouldInstallWinver.ToString());
                         f.Write("DoSafeInstall", options.DoSafeInstall.ToString());
+
+                        f.Write("DarkTheme", themeoptions.Dark.ToString());
+                        f.Write("LightTheme", themeoptions.Light.ToString());
+                        f.Write("BlackTheme", themeoptions.Black.ToString());
                         f.Write("Mode", "Install");
                     }
                     catch (Exception ex)
@@ -640,41 +643,60 @@ namespace Rectify11Installer
                     File.WriteAllBytes(Path.Combine(tempfldr, "files.7z"), Properties.Resources.files_7z);
                     if (Directory.Exists(tempfldr + @"\files"))
                     {
-                        Directory.Delete(tempfldr + @"\files");
+                        Directory.Delete(tempfldr + @"\files", true);
                     }
                     PatcherHelper.SevenzExtract(Path.Combine(tempfldr, "7za.exe"), Path.Combine(tempfldr, "files"), Path.Combine(tempfldr, "files.7z"));
 
+                    // eh
                     wizard.SetProgressText("Installing theme");
-                    var process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
-                    process.WaitForExit();
-                    Process.Start("reg.exe", "import " + tempfldr + @"\files\FIX.reg");
-                    if (themeoptions.Light)
+                    if (Directory.Exists(@"C:\Windows\Resources\Themes\rectify11"))
                     {
-                        // not implemented
+                        Directory.Delete(@"C:\Windows\Resources\Themes\rectify11", true);
                     }
-                    else if (themeoptions.Dark)
+                    Directory.Move(tempfldr + @"\files\themes\rectify11", @"C:\Windows\Resources\Themes\rectify11");
+                    File.Copy(tempfldr + @"\files\themes\black.theme", @"C:\Windows\Resources\Themes\black.theme", true);
+                    File.Copy(tempfldr + @"\files\themes\blacknonhighcontrastribbon.theme", @"C:\Windows\Resources\Themes\blacknonhighcontrastribbon.theme", true);
+                    File.Copy(tempfldr + @"\files\themes\darkcolorized.theme", @"C:\Windows\Resources\Themes\darkcolorized.theme", true);
+                    File.Copy(tempfldr + @"\files\themes\darkrectified.theme", @"C:\Windows\Resources\Themes\darkrectified.theme", true);
+                    File.Copy(tempfldr + @"\files\themes\lightrectified.theme", @"C:\Windows\Resources\Themes\lightrectified.theme", true);
+                    var basee = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
+                    var themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\ThemeManager", RegistryKeyPermissionCheck.ReadWriteSubTree);
+                    if (themes != null)
                     {
-                        // lmao
-                        File.Copy(tempfldr + @"\files\themes\dark\darkrectified.theme", @"C:\Windows\Resources\Themes\darkrectified.theme", true);
-                        File.Copy(tempfldr + @"\files\themes\dark\darkcolorized.theme", @"C:\Windows\Resources\Themes\darkcolorized.theme", true);
-                        if (Directory.Exists(@"C:\Windows\Resources\Themes\rectify11"))
+                        if (themeoptions.Light)
                         {
-                            Directory.Delete(@"C:\Windows\Resources\Themes\rectify11", true);
+                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Aero.msstyles", RegistryValueKind.String);
                         }
-                        Directory.Move(tempfldr + @"\files\themes\dark\rectify11", @"C:\Windows\Resources\Themes\rectify11");
-                        var basee = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
-                        var themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes", RegistryKeyPermissionCheck.ReadWriteSubTree);
-                        if (themes != null)
-                        {
-                            themes.SetValue("CurrentTheme", @"%SystemRoot%\resources\Themes\darkrectified.theme", RegistryValueKind.String);
-                        }
-                        themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\ThemeManager", RegistryKeyPermissionCheck.ReadWriteSubTree);
-                        if (themes != null)
+                        else if (themeoptions.Dark)
                         {
                             themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Dark.msstyles", RegistryValueKind.String);
                         }
+                        else if (themeoptions.Black)
+                        {
+                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Black.msstyles", RegistryValueKind.String);
+                        }
                     }
 
+                    Process fixreg = new();
+                    fixreg.StartInfo.FileName = "reg.exe";
+                    fixreg.StartInfo.Arguments = "import " + tempfldr + @"\files\FIX.reg";
+                    fixreg.StartInfo.UseShellExecute = false;
+                    fixreg.StartInfo.CreateNoWindow = true;
+                    fixreg.Start();
+                    fixreg.WaitForExit();
+                    Visible = false;
+                    var pg = new TaskDialogPage()
+                    {
+                        Icon = TaskDialogIcon.Information,
+
+                        Text = "Info",
+                        Heading = "Last step",
+                        Caption = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then reboot.",
+                    };
+                    TaskDialog.ShowDialog(this, pg);
+                    var process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
+                    process.WaitForExit();
+                    Visible = true;
                     RebootPage.Start();
 
                     Navigate(RebootPage);

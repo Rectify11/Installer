@@ -93,7 +93,7 @@ namespace Rectify11Installer
         /// Install Rectify11
         /// </summary>
         /// <param name="options">Installer options</param>
-        void Install(IRectifyInstalllerInstallOptions options);
+        void Install(IRectifyInstalllerInstallOptions options, IRectifyInstalllerThemeOptions themeOptions);
         /// <summary>
         /// Uninstall Rectify11
         /// </summary>
