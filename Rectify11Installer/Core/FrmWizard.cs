@@ -676,7 +676,21 @@ namespace Rectify11Installer
                             themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Black.msstyles", RegistryValueKind.String);
                         }
                     }
-
+                    basee.Close();
+                    themes = basee.OpenSubKey(@"Control Panel\Desktop", RegistryKeyPermissionCheck.ReadWriteSubTree);
+                    if (themes != null)
+                    {
+                        themes.SetValue(@"WallpaperStyle", 10.ToString());
+                        themes.SetValue(@"TileWallpaper", 0.ToString());
+                        if ((themeoptions.Dark) || (themeoptions.Black))
+                        {
+                            themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img19.jpg");
+                        }
+                        else if (themeoptions.Light)
+                        {
+                            themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img0.jpg");
+                        }
+                    }
                     Process fixreg = new();
                     fixreg.StartInfo.FileName = "reg.exe";
                     fixreg.StartInfo.Arguments = "import " + tempfldr + @"\files\FIX.reg";
@@ -689,7 +703,7 @@ namespace Rectify11Installer
                     {
                         Icon = TaskDialogIcon.Information,
 
-                        Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then reboot.",
+                        Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then SELECT reboot later.",
                         Heading = "Last step",
                         Caption = "Info",
                     };
@@ -731,8 +745,9 @@ namespace Rectify11Installer
                         var process = Process.Start(@"C:\Program Files (x86)\UltraUXThemePatcher\uninstall.exe");
                         process.WaitForExit();
                     }
-                    RebootPage.Start();
 
+                    // ultrauxthemepatcher uninstall wizard is just E
+                    // RebootPage.Start();
                     Navigate(RebootPage);
                 }
                 else

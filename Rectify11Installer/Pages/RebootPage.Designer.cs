@@ -59,10 +59,10 @@ namespace Rectify11Installer.Pages
             this.winuiButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.winuiButton1.BackColor = System.Drawing.Color.Transparent;
             this.winuiButton1.ButtonText = "Restart now";
-            this.winuiButton1.ForeColor = System.Drawing.Color.White;
+            this.winuiButton1.ForeColor = System.Drawing.Color.Black;
             this.winuiButton1.Location = new System.Drawing.Point(549, 355);
             this.winuiButton1.Name = "winuiButton1";
-            this.winuiButton1.Size = new System.Drawing.Size(75, 23);
+            this.winuiButton1.Size = new System.Drawing.Size(75, 28);
             this.winuiButton1.TabIndex = 19;
             this.winuiButton1.Click += new System.EventHandler(this.winuiButton1_Click);
             // 

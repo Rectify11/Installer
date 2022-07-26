@@ -116,7 +116,7 @@ namespace Rectify11Installer
                 {
                     try
                     {
-                        File.Copy(@"C:\Windows\System32\winver.exe", tempfldr + @"\files\winver_backup.exe", true);
+                        File.Copy(@"C:\Windows\System32\winver.exe", tempfldr + @"\backup\winver_backup.exe", true);
                         File.Copy(tempfldr + @"\files\winver.exe", @"C:\Windows\System32\winver.exe", true);
                     }
                     catch
