@@ -19,6 +19,7 @@ namespace Rectify11Installer.Pages
             eula.Append(@"{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par");
             eula.Append(@"\pard\par\par");
             eula.Append(@"Copyright \'a9 2022 Microsoft Corporation and the Rectify11 Team\par");
+            eula.Append(@"{\pntext\f0 Note:\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par");
             eula.Append(@"}");
             richTextBoxEx1.Rtf = eula.ToString();
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
@@ -57,6 +58,21 @@ namespace Rectify11Installer.Pages
         {
             if (e.LinkText != null)
                 Process.Start(new ProcessStartInfo() { FileName=e.LinkText, UseShellExecute=true});
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBoxEx1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EulaPage_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

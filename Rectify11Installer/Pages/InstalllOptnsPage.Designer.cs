@@ -35,13 +35,13 @@ namespace Rectify11Installer.Pages
             this.chkExplorerPatcher = new Rectify11Installer.Controls.DarkAwareCheckBox();
             this.chkWallpaper = new Rectify11Installer.Controls.DarkAwareCheckBox();
             this.chkWinVer = new Rectify11Installer.Controls.DarkAwareCheckBox();
+            this.chkAsdf = new Rectify11Installer.Controls.DarkAwareCheckBox();
             this.radSafe = new Rectify11Installer.Controls.DarkAwareRadioButton();
             this.lblSafeDesc = new System.Windows.Forms.Label();
             this.radFull = new Rectify11Installer.Controls.DarkAwareRadioButton();
             this.lblFullDesc = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkAsdf = new Rectify11Installer.Controls.DarkAwareCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlContent.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -52,9 +52,9 @@ namespace Rectify11Installer.Pages
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.installoptions;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(26, 95);
+            this.pictureBox1.Location = new System.Drawing.Point(62, 82);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.Size = new System.Drawing.Size(178, 173);
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
@@ -66,9 +66,9 @@ namespace Rectify11Installer.Pages
             this.pnlContent.Controls.Add(this.chkWinVer);
             this.pnlContent.Controls.Add(this.chkAsdf);
             this.pnlContent.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pnlContent.Location = new System.Drawing.Point(15, 136);
+            this.pnlContent.Location = new System.Drawing.Point(15, 156);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(187, 113);
+            this.pnlContent.Size = new System.Drawing.Size(183, 141);
             this.pnlContent.TabIndex = 14;
             // 
             // chkExplorerPatcher
@@ -79,7 +79,7 @@ namespace Rectify11Installer.Pages
             this.chkExplorerPatcher.ForeColor = System.Drawing.Color.White;
             this.chkExplorerPatcher.Location = new System.Drawing.Point(3, 3);
             this.chkExplorerPatcher.Name = "chkExplorerPatcher";
-            this.chkExplorerPatcher.Size = new System.Drawing.Size(142, 19);
+            this.chkExplorerPatcher.Size = new System.Drawing.Size(156, 21);
             this.chkExplorerPatcher.TabIndex = 16;
             this.chkExplorerPatcher.Text = "Install ExplorerPatcher";
             this.chkExplorerPatcher.UseVisualStyleBackColor = true;
@@ -90,9 +90,10 @@ namespace Rectify11Installer.Pages
             this.chkWallpaper.Checked = true;
             this.chkWallpaper.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWallpaper.ForeColor = System.Drawing.Color.White;
-            this.chkWallpaper.Location = new System.Drawing.Point(3, 28);
+            this.chkWallpaper.Location = new System.Drawing.Point(3, 30);
             this.chkWallpaper.Name = "chkWallpaper";
-            this.chkWallpaper.Size = new System.Drawing.Size(116, 19);
+            this.chkWallpaper.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.chkWallpaper.Size = new System.Drawing.Size(127, 29);
             this.chkWallpaper.TabIndex = 17;
             this.chkWallpaper.Text = "Install wallpapers";
             this.chkWallpaper.UseVisualStyleBackColor = true;
@@ -103,12 +104,27 @@ namespace Rectify11Installer.Pages
             this.chkWinVer.Checked = true;
             this.chkWinVer.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWinVer.ForeColor = System.Drawing.Color.White;
-            this.chkWinVer.Location = new System.Drawing.Point(3, 53);
+            this.chkWinVer.Location = new System.Drawing.Point(3, 65);
             this.chkWinVer.Name = "chkWinVer";
-            this.chkWinVer.Size = new System.Drawing.Size(146, 19);
+            this.chkWinVer.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.chkWinVer.Size = new System.Drawing.Size(153, 29);
             this.chkWinVer.TabIndex = 18;
             this.chkWinVer.Text = "Install Rectify11 winver";
             this.chkWinVer.UseVisualStyleBackColor = true;
+            // 
+            // chkAsdf
+            // 
+            this.chkAsdf.AutoSize = true;
+            this.chkAsdf.Checked = true;
+            this.chkAsdf.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAsdf.ForeColor = System.Drawing.Color.White;
+            this.chkAsdf.Location = new System.Drawing.Point(3, 100);
+            this.chkAsdf.Name = "chkAsdf";
+            this.chkAsdf.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.chkAsdf.Size = new System.Drawing.Size(155, 29);
+            this.chkAsdf.TabIndex = 19;
+            this.chkAsdf.Text = "Install AccentColorizer";
+            this.chkAsdf.UseVisualStyleBackColor = true;
             // 
             // radSafe
             // 
@@ -129,7 +145,7 @@ namespace Rectify11Installer.Pages
             this.lblSafeDesc.ForeColor = System.Drawing.Color.White;
             this.lblSafeDesc.Location = new System.Drawing.Point(31, 42);
             this.lblSafeDesc.Name = "lblSafeDesc";
-            this.lblSafeDesc.Size = new System.Drawing.Size(228, 20);
+            this.lblSafeDesc.Size = new System.Drawing.Size(258, 20);
             this.lblSafeDesc.TabIndex = 2;
             this.lblSafeDesc.Text = "Choose if you play games with anti cheat.";
             // 
@@ -138,7 +154,7 @@ namespace Rectify11Installer.Pages
             this.radFull.AutoSize = true;
             this.radFull.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radFull.ForeColor = System.Drawing.Color.White;
-            this.radFull.Location = new System.Drawing.Point(15, 68);
+            this.radFull.Location = new System.Drawing.Point(15, 81);
             this.radFull.Name = "radFull";
             this.radFull.Size = new System.Drawing.Size(107, 19);
             this.radFull.TabIndex = 3;
@@ -149,9 +165,9 @@ namespace Rectify11Installer.Pages
             // lblFullDesc
             // 
             this.lblFullDesc.ForeColor = System.Drawing.Color.White;
-            this.lblFullDesc.Location = new System.Drawing.Point(31, 87);
+            this.lblFullDesc.Location = new System.Drawing.Point(31, 101);
             this.lblFullDesc.Name = "lblFullDesc";
-            this.lblFullDesc.Size = new System.Drawing.Size(228, 36);
+            this.lblFullDesc.Size = new System.Drawing.Size(258, 36);
             this.lblFullDesc.TabIndex = 4;
             this.lblFullDesc.Text = "Will affect games with anti cheat but will result in a more consistent OS.";
             // 
@@ -159,14 +175,15 @@ namespace Rectify11Installer.Pages
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(218, 28);
+            this.label2.Location = new System.Drawing.Point(305, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(292, 29);
             this.label2.TabIndex = 15;
             this.label2.Text = "You can choose what will be Rectified.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // groupBox1
             // 
@@ -175,24 +192,12 @@ namespace Rectify11Installer.Pages
             this.groupBox1.Controls.Add(this.radFull);
             this.groupBox1.Controls.Add(this.pnlContent);
             this.groupBox1.Controls.Add(this.lblFullDesc);
-            this.groupBox1.Location = new System.Drawing.Point(218, 60);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Location = new System.Drawing.Point(308, 37);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 267);
+            this.groupBox1.Size = new System.Drawing.Size(293, 306);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            // 
-            // chkAsdf
-            // 
-            this.chkAsdf.AutoSize = true;
-            this.chkAsdf.Checked = true;
-            this.chkAsdf.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAsdf.ForeColor = System.Drawing.Color.White;
-            this.chkAsdf.Location = new System.Drawing.Point(3, 78);
-            this.chkAsdf.Name = "chkAsdf";
-            this.chkAsdf.Size = new System.Drawing.Size(144, 19);
-            this.chkAsdf.TabIndex = 19;
-            this.chkAsdf.Text = "Install AccentColorizer";
-            this.chkAsdf.UseVisualStyleBackColor = true;
             // 
             // InstalllOptnsPage
             // 
@@ -204,6 +209,7 @@ namespace Rectify11Installer.Pages
             this.Name = "InstalllOptnsPage";
             this.Size = new System.Drawing.Size(640, 436);
             this.WizardTopText = "Choose what to install";
+            this.Load += new System.EventHandler(this.InstalllOptnsPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
