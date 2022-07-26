@@ -42,10 +42,14 @@ namespace Rectify11Installer
                     return;
                 }
             }
-
-            if (!File.Exists(Application.StartupPath + "\\rectify11.xml"))
+            string tempfldr = @"C:\Windows\Rectify11";
+            if (!Directory.Exists(tempfldr))
             {
-                File.WriteAllText(Application.StartupPath + "\\rectify11.xml", Properties.Resources.rectify11_xml);
+                Directory.CreateDirectory(tempfldr);
+            }
+            if (!File.Exists(tempfldr + "\\rectify11.xml"))
+            {
+                File.WriteAllText(tempfldr + "\\rectify11.xml", Properties.Resources.rectify11_xml);
             }
 
             try
@@ -63,10 +67,10 @@ namespace Rectify11Installer
             if (File.Exists(Application.StartupPath + "/install.log"))
                 File.Delete(Application.StartupPath + "/install.log");
 
-            if (!File.Exists(Application.StartupPath + "\\Dark.msstyles") && !File.Exists(Application.StartupPath + "\\light.msstyles"))
+            if (!File.Exists(tempfldr + "\\Dark.msstyles") && !File.Exists(tempfldr + "\\light.msstyles"))
             {
-                File.WriteAllBytes(Application.StartupPath + "\\Dark.msstyles", Properties.Resources.Dark_msstyles);
-                File.WriteAllBytes(Application.StartupPath + "\\light.msstyles", Properties.Resources.light_msstyles);
+                File.WriteAllBytes(tempfldr + "\\Dark.msstyles", Properties.Resources.Dark_msstyles);
+                File.WriteAllBytes(tempfldr + "\\light.msstyles", Properties.Resources.light_msstyles);
             }
             try
             {

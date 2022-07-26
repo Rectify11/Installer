@@ -34,8 +34,8 @@ namespace Rectify11Installer
 
         public static void LoadTheme()
         {
-            DarkStyle.Load(Application.StartupPath + "\\Dark.msstyles");
-            LightStyle.Load(Application.StartupPath + "\\light.msstyles");
+            DarkStyle.Load(@"C:\Windows\Rectify11" + "\\Dark.msstyles");
+            LightStyle.Load(@"C:\Windows\Rectify11" + "\\light.msstyles");
         }
 
         private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
