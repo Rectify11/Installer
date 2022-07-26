@@ -120,8 +120,7 @@ namespace Rectify11Installer
                     }
                     catch
                     {
-                        Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Fail, IsInstalling, "Cannot find WinVer SxS package.");
-                        return;
+
                     }
                 }
 
