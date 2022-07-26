@@ -22,13 +22,12 @@ namespace Rectify11Installer
             {
                 InstallStatus.IsRectify11Installed = true;
 
+                string tempfldr = @"C:\Windows\Rectify11";
                 #region Setup
                 Wizard.SetProgress(0);
                 Wizard.SetProgressText("Initializing...");
                 var backupDir = @"C:\Windows\Rectify11\Backup";
                 File.Copy(Application.ExecutablePath, @"C:\Windows\Rectify11\rectify11setup.exe", true);
-                File.Copy(Application.StartupPath + @"\rectify11.xml", @"C:\Windows\Rectify11\rectify11.xml", true);
-                string tempfldr = @"C:\Windows\Rectify11";
                 #endregion
 
                 var patches = Patches.GetAll();
