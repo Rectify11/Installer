@@ -76,7 +76,7 @@ namespace Rectify11Installer.Pages
             this.chkExplorerPatcher.AutoSize = true;
             this.chkExplorerPatcher.Checked = true;
             this.chkExplorerPatcher.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkExplorerPatcher.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkExplorerPatcher.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkExplorerPatcher.ForeColor = System.Drawing.Color.White;
             this.chkExplorerPatcher.Location = new System.Drawing.Point(3, 3);
             this.chkExplorerPatcher.Name = "chkExplorerPatcher";
@@ -90,7 +90,7 @@ namespace Rectify11Installer.Pages
             this.chkWallpaper.AutoSize = true;
             this.chkWallpaper.Checked = true;
             this.chkWallpaper.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWallpaper.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkWallpaper.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkWallpaper.ForeColor = System.Drawing.Color.White;
             this.chkWallpaper.Location = new System.Drawing.Point(3, 30);
             this.chkWallpaper.Name = "chkWallpaper";
@@ -105,12 +105,12 @@ namespace Rectify11Installer.Pages
             this.chkWinVer.AutoSize = true;
             this.chkWinVer.Checked = true;
             this.chkWinVer.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWinVer.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkWinVer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkWinVer.ForeColor = System.Drawing.Color.White;
             this.chkWinVer.Location = new System.Drawing.Point(3, 65);
             this.chkWinVer.Name = "chkWinVer";
             this.chkWinVer.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.chkWinVer.Size = new System.Drawing.Size(153, 29);
+            this.chkWinVer.Size = new System.Drawing.Size(157, 29);
             this.chkWinVer.TabIndex = 18;
             this.chkWinVer.Text = "Install Rectify11 winver";
             this.chkWinVer.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@ namespace Rectify11Installer.Pages
             this.chkAsdf.AutoSize = true;
             this.chkAsdf.Checked = true;
             this.chkAsdf.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAsdf.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkAsdf.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkAsdf.ForeColor = System.Drawing.Color.White;
             this.chkAsdf.Location = new System.Drawing.Point(3, 100);
             this.chkAsdf.Name = "chkAsdf";
@@ -146,7 +146,7 @@ namespace Rectify11Installer.Pages
             // 
             // lblSafeDesc
             // 
-            this.lblSafeDesc.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSafeDesc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblSafeDesc.ForeColor = System.Drawing.Color.White;
             this.lblSafeDesc.Location = new System.Drawing.Point(338, 89);
             this.lblSafeDesc.Name = "lblSafeDesc";
@@ -169,7 +169,7 @@ namespace Rectify11Installer.Pages
             // 
             // lblFullDesc
             // 
-            this.lblFullDesc.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblFullDesc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblFullDesc.ForeColor = System.Drawing.Color.White;
             this.lblFullDesc.Location = new System.Drawing.Point(338, 154);
             this.lblFullDesc.Name = "lblFullDesc";
@@ -181,7 +181,7 @@ namespace Rectify11Installer.Pages
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(303, 14);
             this.label2.Name = "label2";

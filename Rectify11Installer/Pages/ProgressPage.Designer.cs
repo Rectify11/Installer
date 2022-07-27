@@ -69,7 +69,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(305, 72);
             this.label1.Name = "label1";
@@ -102,14 +102,14 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(305, 191);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(240, 123);
             this.label3.TabIndex = 22;
             this.label3.Text = "When your PC restarts, Rectify11 will start applying the tweaks to Windows. It wi" +
-    "ll take a while depending on the type of installationg you choose.";
+    "ll take a while depending on the type of installation you choose.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ProgressPage

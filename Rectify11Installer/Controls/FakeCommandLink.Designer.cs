@@ -56,11 +56,11 @@
             // lblBody
             // 
             this.lblBody.AutoSize = true;
-            this.lblBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBody.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblBody.ForeColor = System.Drawing.Color.Red;
             this.lblBody.Location = new System.Drawing.Point(33, 28);
             this.lblBody.Name = "lblBody";
-            this.lblBody.Size = new System.Drawing.Size(33, 15);
+            this.lblBody.Size = new System.Drawing.Size(38, 17);
             this.lblBody.TabIndex = 3;
             this.lblBody.Text = "body";
             // 

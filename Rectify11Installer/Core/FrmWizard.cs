@@ -777,5 +777,10 @@ namespace Rectify11Installer
         {
 
         }
+
+        private void pnlMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

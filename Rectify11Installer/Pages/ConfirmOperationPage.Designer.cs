@@ -35,7 +35,7 @@
             // 
             // lblOperation
             // 
-            this.lblOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblOperation.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblOperation.ForeColor = System.Drawing.Color.White;
             this.lblOperation.Location = new System.Drawing.Point(278, 24);
             this.lblOperation.Name = "lblOperation";
