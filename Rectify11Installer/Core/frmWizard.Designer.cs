@@ -69,7 +69,7 @@ namespace Rectify11Installer
             // lblTopText
             // 
             this.lblTopText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-            this.lblTopText.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTopText.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTopText.ForeColor = System.Drawing.Color.White;
             this.lblTopText.Location = new System.Drawing.Point(45, 0);
             this.lblTopText.Name = "lblTopText";

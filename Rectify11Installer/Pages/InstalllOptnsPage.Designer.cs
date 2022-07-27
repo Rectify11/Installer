@@ -66,7 +66,7 @@ namespace Rectify11Installer.Pages
             this.pnlContent.Controls.Add(this.chkWinVer);
             this.pnlContent.Controls.Add(this.chkAsdf);
             this.pnlContent.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pnlContent.Location = new System.Drawing.Point(322, 218);
+            this.pnlContent.Location = new System.Drawing.Point(322, 206);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(183, 141);
             this.pnlContent.TabIndex = 14;
@@ -136,7 +136,7 @@ namespace Rectify11Installer.Pages
             this.radSafe.Checked = true;
             this.radSafe.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radSafe.ForeColor = System.Drawing.Color.White;
-            this.radSafe.Location = new System.Drawing.Point(322, 70);
+            this.radSafe.Location = new System.Drawing.Point(322, 58);
             this.radSafe.Name = "radSafe";
             this.radSafe.Size = new System.Drawing.Size(221, 21);
             this.radSafe.TabIndex = 1;
@@ -148,7 +148,7 @@ namespace Rectify11Installer.Pages
             // 
             this.lblSafeDesc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblSafeDesc.ForeColor = System.Drawing.Color.White;
-            this.lblSafeDesc.Location = new System.Drawing.Point(338, 89);
+            this.lblSafeDesc.Location = new System.Drawing.Point(338, 77);
             this.lblSafeDesc.Name = "lblSafeDesc";
             this.lblSafeDesc.Size = new System.Drawing.Size(262, 20);
             this.lblSafeDesc.TabIndex = 2;
@@ -159,7 +159,7 @@ namespace Rectify11Installer.Pages
             this.radFull.AutoSize = true;
             this.radFull.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radFull.ForeColor = System.Drawing.Color.White;
-            this.radFull.Location = new System.Drawing.Point(322, 134);
+            this.radFull.Location = new System.Drawing.Point(322, 122);
             this.radFull.Name = "radFull";
             this.radFull.Size = new System.Drawing.Size(117, 21);
             this.radFull.TabIndex = 3;
@@ -171,7 +171,7 @@ namespace Rectify11Installer.Pages
             // 
             this.lblFullDesc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblFullDesc.ForeColor = System.Drawing.Color.White;
-            this.lblFullDesc.Location = new System.Drawing.Point(338, 154);
+            this.lblFullDesc.Location = new System.Drawing.Point(338, 142);
             this.lblFullDesc.Name = "lblFullDesc";
             this.lblFullDesc.Size = new System.Drawing.Size(258, 36);
             this.lblFullDesc.TabIndex = 4;
@@ -183,7 +183,7 @@ namespace Rectify11Installer.Pages
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(303, 14);
+            this.label2.Location = new System.Drawing.Point(303, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(292, 29);
             this.label2.TabIndex = 15;
@@ -194,7 +194,7 @@ namespace Rectify11Installer.Pages
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Rectify11Installer.Properties.Resources.border;
-            this.pictureBox2.Location = new System.Drawing.Point(290, 13);
+            this.pictureBox2.Location = new System.Drawing.Point(290, 1);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(334, 392);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
