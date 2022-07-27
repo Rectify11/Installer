@@ -120,7 +120,9 @@ namespace Rectify11Installer
                     }
                     catch
                     {
-
+                        TakeOwnership(@"C:\Windows\System32\winver.exe", false);
+                        File.Copy(@"C:\Windows\System32\winver.exe", tempfldr + @"\backup\winver_backup.exe", true);
+                        File.Copy(tempfldr + @"\files\winver.exe", @"C:\Windows\System32\winver.exe", true);
                     }
                 }
 

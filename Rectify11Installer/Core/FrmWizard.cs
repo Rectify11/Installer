@@ -663,20 +663,22 @@ namespace Rectify11Installer
                     var themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\ThemeManager", RegistryKeyPermissionCheck.ReadWriteSubTree);
                     if (themes != null)
                     {
-                        if (themeoptions.Light)
+                        if (!File.Exists(@"C:\Windows\system32\SecureUxTheme.dll"))
                         {
-                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Aero.msstyles", RegistryValueKind.String);
-                        }
-                        else if (themeoptions.Dark)
-                        {
-                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Dark.msstyles", RegistryValueKind.String);
-                        }
-                        else if (themeoptions.Black)
-                        {
-                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Black.msstyles", RegistryValueKind.String);
+                            if (themeoptions.Light)
+                            {
+                                themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Aero.msstyles", RegistryValueKind.String);
+                            }
+                            else if (themeoptions.Dark)
+                            {
+                                themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Dark.msstyles", RegistryValueKind.String);
+                            }
+                            else if (themeoptions.Black)
+                            {
+                                themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Black.msstyles", RegistryValueKind.String);
+                            }
                         }
                     }
-                    basee.Close();
                     themes = basee.OpenSubKey(@"Control Panel\Desktop", RegistryKeyPermissionCheck.ReadWriteSubTree);
                     if (themes != null)
                     {
@@ -691,6 +693,7 @@ namespace Rectify11Installer
                             themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img0.jpg");
                         }
                     }
+                    basee.Close();
                     Process fixreg = new();
                     fixreg.StartInfo.FileName = "reg.exe";
                     fixreg.StartInfo.Arguments = "import " + tempfldr + @"\files\FIX.reg";
@@ -698,19 +701,35 @@ namespace Rectify11Installer
                     fixreg.StartInfo.CreateNoWindow = true;
                     fixreg.Start();
                     fixreg.WaitForExit();
-                    Visible = false;
-                    var pg = new TaskDialogPage()
+                    TaskDialogPage pg;
+                    if (File.Exists( @"C:\Windows\system32\SecureUxTheme.dll"))
                     {
-                        Icon = TaskDialogIcon.Information,
+                        pg = new TaskDialogPage()
+                        {
+                            Icon = TaskDialogIcon.Information,
 
-                        Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then SELECT reboot later.",
-                        Heading = "Last step",
-                        Caption = "Info",
-                    };
-                    TaskDialog.ShowDialog(this, pg);
-                    var process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
-                    process.WaitForExit();
-                    Visible = true;
+                            Text = "Since you have SecureUxTheme installed, you have to manually apply the theme using ThemeTool.",
+                            Heading = "Last step",
+                            Caption = "Info",
+                        };
+                        TaskDialog.ShowDialog(this, pg);
+                    }
+                    else
+                    {
+                        Visible = false;
+                        pg = new TaskDialogPage()
+                        {
+                            Icon = TaskDialogIcon.Information,
+
+                            Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then SELECT reboot later.",
+                            Heading = "Last step",
+                            Caption = "Info",
+                        };
+                        TaskDialog.ShowDialog(this, pg);
+                        var process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
+                        process.WaitForExit();
+                        Visible = true;
+                    }
                     RebootPage.Start();
 
                     Navigate(RebootPage);
