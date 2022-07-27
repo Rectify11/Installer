@@ -4,7 +4,7 @@ Official Rectify11 installer source code. Note: not completed
 
 1. Windows 11 (also works partially on Windows 10, although not recommended)
 
-2. atleast 5GB of free space
+2. Atleast 5GB of free space
 
 3. Microsoft .Net 6.0 Desktop runtime, you can download it from here: [.Net 6.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.7-windows-x64-installer)
 
