@@ -51,9 +51,9 @@
             this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.themepage;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(39, 59);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 76);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(272, 230);
+            this.pictureBox1.Size = new System.Drawing.Size(250, 212);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -61,7 +61,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(322, 19);
+            this.label1.Location = new System.Drawing.Point(313, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(240, 23);
             this.label1.TabIndex = 1;
@@ -73,7 +73,7 @@
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Location = new System.Drawing.Point(324, 47);
+            this.panel1.Location = new System.Drawing.Point(433, 47);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(150, 283);
             this.panel1.TabIndex = 2;
@@ -117,7 +117,7 @@
             this.panel2.Controls.Add(this.darkAwareRadioButton2);
             this.panel2.Controls.Add(this.darkAwareRadioButton1);
             this.panel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panel2.Location = new System.Drawing.Point(483, 47);
+            this.panel2.Location = new System.Drawing.Point(318, 47);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(144, 286);
             this.panel2.TabIndex = 3;
@@ -138,7 +138,7 @@
             // 
             this.darkAwareRadioButton2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareRadioButton2.ForeColor = System.Drawing.Color.White;
-            this.darkAwareRadioButton2.Location = new System.Drawing.Point(0, 92);
+            this.darkAwareRadioButton2.Location = new System.Drawing.Point(0, 91);
             this.darkAwareRadioButton2.Name = "darkAwareRadioButton2";
             this.darkAwareRadioButton2.Size = new System.Drawing.Size(147, 108);
             this.darkAwareRadioButton2.TabIndex = 1;
@@ -163,8 +163,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ThemeChoicePage";

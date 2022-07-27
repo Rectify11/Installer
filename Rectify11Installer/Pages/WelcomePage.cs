@@ -47,5 +47,10 @@ namespace Rectify11Installer.Pages
         {
 
         }
+
+        private void WelcomePage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
