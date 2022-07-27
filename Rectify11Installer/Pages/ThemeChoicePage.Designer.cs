@@ -59,7 +59,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(332, 19);
             this.label1.Name = "label1";
@@ -124,7 +124,7 @@
             // 
             // darkAwareRadioButton3
             // 
-            this.darkAwareRadioButton3.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.darkAwareRadioButton3.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareRadioButton3.ForeColor = System.Drawing.Color.White;
             this.darkAwareRadioButton3.Location = new System.Drawing.Point(0, 199);
             this.darkAwareRadioButton3.Name = "darkAwareRadioButton3";
@@ -136,7 +136,7 @@
             // 
             // darkAwareRadioButton2
             // 
-            this.darkAwareRadioButton2.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.darkAwareRadioButton2.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareRadioButton2.ForeColor = System.Drawing.Color.White;
             this.darkAwareRadioButton2.Location = new System.Drawing.Point(0, 92);
             this.darkAwareRadioButton2.Name = "darkAwareRadioButton2";
@@ -148,7 +148,7 @@
             // 
             // darkAwareRadioButton1
             // 
-            this.darkAwareRadioButton1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.darkAwareRadioButton1.Font = new System.Drawing.Font("Segoe UI Variable", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareRadioButton1.ForeColor = System.Drawing.Color.White;
             this.darkAwareRadioButton1.Location = new System.Drawing.Point(0, 3);
             this.darkAwareRadioButton1.Name = "darkAwareRadioButton1";
