@@ -35,7 +35,7 @@
             // 
             // lblOperation
             // 
-            this.lblOperation.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblOperation.Font = new System.Drawing.Font("Segoe UI Variable Small", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblOperation.ForeColor = System.Drawing.Color.White;
             this.lblOperation.Location = new System.Drawing.Point(278, 24);
             this.lblOperation.Name = "lblOperation";
@@ -46,7 +46,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources._20220727_161538;
+            this.pictureBox1.BackgroundImage = global::Rectify11Installer.Properties.Resources.installconfirm;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(50, 63);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(195, 200);

@@ -54,7 +54,7 @@ namespace Rectify11Installer.Pages
             // cmbInstallNOW
             // 
             this.cmbInstallNOW.BackColor = System.Drawing.Color.Transparent;
-            this.cmbInstallNOW.Location = new System.Drawing.Point(303, 224);
+            this.cmbInstallNOW.Location = new System.Drawing.Point(303, 221);
             this.cmbInstallNOW.Name = "cmbInstallNOW";
             this.cmbInstallNOW.Note = "Rectify your current Windows 11 installation";
             this.cmbInstallNOW.Size = new System.Drawing.Size(294, 55);
@@ -66,7 +66,7 @@ namespace Rectify11Installer.Pages
             // 
             this.cmbUninstall.BackColor = System.Drawing.Color.Transparent;
             this.cmbUninstall.Enabled = false;
-            this.cmbUninstall.Location = new System.Drawing.Point(303, 285);
+            this.cmbUninstall.Location = new System.Drawing.Point(303, 282);
             this.cmbUninstall.Name = "cmbUninstall";
             this.cmbUninstall.Note = "Restores the original Windows 11 look.";
             this.cmbUninstall.Size = new System.Drawing.Size(294, 55);
@@ -77,7 +77,7 @@ namespace Rectify11Installer.Pages
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Display", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(299, 72);
             this.label1.Name = "label1";
@@ -90,6 +90,7 @@ namespace Rectify11Installer.Pages
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblVersion.Location = new System.Drawing.Point(5, 452);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(80, 16);
@@ -100,18 +101,18 @@ namespace Rectify11Installer.Pages
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(303, 101);
+            this.label3.Location = new System.Drawing.Point(303, 97);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(268, 112);
+            this.label3.Size = new System.Drawing.Size(294, 112);
             this.label3.TabIndex = 17;
             this.label3.Text = resources.GetString("label3.Text");
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // WelcomePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cmbUninstall);
             this.Controls.Add(this.cmbInstallNOW);
@@ -119,7 +120,7 @@ namespace Rectify11Installer.Pages
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
-            this.Font = new System.Drawing.Font("Segoe UI Variable Static Small", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "WelcomePage";
             this.Size = new System.Drawing.Size(640, 475);
             this.WizardShowTitle = false;

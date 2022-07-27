@@ -64,10 +64,7 @@ namespace Rectify11Installer
 
         public void SetProgress(int val)
         {
-            ProgressPage.Invoke((MethodInvoker)delegate ()
-            {
-                ProgressPage.ProgressBarDef.Value = val;
-            });
+            
         }
 
         public void SetProgressText(string text)

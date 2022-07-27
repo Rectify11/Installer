@@ -41,10 +41,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(45, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(628, 86);
+            this.label1.Size = new System.Drawing.Size(483, 64);
             this.label1.TabIndex = 0;
             this.label1.Text = "There was a problem";
             // 
@@ -65,9 +65,10 @@
             this.darkAwareFlowLayoutPanel1.Controls.Add(this.label3);
             this.darkAwareFlowLayoutPanel1.Controls.Add(this.InfoLabel);
             this.darkAwareFlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.darkAwareFlowLayoutPanel1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareFlowLayoutPanel1.Location = new System.Drawing.Point(52, 89);
             this.darkAwareFlowLayoutPanel1.Name = "darkAwareFlowLayoutPanel1";
-            this.darkAwareFlowLayoutPanel1.Size = new System.Drawing.Size(601, 311);
+            this.darkAwareFlowLayoutPanel1.Size = new System.Drawing.Size(633, 311);
             this.darkAwareFlowLayoutPanel1.TabIndex = 2;
             this.darkAwareFlowLayoutPanel1.WrapContents = false;
             // 
@@ -77,7 +78,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(3, 32);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(568, 45);
+            this.label3.Size = new System.Drawing.Size(598, 45);
             this.label3.TabIndex = 2;
             this.label3.Text = resources.GetString("label3.Text");
             // 
@@ -86,7 +87,7 @@
             this.InfoLabel.AutoSize = true;
             this.InfoLabel.Location = new System.Drawing.Point(3, 77);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(90, 300);
+            this.InfoLabel.Size = new System.Drawing.Size(93, 320);
             this.InfoLabel.TabIndex = 3;
             this.InfoLabel.Text = resources.GetString("InfoLabel.Text");
             // 
@@ -94,10 +95,10 @@
             // 
             this.btnRestart.BackColor = System.Drawing.Color.Transparent;
             this.btnRestart.ButtonText = "Restart now";
-            this.btnRestart.ForeColor = System.Drawing.Color.White;
+            this.btnRestart.ForeColor = System.Drawing.Color.Black;
             this.btnRestart.Location = new System.Drawing.Point(578, 406);
             this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(75, 23);
+            this.btnRestart.Size = new System.Drawing.Size(75, 28);
             this.btnRestart.TabIndex = 3;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 

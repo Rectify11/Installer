@@ -2,6 +2,7 @@
 {
     public partial class RebootPage : WizardPage
     {
+        int timer = 0;
         public RebootPage()
         {
             InitializeComponent();
@@ -9,8 +10,8 @@
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            progressBar1.Value -= 1;
-            if (progressBar1.Value <= 0)
+            timer += 1000;
+            if (timer == 20000)
             {
                 timer1.Stop();
                 winuiButton1_Click(this, new EventArgs());

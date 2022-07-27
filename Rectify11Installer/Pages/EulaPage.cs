@@ -18,9 +18,9 @@ namespace Rectify11Installer.Pages
             eula.Append(@"{\pntext\f0 3.\tab}You cannot claim that you made the software.\par");
             eula.Append(@"{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par");
             eula.Append(@"\pard\par\par");
-            eula.Append(@"Copyright \'a9 2022 Microsoft Corporation and the Rectify11 Team\par");
+            eula.Append(@"Copyright \'a9 Microsoft Corporation and the Rectify11 Team\par");
             eula.Append(@"{\pntext\f0 Note:\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par");
-            eula.Append(@"}");
+            eula.Append('}');
             richTextBoxEx1.Rtf = eula.ToString();
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
             if (Theme.IsUsingDarkMode)

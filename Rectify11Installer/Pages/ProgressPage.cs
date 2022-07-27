@@ -4,20 +4,13 @@ namespace Rectify11Installer.Pages
 {
     public partial class ProgressPage : WizardPage
     {
-        public CustomProgressBar ProgressBarDef
-        {
-            get
-            {
-                return ProgressBar;
-            }
-            set
-            {
-                ProgressBar = value;
-            }
-        }
+        int time = 0;
+        RebootPage rbtpg = new();
+        FrmWizard frmWz = new();
         public ProgressPage()
         {
             InitializeComponent();
+            timer1.Start();
             Theme.OnThemeChanged += Theme_OnThemeChanged;
             Theme_OnThemeChanged(null, new EventArgs());
         }
@@ -29,7 +22,13 @@ namespace Rectify11Installer.Pages
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
+            time += 1000;
+            if (time == 5000)
+            {
+                timer1.Stop();
+                rbtpg.Start();
+                frmWz.Navigate(rbtpg);
+            }
         }
 
         private void ProgressPage_Load(object sender, EventArgs e)

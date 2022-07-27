@@ -39,7 +39,7 @@ namespace Rectify11Installer.Pages
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.eula;
-            this.pictureBox1.Location = new System.Drawing.Point(60, 77);
+            this.pictureBox1.Location = new System.Drawing.Point(54, 77);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(195, 200);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -49,9 +49,9 @@ namespace Rectify11Installer.Pages
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(303, 14);
+            this.label1.Location = new System.Drawing.Point(299, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(303, 41);
             this.label1.TabIndex = 20;
@@ -62,12 +62,12 @@ namespace Rectify11Installer.Pages
             // 
             this.richTextBoxEx1.BackColor = System.Drawing.Color.Black;
             this.richTextBoxEx1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxEx1.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.richTextBoxEx1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.richTextBoxEx1.ForeColor = System.Drawing.Color.White;
-            this.richTextBoxEx1.Location = new System.Drawing.Point(304, 56);
+            this.richTextBoxEx1.Location = new System.Drawing.Point(300, 56);
             this.richTextBoxEx1.Name = "richTextBoxEx1";
             this.richTextBoxEx1.ReadOnly = true;
-            this.richTextBoxEx1.Size = new System.Drawing.Size(290, 315);
+            this.richTextBoxEx1.Size = new System.Drawing.Size(313, 315);
             this.richTextBoxEx1.TabIndex = 21;
             this.richTextBoxEx1.Text = "";
             this.richTextBoxEx1.TextChanged += new System.EventHandler(this.richTextBoxEx1_TextChanged);

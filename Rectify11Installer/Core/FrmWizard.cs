@@ -23,7 +23,6 @@ namespace Rectify11Installer
         private static readonly ThemeChoicePage ThemeChoice = new();
         private static readonly UninstallConfirmPage UninstallConfirmPage = new();
         private static readonly RebootPage RebootPage = new();
-        private static FinishPage? FinishPage;
 
         private WizardPage CurrentPage;
 
@@ -109,7 +108,7 @@ namespace Rectify11Installer
         }
         #endregion
         #region Navigation
-        private void Navigate(WizardPage page)
+        public void Navigate(WizardPage page)
         {
             CurrentPage = page;
 
@@ -174,11 +173,6 @@ namespace Rectify11Installer
                 pnlTop.Visible = true;
                 UpdateFrame();
             }
-            else if (page == FinishPage)
-            {
-                BtnNext.Visible = true;
-                BtnNext.ButtonText = "Finish";
-            }
             else if (page == InstallOptions)
             {
                 BtnBack.Visible = true;
@@ -236,37 +230,6 @@ namespace Rectify11Installer
         }
         internal void Complete(RectifyInstallerWizardCompleteInstallerEnum type, bool IsInstalling, string errorDescription)
         {
-            FinishPage = new FinishPage();
-
-            if (IsInstalling)
-            {
-                if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
-                {
-                    FinishPage.MainText.Text = "Your computer was successfully rectified.\nPlease reboot for the changes to take effect.";
-                    FinishPage.CopyButtonVisible = false;
-                }
-                else
-                {
-                    FinishPage.MainText.Text = "Installing Rectify11 failed.\nThe error is: " + errorDescription;
-                    FinishPage.CopyButtonVisible = true;
-                }
-            }
-            else
-            {
-                if (type == RectifyInstallerWizardCompleteInstallerEnum.Success)
-                {
-                    FinishPage.MainText.Text = "Rectify11 was successfully uninstalled.\nPlease reboot for the changes to take effect.";
-                    FinishPage.CopyButtonVisible = false;
-                }
-                else
-                {
-                    FinishPage.MainText.Text = "Uninstalling Rectify11 failed.\nThe error is: " + errorDescription;
-                    FinishPage.CopyButtonVisible = true;
-                }
-            }
-
-            Navigate(FinishPage);
-
             HideCloseButton = false;
             ControlBox = true;
             pnlBottom.Visible = true;
@@ -730,9 +693,6 @@ namespace Rectify11Installer
                         process.WaitForExit();
                         Visible = true;
                     }
-                    RebootPage.Start();
-
-                    Navigate(RebootPage);
                 }
                 else if (oldPage == UninstallConfirmPage)
                 {
@@ -782,11 +742,6 @@ namespace Rectify11Installer
                     TaskDialog.ShowDialog(this, pg);
                 }
 #endif
-            }
-            else if (CurrentPage == FinishPage)
-            {
-                //We are done
-                Application.Exit();
             }
         }
         private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
