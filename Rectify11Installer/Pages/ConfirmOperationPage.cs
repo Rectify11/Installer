@@ -17,5 +17,10 @@
         {
             InitializeComponent();
         }
+
+        private void lblOperation_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

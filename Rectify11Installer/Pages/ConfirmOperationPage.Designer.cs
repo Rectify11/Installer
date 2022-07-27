@@ -29,25 +29,40 @@
         private void InitializeComponent()
         {
             this.lblOperation = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOperation
             // 
-            this.lblOperation.Font = new System.Drawing.Font("Segoe UI Variable Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblOperation.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblOperation.ForeColor = System.Drawing.Color.White;
-            this.lblOperation.Location = new System.Drawing.Point(8, 16);
+            this.lblOperation.Location = new System.Drawing.Point(278, 24);
             this.lblOperation.Name = "lblOperation";
-            this.lblOperation.Size = new System.Drawing.Size(603, 193);
+            this.lblOperation.Size = new System.Drawing.Size(331, 243);
             this.lblOperation.TabIndex = 13;
             this.lblOperation.Text = "You are about to do the following operation: ";
+            this.lblOperation.Click += new System.EventHandler(this.lblOperation_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources._20220727_161538;
+            this.pictureBox1.Location = new System.Drawing.Point(50, 63);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(195, 200);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
             // 
             // ConfirmOperationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblOperation);
             this.Name = "ConfirmOperationPage";
             this.WizardTopText = "Summary";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -55,5 +70,6 @@
         #endregion
 
         private Label lblOperation;
+        private PictureBox pictureBox1;
     }
 }
