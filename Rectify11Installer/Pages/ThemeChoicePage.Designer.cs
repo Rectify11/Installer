@@ -93,7 +93,7 @@
             // 
             this.pictureBox3.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 89);
+            this.pictureBox3.Location = new System.Drawing.Point(3, 92);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(145, 108);
             this.pictureBox3.TabIndex = 1;
@@ -138,7 +138,7 @@
             // 
             this.darkAwareRadioButton2.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.darkAwareRadioButton2.ForeColor = System.Drawing.Color.White;
-            this.darkAwareRadioButton2.Location = new System.Drawing.Point(0, 89);
+            this.darkAwareRadioButton2.Location = new System.Drawing.Point(0, 91);
             this.darkAwareRadioButton2.Name = "darkAwareRadioButton2";
             this.darkAwareRadioButton2.Size = new System.Drawing.Size(147, 108);
             this.darkAwareRadioButton2.TabIndex = 1;

@@ -36,16 +36,19 @@ namespace Rectify11Installer.Pages
             this.winuiButton1 = new Rectify11Installer.Controls.WinUIButton();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             this.progressBar1.Error = true;
-            this.progressBar1.Location = new System.Drawing.Point(12, 220);
+            this.progressBar1.Location = new System.Drawing.Point(655, 72);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(612, 23);
+            this.progressBar1.Size = new System.Drawing.Size(486, 23);
             this.progressBar1.TabIndex = 18;
             this.progressBar1.Value = 100;
             // 
@@ -70,37 +73,65 @@ namespace Rectify11Installer.Pages
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(-1, 182);
+            this.label2.Location = new System.Drawing.Point(332, 31);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(638, 35);
+            this.label2.Size = new System.Drawing.Size(237, 35);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Your PC now needs to restart to begin applying the changes.";
+            this.label2.Text = "Restarting in a few seconds";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImage = global::Rectify11Installer.Properties.Resources.rectify11Installer;
+            this.pictureBox2.BackgroundImage = global::Rectify11Installer.Properties.Resources._20220725_203552;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(229, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(15, 52);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox2.Size = new System.Drawing.Size(290, 290);
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.output_onlinegiftools_1;
+            this.pictureBox1.Location = new System.Drawing.Point(303, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Static Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(310, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(247, 98);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Your PC needs to restart to continue installation. It will boot into setup mode t" +
+    "o patch files. Your pc will restart automatically in a few seconds, or you can c" +
+    "lick on Restart now.";
             // 
             // RebootPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.winuiButton1);
             this.Controls.Add(this.progressBar1);
             this.Name = "RebootPage";
             this.WizardTopText = "Stage 1 completed";
+            this.Load += new System.EventHandler(this.RebootPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -111,5 +142,7 @@ namespace Rectify11Installer.Pages
         private Controls.WinUIButton winuiButton1;
         private Label label2;
         private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
+        private Label label1;
     }
 }

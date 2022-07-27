@@ -29,7 +29,17 @@ namespace Rectify11Installer.Pages
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //NextText();
+            
+        }
+
+        private void ProgressPage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         //private int CurrentTextIndex = 0;

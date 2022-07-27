@@ -816,5 +816,10 @@ namespace Rectify11Installer
         {
             TopMost = false;
         }
+
+        private void FrmWizard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

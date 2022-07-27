@@ -142,6 +142,7 @@ namespace Rectify11Installer
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rectify11 Setup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmWizard_FormClosing);
+            this.Load += new System.EventHandler(this.FrmWizard_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.pnlTop.ResumeLayout(false);
             this.pnlBottom.ResumeLayout(false);

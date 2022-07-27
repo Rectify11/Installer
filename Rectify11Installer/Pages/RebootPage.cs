@@ -24,5 +24,10 @@
         {
             Win32.NativeMethods.Reboot();
         }
+
+        private void RebootPage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

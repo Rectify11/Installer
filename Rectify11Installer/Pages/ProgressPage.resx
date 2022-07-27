@@ -60,4 +60,7 @@
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="label1.Text" xml:space="preserve">
+    <value>The setup is now preparing Rectify11 files for installation. During this process, UXtheme patcher will open in another window, please do not close/cancel it, it will automatically restart your PC for further installation stages.</value>
+  </data>
 </root>
