@@ -10,11 +10,13 @@ namespace Rectify11Installer.Pages
         public ProgressPage()
         {
             InitializeComponent();
-            timer1.Start();
             Theme.OnThemeChanged += Theme_OnThemeChanged;
             Theme_OnThemeChanged(null, new EventArgs());
         }
-
+        public void Start()
+        {
+            timer1.Start();
+        }
         private void Theme_OnThemeChanged(object? sender, EventArgs e)
         {
             
