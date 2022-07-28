@@ -624,23 +624,14 @@ namespace Rectify11Installer
                     File.Copy(tempfldr + @"\files\themes\lightrectified.theme", @"C:\Windows\Resources\Themes\lightrectified.theme", true);
                     var basee = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
                     var themes = basee.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\ThemeManager", RegistryKeyPermissionCheck.ReadWriteSubTree);
-                    if (themes != null)
+                    if ((themes != null) && (!File.Exists(@"C:\Windows\system32\SecureUxTheme.dll")))
                     {
-                        if (!File.Exists(@"C:\Windows\system32\SecureUxTheme.dll"))
-                        {
-                            if (themeoptions.Light)
-                            {
-                                themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Aero.msstyles", RegistryValueKind.String);
-                            }
-                            else if (themeoptions.Dark)
-                            {
-                                themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Dark.msstyles", RegistryValueKind.String);
-                            }
-                            else if (themeoptions.Black)
-                            {
-                                themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Black.msstyles", RegistryValueKind.String);
-                            }
-                        }
+                        if (themeoptions.Light)
+                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Aero.msstyles", RegistryValueKind.String);
+                        else if (themeoptions.Dark)
+                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Dark.msstyles", RegistryValueKind.String);
+                        else if (themeoptions.Black)
+                            themes.SetValue("DllName", @"%SystemRoot%\resources\Themes\rectify11\Black.msstyles", RegistryValueKind.String);
                     }
                     themes = basee.OpenSubKey(@"Control Panel\Desktop", RegistryKeyPermissionCheck.ReadWriteSubTree);
                     if (themes != null)
@@ -648,26 +639,12 @@ namespace Rectify11Installer
                         themes.SetValue(@"WallpaperStyle", 10.ToString());
                         themes.SetValue(@"TileWallpaper", 0.ToString());
                         if ((themeoptions.Dark) || (themeoptions.Black))
-                        {
                             themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img19.jpg");
-                        }
                         else if (themeoptions.Light)
-                        {
                             themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img0.jpg");
-                        }
                     }
                     basee.Close();
-                    string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
-                    Shell32.Shell shell = new();
-                    Shell32.Folder fontFolder = shell.NameSpace(0x14);
-                    foreach (string file in files)
-                    {
-                        if (!File.Exists(@"C:\Windows\Fonts" + @"\" + file))
-                        {
-                            fontFolder.CopyHere(file, 4);
-                        }
-                    }
-                    fontFolder.CopyHere(tempfldr + @"\files\segvar\segmdl2v2.ttf", 4 | 16);
+                    await Task.Run(() => InstallFonts(tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("reg.exe", "import " + tempfldr + @"\files\FIX.reg", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\install.inf", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\linstall.inf", tempfldr));
@@ -678,7 +655,6 @@ namespace Rectify11Installer
                         pg = new TaskDialogPage()
                         {
                             Icon = TaskDialogIcon.Information,
-
                             Text = "Since you have SecureUxTheme installed, you have to manually apply the theme using ThemeTool.",
                             Heading = "Last step",
                             Caption = "Info",
@@ -742,6 +718,18 @@ namespace Rectify11Installer
                 }
 #endif
             }
+        }
+        private Task<bool> InstallFonts(string tempfldr)
+        {
+            string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
+            Shell32.Shell shell = new();
+            Shell32.Folder fontFolder = shell.NameSpace(0x14);
+            foreach (string file in files)
+            {
+                if (!File.Exists(@"C:\Windows\Fonts" + @"\" + file))
+                    fontFolder.CopyHere(file, 4);
+            }
+            return Task.FromResult(true);
         }
         private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
         {
