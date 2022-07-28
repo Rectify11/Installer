@@ -10,7 +10,7 @@ namespace Rectify11Installer
         private IRectifyInstallerWizard? Wizard;
         private bool IsInstalling = true;
         #region Interface implementation
-        public void Install(IRectifyInstalllerInstallOptions options, IRectifyInstalllerThemeOptions themeOptions)
+        public async void Install(IRectifyInstalllerInstallOptions options, IRectifyInstalllerThemeOptions themeOptions)
         {
             IsInstalling = true;
             if (Wizard == null)
@@ -136,6 +136,12 @@ namespace Rectify11Installer
                         themes.SetValue("Rectify11", @"C:\Windows\Resources\Themes\blacknonhighcontrastribbon.theme", RegistryValueKind.String);
                 }
                 basee.Close();
+
+                if (options.ShouldInstallASDF)
+                {
+                    File.Copy(tempfldr + @"\files\AccentColorizer.exe", @"C:\Windows\System32\AccentColorizer.exe", true);
+                    await PatcherHelper.RunAsyncCommands("reg.exe", @"add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v" + "\"Asdf\"" + @"/d C:\Windows\System32\AccentColorizer.exe", tempfldr);
+                }
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 Directory.Delete(tempfldr + @"\files", true);
                 File.Delete(tempfldr + @"\files.7z");

@@ -664,7 +664,7 @@ namespace Rectify11Installer
                     {
                         if (!File.Exists(@"C:\Windows\Fonts" + @"\" + file))
                         {
-                            fontFolder.CopyHere(file);
+                            fontFolder.CopyHere(file, 4);
                         }
                     }
                     fontFolder.CopyHere(tempfldr + @"\files\segvar\segmdl2v2.ttf", 4 | 16);
@@ -690,7 +690,6 @@ namespace Rectify11Installer
                         Process process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
                         await process.WaitForExitAsync();
                     }
-
                     RebootPage.Start();
                     Navigate(RebootPage);
                 }
