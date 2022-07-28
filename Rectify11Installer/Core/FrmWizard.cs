@@ -644,7 +644,10 @@ namespace Rectify11Installer
                             themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img0.jpg");
                     }
                     basee.Close();
-
+                    Directory.Move(tempfldr + @"\files\contextmenus", @"C:\Windows\contextmenus");
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("shell.exe", "-r -i -s", @"C:\Windows\contextmenus\nilesoft-shell-1.6"));
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-ac 0", @"C:\Windows\system32"));
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-dc 0", @"C:\Windows\system32"));
                     string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
                     Shell32.Shell shell = new();
                     Shell32.Folder fontFolder = shell.NameSpace(0x14);
