@@ -112,27 +112,12 @@ namespace Rectify11Installer
                 Wizard.SetProgress(0);
                 Wizard.SetProgressText("Installing Optional features");
                 if (options.ShouldInstallWinver)
-                {
-                    try
-                    {
-                        File.Copy(@"C:\Windows\System32\winver.exe", tempfldr + @"\backup\winver_backup.exe", true);
-                        File.Copy(tempfldr + @"\files\winver.exe", @"C:\Windows\System32\winver.exe", true);
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            TakeOwnership(@"C:\Windows\System32\winver.exe", false);
-                            File.Copy(@"C:\Windows\System32\winver.exe", tempfldr + @"\backup\winver_backup.exe", true);
-                            File.Copy(tempfldr + @"\files\winver.exe", @"C:\Windows\System32\winver.exe", true);
-                        }
-                        catch
-                        {
-
-                        }
-                    }
+                {   //for some reason, %windir% doesnt work, so, using C:\Windows instead
+                    PatcherHelper.TakeOwnership(@"C:\Windows\System32\winver.exe", false);
+                    PatcherHelper.GrantFullControl(@"C:\Windows\System32\winver.exe", "Everyone", false);
+                    File.Delete(@"C:\Windows\System32\winver.exe");
+                    File.Copy(tempfldr + @"files\winver.exe", @"C:\Windows\System32\winver.exe", true);
                 }
-
                 if (options.ShouldInstallWallpaper)
                 {
                     if (Directory.Exists(@"C:\Windows\Web\Wallpaper\Rectify11"))

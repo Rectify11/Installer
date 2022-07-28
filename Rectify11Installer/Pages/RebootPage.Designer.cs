@@ -51,11 +51,11 @@ namespace Rectify11Installer.Pages
             this.winuiButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.winuiButton1.BackColor = System.Drawing.Color.Transparent;
             this.winuiButton1.ButtonText = "Restart now";
-            this.winuiButton1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.winuiButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.winuiButton1.ForeColor = System.Drawing.Color.Black;
-            this.winuiButton1.Location = new System.Drawing.Point(543, 355);
+            this.winuiButton1.Location = new System.Drawing.Point(534, 355);
             this.winuiButton1.Name = "winuiButton1";
-            this.winuiButton1.Size = new System.Drawing.Size(75, 28);
+            this.winuiButton1.Size = new System.Drawing.Size(85, 28);
             this.winuiButton1.TabIndex = 19;
             this.winuiButton1.Click += new System.EventHandler(this.winuiButton1_Click);
             // 
@@ -63,9 +63,9 @@ namespace Rectify11Installer.Pages
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Small", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(332, 31);
+            this.label2.Location = new System.Drawing.Point(334, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(231, 35);
             this.label2.TabIndex = 21;
@@ -98,15 +98,14 @@ namespace Rectify11Installer.Pages
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(310, 82);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 98);
+            this.label1.Size = new System.Drawing.Size(241, 82);
             this.label1.TabIndex = 23;
-            this.label1.Text = "Your PC needs to restart to continue installation. It will boot into setup mode t" +
-    "o patch files. Your pc will restart automatically in a few seconds, or you can c" +
-    "lick on Restart now.";
+            this.label1.Text = "Your PC needs to restart to continue installation. Your pc will restart automatic" +
+    "ally in a few seconds, or you can click on Restart now.";
             // 
             // RebootPage
             // 

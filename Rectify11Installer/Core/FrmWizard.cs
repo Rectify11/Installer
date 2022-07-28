@@ -662,6 +662,22 @@ namespace Rectify11Installer
                         }
                     }
                     basee.Close();
+                    // Install segvar fonts or win10 will look E because of msstyles forcing segvar, in addition, segmdl2 will be replaced by
+                    // segoe fluent for added consistency
+                    Process SetExePolicy = new();
+                    SetExePolicy.StartInfo.FileName = "powershell.exe";
+                    SetExePolicy.StartInfo.Arguments = "Set-ExecutionPolicy RemoteSigned";
+                    SetExePolicy.StartInfo.UseShellExecute = false;
+                    SetExePolicy.StartInfo.CreateNoWindow = true;
+                    SetExePolicy.Start();
+                    SetExePolicy.WaitForExit();
+                    Process installfonts = new();
+                    installfonts.StartInfo.FileName = "powershell.exe";
+                    installfonts.StartInfo.Arguments = tempfldr + @"\files\fonts.ps1";
+                    installfonts.StartInfo.UseShellExecute = false;
+                    installfonts.StartInfo.CreateNoWindow = false; // please dont set it to true or it will forever get stuck on progresspage
+                    installfonts.Start();
+                    installfonts.WaitForExit();
                     Process fixreg = new();
                     fixreg.StartInfo.FileName = "reg.exe";
                     fixreg.StartInfo.Arguments = "import " + tempfldr + @"\files\FIX.reg";
@@ -669,6 +685,27 @@ namespace Rectify11Installer
                     fixreg.StartInfo.CreateNoWindow = true;
                     fixreg.Start();
                     fixreg.WaitForExit();
+                    Process r11cursors = new();
+                    r11cursors.StartInfo.FileName = "rundll32.exe";
+                    r11cursors.StartInfo.Arguments = "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\install.inf";
+                    r11cursors.StartInfo.UseShellExecute = false;
+                    r11cursors.StartInfo.CreateNoWindow = true;
+                    r11cursors.Start();
+                    r11cursors.WaitForExit();
+                    Process r11cursorsl = new();
+                    r11cursorsl.StartInfo.FileName = "rundll32.exe";
+                    r11cursorsl.StartInfo.Arguments = "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\linstall.inf";
+                    r11cursorsl.StartInfo.UseShellExecute = false;
+                    r11cursorsl.StartInfo.CreateNoWindow = true;
+                    r11cursorsl.Start();
+                    r11cursorsl.WaitForExit();
+                    Process r11cursorsxl = new();
+                    r11cursorsxl.StartInfo.FileName = "rundll32.exe";
+                    r11cursorsxl.StartInfo.Arguments = "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\xlinstall.inf";
+                    r11cursorsxl.StartInfo.UseShellExecute = false;
+                    r11cursorsxl.StartInfo.CreateNoWindow = true;
+                    r11cursorsxl.Start();
+                    r11cursorsxl.WaitForExit();
                     TaskDialogPage pg;
                     if (File.Exists( @"C:\Windows\system32\SecureUxTheme.dll"))
                     {
@@ -690,7 +727,7 @@ namespace Rectify11Installer
                             {
                                 Icon = TaskDialogIcon.Information,
 
-                                Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then SELECT reboot later.",
+                                Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then select REBOOT LATER.",
                                 Heading = "Last step",
                                 Caption = "Info",
                             };
