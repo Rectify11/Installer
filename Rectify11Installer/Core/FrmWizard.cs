@@ -664,9 +664,10 @@ namespace Rectify11Installer
                     {
                         if (!File.Exists(@"C:\Windows\Fonts" + @"\" + file))
                         {
-                            fontFolder.CopyHere(file, 4 | 16);
+                            fontFolder.CopyHere(file);
                         }
                     }
+                    fontFolder.CopyHere(tempfldr + @"\files\segvar\segmdl2v2.ttf", 4 | 16);
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("reg.exe", "import " + tempfldr + @"\files\FIX.reg", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\install.inf", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\linstall.inf", tempfldr));
