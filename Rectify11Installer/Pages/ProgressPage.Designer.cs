@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressPage));
             this.ProgressBar = new Rectify11Installer.Controls.CustomProgressBar();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -49,11 +47,6 @@
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(37, 23);
             this.ProgressBar.TabIndex = 14;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pictureBox1
             // 
@@ -133,7 +126,6 @@
 
         #endregion
         private Controls.CustomProgressBar ProgressBar;
-        private System.Windows.Forms.Timer timer1;
         private PictureBox pictureBox1;
         private Label label1;
         private PictureBox pictureBox2;

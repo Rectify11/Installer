@@ -13,24 +13,9 @@ namespace Rectify11Installer.Pages
             Theme.OnThemeChanged += Theme_OnThemeChanged;
             Theme_OnThemeChanged(null, new EventArgs());
         }
-        public void Start()
-        {
-            timer1.Start();
-        }
         private void Theme_OnThemeChanged(object? sender, EventArgs e)
         {
             
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            time += 1000;
-            if (time == 5000)
-            {
-                timer1.Stop();
-                rbtpg.Start();
-                frmWz.Navigate(rbtpg);
-            }
         }
 
         private void ProgressPage_Load(object sender, EventArgs e)

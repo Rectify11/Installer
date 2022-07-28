@@ -284,7 +284,7 @@ namespace Rectify11Installer.Win32
                 reshackFileProcess.Dispose();
                 return reshackFileSuccessful;
             }
-            public static bool SevenzExtract(string szpath, string destinationdir, string file)
+            public async static Task<bool> SevenzExtract(string szpath, string destinationdir, string file)
             {
                 string cmd = "";
 

@@ -465,7 +465,7 @@ namespace Rectify11Installer
             }
             else if (CurrentPage == ThemeChoice)
             {
-                //The user clicked on "Back" when on the confirm install/uninstall page
+                //The user clicked on "Back" when on the theme selection page
                 Navigate(InstallOptions);
             }
             else if (CurrentPage == InstallOptions)
@@ -474,7 +474,12 @@ namespace Rectify11Installer
                 Navigate(EulaPage);
             }
         }
-        private void BtnNext_Click(object sender, EventArgs e)
+        internal void ProcessExited(object sender, EventArgs e)
+        {
+            RebootPage.Start();
+            Navigate(RebootPage);
+        }
+        private async void BtnNext_Click(object sender, EventArgs e)
         {
             if (CurrentPage == EulaPage)
             {
@@ -608,7 +613,7 @@ namespace Rectify11Installer
                     {
                         Directory.Delete(tempfldr + @"\files", true);
                     }
-                    PatcherHelper.SevenzExtract(Path.Combine(tempfldr, "7za.exe"), Path.Combine(tempfldr, "files"), Path.Combine(tempfldr, "files.7z"));
+                    await Task.Run(() => PatcherHelper.SevenzExtract(Path.Combine(tempfldr, "7za.exe"), Path.Combine(tempfldr, "files"), Path.Combine(tempfldr, "files.7z")));
 
                     // eh
                     wizard.SetProgressText("Installing theme");
@@ -679,20 +684,28 @@ namespace Rectify11Installer
                     }
                     else
                     {
-                        Visible = false;
-                        pg = new TaskDialogPage()
+                        if (!File.Exists(@"C:\Program Files (x86)\UltraUXThemePatcher\uninstall.exe"))
                         {
-                            Icon = TaskDialogIcon.Information,
+                            pg = new TaskDialogPage()
+                            {
+                                Icon = TaskDialogIcon.Information,
 
-                            Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then SELECT reboot later.",
-                            Heading = "Last step",
-                            Caption = "Info",
-                        };
-                        TaskDialog.ShowDialog(this, pg);
-                        var process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
-                        process.WaitForExit();
-                        Visible = true;
-                        ProgressPage.Start();
+                                Text = "Now there will be a setup window for UltraUXThemePatcher. Just follow the instructions and then SELECT reboot later.",
+                                Heading = "Last step",
+                                Caption = "Info",
+                            };
+                            TaskDialog.ShowDialog(this, pg);
+                            Process process = new();
+                            process.StartInfo.FileName = tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe";
+                            process.EnableRaisingEvents = true;
+                            process.Start();
+                            process.Exited += new EventHandler(ProcessExited);
+                        }
+                        else
+                        {
+                            RebootPage.Start();
+                            Navigate(RebootPage);
+                        }
                     }
                 }
                 else if (oldPage == UninstallConfirmPage)
