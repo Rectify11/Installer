@@ -284,7 +284,7 @@ namespace Rectify11Installer.Win32
                 reshackFileProcess.Dispose();
                 return reshackFileSuccessful;
             }
-            public async static Task<bool> SevenzExtract(string szpath, string destinationdir, string file)
+            public async static Task<bool> SevenzExtract(string szpath, string destinationdir, string file, string curdir)
             {
                 string cmd = "";
 
@@ -295,6 +295,7 @@ namespace Rectify11Installer.Win32
                 Logger.WriteLine("Running process: " + szpath + " " + cmd + "\n");
 
                 LastCmd = cmd;
+                Environment.CurrentDirectory = curdir;
                 Process reshackFileProcess = new Process();
                 ProcessStartInfo reshackFileStartInfo = new ProcessStartInfo
                 {
