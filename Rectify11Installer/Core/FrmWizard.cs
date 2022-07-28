@@ -644,7 +644,15 @@ namespace Rectify11Installer
                             themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img0.jpg");
                     }
                     basee.Close();
-                    await Task.Run(() => InstallFonts(tempfldr));
+
+                    string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
+                    Shell32.Shell shell = new();
+                    Shell32.Folder fontFolder = shell.NameSpace(0x14);
+                    foreach (string file in files)
+                    {
+                        if (!File.Exists(@"C:\Windows\Fonts" + @"\" + file))
+                            fontFolder.CopyHere(file, 4);
+                    }
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("reg.exe", "import " + tempfldr + @"\files\FIX.reg", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\install.inf", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\linstall.inf", tempfldr));
@@ -718,18 +726,6 @@ namespace Rectify11Installer
                 }
 #endif
             }
-        }
-        private Task<bool> InstallFonts(string tempfldr)
-        {
-            string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
-            Shell32.Shell shell = new();
-            Shell32.Folder fontFolder = shell.NameSpace(0x14);
-            foreach (string file in files)
-            {
-                if (!File.Exists(@"C:\Windows\Fonts" + @"\" + file))
-                    fontFolder.CopyHere(file, 4);
-            }
-            return Task.FromResult(true);
         }
         private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
         {
