@@ -24,6 +24,7 @@
         private void winuiButton1_Click(object sender, EventArgs e)
         {
             Win32.NativeMethods.Reboot();
+            Application.Exit();
         }
 
         private void RebootPage_Load(object sender, EventArgs e)

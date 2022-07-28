@@ -296,8 +296,8 @@ namespace Rectify11Installer.Win32
 
                 LastCmd = cmd;
                 Environment.CurrentDirectory = curdir;
-                Process reshackFileProcess = new Process();
-                ProcessStartInfo reshackFileStartInfo = new ProcessStartInfo
+                Process szFileProcess = new();
+                ProcessStartInfo szFileStartInfo = new()
                 {
                     FileName = szpath,
                     // Do not write error output to standard stream.
@@ -313,32 +313,82 @@ namespace Rectify11Installer.Win32
 
                     Arguments = cmd
                 };
-                reshackFileProcess.EnableRaisingEvents = true;
-                reshackFileProcess.StartInfo = reshackFileStartInfo;
-                reshackFileProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
-                reshackFileProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
+                szFileProcess.EnableRaisingEvents = true;
+                szFileProcess.StartInfo = szFileStartInfo;
+                szFileProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
+                szFileProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
 
                 // Start the process.
-                reshackFileProcess.Start();
-                reshackFileProcess.BeginOutputReadLine();
-                reshackFileProcess.BeginErrorReadLine();
+                szFileProcess.Start();
+                szFileProcess.BeginOutputReadLine();
+                szFileProcess.BeginErrorReadLine();
                 // Wait for the process to finish.
-                reshackFileProcess.WaitForExit();
+                szFileProcess.WaitForExit();
 
-                int exitCode = reshackFileProcess.ExitCode;
-                bool reshackFileSuccessful = true;
+                int exitCode = szFileProcess.ExitCode;
+                bool szFileSuccessful = true;
 
                 // Now we need to see if the process was successful.
                 if (exitCode != 0)
                 {
-                    reshackFileProcess.Kill();
-                    reshackFileSuccessful = false;
+                    szFileProcess.Kill();
+                    szFileSuccessful = false;
                 }
 
                 // Now clean up after ourselves.
-                reshackFileProcess.Dispose();
-                return reshackFileSuccessful;
+                szFileProcess.Dispose();
+                return szFileSuccessful;
             }
+            public async static Task<bool> RunAsyncCommands(string szpath, string args, string curdir)
+            {
+
+                Logger.WriteLine("Running process: " + szpath + " " + args + "\n");
+
+                Environment.CurrentDirectory = curdir;
+                Process szFileProcess = new();
+                ProcessStartInfo szFileStartInfo = new()
+                {
+                    FileName = szpath,
+                    // Do not write error output to standard stream.
+                    RedirectStandardError = true,
+                    // Do not write output to Process.StandardOutput Stream.
+                    RedirectStandardOutput = true,
+                    // Do not read input from Process.StandardInput (i/e; the keyboard).
+                    RedirectStandardInput = false,
+
+                    UseShellExecute = false,
+                    // Do not show a command window.
+                    CreateNoWindow = true,
+
+                    Arguments = args
+                };
+                szFileProcess.EnableRaisingEvents = true;
+                szFileProcess.StartInfo = szFileStartInfo;
+                szFileProcess.OutputDataReceived += GrantFullControlProcess_OutputDataReceived;
+                szFileProcess.ErrorDataReceived += GrantFullControlProcess_OutputDataReceived;
+
+                // Start the process.
+                szFileProcess.Start();
+                szFileProcess.BeginOutputReadLine();
+                szFileProcess.BeginErrorReadLine();
+                // Wait for the process to finish.
+                szFileProcess.WaitForExit();
+
+                int exitCode = szFileProcess.ExitCode;
+                bool szFileSuccessful = true;
+
+                // Now we need to see if the process was successful.
+                if (exitCode != 0)
+                {
+                    szFileProcess.Kill();
+                    szFileSuccessful = false;
+                }
+
+                // Now clean up after ourselves.
+                szFileProcess.Dispose();
+                return szFileSuccessful;
+            }
+
         }
     }
 }

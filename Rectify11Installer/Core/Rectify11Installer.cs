@@ -116,14 +116,12 @@ namespace Rectify11Installer
                     PatcherHelper.TakeOwnership(@"C:\Windows\System32\winver.exe", false);
                     PatcherHelper.GrantFullControl(@"C:\Windows\System32\winver.exe", "Everyone", false);
                     File.Delete(@"C:\Windows\System32\winver.exe");
-                    File.Copy(tempfldr + @"files\winver.exe", @"C:\Windows\System32\winver.exe", true);
+                    File.Copy(tempfldr + @"\files\winver.exe", @"C:\Windows\System32\winver.exe", true);
                 }
                 if (options.ShouldInstallWallpaper)
                 {
                     if (Directory.Exists(@"C:\Windows\Web\Wallpaper\Rectify11"))
-                    {
                         Directory.Delete(@"C:\Windows\Web\Wallpaper\Rectify11", true);
-                    }
                     Directory.Move(tempfldr + @"\files\rectify11_wallpapers", @"C:\Windows\Web\Wallpaper\Rectify11");
                 }
                 var basee = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
@@ -131,17 +129,11 @@ namespace Rectify11Installer
                 if (themes != null)
                 {
                     if (themeOptions.Light)
-                    {
                         themes.SetValue("Rectify11", @"C:\Windows\Resources\Themes\lightrectified.theme", RegistryValueKind.String);
-                    }
                     else if (themeOptions.Dark)
-                    {
                         themes.SetValue("Rectify11", @"C:\Windows\Resources\Themes\darkrectified.theme", RegistryValueKind.String);
-                    }
                     else if (themeOptions.Black)
-                    {
                         themes.SetValue("Rectify11", @"C:\Windows\Resources\Themes\blacknonhighcontrastribbon.theme", RegistryValueKind.String);
-                    }
                 }
                 basee.Close();
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
