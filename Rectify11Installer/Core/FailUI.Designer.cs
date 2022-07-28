@@ -78,7 +78,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(3, 32);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(598, 45);
+            this.label3.Size = new System.Drawing.Size(625, 45);
             this.label3.TabIndex = 2;
             this.label3.Text = resources.GetString("label3.Text");
             // 
@@ -119,6 +119,7 @@
             this.Text = "FailUI";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FailUI_KeyDown);
             this.darkAwareFlowLayoutPanel1.ResumeLayout(false);
             this.darkAwareFlowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

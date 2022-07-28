@@ -12,5 +12,14 @@
             TopMost = false;
             SetupMode.RebootSystem();
         }
+
+        private void FailUI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                TopMost = false;
+                SetupMode.RebootSystem();
+            }
+        }
     }
 }
