@@ -9,6 +9,7 @@ using Rectify11Installer.Pages;
 using Rectify11Installer.Win32.Rectify11;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Net;
 using System.Runtime.InteropServices;
 
 namespace Rectify11Installer
@@ -649,26 +650,33 @@ namespace Rectify11Installer
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("shell.exe", "-r -i -s", @"C:\Windows\contextmenus\nilesoft-shell-1.6"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-ac 0", @"C:\Windows\system32"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-dc 0", @"C:\Windows\system32"));
-                    await Task.Run(() => PatcherHelper.RunAsyncCommands("3.1core.exe", "/install /quiet /norestart", tempfldr + @"\files"));
-                    Directory.Move(tempfldr + @"\files\MicaForEveryone", @"C:\Windows\MicaForEveryone");
+                    if (!Directory.Exists(@"C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.27"))
+                        await Task.Run(() => PatcherHelper.RunAsyncCommands(tempfldr + @"\files\net31core.exe", "/install /quiet /norestart", tempfldr));
+                    if (!Directory.Exists(@"C:\Windows\MicaForEveryone"))
+                        Directory.Move(tempfldr + @"\files\MicaForEveryone", @"C:\Windows\MicaForEveryone");
                     if (themeoptions.Light)
                         File.Copy(tempfldr + @"\files\light.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
                     else if (themeoptions.Dark)
                         File.Copy(tempfldr + @"\files\dark.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
                     else if (themeoptions.Black)
                         File.Copy(tempfldr + @"\files\black.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
-                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/CREATE /SC ONLOGON /TN " + @"MyTasks\mfe" + " /TR " + @"C:\Windows\MicaForEveryone\MicaForEveryone.exe" + " /RU Administrator", @"C:\Windows\System32"));
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/create /tn \"MicaForEveryone\" /xml" + tempfldr + @"\files\MicaForEveryone.xml", @"C:\Windows\MicaForEveryone"));
                     string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
                     Shell32.Shell shell = new();
                     Shell32.Folder fontFolder = shell.NameSpace(0x14);
-                    RegistryKey? key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", true);
-                    if (key.GetValue("FontsInstalled") == null)
+                    var basekey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+                    var r11 = basekey.OpenSubKey(@"Software\Rectify11", RegistryKeyPermissionCheck.ReadWriteSubTree);
+                    if (r11 != null)
                     {
-                        foreach (string file in files)
+                        var t = r11.GetValue("FontsInstalled");
+                        if (t == null)
                         {
-                            fontFolder.CopyHere(file, 4);
+                            foreach (string file in files)
+                            {
+                                fontFolder.CopyHere(file, 4);
+                            }
+                            r11.SetValue("FontsInstalled", 1, RegistryValueKind.DWord);
                         }
-                        key.SetValue("FontsInstalled", 1, RegistryValueKind.DWord);
                     }
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("reg.exe", "import " + tempfldr + @"\files\FIX.reg", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\install.inf", tempfldr));
