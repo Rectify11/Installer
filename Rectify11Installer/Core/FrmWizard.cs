@@ -648,6 +648,15 @@ namespace Rectify11Installer
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("shell.exe", "-r -i -s", @"C:\Windows\contextmenus\nilesoft-shell-1.6"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-ac 0", @"C:\Windows\system32"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-dc 0", @"C:\Windows\system32"));
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("3.1core.exe", "/install /quiet /norestart", tempfldr + @"\files"));
+                    Directory.Move(tempfldr + @"\files\MicaForEveryone", @"C:\Windows\MicaForEveryone");
+                    if (themeoptions.Light)
+                        File.Copy(tempfldr + @"\files\light.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
+                    else if (themeoptions.Dark)
+                        File.Copy(tempfldr + @"\files\dark.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
+                    else if (themeoptions.Black)
+                        File.Copy(tempfldr + @"\files\black.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/CREATE /SC ONLOGON /TN " + @"MyTasks\mfe" + " /TR " + @"C:\Windows\MicaForEveryone\MicaForEveryone.exe", @"C:\Windows\System32"));
                     string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
                     Shell32.Shell shell = new();
                     Shell32.Folder fontFolder = shell.NameSpace(0x14);
