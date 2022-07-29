@@ -650,8 +650,10 @@ namespace Rectify11Installer
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("shell.exe", "-r -i -s", @"C:\Windows\contextmenus\nilesoft-shell-1.6"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-ac 0", @"C:\Windows\system32"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-dc 0", @"C:\Windows\system32"));
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/create /tn mfe /xml " + tempfldr + @"\files\mfe.xml", @"C:\Windows\system32"));
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/create /tn asdf /xml " + tempfldr + @"\files\asdf.xml", @"C:\Windows\system32"));
                     if (!Directory.Exists(@"C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.27"))
-                        await Task.Run(() => PatcherHelper.RunAsyncCommands(tempfldr + @"\files\net31core.exe", "/install /quiet /norestart", tempfldr));
+                        await Task.Run(() => PatcherHelper.RunAsyncCommands(tempfldr + @"\files\3.1core.exe", "/install /quiet /norestart", tempfldr));
                     if (!Directory.Exists(@"C:\Windows\MicaForEveryone"))
                         Directory.Move(tempfldr + @"\files\MicaForEveryone", @"C:\Windows\MicaForEveryone");
                     if (themeoptions.Light)
@@ -660,7 +662,6 @@ namespace Rectify11Installer
                         File.Copy(tempfldr + @"\files\dark.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
                     else if (themeoptions.Black)
                         File.Copy(tempfldr + @"\files\black.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
-                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/create /tn \"MicaForEveryone\" /xml" + tempfldr + @"\files\MicaForEveryone.xml", @"C:\Windows\MicaForEveryone"));
                     string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
                     Shell32.Shell shell = new();
                     Shell32.Folder fontFolder = shell.NameSpace(0x14);
