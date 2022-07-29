@@ -700,6 +700,15 @@ namespace Rectify11Installer
                         Process process = Process.Start(tempfldr + @"\files\UltraUXThemePatcher_4.3.4.exe");
                         await process.WaitForExitAsync();
                     }
+
+                    if (options.ShouldInstallExplorerPatcher)
+                    {
+                        Process process = Process.Start(tempfldr + @"\files\ep_setup.exe");
+                        await process.WaitForExitAsync();
+                        await PatcherHelper.RunAsyncCommands("regsvr32.exe", "/s \"%PROGRAMFILES%\\ExplorerPatcher\\ExplorerPatcher.amd64.dll\"", tempfldr);
+                        await Task.Run(() => PatcherHelper.RunAsyncCommands("reg.exe", "import " + tempfldr + @"\files\ep.reg", tempfldr));
+                        // todo: add start menu registry depending on user choice
+                    }
                     RebootPage.Start();
                     Navigate(RebootPage);
                 }
