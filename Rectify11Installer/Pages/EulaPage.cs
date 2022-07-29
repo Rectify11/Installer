@@ -59,25 +59,5 @@ namespace Rectify11Installer.Pages
             if (e.LinkText != null)
                 Process.Start(new ProcessStartInfo() { FileName=e.LinkText, UseShellExecute=true});
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBoxEx1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EulaPage_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

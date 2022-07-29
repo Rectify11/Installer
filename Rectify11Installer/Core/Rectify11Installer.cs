@@ -139,7 +139,7 @@ namespace Rectify11Installer
 
                 if (options.ShouldInstallASDF)
                 {
-                    File.Copy(tempfldr + @"\files\AccentColorizer.exe", @"C:\Windows\System32\AccentColorizer.exe", true);
+                    File.Copy(tempfldr + @"\files\AccentColorizer.exe", @"C:\Windows\AccentColorizer.exe", true);
                 }
                 Wizard.CompleteInstaller(RectifyInstallerWizardCompleteInstallerEnum.Success, IsInstalling, "");
                 Directory.Delete(tempfldr + @"\files", true);

@@ -26,10 +26,5 @@
             Win32.NativeMethods.Reboot();
             Application.Exit();
         }
-
-        private void RebootPage_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

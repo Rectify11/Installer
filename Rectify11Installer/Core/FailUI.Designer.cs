@@ -66,9 +66,9 @@
             this.darkAwareFlowLayoutPanel1.Controls.Add(this.InfoLabel);
             this.darkAwareFlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.darkAwareFlowLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.darkAwareFlowLayoutPanel1.Location = new System.Drawing.Point(52, 89);
+            this.darkAwareFlowLayoutPanel1.Location = new System.Drawing.Point(52, 67);
             this.darkAwareFlowLayoutPanel1.Name = "darkAwareFlowLayoutPanel1";
-            this.darkAwareFlowLayoutPanel1.Size = new System.Drawing.Size(633, 311);
+            this.darkAwareFlowLayoutPanel1.Size = new System.Drawing.Size(633, 333);
             this.darkAwareFlowLayoutPanel1.TabIndex = 2;
             this.darkAwareFlowLayoutPanel1.WrapContents = false;
             // 

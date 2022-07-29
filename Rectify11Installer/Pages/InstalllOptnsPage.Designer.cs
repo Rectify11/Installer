@@ -189,7 +189,6 @@ namespace Rectify11Installer.Pages
             this.label2.TabIndex = 15;
             this.label2.Text = "You can choose what will be Rectified.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox2
             // 
@@ -216,7 +215,6 @@ namespace Rectify11Installer.Pages
             this.Name = "InstalllOptnsPage";
             this.Size = new System.Drawing.Size(640, 436);
             this.WizardTopText = "Choose what to install";
-            this.Load += new System.EventHandler(this.InstalllOptnsPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();

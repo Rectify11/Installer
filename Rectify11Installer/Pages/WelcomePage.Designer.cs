@@ -60,7 +60,6 @@ namespace Rectify11Installer.Pages
             this.cmbInstallNOW.Size = new System.Drawing.Size(294, 55);
             this.cmbInstallNOW.TabIndex = 7;
             this.cmbInstallNOW.Text = "Update or Install Now";
-            this.cmbInstallNOW.Load += new System.EventHandler(this.cmbInstallNOW_Load);
             // 
             // cmbUninstall
             // 
@@ -125,7 +124,6 @@ namespace Rectify11Installer.Pages
             this.Size = new System.Drawing.Size(640, 475);
             this.WizardShowTitle = false;
             this.WizardTopText = "Welcome to Rectify11 Installer";
-            this.Load += new System.EventHandler(this.WelcomePage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

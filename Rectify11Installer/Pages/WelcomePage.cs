@@ -42,15 +42,5 @@ namespace Rectify11Installer.Pages
             InitializeComponent();
             lblVersion.Text = "Version: " + ProductVersion;
         }
-
-        private void cmbInstallNOW_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WelcomePage_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

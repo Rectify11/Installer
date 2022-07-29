@@ -42,7 +42,6 @@
             this.lblOperation.Size = new System.Drawing.Size(331, 243);
             this.lblOperation.TabIndex = 13;
             this.lblOperation.Text = "You are about to do the following operation: ";
-            this.lblOperation.Click += new System.EventHandler(this.lblOperation_Click);
             // 
             // pictureBox2
             // 

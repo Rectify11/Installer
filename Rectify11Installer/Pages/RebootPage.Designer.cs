@@ -118,7 +118,6 @@ namespace Rectify11Installer.Pages
             this.Controls.Add(this.winuiButton1);
             this.Name = "RebootPage";
             this.WizardTopText = "Stage 1 completed";
-            this.Load += new System.EventHandler(this.RebootPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

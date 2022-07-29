@@ -58,7 +58,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(289, 367);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label1
             // 
@@ -117,7 +116,6 @@
             this.Controls.Add(this.ProgressBar);
             this.Name = "ProgressPage";
             this.WizardTopText = "Getting files ready";
-            this.Load += new System.EventHandler(this.ProgressPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

@@ -4,9 +4,6 @@ namespace Rectify11Installer.Pages
 {
     public partial class ProgressPage : WizardPage
     {
-        int time = 0;
-        RebootPage rbtpg = new();
-        FrmWizard frmWz = new();
         public ProgressPage()
         {
             InitializeComponent();
@@ -16,16 +13,6 @@ namespace Rectify11Installer.Pages
         private void Theme_OnThemeChanged(object? sender, EventArgs e)
         {
             
-        }
-
-        private void ProgressPage_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         //private int CurrentTextIndex = 0;

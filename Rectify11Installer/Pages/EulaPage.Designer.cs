@@ -45,7 +45,6 @@ namespace Rectify11Installer.Pages
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label1
             // 
@@ -56,7 +55,6 @@ namespace Rectify11Installer.Pages
             this.label1.Size = new System.Drawing.Size(303, 41);
             this.label1.TabIndex = 20;
             this.label1.Text = "Before you can install Rectify11, you must agree to this license agreement:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // richTextBoxEx1
             // 
@@ -70,7 +68,6 @@ namespace Rectify11Installer.Pages
             this.richTextBoxEx1.Size = new System.Drawing.Size(313, 315);
             this.richTextBoxEx1.TabIndex = 21;
             this.richTextBoxEx1.Text = "";
-            this.richTextBoxEx1.TextChanged += new System.EventHandler(this.richTextBoxEx1_TextChanged);
             // 
             // EulaPage
             // 
@@ -83,7 +80,6 @@ namespace Rectify11Installer.Pages
             this.Name = "EulaPage";
             this.Size = new System.Drawing.Size(640, 436);
             this.WizardTopText = "License Agreement";
-            this.Load += new System.EventHandler(this.EulaPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -644,7 +644,8 @@ namespace Rectify11Installer
                             themes.SetValue(@"Wallpaper", @"%windir%\Web\Wallpaper\Rectify11\img0.jpg");
                     }
                     basee.Close();
-                    Directory.Move(tempfldr + @"\files\contextmenus", @"C:\Windows\contextmenus");
+                    if (!Directory.Exists(@"C:\Windows\contextmenus"))
+                        Directory.Move(tempfldr + @"\files\contextmenus", @"C:\Windows\contextmenus");
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("shell.exe", "-r -i -s", @"C:\Windows\contextmenus\nilesoft-shell-1.6"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-ac 0", @"C:\Windows\system32"));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("powercfg.exe", "-change -monitor-timeout-dc 0", @"C:\Windows\system32"));
@@ -660,10 +661,14 @@ namespace Rectify11Installer
                     string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
                     Shell32.Shell shell = new();
                     Shell32.Folder fontFolder = shell.NameSpace(0x14);
-                    foreach (string file in files)
+                    RegistryKey? key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", true);
+                    if (key.GetValue("FontsInstalled") == null)
                     {
-                        if (!File.Exists(@"C:\Windows\Fonts" + @"\" + file))
+                        foreach (string file in files)
+                        {
                             fontFolder.CopyHere(file, 4);
+                        }
+                        key.SetValue("FontsInstalled", 1, RegistryValueKind.DWord);
                     }
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("reg.exe", "import " + tempfldr + @"\files\FIX.reg", tempfldr));
                     await Task.Run(() => PatcherHelper.RunAsyncCommands("rundll32.exe", "setupapi,InstallHinfSection DefaultInstall 132 " + tempfldr + @"\files\cursors\install.inf", tempfldr));
