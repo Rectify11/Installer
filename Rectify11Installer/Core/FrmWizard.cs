@@ -657,7 +657,7 @@ namespace Rectify11Installer
                         File.Copy(tempfldr + @"\files\dark.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
                     else if (themeoptions.Black)
                         File.Copy(tempfldr + @"\files\black.conf", @"C:\Windows\MicaForEveryone\MicaForEveryone.conf");
-                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/CREATE /SC ONLOGON /TN " + @"MyTasks\mfe" + " /TR " + @"C:\Windows\MicaForEveryone\MicaForEveryone.exe", @"C:\Windows\System32"));
+                    await Task.Run(() => PatcherHelper.RunAsyncCommands("schtasks.exe", "/CREATE /SC ONLOGON /TN " + @"MyTasks\mfe" + " /TR " + @"C:\Windows\MicaForEveryone\MicaForEveryone.exe" + " /RU Administrator", @"C:\Windows\System32"));
                     string[] files = Directory.GetFiles(tempfldr + @"\files\segvar");
                     Shell32.Shell shell = new();
                     Shell32.Folder fontFolder = shell.NameSpace(0x14);
