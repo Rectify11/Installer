@@ -14,9 +14,9 @@ namespace Rectify11Installer
     {
         public frmWizard()
         {
-            InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            InitializeComponent();
             if (Theme.IsUsingDarkMode)
             {
                 BackColor = Color.Black;
