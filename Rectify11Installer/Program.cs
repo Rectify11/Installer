@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -17,6 +16,8 @@ namespace Rectify11Installer
             Theme.LoadTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl-PL");
+            //Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
             Application.Run(new frmWizard());
         }
     }

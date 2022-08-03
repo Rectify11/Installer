@@ -1,12 +1,6 @@
 ﻿using Rectify11Installer.Pages;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -24,21 +18,36 @@ namespace Rectify11Installer
             {
                 BackColor = Color.Black;
                 ForeColor = Color.White;
-                welcomePage.BackColor = Color.Black;
-                welcomePage.ForeColor = Color.White;
-                eulaPage.BackColor = Color.Black;
-                eulaPage.ForeColor = Color.White;
+                wlcmPage.BackColor = Color.Black;
+                wlcmPage.ForeColor = Color.White;
+                eulPage.BackColor = Color.Black;
+                eulPage.ForeColor = Color.White;
             }
-            welcomePage.Controls.Add(WelcomePage);
-            eulaPage.Controls.Add(EulaPage);
+            wlcmPage.Controls.Add(WelcomePage);
+            eulPage.Controls.Add(EulaPage);
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
+
+            SetImages();
+        }
+        
+
+        void SetImages()
+        {
+            if (navPane.SelectedTab == wlcmPage)
+            {
+                sideImage.BackgroundImage = Properties.Resources.install;
+            }
+            else if (navPane.SelectedTab == eulPage)
+            {
+                sideImage.BackgroundImage = Properties.Resources.eula;
+            }
         }
         private void InstallButton_Click(object sender, EventArgs e)
         {/*
             if (CheckIfUpdatesPending())
             {*/
-            navPane.SelectedTab = eulaPage;
+            navPane.SelectedTab = eulPage;
             //}
 
         }
@@ -49,6 +58,11 @@ namespace Rectify11Installer
             {
                 Navigate(UninstallConfirmPage);
             }*/
+        }
+
+        private void navPane_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetImages();
         }
     }
 }
