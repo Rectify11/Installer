@@ -192,7 +192,6 @@
             this.navPane.SelectedIndex = 0;
             this.navPane.Size = new System.Drawing.Size(341, 332);
             this.navPane.TabIndex = 1;
-            this.navPane.SelectedIndexChanged += new System.EventHandler(this.navPane_SelectedIndexChanged);
             // 
             // wlcmPage
             // 

@@ -31,9 +31,30 @@ namespace Rectify11Installer
             navBackButton.Click += BackButton_Click;
             cancelButton.Click += CancelButton_Click;
             versionLabel.Text = versionLabel.Text + ProductVersion;
-            SetUp();
+            Navigate(WelcomePage);
         }
-
+        #region Navigation
+        private void Navigate(WizardPage page)
+        {
+            if (page == WelcomePage)
+            {
+                navPane.SelectedTab = wlcmPage;
+                tableLayoutPanel1.Visible = false;
+                tableLayoutPanel2.Visible = false;
+                sideImage.BackgroundImage = page.SideImage;
+            }
+            else if (page == EulaPage)
+            {
+                tableLayoutPanel1.Visible = true;
+                tableLayoutPanel2.Visible = true;
+                headerText.Text = page.WizardHeader;
+                sideImage.BackgroundImage = page.SideImage;
+                nextButton.ButtonText = Strings.Rectify11.buttonAgree;
+                navPane.SelectedTab = eulPage;
+            }
+        }
+        #endregion
+        #region Private Methods
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -43,36 +64,17 @@ namespace Rectify11Installer
         {
             //todo
         }
-        private void SetUp()
-        {
-            if (navPane.SelectedTab == wlcmPage)
-            {
-                tableLayoutPanel1.Visible = false;
-                tableLayoutPanel2.Visible = false;
-                sideImage.BackgroundImage = Properties.Resources.install;
-            }
-            else if (navPane.SelectedTab == eulPage)
-            {
-                tableLayoutPanel1.Visible = true;
-                tableLayoutPanel2.Visible = true;
-                headerText.Text = Strings.Rectify11.eulaPageHeader;
-                sideImage.BackgroundImage = Properties.Resources.eula;
-                nextButton.ButtonText = Strings.Rectify11.buttonAgree;
-            }
-        }
+        
         private void BackButton_Click(object sender, EventArgs e)
         {
-            if (navPane.SelectedTab == eulPage)
-            {
-                navPane.SelectedTab = wlcmPage;
-            }
+            Navigate(WelcomePage);
         }
 
         private void InstallButton_Click(object sender, EventArgs e)
         {/*
             if (CheckIfUpdatesPending())
             {*/
-            navPane.SelectedTab = eulPage;
+            Navigate(EulaPage);
             //}
 
         }
@@ -84,10 +86,6 @@ namespace Rectify11Installer
                 Navigate(UninstallConfirmPage);
             }*/
         }
-
-        private void navPane_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetUp();
-        }
+        #endregion
     }
 }
