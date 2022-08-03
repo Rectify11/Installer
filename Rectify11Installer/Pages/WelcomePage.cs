@@ -3,7 +3,7 @@ using Rectify11Installer.Controls;
 
 namespace Rectify11Installer.Pages
 {
-    public partial class WelcomePage : UserControl
+    public partial class WelcomePage : WizardPage
     {
         public FakeCommandLink InstallButton
         {

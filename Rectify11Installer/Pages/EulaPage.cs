@@ -2,7 +2,7 @@
 
 namespace Rectify11Installer.Pages
 {
-    public partial class EulaPage : UserControl
+    public partial class EulaPage : WizardPage
     {
         public EulaPage()
         {
