@@ -44,7 +44,7 @@
             this.wlcmPageTitle.Name = "wlcmPageTitle";
             this.wlcmPageTitle.Size = new System.Drawing.Size(103, 30);
             this.wlcmPageTitle.TabIndex = 0;
-            this.wlcmPageTitle.Text = "Welcome";
+            this.wlcmPageTitle.Text = Strings.Rectify11.welcome;
             // 
             // label2
             // 
@@ -54,7 +54,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(313, 92);
             this.label2.TabIndex = 2;
-            this.label2.Text = resources.GetString("label2.Text");
+            this.label2.Text = Strings.Rectify11.welcomeDescription;
             // 
             // cmbUninstall
             // 
@@ -63,10 +63,10 @@
             this.cmbUninstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUninstall.Location = new System.Drawing.Point(8, 176);
             this.cmbUninstall.Name = "cmbUninstall";
-            this.cmbUninstall.Note = "Restores the original Windows 11 look.";
+            this.cmbUninstall.Note = Strings.Rectify11.uninstallNote;
             this.cmbUninstall.Size = new System.Drawing.Size(305, 45);
             this.cmbUninstall.TabIndex = 4;
-            this.cmbUninstall.Text = "Uninstall Rectify11";
+            this.cmbUninstall.Text = Strings.Rectify11.uninstallTitle;
             // 
             // cmbInstall
             // 
@@ -75,10 +75,10 @@
             this.cmbInstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbInstall.Location = new System.Drawing.Point(8, 125);
             this.cmbInstall.Name = "cmbInstall";
-            this.cmbInstall.Note = "Rectify your current Windows installation.";
+            this.cmbInstall.Note = Strings.Rectify11.installNote;
             this.cmbInstall.Size = new System.Drawing.Size(310, 45);
             this.cmbInstall.TabIndex = 3;
-            this.cmbInstall.Text = "Install Now";
+            this.cmbInstall.Text = Strings.Rectify11.installTitle;
             // 
             // WelcomePage
             // 

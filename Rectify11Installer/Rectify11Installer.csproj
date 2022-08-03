@@ -135,12 +135,6 @@
     <EmbeddedResource Include="frmWizard.resx">
       <DependentUpon>frmWizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\EulaPage.resx">
-      <DependentUpon>EulaPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\WelcomePage.resx">
-      <DependentUpon>WelcomePage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -272,7 +272,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(51, 15);
             this.versionLabel.TabIndex = 3;
-            this.versionLabel.Text = "Version: ";
+            this.versionLabel.Text = Strings.Rectify11.Version;
             // 
             // frmWizard
             // 
