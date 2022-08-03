@@ -39,17 +39,17 @@
             this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
             this.welcomePage = new System.Windows.Forms.TabPage();
             this.eulaPage = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.installPage = new System.Windows.Forms.TabPage();
+            this.themePage = new System.Windows.Forms.TabPage();
+            this.epPage = new System.Windows.Forms.TabPage();
+            this.summaryPage = new System.Windows.Forms.TabPage();
+            this.progressPage = new System.Windows.Forms.TabPage();
+            this.rebootPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sideImage)).BeginInit();
             this.navPane.SuspendLayout();
-            this.welcomePage.SuspendLayout();
-            this.eulaPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,12 +73,12 @@
             this.headerText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.headerText.BackColor = System.Drawing.Color.Transparent;
             this.headerText.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.headerText.Location = new System.Drawing.Point(48, 0);
             this.headerText.Name = "headerText";
             this.headerText.Size = new System.Drawing.Size(578, 45);
             this.headerText.TabIndex = 1;
-            this.headerText.Text = "label2";
             this.headerText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // navBackButton
@@ -99,6 +99,7 @@
             // 
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
@@ -121,7 +122,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.backButton.BackColor = System.Drawing.Color.Transparent;
             this.backButton.ButtonText = "Back";
-            this.backButton.ForeColor = System.Drawing.Color.Black;
+            this.backButton.ForeColor = System.Drawing.Color.White;
             this.backButton.Location = new System.Drawing.Point(462, 3);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(69, 29);
@@ -134,7 +135,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nextButton.BackColor = System.Drawing.Color.Transparent;
             this.nextButton.ButtonText = "Next";
-            this.nextButton.ForeColor = System.Drawing.Color.Black;
+            this.nextButton.ForeColor = System.Drawing.Color.White;
             this.nextButton.Location = new System.Drawing.Point(537, 3);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(69, 29);
@@ -142,17 +143,20 @@
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.19231F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.80769F));
             this.tableLayoutPanel3.Controls.Add(this.sideImage, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.navPane, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 48);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 48);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(621, 338);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 338F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(624, 338);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // sideImage
@@ -160,9 +164,10 @@
             this.sideImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.sideImage.BackColor = System.Drawing.Color.Transparent;
             this.sideImage.Location = new System.Drawing.Point(3, 3);
             this.sideImage.Name = "sideImage";
-            this.sideImage.Size = new System.Drawing.Size(304, 332);
+            this.sideImage.Size = new System.Drawing.Size(275, 332);
             this.sideImage.TabIndex = 0;
             this.sideImage.TabStop = false;
             // 
@@ -173,75 +178,93 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.navPane.Controls.Add(this.welcomePage);
             this.navPane.Controls.Add(this.eulaPage);
+            this.navPane.Controls.Add(this.installPage);
+            this.navPane.Controls.Add(this.themePage);
+            this.navPane.Controls.Add(this.epPage);
+            this.navPane.Controls.Add(this.summaryPage);
+            this.navPane.Controls.Add(this.progressPage);
+            this.navPane.Controls.Add(this.rebootPage);
             this.navPane.ItemSize = new System.Drawing.Size(0, 1);
-            this.navPane.Location = new System.Drawing.Point(313, 3);
+            this.navPane.Location = new System.Drawing.Point(284, 3);
             this.navPane.Multiline = true;
             this.navPane.Name = "navPane";
             this.navPane.SelectedIndex = 0;
-            this.navPane.Size = new System.Drawing.Size(305, 332);
+            this.navPane.Size = new System.Drawing.Size(337, 332);
             this.navPane.TabIndex = 1;
             // 
             // welcomePage
             // 
-            this.welcomePage.Controls.Add(this.button1);
-            this.welcomePage.Controls.Add(this.label1);
-            this.welcomePage.Location = new System.Drawing.Point(4, 5);
+            this.welcomePage.Location = new System.Drawing.Point(4, 6);
             this.welcomePage.Name = "welcomePage";
             this.welcomePage.Padding = new System.Windows.Forms.Padding(3);
-            this.welcomePage.Size = new System.Drawing.Size(297, 323);
+            this.welcomePage.Size = new System.Drawing.Size(329, 322);
             this.welcomePage.TabIndex = 0;
             this.welcomePage.Text = "Welcome";
             this.welcomePage.UseVisualStyleBackColor = true;
             // 
             // eulaPage
             // 
-            this.eulaPage.Controls.Add(this.button2);
-            this.eulaPage.Controls.Add(this.label2);
-            this.eulaPage.Location = new System.Drawing.Point(4, 5);
+            this.eulaPage.Location = new System.Drawing.Point(4, 6);
             this.eulaPage.Name = "eulaPage";
             this.eulaPage.Padding = new System.Windows.Forms.Padding(3);
-            this.eulaPage.Size = new System.Drawing.Size(297, 323);
+            this.eulaPage.Size = new System.Drawing.Size(318, 322);
             this.eulaPage.TabIndex = 1;
-            this.eulaPage.Text = "tabPage2";
+            this.eulaPage.Text = "Eula";
             this.eulaPage.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // installPage
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 126);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "welcum pag";
+            this.installPage.Location = new System.Drawing.Point(4, 6);
+            this.installPage.Name = "installPage";
+            this.installPage.Size = new System.Drawing.Size(318, 322);
+            this.installPage.TabIndex = 2;
+            this.installPage.Text = "Install";
+            this.installPage.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // themePage
             // 
-            this.button1.Location = new System.Drawing.Point(53, 198);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "next";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.themePage.Location = new System.Drawing.Point(4, 6);
+            this.themePage.Name = "themePage";
+            this.themePage.Size = new System.Drawing.Size(318, 322);
+            this.themePage.TabIndex = 3;
+            this.themePage.Text = "Theme";
+            this.themePage.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // epPage
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "eula pag";
+            this.epPage.Location = new System.Drawing.Point(4, 6);
+            this.epPage.Name = "epPage";
+            this.epPage.Size = new System.Drawing.Size(318, 322);
+            this.epPage.TabIndex = 4;
+            this.epPage.Text = "Ep";
+            this.epPage.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // summaryPage
             // 
-            this.button2.Location = new System.Drawing.Point(55, 181);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "go BCk";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.summaryPage.Location = new System.Drawing.Point(4, 6);
+            this.summaryPage.Name = "summaryPage";
+            this.summaryPage.Size = new System.Drawing.Size(318, 322);
+            this.summaryPage.TabIndex = 5;
+            this.summaryPage.Text = "Summary";
+            this.summaryPage.UseVisualStyleBackColor = true;
+            // 
+            // progressPage
+            // 
+            this.progressPage.Location = new System.Drawing.Point(4, 6);
+            this.progressPage.Name = "progressPage";
+            this.progressPage.Size = new System.Drawing.Size(318, 322);
+            this.progressPage.TabIndex = 6;
+            this.progressPage.Text = "Progress";
+            this.progressPage.UseVisualStyleBackColor = true;
+            // 
+            // rebootPage
+            // 
+            this.rebootPage.Location = new System.Drawing.Point(4, 6);
+            this.rebootPage.Name = "rebootPage";
+            this.rebootPage.Size = new System.Drawing.Size(318, 322);
+            this.rebootPage.TabIndex = 7;
+            this.rebootPage.Text = "Reboot";
+            this.rebootPage.UseVisualStyleBackColor = true;
             // 
             // frmWizard
             // 
@@ -262,10 +285,6 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sideImage)).EndInit();
             this.navPane.ResumeLayout(false);
-            this.welcomePage.ResumeLayout(false);
-            this.welcomePage.PerformLayout();
-            this.eulaPage.ResumeLayout(false);
-            this.eulaPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -283,10 +302,12 @@
         private Controls.TabControlWithoutHeader navPane;
         private System.Windows.Forms.TabPage welcomePage;
         private System.Windows.Forms.TabPage eulaPage;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabPage installPage;
+        private System.Windows.Forms.TabPage themePage;
+        private System.Windows.Forms.TabPage epPage;
+        private System.Windows.Forms.TabPage summaryPage;
+        private System.Windows.Forms.TabPage progressPage;
+        private System.Windows.Forms.TabPage rebootPage;
     }
 }
 

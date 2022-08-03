@@ -88,8 +88,19 @@
     <Compile Include="Controls\NavButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Pages\WelcomePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\WelcomePage.Designer.cs">
+      <DependentUpon>WelcomePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings\Rectify11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rectify11.resx</DependentUpon>
+    </Compile>
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\RECT.cs" />
     <EmbeddedResource Include="Controls\FakeCommandLink.resx">
@@ -107,6 +118,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Strings\Rectify11.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

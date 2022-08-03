@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rectify11Installer.Pages;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Rectify11Installer
 {
     public partial class frmWizard : Form
     {
+        WelcomePage WelcomePage = new WelcomePage();
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -23,21 +25,10 @@ namespace Rectify11Installer
                 ForeColor = Color.White;
                 welcomePage.BackColor = Color.Black;
                 welcomePage.ForeColor = Color.White;
-                button1.ForeColor = Color.Black;
-                button2.ForeColor = Color.Black;
                 eulaPage.BackColor = Color.Black;
                 eulaPage.ForeColor = Color.White;
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            navPane.SelectedTab = eulaPage;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            navPane.SelectedTab = welcomePage;
+            welcomePage.Controls.Add(WelcomePage);
         }
     }
 }
