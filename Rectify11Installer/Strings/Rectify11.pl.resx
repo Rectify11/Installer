@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="buttonBack" xml:space="preserve">
-    <value>Wstecz</value>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>Anuluj</value>
   </data>
   <data name="buttonNext" xml:space="preserve">
     <value>Dalej</value>
@@ -147,10 +147,16 @@
   <data name="updateTitle" xml:space="preserve">
     <value>Aktualizuj</value>
   </data>
+  <data name="Version" xml:space="preserve">
+    <value>Wersja: </value>
+  </data>
   <data name="welcome" xml:space="preserve">
     <value>Zapraszamy</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
     <value>Instalator zainstaluje Rectify11 aby poprawić wygląd systemu Windows. Zalecane jest zamknięcie aplikacji działających w tle przed kontynowaniem. Wybierz opcję aby kontynuować.</value>
+  </data>
+  <data name="buttonAgree" xml:space="preserve">
+    <value>Zgadzam się</value>
   </data>
 </root>

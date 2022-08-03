@@ -27,22 +27,47 @@ namespace Rectify11Installer
             eulPage.Controls.Add(EulaPage);
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
-
-            SetImages();
+            nextButton.Click += NextButton_Click;
+            navBackButton.Click += BackButton_Click;
+            cancelButton.Click += CancelButton_Click;
+            versionLabel.Text = versionLabel.Text + ProductVersion;
+            SetUp();
         }
-        
 
-        void SetImages()
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            //todo
+        }
+        private void SetUp()
         {
             if (navPane.SelectedTab == wlcmPage)
             {
+                tableLayoutPanel1.Visible = false;
+                tableLayoutPanel2.Visible = false;
                 sideImage.BackgroundImage = Properties.Resources.install;
             }
             else if (navPane.SelectedTab == eulPage)
             {
+                tableLayoutPanel1.Visible = true;
+                tableLayoutPanel2.Visible = true;
+                headerText.Text = Strings.Rectify11.eulaPageHeader;
                 sideImage.BackgroundImage = Properties.Resources.eula;
+                nextButton.ButtonText = Strings.Rectify11.buttonAgree;
             }
         }
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            if (navPane.SelectedTab == eulPage)
+            {
+                navPane.SelectedTab = wlcmPage;
+            }
+        }
+
         private void InstallButton_Click(object sender, EventArgs e)
         {/*
             if (CheckIfUpdatesPending())
@@ -62,7 +87,7 @@ namespace Rectify11Installer
 
         private void navPane_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetImages();
+            SetUp();
         }
     }
 }

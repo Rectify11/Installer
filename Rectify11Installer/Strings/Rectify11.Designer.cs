@@ -61,11 +61,20 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back.
+        ///   Looks up a localized string similar to Agree.
         /// </summary>
-        internal static string buttonBack {
+        internal static string buttonAgree {
             get {
-                return ResourceManager.GetString("buttonBack", resourceCulture);
+                return ResourceManager.GetString("buttonAgree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string buttonCancel {
+            get {
+                return ResourceManager.GetString("buttonCancel", resourceCulture);
             }
         }
         
@@ -75,6 +84,15 @@ namespace Rectify11Installer.Strings {
         internal static string buttonNext {
             get {
                 return ResourceManager.GetString("buttonNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License Agreement.
+        /// </summary>
+        internal static string eulaPageHeader {
+            get {
+                return ResourceManager.GetString("eulaPageHeader", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace Rectify11Installer.Strings {
         internal static string updateTitle {
             get {
                 return ResourceManager.GetString("updateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version: .
+        /// </summary>
+        internal static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
         
