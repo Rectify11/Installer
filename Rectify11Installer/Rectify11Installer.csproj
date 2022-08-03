@@ -88,6 +88,12 @@
     <Compile Include="Controls\NavButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Pages\EulaPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\EulaPage.Designer.cs">
+      <DependentUpon>EulaPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WelcomePage.cs">
       <SubType>UserControl</SubType>
     </Compile>

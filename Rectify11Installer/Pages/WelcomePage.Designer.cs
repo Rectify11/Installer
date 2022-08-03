@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomePage));
             this.wlcmPageTitle = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbUninstall = new Rectify11Installer.Controls.FakeCommandLink();

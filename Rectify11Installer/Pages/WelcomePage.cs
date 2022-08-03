@@ -1,17 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Rectify11Installer.Controls;
 
 namespace Rectify11Installer.Pages
 {
     public partial class WelcomePage : UserControl
     {
+        public FakeCommandLink InstallButton
+        {
+            get
+            {
+                return cmbInstall;
+            }
+            set
+            {
+                cmbInstall = value;
+            }
+        }
+        public FakeCommandLink UninstallButton
+        {
+            get
+            {
+                return cmbUninstall;
+            }
+            set
+            {
+                cmbUninstall = value;
+            }
+        }
         public WelcomePage()
         {
             InitializeComponent();

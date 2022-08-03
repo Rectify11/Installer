@@ -14,6 +14,7 @@ namespace Rectify11Installer
     public partial class frmWizard : Form
     {
         WelcomePage WelcomePage = new WelcomePage();
+        EulaPage EulaPage = new EulaPage();
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -29,6 +30,25 @@ namespace Rectify11Installer
                 eulaPage.ForeColor = Color.White;
             }
             welcomePage.Controls.Add(WelcomePage);
+            eulaPage.Controls.Add(EulaPage);
+            WelcomePage.InstallButton.Click += InstallButton_Click;
+            WelcomePage.UninstallButton.Click += UninstallButton_Click;
+        }
+        private void InstallButton_Click(object sender, EventArgs e)
+        {/*
+            if (CheckIfUpdatesPending())
+            {*/
+            navPane.SelectedTab = eulaPage;
+            //}
+
+        }
+
+        private void UninstallButton_Click(object sender, EventArgs e)
+        {/*
+            if (CheckIfUpdatesPending())
+            {
+                Navigate(UninstallConfirmPage);
+            }*/
         }
     }
 }
