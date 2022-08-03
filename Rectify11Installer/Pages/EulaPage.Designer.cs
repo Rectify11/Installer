@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EulaPage));
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
@@ -41,7 +40,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(301, 41);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Before you can install Rectify11, you must agree to this license agreement:";
+            this.label1.Text = Strings.Rectify11.eulaTitle;
             // 
             // richTextBox1
             // 
@@ -54,7 +53,7 @@
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(315, 290);
             this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.richTextBox1.Rtf = Strings.Rectify11.eulaR11;
             // 
             // EulaPage
             // 
