@@ -63,7 +63,7 @@
             this.cmbUninstall.Location = new System.Drawing.Point(8, 176);
             this.cmbUninstall.Name = "cmbUninstall";
             this.cmbUninstall.Note = Strings.Rectify11.uninstallNote;
-            this.cmbUninstall.Size = new System.Drawing.Size(298, 45);
+            this.cmbUninstall.Size = new System.Drawing.Size(305, 45);
             this.cmbUninstall.TabIndex = 4;
             this.cmbUninstall.Text = Strings.Rectify11.uninstallTitle;
             // 
@@ -75,7 +75,7 @@
             this.cmbInstall.Location = new System.Drawing.Point(8, 125);
             this.cmbInstall.Name = "cmbInstall";
             this.cmbInstall.Note = Strings.Rectify11.installNote;
-            this.cmbInstall.Size = new System.Drawing.Size(301, 45);
+            this.cmbInstall.Size = new System.Drawing.Size(310, 45);
             this.cmbInstall.TabIndex = 3;
             this.cmbInstall.Text = Strings.Rectify11.installTitle;
             // 
@@ -90,7 +90,7 @@
             this.Controls.Add(this.wlcmPageTitle);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "WelcomePage";
-            this.Size = new System.Drawing.Size(318, 322);
+            this.Size = new System.Drawing.Size(333, 322);
             this.ResumeLayout(false);
             this.PerformLayout();
 

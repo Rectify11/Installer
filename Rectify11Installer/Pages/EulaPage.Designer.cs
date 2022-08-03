@@ -65,7 +65,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "EulaPage";
-            this.Size = new System.Drawing.Size(325, 340);
+            this.Size = new System.Drawing.Size(333, 340);
             this.ResumeLayout(false);
 
         }
