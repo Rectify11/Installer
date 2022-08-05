@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomePage));
-            this.wlcmPageTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.wlcmPageTitle = new Controls.DarkAwareLabel();
+            this.label2 = new Controls.DarkAwareLabel();
             this.cmbUninstall = new Rectify11Installer.Controls.FakeCommandLink();
             this.cmbInstall = new Rectify11Installer.Controls.FakeCommandLink();
             this.SuspendLayout();
@@ -39,7 +39,6 @@
             // 
             this.wlcmPageTitle.AutoSize = true;
             this.wlcmPageTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wlcmPageTitle.ForeColor = System.Drawing.Color.White;
             this.wlcmPageTitle.Location = new System.Drawing.Point(3, 0);
             this.wlcmPageTitle.Name = "wlcmPageTitle";
             this.wlcmPageTitle.Size = new System.Drawing.Size(103, 30);
@@ -49,7 +48,6 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(5, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(313, 92);
@@ -99,8 +97,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label wlcmPageTitle;
-        private System.Windows.Forms.Label label2;
+        private Controls.DarkAwareLabel wlcmPageTitle;
+        private Controls.DarkAwareLabel label2;
         private Controls.FakeCommandLink cmbInstall;
         private Controls.FakeCommandLink cmbUninstall;
     }

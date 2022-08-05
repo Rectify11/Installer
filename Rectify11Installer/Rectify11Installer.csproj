@@ -75,6 +75,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DarkAwareControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\FakeCommandLink.cs">
       <SubType>UserControl</SubType>
     </Compile>

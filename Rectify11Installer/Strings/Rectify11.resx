@@ -165,4 +165,7 @@
   <data name="installChoiceDescription" xml:space="preserve">
     <value>You can choose what will be Rectified.</value>
   </data>
+  <data name="installChoiceTitle" xml:space="preserve">
+    <value>Choose what to install</value>
+  </data>
 </root>
