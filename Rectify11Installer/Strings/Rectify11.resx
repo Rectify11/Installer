@@ -162,4 +162,7 @@
   <data name="welcomeDescription" xml:space="preserve">
     <value>The setup will go through the various steps required to install Rectify11 on your PC, for a more consistent experience. It is recommended to close all the background applications before you proceed. Select your desirable option to continue.</value>
   </data>
+  <data name="installChoiceDescription" xml:space="preserve">
+    <value>You can choose what will be Rectified.</value>
+  </data>
 </root>
