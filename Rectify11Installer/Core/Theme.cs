@@ -105,7 +105,24 @@ namespace Rectify11Installer
 
             return null;
         }
+        public static StylePart GetGroupBox(VisualStyle v)
+        {
+            foreach (var classes in v.Classes.Values)
+            {
+                if (classes.ClassName == "Button")
+                {
+                    foreach (var parts in classes.Parts)
+                    {
+                        if (parts.Value.PartName == "GROUPBOX")
+                        {
+                            return parts.Value;
+                        }
+                    }
+                }
+            }
 
+            return null;
+        }
         public static StylePart GetCommandLinkGlyphPart(VisualStyle v)
         {
             foreach (var classes in v.Classes.Values)

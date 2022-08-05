@@ -16,8 +16,8 @@ namespace Rectify11Installer
             Theme.LoadTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl-PL");
-            //Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl-PL");
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
             Application.Run(new frmWizard());
         }
     }

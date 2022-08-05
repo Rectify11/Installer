@@ -9,6 +9,7 @@ namespace Rectify11Installer
     {
         WelcomePage WelcomePage = new WelcomePage();
         EulaPage EulaPage = new EulaPage();
+        InstallOptnsPage InstallOptnsPage = new InstallOptnsPage();
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -22,9 +23,12 @@ namespace Rectify11Installer
                 wlcmPage.ForeColor = Color.White;
                 eulPage.BackColor = Color.Black;
                 eulPage.ForeColor = Color.White;
+                installPage.BackColor = Color.Black;
+                installPage.ForeColor = Color.White;
             }
             wlcmPage.Controls.Add(WelcomePage);
             eulPage.Controls.Add(EulaPage);
+            installPage.Controls.Add(InstallOptnsPage);
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
             nextButton.Click += NextButton_Click;
@@ -32,6 +36,14 @@ namespace Rectify11Installer
             cancelButton.Click += CancelButton_Click;
             versionLabel.Text = versionLabel.Text + ProductVersion;
             Navigate(WelcomePage);
+            /*
+            Patches list = PatchesParser.GetAll();
+            PatchesPatch[] ok = list.Items;
+            foreach (PatchesPatch patch in ok)
+            {
+                MessageBox.Show(patch.Package, patch.HardlinkTarget);
+            }
+            */
         }
         #region Navigation
         private void Navigate(WizardPage page)
@@ -45,12 +57,19 @@ namespace Rectify11Installer
             }
             else if (page == EulaPage)
             {
-                tableLayoutPanel1.Visible = true;
-                tableLayoutPanel2.Visible = true;
                 headerText.Text = page.WizardHeader;
                 sideImage.BackgroundImage = page.SideImage;
+                tableLayoutPanel1.Visible = true;
+                tableLayoutPanel2.Visible = true;
                 nextButton.ButtonText = Strings.Rectify11.buttonAgree;
                 navPane.SelectedTab = eulPage;
+            }
+            else if (page == InstallOptnsPage)
+            {
+                headerText.Text = page.WizardHeader;
+                sideImage.BackgroundImage = page.SideImage;
+                nextButton.ButtonText = Strings.Rectify11.buttonNext;
+                navPane.SelectedTab = installPage;
             }
         }
         #endregion
@@ -62,12 +81,18 @@ namespace Rectify11Installer
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-            //todo
+            if (navPane.SelectedTab == eulPage)
+            {
+                Navigate(InstallOptnsPage);
+            }
         }
         
         private void BackButton_Click(object sender, EventArgs e)
         {
-            Navigate(WelcomePage);
+            if (navPane.SelectedTab == eulPage)
+                Navigate(WelcomePage);
+            else if (navPane.SelectedTab == installPage)
+                Navigate(EulaPage);
         }
 
         private void InstallButton_Click(object sender, EventArgs e)

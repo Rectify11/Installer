@@ -63,6 +63,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +81,12 @@
     <Compile Include="Controls\FakeCommandLink.Designer.cs">
       <DependentUpon>FakeCommandLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GroupBox.Designer.cs">
+      <DependentUpon>GroupBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TabControlWithoutHeader.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -87,6 +96,8 @@
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Core\PatchesParser.cs" />
+    <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\Theme.cs" />
     <Compile Include="frmWizard.cs">
       <SubType>Form</SubType>
@@ -102,6 +113,12 @@
     </Compile>
     <Compile Include="Pages\EulaPage.Designer.cs">
       <DependentUpon>EulaPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InstallOptnsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\InstallOptnsPage.Designer.cs">
+      <DependentUpon>InstallOptnsPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\WelcomePage.cs">
       <SubType>UserControl</SubType>
@@ -129,9 +146,6 @@
     </Compile>
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\RECT.cs" />
-    <EmbeddedResource Include="Controls\FakeCommandLink.resx">
-      <DependentUpon>FakeCommandLink.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmWizard.resx">
       <DependentUpon>frmWizard.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +167,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -201,6 +216,10 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Core\rectify11.xml" />
+    <Content Include="Resources\installoptns.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

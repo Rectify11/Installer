@@ -79,5 +79,32 @@ namespace Rectify11Installer.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap installoptns {
+            get {
+                object obj = ResourceManager.GetObject("installoptns", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+        ///
+        ///&lt;!--Rectify11 Patch file list--&gt;
+        ///
+        ///&lt;Patches&gt;
+        ///	&lt;Patch Package=&quot;microsoft-windows-accessibilitycpl&quot; mask=&quot;ICONGROUP,| UIFILE,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\accessibilitycpl.dll.mun&quot; /&gt;
+        ///	&lt;Patch Package=&quot;microsoft-windows-aclui&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\aclui.dll.mun&quot; /&gt;
+        ///	&lt;Patch Package=&quot;microsoft-windows-healthcentercpl&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\actioncentercpl.dll.mun&quot; /&gt;
+        ///	&lt;Pat [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string rectify11xml {
+            get {
+                return ResourceManager.GetString("rectify11xml", resourceCulture);
+            }
+        }
     }
 }
