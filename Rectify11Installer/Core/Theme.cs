@@ -2,11 +2,6 @@
 using Microsoft.Win32;
 using Rectify11Installer.Controls;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rectify11Installer
 {
@@ -14,20 +9,15 @@ namespace Rectify11Installer
     {
         public static VisualStyle DarkStyle = new VisualStyle();
         public static VisualStyle LightStyle = new VisualStyle();
-        public static bool IsUsingDarkMode
+        public static bool IsUsingDarkMode { get; private set; }
+        public static void InitTheme()
         {
-            get
-            {
-                var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
-                var registryValueObject = key.GetValue("AppsUseLightTheme");
-                if (registryValueObject == null)
-                {
-                    return false;
-                }
-                var registryValue = (int)registryValueObject;
-
-                return registryValue <= 0;
-            }
+            var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+            var registryValueObject = key.GetValue("AppsUseLightTheme");
+            if (registryValueObject == null)
+            {  }
+            var registryValue = (int)registryValueObject;
+            IsUsingDarkMode = registryValue <= 0;
         }
         public static event EventHandler OnThemeChanged;
 

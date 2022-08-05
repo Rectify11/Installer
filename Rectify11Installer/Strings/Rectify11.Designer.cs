@@ -124,6 +124,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose what to install.
+        /// </summary>
+        internal static string installChoiceTitle {
+            get {
+                return ResourceManager.GetString("installChoiceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rectify your current Windows installation..
         /// </summary>
         internal static string installNote {

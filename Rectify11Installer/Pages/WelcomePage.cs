@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using Rectify11Installer.Controls;
+﻿using Rectify11Installer.Controls;
 
 namespace Rectify11Installer.Pages
 {

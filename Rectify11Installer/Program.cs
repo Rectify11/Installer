@@ -14,6 +14,7 @@ namespace Rectify11Installer
         static void Main()
         {
             Theme.LoadTheme();
+            Theme.InitTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl-PL");

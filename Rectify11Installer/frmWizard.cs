@@ -12,19 +12,12 @@ namespace Rectify11Installer
         InstallOptnsPage InstallOptnsPage = new InstallOptnsPage();
         public frmWizard()
         {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
             if (Theme.IsUsingDarkMode)
             {
                 BackColor = Color.Black;
                 ForeColor = Color.White;
-                wlcmPage.BackColor = Color.Black;
-                wlcmPage.ForeColor = Color.White;
-                eulPage.BackColor = Color.Black;
-                eulPage.ForeColor = Color.White;
-                installPage.BackColor = Color.Black;
-                installPage.ForeColor = Color.White;
             }
             wlcmPage.Controls.Add(WelcomePage);
             eulPage.Controls.Add(EulaPage);
