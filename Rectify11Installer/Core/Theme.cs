@@ -18,13 +18,9 @@ namespace Rectify11Installer
             {  }
             var registryValue = (int)registryValueObject;
             IsUsingDarkMode = registryValue <= 0;
-        }
-        public static event EventHandler OnThemeChanged;
-
-        static Theme()
-        {
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
         }
+        public static event EventHandler OnThemeChanged;
 
         public static void LoadTheme()
         {
@@ -38,12 +34,14 @@ namespace Rectify11Installer
             {
                 case UserPreferenceCategory.General:
                     if (OnThemeChanged != null)
+                    {
+                        InitTheme();
                         OnThemeChanged.Invoke(sender, e);
+                    }
                     break;
             }
         }
-
-
+        
         public static StylePart GetNavArrowPart(VisualStyle v, NavigationButtonType type)
         {
             foreach (var classes in v.Classes.Values)

@@ -43,7 +43,6 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.BackColor = Theme.IsUsingDarkMode ? System.Drawing.Color.Black : System.Drawing.Color.White;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(4, 45);

@@ -15,11 +15,6 @@ namespace Rectify11Installer.Pages
         public InstallOptnsPage()
         {
             InitializeComponent();
-            if (Theme.IsUsingDarkMode)
-            {
-                treeView1.BackColor = Color.Black;
-                treeView1.ForeColor = Color.White;
-            }
         }
         // Updates all child tree nodes recursively.
         private void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)

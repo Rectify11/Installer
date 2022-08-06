@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
 using System.Runtime.InteropServices;
 using libmsstyle;
@@ -28,10 +23,7 @@ namespace Rectify11Installer.Controls
         private const int DTT_TEXTCOLOR = 1;
         public string ButtonText
         {
-            get
-            {
-                return _ButtonText;
-            }
+            get => _ButtonText;
             set
             {
                 _ButtonText = value;
@@ -137,17 +129,6 @@ namespace Rectify11Installer.Controls
                 {
                     var pixel = buttonImage.GetPixel(x, y);
                     var d = Theme.IsUsingDarkMode ? Color.Black : Color.White;
-                    //if (pixel.A == 0)
-                    //{
-                    //    pixel = d;
-                    //}
-                    //else
-                    //{
-                    //    if (pixel.A != 255)
-                    //    {
-                    //        pixel = d;
-                    //    }
-                    //}
 
                     *pixels++ = pixel.ToArgb();
                 }
@@ -236,15 +217,6 @@ namespace Rectify11Installer.Controls
             this.Invalidate();
             //Rectangle rc = new(this.Location, this.Size);
             //Parent.Invalidate(rc, true);
-        }
-        private void InvalidateExEx()
-        {
-            if (Parent == null)
-                return;
-
-            this.Invalidate();
-            Rectangle rc = new Rectangle(Location, Size);
-            Parent.Invalidate(rc, true);
         }
         enum ButtonState
         {
