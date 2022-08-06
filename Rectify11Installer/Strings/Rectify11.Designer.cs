@@ -151,11 +151,56 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark with Mica.
+        /// </summary>
+        internal static string themeBlack {
+            get {
+                return ResourceManager.GetString("themeBlack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select your desired theme..
         /// </summary>
         internal static string themeChoiceTitle {
             get {
                 return ResourceManager.GetString("themeChoiceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string themeDark {
+            get {
+                return ResourceManager.GetString("themeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personalize your experience.
+        /// </summary>
+        internal static string themeHeader {
+            get {
+                return ResourceManager.GetString("themeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string themeLight {
+            get {
+                return ResourceManager.GetString("themeLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectify11 Installer.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

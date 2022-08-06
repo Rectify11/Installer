@@ -139,7 +139,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(51, 15);
             this.versionLabel.TabIndex = 3;
-            this.versionLabel.Text = Strings.Rectify11.Version;
+            this.versionLabel.Text = global::Rectify11Installer.Strings.Rectify11.Version;
             // 
             // navPane
             // 
@@ -299,7 +299,7 @@
             this.MinimizeBox = false;
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rectify11 Installer";
+            this.Text = global::Rectify11Installer.Strings.Rectify11.Title;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
