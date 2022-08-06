@@ -151,6 +151,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select your desired theme..
+        /// </summary>
+        internal static string themeChoiceTitle {
+            get {
+                return ResourceManager.GetString("themeChoiceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restores the original Windows 11 look..
         /// </summary>
         internal static string uninstallNote {

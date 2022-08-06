@@ -6,25 +6,13 @@ namespace Rectify11Installer.Pages
     {
         public FakeCommandLink InstallButton
         {
-            get
-            {
-                return cmbInstall;
-            }
-            set
-            {
-                cmbInstall = value;
-            }
+            get => cmbInstall;
+            set => cmbInstall = value;
         }
         public FakeCommandLink UninstallButton
         {
-            get
-            {
-                return cmbUninstall;
-            }
-            set
-            {
-                cmbUninstall = value;
-            }
+            get => cmbUninstall;
+            set => cmbUninstall = value;
         }
         public WelcomePage()
         {

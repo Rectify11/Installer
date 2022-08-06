@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Rectify11 Installer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Rectify11 Installer")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Rectify11")]
 [assembly: AssemblyProduct("Rectify11 Installer")]
 [assembly: AssemblyCopyright("Copyright © 2022 The Rectify11 Team")]
 [assembly: AssemblyTrademark("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f1f7b13f-9ef7-4b77-9500-b062cc9db17d")]
+[assembly: Guid("f1f7b13f-9ef7-4b77-9504-b062cc9db17d")]
 
 // Version information for an assembly consists of the following four values:
 //

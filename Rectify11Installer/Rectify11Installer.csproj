@@ -58,13 +58,16 @@
     <ManifestKeyFile>Rectify11Installer_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -73,6 +76,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TaskDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KPreisser.UI.TaskDialog.1.0.0\lib\net472\TaskDialog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\DarkAwareControls.cs">
@@ -99,6 +105,7 @@
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\Theme.cs" />
@@ -123,6 +130,12 @@
     <Compile Include="Pages\InstallOptnsPage.Designer.cs">
       <DependentUpon>InstallOptnsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ThemeChoicePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ThemeChoicePage.Designer.cs">
+      <DependentUpon>ThemeChoicePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WelcomePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +150,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Strings\Rectify11.pl.Designer.cs">
       <DependentUpon>Rectify11.pl.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -171,6 +185,7 @@
       <LastGenOutput>Rectify11.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -203,7 +218,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Rectify11Installer_TemporaryKey.pfx" />
     <None Include="Resources\install.png" />
   </ItemGroup>
   <ItemGroup>
@@ -222,7 +236,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core\rectify11.xml" />
+    <None Include="Resources\darkPreview.png" />
+    <None Include="Resources\blackPreview.png" />
     <Content Include="Resources\installoptns.png" />
+    <None Include="Resources\lightPreview.png" />
+    <None Include="Resources\themepage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

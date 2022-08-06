@@ -168,4 +168,7 @@
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Choose what to install</value>
   </data>
+  <data name="themeChoiceTitle" xml:space="preserve">
+    <value>Select your desired theme.</value>
+  </data>
 </root>

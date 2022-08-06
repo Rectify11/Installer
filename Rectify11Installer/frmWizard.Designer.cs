@@ -30,23 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.headerText = new System.Windows.Forms.Label();
-            this.navBackButton = new Rectify11Installer.Controls.NavigationButton();
+            this.headerText = new Controls.DarkAwareLabel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.nextButton = new Rectify11Installer.Controls.WinUIButton();
-            this.cancelButton = new Rectify11Installer.Controls.WinUIButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.sideImage = new System.Windows.Forms.PictureBox();
+            this.versionLabel = new Controls.DarkAwareLabel();
             this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
-            this.wlcmPage = new Controls.DarkAwareTabPage();
-            this.eulPage = new Controls.DarkAwareTabPage();
-            this.installPage = new Controls.DarkAwareTabPage();
-            this.themePage = new Controls.DarkAwareTabPage();
-            this.epPage = new Controls.DarkAwareTabPage();
-            this.summaryPage = new Controls.DarkAwareTabPage();
-            this.progressPage = new Controls.DarkAwareTabPage();
-            this.rebootPage = new Controls.DarkAwareTabPage();
-            this.versionLabel = new System.Windows.Forms.Label();
+            this.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.epPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.nextButton = new Rectify11Installer.Controls.WinUIButton();
+            this.cancelButton = new Rectify11Installer.Controls.WinUIButton();
+            this.navBackButton = new Rectify11Installer.Controls.NavigationButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -83,20 +83,6 @@
             this.headerText.TabIndex = 1;
             this.headerText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // navBackButton
-            // 
-            this.navBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.navBackButton.BackColor = System.Drawing.Color.Transparent;
-            this.navBackButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.navBackButton.Location = new System.Drawing.Point(3, 3);
-            this.navBackButton.Name = "navBackButton";
-            this.navBackButton.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
-            this.navBackButton.Size = new System.Drawing.Size(39, 39);
-            this.navBackButton.TabIndex = 2;
-            this.navBackButton.Text = "navigationButton2";
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -116,32 +102,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(624, 47);
             this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // nextButton
-            // 
-            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextButton.BackColor = System.Drawing.Color.Transparent;
-            this.nextButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonNext;
-            this.nextButton.ForeColor = System.Drawing.Color.White;
-            this.nextButton.Location = new System.Drawing.Point(456, 3);
-            this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(72, 29);
-            this.nextButton.TabIndex = 1;
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.BackColor = System.Drawing.Color.Transparent;
-            this.cancelButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonCancel;
-            this.cancelButton.ForeColor = System.Drawing.Color.White;
-            this.cancelButton.Location = new System.Drawing.Point(534, 3);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(72, 29);
-            this.cancelButton.TabIndex = 2;
             // 
             // tableLayoutPanel3
             // 
@@ -172,6 +132,15 @@
             this.sideImage.TabIndex = 0;
             this.sideImage.TabStop = false;
             // 
+            // versionLabel
+            // 
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Location = new System.Drawing.Point(6, 416);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(51, 15);
+            this.versionLabel.TabIndex = 3;
+            this.versionLabel.Text = Strings.Rectify11.Version;
+            // 
             // navPane
             // 
             this.navPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -195,84 +164,123 @@
             // 
             // wlcmPage
             // 
+            this.wlcmPage.BackColor = System.Drawing.Color.White;
+            this.wlcmPage.ForeColor = System.Drawing.Color.Black;
             this.wlcmPage.Location = new System.Drawing.Point(4, 44);
             this.wlcmPage.Name = "wlcmPage";
             this.wlcmPage.Size = new System.Drawing.Size(333, 284);
             this.wlcmPage.TabIndex = 8;
             this.wlcmPage.Text = "Welcome";
-            this.wlcmPage.UseVisualStyleBackColor = true;
             // 
             // eulPage
             // 
+            this.eulPage.BackColor = System.Drawing.Color.White;
+            this.eulPage.ForeColor = System.Drawing.Color.Black;
             this.eulPage.Location = new System.Drawing.Point(4, 44);
             this.eulPage.Name = "eulPage";
             this.eulPage.Size = new System.Drawing.Size(333, 284);
             this.eulPage.TabIndex = 9;
             this.eulPage.Text = "Eula";
-            this.eulPage.UseVisualStyleBackColor = true;
             // 
             // installPage
             // 
+            this.installPage.BackColor = System.Drawing.Color.White;
+            this.installPage.ForeColor = System.Drawing.Color.Black;
             this.installPage.Location = new System.Drawing.Point(4, 44);
             this.installPage.Name = "installPage";
             this.installPage.Size = new System.Drawing.Size(333, 284);
             this.installPage.TabIndex = 2;
             this.installPage.Text = "Install";
-            this.installPage.UseVisualStyleBackColor = true;
             // 
             // themePage
             // 
+            this.themePage.BackColor = System.Drawing.Color.White;
+            this.themePage.ForeColor = System.Drawing.Color.Black;
             this.themePage.Location = new System.Drawing.Point(4, 44);
             this.themePage.Name = "themePage";
             this.themePage.Size = new System.Drawing.Size(333, 284);
             this.themePage.TabIndex = 3;
             this.themePage.Text = "Theme";
-            this.themePage.UseVisualStyleBackColor = true;
             // 
             // epPage
             // 
+            this.epPage.BackColor = System.Drawing.Color.White;
+            this.epPage.ForeColor = System.Drawing.Color.Black;
             this.epPage.Location = new System.Drawing.Point(4, 44);
             this.epPage.Name = "epPage";
             this.epPage.Size = new System.Drawing.Size(333, 284);
             this.epPage.TabIndex = 4;
             this.epPage.Text = "Ep";
-            this.epPage.UseVisualStyleBackColor = true;
             // 
             // summaryPage
             // 
+            this.summaryPage.BackColor = System.Drawing.Color.White;
+            this.summaryPage.ForeColor = System.Drawing.Color.Black;
             this.summaryPage.Location = new System.Drawing.Point(4, 44);
             this.summaryPage.Name = "summaryPage";
             this.summaryPage.Size = new System.Drawing.Size(333, 284);
             this.summaryPage.TabIndex = 5;
             this.summaryPage.Text = "Summary";
-            this.summaryPage.UseVisualStyleBackColor = true;
             // 
             // progressPage
             // 
+            this.progressPage.BackColor = System.Drawing.Color.White;
+            this.progressPage.ForeColor = System.Drawing.Color.Black;
             this.progressPage.Location = new System.Drawing.Point(4, 44);
             this.progressPage.Name = "progressPage";
             this.progressPage.Size = new System.Drawing.Size(333, 284);
             this.progressPage.TabIndex = 6;
             this.progressPage.Text = "Progress";
-            this.progressPage.UseVisualStyleBackColor = true;
             // 
             // rebootPage
             // 
+            this.rebootPage.BackColor = System.Drawing.Color.White;
+            this.rebootPage.ForeColor = System.Drawing.Color.Black;
             this.rebootPage.Location = new System.Drawing.Point(4, 44);
             this.rebootPage.Name = "rebootPage";
             this.rebootPage.Size = new System.Drawing.Size(333, 284);
             this.rebootPage.TabIndex = 7;
             this.rebootPage.Text = "Reboot";
-            this.rebootPage.UseVisualStyleBackColor = true;
             // 
-            // versionLabel
+            // nextButton
             // 
-            this.versionLabel.AutoSize = true;
-            this.versionLabel.Location = new System.Drawing.Point(6, 416);
-            this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(51, 15);
-            this.versionLabel.TabIndex = 3;
-            this.versionLabel.Text = Strings.Rectify11.Version;
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextButton.BackColor = System.Drawing.Color.Transparent;
+            this.nextButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonNext;
+            this.nextButton.ForeColor = System.Drawing.Color.Black;
+            this.nextButton.Location = new System.Drawing.Point(456, 3);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(72, 29);
+            this.nextButton.TabIndex = 1;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.BackColor = System.Drawing.Color.Transparent;
+            this.cancelButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonCancel;
+            this.cancelButton.ForeColor = System.Drawing.Color.Black;
+            this.cancelButton.Location = new System.Drawing.Point(534, 3);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(72, 29);
+            this.cancelButton.TabIndex = 2;
+            // 
+            // navBackButton
+            // 
+            this.navBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.navBackButton.BackColor = System.Drawing.Color.Transparent;
+            this.navBackButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.navBackButton.Location = new System.Drawing.Point(3, 3);
+            this.navBackButton.Name = "navBackButton";
+            this.navBackButton.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
+            this.navBackButton.Size = new System.Drawing.Size(39, 39);
+            this.navBackButton.TabIndex = 2;
+            this.navBackButton.Text = "navigationButton2";
             // 
             // frmWizard
             // 
@@ -287,6 +295,8 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rectify11 Installer";
@@ -302,7 +312,7 @@
 
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label headerText;
+        private Controls.DarkAwareLabel headerText;
         private Controls.NavigationButton navBackButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Controls.WinUIButton nextButton;
@@ -318,7 +328,7 @@
         private Controls.DarkAwareTabPage wlcmPage;
         private Controls.DarkAwareTabPage eulPage;
         private Controls.WinUIButton cancelButton;
-        private System.Windows.Forms.Label versionLabel;
+        private Controls.DarkAwareLabel versionLabel;
     }
 }
 
