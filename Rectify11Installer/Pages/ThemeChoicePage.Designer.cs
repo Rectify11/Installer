@@ -32,6 +32,9 @@
             this.darkPreview = new System.Windows.Forms.PictureBox();
             this.blackPreview = new System.Windows.Forms.PictureBox();
             this.themeTitle = new Rectify11Installer.Controls.DarkAwareLabel();
+            this.lightRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
+            this.blackRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
+            this.darkRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.lightPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.darkPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.blackPreview)).BeginInit();
@@ -61,7 +64,7 @@
             // 
             this.blackPreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.blackPreview;
             this.blackPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.blackPreview.Location = new System.Drawing.Point(7, 153);
+            this.blackPreview.Location = new System.Drawing.Point(7, 175);
             this.blackPreview.Name = "blackPreview";
             this.blackPreview.Size = new System.Drawing.Size(129, 78);
             this.blackPreview.TabIndex = 2;
@@ -70,26 +73,62 @@
             // themeTitle
             // 
             this.themeTitle.AutoSize = true;
-            this.themeTitle.BackColor = System.Drawing.Color.White;
+            this.themeTitle.BackColor = System.Drawing.Color.Transparent;
             this.themeTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.themeTitle.ForeColor = System.Drawing.Color.Black;
             this.themeTitle.Location = new System.Drawing.Point(3, 0);
             this.themeTitle.Name = "themeTitle";
             this.themeTitle.Size = new System.Drawing.Size(190, 20);
             this.themeTitle.TabIndex = 3;
-            this.themeTitle.Text = Strings.Rectify11.themeChoiceTitle;
+            this.themeTitle.Text = global::Rectify11Installer.Strings.Rectify11.themeChoiceTitle;
+            // 
+            // lightRadio
+            // 
+            this.lightRadio.ForeColor = System.Drawing.Color.Black;
+            this.lightRadio.Location = new System.Drawing.Point(7, 121);
+            this.lightRadio.Name = "lightRadio";
+            this.lightRadio.Size = new System.Drawing.Size(129, 29);
+            this.lightRadio.TabIndex = 4;
+            this.lightRadio.TabStop = true;
+            this.lightRadio.Text = global::Rectify11Installer.Strings.Rectify11.themeLight;
+            this.lightRadio.UseVisualStyleBackColor = true;
+            // 
+            // blackRadio
+            // 
+            this.blackRadio.ForeColor = System.Drawing.Color.Black;
+            this.blackRadio.Location = new System.Drawing.Point(7, 252);
+            this.blackRadio.Name = "blackRadio";
+            this.blackRadio.Size = new System.Drawing.Size(161, 34);
+            this.blackRadio.TabIndex = 5;
+            this.blackRadio.TabStop = true;
+            this.blackRadio.Text = global::Rectify11Installer.Strings.Rectify11.themeBlack;
+            this.blackRadio.UseVisualStyleBackColor = true;
+            // 
+            // darkRadio
+            // 
+            this.darkRadio.ForeColor = System.Drawing.Color.Black;
+            this.darkRadio.Location = new System.Drawing.Point(167, 121);
+            this.darkRadio.Name = "darkRadio";
+            this.darkRadio.Size = new System.Drawing.Size(129, 29);
+            this.darkRadio.TabIndex = 5;
+            this.darkRadio.TabStop = true;
+            this.darkRadio.Text = global::Rectify11Installer.Strings.Rectify11.themeDark;
+            this.darkRadio.UseVisualStyleBackColor = true;
             // 
             // ThemeChoicePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.darkRadio);
+            this.Controls.Add(this.blackRadio);
+            this.Controls.Add(this.lightRadio);
             this.Controls.Add(this.themeTitle);
             this.Controls.Add(this.blackPreview);
             this.Controls.Add(this.darkPreview);
             this.Controls.Add(this.lightPreview);
             this.Name = "ThemeChoicePage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.themepage;
-            this.WizardHeader = "Personalize your experience";
+            this.WizardHeader = global::Rectify11Installer.Strings.Rectify11.themeHeader;
             ((System.ComponentModel.ISupportInitialize)(this.lightPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.darkPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.blackPreview)).EndInit();
@@ -104,5 +143,8 @@
         private System.Windows.Forms.PictureBox darkPreview;
         private System.Windows.Forms.PictureBox blackPreview;
         private Controls.DarkAwareLabel themeTitle;
+        private Controls.DarkAwareRadioButton lightRadio;
+        private Controls.DarkAwareRadioButton blackRadio;
+        private Controls.DarkAwareRadioButton darkRadio;
     }
 }

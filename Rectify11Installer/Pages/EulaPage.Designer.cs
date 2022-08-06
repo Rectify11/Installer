@@ -39,7 +39,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(301, 41);
             this.label1.TabIndex = 0;
-            this.label1.Text = Strings.Rectify11.eulaTitle;
+            this.label1.Text = global::Rectify11Installer.Strings.Rectify11.eulaTitle;
             // 
             // richTextBox1
             // 
@@ -50,7 +50,7 @@
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(315, 290);
             this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Rtf = Strings.Rectify11.eulaR11;
+            this.richTextBox1.Rtf = global::Rectify11Installer.Strings.Rectify11.eulaR11;
             // 
             // EulaPage
             // 
@@ -60,7 +60,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Name = "EulaPage";
-            this.WizardHeader = Strings.Rectify11.eulaPageHeader;
+            this.WizardHeader = global::Rectify11Installer.Strings.Rectify11.eulaPageHeader;
             this.SideImage = global::Rectify11Installer.Properties.Resources.eula;
             this.ResumeLayout(false);
 

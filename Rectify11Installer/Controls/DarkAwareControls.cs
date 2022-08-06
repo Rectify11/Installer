@@ -27,10 +27,14 @@ namespace Rectify11Installer.Controls
             if (Theme.IsUsingDarkMode)
             {
                 SetWindowTheme(Handle, "DarkMode_Explorer", null);
+                ForeColor = Color.White;
+                BackColor = Color.Black;
             }
             else
             {
                 SetWindowTheme(Handle, "explorer", null);
+                ForeColor = Color.Black;
+                BackColor = Color.White;
             }
         }
     }
@@ -47,17 +51,16 @@ namespace Rectify11Installer.Controls
         {
             base.CreateHandle();
             UpdateTheming();
+            BackColor = Color.Transparent;
         }
         private void UpdateTheming()
         {
             if (Theme.IsUsingDarkMode)
             {
-                BackColor = Color.Black;
                 ForeColor = Color.White;
             }
             else
             {
-                BackColor = Color.White;
                 ForeColor = Color.Black;
             }
         }
@@ -141,10 +144,12 @@ namespace Rectify11Installer.Controls
             if (Theme.IsUsingDarkMode)
             {
                 SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
+                ForeColor = Color.White;
             }
             else
             {
                 SetWindowTheme(this.Handle, "Explorer", null);
+                ForeColor = Color.Black;
             }
         }
     }

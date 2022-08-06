@@ -159,4 +159,31 @@
   <data name="buttonAgree" xml:space="preserve">
     <value>Zgadzam się</value>
   </data>
+  <data name="eulaPageHeader" xml:space="preserve">
+    <value>Postanowienia licencyjne</value>
+  </data>
+  <data name="installChoiceDescription" xml:space="preserve">
+    <value>Możesz wybrać co zostanie zainstalowane</value>
+  </data>
+  <data name="installChoiceTitle" xml:space="preserve">
+    <value>Wybierz, co chcesz zainstalować</value>
+  </data>
+  <data name="themeChoiceTitle" xml:space="preserve">
+    <value>Wybierz motyw</value>
+  </data>
+  <data name="themeHeader" xml:space="preserve">
+    <value>Personalizacja doświadcznenia</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Instalator Rectify11</value>
+  </data>
+  <data name="themeBlack" xml:space="preserve">
+    <value>Ciemny (z efektem Mica)</value>
+  </data>
+  <data name="themeDark" xml:space="preserve">
+    <value>Ciemny</value>
+  </data>
+  <data name="themeLight" xml:space="preserve">
+    <value>Jasny</value>
+  </data>
 </root>
