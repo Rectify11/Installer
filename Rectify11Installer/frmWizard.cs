@@ -13,6 +13,7 @@ namespace Rectify11Installer
         EulaPage EulaPage = new EulaPage();
         InstallOptnsPage InstallOptnsPage = new InstallOptnsPage();
         ThemeChoicePage ThemeChoicePage = new ThemeChoicePage();
+        EPPage EPPage = new EPPage();
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -31,6 +32,7 @@ namespace Rectify11Installer
             eulPage.Controls.Add(EulaPage);
             installPage.Controls.Add(InstallOptnsPage);
             themePage.Controls.Add(ThemeChoicePage);
+            epPage.Controls.Add(EPPage);
             WelcomePage.InstallButton.Click += InstallButton_Click;
             WelcomePage.UninstallButton.Click += UninstallButton_Click;
             nextButton.Click += NextButton_Click;
@@ -85,12 +87,9 @@ namespace Rectify11Installer
                 navPane.SelectedTab = wlcmPage;
                 tableLayoutPanel1.Visible = false;
                 tableLayoutPanel2.Visible = false;
-                sideImage.BackgroundImage = page.SideImage;
             }
             else if (page == EulaPage)
             {
-                headerText.Text = page.WizardHeader;
-                sideImage.BackgroundImage = page.SideImage;
                 tableLayoutPanel1.Visible = true;
                 tableLayoutPanel2.Visible = true;
                 nextButton.ButtonText = Strings.Rectify11.buttonAgree;
@@ -98,14 +97,16 @@ namespace Rectify11Installer
             }
             else if (page == InstallOptnsPage)
             {
-                headerText.Text = page.WizardHeader;
-                sideImage.BackgroundImage = page.SideImage;
                 nextButton.ButtonText = Strings.Rectify11.buttonNext;
                 navPane.SelectedTab = installPage;
             }
             else if (page == ThemeChoicePage)
             {
                 navPane.SelectedTab = themePage;
+            }
+            else if (page == EPPage)
+            {
+                navPane.SelectedTab = epPage;
             }
         }
         #endregion
@@ -121,6 +122,8 @@ namespace Rectify11Installer
                 Navigate(InstallOptnsPage);
             else if (navPane.SelectedTab == installPage)
                 Navigate(ThemeChoicePage);
+            else if (navPane.SelectedTab == themePage)
+                Navigate(EPPage);
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -131,6 +134,8 @@ namespace Rectify11Installer
                 Navigate(EulaPage);
             else if (navPane.SelectedTab == themePage)
                 Navigate(InstallOptnsPage);
+            else if (navPane.SelectedTab == epPage)
+                Navigate(ThemeChoicePage);
         }
 
         private void InstallButton_Click(object sender, EventArgs e)

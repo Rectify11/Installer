@@ -88,6 +88,69 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use Enhanced Ribbon.
+        /// </summary>
+        internal static string epEnhRibbon {
+            get {
+                return ResourceManager.GetString("epEnhRibbon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extend Mica to explorer navigation bar.
+        /// </summary>
+        internal static string epExtMica {
+            get {
+                return ResourceManager.GetString("epExtMica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize your Desktop.
+        /// </summary>
+        internal static string epHeader {
+            get {
+                return ResourceManager.GetString("epHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select your desired desktop experience.
+        /// </summary>
+        internal static string epTitle {
+            get {
+                return ResourceManager.GetString("epTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows 10 Rounded.
+        /// </summary>
+        internal static string epW10Radio {
+            get {
+                return ResourceManager.GetString("epW10Radio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows 10 Taskbar.
+        /// </summary>
+        internal static string epW10Taskbar {
+            get {
+                return ResourceManager.GetString("epW10Taskbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows 11 Default.
+        /// </summary>
+        internal static string epW11Radio {
+            get {
+                return ResourceManager.GetString("epW11Radio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to License Agreement.
         /// </summary>
         internal static string eulaPageHeader {

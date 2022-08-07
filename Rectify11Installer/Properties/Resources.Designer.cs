@@ -63,6 +63,26 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _10start {
+            get {
+                object obj = ResourceManager.GetObject("10start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _11start {
+            get {
+                object obj = ResourceManager.GetObject("11start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blackPreview {
             get {
                 object obj = ResourceManager.GetObject("blackPreview", resourceCulture);
@@ -76,6 +96,16 @@ namespace Rectify11Installer.Properties {
         internal static System.Drawing.Bitmap darkPreview {
             get {
                 object obj = ResourceManager.GetObject("darkPreview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ep {
+            get {
+                object obj = ResourceManager.GetObject("ep", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -118,6 +118,12 @@
     <Compile Include="Controls\NavButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Pages\EPPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\EPPage.Designer.cs">
+      <DependentUpon>EPPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EulaPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -238,6 +244,9 @@
     <Content Include="Core\rectify11.xml" />
     <None Include="Resources\darkPreview.png" />
     <None Include="Resources\blackPreview.png" />
+    <None Include="Resources\10start.png" />
+    <None Include="Resources\11start.png" />
+    <None Include="Resources\ep.png" />
     <Content Include="Resources\installoptns.png" />
     <None Include="Resources\lightPreview.png" />
     <None Include="Resources\themepage.png" />

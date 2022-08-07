@@ -153,5 +153,36 @@ namespace Rectify11Installer.Controls
             }
         }
     }
+    public class DarkAwareCheckBox : CheckBox
+    {
+        [DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
+        private extern static int SetWindowTheme(IntPtr hWnd, string pszSubAppName,
+                                                string pszSubIdList);
+        public DarkAwareCheckBox()
+        {
+            Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+            {
+                UpdateTheming();
+            };
+        }
+        protected override void CreateHandle()
+        {
+            base.CreateHandle();
+            UpdateTheming();
+        }
+        private void UpdateTheming()
+        {
+            if (Theme.IsUsingDarkMode)
+            {
+                SetWindowTheme(this.Handle, "DarkMode_Explorer", null);
+                ForeColor = Color.White;
+            }
+            else
+            {
+                SetWindowTheme(this.Handle, "Explorer", null);
+                ForeColor = Color.Black;
+            }
+        }
+    }
 
 }
