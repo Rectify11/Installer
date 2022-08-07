@@ -136,10 +136,19 @@
   <data name="installoptns" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\installoptns.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="blackPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="11start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\11start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="10start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="lightPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lightPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blackPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blackPreview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ep" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
