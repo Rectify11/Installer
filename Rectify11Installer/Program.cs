@@ -13,8 +13,9 @@ namespace Rectify11Installer
         [STAThread]
         static void Main()
         {
+            if (Environment.OSVersion.Version.Build >= 10240)
+                Theme.InitTheme();
             Theme.LoadTheme();
-            Theme.InitTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl-PL");
