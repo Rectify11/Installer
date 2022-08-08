@@ -64,7 +64,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(267, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "You can choose what will be Rectified.";
+            this.label1.Text = Strings.Rectify11.installChoiceDescription;
             // 
             // treeView1
             // 
