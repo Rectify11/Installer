@@ -41,42 +41,14 @@ namespace Rectify11Installer
             versionLabel.Text = versionLabel.Text + ProductVersion;
             Navigate(WelcomePage);
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+            WelcomePage.UninstallButton.Enabled = Properties.Settings.Default.IsInstalled;
             /*
             MessageBox.Show(Properties.Settings.Default.IsInstalled.ToString());
             Properties.Settings.Default.IsInstalled = true;
             Properties.Settings.Default.Save();
             */
-            /*
-            Patches list = PatchesParser.GetAll();
-            PatchesPatch[] ok = list.Items;
-            foreach (PatchesPatch patch in ok)
-            {
-                MessageBox.Show(patch.Package, patch.HardlinkTarget);
-            }
-            */
         }
 
-        private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
-        {
-            switch (e.Category)
-            {
-                case UserPreferenceCategory.General:
-                    {
-                        Theme.InitTheme();
-                        if (Theme.IsUsingDarkMode)
-                        {
-                            BackColor = Color.Black;
-                            ForeColor = Color.White;
-                        }
-                        else
-                        {
-                            BackColor = Color.White;
-                            ForeColor = Color.Black;
-                        }
-                    }
-                    break;
-            }
-        }
         #region Navigation
         private void Navigate(WizardPage page)
         {
@@ -152,6 +124,27 @@ namespace Rectify11Installer
             if (Helper.CheckIfUpdatesPending())
             {
                 //Navigate(UninstallConfirmPage);
+            }
+        }
+        private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            switch (e.Category)
+            {
+                case UserPreferenceCategory.General:
+                    {
+                        Theme.InitTheme();
+                        if (Theme.IsUsingDarkMode)
+                        {
+                            BackColor = Color.Black;
+                            ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            BackColor = Color.White;
+                            ForeColor = Color.Black;
+                        }
+                    }
+                    break;
             }
         }
         #endregion

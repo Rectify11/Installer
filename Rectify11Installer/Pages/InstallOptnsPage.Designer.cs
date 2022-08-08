@@ -57,19 +57,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(7, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(267, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = global::Rectify11Installer.Strings.Rectify11.installChoiceDescription;
+            this.label1.Text = "You can choose what will be Rectified.";
             // 
             // treeView1
             // 
+            this.treeView1.BackColor = System.Drawing.Color.White;
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.CheckBoxes = true;
+            this.treeView1.ForeColor = System.Drawing.Color.Black;
             this.treeView1.Location = new System.Drawing.Point(11, 38);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "sysIconsNode";

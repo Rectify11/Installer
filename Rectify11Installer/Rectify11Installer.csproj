@@ -50,6 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>845D9F3BB67E632FF0863EF4126FA9373741D7B9</ManifestCertificateThumbprint>
@@ -106,6 +107,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\IRectify11.cs" />
     <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\Theme.cs" />
@@ -171,6 +173,9 @@
     <Compile Include="Win32\RECT.cs" />
     <EmbeddedResource Include="frmWizard.resx">
       <DependentUpon>frmWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\InstallOptnsPage.resx">
+      <DependentUpon>InstallOptnsPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
