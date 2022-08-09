@@ -2,9 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
-/libmsstyle/bin
-/libmsstyle/obj
-/Rectify11Installer/bin
-/Rectify11Installer/obj
-/packages
+.vs/
+libmsstyle/bin/
+libmsstyle/obj/
+Rectify11Installer/bin/
+Rectify11Installer/obj/
+packages/
