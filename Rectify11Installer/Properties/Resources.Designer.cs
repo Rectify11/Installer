@@ -133,9 +133,29 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap installConfirm {
+            get {
+                object obj = ResourceManager.GetObject("installConfirm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap installoptns {
             get {
                 object obj = ResourceManager.GetObject("installoptns", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap installprogress {
+            get {
+                object obj = ResourceManager.GetObject("installprogress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

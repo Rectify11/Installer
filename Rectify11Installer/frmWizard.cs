@@ -28,6 +28,8 @@ namespace Rectify11Installer
             installPage.Controls.Add(RectifyPages.InstallOptnsPage);
             themePage.Controls.Add(RectifyPages.ThemeChoicePage);
             epPage.Controls.Add(RectifyPages.EPPage);
+            progressPage.Controls.Add(RectifyPages.ProgressPage);
+            summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
             RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
             RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
             nextButton.Click += NextButton_Click;
@@ -69,15 +71,19 @@ namespace Rectify11Installer
             }
             else if (page == RectifyPages.ThemeChoicePage)
             {
-                foreach (string ok in InstallOptions.iconsList.ToArray())
-                {
-                    MessageBox.Show(ok);
-                }
                 navPane.SelectedTab = themePage;
             }
             else if (page == RectifyPages.EPPage)
             {
                 navPane.SelectedTab = epPage;
+            }
+            else if (page == RectifyPages.InstallConfirmation)
+            {
+                navPane.SelectedTab = summaryPage;
+            }
+            else if (page == RectifyPages.ProgressPage)
+            {
+                navPane.SelectedTab = progressPage;
             }
         }
         #endregion
@@ -95,6 +101,10 @@ namespace Rectify11Installer
                 Navigate(RectifyPages.ThemeChoicePage);
             else if (navPane.SelectedTab == themePage)
                 Navigate(RectifyPages.EPPage);
+            else if (navPane.SelectedTab == epPage)
+                Navigate(RectifyPages.InstallConfirmation);
+            else if (navPane.SelectedTab == summaryPage)
+                Navigate(RectifyPages.ProgressPage);
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -107,6 +117,8 @@ namespace Rectify11Installer
                 Navigate(RectifyPages.InstallOptnsPage);
             else if (navPane.SelectedTab == epPage)
                 Navigate(RectifyPages.ThemeChoicePage);
+            else if (navPane.SelectedTab == summaryPage)
+                Navigate(RectifyPages.EPPage);
         }
 
         private void InstallButton_Click(object sender, EventArgs e)
