@@ -1,6 +1,7 @@
 ﻿using Rectify11Installer.Core;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
@@ -19,33 +20,26 @@ namespace Rectify11Installer.Pages
                 node.Nodes.Add(package);
             }
         }
-        // Updates all child tree nodes recursively.
-        private void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
-        {
-            foreach (TreeNode node in treeNode.Nodes)
-            {
-                node.Checked = nodeChecked;
-                if (node.Nodes.Count > 0)
-                {
-                    // If the current node has child nodes, call the CheckAllChildsNodes method recursively.
-                    CheckAllChildNodes(node, nodeChecked);
-                }
-            }
-        }
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
             if (e.Action != TreeViewAction.Unknown)
             {
-                if (String.Compare(e.Node.Name, "epNode", true) == 0)
+                e.Node.Descendants().ToList().ForEach(x =>
                 {
-                    InstallOptions.InstallEP = e.Node.Checked;
-                }
-                if (e.Node.Nodes.Count > 0)
+                    x.Checked = e.Node.Checked;
+                    if (e.Node.Checked)
+                        InstallOptions.iconsList.Add(x.Text);
+                    else
+                        InstallOptions.iconsList.Remove(x.Text);
+                });
+                e.Node.Ancestors().ToList().ForEach(x =>
                 {
-                    /* Calls the CheckAllChildNodes method, passing in the current 
-                    Checked value of the TreeNode whose checked state changed. */
-                    CheckAllChildNodes(e.Node, e.Node.Checked);
-                }
+                    x.Checked = x.Descendants().ToList().Any(y => y.Checked);
+                    if (e.Node.Checked)
+                        InstallOptions.iconsList.Add(e.Node.Text);
+                    else
+                        InstallOptions.iconsList.Remove(e.Node.Text);
+                });
             }
         }
         

@@ -9,11 +9,6 @@ namespace Rectify11Installer
 {
     public partial class frmWizard : Form
     {
-        WelcomePage WelcomePage = new WelcomePage();
-        EulaPage EulaPage = new EulaPage();
-        InstallOptnsPage InstallOptnsPage = new InstallOptnsPage();
-        ThemeChoicePage ThemeChoicePage = new ThemeChoicePage();
-        EPPage EPPage = new EPPage();
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -28,20 +23,20 @@ namespace Rectify11Installer
                 BackColor = Color.White;
                 ForeColor = Color.Black;
             }
-            wlcmPage.Controls.Add(WelcomePage);
-            eulPage.Controls.Add(EulaPage);
-            installPage.Controls.Add(InstallOptnsPage);
-            themePage.Controls.Add(ThemeChoicePage);
-            epPage.Controls.Add(EPPage);
-            WelcomePage.InstallButton.Click += InstallButton_Click;
-            WelcomePage.UninstallButton.Click += UninstallButton_Click;
+            wlcmPage.Controls.Add(RectifyPages.WelcomePage);
+            eulPage.Controls.Add(RectifyPages.EulaPage);
+            installPage.Controls.Add(RectifyPages.InstallOptnsPage);
+            themePage.Controls.Add(RectifyPages.ThemeChoicePage);
+            epPage.Controls.Add(RectifyPages.EPPage);
+            RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
+            RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
             nextButton.Click += NextButton_Click;
             navBackButton.Click += BackButton_Click;
             cancelButton.Click += CancelButton_Click;
             versionLabel.Text = versionLabel.Text + ProductVersion;
-            Navigate(WelcomePage);
+            Navigate(RectifyPages.WelcomePage);
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
-            WelcomePage.UninstallButton.Enabled = Properties.Settings.Default.IsInstalled;
+            RectifyPages.WelcomePage.UninstallButton.Enabled = Properties.Settings.Default.IsInstalled;
             /*
             MessageBox.Show(Properties.Settings.Default.IsInstalled.ToString());
             Properties.Settings.Default.IsInstalled = true;
@@ -54,29 +49,33 @@ namespace Rectify11Installer
         {
             headerText.Text = page.WizardHeader;
             sideImage.BackgroundImage = page.SideImage;
-            if (page == WelcomePage)
+            if (page == RectifyPages.WelcomePage)
             {
                 navPane.SelectedTab = wlcmPage;
                 tableLayoutPanel1.Visible = false;
                 tableLayoutPanel2.Visible = false;
             }
-            else if (page == EulaPage)
+            else if (page == RectifyPages.EulaPage)
             {
                 tableLayoutPanel1.Visible = true;
                 tableLayoutPanel2.Visible = true;
                 nextButton.ButtonText = Strings.Rectify11.buttonAgree;
                 navPane.SelectedTab = eulPage;
             }
-            else if (page == InstallOptnsPage)
+            else if (page == RectifyPages.InstallOptnsPage)
             {
                 nextButton.ButtonText = Strings.Rectify11.buttonNext;
                 navPane.SelectedTab = installPage;
             }
-            else if (page == ThemeChoicePage)
+            else if (page == RectifyPages.ThemeChoicePage)
             {
+                foreach (string ok in InstallOptions.iconsList.ToArray())
+                {
+                    MessageBox.Show(ok);
+                }
                 navPane.SelectedTab = themePage;
             }
-            else if (page == EPPage)
+            else if (page == RectifyPages.EPPage)
             {
                 navPane.SelectedTab = epPage;
             }
@@ -91,30 +90,30 @@ namespace Rectify11Installer
         private void NextButton_Click(object sender, EventArgs e)
         {
             if (navPane.SelectedTab == eulPage)
-                Navigate(InstallOptnsPage);
+                Navigate(RectifyPages.InstallOptnsPage);
             else if (navPane.SelectedTab == installPage)
-                Navigate(ThemeChoicePage);
+                Navigate(RectifyPages.ThemeChoicePage);
             else if (navPane.SelectedTab == themePage)
-                Navigate(EPPage);
+                Navigate(RectifyPages.EPPage);
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             if (navPane.SelectedTab == eulPage)
-                Navigate(WelcomePage);
+                Navigate(RectifyPages.WelcomePage);
             else if (navPane.SelectedTab == installPage)
-                Navigate(EulaPage);
+                Navigate(RectifyPages.EulaPage);
             else if (navPane.SelectedTab == themePage)
-                Navigate(InstallOptnsPage);
+                Navigate(RectifyPages.InstallOptnsPage);
             else if (navPane.SelectedTab == epPage)
-                Navigate(ThemeChoicePage);
+                Navigate(RectifyPages.ThemeChoicePage);
         }
 
         private void InstallButton_Click(object sender, EventArgs e)
         {
             if (Helper.CheckIfUpdatesPending())
             {
-                Navigate(EulaPage);
+                Navigate(RectifyPages.EulaPage);
             }
 
         }

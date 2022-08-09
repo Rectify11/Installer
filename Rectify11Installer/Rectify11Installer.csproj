@@ -111,6 +111,7 @@
     <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\Theme.cs" />
+    <Compile Include="Core\TreeViewExtension.cs" />
     <Compile Include="frmWizard.cs">
       <SubType>Form</SubType>
     </Compile>
