@@ -10,6 +10,8 @@ namespace Rectify11Installer.Core
         public static InstallOptnsPage InstallOptnsPage = new InstallOptnsPage();
         public static ThemeChoicePage ThemeChoicePage = new ThemeChoicePage();
         public static EPPage EPPage = new EPPage();
+        public static InstallConfirmation InstallConfirmation = new InstallConfirmation();
+        public static ProgressPage ProgressPage = new ProgressPage();
     }
     public class InstallOptions
     {

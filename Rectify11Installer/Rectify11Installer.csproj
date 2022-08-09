@@ -133,11 +133,23 @@
     <Compile Include="Pages\EulaPage.Designer.cs">
       <DependentUpon>EulaPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\InstallConfirmation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\InstallConfirmation.Designer.cs">
+      <DependentUpon>InstallConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\InstallOptnsPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\InstallOptnsPage.Designer.cs">
       <DependentUpon>InstallOptnsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProgressPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ProgressPage.Designer.cs">
+      <DependentUpon>ProgressPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\ThemeChoicePage.cs">
       <SubType>UserControl</SubType>
@@ -174,6 +186,12 @@
     <Compile Include="Win32\RECT.cs" />
     <EmbeddedResource Include="frmWizard.resx">
       <DependentUpon>frmWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\InstallConfirmation.resx">
+      <DependentUpon>InstallConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ProgressPage.resx">
+      <DependentUpon>ProgressPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -245,11 +263,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core\rectify11.xml" />
+    <None Include="Resources\installprogress.gif" />
     <None Include="Resources\darkPreview.png" />
     <None Include="Resources\blackPreview.png" />
     <None Include="Resources\10start.png" />
     <None Include="Resources\11start.png" />
     <None Include="Resources\ep.png" />
+    <None Include="Resources\installConfirm.png" />
     <Content Include="Resources\installoptns.png" />
     <None Include="Resources\lightPreview.png" />
     <None Include="Resources\themepage.png" />
