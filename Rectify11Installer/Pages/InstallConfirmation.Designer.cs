@@ -39,11 +39,11 @@
             this.summaryTitle.BackColor = System.Drawing.Color.Transparent;
             this.summaryTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.summaryTitle.ForeColor = System.Drawing.Color.Black;
-            this.summaryTitle.Location = new System.Drawing.Point(3, 0);
+            this.summaryTitle.Location = new System.Drawing.Point(6, 0);
             this.summaryTitle.Name = "summaryTitle";
             this.summaryTitle.Size = new System.Drawing.Size(243, 20);
             this.summaryTitle.TabIndex = 0;
-            this.summaryTitle.Text = "You are about to do the following:";
+            this.summaryTitle.Text = global::Rectify11Installer.Strings.Rectify11.summaryTitle;
             // 
             // summaryItems
             // 
@@ -54,7 +54,7 @@
             this.summaryItems.Name = "summaryItems";
             this.summaryItems.Size = new System.Drawing.Size(297, 109);
             this.summaryItems.TabIndex = 1;
-            this.summaryItems.Text = "Install Rectify11 on this Windows installation.";
+            this.summaryItems.Text = global::Rectify11Installer.Strings.Rectify11.summaryItems;
             // 
             // summaryFooter
             // 
@@ -65,8 +65,7 @@
             this.summaryFooter.Name = "summaryFooter";
             this.summaryFooter.Size = new System.Drawing.Size(297, 54);
             this.summaryFooter.TabIndex = 2;
-            this.summaryFooter.Text = "Please close everything and save your work as a reboot will be required at the en" +
-    "d of the installation.";
+            this.summaryFooter.Text = global::Rectify11Installer.Strings.Rectify11.summaryFooter;
             // 
             // InstallConfirmation
             // 

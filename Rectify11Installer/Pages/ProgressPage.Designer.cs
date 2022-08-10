@@ -54,7 +54,7 @@
             this.progressText.Name = "progressText";
             this.progressText.Size = new System.Drawing.Size(109, 20);
             this.progressText.TabIndex = 1;
-            this.progressText.Text = "Copying files...";
+            this.progressText.Text = global::Rectify11Installer.Strings.Rectify11.progressText;
             // 
             // ProgressPage
             // 

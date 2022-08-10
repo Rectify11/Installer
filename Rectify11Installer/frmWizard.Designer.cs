@@ -301,8 +301,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmWizard";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rectify11 Installer";
+            this.Text = global::Rectify11Installer.Strings.Rectify11.Title;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -317,8 +318,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Controls.DarkAwareLabel headerText;
         private Controls.NavigationButton navBackButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Controls.WinUIButton nextButton;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        public Controls.WinUIButton nextButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox sideImage;
         private Controls.TabControlWithoutHeader navPane;

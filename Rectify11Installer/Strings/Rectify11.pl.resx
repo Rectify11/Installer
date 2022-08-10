@@ -186,4 +186,16 @@
   <data name="themeLight" xml:space="preserve">
     <value>Jasny</value>
   </data>
+  <data name="progressText" xml:space="preserve">
+    <value>Kopiowanie plików...</value>
+  </data>
+  <data name="summaryFooter" xml:space="preserve">
+    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ instalator uruchomi komputer ponownie.</value>
+  </data>
+  <data name="summaryItems" xml:space="preserve">
+    <value>Zainstaluj Rectify11 na tej instalacji Windows.</value>
+  </data>
+  <data name="summaryTitle" xml:space="preserve">
+    <value>Zostaną wykonane następujące akcje:</value>
+  </data>
 </root>

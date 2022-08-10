@@ -1,5 +1,4 @@
 ﻿using Rectify11Installer.Core;
-using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,10 +7,12 @@ namespace Rectify11Installer.Pages
 {
     public partial class InstallOptnsPage : WizardPage
     {
-        public InstallOptnsPage()
+        private readonly frmWizard _frmWizard;
+        public InstallOptnsPage(frmWizard Frm)
         {
+            _frmWizard = Frm;
             InitializeComponent();
-             Patches list = PatchesParser.GetAll();
+            Patches list = PatchesParser.GetAll();
             PatchesPatch[] ok = list.Items;
             var node = treeView1.Nodes[0];
             foreach (PatchesPatch patch in ok)
@@ -40,6 +41,17 @@ namespace Rectify11Installer.Pages
                     else
                         InstallOptions.iconsList.Remove(e.Node.Text);
                 });
+                if ((!_frmWizard.nextButton.Enabled) && (InstallOptions.iconsList.Count > 0))
+                {
+                    _frmWizard.nextButton.Enabled = true;
+                    _frmWizard.IsItemsSelected = true;
+
+                }
+                else if (InstallOptions.iconsList.Count == 0)
+                {
+                    _frmWizard.nextButton.Enabled = false;
+                    _frmWizard.IsItemsSelected = false;
+                }
             }
         }
         

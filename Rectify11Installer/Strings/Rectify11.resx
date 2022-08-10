@@ -207,4 +207,16 @@
   <data name="epW11Radio" xml:space="preserve">
     <value>Windows 11 Default</value>
   </data>
+  <data name="progressText" xml:space="preserve">
+    <value>Copying files...</value>
+  </data>
+  <data name="summaryFooter" xml:space="preserve">
+    <value>Please close everything and save your work as a reboot will be required at the end of the installation.</value>
+  </data>
+  <data name="summaryItems" xml:space="preserve">
+    <value>Install Rectify11 on this Windows installation.</value>
+  </data>
+  <data name="summaryTitle" xml:space="preserve">
+    <value>You are about to do the following:</value>
+  </data>
 </root>

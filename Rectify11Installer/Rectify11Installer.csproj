@@ -187,12 +187,6 @@
     <EmbeddedResource Include="frmWizard.resx">
       <DependentUpon>frmWizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\InstallConfirmation.resx">
-      <DependentUpon>InstallConfirmation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ProgressPage.resx">
-      <DependentUpon>ProgressPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
