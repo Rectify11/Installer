@@ -198,4 +198,25 @@
   <data name="summaryTitle" xml:space="preserve">
     <value>Zostaną wykonane następujące akcje:</value>
   </data>
+  <data name="epEnhRibbon" xml:space="preserve">
+    <value>Użyj interfejsu wstążki</value>
+  </data>
+  <data name="epExtMica" xml:space="preserve">
+    <value>Rozszerz efekt Mica na pasek adresu</value>
+  </data>
+  <data name="epHeader" xml:space="preserve">
+    <value>Dostosuj pulpit</value>
+  </data>
+  <data name="epTitle" xml:space="preserve">
+    <value>Wybierz wygląd pulpitu</value>
+  </data>
+  <data name="epW10Radio" xml:space="preserve">
+    <value>Windows 10 (zaokrąglone)</value>
+  </data>
+  <data name="epW10Taskbar" xml:space="preserve">
+    <value>Pasek zadań Windows 10</value>
+  </data>
+  <data name="epW11Radio" xml:space="preserve">
+    <value>Domyślny Windows 11</value>
+  </data>
 </root>

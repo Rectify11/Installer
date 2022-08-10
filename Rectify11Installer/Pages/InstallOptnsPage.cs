@@ -44,13 +44,13 @@ namespace Rectify11Installer.Pages
                 if ((!_frmWizard.nextButton.Enabled) && (InstallOptions.iconsList.Count > 0))
                 {
                     _frmWizard.nextButton.Enabled = true;
-                    _frmWizard.IsItemsSelected = true;
+                    frmWizard.IsItemsSelected = true;
 
                 }
                 else if (InstallOptions.iconsList.Count == 0)
                 {
                     _frmWizard.nextButton.Enabled = false;
-                    _frmWizard.IsItemsSelected = false;
+                    frmWizard.IsItemsSelected = false;
                 }
             }
         }

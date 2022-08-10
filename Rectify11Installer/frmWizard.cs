@@ -9,7 +9,7 @@ namespace Rectify11Installer
 {
     public partial class frmWizard : Form
     {
-        public bool IsItemsSelected;
+        public static bool IsItemsSelected;
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
