@@ -35,6 +35,15 @@ namespace Rectify11Installer.Controls
             SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             BackColor = Color.Transparent;
         }
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            base.OnEnabledChanged(e);
+            if (Enabled)
+                CurrentState = ButtonState.Normal;
+            else
+                CurrentState = ButtonState.Disabled;
+            InvalidateEx();
+        }
         protected override CreateParams CreateParams
         {
             get
@@ -47,8 +56,6 @@ namespace Rectify11Installer.Controls
         protected unsafe override void OnPaint(PaintEventArgs args)
         {
             Bitmap buttonImage = null;
-            if (!Enabled)
-                CurrentState = ButtonState.Disabled;
 
             //Hack to fix black borders, but we lose transpancy
             args.Graphics.Clear(Color.White);
