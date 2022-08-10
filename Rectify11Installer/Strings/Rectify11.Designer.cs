@@ -214,6 +214,42 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copying files....
+        /// </summary>
+        internal static string progressText {
+            get {
+                return ResourceManager.GetString("progressText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please close everything and save your work as a reboot will be required at the end of the installation..
+        /// </summary>
+        internal static string summaryFooter {
+            get {
+                return ResourceManager.GetString("summaryFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Rectify11 on this Windows installation..
+        /// </summary>
+        internal static string summaryItems {
+            get {
+                return ResourceManager.GetString("summaryItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to do the following:.
+        /// </summary>
+        internal static string summaryTitle {
+            get {
+                return ResourceManager.GetString("summaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dark with Mica.
         /// </summary>
         internal static string themeBlack {

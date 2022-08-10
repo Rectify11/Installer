@@ -9,6 +9,7 @@ namespace Rectify11Installer
 {
     public partial class frmWizard : Form
     {
+        public bool IsItemsSelected;
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -23,6 +24,10 @@ namespace Rectify11Installer
                 BackColor = Color.White;
                 ForeColor = Color.Black;
             }
+            // initialize installoptonspage here because it needs 
+            // current instance to change button state.
+            RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
+
             wlcmPage.Controls.Add(RectifyPages.WelcomePage);
             eulPage.Controls.Add(RectifyPages.EulaPage);
             installPage.Controls.Add(RectifyPages.InstallOptnsPage);
@@ -62,11 +67,14 @@ namespace Rectify11Installer
                 tableLayoutPanel1.Visible = true;
                 tableLayoutPanel2.Visible = true;
                 nextButton.ButtonText = Strings.Rectify11.buttonAgree;
+                nextButton.Enabled = true;
                 navPane.SelectedTab = eulPage;
             }
             else if (page == RectifyPages.InstallOptnsPage)
             {
                 nextButton.ButtonText = Strings.Rectify11.buttonNext;
+                if (!IsItemsSelected)
+                    nextButton.Enabled = false;
                 navPane.SelectedTab = installPage;
             }
             else if (page == RectifyPages.ThemeChoicePage)
@@ -124,10 +132,7 @@ namespace Rectify11Installer
         private void InstallButton_Click(object sender, EventArgs e)
         {
             if (Helper.CheckIfUpdatesPending())
-            {
                 Navigate(RectifyPages.EulaPage);
-            }
-
         }
 
         private void UninstallButton_Click(object sender, EventArgs e)

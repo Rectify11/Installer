@@ -46,12 +46,9 @@ namespace Rectify11Installer.Controls
         }
         protected unsafe override void OnPaint(PaintEventArgs args)
         {
-            base.OnPaint(args);
             Bitmap buttonImage = null;
             if (!Enabled)
-            {
                 CurrentState = ButtonState.Disabled;
-            }
 
             //Hack to fix black borders, but we lose transpancy
             args.Graphics.Clear(Color.White);
@@ -80,6 +77,7 @@ namespace Rectify11Installer.Controls
                     tpart = ThemeParts.Pressed;
                     break;
                 default:
+                    tpart = ThemeParts.Normal;
                     break;
             }
             if (DesignMode)
@@ -152,8 +150,8 @@ namespace Rectify11Installer.Controls
             NativeMethods.BitBlt(hdc, bounds.Left, bounds.Top, bounds.Width, bounds.Height, memoryHdc, 0, 0, SRCCOPY);
             //NativeMethods.TransparentBlt(hdc, bounds.Left, bounds.Top, bounds.Width, bounds.Height, memoryHdc, 0, 0, bounds.Width, bounds.Height, (uint)Color.Magenta.ToArgb());
 
-
             args.Graphics.ReleaseHdc(hdc);
+            base.OnPaint(args);
 
         }
 

@@ -7,7 +7,7 @@ namespace Rectify11Installer.Core
     {
         public static WelcomePage WelcomePage = new WelcomePage();
         public static EulaPage EulaPage = new EulaPage();
-        public static InstallOptnsPage InstallOptnsPage = new InstallOptnsPage();
+        public static InstallOptnsPage InstallOptnsPage;
         public static ThemeChoicePage ThemeChoicePage = new ThemeChoicePage();
         public static EPPage EPPage = new EPPage();
         public static InstallConfirmation InstallConfirmation = new InstallConfirmation();
