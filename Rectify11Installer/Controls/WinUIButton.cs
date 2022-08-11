@@ -10,6 +10,14 @@ using Rectify11Installer.Win32;
 
 namespace Rectify11Installer.Controls
 {
+    public enum ButtonState
+    {
+        Normal = 1,
+        Hot,
+        Pressed,
+        Disabled,
+        Focused
+    }
     public class WinUIButton : Control
     {
         private string _ButtonText = "";
@@ -32,7 +40,7 @@ namespace Rectify11Installer.Controls
         }
         public WinUIButton()
         {
-            SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.Selectable | ControlStyles.StandardClick | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.SupportsTransparentBackColor, true);
             BackColor = Color.Transparent;
         }
         protected override void OnEnabledChanged(EventArgs e)
@@ -77,10 +85,10 @@ namespace Rectify11Installer.Controls
                 case ButtonState.Disabled:
                     tpart = ThemeParts.Disabled;
                     break;
-                case ButtonState.Hover:
+                case ButtonState.Hot:
                     tpart = ThemeParts.Hot;
                     break;
-                case ButtonState.HoverClicked:
+                case ButtonState.Pressed:
                     tpart = ThemeParts.Pressed;
                     break;
                 default:
@@ -161,7 +169,19 @@ namespace Rectify11Installer.Controls
             base.OnPaint(args);
 
         }
-
+        public void PerformClick()
+        {
+            if (CanSelect)
+                base.OnClick(EventArgs.Empty);
+        }
+        protected override void OnDoubleClick(EventArgs e)
+        {
+            if (CurrentState == ButtonState.Pressed)
+            {
+                Focus();
+                PerformClick();
+            }
+        }
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
@@ -171,13 +191,13 @@ namespace Rectify11Installer.Controls
                 return;
             }
 
-            CurrentState = ButtonState.Hover;
+            CurrentState = ButtonState.Hot;
             InvalidateEx();
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
-            base.OnMouseEnter(e);
+            base.OnMouseLeave(e);
 
             if (!Enabled)
             {
@@ -198,7 +218,7 @@ namespace Rectify11Installer.Controls
                 return;
             }
 
-            CurrentState = ButtonState.HoverClicked;
+            CurrentState = ButtonState.Pressed;
             InvalidateEx();
         }
 
@@ -211,7 +231,7 @@ namespace Rectify11Installer.Controls
                 return;
             }
 
-            CurrentState = ButtonState.Hover;
+            CurrentState = ButtonState.Hot;
             InvalidateEx();
         }
 
@@ -222,13 +242,6 @@ namespace Rectify11Installer.Controls
             this.Invalidate();
             //Rectangle rc = new(this.Location, this.Size);
             //Parent.Invalidate(rc, true);
-        }
-        enum ButtonState
-        {
-            Normal,
-            Disabled,
-            Hover,
-            HoverClicked
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)
