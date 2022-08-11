@@ -52,7 +52,7 @@
             this.summaryItems.ForeColor = System.Drawing.Color.Black;
             this.summaryItems.Location = new System.Drawing.Point(7, 24);
             this.summaryItems.Name = "summaryItems";
-            this.summaryItems.Size = new System.Drawing.Size(297, 200);
+            this.summaryItems.Size = new System.Drawing.Size(297, 175);
             this.summaryItems.TabIndex = 1;
             this.summaryItems.Text = "";
             // 
@@ -61,7 +61,7 @@
             this.summaryFooter.BackColor = System.Drawing.Color.Transparent;
             this.summaryFooter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.summaryFooter.ForeColor = System.Drawing.Color.Black;
-            this.summaryFooter.Location = new System.Drawing.Point(7, 210);
+            this.summaryFooter.Location = new System.Drawing.Point(7, 180);
             this.summaryFooter.Name = "summaryFooter";
             this.summaryFooter.Size = new System.Drawing.Size(297, 54);
             this.summaryFooter.TabIndex = 2;

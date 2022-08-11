@@ -234,4 +234,19 @@
   <data name="optionWallpaper" xml:space="preserve">
     <value>Rectify11 Wallpapers</value>
   </data>
+  <data name="installEP" xml:space="preserve">
+    <value>Install ExplorerPatcher</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Install Shell</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Install Themes</value>
+  </data>
+  <data name="installWallpapers" xml:space="preserve">
+    <value>Install Wallpapers</value>
+  </data>
+  <data name="installWinver" xml:space="preserve">
+    <value>Install Winver</value>
+  </data>
 </root>

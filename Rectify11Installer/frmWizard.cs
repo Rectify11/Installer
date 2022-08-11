@@ -89,40 +89,16 @@ namespace Rectify11Installer
             else if (page == RectifyPages.InstallConfirmation)
             {
                 RectifyPages.InstallConfirmation.Summary = Strings.Rectify11.summaryItems;
-                StringBuilder ok = new StringBuilder();
-                ok.AppendLine();
-                ok.AppendLine();
-                if (InstallOptions.iconsList.Contains("epNode"))
-                {
-                    InstallOptions.InstallEP = true;
-                    ok.AppendLine("Install ExplorerPatcher");
-                }
-                if (InstallOptions.iconsList.Contains("winverNode"))
-                {
-                    InstallOptions.InstallWinver = true;
-                    ok.AppendLine("Install Winver");
-                }
-                if (InstallOptions.iconsList.Contains("shellNode"))
-                {
-                    InstallOptions.InstallShell = true;
-                    ok.AppendLine("Install Shell");
-                }
-                if (InstallOptions.iconsList.Contains("wallpapersNode"))
-                {
-                    InstallOptions.InstallWallpaper = true;
-                    ok.AppendLine("Install Wallpapers");
-                }
-                if (InstallOptions.iconsList.Contains("themeNode"))
-                {
-                    InstallOptions.InstallWallpaper = true;
-                    ok.AppendLine("Install Themes");
-                }
-                RectifyPages.InstallConfirmation.Summary += ok.ToString();
+                RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();
                 nextButton.ButtonText = Strings.Rectify11.buttonInstall;
                 navPane.SelectedTab = summaryPage;
             }
             else if (page == RectifyPages.ProgressPage)
             {
+                tableLayoutPanel1.Visible = false;
+                tableLayoutPanel2.Visible = false;
+                versionLabel.Visible = false;
+                Helper.FinalizeIRectify11();
                 navPane.SelectedTab = progressPage;
             }
         }
@@ -138,9 +114,22 @@ namespace Rectify11Installer
             if (navPane.SelectedTab == eulPage)
                 Navigate(RectifyPages.InstallOptnsPage);
             else if (navPane.SelectedTab == installPage)
-                Navigate(RectifyPages.ThemeChoicePage);
+            {
+                Helper.UpdateIRectify11();
+                if (InstallOptions.InstallThemes)
+                    Navigate(RectifyPages.ThemeChoicePage);
+                else if (InstallOptions.InstallEP)
+                    Navigate(RectifyPages.EPPage);
+                else
+                    Navigate(RectifyPages.InstallConfirmation);
+            }
             else if (navPane.SelectedTab == themePage)
-                Navigate(RectifyPages.EPPage);
+            {
+                if (InstallOptions.InstallEP)
+                    Navigate(RectifyPages.EPPage);
+                else
+                    Navigate(RectifyPages.InstallConfirmation);
+            }
             else if (navPane.SelectedTab == epPage)
                 Navigate(RectifyPages.InstallConfirmation);
             else if (navPane.SelectedTab == summaryPage)
@@ -156,9 +145,21 @@ namespace Rectify11Installer
             else if (navPane.SelectedTab == themePage)
                 Navigate(RectifyPages.InstallOptnsPage);
             else if (navPane.SelectedTab == epPage)
-                Navigate(RectifyPages.ThemeChoicePage);
+            {
+                if (InstallOptions.InstallThemes)
+                    Navigate(RectifyPages.ThemeChoicePage);
+                else
+                    Navigate(RectifyPages.InstallOptnsPage);
+            }
             else if (navPane.SelectedTab == summaryPage)
-                Navigate(RectifyPages.EPPage);
+            {
+                if (InstallOptions.InstallEP)
+                    Navigate(RectifyPages.EPPage);
+                else if (InstallOptions.InstallThemes)
+                    Navigate(RectifyPages.ThemeChoicePage);
+                else
+                    Navigate(RectifyPages.InstallOptnsPage);
+            }
         }
 
         private void InstallButton_Click(object sender, EventArgs e)
