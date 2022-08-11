@@ -6,9 +6,12 @@ using System.Windows.Forms;
 
 namespace Rectify11Installer.Controls
 {
+    public enum NavigationButtonType { Forward, Backward, Menu }
     public class NavigationButton : Control
     {
+        #region Variables
         private NavigationButtonType t;
+        public ThemeParts state;
         private Bitmap Glyph;
         public NavigationButtonType NavigationButtonType
         {
@@ -18,13 +21,13 @@ namespace Rectify11Installer.Controls
                 t = value;
                 if (Enabled)
                 {
-                    this.SetState(ThemeParts.Normal);
-                    this.Invalidate();
+                    SetState(ThemeParts.Normal);
+                    Invalidate();
                 }
                 else
                 {
-                    this.SetState(ThemeParts.Disabled);
-                    this.Invalidate();
+                    SetState(ThemeParts.Disabled);
+                    Invalidate();
                 }
 
             }
@@ -38,57 +41,71 @@ namespace Rectify11Installer.Controls
                 base.Enabled = value;
                 if (value)
                 {
-                    this.SetState(ThemeParts.Normal);
+                    SetState(ThemeParts.Normal);
                 }
                 else
                 {
-                    this.SetState(ThemeParts.Disabled);
+                    SetState(ThemeParts.Disabled);
                 }
-                this.Invalidate();
+                Invalidate();
             }
         }
+        #endregion
+
         public NavigationButton()
         {
-            this.Location = new Point(3, 3);
-            this.Size = new Size(39, 39);
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
-            this.BackColor = Color.Transparent;
+            Location = new Point(3, 3);
+            Size = new Size(39, 39);
+            SetStyle(ControlStyles.Selectable | ControlStyles.StandardClick | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.SupportsTransparentBackColor, true);
+            BackColor = Color.Transparent;
             SetState(ThemeParts.Normal);
-            this.MouseEnter += NavigationButton_MouseEnter;
-            this.MouseLeave += NavigationButton_MouseLeave;
-
-            this.MouseDown += NavigationButton_MouseDown;
-            this.MouseUp += NavigationButton_MouseUp;
-
-            this.BackgroundImageLayout = ImageLayout.Stretch;
+            BackgroundImageLayout = ImageLayout.Stretch;
         }
 
-        private void NavigationButton_MouseUp(object sender, MouseEventArgs e)
+        #region Overriden Methods
+        public void PerformClick()
         {
+            if (CanSelect)
+                base.OnClick(EventArgs.Empty);
+        }
+        protected override void OnDoubleClick(EventArgs e)
+        {
+            if (state == ThemeParts.Pressed)
+            {
+                Focus();
+                PerformClick();
+            }
+        }
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
             if (Enabled)
             {
                 SetState(ThemeParts.Hot);
             }
         }
 
-        private void NavigationButton_MouseDown(object sender, MouseEventArgs e)
+        protected override void OnMouseDown(MouseEventArgs e)
         {
+            base.OnMouseDown(e);
             if (Enabled)
             {
                 SetState(ThemeParts.Pressed);
             }
         }
 
-        private void NavigationButton_MouseLeave(object sender, EventArgs e)
+        protected override void OnMouseLeave(EventArgs e)
         {
+            base.OnMouseLeave(e);
             if (Enabled)
             {
                 SetState(ThemeParts.Normal);
             }
         }
 
-        private void NavigationButton_MouseEnter(object sender, EventArgs e)
+        protected override void OnMouseEnter(EventArgs e)
         {
+            base.OnMouseEnter(e);
             if (Enabled)
             {
                 SetState(ThemeParts.Hot);
@@ -97,6 +114,7 @@ namespace Rectify11Installer.Controls
         }
         private void SetState(ThemeParts c)
         {
+            state = c;
             //IsDesignMode and licesning did not work for me
             if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
@@ -120,13 +138,13 @@ namespace Rectify11Installer.Controls
                 LinearGradientBrush lBrush = new LinearGradientBrush(rect, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
                 g.FillRectangle(lBrush, rect);
             }
-            this.Invalidate();
+            Invalidate();
         }
         protected override void OnPaint(PaintEventArgs e)
         {
             if (Glyph != null)
                 e.Graphics.DrawImage(Glyph, new Point(0, 0));
         }
+        #endregion
     }
-    public enum NavigationButtonType { Forward, Backward, Menu }
 }
