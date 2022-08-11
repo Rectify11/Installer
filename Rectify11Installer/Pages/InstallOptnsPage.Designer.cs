@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("System Icons");
+            treeNode7 = new System.Windows.Forms.TreeNode("Themes");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Winver");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ExplorerPatcher");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Shell");
@@ -86,8 +87,11 @@
             treeNode5.Text = "Rectify11 Wallpapers";
             treeNode6.Name = "extraNode";
             treeNode6.Text = "Extras";
+            treeNode7.Name = "themeNode";
+            treeNode7.Text = "Themes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
+            treeNode7,
             treeNode6});
             this.treeView1.Size = new System.Drawing.Size(294, 270);
             this.treeView1.TabIndex = 2;
@@ -113,5 +117,6 @@
         private Controls.GroupBox groupBox1;
         private Controls.DarkAwareLabel label1;
         private Controls.DarkAwareTreeView treeView1;
+        public System.Windows.Forms.TreeNode treeNode7;
     }
 }

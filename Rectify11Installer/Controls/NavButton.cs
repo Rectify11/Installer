@@ -47,7 +47,6 @@ namespace Rectify11Installer.Controls
                 this.Invalidate();
             }
         }
-
         public NavigationButton()
         {
             this.Location = new Point(3, 3);
@@ -68,7 +67,7 @@ namespace Rectify11Installer.Controls
         {
             if (Enabled)
             {
-                SetState(ThemeParts.Normal);
+                SetState(ThemeParts.Hot);
             }
         }
 

@@ -211,7 +211,7 @@ namespace Rectify11Installer.Controls
                 return;
             }
 
-            CurrentState = ButtonState.Normal;
+            CurrentState = ButtonState.Hover;
             InvalidateEx();
         }
 

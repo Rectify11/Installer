@@ -29,18 +29,25 @@ namespace Rectify11Installer.Pages
                 {
                     x.Checked = e.Node.Checked;
                     if (e.Node.Checked)
-                        InstallOptions.iconsList.Add(x.Text);
+                        InstallOptions.iconsList.Add(x.Name);
                     else
-                        InstallOptions.iconsList.Remove(x.Text);
+                        InstallOptions.iconsList.Remove(x.Name);
                 });
                 e.Node.Ancestors().ToList().ForEach(x =>
                 {
                     x.Checked = x.Descendants().ToList().Any(y => y.Checked);
                     if (e.Node.Checked)
-                        InstallOptions.iconsList.Add(e.Node.Text);
+                        InstallOptions.iconsList.Add(e.Node.Name);
                     else
-                        InstallOptions.iconsList.Remove(e.Node.Text);
+                        InstallOptions.iconsList.Remove(e.Node.Name);
                 });
+                if (e.Node.Name == "themeNode")
+                {
+                    if (e.Node.Checked)
+                        InstallOptions.iconsList.Add(e.Node.Name);
+                    else
+                        InstallOptions.iconsList.Remove(e.Node.Name);
+                }
                 if ((!_frmWizard.nextButton.Enabled) && (InstallOptions.iconsList.Count > 0))
                 {
                     _frmWizard.nextButton.Enabled = true;

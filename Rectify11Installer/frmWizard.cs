@@ -3,6 +3,7 @@ using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
 using System;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -87,6 +88,36 @@ namespace Rectify11Installer
             }
             else if (page == RectifyPages.InstallConfirmation)
             {
+                RectifyPages.InstallConfirmation.Summary = Strings.Rectify11.summaryItems;
+                StringBuilder ok = new StringBuilder();
+                ok.AppendLine();
+                ok.AppendLine();
+                if (InstallOptions.iconsList.Contains("epNode"))
+                {
+                    InstallOptions.InstallEP = true;
+                    ok.AppendLine("Install ExplorerPatcher");
+                }
+                if (InstallOptions.iconsList.Contains("winverNode"))
+                {
+                    InstallOptions.InstallWinver = true;
+                    ok.AppendLine("Install Winver");
+                }
+                if (InstallOptions.iconsList.Contains("shellNode"))
+                {
+                    InstallOptions.InstallShell = true;
+                    ok.AppendLine("Install Shell");
+                }
+                if (InstallOptions.iconsList.Contains("wallpapersNode"))
+                {
+                    InstallOptions.InstallWallpaper = true;
+                    ok.AppendLine("Install Wallpapers");
+                }
+                if (InstallOptions.iconsList.Contains("themeNode"))
+                {
+                    InstallOptions.InstallWallpaper = true;
+                    ok.AppendLine("Install Themes");
+                }
+                RectifyPages.InstallConfirmation.Summary += ok.ToString();
                 navPane.SelectedTab = summaryPage;
             }
             else if (page == RectifyPages.ProgressPage)
