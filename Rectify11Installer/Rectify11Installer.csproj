@@ -107,6 +107,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\Installer.cs" />
     <Compile Include="Core\IRectify11.cs" />
     <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />

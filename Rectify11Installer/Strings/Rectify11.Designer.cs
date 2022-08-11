@@ -205,6 +205,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install ExplorerPatcher.
+        /// </summary>
+        internal static string installEP {
+            get {
+                return ResourceManager.GetString("installEP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rectify your current Windows installation..
         /// </summary>
         internal static string installNote {
@@ -214,11 +223,47 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install Shell.
+        /// </summary>
+        internal static string installShell {
+            get {
+                return ResourceManager.GetString("installShell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Themes.
+        /// </summary>
+        internal static string installThemes {
+            get {
+                return ResourceManager.GetString("installThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Install Now.
         /// </summary>
         internal static string installTitle {
             get {
                 return ResourceManager.GetString("installTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Wallpapers.
+        /// </summary>
+        internal static string installWallpapers {
+            get {
+                return ResourceManager.GetString("installWallpapers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Winver.
+        /// </summary>
+        internal static string installWinver {
+            get {
+                return ResourceManager.GetString("installWinver", resourceCulture);
             }
         }
         

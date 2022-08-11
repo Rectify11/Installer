@@ -234,4 +234,19 @@
   <data name="optionWallpaper" xml:space="preserve">
     <value>Tapety Rectify11</value>
   </data>
+  <data name="installEP" xml:space="preserve">
+    <value>Instaluj Explorerpatcher</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Instaluj Shell</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Instaluj motywy</value>
+  </data>
+  <data name="installWallpapers" xml:space="preserve">
+    <value>Instaluj tapety Rectify11</value>
+  </data>
+  <data name="installWinver" xml:space="preserve">
+    <value>Instaluj Winver</value>
+  </data>
 </root>
