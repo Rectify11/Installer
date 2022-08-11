@@ -79,6 +79,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        internal static string buttonInstall {
+            get {
+                return ResourceManager.GetString("buttonInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         internal static string buttonNext {
@@ -210,6 +219,42 @@ namespace Rectify11Installer.Strings {
         internal static string installTitle {
             get {
                 return ResourceManager.GetString("installTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extras.
+        /// </summary>
+        internal static string optionExtra {
+            get {
+                return ResourceManager.GetString("optionExtra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System icons.
+        /// </summary>
+        internal static string optionIcons {
+            get {
+                return ResourceManager.GetString("optionIcons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        internal static string optionThemes {
+            get {
+                return ResourceManager.GetString("optionThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectify11 Wallpapers.
+        /// </summary>
+        internal static string optionWallpaper {
+            get {
+                return ResourceManager.GetString("optionWallpaper", resourceCulture);
             }
         }
         

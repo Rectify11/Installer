@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("System Icons");
-            treeNode7 = new System.Windows.Forms.TreeNode("Themes");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode(global::Rectify11Installer.Strings.Rectify11.optionIcons);
+            treeNode7 = new System.Windows.Forms.TreeNode(global::Rectify11Installer.Strings.Rectify11.optionThemes);
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Winver");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ExplorerPatcher");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Shell");
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Rectify11 Wallpapers");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Extras", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode(global::Rectify11Installer.Strings.Rectify11.optionExtra, new System.Windows.Forms.TreeNode[] {
             treeNode2,
             treeNode3,
             treeNode4,
@@ -76,7 +76,7 @@
             this.treeView1.Location = new System.Drawing.Point(1, 38);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "sysIconsNode";
-            treeNode1.Text = "System Icons";
+            treeNode1.Text = global::Rectify11Installer.Strings.Rectify11.optionIcons;
             treeNode2.Name = "winverNode";
             treeNode2.Text = "Winver";
             treeNode3.Name = "epNode";
@@ -84,11 +84,11 @@
             treeNode4.Name = "shellNode";
             treeNode4.Text = "Shell";
             treeNode5.Name = "wallpapersNode";
-            treeNode5.Text = "Rectify11 Wallpapers";
+            treeNode5.Text = global::Rectify11Installer.Strings.Rectify11.optionWallpaper;
             treeNode6.Name = "extraNode";
-            treeNode6.Text = "Extras";
+            treeNode6.Text = global::Rectify11Installer.Strings.Rectify11.optionExtra;
             treeNode7.Name = "themeNode";
-            treeNode7.Text = "Themes";
+            treeNode7.Text = global::Rectify11Installer.Strings.Rectify11.optionThemes;
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode7,

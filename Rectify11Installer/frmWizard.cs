@@ -118,6 +118,7 @@ namespace Rectify11Installer
                     ok.AppendLine("Install Themes");
                 }
                 RectifyPages.InstallConfirmation.Summary += ok.ToString();
+                nextButton.ButtonText = Strings.Rectify11.buttonInstall;
                 navPane.SelectedTab = summaryPage;
             }
             else if (page == RectifyPages.ProgressPage)
