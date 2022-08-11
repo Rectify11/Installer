@@ -181,9 +181,9 @@ namespace Rectify11Installer.Controls
         {
             if (Enabled)
             {
-                SetState(ThemeParts.Normal);
+                SetState(ThemeParts.Hot);
 
-                pictureBox1.Image = GetGlyphImage(ThemeParts.Normal);
+                pictureBox1.Image = GetGlyphImage(ThemeParts.Hot);
                 Color forecolor = Theme.IsUsingDarkMode ? DefaultBackColor : Color.Black;
 
                 lblTitle.ForeColor = forecolor;
