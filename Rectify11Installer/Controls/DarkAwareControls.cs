@@ -70,13 +70,9 @@ namespace Rectify11Installer.Controls
         private void UpdateTheming()
         {
             if (Theme.IsUsingDarkMode)
-            {
                 ForeColor = Color.White;
-            }
             else
-            {
                 ForeColor = Color.Black;
-            }
         }
     }
     public class DarkAwareRichTextBox : RichTextBox
