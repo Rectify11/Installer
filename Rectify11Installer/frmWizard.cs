@@ -1,9 +1,9 @@
 ﻿using Microsoft.Win32;
 using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
+using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -15,6 +15,11 @@ namespace Rectify11Installer
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
+            Shown += FrmWizard_Shown;
+        }
+
+        private void FrmWizard_Shown(object sender, EventArgs e)
+        {
             if (Theme.IsUsingDarkMode)
             {
                 BackColor = Color.Black;
@@ -45,6 +50,8 @@ namespace Rectify11Installer
             Navigate(RectifyPages.WelcomePage);
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
             RectifyPages.WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
+            DarkMode.RefreshTitleBarColor(Handle);
+            DarkMode.UpdateFrame(this);
         }
 
         #region Navigation
@@ -192,6 +199,8 @@ namespace Rectify11Installer
                             BackColor = Color.White;
                             ForeColor = Color.Black;
                         }
+                        DarkMode.RefreshTitleBarColor(Handle);
+                        DarkMode.UpdateFrame(this);
                     }
                     break;
             }
