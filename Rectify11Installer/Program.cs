@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rectify11Installer.Win32;
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,7 +15,17 @@ namespace Rectify11Installer
         static void Main()
         {
             if (Environment.OSVersion.Version.Build >= 10240)
+            {
                 Theme.InitTheme();
+                if (Environment.OSVersion.Version.Build >= 17763)
+                {
+                    DarkMode.AllowDarkModeForApp(true);
+                }
+                else if(Environment.OSVersion.Version.Build >= 18362)
+                {
+                    DarkMode.SetPreferredAppMode(DarkMode.PreferredAppMode.AllowDark);
+                }
+            }
             Theme.LoadTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
