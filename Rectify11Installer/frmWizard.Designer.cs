@@ -58,6 +58,7 @@
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -66,7 +67,6 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 45);
             this.tableLayoutPanel1.TabIndex = 1;
@@ -109,14 +109,15 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel2.Controls.Add(this.nextButton, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.cancelButton, 2, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 389);
+            this.tableLayoutPanel2.Controls.Add(this.nextButton, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cancelButton, 2, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 392);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(624, 47);
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(624, 45);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // nextButton
@@ -127,9 +128,9 @@
             this.nextButton.BackColor = System.Drawing.Color.Transparent;
             this.nextButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonNext;
             this.nextButton.ForeColor = System.Drawing.Color.Black;
-            this.nextButton.Location = new System.Drawing.Point(456, 3);
+            this.nextButton.Location = new System.Drawing.Point(456, 9);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(72, 29);
+            this.nextButton.Size = new System.Drawing.Size(72, 27);
             this.nextButton.TabIndex = 1;
             // 
             // cancelButton
@@ -140,9 +141,9 @@
             this.cancelButton.BackColor = System.Drawing.Color.Transparent;
             this.cancelButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonCancel;
             this.cancelButton.ForeColor = System.Drawing.Color.Black;
-            this.cancelButton.Location = new System.Drawing.Point(534, 3);
+            this.cancelButton.Location = new System.Drawing.Point(534, 9);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(72, 29);
+            this.cancelButton.Size = new System.Drawing.Size(72, 27);
             this.cancelButton.TabIndex = 2;
             // 
             // tableLayoutPanel3
@@ -297,12 +298,12 @@
             this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmWizard";
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = global::Rectify11Installer.Strings.Rectify11.Title;
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -320,7 +321,6 @@
         private Controls.DarkAwareLabel headerText;
         private Controls.NavigationButton navBackButton;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        public Controls.WinUIButton nextButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox sideImage;
         private Controls.TabControlWithoutHeader navPane;
@@ -332,8 +332,9 @@
         private Controls.DarkAwareTabPage rebootPage;
         private Controls.DarkAwareTabPage wlcmPage;
         private Controls.DarkAwareTabPage eulPage;
-        private Controls.WinUIButton cancelButton;
         private Controls.DarkAwareLabel versionLabel;
+        public Controls.WinUIButton nextButton;
+        private Controls.WinUIButton cancelButton;
     }
 }
 
