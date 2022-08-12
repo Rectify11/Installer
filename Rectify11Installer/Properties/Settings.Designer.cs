@@ -22,17 +22,5 @@ namespace Rectify11Installer.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsInstalled {
-            get {
-                return ((bool)(this["IsInstalled"]));
-            }
-            set {
-                this["IsInstalled"] = value;
-            }
-        }
     }
 }

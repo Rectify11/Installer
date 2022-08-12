@@ -44,12 +44,7 @@ namespace Rectify11Installer
             versionLabel.Text = versionLabel.Text + ProductVersion;
             Navigate(RectifyPages.WelcomePage);
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
-            RectifyPages.WelcomePage.UninstallButton.Enabled = Properties.Settings.Default.IsInstalled;
-            /*
-            MessageBox.Show(Properties.Settings.Default.IsInstalled.ToString());
-            Properties.Settings.Default.IsInstalled = true;
-            Properties.Settings.Default.Save();
-            */
+            RectifyPages.WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
         }
 
         #region Navigation
@@ -80,10 +75,12 @@ namespace Rectify11Installer
             }
             else if (page == RectifyPages.ThemeChoicePage)
             {
+                nextButton.ButtonText = Strings.Rectify11.buttonNext;
                 navPane.SelectedTab = themePage;
             }
             else if (page == RectifyPages.EPPage)
             {
+                nextButton.ButtonText = Strings.Rectify11.buttonNext;
                 navPane.SelectedTab = epPage;
             }
             else if (page == RectifyPages.InstallConfirmation)
@@ -106,7 +103,10 @@ namespace Rectify11Installer
         #region Private Methods
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            // will be replaced with taskdialog.
+            DialogResult ok = MessageBox.Show("Are you sure you want to cancel the installation?", Strings.Rectify11.Title, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (ok == DialogResult.OK)
+                Application.Exit();
         }
 
         private void NextButton_Click(object sender, EventArgs e)
