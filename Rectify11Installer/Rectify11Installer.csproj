@@ -110,6 +110,9 @@
     <Compile Include="Controls\TabControlWithoutHeader.Designer.cs">
       <DependentUpon>TabControlWithoutHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ThemedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -119,6 +122,7 @@
     <Compile Include="Core\IRectify11.cs" />
     <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
+    <Compile Include="Core\ResourceLoader.cs" />
     <Compile Include="Core\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />
     <Compile Include="frmWizard.cs">
@@ -193,9 +197,6 @@
     <Compile Include="Win32\DarkMode.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\RECT.cs" />
-    <EmbeddedResource Include="frmWizard.resx">
-      <DependentUpon>frmWizard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -288,6 +289,9 @@
     <Error Condition="!Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.41\build\ILMerge.props'))" />
   </Target>
   <ItemGroup>
+    <PackageReference Include="AeroWizard">
+      <Version>2.3.1</Version>
+    </PackageReference>
     <PackageReference Include="ILMerge" Version="3.0.41" />
   </ItemGroup>
   <Target Name="ILMerge">

@@ -64,19 +64,20 @@ namespace Rectify11Installer.Core
         }
         public static StringBuilder FinalText()
         {
+            System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
             StringBuilder ok = new StringBuilder();
             ok.AppendLine();
             ok.AppendLine();
             if (InstallOptions.InstallThemes)
-                ok.AppendLine(Strings.Rectify11.installThemes);
+                ok.AppendLine(resources.GetString("installThemes"));
             if (InstallOptions.InstallEP)
-                ok.AppendLine(Strings.Rectify11.installEP);
+                ok.AppendLine(resources.GetString("installEP"));
             if (InstallOptions.InstallWinver)
-                ok.AppendLine(Strings.Rectify11.installWinver);
+                ok.AppendLine(resources.GetString("installWinver"));
             if (InstallOptions.InstallShell)
-                ok.AppendLine(Strings.Rectify11.installShell);
+                ok.AppendLine(resources.GetString("installShell"));
             if (InstallOptions.InstallWallpaper)
-                ok.AppendLine(Strings.Rectify11.installWallpapers);
+                ok.AppendLine(resources.GetString("installWallpapers"));
             return ok;
         }
     }

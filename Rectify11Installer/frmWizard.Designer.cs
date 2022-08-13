@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.headerText = new Rectify11Installer.Controls.DarkAwareLabel();
+            this.headerText = new AeroWizard.ThemedLabel();
             this.navBackButton = new Rectify11Installer.Controls.NavigationButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.nextButton = new Rectify11Installer.Controls.WinUIButton();
@@ -46,7 +46,7 @@
             this.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.versionLabel = new Rectify11Installer.Controls.DarkAwareLabel();
+            this.versionLabel = new Rectify11Installer.Controls.ThemedLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -126,7 +126,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nextButton.BackColor = System.Drawing.Color.Transparent;
-            this.nextButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonNext;
+            this.nextButton.ButtonText = resources.GetString("buttonNext");
             this.nextButton.ForeColor = System.Drawing.Color.Black;
             this.nextButton.Location = new System.Drawing.Point(456, 9);
             this.nextButton.Name = "nextButton";
@@ -139,7 +139,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.BackColor = System.Drawing.Color.Transparent;
-            this.cancelButton.ButtonText = global::Rectify11Installer.Strings.Rectify11.buttonCancel;
+            this.cancelButton.ButtonText = resources.GetString("buttonCancel");
             this.cancelButton.ForeColor = System.Drawing.Color.Black;
             this.cancelButton.Location = new System.Drawing.Point(534, 9);
             this.cancelButton.Name = "cancelButton";
@@ -285,7 +285,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(52, 15);
             this.versionLabel.TabIndex = 3;
-            this.versionLabel.Text = global::Rectify11Installer.Strings.Rectify11.Version;
+            this.versionLabel.Text = resources.GetString("Version");
             // 
             // frmWizard
             // 
@@ -299,13 +299,13 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("r11")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = global::Rectify11Installer.Strings.Rectify11.Title;
+            this.Text = resources.GetString("Title");
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -318,7 +318,7 @@
 
         #endregion
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Controls.DarkAwareLabel headerText;
+        private AeroWizard.ThemedLabel headerText;
         private Controls.NavigationButton navBackButton;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -332,7 +332,7 @@
         private Controls.DarkAwareTabPage rebootPage;
         private Controls.DarkAwareTabPage wlcmPage;
         private Controls.DarkAwareTabPage eulPage;
-        private Controls.DarkAwareLabel versionLabel;
+        private Controls.ThemedLabel versionLabel;
         public Controls.WinUIButton nextButton;
         private Controls.WinUIButton cancelButton;
     }

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode(global::Rectify11Installer.Strings.Rectify11.optionIcons);
-            treeNode7 = new System.Windows.Forms.TreeNode(global::Rectify11Installer.Strings.Rectify11.optionThemes);
+            System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode(resources.GetString("optionIcons"));
+            treeNode7 = new System.Windows.Forms.TreeNode(resources.GetString("optionThemes"));
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Winver");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ExplorerPatcher");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Shell");
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Rectify11 Wallpapers");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode(global::Rectify11Installer.Strings.Rectify11.optionExtra, new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode(resources.GetString("optionExtra"), new System.Windows.Forms.TreeNode[] {
             treeNode2,
             treeNode3,
             treeNode4,
@@ -65,7 +66,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(267, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = Strings.Rectify11.installChoiceDescription;
+            this.label1.Text = resources.GetString("installChoiceDescription");
             // 
             // treeView1
             // 
@@ -76,7 +77,7 @@
             this.treeView1.Location = new System.Drawing.Point(1, 38);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "sysIconsNode";
-            treeNode1.Text = global::Rectify11Installer.Strings.Rectify11.optionIcons;
+            treeNode1.Text = resources.GetString("optionIcons");
             treeNode2.Name = "winverNode";
             treeNode2.Text = "Winver";
             treeNode3.Name = "epNode";
@@ -84,11 +85,11 @@
             treeNode4.Name = "shellNode";
             treeNode4.Text = "Shell";
             treeNode5.Name = "wallpapersNode";
-            treeNode5.Text = global::Rectify11Installer.Strings.Rectify11.optionWallpaper;
+            treeNode5.Text = resources.GetString("optionWallpaper");
             treeNode6.Name = "extraNode";
-            treeNode6.Text = global::Rectify11Installer.Strings.Rectify11.optionExtra;
+            treeNode6.Text = resources.GetString("optionExtra");
             treeNode7.Name = "themeNode";
-            treeNode7.Text = global::Rectify11Installer.Strings.Rectify11.optionThemes;
+            treeNode7.Text = resources.GetString("optionThemes");
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode7,
@@ -106,7 +107,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "InstallOptnsPage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.installoptns;
-            this.WizardHeader = global::Rectify11Installer.Strings.Rectify11.installChoiceTitle;
+            this.WizardHeader = resources.GetString("installChoiceTitle");
             this.ResumeLayout(false);
             this.PerformLayout();
 
