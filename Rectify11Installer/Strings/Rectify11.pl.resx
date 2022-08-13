@@ -249,4 +249,7 @@
   <data name="installWinver" xml:space="preserve">
     <value>Instaluj Winver</value>
   </data>
+  <data name="summaryHeader" xml:space="preserve">
+    <value>Podsumowanie</value>
+  </data>
 </root>

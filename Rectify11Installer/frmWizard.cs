@@ -11,10 +11,14 @@ namespace Rectify11Installer
     public partial class frmWizard : Form
     {
         public static bool IsItemsSelected;
+        System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
+            DarkMode.RefreshTitleBarColor(Handle);
+            DarkMode.UpdateFrame(this);
+            Navigate(RectifyPages.WelcomePage);
             Shown += FrmWizard_Shown;
         }
 
@@ -47,11 +51,8 @@ namespace Rectify11Installer
             navBackButton.Click += BackButton_Click;
             cancelButton.Click += CancelButton_Click;
             versionLabel.Text = versionLabel.Text + ProductVersion;
-            Navigate(RectifyPages.WelcomePage);
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
             RectifyPages.WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
-            DarkMode.RefreshTitleBarColor(Handle);
-            DarkMode.UpdateFrame(this);
         }
 
         #region Navigation
@@ -69,32 +70,32 @@ namespace Rectify11Installer
             {
                 tableLayoutPanel1.Visible = true;
                 tableLayoutPanel2.Visible = true;
-                nextButton.ButtonText = Strings.Rectify11.buttonAgree;
+                nextButton.ButtonText = resources.GetString("buttonAgree");
                 nextButton.Enabled = true;
                 navPane.SelectedTab = eulPage;
             }
             else if (page == RectifyPages.InstallOptnsPage)
             {
-                nextButton.ButtonText = Strings.Rectify11.buttonNext;
+                nextButton.ButtonText = resources.GetString("buttonNext");
                 if (!IsItemsSelected)
                     nextButton.Enabled = false;
                 navPane.SelectedTab = installPage;
             }
             else if (page == RectifyPages.ThemeChoicePage)
             {
-                nextButton.ButtonText = Strings.Rectify11.buttonNext;
+                nextButton.ButtonText = resources.GetString("buttonNext");
                 navPane.SelectedTab = themePage;
             }
             else if (page == RectifyPages.EPPage)
             {
-                nextButton.ButtonText = Strings.Rectify11.buttonNext;
+                nextButton.ButtonText = resources.GetString("buttonNext");
                 navPane.SelectedTab = epPage;
             }
             else if (page == RectifyPages.InstallConfirmation)
             {
-                RectifyPages.InstallConfirmation.Summary = Strings.Rectify11.summaryItems;
+                RectifyPages.InstallConfirmation.Summary = resources.GetString("summaryItems");
                 RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();
-                nextButton.ButtonText = Strings.Rectify11.buttonInstall;
+                nextButton.ButtonText = resources.GetString("buttonInstall");
                 navPane.SelectedTab = summaryPage;
             }
             else if (page == RectifyPages.ProgressPage)

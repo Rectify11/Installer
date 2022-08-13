@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomePage));
+            System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
             this.wlcmPageTitle = new Controls.DarkAwareLabel();
             this.label2 = new Controls.DarkAwareLabel();
             this.cmbUninstall = new Rectify11Installer.Controls.FakeCommandLink();
@@ -43,7 +43,7 @@
             this.wlcmPageTitle.Name = "wlcmPageTitle";
             this.wlcmPageTitle.Size = new System.Drawing.Size(103, 30);
             this.wlcmPageTitle.TabIndex = 0;
-            this.wlcmPageTitle.Text = global::Rectify11Installer.Strings.Rectify11.welcome;
+            this.wlcmPageTitle.Text = resources.GetString("welcome");
             // 
             // label2
             // 
@@ -52,7 +52,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(313, 92);
             this.label2.TabIndex = 2;
-            this.label2.Text = global::Rectify11Installer.Strings.Rectify11.welcomeDescription;
+            this.label2.Text = resources.GetString("welcomeDescription");
             // 
             // cmbUninstall
             // 
@@ -61,10 +61,10 @@
             this.cmbUninstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUninstall.Location = new System.Drawing.Point(8, 176);
             this.cmbUninstall.Name = "cmbUninstall";
-            this.cmbUninstall.Note = global::Rectify11Installer.Strings.Rectify11.uninstallNote;
+            this.cmbUninstall.Note = resources.GetString("uninstallNote");
             this.cmbUninstall.Size = new System.Drawing.Size(305, 45);
             this.cmbUninstall.TabIndex = 4;
-            this.cmbUninstall.Text = global::Rectify11Installer.Strings.Rectify11.uninstallTitle;
+            this.cmbUninstall.Text = resources.GetString("uninstallTitle");
             // 
             // cmbInstall
             // 
@@ -73,10 +73,10 @@
             this.cmbInstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbInstall.Location = new System.Drawing.Point(8, 125);
             this.cmbInstall.Name = "cmbInstall";
-            this.cmbInstall.Note = global::Rectify11Installer.Strings.Rectify11.installNote;
+            this.cmbInstall.Note = resources.GetString("installNote");
             this.cmbInstall.Size = new System.Drawing.Size(310, 45);
             this.cmbInstall.TabIndex = 3;
-            this.cmbInstall.Text = global::Rectify11Installer.Strings.Rectify11.installTitle;
+            this.cmbInstall.Text = resources.GetString("installTitle");
             // 
             // WelcomePage
             // 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressText = new Rectify11Installer.Controls.DarkAwareLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,7 +55,7 @@
             this.progressText.Name = "progressText";
             this.progressText.Size = new System.Drawing.Size(109, 20);
             this.progressText.TabIndex = 1;
-            this.progressText.Text = global::Rectify11Installer.Strings.Rectify11.progressText;
+            this.progressText.Text = resources.GetString("progressText");
             // 
             // ProgressPage
             // 
