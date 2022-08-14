@@ -83,6 +83,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="TaskDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KPreisser.UI.TaskDialog.1.0.0\lib\net472\TaskDialog.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -207,7 +208,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Strings\Rectify11.ar.resx" />
     <EmbeddedResource Include="Strings\Rectify11.it.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.ko.resx" />
     <EmbeddedResource Include="Strings\Rectify11.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.pl.Designer.cs</LastGenOutput>

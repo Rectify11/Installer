@@ -4,6 +4,7 @@ using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -16,9 +17,14 @@ namespace Rectify11Installer
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
+            Navigate(RectifyPages.WelcomePage);
+            if (System.Globalization.CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+            {
+                RightToLeftLayout = true;
+                RightToLeft = RightToLeft.Yes;
+            }
             DarkMode.RefreshTitleBarColor(Handle);
             DarkMode.UpdateFrame(this);
-            Navigate(RectifyPages.WelcomePage);
             Shown += FrmWizard_Shown;
         }
 
@@ -105,6 +111,7 @@ namespace Rectify11Installer
                 versionLabel.Visible = false;
                 Helper.FinalizeIRectify11();
                 navPane.SelectedTab = progressPage;
+                Installer.Install();
             }
         }
         #endregion
