@@ -313,11 +313,30 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon r11 {
+            get {
+                object obj = ResourceManager.GetObject("r11", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please close everything and save your work as a reboot will be required at the end of the installation..
         /// </summary>
         internal static string summaryFooter {
             get {
                 return ResourceManager.GetString("summaryFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        internal static string summaryHeader {
+            get {
+                return ResourceManager.GetString("summaryHeader", resourceCulture);
             }
         }
         
