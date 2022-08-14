@@ -25,21 +25,45 @@ namespace Rectify11Installer.Pages
         {
             if (e.Action != TreeViewAction.Unknown)
             {
-                e.Node.Descendants().ToList().ForEach(x =>
+                if (e.Node.Name == "sysIconsNode")
                 {
-                    x.Checked = e.Node.Checked;
-                    if (e.Node.Checked)
-                        InstallOptions.iconsList.Add(x.Name);
-                    else
-                        InstallOptions.iconsList.Remove(x.Name);
-                });
+                    e.Node.Descendants().ToList().ForEach(x =>
+                    {
+                        x.Checked = e.Node.Checked;
+                        if (e.Node.Checked)
+                            InstallOptions.iconsList.Add(x.Text);
+                        else
+                            InstallOptions.iconsList.Remove(x.Text);
+                    });
+                }
+                if (e.Node.Name == "extraNode")
+                {
+                    e.Node.Descendants().ToList().ForEach(x =>
+                    {
+                        x.Checked = e.Node.Checked;
+                        if (e.Node.Checked)
+                            InstallOptions.iconsList.Add(x.Name);
+                        else
+                            InstallOptions.iconsList.Remove(x.Name);
+                    });
+                }
                 e.Node.Ancestors().ToList().ForEach(x =>
                 {
                     x.Checked = x.Descendants().ToList().Any(y => y.Checked);
                     if (e.Node.Checked)
-                        InstallOptions.iconsList.Add(e.Node.Name);
+                    {
+                        if (x.Name == "extraNode")
+                            InstallOptions.iconsList.Add(e.Node.Name);
+                        else if (x.Name == "sysIconsNode")
+                            InstallOptions.iconsList.Add(e.Node.Text);
+                    }
                     else
-                        InstallOptions.iconsList.Remove(e.Node.Name);
+                    {
+                        if (x.Name == "extraNode")
+                            InstallOptions.iconsList.Remove(e.Node.Name);
+                        else if (x.Name == "sysIconsNode")
+                            InstallOptions.iconsList.Remove(e.Node.Text);
+                    }
                 });
                 if (e.Node.Name == "themeNode")
                 {
