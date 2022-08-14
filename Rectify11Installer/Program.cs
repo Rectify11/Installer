@@ -29,7 +29,7 @@ namespace Rectify11Installer
             Theme.LoadTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("kr");
             //Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
             Application.Run(new frmWizard());
         }
