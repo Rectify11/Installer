@@ -24,4 +24,19 @@ namespace Rectify11Installer.Core
         public static bool InstallIcons;
         public static List<string> iconsList = new List<string>();
     }
+    public class Package
+    {
+        public string Path { get; set; }
+        public PackageArch Arch { get; set; }
+        public Package(string Path, PackageArch Arch)
+        {
+            this.Path = Path;
+            this.Arch = Arch;
+        }
+    }
+    public enum PackageArch
+    {
+        Amd64,
+        Wow64
+    }
 }

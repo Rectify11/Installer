@@ -1,7 +1,9 @@
 ﻿using libmsstyle;
 using Microsoft.Win32;
 using Rectify11Installer.Controls;
+using Rectify11Installer.Core;
 using System;
+using System.IO;
 
 namespace Rectify11Installer
 {
@@ -24,8 +26,8 @@ namespace Rectify11Installer
 
         public static void LoadTheme()
         {
-            DarkStyle.Load(Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\Rectify11\Dark.msstyles");
-            LightStyle.Load(Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\Rectify11\light.msstyles");
+            DarkStyle.Load(Path.Combine(Variables.r11Folder, "Dark.msstyles"));
+            LightStyle.Load(Path.Combine(Variables.r11Folder, "light.msstyles"));
         }
 
         private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
