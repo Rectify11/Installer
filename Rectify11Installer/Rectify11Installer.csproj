@@ -196,6 +196,9 @@
     <Compile Include="Win32\DarkMode.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\RECT.cs" />
+    <EmbeddedResource Include="frmWizard.resx">
+      <DependentUpon>frmWizard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -207,6 +210,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Strings\Rectify11.ar.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.el.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings\Rectify11.it.resx" />
     <EmbeddedResource Include="Strings\Rectify11.ko.resx" />
     <EmbeddedResource Include="Strings\Rectify11.pl.resx">

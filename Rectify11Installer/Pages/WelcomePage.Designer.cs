@@ -59,7 +59,7 @@
             this.cmbUninstall.AutoSize = true;
             this.cmbUninstall.BackColor = System.Drawing.Color.Transparent;
             this.cmbUninstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUninstall.Location = new System.Drawing.Point(8, 176);
+            this.cmbUninstall.Location = new System.Drawing.Point(0, 176);
             this.cmbUninstall.Name = "cmbUninstall";
             this.cmbUninstall.Note = resources.GetString("uninstallNote");
             this.cmbUninstall.Size = new System.Drawing.Size(305, 45);
@@ -71,7 +71,7 @@
             this.cmbInstall.AutoSize = true;
             this.cmbInstall.BackColor = System.Drawing.Color.Transparent;
             this.cmbInstall.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbInstall.Location = new System.Drawing.Point(8, 125);
+            this.cmbInstall.Location = new System.Drawing.Point(0, 125);
             this.cmbInstall.Name = "cmbInstall";
             this.cmbInstall.Note = resources.GetString("installNote");
             this.cmbInstall.Size = new System.Drawing.Size(310, 45);

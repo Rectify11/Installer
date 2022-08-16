@@ -68,7 +68,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 45);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(644, 45);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // headerText
@@ -111,13 +111,13 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel2.Controls.Add(this.nextButton, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.cancelButton, 2, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 392);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 402);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(624, 45);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(644, 45);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // nextButton
@@ -152,16 +152,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.55128F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.44872F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56F));
             this.tableLayoutPanel3.Controls.Add(this.sideImage, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.navPane, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 48);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 338F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(624, 338);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(644, 348);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // sideImage
@@ -189,20 +188,20 @@
             this.navPane.Controls.Add(this.progressPage);
             this.navPane.Controls.Add(this.rebootPage);
             this.navPane.ItemSize = new System.Drawing.Size(10, 20);
-            this.navPane.Location = new System.Drawing.Point(280, 3);
+            this.navPane.Location = new System.Drawing.Point(280, 0);
             this.navPane.Multiline = true;
             this.navPane.Name = "navPane";
             this.navPane.SelectedIndex = 0;
-            this.navPane.Size = new System.Drawing.Size(341, 332);
+            this.navPane.Size = new System.Drawing.Size(361, 342);
             this.navPane.TabIndex = 1;
             // 
             // wlcmPage
             // 
             this.wlcmPage.BackColor = System.Drawing.Color.White;
             this.wlcmPage.ForeColor = System.Drawing.Color.Black;
-            this.wlcmPage.Location = new System.Drawing.Point(4, 44);
+            this.wlcmPage.Location = new System.Drawing.Point(0, 44);
             this.wlcmPage.Name = "wlcmPage";
-            this.wlcmPage.Size = new System.Drawing.Size(333, 284);
+            this.wlcmPage.Size = new System.Drawing.Size(361, 284);
             this.wlcmPage.TabIndex = 8;
             this.wlcmPage.Text = "Welcome";
             // 
@@ -210,9 +209,9 @@
             // 
             this.eulPage.BackColor = System.Drawing.Color.White;
             this.eulPage.ForeColor = System.Drawing.Color.Black;
-            this.eulPage.Location = new System.Drawing.Point(4, 44);
+            this.eulPage.Location = new System.Drawing.Point(0, 44);
             this.eulPage.Name = "eulPage";
-            this.eulPage.Size = new System.Drawing.Size(333, 284);
+            this.eulPage.Size = new System.Drawing.Size(365, 284);
             this.eulPage.TabIndex = 9;
             this.eulPage.Text = "Eula";
             // 
@@ -281,7 +280,7 @@
             this.versionLabel.AutoSize = true;
             this.versionLabel.BackColor = System.Drawing.Color.Transparent;
             this.versionLabel.ForeColor = System.Drawing.Color.Black;
-            this.versionLabel.Location = new System.Drawing.Point(6, 416);
+            this.versionLabel.Location = new System.Drawing.Point(6, 426);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(52, 15);
             this.versionLabel.TabIndex = 3;
@@ -292,7 +291,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(624, 437);
+            this.ClientSize = new System.Drawing.Size(644, 447);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.versionLabel);
@@ -300,7 +299,6 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("r11")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmWizard";

@@ -111,6 +111,7 @@ namespace Rectify11Installer
                 versionLabel.Visible = false;
                 Helper.FinalizeIRectify11();
                 navPane.SelectedTab = progressPage;
+                DarkMode.UpdateFrame(this, false);
                 Installer.Install();
             }
         }

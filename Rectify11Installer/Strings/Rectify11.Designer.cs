@@ -467,7 +467,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The setup will go through the various steps required to install Rectify11 on your PC, for a more consistent experience. It is recommended to close all the background applications before you proceed. Select your desirable option to continue..
+        ///   Looks up a localized string similar to The setup will go through the various steps required to install Rectify11 on your PC, for a more consistent experience. Select your desirable option to continue..
         /// </summary>
         internal static string welcomeDescription {
             get {
