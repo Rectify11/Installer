@@ -46,7 +46,7 @@
             this.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.versionLabel = new Rectify11Installer.Controls.ThemedLabel();
+            this.versionLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -332,7 +332,7 @@
         private Controls.DarkAwareTabPage rebootPage;
         private Controls.DarkAwareTabPage wlcmPage;
         private Controls.DarkAwareTabPage eulPage;
-        private Controls.ThemedLabel versionLabel;
+        private System.Windows.Forms.Label versionLabel;
         public Controls.WinUIButton nextButton;
         private Controls.WinUIButton cancelButton;
     }

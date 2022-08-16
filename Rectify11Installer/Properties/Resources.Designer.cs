@@ -91,6 +91,16 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Dark {
+            get {
+                object obj = ResourceManager.GetObject("Dark", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap darkPreview {
@@ -161,6 +171,16 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] light {
+            get {
+                object obj = ResourceManager.GetObject("light", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap lightPreview {
@@ -186,10 +206,11 @@ namespace Rectify11Installer.Properties {
         ///&lt;!--Rectify11 Patch file list--&gt;
         ///
         ///&lt;Patches&gt;
-        ///	&lt;Patch Package=&quot;microsoft-windows-accessibilitycpl&quot; mask=&quot;ICONGROUP,| UIFILE,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\accessibilitycpl.dll.mun&quot; /&gt;
-        ///	&lt;Patch Package=&quot;microsoft-windows-aclui&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\aclui.dll.mun&quot; /&gt;
-        ///	&lt;Patch Package=&quot;microsoft-windows-healthcentercpl&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\actioncentercpl.dll.mun&quot; /&gt;
-        ///	&lt;Pat [rest of string was truncated]&quot;;.
+        ///  &lt;!--Mun files--&gt;
+        ///	&lt;Patch Mui=&quot;accessibilitycpl.dll.mun&quot; mask=&quot;ICONGROUP,| UIFILE,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\accessibilitycpl.dll.mun&quot; /&gt;
+        ///	&lt;Patch Mui=&quot;aclui.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\aclui.dll.mun&quot; /&gt;
+        ///	&lt;Patch Mui=&quot;actioncentercpl.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\actioncentercpl.dll.mun&quot; /&gt;
+        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string rectify11xml {
             get {
