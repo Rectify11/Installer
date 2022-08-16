@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -159,7 +160,7 @@
     <value>مرحباً</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>سيقوم البرنامج بتوجيهك إلى الخطوات المطلوبة لتثبيت Rectify11 على جهازك، لواجهة متناسقة. يُنصح بإغلاق البرامج الأخرى قبل المتابعة. اختر الخيار المرغوب للمتابعة.</value>
+    <value>سيقوم البرنامج بتوجيهك إلى الخطوات المطلوبة لتثبيت Rectify11 على جهازك، لواجهة متناسقة. اختر الخيار المرغوب للمتابعة.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>اختر الذي تريد تعديله.</value>

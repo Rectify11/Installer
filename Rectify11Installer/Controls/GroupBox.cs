@@ -51,7 +51,7 @@ namespace Rectify11Installer.Controls
         public GroupBox()
         {
             this.Location = new Point(3, 28);
-            this.Size = new Size(322, 294);
+            this.Size = new Size(332, 294);
             this.SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             this.BackColor = Color.Transparent;
             SetState(ThemeParts.Normal);

@@ -38,22 +38,22 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.installprogress;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 39);
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // progressText
             // 
-            this.progressText.AutoSize = true;
             this.progressText.BackColor = System.Drawing.Color.Transparent;
             this.progressText.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.progressText.ForeColor = System.Drawing.Color.Black;
-            this.progressText.Location = new System.Drawing.Point(37, 10);
+            this.progressText.Location = new System.Drawing.Point(37, 5);
             this.progressText.Name = "progressText";
-            this.progressText.Size = new System.Drawing.Size(109, 20);
+            this.progressText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.progressText.Size = new System.Drawing.Size(361, 40);
             this.progressText.TabIndex = 1;
             this.progressText.Text = resources.GetString("progressText");
             // 

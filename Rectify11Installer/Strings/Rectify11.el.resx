@@ -117,139 +117,143 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="buttonAgree" xml:space="preserve">
+    <value>Συμφωνώ</value>
+  </data>
   <data name="buttonCancel" xml:space="preserve">
-    <value>Anuluj</value>
+    <value>Ακύρωση</value>
   </data>
   <data name="buttonNext" xml:space="preserve">
-    <value>Dalej</value>
-  </data>
-  <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}Autorzy nie mają żadnego związku z Microsoft. To jest projekt stworzony przez społeczność.\par}</value>
-  </data>
-  <data name="eulaTitle" xml:space="preserve">
-    <value>Zanim zainstalujesz Rectify11, musisz zaakceptować tą licencję</value>
-  </data>
-  <data name="installNote" xml:space="preserve">
-    <value>Zainstaluj Rectify11 na twojej instalacji Windows.</value>
-  </data>
-  <data name="installTitle" xml:space="preserve">
-    <value>Zainstaluj</value>
-  </data>
-  <data name="uninstallNote" xml:space="preserve">
-    <value>Przywraca oryginalny styl Windows.</value>
-  </data>
-  <data name="uninstallTitle" xml:space="preserve">
-    <value>Odinstaluj Rectify11</value>
-  </data>
-  <data name="updateNote" xml:space="preserve">
-    <value>Zaktualizuj twoją bieżącą instalację Rectify11.</value>
-  </data>
-  <data name="updateTitle" xml:space="preserve">
-    <value>Aktualizuj</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Wersja: </value>
-  </data>
-  <data name="welcome" xml:space="preserve">
-    <value>Zapraszamy</value>
-  </data>
-  <data name="welcomeDescription" xml:space="preserve">
-    <value>Instalator zainstaluje Rectify11 aby poprawić wygląd systemu Windows. Wybierz opcję aby kontynuować.</value>
-  </data>
-  <data name="buttonAgree" xml:space="preserve">
-    <value>Zgadzam się</value>
+    <value>Επόμενο</value>
   </data>
   <data name="eulaPageHeader" xml:space="preserve">
-    <value>Postanowienia licencyjne</value>
+    <value>Όροι Άδειας Χρήσης</value>
+  </data>
+  <data name="eulaR11" xml:space="preserve">
+    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+  </data>
+  <data name="eulaTitle" xml:space="preserve">
+    <value>Προτού μπορέσετε να εγκαταστήσετε τα Rectify11, πρέπει να συμφωνήστε στους Όρους Άδειας Χρήσης:</value>
+  </data>
+  <data name="installNote" xml:space="preserve">
+    <value>Rectify την τρέχουσα εγκατάσταση των Windows.</value>
+  </data>
+  <data name="installTitle" xml:space="preserve">
+    <value>Εγκατάσταση Τώρα</value>
+  </data>
+  <data name="uninstallNote" xml:space="preserve">
+    <value>Επαναφέρει την κανονική εμφάνιση των Windows.</value>
+  </data>
+  <data name="uninstallTitle" xml:space="preserve">
+    <value>Απεγκατάσταση των Rectify11</value>
+  </data>
+  <data name="updateNote" xml:space="preserve">
+    <value>Ενημερώστε την τρέχουσα εγκατάσταση των Rectify11.</value>
+  </data>
+  <data name="updateTitle" xml:space="preserve">
+    <value>Ενημέρωση Τώρα</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Έκδοση: </value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Καλώς ορίσατε</value>
+  </data>
+  <data name="welcomeDescription" xml:space="preserve">
+    <value>Η εγκατάσταση θα περάσει από τα διάφορα βήματα που απαιτούνται για την εγκατάσταση των Rectify11 στον υπολογιστή σας, για μια πιο σταθερή εμπειρία. Επιλέξτε την επιθυμητή επιλογή για να συ.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Możesz wybrać co zostanie zainstalowane</value>
+    <value>Επιλέξτε τι θα γίνει Rectified.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
-    <value>Wybierz, co chcesz zainstalować</value>
+    <value>Επιλέξτε τι θα εγκαταστήσετε</value>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
-    <value>Wybierz motyw</value>
+    <value>Επιλέξτε το θέμα που θέλετε.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personalizacja doświadcznenia</value>
+    <value>Εξατομικεύστε την εμπειρία σας</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Instalator Rectify11</value>
+    <value>Εγκατάσταση των Rectify11</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Ciemny (z efektem Mica)</value>
+    <value>Σκούρο με Mica</value>
   </data>
   <data name="themeDark" xml:space="preserve">
-    <value>Ciemny</value>
+    <value>Σκούρο</value>
   </data>
   <data name="themeLight" xml:space="preserve">
-    <value>Jasny</value>
-  </data>
-  <data name="progressText" xml:space="preserve">
-    <value>Kopiowanie plików...</value>
-  </data>
-  <data name="summaryFooter" xml:space="preserve">
-    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ instalator uruchomi komputer ponownie.</value>
-  </data>
-  <data name="summaryItems" xml:space="preserve">
-    <value>Zainstaluj Rectify11 na tej instalacji Windows.</value>
-  </data>
-  <data name="summaryTitle" xml:space="preserve">
-    <value>Zostaną wykonane następujące akcje:</value>
+    <value>Φωτεινό</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Użyj interfejsu wstążki</value>
+    <value>Χρησιμοποιήστε τη βελτιωμένη Ribbon</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
-    <value>Rozszerz efekt Mica na pasek adresu</value>
+    <value>Επέκταση του Mica στη γραμμή πλοήγησης του εξερευνητή</value>
   </data>
   <data name="epHeader" xml:space="preserve">
-    <value>Dostosuj pulpit</value>
+    <value>Προσαρμόστε την επιφάνεια εργασίας σας</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>Wybierz wygląd pulpitu</value>
+    <value>Επιλέξτε την επιθυμητή εμπειρία για την επιφάνεια εργασίας σας</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
-    <value>Windows 10 (zaokrąglone)</value>
+    <value>Windows 10 (Στρογγυλεμένα)</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Pasek zadań Windows 10</value>
+    <value>Γραμμή εργασιών των Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Domyślny Windows 11</value>
+    <value>Windows 11 Προεπιλογή</value>
+  </data>
+  <data name="progressText" xml:space="preserve">
+    <value>Αντιγραφή αρχείων...</value>
+  </data>
+  <data name="summaryFooter" xml:space="preserve">
+    <value>Κλείστε τα προγράμματα που τρέχετε και αποθηκεύστε την εργασία σας, καθώς θα χρειαστεί επανεκκίνηση στο τέλος της εγκατάστασης.</value>
+  </data>
+  <data name="summaryItems" xml:space="preserve">
+    <value>Εγκαταστήστε τα Rectify11 σε αυτήν την εγκατάσταση των Windows.</value>
+  </data>
+  <data name="summaryTitle" xml:space="preserve">
+    <value>Πρόκειται να κάνετε τα εξής:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
-    <value>Instaluj</value>
+    <value>Εγκατάσταση</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
-    <value>Dodatki</value>
+    <value>'Εξτρα</value>
   </data>
   <data name="optionIcons" xml:space="preserve">
-    <value>Ikony systemu</value>
+    <value>Εικονίδια συστήματος</value>
   </data>
   <data name="optionThemes" xml:space="preserve">
-    <value>Motywy</value>
+    <value>Θέματα</value>
   </data>
   <data name="optionWallpaper" xml:space="preserve">
-    <value>Tapety Rectify11</value>
+    <value>Rectify11 Wallpapers</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Instaluj Explorerpatcher</value>
+    <value>Εγκατάσταση του ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Instaluj Shell</value>
+    <value>Εγκατάσταση του Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>Instaluj motywy</value>
+    <value>Εγκατάσταση των θεμάτων</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
-    <value>Instaluj tapety Rectify11</value>
+    <value>Εγκαταστήστε ταπετσαρίες</value>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>Instaluj Winver</value>
+    <value>Εγκατάσταση του Winver</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
-    <value>Podsumowanie</value>
+    <value>Summary</value>
   </data>
 </root>

@@ -160,7 +160,7 @@
     <value>환영합니다.</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>설치가  정확한 디자인 경험을 위한 PC에 Rectify11을 설치하기 위해 필요한 몇가지 스탭을 시작할 겁니다. 설치를 하기 전에 현재 동작하고 있는 모든 프로그램을 꺼두는 것이 안전합니다. 원하는 옵션을 클릭해 계속하세요.</value>
+    <value>설치가  정확한 디자인 경험을 위한 PC에 Rectify11을 설치하기 위해 필요한 몇가지 스탭을 시작할 겁니다. 원하는 옵션을 클릭해 계속하세요.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>어떤 것이 개정될지 고를 수 있습니다:</value>

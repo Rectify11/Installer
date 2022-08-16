@@ -45,7 +45,7 @@
             // 
             this.lightPreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
             this.lightPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.lightPreview.Location = new System.Drawing.Point(7, 30);
+            this.lightPreview.Location = new System.Drawing.Point(7, 45);
             this.lightPreview.Name = "lightPreview";
             this.lightPreview.Size = new System.Drawing.Size(129, 78);
             this.lightPreview.TabIndex = 0;
@@ -55,7 +55,7 @@
             // 
             this.darkPreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;
             this.darkPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.darkPreview.Location = new System.Drawing.Point(167, 30);
+            this.darkPreview.Location = new System.Drawing.Point(167, 45);
             this.darkPreview.Name = "darkPreview";
             this.darkPreview.Size = new System.Drawing.Size(129, 78);
             this.darkPreview.TabIndex = 1;
@@ -65,7 +65,7 @@
             // 
             this.blackPreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.blackPreview;
             this.blackPreview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.blackPreview.Location = new System.Drawing.Point(7, 161);
+            this.blackPreview.Location = new System.Drawing.Point(7, 176);
             this.blackPreview.Name = "blackPreview";
             this.blackPreview.Size = new System.Drawing.Size(129, 78);
             this.blackPreview.TabIndex = 2;
@@ -73,20 +73,20 @@
             // 
             // themeTitle
             // 
-            this.themeTitle.AutoSize = true;
             this.themeTitle.BackColor = System.Drawing.Color.Transparent;
             this.themeTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.themeTitle.ForeColor = System.Drawing.Color.Black;
             this.themeTitle.Location = new System.Drawing.Point(0, 5);
             this.themeTitle.Name = "themeTitle";
-            this.themeTitle.Size = new System.Drawing.Size(190, 20);
+            this.themeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.themeTitle.Size = new System.Drawing.Size(361, 40);
             this.themeTitle.TabIndex = 3;
             this.themeTitle.Text = resources.GetString("themeChoiceTitle");
             // 
             // lightRadio
             // 
             this.lightRadio.ForeColor = System.Drawing.Color.Black;
-            this.lightRadio.Location = new System.Drawing.Point(7, 107);
+            this.lightRadio.Location = new System.Drawing.Point(7, 122);
             this.lightRadio.Name = "lightRadio";
             this.lightRadio.Size = new System.Drawing.Size(129, 29);
             this.lightRadio.TabIndex = 4;
@@ -97,7 +97,7 @@
             // blackRadio
             // 
             this.blackRadio.ForeColor = System.Drawing.Color.Black;
-            this.blackRadio.Location = new System.Drawing.Point(7, 238);
+            this.blackRadio.Location = new System.Drawing.Point(7, 253);
             this.blackRadio.Name = "blackRadio";
             this.blackRadio.Size = new System.Drawing.Size(161, 34);
             this.blackRadio.TabIndex = 5;
@@ -108,7 +108,7 @@
             // darkRadio
             // 
             this.darkRadio.ForeColor = System.Drawing.Color.Black;
-            this.darkRadio.Location = new System.Drawing.Point(167, 107);
+            this.darkRadio.Location = new System.Drawing.Point(167, 122);
             this.darkRadio.Name = "darkRadio";
             this.darkRadio.Size = new System.Drawing.Size(129, 29);
             this.darkRadio.TabIndex = 5;

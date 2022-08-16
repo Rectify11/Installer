@@ -49,22 +49,22 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.groupBox1.Location = new System.Drawing.Point(0, 28);
+            this.groupBox1.Location = new System.Drawing.Point(0, 48);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Forward;
-            this.groupBox1.Size = new System.Drawing.Size(322, 294);
+            this.groupBox1.Size = new System.Drawing.Size(332, 294);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.Text = "groupBox1";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(0, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 20);
+            this.label1.Size = new System.Drawing.Size(361, 40);
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.TabIndex = 1;
             this.label1.Text = resources.GetString("installChoiceDescription");
             // 
@@ -74,7 +74,7 @@
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.CheckBoxes = true;
             this.treeView1.ForeColor = System.Drawing.Color.Black;
-            this.treeView1.Location = new System.Drawing.Point(1, 38);
+            this.treeView1.Location = new System.Drawing.Point(1, 58);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "sysIconsNode";
             treeNode1.Text = resources.GetString("optionIcons");
@@ -94,7 +94,7 @@
             treeNode1,
             treeNode7,
             treeNode6});
-            this.treeView1.Size = new System.Drawing.Size(319, 270);
+            this.treeView1.Size = new System.Drawing.Size(327, 270);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
             // 
