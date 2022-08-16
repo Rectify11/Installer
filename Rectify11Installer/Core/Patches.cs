@@ -46,7 +46,7 @@ public partial class Patches {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
 public partial class PatchesPatch {
     
-    private string packageField;
+    private string muiField;
     
     private string maskField;
     
@@ -56,12 +56,12 @@ public partial class PatchesPatch {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string Package {
+    public string Mui {
         get {
-            return this.packageField;
+            return this.muiField;
         }
         set {
-            this.packageField = value;
+            this.muiField = value;
         }
     }
     
