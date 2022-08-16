@@ -4,7 +4,6 @@ using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -24,7 +23,6 @@ namespace Rectify11Installer
                 RightToLeft = RightToLeft.Yes;
             }
             DarkMode.RefreshTitleBarColor(Handle);
-            DarkMode.UpdateFrame(this);
             Shown += FrmWizard_Shown;
         }
 
@@ -71,9 +69,11 @@ namespace Rectify11Installer
                 navPane.SelectedTab = wlcmPage;
                 tableLayoutPanel1.Visible = false;
                 tableLayoutPanel2.Visible = false;
+                DarkMode.UpdateFrame(this, false);
             }
             else if (page == RectifyPages.EulaPage)
             {
+                DarkMode.UpdateFrame(this, true);
                 tableLayoutPanel1.Visible = true;
                 tableLayoutPanel2.Visible = true;
                 nextButton.ButtonText = resources.GetString("buttonAgree");
@@ -208,7 +208,6 @@ namespace Rectify11Installer
                             ForeColor = Color.Black;
                         }
                         DarkMode.RefreshTitleBarColor(Handle);
-                        DarkMode.UpdateFrame(this);
                     }
                     break;
             }

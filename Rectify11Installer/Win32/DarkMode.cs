@@ -37,7 +37,7 @@ namespace Rectify11Installer.Win32
                 SetWindowCompositionAttribute(hWnd, ref data);
             }
         }
-        public static void UpdateFrame(frmWizard frm)
+        public static void UpdateFrame(frmWizard frm, bool yes)
         {
             bool DarkMode = Theme.IsUsingDarkMode;
             MARGINS m = new MARGINS();
@@ -51,7 +51,16 @@ namespace Rectify11Installer.Win32
                 m.cyTopHeight = frm.tableLayoutPanel1.Height + 1;
                 m.cyBottomHeight = frm.tableLayoutPanel2.Height + 5;
             }
-            _ = DwmExtendFrameIntoClientArea(frm.Handle, ref m);
+            if (yes)
+                _ = DwmExtendFrameIntoClientArea(frm.Handle, ref m);
+            else
+            {
+                MARGINS mar = new MARGINS
+                {
+                    cxLeftWidth = 0, cxRightWidth = 0, cyBottomHeight = 0, cyTopHeight = 0
+                };
+                _ = DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
+            }
         }
         internal enum PreferredAppMode
         {

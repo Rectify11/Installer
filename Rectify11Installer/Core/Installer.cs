@@ -29,7 +29,9 @@ namespace Rectify11Installer.Core
             if (!sysInternalKey.GetValueNames().Contains("EulaAccepted"))
                 sysInternalKey.SetValue("EulaAccepted", 1, RegistryValueKind.DWord);
 
-            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PsExec64.exe"), Properties.Resources.PsExec64);
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "PsExec64.exe")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PsExec64.exe"), Properties.Resources.PsExec64);
+
             if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
                 Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
 

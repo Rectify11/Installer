@@ -130,7 +130,7 @@
     <value>계약 동의서</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 이 소프트웨어는 명시적 또는 묵시적 보증 없이 '있는 그대로' 제공합니다. 어떤 경우에도 개발자는 이 소프트웨어의 사용으로 인해 발생한 피해에 대해 책임을 지지 않습니다.\par{\pntext\f0 2.\tab}Rectify11는 누구나 무료로 사용할 수 있지만 판매할 수 없는 제품입니다. 작성자의 동의 없이 이 제품을 다른 제품의 일부에 포함시킬 수 없습니다..\par{\pntext\f0 3.\tab}자신이 소프트웨어를 만들었다고 제안할 수 없습니다.\par{\pntext\f0 4.\tab}이 동의서는 배포되거나 변경 될 수 없습니다..\par\pard\par\par저작권 \'a9 마이크로소프트와 Rectify11 팀.\par{\pntext\f0\space} 저희 팀은 마이크로소프트와 어떠한 계약을 맺지 않습니다. 커뮤니티 제작 프로그램입니다.</value>
+    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Rectify11을 설치하기 전, 이 동의서에 동의를 하셔야 합니다. :</value>
