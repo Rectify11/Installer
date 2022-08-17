@@ -304,7 +304,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copying files....
+        ///   Looks up a localized string similar to Welcome.
         /// </summary>
         internal static string progressText {
             get {

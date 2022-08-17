@@ -46,10 +46,13 @@
             this.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.versionLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.progressLabel = new Controls.DarkAwareLabel();
+            this.versionLabel = new Controls.DarkAwareLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sideImage)).BeginInit();
             this.navPane.SuspendLayout();
             this.SuspendLayout();
@@ -286,12 +289,39 @@
             this.versionLabel.TabIndex = 3;
             this.versionLabel.Text = resources.GetString("Version");
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.installprogress;
+            this.pictureBox1.Location = new System.Drawing.Point(15, 390);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            //
+            // progressLabel
+            //
+            this.progressLabel.BackColor = System.Drawing.Color.Transparent;
+            this.progressLabel.ForeColor = System.Drawing.Color.Black;
+            this.progressLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.progressLabel.Location = new System.Drawing.Point(50, 390);
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.progressLabel.Size = new System.Drawing.Size(300, 40);
+            this.progressLabel.TabIndex = 3;
+            this.progressLabel.Text = "Copying Files...";
+            this.progressLabel.Visible = false;
+            // 
             // frmWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(644, 447);
+            this.Controls.Add(this.progressLabel);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.versionLabel);
@@ -307,6 +337,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sideImage)).EndInit();
             this.navPane.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -330,8 +361,10 @@
         private Controls.DarkAwareTabPage rebootPage;
         private Controls.DarkAwareTabPage wlcmPage;
         private Controls.DarkAwareTabPage eulPage;
-        private System.Windows.Forms.Label versionLabel;
+        private Controls.DarkAwareLabel versionLabel;
+        private Controls.DarkAwareLabel progressLabel;
         public Controls.WinUIButton nextButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private Controls.WinUIButton cancelButton;
     }
 }

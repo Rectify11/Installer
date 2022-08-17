@@ -208,7 +208,7 @@
     <value>Windows 11 Default</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>Copying files...</value>
+    <value>Welcome</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
     <value>Please close everything and save your work as a reboot will be required at the end of the installation.</value>

@@ -29,43 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressText = new Rectify11Installer.Controls.DarkAwareLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.progressInfo = new Rectify11Installer.Controls.DarkAwareLabel();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Rectify11Installer.Properties.Resources.installprogress;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // progressText
             // 
             this.progressText.BackColor = System.Drawing.Color.Transparent;
-            this.progressText.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressText.Font = new System.Drawing.Font("Segoe UI", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.progressText.ForeColor = System.Drawing.Color.Black;
-            this.progressText.Location = new System.Drawing.Point(37, 5);
+            this.progressText.Location = new System.Drawing.Point(0, 5);
             this.progressText.Name = "progressText";
             this.progressText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.progressText.Size = new System.Drawing.Size(361, 40);
             this.progressText.TabIndex = 1;
             this.progressText.Text = resources.GetString("progressText");
+            //
+            // progressInfo
+            //
+            this.progressInfo.BackColor = System.Drawing.Color.Transparent;
+            this.progressInfo.Font = new System.Drawing.Font("Segoe UI", 10.0F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressInfo.Location = new System.Drawing.Point(0, 40);
+            this.progressInfo.Name = "progressInfo";
+            this.progressInfo.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.progressInfo.Size = new System.Drawing.Size(290, 200);
+            this.progressInfo.Text = "Tanks for Choosing Rectify11";
             // 
             // ProgressPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.progressText);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.progressInfo);
             this.Name = "ProgressPage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.install;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -73,7 +70,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
         private Controls.DarkAwareLabel progressText;
+        private Controls.DarkAwareLabel progressInfo;
     }
 }

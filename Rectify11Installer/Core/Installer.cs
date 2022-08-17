@@ -22,7 +22,7 @@ namespace Rectify11Installer.Core
             MOVEFILE_CREATE_HARDLINK = 0x00000010,
             MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
         }
-        public static void Install()
+        public static void Install(frmWizard frm)
         {
             // set EulaAccepted value so license dialog doesn't pop up for PsExec
             RegistryKey sysInternalKey = Registry.CurrentUser.OpenSubKey(@"Software\Sysinternals", true);

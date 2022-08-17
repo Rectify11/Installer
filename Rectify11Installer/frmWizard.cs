@@ -11,6 +11,11 @@ namespace Rectify11Installer
     public partial class frmWizard : Form
     {
         public static bool IsItemsSelected;
+        public string InstallerProgress
+        {
+            get => progressLabel.Text;
+            set => progressLabel.Text = value;
+        }
         System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
         public frmWizard()
         {
@@ -112,7 +117,9 @@ namespace Rectify11Installer
                 Helper.FinalizeIRectify11();
                 navPane.SelectedTab = progressPage;
                 DarkMode.UpdateFrame(this, false);
-                Installer.Install();
+                pictureBox1.Visible = true;
+                progressLabel.Visible = true;
+                Installer.Install(this);
             }
         }
         #endregion
