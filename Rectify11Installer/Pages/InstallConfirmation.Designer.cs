@@ -42,7 +42,7 @@
             this.summaryTitle.Location = new System.Drawing.Point(-1, 5);
             this.summaryTitle.Name = "summaryTitle";
             this.summaryTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.summaryTitle.Size = new System.Drawing.Size(243, 40);
+            this.summaryTitle.Size = new System.Drawing.Size(288, 40);
             this.summaryTitle.TabIndex = 0;
             this.summaryTitle.Text = resources.GetString("summaryTitle");
             // 
