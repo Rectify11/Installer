@@ -111,18 +111,16 @@
             // 
             // chkEnhancedRibbon
             // 
-            this.chkEnhancedRibbon.AutoSize = true;
             this.chkEnhancedRibbon.ForeColor = System.Drawing.Color.Black;
             this.chkEnhancedRibbon.Location = new System.Drawing.Point(4, 178);
             this.chkEnhancedRibbon.Name = "chkEnhancedRibbon";
-            this.chkEnhancedRibbon.Size = new System.Drawing.Size(141, 19);
+            this.chkEnhancedRibbon.Size = new System.Drawing.Size(288, 19);
             this.chkEnhancedRibbon.TabIndex = 5;
             this.chkEnhancedRibbon.Text = resources.GetString("epEnhRibbon");
             this.chkEnhancedRibbon.UseVisualStyleBackColor = true;
             // 
             // chkExtendMica
             // 
-            this.chkExtendMica.AutoSize = true;
             this.chkExtendMica.ForeColor = System.Drawing.Color.Black;
             this.chkExtendMica.Location = new System.Drawing.Point(4, 203);
             this.chkExtendMica.Name = "chkExtendMica";
@@ -133,11 +131,10 @@
             // 
             // chkW10Taskbar
             // 
-            this.chkW10Taskbar.AutoSize = true;
             this.chkW10Taskbar.ForeColor = System.Drawing.Color.Black;
             this.chkW10Taskbar.Location = new System.Drawing.Point(4, 228);
             this.chkW10Taskbar.Name = "chkW10Taskbar";
-            this.chkW10Taskbar.Size = new System.Drawing.Size(133, 19);
+            this.chkW10Taskbar.Size = new System.Drawing.Size(288, 19);
             this.chkW10Taskbar.TabIndex = 7;
             this.chkW10Taskbar.Text = resources.GetString("epW10Taskbar");
             this.chkW10Taskbar.UseVisualStyleBackColor = true;
