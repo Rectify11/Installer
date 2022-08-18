@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
             this.progressText = new Rectify11Installer.Controls.DarkAwareLabel();
             this.progressInfo = new Rectify11Installer.Controls.DarkAwareLabel();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.SuspendLayout();
             // 
             // progressText
@@ -44,6 +45,11 @@
             this.progressText.Size = new System.Drawing.Size(361, 40);
             this.progressText.TabIndex = 1;
             this.progressText.Text = resources.GetString("progressText");
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             //
             // progressInfo
             //
@@ -72,5 +78,6 @@
 
         private Controls.DarkAwareLabel progressText;
         private Controls.DarkAwareLabel progressInfo;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -201,6 +201,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Strings\Rectify11.ar.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.de.resx" />
     <EmbeddedResource Include="Strings\Rectify11.el.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
