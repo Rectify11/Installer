@@ -79,7 +79,7 @@ namespace Rectify11Installer.Controls
         public FakeCommandLink()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.Selectable | ControlStyles.StandardClick | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.SupportsTransparentBackColor, true);
             foreach (Control control in Controls)
             {
                 control.MouseEnter += new EventHandler(TheMouseEnter);
