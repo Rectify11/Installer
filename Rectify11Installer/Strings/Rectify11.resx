@@ -142,7 +142,7 @@
     <value>Install Now</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>Restores the original Windows 11 look.</value>
+    <value>Restores the original Windows look.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>Uninstall Rectify11</value>

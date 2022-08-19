@@ -213,6 +213,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.vi.resx" />
     <EmbeddedResource Include="Strings\Rectify11.zh-CN.resx" />
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">

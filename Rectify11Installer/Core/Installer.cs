@@ -70,7 +70,6 @@ namespace Rectify11Installer.Core
                                     Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
                                 if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
                                     File.Copy(patch.HardlinkTarget, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
-
                             }
                         }
                         i++;

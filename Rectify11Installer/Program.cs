@@ -38,7 +38,7 @@ namespace Rectify11Installer
             Theme.LoadTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de");
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("vi");
             Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
             Application.Run(new frmWizard());
         }
