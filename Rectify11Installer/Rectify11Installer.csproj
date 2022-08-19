@@ -84,10 +84,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="TaskDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KPreisser.UI.TaskDialog.1.0.0\lib\net472\TaskDialog.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\DarkAwareControls.cs">
