@@ -49,22 +49,29 @@ namespace Rectify11Installer.Core
                     if (items == patch.Mui)
                     {
                         newpath = false;
-                        int number = (i /InstallOptions.iconsList.Count) * 100;
+                        int number = (i / InstallOptions.iconsList.Count) * 100;
                         frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
                         if (patch.HardlinkTarget.Contains("%lang%"))
                         {
                             newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
-                            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
-                                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
-                            if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
-                                File.Copy(newhardlink, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
+                            if (File.Exists(newhardlink))
+                            {
+                                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
+                                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
+                                    File.Copy(newhardlink, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
+                            }
                         }
                         else if (patch.HardlinkTarget.Contains("mun"))
                         {
-                            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
-                                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
-                            if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
-                                File.Copy(patch.HardlinkTarget, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
+                            if (File.Exists(patch.HardlinkTarget))
+                            {
+                                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
+                                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
+                                    File.Copy(patch.HardlinkTarget, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
+
+                            }
                         }
                         i++;
                     }
