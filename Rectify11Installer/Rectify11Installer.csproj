@@ -205,6 +205,7 @@
     <EmbeddedResource Include="Strings\Rectify11.es.resx" />
     <EmbeddedResource Include="Strings\Rectify11.it.resx" />
     <EmbeddedResource Include="Strings\Rectify11.ko.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.nl.resx" />
     <EmbeddedResource Include="Strings\Rectify11.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.pl.Designer.cs</LastGenOutput>
