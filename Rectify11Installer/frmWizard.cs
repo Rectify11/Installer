@@ -11,6 +11,7 @@ namespace Rectify11Installer
     public partial class frmWizard : Form
     {
         public static bool IsItemsSelected;
+        bool idleinit = false;
         public string InstallerProgress
         {
             get => progressLabel.Text;
@@ -21,14 +22,39 @@ namespace Rectify11Installer
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
-            Navigate(RectifyPages.WelcomePage);
             if (System.Globalization.CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
             {
                 RightToLeftLayout = true;
                 RightToLeft = RightToLeft.Yes;
             }
             DarkMode.RefreshTitleBarColor(Handle);
+            Navigate(RectifyPages.WelcomePage);
             Shown += FrmWizard_Shown;
+            Application.Idle += Application_Idle;
+        }
+
+        private void Application_Idle(object sender, EventArgs e)
+        {
+            if (!idleinit)
+            {
+                // initialize installoptonspage here because it needs 
+                // current instance to change button state.
+                RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
+                eulPage.Controls.Add(RectifyPages.EulaPage);
+                installPage.Controls.Add(RectifyPages.InstallOptnsPage);
+                themePage.Controls.Add(RectifyPages.ThemeChoicePage);
+                epPage.Controls.Add(RectifyPages.EPPage);
+                progressPage.Controls.Add(RectifyPages.ProgressPage);
+                summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
+                RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
+                RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
+                nextButton.Click += NextButton_Click;
+                navBackButton.Click += BackButton_Click;
+                cancelButton.Click += CancelButton_Click;
+                versionLabel.Text = versionLabel.Text + ProductVersion;
+                SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+                idleinit = true;
+            }
         }
 
         private void FrmWizard_Shown(object sender, EventArgs e)
@@ -43,24 +69,8 @@ namespace Rectify11Installer
                 BackColor = Color.White;
                 ForeColor = Color.Black;
             }
-            // initialize installoptonspage here because it needs 
-            // current instance to change button state.
-            RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
 
             wlcmPage.Controls.Add(RectifyPages.WelcomePage);
-            eulPage.Controls.Add(RectifyPages.EulaPage);
-            installPage.Controls.Add(RectifyPages.InstallOptnsPage);
-            themePage.Controls.Add(RectifyPages.ThemeChoicePage);
-            epPage.Controls.Add(RectifyPages.EPPage);
-            progressPage.Controls.Add(RectifyPages.ProgressPage);
-            summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
-            RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
-            RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
-            nextButton.Click += NextButton_Click;
-            navBackButton.Click += BackButton_Click;
-            cancelButton.Click += CancelButton_Click;
-            versionLabel.Text = versionLabel.Text + ProductVersion;
-            SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
             RectifyPages.WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
         }
 
