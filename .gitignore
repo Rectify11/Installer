@@ -8,3 +8,4 @@ libmsstyle/obj/
 Rectify11Installer/bin/
 Rectify11Installer/obj/
 packages/
+*.7z

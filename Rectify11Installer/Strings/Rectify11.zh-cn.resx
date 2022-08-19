@@ -142,7 +142,7 @@
     <value>立即安装</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>恢复原始的 Windows 11 外观。</value>
+    <value>恢复原始的 Windows 外观。</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>卸载 Rectify11</value>

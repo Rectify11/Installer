@@ -142,7 +142,7 @@
     <value>지금 설치하기</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>원래대로의 Windows 11로 돌리기</value>
+    <value>원래대로의 Windows 로 돌리기</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>Rectify11 삭제</value>
