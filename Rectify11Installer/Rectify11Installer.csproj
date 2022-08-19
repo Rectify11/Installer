@@ -203,6 +203,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\Rectify11.es.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.hr.resx" />
     <EmbeddedResource Include="Strings\Rectify11.it.resx" />
     <EmbeddedResource Include="Strings\Rectify11.ko.resx" />
     <EmbeddedResource Include="Strings\Rectify11.pl.resx">
