@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -196,64 +196,64 @@
     <value>Personaliziraj svoju radnu površinu</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>Select your desired desktop experience</value>
+    <value>Izaberi kako želiš da ti izgleda radna površina</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
-    <value>Windows 10 Rounded</value>
+    <value>Windows 10 ali sa okruglim kutovima</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 Taskbar</value>
+    <value>Windows 10 programska traka</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 Default</value>
+    <value>Windows 11 Zadano</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>Did you know</value>
+    <value>Da li si znao</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Please close everything and save your work as a reboot will be required at the end of the installation.</value>
+    <value>Molim te zatvori sve prije nego što ponovno pokreneš kompjuter..</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
-    <value>Install Rectify11 on this Windows installation.</value>
+    <value>Instaliraj Rectify11 na ovoj Windows instanci.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>You are about to do the following:</value>
+    <value>Ti ćeš sada napraviti sljedeće:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
-    <value>Install</value>
+    <value>Instaliraj</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
-    <value>Extras</value>
+    <value>Dodaci</value>
   </data>
   <data name="optionIcons" xml:space="preserve">
-    <value>System icons</value>
+    <value>Sistemske ikone</value>
   </data>
   <data name="optionThemes" xml:space="preserve">
-    <value>Themes</value>
+    <value>Teme</value>
   </data>
   <data name="optionWallpaper" xml:space="preserve">
-    <value>Rectify11 Wallpapers</value>
+    <value>Rectify11 Pozadine</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Install ExplorerPatcher</value>
+    <value>Instairati ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Install Shell</value>
+    <value>Instalirati Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>Install Themes</value>
+    <value>Installirati Teme</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
-    <value>Install Wallpapers</value>
+    <value>Instalirati Pozadine</value>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>Install Winver</value>
+    <value>Instalirati naš Winver</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
-    <value>Summary</value>
+    <value>Sažetak</value>
   </data>
 </root>
