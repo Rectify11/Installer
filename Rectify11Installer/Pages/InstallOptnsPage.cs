@@ -17,8 +17,7 @@ namespace Rectify11Installer.Pages
             var node = treeView1.Nodes[0];
             foreach (PatchesPatch patch in ok)
             {
-                string package = Path.GetFileName(patch.HardlinkTarget);
-                node.Nodes.Add(package);
+                node.Nodes.Add(patch.Mui);
             }
         }
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
