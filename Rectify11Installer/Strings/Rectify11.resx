@@ -247,7 +247,7 @@
     <value>Install Wallpapers</value>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>Install Winver</value>
+    <value>Install our Winver</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
