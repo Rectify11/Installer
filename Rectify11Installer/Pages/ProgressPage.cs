@@ -8,13 +8,5 @@ namespace Rectify11Installer.Pages
         {
             InitializeComponent();
         }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
-        public void Start()
-        {
-            timer1.Start();
-        }
     }
 }
