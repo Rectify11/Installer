@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="buttonAgree" xml:space="preserve">
-    <value>Agree</value>
+    <value>Mee eens</value>
   </data>
   <data name="buttonCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuleren</value>
   </data>
   <data name="buttonNext" xml:space="preserve">
-    <value>Next</value>
+    <value>Volgende</value>
   </data>
   <data name="eulaPageHeader" xml:space="preserve">
     <value>Licentieovereenkomst</value>
