@@ -62,7 +62,7 @@
             this.summaryFooter.BackColor = System.Drawing.Color.Transparent;
             this.summaryFooter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.summaryFooter.ForeColor = System.Drawing.Color.Black;
-            this.summaryFooter.Location = new System.Drawing.Point(5, 200);
+            this.summaryFooter.Location = new System.Drawing.Point(0, 200);
             this.summaryFooter.Name = "summaryFooter";
             this.summaryFooter.Size = new System.Drawing.Size(297, 54);
             this.summaryFooter.TabIndex = 2;
@@ -80,7 +80,6 @@
             this.SideImage = global::Rectify11Installer.Properties.Resources.installConfirm;
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
