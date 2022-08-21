@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
             this.progressText = new Rectify11Installer.Controls.DarkAwareLabel();
             this.progressInfo = new Rectify11Installer.Controls.DarkAwareLabel();
             this.SuspendLayout();
@@ -42,6 +43,7 @@
             this.progressText.Size = new System.Drawing.Size(361, 40);
             this.progressText.TabIndex = 1;
             this.progressText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.progressText.Text = resources.GetString("progressText");
             // 
             // progressInfo
             // 

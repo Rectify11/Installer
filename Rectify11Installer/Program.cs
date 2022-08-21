@@ -38,8 +38,8 @@ namespace Rectify11Installer
             Theme.LoadTheme();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("vi");
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("qps-ploc");
+            //Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
             Application.Run(new frmWizard());
         }
     }

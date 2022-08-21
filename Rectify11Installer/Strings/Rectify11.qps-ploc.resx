@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="buttonAgree" xml:space="preserve">
+    <value>[C4B2F][!!_Ãģřêê_!!]</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>[2F1B2][!!_Čàήćèł_!!]</value>
+  </data>
+  <data name="buttonNext" xml:space="preserve">
+    <value>[0D0E9][!!_Ňè×ţ_!!]</value>
+  </data>
+  <data name="eulaPageHeader" xml:space="preserve">
+    <value>[949AE][!!_Ľįĉêйŝè Âğŗêèмęйτ_!!]</value>
+  </data>
+  <data name="eulaTitle" xml:space="preserve">
+    <value>[ADC1A][!!_Βéƒôřé Уõû ċáи įйŝťâļļ ЃêćтįƒУ11, ýòû mµšτ áģŕêé ťõ τħìŝ łîćęηśę âġŕéémêйт:_!!]</value>
+  </data>
+  <data name="installNote" xml:space="preserve">
+    <value>[369E1][!!_Ŕéċťìƒў ÿóûŗ ĉµѓřéйť Ẅîήđõŵś įйŝтàļľâţíôй._!!]</value>
+  </data>
+  <data name="installTitle" xml:space="preserve">
+    <value>[98CF6][!!_Įήśţâłļ Ñõẅ_!!]</value>
+  </data>
+  <data name="uninstallNote" xml:space="preserve">
+    <value>[43BFA][!!_Řèŝťóŗêş τћę òřîğîиàļ Ẁîиďóẅŝ łõóķ._!!]</value>
+  </data>
+  <data name="uninstallTitle" xml:space="preserve">
+    <value>[D4484][!!_Ùйìήşţàĺļ Ŗęċţįƒŷ11_!!]</value>
+  </data>
+  <data name="updateNote" xml:space="preserve">
+    <value>[C223E][!!_Ùрðàţê Уóùŕ è×įşтįйğ Ŕęćτįƒý11 íήšτãĺľáťįôή._!!]</value>
+  </data>
+  <data name="updateTitle" xml:space="preserve">
+    <value>[0A9AB][!!_Üрðãтé Ńõẁ_!!]</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>[FF7AD][!!_Vêŕşìóη: _!!]</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>[CAC7B][!!_Ẅêľċòмè_!!]</value>
+  </data>
+  <data name="welcomeDescription" xml:space="preserve">
+    <value>[DB680][!!_Τћé ŝèтûρ ẃìļľ ģò ťĥŕóµġђ тћè νâříõµş šτéρŝ ŕęqùįѓèð тõ įиšтãľł ŖéċţìƒУ11 ôη ŷóûŕ ÞĆ, ƒõѓ à мôŕę ċòйŝîŝťęйτ ê×þèřìêήċê. Şèłęċť ÿõµŗ đêşíŗàъĺè õрţíõη ţò čóηтíήùê._!!]</value>
+  </data>
+  <data name="installChoiceDescription" xml:space="preserve">
+    <value>[857BE][!!_Ỳòµ ćàй ćħòóšé ŵнãť ẃîĺļ Бê Řêċτįƒįéð._!!]</value>
+  </data>
+  <data name="installChoiceTitle" xml:space="preserve">
+    <value>[6EBA4][!!_Ċћòòšè ŵĥãτ ťô íηśтàĺľ_!!]</value>
+  </data>
+  <data name="themeChoiceTitle" xml:space="preserve">
+    <value>[45E33][!!_Şèłéčť ŷõúѓ đęšįŗêď ţћęmè._!!]</value>
+  </data>
+  <data name="themeHeader" xml:space="preserve">
+    <value>[28A7F][!!_Þêŕśõηàļįžę ýôùŕ ęхþêŗìęηċê_!!]</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>[86ADC][!!_Řéčţįƒў11 Îηşтàļľéř_!!]</value>
+  </data>
+  <data name="themeBlack" xml:space="preserve">
+    <value>[0877E][!!_Ðâŗќ ẅìťн Мįčã_!!]</value>
+  </data>
+  <data name="themeDark" xml:space="preserve">
+    <value>[BD3FA][!!_Ðáŕќ_!!]</value>
+  </data>
+  <data name="themeLight" xml:space="preserve">
+    <value>[893E9][!!_Ŀįğђť_!!]</value>
+  </data>
+  <data name="epEnhRibbon" xml:space="preserve">
+    <value>[07388][!!_Üšé Ęинáйċęď Řîъвôй_!!]</value>
+  </data>
+  <data name="epExtMica" xml:space="preserve">
+    <value>[EE4DB][!!_È×ťęиď Мìċá ťô è×þłòѓèŕ ηãνîġãтìõή Бâѓ_!!]</value>
+  </data>
+  <data name="epHeader" xml:space="preserve">
+    <value>[6EE36][!!_Ċúŝţômîżę ŷõûѓ Ďèŝќтòþ_!!]</value>
+  </data>
+  <data name="epTitle" xml:space="preserve">
+    <value>[EEE6C][!!_Şęľéćť ŷóûѓ ďêŝîѓéđ đéşĸтôþ é×рéŕìęηćé_!!]</value>
+  </data>
+  <data name="epW10Radio" xml:space="preserve">
+    <value>[6BD45][!!_Ŵíηðôŵš 10 Ŗóúήðęð_!!]</value>
+  </data>
+  <data name="epW10Taskbar" xml:space="preserve">
+    <value>[9109C][!!_Ẃìηđòẃŝ 10 ΤãśķБàŗ_!!]</value>
+  </data>
+  <data name="epW11Radio" xml:space="preserve">
+    <value>[4E223][!!_Ẅíйđõẅŝ 11 Ďéƒãµĺţ_!!]</value>
+  </data>
+  <data name="progressText" xml:space="preserve">
+    <value>[75DB4][!!_Ďìđ ўóú ĸиõẅ_!!]</value>
+  </data>
+  <data name="summaryFooter" xml:space="preserve">
+    <value>[E4C4E][!!_Рļéãśê ċĺóśę êνèřУтħìйğ àйď ŝâνé Уóùř ŵóřķ ãŝ ã ŗêьóóť ẃîļļ ъę ŕéqµîŗèđ âт τћé èήď óƒ ţħé ìήśţãłłãţîõη._!!]</value>
+  </data>
+  <data name="summaryItems" xml:space="preserve">
+    <value>[70759][!!_Ìйšţàłľ ŔéčτìƒУ11 òη ťнîś Ẃîήđóẅš įйşţãłĺáţìóή._!!]</value>
+  </data>
+  <data name="summaryTitle" xml:space="preserve">
+    <value>[76C36][!!_Ϋòù ãŗè áъõùť ťò đô τĥé ƒòłłòẅíηģ:_!!]</value>
+  </data>
+  <data name="buttonInstall" xml:space="preserve">
+    <value>[015E6][!!_Îήśťàłľ_!!]</value>
+  </data>
+  <data name="optionExtra" xml:space="preserve">
+    <value>[03A29][!!_Êхťѓáş_!!]</value>
+  </data>
+  <data name="optionIcons" xml:space="preserve">
+    <value>[9E870][!!_Şŷşťêм įčõиš_!!]</value>
+  </data>
+  <data name="optionThemes" xml:space="preserve">
+    <value>[B5CA5][!!_Τĥęmêş_!!]</value>
+  </data>
+  <data name="optionWallpaper" xml:space="preserve">
+    <value>[C2013][!!_Ŗęćтíƒŷ11 Ẅâľļрáρèřś_!!]</value>
+  </data>
+  <data name="installEP" xml:space="preserve">
+    <value>[3C916][!!_Îήśţáļļ ÉхрļòѓèŕÞãτĉħèŗ_!!]</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>[D8D92][!!_Įиşţáĺĺ Śђêļļ_!!]</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>[400DE][!!_Íηšтâłł Ţħêmèš_!!]</value>
+  </data>
+  <data name="installWallpapers" xml:space="preserve">
+    <value>[CDFE8][!!_Įйŝťãłľ Ŵáłľрãþéŗś_!!]</value>
+  </data>
+  <data name="installWinver" xml:space="preserve">
+    <value>[EB5D7][!!_Ìηŝţàļľ Ẅîήνêѓ_!!]</value>
+  </data>
+  <data name="summaryHeader" xml:space="preserve">
+    <value>[5DDC1][!!_Ŝúммâřŷ_!!]</value>
+  </data>
+  <data name="r11" xml:space="preserve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
