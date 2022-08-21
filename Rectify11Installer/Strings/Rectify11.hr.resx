@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-          System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -142,7 +142,7 @@
     <value>Instaliraj sada</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>Vrati originalni windows 11 izgled.</value>
+    <value>Vrati originalni windows izgled.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>Deinstaliraj Recitfy11</value>
@@ -257,5 +257,3 @@
     <value>Sažetak</value>
   </data>
 </root>
-
-<!--Made and translated by KingTino-->
