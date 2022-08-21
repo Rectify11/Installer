@@ -1,5 +1,4 @@
-﻿
-using Rectify11Installer.Core;
+﻿using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Pages
 {
