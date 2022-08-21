@@ -74,7 +74,7 @@
             this.cmbInstall.Location = new System.Drawing.Point(0, 125);
             this.cmbInstall.Name = "cmbInstall";
             this.cmbInstall.Note = resources.GetString("installNote");
-            this.cmbInstall.Size = new System.Drawing.Size(310, 45);
+            this.cmbInstall.Size = new System.Drawing.Size(305, 45);
             this.cmbInstall.TabIndex = 3;
             this.cmbInstall.Text = resources.GetString("installTitle");
             // 

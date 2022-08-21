@@ -17,6 +17,11 @@ namespace Rectify11Installer
             get => progressLabel.Text;
             set => progressLabel.Text = value;
         }
+        public Image UpdateSideImage
+        {
+            get => sideImage.BackgroundImage;
+            set => sideImage.BackgroundImage = value;
+        }
         System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
         public frmWizard()
         {
@@ -40,6 +45,8 @@ namespace Rectify11Installer
                 // initialize installoptonspage here because it needs 
                 // current instance to change button state.
                 RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
+                RectifyPages.ProgressPage = new ProgressPage(this);
+
                 eulPage.Controls.Add(RectifyPages.EulaPage);
                 installPage.Controls.Add(RectifyPages.InstallOptnsPage);
                 themePage.Controls.Add(RectifyPages.ThemeChoicePage);
@@ -77,6 +84,7 @@ namespace Rectify11Installer
         #region Navigation
         private void Navigate(WizardPage page)
         {
+            this.SuspendLayout();
             headerText.Text = page.WizardHeader;
             sideImage.BackgroundImage = page.SideImage;
             if (page == RectifyPages.WelcomePage)
@@ -130,7 +138,9 @@ namespace Rectify11Installer
                 pictureBox1.Visible = true;
                 progressLabel.Visible = true;
                 Installer.Install(this);
+                RectifyPages.ProgressPage.Start();
             }
+            this.ResumeLayout();
         }
         #endregion
         #region Private Methods
