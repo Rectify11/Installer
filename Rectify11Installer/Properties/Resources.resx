@@ -124,9 +124,6 @@
   <data name="themepage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\themepage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rectify11xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Core\rectify11.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="eula" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,7 +136,7 @@
   <data name="installoptns" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\installoptns.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="11start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="_11start" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\11start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blackPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -148,7 +145,7 @@
   <data name="ep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="10start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="_10start" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lightPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -165,5 +162,14 @@
   </data>
   <data name="light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\light.msstyles;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="files7z" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\files.7z;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_7za" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7za.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rectify11xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Core\rectify11.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>
