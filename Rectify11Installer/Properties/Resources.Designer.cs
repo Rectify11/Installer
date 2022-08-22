@@ -65,7 +65,7 @@ namespace Rectify11Installer.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _10start {
             get {
-                object obj = ResourceManager.GetObject("10start", resourceCulture);
+                object obj = ResourceManager.GetObject("_10start", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,8 +75,18 @@ namespace Rectify11Installer.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _11start {
             get {
-                object obj = ResourceManager.GetObject("11start", resourceCulture);
+                object obj = ResourceManager.GetObject("_11start", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] _7za {
+            get {
+                object obj = ResourceManager.GetObject("_7za", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -127,6 +137,16 @@ namespace Rectify11Installer.Properties {
             get {
                 object obj = ResourceManager.GetObject("eula", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] files7z {
+            get {
+                object obj = ResourceManager.GetObject("files7z", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -206,11 +226,11 @@ namespace Rectify11Installer.Properties {
         ///&lt;!--Rectify11 Patch file list--&gt;
         ///
         ///&lt;Patches&gt;
-        ///  &lt;!--Mun files--&gt;
+        ///	&lt;!--Mun files--&gt;
         ///	&lt;Patch Mui=&quot;accessibilitycpl.dll.mun&quot; mask=&quot;ICONGROUP,| UIFILE,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\accessibilitycpl.dll.mun&quot; /&gt;
         ///	&lt;Patch Mui=&quot;aclui.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\aclui.dll.mun&quot; /&gt;
         ///	&lt;Patch Mui=&quot;actioncentercpl.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\actioncentercpl.dll.mun&quot; /&gt;
-        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun [rest of string was truncated]&quot;;.
+        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun&quot; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string rectify11xml {
             get {

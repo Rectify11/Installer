@@ -83,7 +83,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\DarkAwareControls.cs">
@@ -253,6 +252,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dark.msstyles" />
+    <None Include="Resources\files.7z" />
     <None Include="Resources\install.png" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +283,7 @@
     <None Include="Resources\ep.png" />
     <None Include="Resources\installConfirm.png" />
     <Content Include="r11.ico" />
+    <None Include="Resources\7za.exe" />
     <Content Include="Resources\installoptns.png" />
     <None Include="Resources\lightPreview.png" />
     <None Include="Resources\themepage.png" />
@@ -295,10 +296,10 @@
   </Target>
   <Target Name="FixAL1703Warning" BeforeTargets="GenerateSatelliteAssemblies" Condition="'$(PlatformTarget)' == 'x64'">
     <Message Text="Adjusting SDK tools directory to use x64 version of AL.EXE" />
-      <PropertyGroup>
-        <TargetFrameworkSDKToolsDirectory>$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
-      </PropertyGroup>
-    </Target>
+    <PropertyGroup>
+      <TargetFrameworkSDKToolsDirectory>$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
+    </PropertyGroup>
+  </Target>
   <ItemGroup>
     <PackageReference Include="AeroWizard">
       <Version>2.3.1</Version>

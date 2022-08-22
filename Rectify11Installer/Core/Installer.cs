@@ -33,8 +33,17 @@ namespace Rectify11Installer.Core
             if (!File.Exists(Path.Combine(Variables.r11Folder, "PsExec64.exe")))
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PsExec64.exe"), Properties.Resources.PsExec64);
 
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
+
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "files.7z")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
+
             if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
                 Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
+
+            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
 
             // Get all patches
             Patches patches = PatchesParser.GetAll();
@@ -57,9 +66,16 @@ namespace Rectify11Installer.Core
                             if (File.Exists(newhardlink))
                             {
                                 if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                                {
                                     Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
+                                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
+                                }
                                 if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
+                                {
                                     File.Copy(newhardlink, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
+                                    File.Copy(newhardlink, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui));
+                                    //Interaction.Shell()
+                                }
                             }
                         }
                         else if (patch.HardlinkTarget.Contains("mun"))
@@ -67,9 +83,16 @@ namespace Rectify11Installer.Core
                             if (File.Exists(patch.HardlinkTarget))
                             {
                                 if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                                {
                                     Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
+                                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
+                                }
                                 if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
+                                {
                                     File.Copy(patch.HardlinkTarget, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
+                                    File.Copy(patch.HardlinkTarget, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui));
+
+                                }
                             }
                         }
                         i++;
