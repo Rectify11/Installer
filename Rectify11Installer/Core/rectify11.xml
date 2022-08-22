@@ -104,6 +104,10 @@
   <Patch Mui="bdeunlock.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\bdeunlock.exe.mui" />
   <Patch Mui="BitLockerWizard.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\BitLockerWizard.exe.mui" />
   <Patch Mui="BitLockerWizardElev.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\BitLockerWizardElev.exe.mui" />
+
+	<!--Branding-->
+	<Patch Mui="basebrd.dll.mui" mask="IMAGE," HardlinkTarget="%basebrdlang%\basebrd.dll.mui" />
+	
   <Patch Mui="cabview.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\cabview.dll.mui" />
 	<Patch Mui="calc.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\calc.exe.mui" />
   <Patch Mui="cleanmgr.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\cleanmgr.exe.mui" />
@@ -119,10 +123,10 @@
   <Patch Mui="credwiz.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\credwiz.exe.mui" />
   <Patch Mui="cscript.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\cscript.exe.mui" />
   <Patch Mui="cscui.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\cscui.dll.mui" />
-  <Patch Mui="CustomInstallExec.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\CustomInstallExec.exe.mui" />
   <Patch Mui="ctfmon.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\ctfmon.exe.mui" />
+  <Patch Mui="CustomInstallExec.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\CustomInstallExec.exe.mui" />
   <Patch Mui="Defrag.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\Defrag.exe.mui" />
-  <Patch Mui="desk.cpl" mask="ICONGROUP," HardlinkTarget="%lang%\desk.cpl" />
+  <Patch Mui="desk.cpl.mui" mask="ICONGROUP," HardlinkTarget="%lang%\desk.cpl.mui" />
   <Patch Mui="DeviceEject.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\DeviceEject.exe.mui" />
   <Patch Mui="DevicePairingWizard.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\DevicePairingWizard.exe.mui" />
   <Patch Mui="DeviceProperties.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\DeviceProperties.exe.mui" />
@@ -178,7 +182,8 @@
 	<Patch Mui="ncpa.cpl.mui" mask="ICONGROUP," HardlinkTarget="%lang%\ncpa.cpl.mui" />
 	<Patch Mui="ndadmin.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\ndadmin.exe.mui" />
   <Patch Mui="ndfapi.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\ndfapi.dll.mui" />
-	<Patch Mui="netplwiz.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\netplwiz.exe.mui" />
+  <Patch Mui="netplwiz.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\netplwiz.dll.mui" />
+  <Patch Mui="netplwiz.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\netplwiz.exe.mui" />
 	<Patch Mui="newdev.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\newdev.exe.mui" />
 	<Patch Mui="nslookup.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\nslookup.exe.mui" />
 	<Patch Mui="objsel.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\objsel.dll.mui" />
@@ -195,7 +200,7 @@
 	<Patch Mui="proquota.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\proquota.exe.mui" />
 	<Patch Mui="recdisc.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\recdisc.exe.mui" />
 	<Patch Mui="RecoveryDrive.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\RecoveryDrive.exe.mui" />
-	<Patch Mui="regedit.exe.mui" mask="ICONGROUP," HardlinkTarget="C:\Windows\regedit.exe.mui" />
+	<Patch Mui="regedit.exe.mui" mask="ICONGROUP," HardlinkTarget="%winlang%\regedit.exe.mui" />
   <Patch Mui="regedt32.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\regedt32.exe.mui" />
 	<Patch Mui="rekeywiz.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\rekeywiz.exe.mui" />
 	<Patch Mui="RelPost.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\RelPost.exe.mui" />
@@ -227,7 +232,7 @@
 	<Patch Mui="SystemPropertiesProtection.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\SystemPropertiesProtection.exe.mui" />
 	<Patch Mui="SystemPropertiesRemote.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\SystemPropertiesRemote.exe.mui" />
 	<Patch Mui="tabcal.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\tabcal.exe.mui" />
-	<Patch Mui="TabletPC.cpl" mask="ICONGROUP," HardlinkTarget="%lang%\TabletPC.cpl" />
+	<Patch Mui="TabletPC.cpl.mui" mask="ICONGROUP," HardlinkTarget="%lang%\TabletPC.cpl.mui" />
 	<Patch Mui="telephon.cpl.mui" mask="ICONGROUP," HardlinkTarget="%lang%\telephon.cpl.mui" />
 	<Patch Mui="tpmcompc.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\tpmcompc.dll.mui" />
 	<Patch Mui="TSWorkspace.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\TSWorkspace.dll.mui" />
@@ -254,7 +259,7 @@
 	<Patch Mui="xwizards.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\xwizards.dll.mui" />
 	<Patch Mui="xwizard.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\xwizard.exe.mui" />
   
-	<!--TODO: fix-->
+  <!--TODO: fix-->
 	<!--<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP," HardlinkTarget="C:\Windows\SystemResources\taskmgr.exe.mun" />-->
 	<!--<Patch Mui="fhcpl.dll.mun" mask="ICONGROUP," HardlinkTarget="C:\Windows\SystemResources\fhcpl.dll.mun" />-->
 	<!--<Patch Mui="microsoft-windows-themeui" mask="ICONGROUP,| PNG," HardlinkTarget="C:\Windows\SystemResources\timedate.dll.mun" />-->

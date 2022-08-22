@@ -300,18 +300,18 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
-            //
-            // progressLabel
-            //
+			//
+			// progressLabel
+			//
+			this.progressLabel.AutoSize = true;
             this.progressLabel.BackColor = System.Drawing.Color.Transparent;
             this.progressLabel.ForeColor = System.Drawing.Color.Black;
             this.progressLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.progressLabel.Location = new System.Drawing.Point(50, 390);
+            this.progressLabel.Location = new System.Drawing.Point(50, 400);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.progressLabel.Size = new System.Drawing.Size(300, 40);
             this.progressLabel.TabIndex = 3;
-            this.progressLabel.Text = "Copying Files...";
             this.progressLabel.Visible = false;
             // 
             // frmWizard
