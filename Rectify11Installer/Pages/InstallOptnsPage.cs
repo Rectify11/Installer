@@ -14,17 +14,32 @@ namespace Rectify11Installer.Pages
             InitializeComponent();
             Patches list = PatchesParser.GetAll();
             PatchesPatch[] ok = list.Items;
-            var node = treeView1.Nodes[0];
+            var basicNode = treeView1.Nodes[0].Nodes[0];
+            var advNode = treeView1.Nodes[0].Nodes[1];
             foreach (PatchesPatch patch in ok)
             {
-                node.Nodes.Add(patch.Mui);
+                if (patch.Mui.Contains("mui"))
+                    advNode.Nodes.Add(patch.Mui);
+                else if (patch.Mui.Contains("mun"))
+                    basicNode.Nodes.Add(patch.Mui);
             }
         }
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
             if (e.Action != TreeViewAction.Unknown)
             {
-                if (e.Node.Name == "sysIconsNode")
+                if (e.Node.Name == "basicNode")
+                {
+                    e.Node.Descendants().ToList().ForEach(x =>
+                    {
+                        x.Checked = e.Node.Checked;
+                        if (e.Node.Checked)
+                            InstallOptions.iconsList.Add(x.Text);
+                        else
+                            InstallOptions.iconsList.Remove(x.Text);
+                    });
+                }
+                if (e.Node.Name == "advancedNode")
                 {
                     e.Node.Descendants().ToList().ForEach(x =>
                     {
@@ -53,14 +68,18 @@ namespace Rectify11Installer.Pages
                     {
                         if (x.Name == "extraNode")
                             InstallOptions.iconsList.Add(e.Node.Name);
-                        else if (x.Name == "sysIconsNode")
+                        else if (x.Name == "basicNode")
+                            InstallOptions.iconsList.Add(e.Node.Text);
+                        else if (x.Name == "advancedNode")
                             InstallOptions.iconsList.Add(e.Node.Text);
                     }
                     else
                     {
                         if (x.Name == "extraNode")
                             InstallOptions.iconsList.Remove(e.Node.Name);
-                        else if (x.Name == "sysIconsNode")
+                        else if (x.Name == "basicNode")
+                            InstallOptions.iconsList.Remove(e.Node.Text);
+                        else if (x.Name == "advancedNode")
                             InstallOptions.iconsList.Remove(e.Node.Text);
                     }
                 });

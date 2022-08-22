@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode(resources.GetString("optionIcons"));
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Basic");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Advanced");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode(resources.GetString("optionIcons"), new System.Windows.Forms.TreeNode[]{
+            treeNode8,
+            treeNode9});
             treeNode7 = new System.Windows.Forms.TreeNode(resources.GetString("optionThemes"));
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Winver");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ExplorerPatcher");
@@ -90,6 +94,10 @@
             treeNode6.Text = resources.GetString("optionExtra");
             treeNode7.Name = "themeNode";
             treeNode7.Text = resources.GetString("optionThemes");
+            treeNode8.Name = "basicNode";
+            treeNode8.Text = "Basic";
+            treeNode9.Name = "advancedNode";
+            treeNode9.Text = "Advanced";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode7,
