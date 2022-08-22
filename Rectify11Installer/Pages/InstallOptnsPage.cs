@@ -39,6 +39,17 @@ namespace Rectify11Installer.Pages
                             InstallOptions.iconsList.Remove(x.Text);
                     });
                 }
+                if (e.Node.Name == "sysIconsNode")
+                {
+                    e.Node.Descendants().ToList().ForEach(x =>
+                    {
+                        x.Checked = e.Node.Checked;
+                        if (e.Node.Checked && (x.Name != "basicNode") && (x.Name != "advancedNode"))
+                            InstallOptions.iconsList.Add(x.Text);
+                        else if ((x.Name != "basicNode") && (x.Name != "advancedNode"))
+                            InstallOptions.iconsList.Remove(x.Text);
+                    });
+                }
                 if (e.Node.Name == "advancedNode")
                 {
                     e.Node.Descendants().ToList().ForEach(x =>
