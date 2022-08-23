@@ -77,12 +77,21 @@
     <ApplicationIcon>r11.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AeroWizard, Version=2.3.1.0, Culture=neutral, PublicKeyToken=915e74f5d64b8f37, processorArchitecture=MSIL">
+      <HintPath>..\packages\AeroWizard.2.3.1\lib\net45\AeroWizard.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TaskDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KPreisser.UI.TaskDialog.1.0.0\lib\net472\TaskDialog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\DarkAwareControls.cs">
@@ -196,28 +205,57 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Strings\Rectify11.ar.resx" />
-    <EmbeddedResource Include="Strings\Rectify11.de.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.ar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings\Rectify11.el.resx">
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.el.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\Rectify11.es.resx" />
-    <EmbeddedResource Include="Strings\Rectify11.hr.resx" />
-    <EmbeddedResource Include="Strings\Rectify11.it.resx" />
-    <EmbeddedResource Include="Strings\Rectify11.ko.resx" />
-    <EmbeddedResource Include="Strings\Rectify11.nl.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.hr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.ko.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.ko.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.nl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.nl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings\Rectify11.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.pl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\Rectify11.qps-ploc.resx" />
     <EmbeddedResource Include="Strings\Rectify11.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\Rectify11.vi.resx" />
-    <EmbeddedResource Include="Strings\Rectify11.zh-CN.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.vi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Rectify11.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -288,6 +326,9 @@
     <None Include="Resources\lightPreview.png" />
     <None Include="Resources\themepage.png" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -300,12 +341,4 @@
       <TargetFrameworkSDKToolsDirectory>$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
     </PropertyGroup>
   </Target>
-  <ItemGroup>
-    <PackageReference Include="AeroWizard">
-      <Version>2.3.1</Version>
-    </PackageReference>
-    <PackageReference Include="KPreisser.UI.TaskDialog">
-      <Version>1.0.0</Version>
-    </PackageReference>
-  </ItemGroup>
 </Project>

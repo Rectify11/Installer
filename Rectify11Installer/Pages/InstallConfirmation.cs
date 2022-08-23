@@ -8,8 +8,8 @@ namespace Rectify11Installer.Pages
     {
         public string Summary
         {
-            get => summaryItems.Text;
-            set => summaryItems.Text = value;
+            get { return summaryItems.Text; }
+            set { summaryItems.Text = value; }
         }
         public InstallConfirmation()
         {

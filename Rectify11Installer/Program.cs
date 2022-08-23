@@ -19,7 +19,7 @@ namespace Rectify11Installer
 			if (Environment.OSVersion.Version.Build >= 10240)
 			{
 				Theme.InitTheme();
-				if (Environment.OSVersion.Version.Build >= 17763)
+                if ((Environment.OSVersion.Version.Build >= 17763) && (Environment.OSVersion.Version.Build < 18362))
 				{
 					DarkMode.AllowDarkModeForApp(true);
 				}

@@ -23,7 +23,7 @@ namespace Rectify11Installer.Controls
         private string _ButtonText = "";
         [Browsable(false), DesignerSerializationVisibility(
                             DesignerSerializationVisibility.Hidden)]
-        public new string Text { get; set; } = "";
+        public new string Text { get; set; }
 
         private ButtonState CurrentState = ButtonState.Normal;
         private const int DTT_COMPOSITED = 8192;
@@ -31,7 +31,7 @@ namespace Rectify11Installer.Controls
         private const int DTT_TEXTCOLOR = 1;
         public string ButtonText
         {
-            get => _ButtonText;
+            get { return _ButtonText; }
             set
             {
                 _ButtonText = value;
@@ -135,7 +135,8 @@ namespace Rectify11Installer.Controls
             info.biPlanes = 1;
             info.biBitCount = 32;
             info.biCompression = 0; // BI_RGB
-            IntPtr dib = NativeMethods.CreateDIBSection(memoryHdc, info, 0, out int* pixels, IntPtr.Zero, 0);
+            int* pixels;
+            IntPtr dib = NativeMethods.CreateDIBSection(memoryHdc, info, 0, out pixels, IntPtr.Zero, 0);
             for (int y = 0; y < buttonImage.Height; y++)
             {
                 for (int x = 0; x < buttonImage.Width; x++)

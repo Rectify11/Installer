@@ -15,13 +15,13 @@ namespace Rectify11Installer
 		bool idleinit = false;
 		public string InstallerProgress
 		{
-			get => progressLabel.Text;
-			set => progressLabel.Text = value;
+			get { return progressLabel.Text; }
+			set { progressLabel.Text = value; }
 		}
 		public Image UpdateSideImage
 		{
-			get => sideImage.BackgroundImage;
-			set => sideImage.BackgroundImage = value;
+			get { return sideImage.BackgroundImage; }
+            set { sideImage.BackgroundImage = value; }
 		}
 		System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 		public frmWizard()
@@ -34,6 +34,8 @@ namespace Rectify11Installer
 				RightToLeft = RightToLeft.Yes;
 			}
 			DarkMode.RefreshTitleBarColor(Handle);
+            if (Theme.IsUsingDarkMode)
+                DarkMode.UpdateFrame(this, true);
 			Navigate(RectifyPages.WelcomePage);
 			Shown += FrmWizard_Shown;
 			Application.Idle += Application_Idle;
@@ -92,11 +94,13 @@ namespace Rectify11Installer
 				navPane.SelectedTab = wlcmPage;
 				tableLayoutPanel1.Visible = false;
 				tableLayoutPanel2.Visible = false;
-				DarkMode.UpdateFrame(this, false);
+                if (!Theme.IsUsingDarkMode)
+				    DarkMode.UpdateFrame(this, false);
 			}
 			else if (page == RectifyPages.EulaPage)
 			{
-				DarkMode.UpdateFrame(this, true);
+                if (!Theme.IsUsingDarkMode)
+				    DarkMode.UpdateFrame(this, true);
 				tableLayoutPanel1.Visible = true;
 				tableLayoutPanel2.Visible = true;
 				nextButton.ButtonText = resources.GetString("buttonAgree");
@@ -139,7 +143,8 @@ namespace Rectify11Installer
 				RectifyPages.ProgressPage.Start();
 				NativeMethods.SetCloseButton(this, false);
 				navPane.SelectedTab = progressPage;
-				await Task.Run(() => Installer.Install(this));
+                Installer installer = new Installer();
+				await Task.Run(() => installer.Install(this));
 			}
 		}
 		#endregion
