@@ -133,11 +133,12 @@ namespace Rectify11Installer
 				tableLayoutPanel2.Visible = false;
 				versionLabel.Visible = false;
 				Helper.FinalizeIRectify11();
-				navPane.SelectedTab = progressPage;
 				DarkMode.UpdateFrame(this, false);
 				pictureBox1.Visible = true;
 				progressLabel.Visible = true;
 				RectifyPages.ProgressPage.Start();
+				NativeMethods.SetCloseButton(this, false);
+				navPane.SelectedTab = progressPage;
 				await Task.Run(() => Installer.Install(this));
 			}
 		}
@@ -146,8 +147,8 @@ namespace Rectify11Installer
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
 			// will be replaced with taskdialog.
-			DialogResult ok = MessageBox.Show("Are you sure you want to cancel the installation?", Strings.Rectify11.Title, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-			if (ok == DialogResult.OK)
+			DialogResult ok = MessageBox.Show("Are you sure you want to cancel the installation?", Strings.Rectify11.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+			if (ok == DialogResult.Yes)
 				Application.Exit();
 		}
 

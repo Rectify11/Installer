@@ -7,9 +7,19 @@ using System.Threading.Tasks;
 
 namespace Rectify11Installer.Win32
 {
-    class NativeMethods
+    public class NativeMethods
     {
-        [DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)]
+		[DllImport("user32.dll")]
+		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool revert);
+
+		[DllImport("user32.dll")]
+		public static extern int EnableMenuItem(IntPtr hMenu, int IDEnableItem, int enable);
+		public const int SC_CLOSE = 0xF060;
+		public const int MF_BYCOMMAND = 0;
+		public const int MF_ENABLED = 0;
+		public const int MF_GRAYED = 1;
+
+		[DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)]
         internal static extern IntPtr CreateCompatibleDC(IntPtr hDC);
         [DllImport("gdi32.dll")]
         internal unsafe static extern IntPtr CreateDIBSection(IntPtr hdc, BITMAPINFO pbmi, uint iUsage, out int* ppvBits, IntPtr hSection, uint dwOffset);
@@ -74,5 +84,18 @@ namespace Rectify11Installer.Win32
             public int cyTopHeight;      // height of top border that retains its size
             public int cyBottomHeight;   // height of bottom border that retains its size
         };
-    }
+
+		public static bool SetCloseButton(frmWizard frm, bool enable)
+		{
+			IntPtr hMenu = NativeMethods.GetSystemMenu(frm.Handle, false);
+			if (hMenu != IntPtr.Zero)
+			{
+				NativeMethods.EnableMenuItem(hMenu,
+											 NativeMethods.SC_CLOSE,
+											 NativeMethods.MF_BYCOMMAND | (enable ? NativeMethods.MF_ENABLED : NativeMethods.MF_GRAYED));
+				return true;
+			}
+			return false;
+		}
+	}
 }
