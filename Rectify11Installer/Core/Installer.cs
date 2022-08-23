@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Rectify11Installer.Core
 {
@@ -38,11 +39,27 @@ namespace Rectify11Installer.Core
 					File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
 					File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui));
 					string filename = patch.Mui + ".res";
-					Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") + 
-						" -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) + 
-						" -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) + 
-						" -action addskip -resource " + Path.Combine(Variables.r11Files, filename) + 
-						" -mask " + patch.mask, AppWinStyle.Hide, true, -1);
+					if (patch.mask.Contains("|"))
+					{
+						string[] str = patch.mask.Split('|');
+						foreach (string mask in str)
+						{
+							MessageBox.Show(mask);
+							Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+								" -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+								" -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+								" -action addskip -resource " + Path.Combine(Variables.r11Files, filename) +
+								" -mask " + mask, AppWinStyle.Hide, true, -1);
+						}
+					}
+					else
+					{
+						Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+							" -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+							" -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+							" -action addskip -resource " + Path.Combine(Variables.r11Files, filename) +
+							" -mask " + patch.mask, AppWinStyle.Hide, true, -1);
+					}
 				}
 			}
 		}
