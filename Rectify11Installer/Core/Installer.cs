@@ -44,7 +44,6 @@ namespace Rectify11Installer.Core
 						string[] str = patch.mask.Split('|');
 						foreach (string mask in str)
 						{
-							MessageBox.Show(mask);
 							Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
 								" -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
 								" -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
