@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
+using Rectify11Installer.Win32;
 using System;
 using System.Globalization;
 using System.IO;
@@ -128,7 +129,11 @@ namespace Rectify11Installer.Core
 					}
 				}
 			}
+			frm.InstallerProgress = "Cleaning up...";
+			Directory.Delete(Variables.r11Files, true);
+			File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 			frm.InstallerProgress = "Done";
+			NativeMethods.SetCloseButton(frm, true);
 			return Task.FromResult(true);
 
 		}
