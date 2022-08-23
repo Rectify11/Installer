@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -63,7 +64,7 @@ namespace Rectify11Installer.Core
 				}
 			}
 		}
-		public static Task<bool> Install(frmWizard frm)
+		public Task<bool> Install(frmWizard frm)
 		{
 			// set EulaAccepted value so license dialog doesn't pop up for PsExec
 			RegistryKey sysInternalKey = Registry.CurrentUser.OpenSubKey(@"Software\Sysinternals", true);
@@ -88,46 +89,55 @@ namespace Rectify11Installer.Core
 			if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
 			{
 				frm.InstallerProgress = "Extracting files...";
-				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") + 
-					" x -o" + Variables.r11Folder + 
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+					" x -o" + Variables.r11Folder +
 					" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true, -1);
 			}
-
-			// Get all patches
-			Patches patches = PatchesParser.GetAll();
-			PatchesPatch[] ok = patches.Items;
-			decimal i = 0;
-			string newhardlink;
-			foreach (PatchesPatch patch in ok)
+			if (InstallOptions.iconsList.Count > 0)
 			{
-				foreach (string items in InstallOptions.iconsList)
+
+				// Get all patches
+				Patches patches = PatchesParser.GetAll();
+				PatchesPatch[] ok = patches.Items;
+				decimal i = 0;
+				string newhardlink;
+				foreach (PatchesPatch patch in ok)
 				{
-					if (items == patch.Mui)
+					foreach (string items in InstallOptions.iconsList)
 					{
-						decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
-						frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
-						i++;
-						if (patch.HardlinkTarget.Contains("%lang%"))
+						if (items == patch.Mui)
 						{
-							newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
-							Installer.Patch(newhardlink, patch);
-						}
-						else if (patch.HardlinkTarget.Contains("mun"))
-						{
-							Installer.Patch(patch.HardlinkTarget, patch);
-						}
-						else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
-						{
-							newhardlink = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentCulture.Name));
-							Installer.Patch(newhardlink, patch);
-						}
-						else if (patch.HardlinkTarget.Contains("%winlang%"))
-						{
-							newhardlink = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentCulture.Name));
-							Installer.Patch(newhardlink, patch);
+							decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
+							frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
+							i++;
+							if (patch.HardlinkTarget.Contains("%lang%"))
+							{
+								newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
+								Installer.Patch(newhardlink, patch);
+							}
+							else if (patch.HardlinkTarget.Contains("mun"))
+							{
+								Installer.Patch(patch.HardlinkTarget, patch);
+							}
+							else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
+							{
+								newhardlink = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentCulture.Name));
+								Installer.Patch(newhardlink, patch);
+							}
+							else if (patch.HardlinkTarget.Contains("%winlang%"))
+							{
+								newhardlink = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentCulture.Name));
+								Installer.Patch(newhardlink, patch);
+							}
 						}
 					}
 				}
+
+			}
+			if (InstallOptions.InstallThemes)
+			{
+				frm.InstallerProgress = "Installing Themes";
+				Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, false, -1);
 			}
 			frm.InstallerProgress = "Cleaning up...";
 			Directory.Delete(Variables.r11Files, true);

@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using static Rectify11Installer.Win32.NativeMethods;
+using Rectify11Installer.Win32;
 
 namespace Rectify11Installer.Win32
 {
@@ -40,7 +40,7 @@ namespace Rectify11Installer.Win32
         public static void UpdateFrame(frmWizard frm, bool yes)
         {
             bool DarkMode = Theme.IsUsingDarkMode;
-            MARGINS m = new MARGINS();
+            NativeMethods.MARGINS m = new NativeMethods.MARGINS();
 
             if (DarkMode)
             {
@@ -52,14 +52,14 @@ namespace Rectify11Installer.Win32
                 m.cyBottomHeight = frm.tableLayoutPanel2.Height + 5;
             }
             if (yes)
-                _ = DwmExtendFrameIntoClientArea(frm.Handle, ref m);
+                NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref m);
             else
             {
-                MARGINS mar = new MARGINS
+                NativeMethods.MARGINS mar = new NativeMethods.MARGINS
                 {
                     cxLeftWidth = 0, cxRightWidth = 0, cyBottomHeight = 0, cyTopHeight = 0
                 };
-                _ = DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
+                NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
             }
         }
         internal enum PreferredAppMode
