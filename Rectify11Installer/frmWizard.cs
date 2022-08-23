@@ -85,7 +85,6 @@ namespace Rectify11Installer
 		#region Navigation
 		private async void Navigate(WizardPage page)
 		{
-			this.SuspendLayout();
 			headerText.Text = page.WizardHeader;
 			sideImage.BackgroundImage = page.SideImage;
 			if (page == RectifyPages.WelcomePage)
@@ -141,7 +140,6 @@ namespace Rectify11Installer
 				RectifyPages.ProgressPage.Start();
 				await Task.Run(() => Installer.Install(this));
 			}
-			this.ResumeLayout();
 		}
 		#endregion
 		#region Private Methods
