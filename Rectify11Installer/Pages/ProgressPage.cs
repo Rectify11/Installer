@@ -47,14 +47,14 @@ namespace Rectify11Installer.Pages
 		{
 			CurrentTextIndex++;
 			if (CurrentTextIndex >= Rectify11InstallerTexts.Length)
-			{
 				timer1.Stop();
+			else
+			{
+				var t = Rectify11InstallerTexts[CurrentTextIndex];
+				progressText.Text = t.Title;
+				progressInfo.Text = t.Description;
+				frmwiz.UpdateSideImage = t.Side;
 			}
-
-			var t = Rectify11InstallerTexts[CurrentTextIndex];
-			progressText.Text = t.Title;
-			progressInfo.Text = t.Description;
-			frmwiz.UpdateSideImage = t.Side;
 		}
 	}
 }

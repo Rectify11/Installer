@@ -37,7 +37,12 @@ namespace Rectify11Installer.Core
 				{
 					File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
 					File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui));
-					//Interaction.Shell()
+					string filename = patch.Mui + ".res";
+					Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") + 
+						" -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) + 
+						" -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) + 
+						" -action addskip -resource " + Path.Combine(Variables.r11Files, filename) + 
+						" -mask " + patch.mask, AppWinStyle.Hide, true, -1);
 				}
 			}
 		}
@@ -66,14 +71,15 @@ namespace Rectify11Installer.Core
 			if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
 			{
 				frm.InstallerProgress = "Extracting files...";
-				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") + " x -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true, -1);
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") + 
+					" x -o" + Variables.r11Folder + 
+					" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true, -1);
 			}
 
 			// Get all patches
 			Patches patches = PatchesParser.GetAll();
 			PatchesPatch[] ok = patches.Items;
-			int i = 1;
-			bool newpath = false;
+			decimal i = 0;
 			string newhardlink;
 			foreach (PatchesPatch patch in ok)
 			{
@@ -81,9 +87,9 @@ namespace Rectify11Installer.Core
 				{
 					if (items == patch.Mui)
 					{
-						newpath = false;
-						int number = (i / InstallOptions.iconsList.Count) * 100;
+						decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
 						frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
+						i++;
 						if (patch.HardlinkTarget.Contains("%lang%"))
 						{
 							newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
@@ -103,10 +109,10 @@ namespace Rectify11Installer.Core
 							newhardlink = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentCulture.Name));
 							Installer.Patch(newhardlink, patch);
 						}
-						i++;
 					}
 				}
 			}
+			frm.InstallerProgress = "Done";
 			return Task.FromResult(true);
 
 		}
