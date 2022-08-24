@@ -169,7 +169,7 @@
     <value>Chọn những gì để cài đặt</value>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
-    <value>Chọn giao diện yêu thích của bạn.</value>
+    <value>Chọn chủ đề yêu thích của bạn.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
     <value>Tùy chỉnh trải nghiệm của bạn</value>
@@ -229,7 +229,7 @@
     <value>Biểu tượng hệ thống</value>
   </data>
   <data name="optionThemes" xml:space="preserve">
-    <value>Giao diện</value>
+    <value>Chủ đề</value>
   </data>
   <data name="optionWallpaper" xml:space="preserve">
     <value>Hình nền của Rectify11</value>
@@ -241,7 +241,7 @@
     <value>Cài đặt Nilesoft Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>Cài đặt các giao diện</value>
+    <value>Cài đặt các chủ đề</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
     <value>Cài đặt các hình nền</value>
