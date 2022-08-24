@@ -19,7 +19,7 @@ namespace Rectify11Installer.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -227,10 +227,10 @@ namespace Rectify11Installer.Properties {
         ///
         ///&lt;Patches&gt;
         ///	&lt;!--Mun files--&gt;
-        ///	&lt;Patch Mui=&quot;accessibilitycpl.dll.mun&quot; mask=&quot;ICONGROUP,| UIFILE,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\accessibilitycpl.dll.mun&quot; /&gt;
+        ///	&lt;Patch Mui=&quot;accessibilitycpl.dll.mun&quot; mask=&quot;ICONGROUP,|UIFILE,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\accessibilitycpl.dll.mun&quot; /&gt;
         ///	&lt;Patch Mui=&quot;aclui.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\aclui.dll.mun&quot; /&gt;
         ///	&lt;Patch Mui=&quot;actioncentercpl.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;C:\Windows\SystemResources\actioncentercpl.dll.mun&quot; /&gt;
-        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun&quot; [rest of string was truncated]&quot;;.
+        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string rectify11xml {
             get {
