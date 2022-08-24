@@ -18,6 +18,8 @@ namespace Rectify11Installer.Win32
         public static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WINDOWCOMPOSITIONATTRIBDATA data);
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetProp(IntPtr hWnd, string lpString, IntPtr hData);
+        [DllImport("dwmapi.dll")]
+        internal static extern int DwmSetWindowAttribute(IntPtr hwnd, WINDOWCOMPOSITIONATTRIB dwAttribute, ref int pvAttribute, int cbAttribute);
 
         public static void RefreshTitleBarColor(IntPtr hWnd)
         {
@@ -39,6 +41,19 @@ namespace Rectify11Installer.Win32
         }
         public static void UpdateFrame(frmWizard frm, bool yes)
         {
+            bool extend = Theme.IsUsingDarkMode;
+
+            if (Environment.OSVersion.Version.Build >= 22523)
+            {
+                int micaValue = 0x02;
+                DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
+            }
+
+            else
+            {
+                int trueValue = 0x01;
+                DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
+            }
             bool DarkMode = Theme.IsUsingDarkMode;
             NativeMethods.MARGINS m = new NativeMethods.MARGINS();
 
@@ -99,7 +114,9 @@ namespace Rectify11Installer.Win32
             WCA_EXCLUDED_FROM_DDA = 24,
             WCA_PASSIVEUPDATEMODE = 25,
             WCA_USEDARKMODECOLORS = 26,
-            WCA_LAST = 27
+            WCA_LAST = 27,
+            DWMWA_MICA_EFFECT = 1029,
+            DWMWA_SYSTEMBACKDROP_TYPE = 38
         };
         [StructLayout(LayoutKind.Sequential)]
         public struct WINDOWCOMPOSITIONATTRIBDATA

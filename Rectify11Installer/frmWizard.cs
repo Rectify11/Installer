@@ -73,11 +73,13 @@ namespace Rectify11Installer
 			{
 				BackColor = Color.Black;
 				ForeColor = Color.White;
+                headerText.ForeColor = Color.White;
 			}
 			else
 			{
 				BackColor = Color.White;
 				ForeColor = Color.Black;
+                headerText.ForeColor = Color.Black;
 			}
 
 			wlcmPage.Controls.Add(RectifyPages.WelcomePage);
@@ -230,6 +232,7 @@ namespace Rectify11Installer
 				case UserPreferenceCategory.General:
 					{
 						Theme.InitTheme();
+                        DarkMode.RefreshTitleBarColor(Handle);
 						if (Theme.IsUsingDarkMode)
 						{
 							BackColor = Color.Black;
@@ -240,7 +243,6 @@ namespace Rectify11Installer
 							BackColor = Color.White;
 							ForeColor = Color.Black;
 						}
-						DarkMode.RefreshTitleBarColor(Handle);
 					}
 					break;
 			}
