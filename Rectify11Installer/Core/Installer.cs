@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -90,14 +91,14 @@ namespace Rectify11Installer.Core
                                 " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -action " + "delete" +
-                                " -mask " + mask, AppWinStyle.Hide, true, -1);
+                                " -mask " + mask, AppWinStyle.Hide, true);
 
                             Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
                                 " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -action " + "addskip" +
                                 " -resource " + Path.Combine(Variables.r11Files, filename) +
-                                " -mask " + mask, AppWinStyle.Hide, true, -1);
+                                " -mask " + mask, AppWinStyle.Hide, true);
                         }
                     }
                     else
@@ -106,13 +107,13 @@ namespace Rectify11Installer.Core
                                 " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -action " + "delete" +
-                                " -mask " + patch.mask, AppWinStyle.Hide, true, -1);
+                                " -mask " + patch.mask, AppWinStyle.Hide, true);
                         Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
                                 " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
                                 " -action " + "addskip" +
                                 " -resource " + Path.Combine(Variables.r11Files, filename) +
-                                " -mask " + patch.mask, AppWinStyle.Hide, true, -1);
+                                " -mask " + patch.mask, AppWinStyle.Hide, true);
                     }
                 }
             }
@@ -134,6 +135,8 @@ namespace Rectify11Installer.Core
 
             if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
                 Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
+
+            File.Copy(Path.Combine(Application.StartupPath, "Rectify11Installer.exe"), Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
 
             if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
             {
@@ -185,15 +188,39 @@ namespace Rectify11Installer.Core
             if (InstallOptions.InstallThemes)
             {
                 frm.InstallerProgress = "Installing Themes";
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true, -1));
+                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true));
             }
+            AddToControlPanel();
             frm.InstallerProgress = "Cleaning up...";
             Directory.Delete(Variables.r11Files, true);
             File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
             frm.InstallerProgress = "Done";
             NativeMethods.SetCloseButton(frm, true);
             return true;
-
+        }
+        private bool AddToControlPanel()
+        {
+            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true);
+            if (key != null)
+            {
+                var r11key = key.CreateSubKey("Rectify11", true);
+                if (r11key != null)
+                {
+                    r11key.SetValue("DisplayName", "Rectify11", RegistryValueKind.String);
+                    r11key.SetValue("DisplayVersion", Assembly.GetEntryAssembly().GetName().Version.ToString(), RegistryValueKind.String);
+                    r11key.SetValue("DisplayIcon", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("InstallLocation", Variables.r11Folder, RegistryValueKind.String);
+                    r11key.SetValue("UninstallString", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
+                    r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly().GetName().Version.Major.ToString(), RegistryValueKind.String);
+                    r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly().GetName().Version.Minor.ToString(), RegistryValueKind.String);
+                    r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
+                    r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
         private static void TakeFullOwnership(string file)
         {
