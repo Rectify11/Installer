@@ -27,6 +27,7 @@ namespace Rectify11Installer.Core
             MOVEFILE_CREATE_HARDLINK = 0x00000010,
             MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
         }
+        // eh two functions whatever cant be bothered to make it single.
         private static void PatchMui(string file, PatchesPatch patch)
         {
             if (File.Exists(file))
@@ -117,7 +118,7 @@ namespace Rectify11Installer.Core
             }
         }
 
-        public Task<bool> Install(frmWizard frm)
+        public async Task<bool> Install(frmWizard frm)
         {
             if (!File.Exists(Path.Combine(Variables.r11Folder, "PaExec64.exe")))
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PaExec64.exe"), Properties.Resources.PsExec64);
@@ -184,14 +185,14 @@ namespace Rectify11Installer.Core
             if (InstallOptions.InstallThemes)
             {
                 frm.InstallerProgress = "Installing Themes";
-                Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true, -1);
+                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true, -1));
             }
             frm.InstallerProgress = "Cleaning up...";
             Directory.Delete(Variables.r11Files, true);
             File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
             frm.InstallerProgress = "Done";
             NativeMethods.SetCloseButton(frm, true);
-            return Task.FromResult(true);
+            return true;
 
         }
         private static void TakeFullOwnership(string file)
