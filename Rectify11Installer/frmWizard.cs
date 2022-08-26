@@ -38,6 +38,7 @@ namespace Rectify11Installer
                 DarkMode.UpdateFrame(this, true);
 			Navigate(RectifyPages.WelcomePage);
 			Shown += FrmWizard_Shown;
+            FormClosing += frmWizard_FormClosing;
 			Application.Idle += Application_Idle;
 		}
 
@@ -139,7 +140,8 @@ namespace Rectify11Installer
 				tableLayoutPanel2.Visible = false;
 				versionLabel.Visible = false;
 				Helper.FinalizeIRectify11();
-				DarkMode.UpdateFrame(this, false);
+                if (!Theme.IsUsingDarkMode)
+                    DarkMode.UpdateFrame(this, false);
 				pictureBox1.Visible = true;
 				progressLabel.Visible = true;
 				RectifyPages.ProgressPage.Start();
@@ -158,7 +160,10 @@ namespace Rectify11Installer
 			if (ok == DialogResult.Yes)
 				Application.Exit();
 		}
-
+        private void frmWizard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemEvents.UserPreferenceChanged -= new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
+        }
 		private void NextButton_Click(object sender, EventArgs e)
 		{
 			if (navPane.SelectedTab == eulPage)

@@ -11,6 +11,16 @@ namespace Rectify11Installer.Controls
         [DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
         private extern static int SetWindowTheme(IntPtr hWnd, string pszSubAppName,
                                                 string pszSubIdList);
+        // hack to disable artifacts
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; //WS_EX_COMPOSITED
+                return cp;
+            }
+        }
         public DarkAwareTreeView()
         {
             Theme.OnThemeChanged += delegate (object sender, EventArgs e)

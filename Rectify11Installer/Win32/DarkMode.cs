@@ -46,7 +46,11 @@ namespace Rectify11Installer.Win32
             if (Environment.OSVersion.Version.Build >= 22523)
             {
                 int micaValue = 0x02;
-                DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
+                int tabbedvalue = 0x04;
+                if (extend)
+                    DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
+                else
+                    DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref tabbedvalue, Marshal.SizeOf(typeof(int)));
             }
 
             else
