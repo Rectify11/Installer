@@ -156,12 +156,15 @@ namespace Rectify11Installer
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
 			// will be replaced with taskdialog.
-			DialogResult ok = MessageBox.Show("Are you sure you want to cancel the installation?", Strings.Rectify11.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult ok = MessageBox.Show(resources.GetString("exitText"), resources.GetString("Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 			if (ok == DialogResult.Yes)
 				Application.Exit();
 		}
         private void frmWizard_FormClosing(object sender, FormClosingEventArgs e)
         {
+            DialogResult ok = MessageBox.Show(resources.GetString("exitText"), resources.GetString("Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (ok == DialogResult.No)
+                e.Cancel = true;
             SystemEvents.UserPreferenceChanged -= new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
         }
 		private void NextButton_Click(object sender, EventArgs e)
