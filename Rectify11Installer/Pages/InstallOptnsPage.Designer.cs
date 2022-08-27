@@ -31,7 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Basic");
 			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Advanced");
-			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode(resources.GetString("optionIcons"), new System.Windows.Forms.TreeNode[]{
+			treeNode1 = new System.Windows.Forms.TreeNode(resources.GetString("optionIcons"), new System.Windows.Forms.TreeNode[]{
 			treeNode8,
 			treeNode9});
 			treeNode7 = new System.Windows.Forms.TreeNode(resources.GetString("optionThemes"));
@@ -127,5 +127,6 @@
 		private Controls.DarkAwareLabel label1;
 		private Controls.DarkAwareTreeView treeView1;
 		public System.Windows.Forms.TreeNode treeNode7;
+        public System.Windows.Forms.TreeNode treeNode1;
 	}
 }

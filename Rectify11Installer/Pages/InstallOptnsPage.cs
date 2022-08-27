@@ -56,8 +56,10 @@ namespace Rectify11Installer.Pages
                 }
                 if (basicNode.Nodes.Count == 0)
                     treeView1.Nodes.Remove(basicNode);
-                else if (advNode.Nodes.Count == 0)
+                if (advNode.Nodes.Count == 0)
                     treeView1.Nodes.Remove(advNode);
+                if(treeNode1.Nodes.Count == 0)
+                    treeView1.Nodes.Remove(treeNode1);
                 idleinit = true;
             }
         }
