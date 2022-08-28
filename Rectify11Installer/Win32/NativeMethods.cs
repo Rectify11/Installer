@@ -84,7 +84,6 @@ namespace Rectify11Installer.Win32
             public int cyTopHeight;      // height of top border that retains its size
             public int cyBottomHeight;   // height of bottom border that retains its size
         };
-
 		public static bool SetCloseButton(frmWizard frm, bool enable)
 		{
 			IntPtr hMenu = NativeMethods.GetSystemMenu(frm.Handle, false);
