@@ -3,6 +3,7 @@
 ################################################################################
 
 .vs/
+ipch/
 Rectify11Installer/bin/
 Rectify11Installer/obj/
 Rectify11.Phase2/bin/
