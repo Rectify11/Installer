@@ -79,9 +79,8 @@
     <ApplicationIcon>r11.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AeroWizard, Version=2.3.1.0, Culture=neutral, PublicKeyToken=915e74f5d64b8f37, processorArchitecture=MSIL">
-      <HintPath>..\packages\AeroWizard.2.3.1\lib\net45\AeroWizard.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AeroWizard">
+      <HintPath>.\AeroWizard.dll</HintPath>
     </Reference>
     <Reference Include="libmsstyle, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -94,9 +93,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TaskDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KPreisser.UI.TaskDialog.1.0.0\lib\net472\TaskDialog.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="TaskDialog">
+      <HintPath>.\TaskDialog.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

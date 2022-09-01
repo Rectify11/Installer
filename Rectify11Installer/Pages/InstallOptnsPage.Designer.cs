@@ -56,7 +56,7 @@
 			this.groupBox1.Location = new System.Drawing.Point(0, 48);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Forward;
-			this.groupBox1.Size = new System.Drawing.Size(332, 294);
+			this.groupBox1.Size = new System.Drawing.Size(347, 294);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.Text = "groupBox1";
 			// 
@@ -102,7 +102,7 @@
 			treeNode1,
 			treeNode7,
 			treeNode6});
-			this.treeView1.Size = new System.Drawing.Size(327, 270);
+			this.treeView1.Size = new System.Drawing.Size(342, 270);
 			this.treeView1.TabIndex = 2;
 			this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
 			// 

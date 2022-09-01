@@ -27,30 +27,31 @@ namespace Rectify11Installer.Pages
                 var advNode = treeView1.Nodes[0].Nodes[1];
                 foreach (PatchesPatch patch in ok)
                 {
-                    if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui)))
+                    if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
                     {
                         if (patch.HardlinkTarget.Contains("%lang%"))
                         {
                             string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
                             if (File.Exists(newpath))
-                                advNode.Nodes.Add(patch.Mui);
+                                advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
                         else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
                         {
                             string newpath = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentCulture.Name));
                             if (File.Exists(newpath))
-                                advNode.Nodes.Add(patch.Mui);
+                                advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
                         else if (patch.HardlinkTarget.Contains("%winlang%"))
                         {
                             string newpath = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentCulture.Name));
                             if (File.Exists(newpath))
-                                advNode.Nodes.Add(patch.Mui);
+                                advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
                         else if (patch.Mui.Contains("mun"))
                         {
-                            if (File.Exists(patch.HardlinkTarget))
-                                basicNode.Nodes.Add(patch.Mui);
+                            string newpath = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
+                            if (File.Exists(newpath))
+                                basicNode.Nodes.Add(patch.Mui.Replace(".mun", ""));
                         }
                     }
                 }

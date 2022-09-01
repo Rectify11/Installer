@@ -34,13 +34,11 @@ namespace Rectify11Installer.Core
         {
             if (File.Exists(file))
             {
-                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
                 {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui));
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
                 }
-                File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
-                File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui));
                 string filename = patch.Mui + ".res";
                 if (patch.mask.Contains("|"))
                 {
@@ -48,8 +46,8 @@ namespace Rectify11Installer.Core
                     foreach (string mask in str)
                     {
                         Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
                             " -resource " + Path.Combine(Variables.r11Files, filename) +
                             " -mask " + mask, AppWinStyle.Hide, true, -1);
@@ -58,8 +56,8 @@ namespace Rectify11Installer.Core
                 else
                 {
                     Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
                             " -resource " + Path.Combine(Variables.r11Files, filename) +
                             " -mask " + patch.mask, AppWinStyle.Hide, true, -1);
@@ -70,13 +68,11 @@ namespace Rectify11Installer.Core
         {
             if (File.Exists(file))
             {
-                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
                 {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", patch.Mui));
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui));
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
                 }
-                File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui, patch.Mui));
-                File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui));
                 string filename = patch.Mui + ".res";
                 if (patch.mask.Contains("|"))
                 {
@@ -84,14 +80,14 @@ namespace Rectify11Installer.Core
                     foreach (string mask in str)
                     {
                         Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "delete" +
                             " -mask " + mask, AppWinStyle.Hide, true);
 
                         Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
                             " -resource " + Path.Combine(Variables.r11Files, filename) +
                             " -mask " + mask, AppWinStyle.Hide, true);
@@ -100,13 +96,13 @@ namespace Rectify11Installer.Core
                 else
                 {
                     Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "delete" +
                             " -mask " + patch.mask, AppWinStyle.Hide, true);
                     Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui, patch.Mui) +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
                             " -resource " + Path.Combine(Variables.r11Files, filename) +
                             " -mask " + patch.mask, AppWinStyle.Hide, true);
@@ -116,9 +112,10 @@ namespace Rectify11Installer.Core
 
         public async Task<bool> Install(frmWizard frm)
         {
+            /*
             if (!File.Exists(Path.Combine(Variables.r11Folder, "PaExec64.exe")))
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PaExec64.exe"), Properties.Resources.PsExec64);
-
+            */
             if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
 
@@ -137,7 +134,7 @@ namespace Rectify11Installer.Core
             {
                 frm.InstallerProgress = "Extracting files...";
                 Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                    " x -o" + Variables.r11Folder +
+                    " x -o" + Path.Combine(Variables.r11Folder, "files") +
                     " " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true, -1);
             }
             if (InstallOptions.iconsList.Count > 0)
@@ -157,7 +154,7 @@ namespace Rectify11Installer.Core
                         {
                             decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
                             frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
-                            filelist.Add(patch.Mui);
+                            filelist.Add(patch.HardlinkTarget);
                             if (patch.HardlinkTarget.Contains("%lang%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
@@ -165,7 +162,8 @@ namespace Rectify11Installer.Core
                             }
                             else if (patch.HardlinkTarget.Contains("mun"))
                             {
-                                Installer.PatchMun(patch.HardlinkTarget, patch);
+                                newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
+                                Installer.PatchMun(newhardlink, patch);
                             }
                             else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
                             {
@@ -187,6 +185,7 @@ namespace Rectify11Installer.Core
                     reg.SetValue("PendingFiles", filelist.ToArray());
                     reg.SetValue("Language", CultureInfo.CurrentCulture.Name);
                 }
+                reg.Close();
             }
             if (InstallOptions.InstallThemes)
             {
