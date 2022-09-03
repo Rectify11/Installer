@@ -1,4 +1,5 @@
 ﻿
+using System.Windows.Forms;
 namespace Rectify11Installer.Pages
 {
     public partial class ThemeChoicePage : WizardPage
@@ -6,24 +7,40 @@ namespace Rectify11Installer.Pages
         public ThemeChoicePage()
         {
             InitializeComponent();
-            lightPreview.Click += LightPreview_Click;
-            darkPreview.Click += DarkPreview_Click;
-            blackPreview.Click += BlackPreview_Click;
+            System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
+            if (Theme.IsUsingDarkMode)
+            {
+                themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.blackPreview;
+                themeSel.SelectedIndex = 2;
+            }
+            else
+            {
+                themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
+                themeSel.SelectedIndex = 0;
+            }
+
+            this.themeSel.SelectedIndexChanged += themeSel_SelectedIndexChanged;
         }
 
-        private void BlackPreview_Click(object sender, System.EventArgs e)
+        void themeSel_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            blackRadio.Checked = true;
-        }
-
-        private void DarkPreview_Click(object sender, System.EventArgs e)
-        {
-            darkRadio.Checked = true;
-        }
-
-        private void LightPreview_Click(object sender, System.EventArgs e)
-        {
-            lightRadio.Checked = true;
+            ComboBox comboBox = (ComboBox)sender;
+            int val = comboBox.SelectedIndex;
+            switch (val)
+            {
+                case 0:
+                    themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
+                    break;
+                case 1:
+                    themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;
+                    break;
+                case 2:
+                    themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.blackPreview;
+                    break;
+                default:
+                    themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
+                    break;
+            }
         }
     }
 }
