@@ -150,14 +150,14 @@ namespace Rectify11Installer.Core
                 {
                     foreach (string items in InstallOptions.iconsList)
                     {
-                        if (items == patch.Mui)
+                        if (patch.Mui.Contains(items))
                         {
                             decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
                             frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
                             filelist.Add(patch.HardlinkTarget);
                             if (patch.HardlinkTarget.Contains("%lang%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
+                                newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
                                 Installer.PatchMui(newhardlink, patch);
                             }
                             else if (patch.HardlinkTarget.Contains("mun"))
@@ -167,12 +167,12 @@ namespace Rectify11Installer.Core
                             }
                             else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentCulture.Name));
+                                newhardlink = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentUICulture.Name));
                                 Installer.PatchMui(newhardlink, patch);
                             }
                             else if (patch.HardlinkTarget.Contains("%winlang%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentCulture.Name));
+                                newhardlink = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
                                 Installer.PatchMui(newhardlink, patch);
                             }
                             i++;
@@ -183,7 +183,7 @@ namespace Rectify11Installer.Core
                 if (reg != null)
                 {
                     reg.SetValue("PendingFiles", filelist.ToArray());
-                    reg.SetValue("Language", CultureInfo.CurrentCulture.Name);
+                    reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
                 }
                 reg.Close();
             }

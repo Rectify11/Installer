@@ -28,7 +28,7 @@ namespace Rectify11Installer
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
-            if (System.Globalization.CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+            if (System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
             {
                 RightToLeftLayout = true;
                 RightToLeft = RightToLeft.Yes;

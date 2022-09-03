@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,26 @@ namespace Rectify11.Phase2
             {
                 foreach (string regFile in pendingFiles)
                 {
-                    if (String.Equals(Path.GetFileName(file), regFile))
+                    if (regFile.Contains(Path.GetFileName(file)))
                     {
-                        Console.WriteLine(file);
+                        string newval = "";
+                        if (regFile.Contains("%lang%"))
+                        {
+                            newval = regFile.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                        }
+                        else if (regFile.Contains("mun"))
+                        {
+                            newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
+                        }
+                        else if (regFile.Contains("%basebrdlang%"))
+                        {
+                            newval = regFile.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentUICulture.Name));
+                        }
+                        else if (regFile.Contains("%winlang%"))
+                        {
+                            newval = regFile.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+                        }
+                        Console.WriteLine(newval);
                     }
                 }
             }
@@ -36,6 +54,7 @@ namespace Rectify11.Phase2
         public static string windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
         public static string r11Folder = System.IO.Path.Combine(windir, "Rectify11");
         public static string r11Files = System.IO.Path.Combine(r11Folder, "files");
+        public static string sysresdir = System.IO.Path.Combine(windir, "SystemResources");
         public static string sys32Folder = Environment.SystemDirectory;
         public static string brandingFolder = System.IO.Path.Combine(windir, "Branding");
     }

@@ -39,7 +39,7 @@ namespace Rectify11Installer
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
-			Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentUICulture;
+			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
 			Application.Run(new frmWizard());
 		}
 	}

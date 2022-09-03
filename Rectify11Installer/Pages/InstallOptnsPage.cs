@@ -31,19 +31,19 @@ namespace Rectify11Installer.Pages
                     {
                         if (patch.HardlinkTarget.Contains("%lang%"))
                         {
-                            string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentCulture.Name));
+                            string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
                         else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
                         {
-                            string newpath = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentCulture.Name));
+                            string newpath = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentUICulture.Name));
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
                         else if (patch.HardlinkTarget.Contains("%winlang%"))
                         {
-                            string newpath = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentCulture.Name));
+                            string newpath = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
