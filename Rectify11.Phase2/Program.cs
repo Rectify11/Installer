@@ -42,7 +42,19 @@ namespace Rectify11.Phase2
                         {
                             newval = regFile.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
                         }
+
+                        string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(newval)) + Path.GetExtension(newval);
+                        string final = Path.GetFileName(newval.Replace(extension, "") + "_original" + extension);
+                        Console.WriteLine();
                         Console.WriteLine(newval);
+                        Console.Write("Original name: ");
+                        Console.WriteLine(Path.GetFileName(newval));
+                        Console.Write("New name: ");
+                        Console.WriteLine(final);
+                        Console.Write("Final path: ");
+                        Console.WriteLine(Path.Combine(Path.GetDirectoryName(newval), final));
+
+                        //File.Move(newval, 
                     }
                 }
             }

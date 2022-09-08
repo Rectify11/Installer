@@ -53,7 +53,7 @@ namespace Rectify11Installer.Controls
             this.Location = new Point(3, 28);
             this.Size = new Size(347, 294);
             this.SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
-            this.BackColor = Color.Transparent;
+            this.BackColor = Theme.IsUsingDarkMode ? Color.Black : Color.White;
             SetState(ThemeParts.Normal);
             this.MouseUp += NavigationButton_MouseUp;
 

@@ -94,7 +94,7 @@ namespace Rectify11Installer.Controls
             this.MouseUp += new MouseEventHandler(TheMouseUp);
             base.Click += new EventHandler(TheMouseClick);
 
-            BackColor = Color.Transparent;
+            BackColor = Theme.IsUsingDarkMode ? Color.Black : Color.White;
 
             pictureBox1.BackColor = Color.Transparent;
             lblTitle.BackColor = Color.Transparent;
