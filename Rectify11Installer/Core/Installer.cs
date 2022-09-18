@@ -39,12 +39,18 @@ namespace Rectify11Installer.Core
                     File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui));
                     File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
                 }
-                string filename = patch.Mui + ".res";
+                string filename = patch.Mui + ".mui.res";
                 if (patch.mask.Contains("|"))
                 {
                     string[] str = patch.mask.Split('|');
                     foreach (string mask in str)
                     {
+                        Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -action " + "delete" +
+                            " -mask " + mask, AppWinStyle.Hide, true, -1);
+
                         Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
@@ -55,6 +61,12 @@ namespace Rectify11Installer.Core
                 }
                 else
                 {
+                    Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                        " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                        " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                        " -action " + "delete" +
+                        " -mask " + patch.mask, AppWinStyle.Hide, true, -1);
+
                     Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
@@ -155,9 +167,9 @@ namespace Rectify11Installer.Core
                             decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
                             frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
                             filelist.Add(patch.HardlinkTarget);
-                            if (patch.HardlinkTarget.Contains("%lang%"))
+                            if (patch.HardlinkTarget.Contains("%sys32%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                                newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
                                 Installer.PatchMui(newhardlink, patch);
                             }
                             else if (patch.HardlinkTarget.Contains("mun"))
@@ -165,14 +177,14 @@ namespace Rectify11Installer.Core
                                 newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
                                 Installer.PatchMun(newhardlink, patch);
                             }
-                            else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
+                            else if (patch.HardlinkTarget.Contains("%basebrd%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentUICulture.Name));
+                                newhardlink = patch.HardlinkTarget.Replace(@"%basebrd%", Path.Combine(Variables.brandingFolder, "Basebrd"));
                                 Installer.PatchMui(newhardlink, patch);
                             }
-                            else if (patch.HardlinkTarget.Contains("%winlang%"))
+                            else if (patch.HardlinkTarget.Contains("%windir%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+                                newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
                                 Installer.PatchMui(newhardlink, patch);
                             }
                             i++;

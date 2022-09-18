@@ -87,6 +87,12 @@
       <HintPath>.\libmsstyle.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>.\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>.\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Design" />
@@ -122,6 +128,7 @@
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Core\BitlockerHelper.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\Installer.cs" />
     <Compile Include="Core\InstallStatus.cs" />

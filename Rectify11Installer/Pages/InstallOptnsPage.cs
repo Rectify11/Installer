@@ -29,21 +29,21 @@ namespace Rectify11Installer.Pages
                 {
                     if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
                     {
-                        if (patch.HardlinkTarget.Contains("%lang%"))
+                        if (patch.HardlinkTarget.Contains("%sys32%"))
                         {
-                            string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                            string newpath = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
-                        else if (patch.HardlinkTarget.Contains("%basebrdlang%"))
+                        else if (patch.HardlinkTarget.Contains("%basebrd%"))
                         {
-                            string newpath = patch.HardlinkTarget.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentUICulture.Name));
+                            string newpath = patch.HardlinkTarget.Replace(@"%basebrd%", Path.Combine(Variables.brandingFolder, "Basebrd"));
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
-                        else if (patch.HardlinkTarget.Contains("%winlang%"))
+                        else if (patch.HardlinkTarget.Contains("%windir%"))
                         {
-                            string newpath = patch.HardlinkTarget.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+                            string newpath = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
