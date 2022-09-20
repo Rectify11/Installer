@@ -163,13 +163,13 @@
   <data name="light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\light.msstyles;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="files7z" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\files.7z;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="_7za" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7za.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rectify11xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Core\rectify11.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="files7z" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\files.7z;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

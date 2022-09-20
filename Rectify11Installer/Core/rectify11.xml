@@ -194,7 +194,7 @@
 	<Patch Mui="perfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\perfmon.exe" />
 	<Patch Mui="pmcsnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pmcsnap.dll" />
   <Patch Mui="powercfg.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\powercfg.exe" />
-  <Patch Mui="powrprof.dll" mask="ICONGROUP," HardlinkTarget="%lang%\powrprof.dll.mui" />
+  <Patch Mui="powrprof.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\powrprof.dll.mui" />
 	<Patch Mui="PresentationSettings.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\PresentationSettings.exe" />
 	<Patch Mui="PrintIsolationHost.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\PrintIsolationHost.exe" />
 	<Patch Mui="printui.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\printui.exe" />
