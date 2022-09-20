@@ -39,18 +39,12 @@ namespace Rectify11Installer.Core
                     File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui));
                     File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
                 }
-                string filename = patch.Mui + ".mui.res";
+                string filename = patch.Mui + ".res";
                 if (patch.mask.Contains("|"))
                 {
                     string[] str = patch.mask.Split('|');
                     foreach (string mask in str)
                     {
-                        Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -action " + "delete" +
-                            " -mask " + mask, AppWinStyle.Hide, true, -1);
-
                         Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
@@ -61,12 +55,6 @@ namespace Rectify11Installer.Core
                 }
                 else
                 {
-                    Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
-                        " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                        " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                        " -action " + "delete" +
-                        " -mask " + patch.mask, AppWinStyle.Hide, true, -1);
-
                     Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
@@ -170,6 +158,16 @@ namespace Rectify11Installer.Core
                             if (patch.HardlinkTarget.Contains("%sys32%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
+                                Installer.PatchMun(newhardlink, patch);
+                            }
+                            else if (patch.HardlinkTarget.Contains("%lang%"))
+                            {
+                                newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                                Installer.PatchMui(newhardlink, patch);
+                            }
+                            else if (patch.HardlinkTarget.Contains("%en-US%"))
+                            {
+                                newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
                                 Installer.PatchMui(newhardlink, patch);
                             }
                             else if (patch.HardlinkTarget.Contains("mun"))
@@ -180,12 +178,12 @@ namespace Rectify11Installer.Core
                             else if (patch.HardlinkTarget.Contains("%basebrd%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%basebrd%", Path.Combine(Variables.brandingFolder, "Basebrd"));
-                                Installer.PatchMui(newhardlink, patch);
+                                Installer.PatchMun(newhardlink, patch);
                             }
                             else if (patch.HardlinkTarget.Contains("%windir%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-                                Installer.PatchMui(newhardlink, patch);
+                                Installer.PatchMun(newhardlink, patch);
                             }
                             i++;
                         }

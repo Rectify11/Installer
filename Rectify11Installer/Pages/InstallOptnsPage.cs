@@ -33,19 +33,31 @@ namespace Rectify11Installer.Pages
                         {
                             string newpath = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
                             if (File.Exists(newpath))
+                                advNode.Nodes.Add(patch.Mui);
+                        }
+                        else if (patch.HardlinkTarget.Contains("%lang%"))
+                        {
+                            string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                            if (File.Exists(newpath))
+                                advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                        }
+                        else if (patch.HardlinkTarget.Contains("%en-US%"))
+                        {
+                            string newpath = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+                            if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                         }
                         else if (patch.HardlinkTarget.Contains("%basebrd%"))
                         {
                             string newpath = patch.HardlinkTarget.Replace(@"%basebrd%", Path.Combine(Variables.brandingFolder, "Basebrd"));
                             if (File.Exists(newpath))
-                                advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                                advNode.Nodes.Add(patch.Mui);
                         }
                         else if (patch.HardlinkTarget.Contains("%windir%"))
                         {
                             string newpath = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
                             if (File.Exists(newpath))
-                                advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                                advNode.Nodes.Add(patch.Mui);
                         }
                         else if (patch.Mui.Contains("mun"))
                         {
@@ -59,7 +71,7 @@ namespace Rectify11Installer.Pages
                     treeView1.Nodes.Remove(basicNode);
                 if (advNode.Nodes.Count == 0)
                     treeView1.Nodes.Remove(advNode);
-                if(treeNode1.Nodes.Count == 0)
+                if (treeNode1.Nodes.Count == 0)
                     treeView1.Nodes.Remove(treeNode1);
                 idleinit = true;
             }
