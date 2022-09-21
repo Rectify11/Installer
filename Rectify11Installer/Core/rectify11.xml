@@ -63,7 +63,8 @@
 	<Patch Mui="powercpl.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\powercpl.dll.mun" />
 	<Patch Mui="printui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\printui.dll.mun" />
 	<Patch Mui="prnfldr.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\prnfldr.dll.mun" />
-	<Patch Mui="rasdlg.dll.mun" mask="ICONGROUP,|BITMAP" HardlinkTarget="%sysresdir%\rasdlg.dll.mun" />
+  <Patch Mui="psr.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\psr.exe.mun" />
+  <Patch Mui="rasdlg.dll.mun" mask="ICONGROUP,|BITMAP" HardlinkTarget="%sysresdir%\rasdlg.dll.mun" />
 	<Patch Mui="rasgcw.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\rasgcw.dll.mun" />
 	<Patch Mui="rasplap.dll.mun" mask="BITMAP," HardlinkTarget="%sysresdir%\rasplap.dll.mun" />
 	<Patch Mui="rastls.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\rastls.dll.mun" />
@@ -110,7 +111,8 @@
 
 	<!--Branding-->
 	<Patch Mui="basebrd.dll" mask="IMAGE," HardlinkTarget="%basebrd%\basebrd.dll" />
-	
+  <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%windir%\branding\shellbrd\shellbrd.dll" />
+
   <Patch Mui="cabview.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cabview.dll" />
 	<Patch Mui="calc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\calc.exe" />
   <Patch Mui="cleanmgr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cleanmgr.exe" />
@@ -189,6 +191,7 @@
   <Patch Mui="netplwiz.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\netplwiz.dll" />
   <Patch Mui="netplwiz.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\netplwiz.exe" />
 	<Patch Mui="newdev.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\newdev.exe" />
+  <Patch Mui="notepad.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\notepad.exe" />
 	<Patch Mui="nslookup.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\nslookup.exe" />
 	<Patch Mui="objsel.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\objsel.dll" />
 	<Patch Mui="occache.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\occache.dll" />
@@ -269,7 +272,6 @@
 	<Patch Mui="wusa.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wusa.exe" />
 	<Patch Mui="xwizards.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizards.dll" />
 	<Patch Mui="xwizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizard.exe" />
-  
   <!--TODO: fix-->
 	<!--<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />-->
 	<!--<Patch Mui="fhcpl.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\fhcpl.dll.mun" />-->
