@@ -114,7 +114,8 @@
   <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%windir%\branding\shellbrd\shellbrd.dll" />
 
   <Patch Mui="cabview.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cabview.dll" />
-	<Patch Mui="calc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\calc.exe" />
+  <Patch Mui="CastingShellExt.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\CastingShellExt.dll" />
+  <Patch Mui="calc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\calc.exe" />
   <Patch Mui="cleanmgr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cleanmgr.exe" />
   <Patch Mui="cliconfg.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cliconfg.exe" />
   <Patch Mui="cmd.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmd.exe" />
