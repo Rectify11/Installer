@@ -94,7 +94,12 @@
 	<Patch Mui="wscui.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wscui.cpl.mun" />
 	<Patch Mui="wsecedit.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wsecedit.dll.mun" />
   <Patch Mui="wuapi.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wuapi.dll.mun" />
-  <!--Dll files-->
+
+  <!--Branding-->
+  <Patch Mui="basebrd.dll" mask="IMAGE," HardlinkTarget="%basebrd%\basebrd.dll" />
+  <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%windir%\branding\shellbrd\shellbrd.dll" />
+
+  <!--Dll and Exe files-->
   <Patch Mui="AdmTmpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
   <Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
   <Patch Mui="ApproveChildRequest.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ApproveChildRequest.exe" />
@@ -108,14 +113,10 @@
   <Patch Mui="bdeunlock.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\bdeunlock.exe.mui" />
   <Patch Mui="BitLockerWizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BitLockerWizard.exe" />
   <Patch Mui="BitLockerWizardElev.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BitLockerWizardElev.exe" />
-
-	<!--Branding-->
-	<Patch Mui="basebrd.dll" mask="IMAGE," HardlinkTarget="%basebrd%\basebrd.dll" />
-  <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%windir%\branding\shellbrd\shellbrd.dll" />
-
   <Patch Mui="cabview.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cabview.dll" />
   <Patch Mui="CastingShellExt.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\CastingShellExt.dll" />
   <Patch Mui="calc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\calc.exe" />
+  <Patch Mui="cewmdm.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cewmdm.dll" />
   <Patch Mui="cleanmgr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cleanmgr.exe" />
   <Patch Mui="cliconfg.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cliconfg.exe" />
   <Patch Mui="cmd.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmd.exe" />
