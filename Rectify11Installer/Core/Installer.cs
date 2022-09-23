@@ -175,11 +175,28 @@ namespace Rectify11Installer.Core
                                 newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
                                 Installer.PatchMun(newhardlink, patch);
                             }
+                            // Special
                             else if (patch.HardlinkTarget.Contains("%basebrd%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%basebrd%", Path.Combine(Variables.brandingFolder, "Basebrd"));
                                 Installer.PatchMun(newhardlink, patch);
                             }
+                            else if (patch.HardlinkTarget.Contains("%shellbrd%"))
+                            {
+                                newhardlink = patch.HardlinkTarget.Replace(@"%shellbrd%", Path.Combine(Variables.brandingFolder, "Shellbrd"));
+                                Installer.PatchMun(newhardlink, patch);
+                            }
+                            else if (patch.HardlinkTarget.Contains("%wmp%"))
+                            {
+                                newhardlink = patch.HardlinkTarget.Replace(@"%wmp%", Variables.wmpfldr);
+                                Installer.PatchMun(newhardlink, patch);
+                            }
+                            else if (patch.HardlinkTarget.Contains("%wordpad%"))
+                            {
+                                newhardlink = patch.HardlinkTarget.Replace(@"%wordpad%", Variables.wrdpdir);
+                                Installer.PatchMun(newhardlink, patch);
+                            } // Special over
+
                             else if (patch.HardlinkTarget.Contains("%windir%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);

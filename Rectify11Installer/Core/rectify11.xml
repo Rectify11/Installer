@@ -98,7 +98,7 @@
 
   <!--Branding-->
   <Patch Mui="basebrd.dll" mask="IMAGE," HardlinkTarget="%basebrd%\basebrd.dll" />
-  <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%windir%\branding\shellbrd\shellbrd.dll" />
+  <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%shellbrd%\shellbrd.dll" />
 
   <!--Dll and Exe files-->
   <Patch Mui="AdmTmpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
@@ -276,6 +276,13 @@
 	<Patch Mui="wusa.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wusa.exe" />
 	<Patch Mui="xwizards.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizards.dll" />
 	<Patch Mui="xwizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizard.exe" />
+  
+  <!--Special-->
+  <Patch Mui="wordpad.exe" mask="ICONGROUP," HardlinkTarget="%wrdpdir%\wordpad.exe" />
+  <Patch Mui="wmplayer.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\wmplayer.exe" />
+  <Patch Mui="wmpconfig.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\wmpconfig.exe" />
+  <Patch Mui="wmpshare.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\wmpshare.exe" />
+  <Patch Mui="setup_wm.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\setup_wm.exe" />
   
   <!--TODO: fix-->
 	<!--<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />-->
