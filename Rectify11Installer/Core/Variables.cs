@@ -10,7 +10,8 @@ namespace Rectify11Installer.Core
 		public static string sys32Folder = Environment.SystemDirectory;
         public static string sysresdir = System.IO.Path.Combine(windir, "SystemResources");
         public static string brandingFolder = System.IO.Path.Combine(windir, "Branding");
-        public static string progfiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+        public static string progfiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+        public static string diag = System.IO.Path.Combine(windir, "diagnostics", "system");
         /*
         // special
         public static string wmpfldr = System.IO.Path.Combine(progfiles, "Windows Media Player");

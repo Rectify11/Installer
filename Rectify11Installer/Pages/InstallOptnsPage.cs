@@ -74,6 +74,16 @@ namespace Rectify11Installer.Pages
                         }
 
                     }
+                    if (patch.HardlinkTarget.Contains("%diag%"))
+                    {
+                        string name = patch.Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
+                        if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag", name)))
+                        {
+                            string newpath = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
+                            if (File.Exists(newpath))
+                                advNode.Nodes.Add(patch.Mui);
+                        }
+                    }
                 }
                 if (basicNode.Nodes.Count == 0)
                     treeView1.Nodes.Remove(basicNode);

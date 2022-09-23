@@ -254,6 +254,24 @@
 	<Patch Mui="TabletPC.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\TabletPC.cpl" />
 	<Patch Mui="telephon.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\telephon.cpl" />
 	<Patch Mui="tpmcompc.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\tpmcompc.dll" />
+
+  <!--troubleshooters-->
+  <Patch Mui="Troubleshooter: Apps" mask="ICONGROUP," HardlinkTarget="%diag%\Apps\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Audio" mask="ICONGROUP," HardlinkTarget="%diag%\Audio\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: BITS" mask="ICONGROUP," HardlinkTarget="%diag%\BITS\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Device" mask="ICONGROUP," HardlinkTarget="%diag%\Device\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: IEBrowseWeb" mask="ICONGROUP," HardlinkTarget="%diag%\IEBrowseWeb\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: IESecurity" mask="ICONGROUP," HardlinkTarget="%diag%\IESecurity\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Keyboard" mask="ICONGROUP," HardlinkTarget="%diag%\Keyboard\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Networking" mask="ICONGROUP," HardlinkTarget="%diag%\Networking\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: PCW" mask="ICONGROUP," HardlinkTarget="%diag%\PCW\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Power" mask="ICONGROUP," HardlinkTarget="%diag%\Power\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Printer" mask="ICONGROUP," HardlinkTarget="%diag%\Printer\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Search" mask="ICONGROUP," HardlinkTarget="%diag%\Search\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Speech" mask="ICONGROUP," HardlinkTarget="%diag%\Speech\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: Video" mask="ICONGROUP," HardlinkTarget="%diag%\Video\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: WindowsUpdate" mask="ICONGROUP," HardlinkTarget="%diag%\WindowsUpdate\DiagPackage.dll" />
+  
 	<Patch Mui="TSWorkspace.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\TSWorkspace.dll" />
 	<Patch Mui="twext.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\twext.dll" />
   <Patch Mui="uiribbon.dll" mask="PNG," HardlinkTarget="%sys32%\uiribbon.dll" />

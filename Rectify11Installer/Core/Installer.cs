@@ -16,6 +16,7 @@ namespace Rectify11Installer.Core
 {
     public class Installer
     {
+        #region PInvoke
         [return: MarshalAs(UnmanagedType.Bool)]
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
@@ -29,7 +30,40 @@ namespace Rectify11Installer.Core
             MOVEFILE_CREATE_HARDLINK = 0x00000010,
             MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
         }
-        // eh two functions whatever cant be bothered to make it single.
+        #endregion
+        #region Private Methods
+        private bool AddToControlPanel()
+        {
+            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true);
+            if (key != null)
+            {
+                var r11key = key.CreateSubKey("Rectify11", true);
+                if (r11key != null)
+                {
+                    r11key.SetValue("DisplayName", "Rectify11", RegistryValueKind.String);
+                    r11key.SetValue("DisplayVersion", Assembly.GetEntryAssembly().GetName().Version.ToString(), RegistryValueKind.String);
+                    r11key.SetValue("DisplayIcon", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("InstallLocation", Variables.r11Folder, RegistryValueKind.String);
+                    r11key.SetValue("UninstallString", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("ModifyPath", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
+                    r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly().GetName().Version.Major.ToString(), RegistryValueKind.String);
+                    r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly().GetName().Version.Minor.ToString(), RegistryValueKind.String);
+                    r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
+                    r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        private static void TakeFullOwnership(string file)
+        {
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "takeown.exe") + " /F " + file, AppWinStyle.Hide, true, -1);
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Users:(F)", AppWinStyle.Hide, true, -1);
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Administrators:(F)", AppWinStyle.Hide, true, -1);
+        }
+        // eh three functions whatever cant be bothered to make it single.
         private static void PatchMui(string file, PatchesPatch patch)
         {
             if (File.Exists(file))
@@ -45,23 +79,54 @@ namespace Rectify11Installer.Core
                     string[] str = patch.mask.Split('|');
                     foreach (string mask in str)
                     {
-                        Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
                             " -resource " + Path.Combine(Variables.r11Files, filename) +
-                            " -mask " + mask, AppWinStyle.Hide, true, -1);
+                            " -mask " + mask, AppWinStyle.Hide, true);
                     }
                 }
                 else
                 {
-                    Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
                             " -resource " + Path.Combine(Variables.r11Files, filename) +
-                            " -mask " + patch.mask, AppWinStyle.Hide, true, -1);
+                            " -mask " + patch.mask, AppWinStyle.Hide, true);
                 }
+            }
+        }
+        private static void PatchDiag(string file, PatchesPatch patch)
+        {
+            if (File.Exists(file))
+            {
+                string name = patch.Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
+                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag")))
+                {
+                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", "Diag"));
+                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp", "Diag"));
+                }
+                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag", name)))
+                {
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", "Diag", name));
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", "Diag", name));
+                }
+                string filename = name + ".res";
+
+                Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
+                            " -action " + "delete" +
+                            " -mask " + patch.mask, AppWinStyle.Hide, true);
+
+                Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                        " -open " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
+                        " -save " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
+                        " -action " + "addskip" +
+                        " -resource " + Path.Combine(Variables.r11Files, "Diag", filename) +
+                        " -mask " + patch.mask, AppWinStyle.Hide, true);
             }
         }
         private static void PatchMun(string file, PatchesPatch patch)
@@ -109,7 +174,7 @@ namespace Rectify11Installer.Core
                 }
             }
         }
-
+        #endregion
         public async Task<bool> Install(frmWizard frm)
         {
             /*
@@ -185,6 +250,11 @@ namespace Rectify11Installer.Core
                                 newhardlink = patch.HardlinkTarget.Replace(@"%prog86%", Variables.progfiles);
                                 Installer.PatchMui(newhardlink, patch);
                             }
+                            else if (patch.HardlinkTarget.Contains("%diag%"))
+                            {
+                                newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
+                                Installer.PatchDiag(newhardlink, patch);
+                            }
                             else if (patch.HardlinkTarget.Contains("%windir%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
@@ -214,37 +284,6 @@ namespace Rectify11Installer.Core
             frm.InstallerProgress = "Done";
             NativeMethods.SetCloseButton(frm, true);
             return true;
-        }
-        private bool AddToControlPanel()
-        {
-            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true);
-            if (key != null)
-            {
-                var r11key = key.CreateSubKey("Rectify11", true);
-                if (r11key != null)
-                {
-                    r11key.SetValue("DisplayName", "Rectify11", RegistryValueKind.String);
-                    r11key.SetValue("DisplayVersion", Assembly.GetEntryAssembly().GetName().Version.ToString(), RegistryValueKind.String);
-                    r11key.SetValue("DisplayIcon", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                    r11key.SetValue("InstallLocation", Variables.r11Folder, RegistryValueKind.String);
-                    r11key.SetValue("UninstallString", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                    r11key.SetValue("ModifyPath", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                    r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
-                    r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly().GetName().Version.Major.ToString(), RegistryValueKind.String);
-                    r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly().GetName().Version.Minor.ToString(), RegistryValueKind.String);
-                    r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
-                    r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        private static void TakeFullOwnership(string file)
-        {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "takeown.exe") + " /F " + file, AppWinStyle.Hide, true, -1);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Users:(F)", AppWinStyle.Hide, true, -1);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Administrators:(F)", AppWinStyle.Hide, true, -1);
         }
     }
 }
