@@ -96,10 +96,6 @@
 	<Patch Mui="wsecedit.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wsecedit.dll.mun" />
   <Patch Mui="wuapi.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wuapi.dll.mun" />
 
-  <!--Branding-->
-  <Patch Mui="basebrd.dll" mask="IMAGE," HardlinkTarget="%basebrd%\basebrd.dll" />
-  <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%shellbrd%\shellbrd.dll" />
-
   <!--Dll and Exe files-->
   <Patch Mui="AdmTmpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
   <Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
@@ -108,6 +104,10 @@
   <Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\audiosrv.dll.mui" />
 	<Patch Mui="autoplay.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\autoplay.dll" />
   <Patch Mui="baaupdate.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\baaupdate.exe" />
+  
+  <!--Branding-->
+  <Patch Mui="basebrd.dll" mask="IMAGE," HardlinkTarget="%branding%\Basebrd\basebrd.dll" />
+
   <Patch Mui="bdechangepin.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\bdechangepin.exe" />
   <Patch Mui="BdeHdCfg.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BdeHdCfg.exe" />
   <Patch Mui="bdeunlock.exe.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\bdeunlock.exe.mui" />
@@ -227,9 +227,14 @@
 	<Patch Mui="SearchProtocolHost.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\SearchProtocolHost.exe.mui" />
   <Patch Mui="SearchProtocolHost.exe.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\SearchProtocolHost.exe.mui" />
 	<Patch Mui="SecEdit.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\SecEdit.exe" />
+  <Patch Mui="setup_wm.exe" mask="ICONGROUP," HardlinkTarget="%prog86%\Windows Media Player\setup_wm.exe" />
   <Patch Mui="setupapi.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\setupapi.dll.mui" />
 	<Patch Mui="setupapi.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\setupapi.dll.mui" />
   <Patch Mui="setupugc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\setupugc.exe" />
+  
+  <!--Branding-->
+  <Patch Mui="shellbrd.dll" mask="IMAGE," HardlinkTarget="%branding%\Shellbrd\shellbrd.dll" />
+  
   <Patch Mui="shutdownux.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\shutdownux.dll" />
 	<Patch Mui="shwebsvc.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\shwebsvc.dll" />
 	<Patch Mui="sigverif.exe" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\sigverif.exe" />
@@ -266,6 +271,10 @@
 	<Patch Mui="wlrmdr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wlrmdr.exe" />
 	<Patch Mui="WMPDMC.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WMPDMC.exe" />
   <Patch Mui="wmp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wmp.dll" />
+  <Patch Mui="wmpconfig.exe" mask="ICONGROUP," HardlinkTarget="%prog86%\Windows Media Player\wmpconfig.exe" />
+  <Patch Mui="wmplayer.exe" mask="ICONGROUP," HardlinkTarget="%prog86%\Windows Media Player\wmplayer.exe" />
+  <Patch Mui="wmpshare.exe" mask="ICONGROUP," HardlinkTarget="%prog86%\Windows Media Player\wmpshare.exe" />
+  <Patch Mui="wordpad.exe" mask="ICONGROUP," HardlinkTarget="%prog86%\Windows NT\Accessories\wordpad.exe" />
   <Patch Mui="WorkFolders.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFolders.exe" />
 	<Patch Mui="WorkfoldersControl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkfoldersControl.dll" />
 	<Patch Mui="WorkFoldersRes.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFoldersRes.dll" />
@@ -276,13 +285,6 @@
 	<Patch Mui="wusa.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wusa.exe" />
 	<Patch Mui="xwizards.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizards.dll" />
 	<Patch Mui="xwizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizard.exe" />
-  
-  <!--Special-->
-  <Patch Mui="wordpad.exe" mask="ICONGROUP," HardlinkTarget="%wrdpdir%\wordpad.exe" />
-  <Patch Mui="wmplayer.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\wmplayer.exe" />
-  <Patch Mui="wmpconfig.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\wmpconfig.exe" />
-  <Patch Mui="wmpshare.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\wmpshare.exe" />
-  <Patch Mui="setup_wm.exe" mask="ICONGROUP," HardlinkTarget="%wmp%\setup_wm.exe" />
   
   <!--TODO: fix-->
 	<!--<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />-->

@@ -79,13 +79,13 @@ namespace Rectify11Installer.Core
                     string[] str = patch.mask.Split('|');
                     foreach (string mask in str)
                     {
-                        Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "delete" +
                             " -mask " + mask, AppWinStyle.Hide, true);
 
-                        Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
@@ -95,12 +95,12 @@ namespace Rectify11Installer.Core
                 }
                 else
                 {
-                    Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "delete" +
                             " -mask " + patch.mask, AppWinStyle.Hide, true);
-                    Interaction.Shell(Path.Combine(Variables.r11Files, "ResourceHacker.exe") +
+                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
                             " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
                             " -action " + "addskip" +
@@ -175,32 +175,20 @@ namespace Rectify11Installer.Core
                                 newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
                                 Installer.PatchMun(newhardlink, patch);
                             }
-                            // Special
-                            else if (patch.HardlinkTarget.Contains("%basebrd%"))
+                            else if (patch.HardlinkTarget.Contains("%branding%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%basebrd%", Path.Combine(Variables.brandingFolder, "Basebrd"));
-                                Installer.PatchMun(newhardlink, patch);
+                                newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
+                                Installer.PatchMui(newhardlink, patch);
                             }
-                            else if (patch.HardlinkTarget.Contains("%shellbrd%"))
+                            else if (patch.HardlinkTarget.Contains("%prog86%"))
                             {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%shellbrd%", Path.Combine(Variables.brandingFolder, "Shellbrd"));
-                                Installer.PatchMun(newhardlink, patch);
+                                newhardlink = patch.HardlinkTarget.Replace(@"%prog86%", Variables.progfiles);
+                                Installer.PatchMui(newhardlink, patch);
                             }
-                            else if (patch.HardlinkTarget.Contains("%wmp%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%wmp%", Variables.wmpfldr);
-                                Installer.PatchMun(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("%wordpad%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%wordpad%", Variables.wrdpdir);
-                                Installer.PatchMun(newhardlink, patch);
-                            } // Special over
-
                             else if (patch.HardlinkTarget.Contains("%windir%"))
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-                                Installer.PatchMun(newhardlink, patch);
+                                Installer.PatchMui(newhardlink, patch);
                             }
                             i++;
                         }
