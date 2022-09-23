@@ -90,6 +90,7 @@
 	<Patch Mui="vault.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\vault.dll.mun" />
 	<Patch Mui="wcnwiz.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\wcnwiz.dll.mun" />
 	<Patch Mui="wdc.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wdc.dll.mun" />
+  <Patch Mui="wmploc.dll.mun" mask="ICONGROUP,|BITMAP,|CURSORGROUP,|256,|257," HardlinkTarget="%sysresdir%\wmploc.dll.mun" />
   <Patch Mui="wpdshext.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wpdshext.dll.mun" />
 	<Patch Mui="wscui.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wscui.cpl.mun" />
 	<Patch Mui="wsecedit.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wsecedit.dll.mun" />
@@ -264,7 +265,8 @@
 	<Patch Mui="wlanpref.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanpref.dll" />
 	<Patch Mui="wlrmdr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wlrmdr.exe" />
 	<Patch Mui="WMPDMC.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WMPDMC.exe" />
-	<Patch Mui="WorkFolders.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFolders.exe" />
+  <Patch Mui="wmp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wmp.dll" />
+  <Patch Mui="WorkFolders.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFolders.exe" />
 	<Patch Mui="WorkfoldersControl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkfoldersControl.dll" />
 	<Patch Mui="WorkFoldersRes.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFoldersRes.dll" />
 	<Patch Mui="wpd_ci.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wpd_ci.dll" />
@@ -274,6 +276,7 @@
 	<Patch Mui="wusa.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wusa.exe" />
 	<Patch Mui="xwizards.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizards.dll" />
 	<Patch Mui="xwizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizard.exe" />
+  
   <!--TODO: fix-->
 	<!--<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />-->
 	<!--<Patch Mui="fhcpl.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\fhcpl.dll.mun" />-->
