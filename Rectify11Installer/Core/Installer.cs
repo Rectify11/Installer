@@ -174,6 +174,54 @@ namespace Rectify11Installer.Core
                 }
             }
         }
+
+        private static void Patch86(string file, PatchesPatch patch)
+        {
+            if (File.Exists(file))
+            {
+                string ext = Path.GetExtension(patch.Mui);
+                string name = Path.GetFileNameWithoutExtension(patch.Mui) + "86" + ext;
+                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", name)))
+                {
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", name));
+                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", name));
+                }
+                string filename = patch.Mui + ".res";
+                if (patch.mask.Contains("|"))
+                {
+                    string[] str = patch.mask.Split('|');
+                    foreach (string mask in str)
+                    {
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -action " + "delete" +
+                            " -mask " + mask, AppWinStyle.Hide, true);
+
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -action " + "addskip" +
+                            " -resource " + Path.Combine(Variables.r11Files, filename) +
+                            " -mask " + mask, AppWinStyle.Hide, true);
+                    }
+                }
+                else
+                {
+                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -action " + "delete" +
+                            " -mask " + patch.mask, AppWinStyle.Hide, true);
+                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
+                            " -action " + "addskip" +
+                            " -resource " + Path.Combine(Variables.r11Files, filename) +
+                            " -mask " + patch.mask, AppWinStyle.Hide, true);
+                }
+            }
+        }
         #endregion
         public async Task<bool> Install(frmWizard frm)
         {
@@ -259,6 +307,14 @@ namespace Rectify11Installer.Core
                             {
                                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
                                 Installer.PatchMui(newhardlink, patch);
+                            }
+                            if (!string.IsNullOrWhiteSpace(patch.x86))
+                            {
+                                if (patch.HardlinkTarget.Contains("%sys32%"))
+                                {
+                                    newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Environment.GetFolderPath(Environment.SpecialFolder.SystemX86));
+                                    Installer.Patch86(newhardlink, patch);
+                                }
                             }
                             i++;
                         }

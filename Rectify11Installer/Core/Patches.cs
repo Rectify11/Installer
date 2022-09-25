@@ -49,7 +49,9 @@ public partial class PatchesPatch {
     private string muiField;
     
     private string maskField;
-    
+
+    private string x86Field;
+
     private string hardlinkTargetField;
     
     private string disableOnSafeModeField;
@@ -75,7 +77,18 @@ public partial class PatchesPatch {
             this.maskField = value;
         }
     }
-    
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string x86 {
+        get {
+            return this.x86Field;
+        }
+        set {
+            this.x86Field = value;
+        }
+    }
+
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string HardlinkTarget {
