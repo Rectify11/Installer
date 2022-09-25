@@ -31,6 +31,9 @@ namespace Rectify11Installer.Core
             MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
         }
         #endregion
+        #region Variables
+        private string newhardlink;
+        #endregion
         #region Private Methods
         private bool AddToControlPanel()
         {
@@ -257,7 +260,6 @@ namespace Rectify11Installer.Core
                 Patches patches = PatchesParser.GetAll();
                 PatchesPatch[] ok = patches.Items;
                 decimal i = 0;
-                string newhardlink;
                 List<string> filelist = new List<string>();
                 foreach (PatchesPatch patch in ok)
                 {
@@ -268,54 +270,7 @@ namespace Rectify11Installer.Core
                             decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
                             frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
                             filelist.Add(patch.HardlinkTarget);
-                            if (patch.HardlinkTarget.Contains("%sys32%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
-                                Installer.PatchMun(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("%lang%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-                                Installer.PatchMui(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("%en-US%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-                                Installer.PatchMui(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("mun"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
-                                Installer.PatchMun(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("%branding%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
-                                Installer.PatchMui(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("%prog86%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%prog86%", Variables.progfiles);
-                                Installer.PatchMui(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("%diag%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
-                                Installer.PatchDiag(newhardlink, patch);
-                            }
-                            else if (patch.HardlinkTarget.Contains("%windir%"))
-                            {
-                                newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-                                Installer.PatchMui(newhardlink, patch);
-                            }
-                            if (!string.IsNullOrWhiteSpace(patch.x86))
-                            {
-                                if (patch.HardlinkTarget.Contains("%sys32%"))
-                                {
-                                    newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Environment.GetFolderPath(Environment.SpecialFolder.SystemX86));
-                                    Installer.Patch86(newhardlink, patch);
-                                }
-                            }
+                            MatchAndApplyRule(patch);
                             i++;
                         }
                     }
@@ -340,6 +295,62 @@ namespace Rectify11Installer.Core
             frm.InstallerProgress = "Done";
             NativeMethods.SetCloseButton(frm, true);
             return true;
+        }
+        private void MatchAndApplyRule(PatchesPatch patch)
+        {
+            if (patch.HardlinkTarget.Contains("%sys32%"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
+                Installer.PatchMun(newhardlink, patch);
+            }
+            else if (patch.HardlinkTarget.Contains("%lang%"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                Installer.PatchMui(newhardlink, patch);
+            }
+            else if (patch.HardlinkTarget.Contains("%en-US%"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+                Installer.PatchMui(newhardlink, patch);
+            }
+            else if (patch.HardlinkTarget.Contains("mun"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
+                Installer.PatchMun(newhardlink, patch);
+            }
+            else if (patch.HardlinkTarget.Contains("%branding%"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
+                Installer.PatchMun(newhardlink, patch);
+            }
+            else if (patch.HardlinkTarget.Contains("%prog%"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
+                Installer.PatchMun(newhardlink, patch);
+            }
+            else if (patch.HardlinkTarget.Contains("%diag%"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
+                Installer.PatchDiag(newhardlink, patch);
+            }
+            else if (patch.HardlinkTarget.Contains("%windir%"))
+            {
+                newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
+                Installer.PatchMun(newhardlink, patch);
+            }
+            if (!string.IsNullOrWhiteSpace(patch.x86))
+            {
+                if (patch.HardlinkTarget.Contains("%sys32%"))
+                {
+                    newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sysWOWFolder);
+                    Installer.Patch86(newhardlink, patch);
+                }
+                else if (patch.HardlinkTarget.Contains("%prog%"))
+                {
+                    newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles86);
+                    Installer.Patch86(newhardlink, patch);
+                }
+            }
         }
     }
 }

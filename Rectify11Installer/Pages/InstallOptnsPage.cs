@@ -66,9 +66,9 @@ namespace Rectify11Installer.Pages
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui);
                         }
-                        else if (patch.HardlinkTarget.Contains("%prog86%"))
+                        else if (patch.HardlinkTarget.Contains("%prog%"))
                         {
-                            string newpath = patch.HardlinkTarget.Replace(@"%prog86%", Variables.progfiles);
+                            string newpath = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui);
                         }
