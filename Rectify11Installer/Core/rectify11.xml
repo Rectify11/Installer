@@ -74,9 +74,11 @@
 	<Patch Mui="sethc.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sethc.exe.mun" />
 	<Patch Mui="shell32.dll.mun" mask="ICONGROUP,|UIFILE," HardlinkTarget="%sysresdir%\shell32.dll.mun" />
 	<Patch Mui="shrpubw.exe.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\shrpubw.exe.mun" />
+  <Patch Mui="sndvolsso.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sndvolsso.dll.mun" />
 	<Patch Mui="sppcomapi.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sppcomapi.dll.mun" />
 	<Patch Mui="srchadmin.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\srchadmin.dll.mun" />
 	<Patch Mui="srpuxnativesnapin.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\srpuxnativesnapin.dll.mun" />
+  <Patch Mui="stobject.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\stobject.dll.mun" />
 	<Patch Mui="sud.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sud.dll.mun" />
 	<Patch Mui="synccenter.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\synccenter.dll.mun" />
 	<Patch Mui="sysdm.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sysdm.cpl.mun" />
@@ -203,6 +205,7 @@
 	<Patch Mui="OptionalFeatures.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\OptionalFeatures.exe" />
 	<Patch Mui="perfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\perfmon.exe" />
 	<Patch Mui="pmcsnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pmcsnap.dll" />
+  <Patch Mui="pnidui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pnidui.dll" />
   <Patch Mui="powercfg.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\powercfg.cpl" />
   <Patch Mui="powrprof.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\powrprof.dll.mui" />
   <Patch Mui="powrprof.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\powrprof.dll.mui" />
