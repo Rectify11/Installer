@@ -4,19 +4,7 @@
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
-        <!-- UAC Manifest Options
-             If you want to change the Windows User Account Control level replace the 
-             requestedExecutionLevel node with one of the following.
-
-        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
-        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
-        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
-
-            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
-            Remove this element if your application requires this virtualization for backwards
-            compatibility.
-        -->
-        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
       </requestedPrivileges>
       <applicationRequestMinimum>
         <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
@@ -30,10 +18,6 @@
       <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
     </application>
   </compatibility>
-  <!-- Indicates that the application is DPI-aware and will not be automatically scaled by Windows at higher
-       DPIs. Windows Presentation Foundation (WPF) applications are automatically DPI-aware and do not need 
-       to opt in. Windows Forms applications targeting .NET Framework 4.6 that opt into this setting, should 
-       also set the 'EnableWindowsFormsHighDpiAutoResizing' setting to 'true' in their app.config. -->
   <asmv3:application>
     <asmv3:windowsSettings>
       <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
