@@ -14,12 +14,7 @@ namespace Rectify11Installer.Core
         public static string progfiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         public static string progfiles86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
         public static string diag = System.IO.Path.Combine(windir, "diagnostics", "system");
-        /*
-        // special
-        public static string wmpfldr = System.IO.Path.Combine(progfiles, "Windows Media Player");
-        public static string wrdpdir = System.IO.Path.Combine(progfiles, "Windows NT", "Accessories");
-        // special over
-         */
+        public static string winSxS = System.IO.Path.Combine(windir, "WinSxS");
         public static bool isInstall = false;
 	}
 }

@@ -59,12 +59,16 @@ namespace Rectify11Installer.Pages
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui);
                         }
-                        //speci
                         else if (patch.HardlinkTarget.Contains("%branding%"))
                         {
                             string newpath = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
                             if (File.Exists(newpath))
                                 advNode.Nodes.Add(patch.Mui);
+                        }
+                        // cant be fucking bothered to repeat the same logic here
+                        else if (patch.HardlinkTarget.Contains("%winsxs%"))
+                        {
+                            advNode.Nodes.Add(patch.Mui);
                         }
                         else if (patch.HardlinkTarget.Contains("%prog%"))
                         {

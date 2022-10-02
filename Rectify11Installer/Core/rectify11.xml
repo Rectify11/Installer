@@ -127,6 +127,7 @@
   <Patch Mui="cmmon32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmmon32.exe" />
   <Patch Mui="cmstp.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmstp.exe" />
   <Patch Mui="colorcpl.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\colorcpl.exe" />
+  <Patch Mui="comctl32.dll" mask="ICONGROUP," HardlinkTarget="%winsxs%\*.common-*\comctl32.dll" />
   <Patch Mui="ComputerDefaults.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ComputerDefaults.exe" />
   <Patch Mui="conhost.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\conhost.exe" />
   <Patch Mui="control.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\control.exe" />

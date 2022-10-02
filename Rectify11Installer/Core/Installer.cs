@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -337,6 +338,44 @@ namespace Rectify11Installer.Core
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
                 Installer.PatchMun(newhardlink, patch);
+            }
+            // only for comctl so idc
+            else if (patch.HardlinkTarget.Contains("%winsxs%"))
+            {
+                // amd64 and x86 version same
+                string[] ok = patch.HardlinkTarget.Split('\\');
+                int[] amd64versionArray;
+                string[] directories = Directory.GetDirectories(Variables.winSxS, ok[1], SearchOption.TopDirectoryOnly);
+                var regex = new Regex(@"\d+(\.\d+)+");
+                amd64versionArray = new int[directories.Length];
+                for (int i = 0; i < directories.Length; i++)
+                {
+                    var match = regex.Match(directories[i]);
+                    if (match.Success)
+                    {
+                        Version ver = Version.Parse(match.Value);
+                        if (ver.Major == 6)
+                        {
+                            if (directories[i].Contains("amd64_"))
+                            {
+                                amd64versionArray[i] = ver.Revision;
+                            }
+                        }
+                    }
+                }
+                int amd64largest = amd64versionArray.Max();
+                string[] finaldirs = Directory.GetDirectories(Variables.winSxS, ok[1] + "_6.0." + Environment.OSVersion.Version.Build.ToString() + "." + amd64largest.ToString() + "_*", SearchOption.TopDirectoryOnly);
+                for (int i = 0; i < finaldirs.Length; i++)
+                {
+                    if (finaldirs[i].Contains("amd64_"))
+                    {
+                        Installer.PatchMun(Path.Combine(finaldirs[i], "comctl32.dll"), patch);
+                    }
+                    else if (finaldirs[i].Contains("x86_"))
+                    {
+                        Installer.Patch86(Path.Combine(finaldirs[i], "comctl32.dll"), patch);
+                    }
+                }
             }
             if (!string.IsNullOrWhiteSpace(patch.x86))
             {
