@@ -239,6 +239,9 @@ namespace Rectify11Installer.Core
             if (!File.Exists(Path.Combine(Variables.r11Folder, "files.7z")))
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
 
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
+
             if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
                 Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
 
