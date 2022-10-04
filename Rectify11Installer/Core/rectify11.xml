@@ -120,6 +120,7 @@
   <Patch Mui="CastingShellExt.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\CastingShellExt.dll" />
   <Patch Mui="calc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\calc.exe" />
   <Patch Mui="cewmdm.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cewmdm.dll" />
+  <Patch Mui="charmap.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\charmap.exe" />
   <Patch Mui="cleanmgr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cleanmgr.exe" />
   <Patch Mui="cliconfg.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cliconfg.exe" />
   <Patch Mui="cmd.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmd.exe" />
