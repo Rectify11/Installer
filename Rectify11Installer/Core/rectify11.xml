@@ -9,6 +9,7 @@
 	<Patch Mui="actioncentercpl.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\actioncentercpl.dll.mun" />
 	<Patch Mui="appwiz.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\appwiz.cpl.mun" />
 	<Patch Mui="authfwgp.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\authfwgp.dll.mun" />
+  <Patch Mui="batmeter.dll.mun" mask="BITMAP," HardlinkTarget="%sysresdir%\batmeter.dll.mun" />
 	<Patch Mui="colorui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\colorui.dll.mun" />
 	<Patch Mui="comdlg32.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\comdlg32.dll.mun" />
 	<Patch Mui="comres.dll.mun" mask="ICONGROUP,"	HardlinkTarget="%sysresdir%\comres.dll.mun" />
@@ -203,7 +204,7 @@
 	<Patch Mui="objsel.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\objsel.dll" />
 	<Patch Mui="occache.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\occache.dll" />
 	<Patch Mui="odbcad32.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%sys32%\odbcad32.exe" />
-	<Patch Mui="odbcint.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\odbcint.dll" />
+	<Patch Mui="odbcint.dll" mask="ICONGROUP," x86="true" HardlinkTarget="%sys32%\odbcint.dll" />
 	<Patch Mui="OptionalFeatures.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\OptionalFeatures.exe" />
 	<Patch Mui="perfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\perfmon.exe" />
 	<Patch Mui="pmcsnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pmcsnap.dll" />
