@@ -213,9 +213,9 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] PsExec64 {
+        internal static byte[] NSudoLC {
             get {
-                object obj = ResourceManager.GetObject("PsExec64", resourceCulture);
+                object obj = ResourceManager.GetObject("NSudoLC", resourceCulture);
                 return ((byte[])(obj));
             }
         }
