@@ -1,5 +1,5 @@
-﻿
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+
 namespace Rectify11Installer.Pages
 {
     public partial class ThemeChoicePage : WizardPage

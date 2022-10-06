@@ -1,8 +1,4 @@
-﻿using Rectify11Installer.Core;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Rectify11Installer.Pages
+﻿namespace Rectify11Installer.Pages
 {
     public partial class InstallConfirmation : WizardPage
     {

@@ -1,12 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing.Drawing2D;
-using System.Windows.Forms.VisualStyles;
-using System.Runtime.InteropServices;
-using libmsstyle;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using libmsstyle;
 using Rectify11Installer.Win32;
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Rectify11Installer.Controls
 {

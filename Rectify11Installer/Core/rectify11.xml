@@ -234,7 +234,6 @@
   <Patch Mui="SearchProtocolHost.exe.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\SearchProtocolHost.exe.mui" />
 	<Patch Mui="SecEdit.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\SecEdit.exe" />
   <Patch Mui="setup_wm.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\setup_wm.exe" />
-  <Patch Mui="setupapi.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\setupapi.dll.mui" />
 	<Patch Mui="setupapi.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\setupapi.dll.mui" />
   <Patch Mui="setupugc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\setupugc.exe" />
   

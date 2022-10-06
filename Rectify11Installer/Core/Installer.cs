@@ -161,6 +161,13 @@ namespace Rectify11Installer.Core
                     backupfolder = Path.Combine(Variables.r11Folder, "backup", "Diag");
                     tempfolder = Path.Combine(Variables.r11Folder, "Tmp", "Diag");
                 }
+                else if (type == PatchType.x86)
+                {
+                    string ext = Path.GetExtension(patch.Mui);
+                    name = Path.GetFileNameWithoutExtension(patch.Mui) + "86" + ext;
+                    backupfolder = Path.Combine(Variables.r11Folder, "backup");
+                    tempfolder = Path.Combine(Variables.r11Folder, "Tmp");
+                }
                 else
                 {
                     name = patch.Mui;
@@ -228,53 +235,6 @@ namespace Rectify11Installer.Core
                             " -save " + Path.Combine(tempfolder, name) +
                             " -action " + "addskip" +
                             " -resource " + Path.Combine(filepath, filename) +
-                            " -mask " + patch.mask, AppWinStyle.Hide, true);
-                }
-            }
-        }
-        private static void Patch86(string file, PatchesPatch patch)
-        {
-            if (File.Exists(file))
-            {
-                string ext = Path.GetExtension(patch.Mui);
-                string name = Path.GetFileNameWithoutExtension(patch.Mui) + "86" + ext;
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", name)))
-                {
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", name));
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", name));
-                }
-                string filename = patch.Mui + ".res";
-                if (patch.mask.Contains("|"))
-                {
-                    string[] str = patch.mask.Split('|');
-                    foreach (string mask in str)
-                    {
-                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -action " + "delete" +
-                            " -mask " + mask, AppWinStyle.Hide, true);
-
-                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -action " + "addskip" +
-                            " -resource " + Path.Combine(Variables.r11Files, filename) +
-                            " -mask " + mask, AppWinStyle.Hide, true);
-                    }
-                }
-                else
-                {
-                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -action " + "delete" +
-                            " -mask " + patch.mask, AppWinStyle.Hide, true);
-                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", name) +
-                            " -action " + "addskip" +
-                            " -resource " + Path.Combine(Variables.r11Files, filename) +
                             " -mask " + patch.mask, AppWinStyle.Hide, true);
                 }
             }
@@ -355,7 +315,7 @@ namespace Rectify11Installer.Core
                     }
                     else if (finaldirs[i].Contains("x86_"))
                     {
-                        Installer.Patch86(Path.Combine(finaldirs[i], "comctl32.dll"), patch);
+                        Installer.Patch(Path.Combine(finaldirs[i], "comctl32.dll"), patch, PatchType.x86);
                     }
                 }
             }
@@ -364,12 +324,12 @@ namespace Rectify11Installer.Core
                 if (patch.HardlinkTarget.Contains("%sys32%"))
                 {
                     newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sysWOWFolder);
-                    Installer.Patch86(newhardlink, patch);
+                    Installer.Patch(newhardlink, patch, PatchType.x86);
                 }
                 else if (patch.HardlinkTarget.Contains("%prog%"))
                 {
                     newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles86);
-                    Installer.Patch86(newhardlink, patch);
+                    Installer.Patch(newhardlink, patch, PatchType.x86);
                 }
             }
         }

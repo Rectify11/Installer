@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using Rectify11Installer.Win32;
 
 namespace Rectify11Installer.Win32
 {
