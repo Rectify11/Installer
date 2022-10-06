@@ -11,6 +11,7 @@ namespace Rectify11Installer
 {
     public partial class frmWizard : Form
     {
+        #region Variables
         public static bool IsItemsSelected;
         bool idleinit = false;
         public string InstallerProgress
@@ -24,6 +25,8 @@ namespace Rectify11Installer
             set { sideImage.BackgroundImage = value; }
         }
         System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
+        #endregion
+        #region Main
         public frmWizard()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -86,7 +89,7 @@ namespace Rectify11Installer
             wlcmPage.Controls.Add(RectifyPages.WelcomePage);
             RectifyPages.WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
         }
-
+        #endregion
         #region Navigation
         private async void Navigate(WizardPage page)
         {
@@ -146,10 +149,10 @@ namespace Rectify11Installer
                 progressLabel.Visible = true;
                 RectifyPages.ProgressPage.Start();
                 NativeMethods.SetCloseButton(this, false);
+                Variables.isInstall = true;
                 navPane.SelectedTab = progressPage;
                 Installer installer = new Installer();
                 await Task.Run(() => installer.Install(this));
-                Variables.isInstall = true;
             }
         }
         #endregion

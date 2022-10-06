@@ -8,8 +8,11 @@ namespace Rectify11Installer.Pages
 {
     public partial class InstallOptnsPage : WizardPage
     {
+        #region Variables
         private readonly frmWizard _frmWizard;
         bool idleinit;
+        #endregion
+        #region Main
         public InstallOptnsPage(frmWizard Frm)
         {
             _frmWizard = Frm;
@@ -98,6 +101,8 @@ namespace Rectify11Installer.Pages
                 idleinit = true;
             }
         }
+        #endregion
+        #region Private Methods
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
             if (e.Action != TreeViewAction.Unknown)
@@ -188,6 +193,6 @@ namespace Rectify11Installer.Pages
                 }
             }
         }
-
+        #endregion
     }
 }

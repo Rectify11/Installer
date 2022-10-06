@@ -9,7 +9,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +16,7 @@ namespace Rectify11Installer.Core
 {
     public class Installer
     {
-        #region PInvoke
+        #region P/Invoke
         [return: MarshalAs(UnmanagedType.Bool)]
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
@@ -34,6 +33,80 @@ namespace Rectify11Installer.Core
         #endregion
         #region Variables
         private string newhardlink;
+        #endregion
+        #region Main
+        public async Task<bool> Install(frmWizard frm)
+        {
+            /*
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "PaExec64.exe")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PaExec64.exe"), Properties.Resources.PsExec64);
+            */
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
+
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "files.7z")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
+
+            if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
+
+            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
+
+            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
+
+            File.Copy(Path.Combine(Application.StartupPath, "Rectify11Installer.exe"), Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
+
+            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
+            {
+                frm.InstallerProgress = "Extracting files...";
+                Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                    " x -o" + Path.Combine(Variables.r11Folder, "files") +
+                    " " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true, -1);
+            }
+            if (InstallOptions.iconsList.Count > 0)
+            {
+                // Get all patches
+                Patches patches = PatchesParser.GetAll();
+                PatchesPatch[] ok = patches.Items;
+                decimal i = 0;
+                List<string> filelist = new List<string>();
+                foreach (PatchesPatch patch in ok)
+                {
+                    foreach (string items in InstallOptions.iconsList)
+                    {
+                        if (patch.Mui.Contains(items))
+                        {
+                            decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
+                            frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
+                            filelist.Add(patch.HardlinkTarget);
+                            MatchAndApplyRule(patch);
+                            i++;
+                        }
+                    }
+                }
+                var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey("Rectify11", true);
+                if (reg != null)
+                {
+                    reg.SetValue("PendingFiles", filelist.ToArray());
+                    reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
+                }
+                reg.Close();
+            }
+            if (InstallOptions.InstallThemes)
+            {
+                frm.InstallerProgress = "Installing Themes";
+                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true));
+            }
+            AddToControlPanel();
+            frm.InstallerProgress = "Cleaning up...";
+            Directory.Delete(Variables.r11Files, true);
+            File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
+            frm.InstallerProgress = "Done";
+            NativeMethods.SetCloseButton(frm, true);
+            return true;
+        }
         #endregion
         #region Private Methods
         private bool AddToControlPanel()
@@ -67,118 +140,98 @@ namespace Rectify11Installer.Core
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Users:(F)", AppWinStyle.Hide, true, -1);
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Administrators:(F)", AppWinStyle.Hide, true, -1);
         }
-        // eh three functions whatever cant be bothered to make it single.
-        private static void PatchMui(string file, PatchesPatch patch)
+        private enum PatchType
+        {
+            General = 0,
+            Mui,
+            Troubleshooter,
+            x86
+
+        }
+        private static void Patch(string file, PatchesPatch patch, PatchType type)
         {
             if (File.Exists(file))
             {
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                string name;
+                string backupfolder;
+                string tempfolder;
+                if (type == PatchType.Troubleshooter)
                 {
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui));
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
-                }
-                string filename = patch.Mui + ".res";
-                if (patch.mask.Contains("|"))
-                {
-                    string[] str = patch.mask.Split('|');
-                    foreach (string mask in str)
-                    {
-                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -action " + "addskip" +
-                            " -resource " + Path.Combine(Variables.r11Files, filename) +
-                            " -mask " + mask, AppWinStyle.Hide, true);
-                    }
+                    name = patch.Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
+                    backupfolder = Path.Combine(Variables.r11Folder, "backup", "Diag");
+                    tempfolder = Path.Combine(Variables.r11Folder, "Tmp", "Diag");
                 }
                 else
                 {
-                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -action " + "addskip" +
-                            " -resource " + Path.Combine(Variables.r11Files, filename) +
-                            " -mask " + patch.mask, AppWinStyle.Hide, true);
+                    name = patch.Mui;
+                    backupfolder = Path.Combine(Variables.r11Folder, "backup");
+                    tempfolder = Path.Combine(Variables.r11Folder, "Tmp");
                 }
-            }
-        }
-        private static void PatchDiag(string file, PatchesPatch patch)
-        {
-            if (File.Exists(file))
-            {
-                string name = patch.Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
-                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag")))
+
+                if (string.IsNullOrWhiteSpace(name))
+                    return;
+
+                if (type == PatchType.Troubleshooter)
                 {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "backup", "Diag"));
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp", "Diag"));
+                    if (!Directory.Exists(backupfolder))
+                    {
+                        Directory.CreateDirectory(backupfolder);
+                        Directory.CreateDirectory(tempfolder);
+                    }
                 }
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag", name)))
+                if (!File.Exists(Path.Combine(backupfolder, name)))
                 {
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", "Diag", name));
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", "Diag", name));
+                    File.Copy(file, Path.Combine(backupfolder, name));
+                    File.Copy(file, Path.Combine(tempfolder, name));
                 }
+
                 string filename = name + ".res";
+                string filepath;
+                if (type == PatchType.Troubleshooter)
+                    filepath = Path.Combine(Variables.r11Files, "Diag");
+                else
+                    filepath = Variables.r11Files;
 
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
-                            " -action " + "delete" +
-                            " -mask " + patch.mask, AppWinStyle.Hide, true);
-
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                        " -open " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
-                        " -save " + Path.Combine(Variables.r11Folder, "Tmp", "Diag", name) +
-                        " -action " + "addskip" +
-                        " -resource " + Path.Combine(Variables.r11Files, "Diag", filename) +
-                        " -mask " + patch.mask, AppWinStyle.Hide, true);
-            }
-        }
-        private static void PatchMun(string file, PatchesPatch patch)
-        {
-            if (File.Exists(file))
-            {
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
-                {
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "backup", patch.Mui));
-                    File.Copy(file, Path.Combine(Variables.r11Folder, "Tmp", patch.Mui));
-                }
-                string filename = patch.Mui + ".res";
                 if (patch.mask.Contains("|"))
                 {
                     string[] str = patch.mask.Split('|');
-                    foreach (string mask in str)
+                    for (int i = 0; i < str.Length; i++)
                     {
-                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                        if (type != PatchType.Mui)
+                        {
+                            Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(tempfolder, name) +
+                            " -save " + Path.Combine(tempfolder, name) +
                             " -action " + "delete" +
-                            " -mask " + mask, AppWinStyle.Hide, true);
-
+                            " -mask " + str[i], AppWinStyle.Hide, true);
+                        }
                         Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -open " + Path.Combine(tempfolder, name) +
+                            " -save " + Path.Combine(tempfolder, name) +
                             " -action " + "addskip" +
-                            " -resource " + Path.Combine(Variables.r11Files, filename) +
-                            " -mask " + mask, AppWinStyle.Hide, true);
+                            " -resource " + Path.Combine(filepath, filename) +
+                            " -mask " + str[i], AppWinStyle.Hide, true);
                     }
                 }
                 else
                 {
-                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                    if (type != PatchType.Mui)
+                    {
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                            " -open " + Path.Combine(tempfolder, name) +
+                            " -save " + Path.Combine(tempfolder, name) +
                             " -action " + "delete" +
                             " -mask " + patch.mask, AppWinStyle.Hide, true);
+                    }
                     Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
-                            " -save " + Path.Combine(Variables.r11Folder, "Tmp", patch.Mui) +
+                            " -open " + Path.Combine(tempfolder, name) +
+                            " -save " + Path.Combine(tempfolder, name) +
                             " -action " + "addskip" +
-                            " -resource " + Path.Combine(Variables.r11Files, filename) +
+                            " -resource " + Path.Combine(filepath, filename) +
                             " -mask " + patch.mask, AppWinStyle.Hide, true);
                 }
             }
         }
-
         private static void Patch86(string file, PatchesPatch patch)
         {
             if (File.Exists(file))
@@ -226,121 +279,47 @@ namespace Rectify11Installer.Core
                 }
             }
         }
-        #endregion
-        public async Task<bool> Install(frmWizard frm)
-        {
-            /*
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "PaExec64.exe")))
-                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PaExec64.exe"), Properties.Resources.PsExec64);
-            */
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
-                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
-
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "files.7z")))
-                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
-
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
-                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
-
-            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
-                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
-
-            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
-                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
-
-            File.Copy(Path.Combine(Application.StartupPath, "Rectify11Installer.exe"), Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
-
-            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
-            {
-                frm.InstallerProgress = "Extracting files...";
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                    " x -o" + Path.Combine(Variables.r11Folder, "files") +
-                    " " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true, -1);
-            }
-            if (InstallOptions.iconsList.Count > 0)
-            {
-
-                // Get all patches
-                Patches patches = PatchesParser.GetAll();
-                PatchesPatch[] ok = patches.Items;
-                decimal i = 0;
-                List<string> filelist = new List<string>();
-                foreach (PatchesPatch patch in ok)
-                {
-                    foreach (string items in InstallOptions.iconsList)
-                    {
-                        if (patch.Mui.Contains(items))
-                        {
-                            decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
-                            frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
-                            filelist.Add(patch.HardlinkTarget);
-                            MatchAndApplyRule(patch);
-                            i++;
-                        }
-                    }
-                }
-                var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey("Rectify11", true);
-                if (reg != null)
-                {
-                    reg.SetValue("PendingFiles", filelist.ToArray());
-                    reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
-                }
-                reg.Close();
-            }
-            if (InstallOptions.InstallThemes)
-            {
-                frm.InstallerProgress = "Installing Themes";
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true));
-            }
-            AddToControlPanel();
-            frm.InstallerProgress = "Cleaning up...";
-            Directory.Delete(Variables.r11Files, true);
-            File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
-            frm.InstallerProgress = "Done";
-            NativeMethods.SetCloseButton(frm, true);
-            return true;
-        }
         private void MatchAndApplyRule(PatchesPatch patch)
         {
             if (patch.HardlinkTarget.Contains("%sys32%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
-                Installer.PatchMun(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%lang%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-                Installer.PatchMui(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.Mui);
             }
             else if (patch.HardlinkTarget.Contains("%en-US%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-                Installer.PatchMui(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.Mui);
             }
             else if (patch.HardlinkTarget.Contains("mun"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
-                Installer.PatchMun(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%branding%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
-                Installer.PatchMun(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%prog%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
-                Installer.PatchMun(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%diag%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
-                Installer.PatchDiag(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.Troubleshooter);
             }
             else if (patch.HardlinkTarget.Contains("%windir%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-                Installer.PatchMun(newhardlink, patch);
+                Installer.Patch(newhardlink, patch, PatchType.General);
             }
             // only for comctl so idc
             else if (patch.HardlinkTarget.Contains("%winsxs%"))
@@ -372,7 +351,7 @@ namespace Rectify11Installer.Core
                 {
                     if (finaldirs[i].Contains("amd64_"))
                     {
-                        Installer.PatchMun(Path.Combine(finaldirs[i], "comctl32.dll"), patch);
+                        Installer.Patch(Path.Combine(finaldirs[i], "comctl32.dll"), patch, PatchType.General);
                     }
                     else if (finaldirs[i].Contains("x86_"))
                     {
@@ -394,5 +373,6 @@ namespace Rectify11Installer.Core
                 }
             }
         }
+        #endregion
     }
 }
