@@ -9,15 +9,19 @@ namespace Rectify11Installer
 {
     public class Theme
     {
+        #region Variables
         public static VisualStyle DarkStyle = new VisualStyle();
         public static VisualStyle LightStyle = new VisualStyle();
         public static bool IsUsingDarkMode { get; private set; }
+        #endregion
+        #region Public Methods
         public static void InitTheme()
         {
             var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
             var registryValueObject = key.GetValue("AppsUseLightTheme");
             if (registryValueObject == null)
-            {  }
+                return; 
+
             var registryValue = (int)registryValueObject;
             IsUsingDarkMode = registryValue <= 0;
             SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
@@ -30,20 +34,6 @@ namespace Rectify11Installer
             LightStyle.Load(Path.Combine(Variables.r11Folder, "light.msstyles"));
         }
 
-        private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
-        {
-            switch (e.Category)
-            {
-                case UserPreferenceCategory.General:
-                    if (OnThemeChanged != null)
-                    {
-                        InitTheme();
-                        OnThemeChanged.Invoke(sender, e);
-                    }
-                    break;
-            }
-        }
-        
         public static StylePart GetNavArrowPart(VisualStyle v, NavigationButtonType type)
         {
             foreach (var classes in v.Classes.Values)
@@ -149,5 +139,21 @@ namespace Rectify11Installer
             }
             return null;
         }
+        #endregion
+        #region Private Methods
+        private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            switch (e.Category)
+            {
+                case UserPreferenceCategory.General:
+                    if (OnThemeChanged != null)
+                    {
+                        InitTheme();
+                        OnThemeChanged.Invoke(sender, e);
+                    }
+                    break;
+            }
+        }
+        #endregion
     }
 }

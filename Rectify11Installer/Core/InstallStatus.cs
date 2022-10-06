@@ -4,6 +4,7 @@ namespace Rectify11Installer.Core
 {
     public class InstallStatus
     {
+        #region Public Methods
         public static bool IsRectify11Installed
         {
             get
@@ -17,7 +18,6 @@ namespace Rectify11Installer.Core
                 {
                     return false;
                 }
-
 
                 var value = (int)b;
                 return value == 1;
@@ -52,5 +52,6 @@ namespace Rectify11Installer.Core
                 key.SetValue("Version", value);
             }
         }
+        #endregion
     }
 }

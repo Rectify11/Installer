@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Globalization;
 using System.IO;
+using System.ComponentModel;
 using System.Resources;
 
 namespace Rectify11Installer.Core
 {
-    class SingleAssemblyComponentResourceManager :
-    System.ComponentModel.ComponentResourceManager
+    class SingleAssemblyComponentResourceManager : ComponentResourceManager
     {
         private Type _contextTypeInfo;
         private CultureInfo _neutralResourcesCulture;

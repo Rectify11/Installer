@@ -5,6 +5,7 @@ namespace Rectify11Installer.Win32
 {
     public class DarkMode
     {
+        #region P/Invoke
         [DllImport("uxtheme.dll", EntryPoint = "#135")]
         internal static extern int SetPreferredAppMode(PreferredAppMode appMode);
         [DllImport("uxtheme.dll", EntryPoint = "#135")]
@@ -16,8 +17,37 @@ namespace Rectify11Installer.Win32
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetProp(IntPtr hWnd, string lpString, IntPtr hData);
         [DllImport("dwmapi.dll")]
-        internal static extern int DwmSetWindowAttribute(IntPtr hwnd, WINDOWCOMPOSITIONATTRIB dwAttribute, ref int pvAttribute, int cbAttribute);
-
+        internal static extern int DwmSetWindowAttribute(IntPtr hwnd, DWMATTRIB dwAttribute, ref int pvAttribute, int cbAttribute);
+        #endregion
+        #region Flags
+        internal enum PreferredAppMode
+        {
+            Default,
+            AllowDark,
+            ForceDark,
+            ForceLight,
+            Max
+        }
+        public enum WINDOWCOMPOSITIONATTRIB
+        {
+            // ...
+            WCA_USEDARKMODECOLORS = 26,
+            // ...
+        };
+        public enum DWMATTRIB
+        {
+            DWMWA_SYSTEMBACKDROP_TYPE = 38,
+            DWMWA_MICA_EFFECT = 1029
+        }
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WINDOWCOMPOSITIONATTRIBDATA
+        {
+            public WINDOWCOMPOSITIONATTRIB Attrib;
+            public IntPtr pvData;
+            public int cbData;
+        };
+        #endregion
+        #region Public Methods
         public static void RefreshTitleBarColor(IntPtr hWnd)
         {
             if (Environment.OSVersion.Version.Build < 18362)
@@ -45,15 +75,15 @@ namespace Rectify11Installer.Win32
                 int micaValue = 0x02;
                 int tabbedvalue = 0x04;
                 if (extend)
-                    DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
+                    DwmSetWindowAttribute(frm.Handle, DWMATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
                 else
-                    DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref tabbedvalue, Marshal.SizeOf(typeof(int)));
+                    DwmSetWindowAttribute(frm.Handle, DWMATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref tabbedvalue, Marshal.SizeOf(typeof(int)));
             }
 
             else
             {
                 int trueValue = 0x01;
-                DwmSetWindowAttribute(frm.Handle, WINDOWCOMPOSITIONATTRIB.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
+                DwmSetWindowAttribute(frm.Handle, DWMATTRIB.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
             }
             bool DarkMode = Theme.IsUsingDarkMode;
             NativeMethods.MARGINS m = new NativeMethods.MARGINS();
@@ -78,53 +108,6 @@ namespace Rectify11Installer.Win32
                 NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
             }
         }
-        internal enum PreferredAppMode
-        {
-            Default,
-            AllowDark,
-            ForceDark,
-            ForceLight,
-            Max
-        }
-        public enum WINDOWCOMPOSITIONATTRIB
-        {
-            WCA_UNDEFINED = 0,
-            WCA_NCRENDERING_ENABLED = 1,
-            WCA_NCRENDERING_POLICY = 2,
-            WCA_TRANSITIONS_FORCEDISABLED = 3,
-            WCA_ALLOW_NCPAINT = 4,
-            WCA_CAPTION_BUTTON_BOUNDS = 5,
-            WCA_NONCLIENT_RTL_LAYOUT = 6,
-            WCA_FORCE_ICONIC_REPRESENTATION = 7,
-            WCA_EXTENDED_FRAME_BOUNDS = 8,
-            WCA_HAS_ICONIC_BITMAP = 9,
-            WCA_THEME_ATTRIBUTES = 10,
-            WCA_NCRENDERING_EXILED = 11,
-            WCA_NCADORNMENTINFO = 12,
-            WCA_EXCLUDED_FROM_LIVEPREVIEW = 13,
-            WCA_VIDEO_OVERLAY_ACTIVE = 14,
-            WCA_FORCE_ACTIVEWINDOW_APPEARANCE = 15,
-            WCA_DISALLOW_PEEK = 16,
-            WCA_CLOAK = 17,
-            WCA_CLOAKED = 18,
-            WCA_ACCENT_POLICY = 19,
-            WCA_FREEZE_REPRESENTATION = 20,
-            WCA_EVER_UNCLOAKED = 21,
-            WCA_VISUAL_OWNER = 22,
-            WCA_HOLOGRAPHIC = 23,
-            WCA_EXCLUDED_FROM_DDA = 24,
-            WCA_PASSIVEUPDATEMODE = 25,
-            WCA_USEDARKMODECOLORS = 26,
-            WCA_LAST = 27,
-            DWMWA_MICA_EFFECT = 1029,
-            DWMWA_SYSTEMBACKDROP_TYPE = 38
-        };
-        [StructLayout(LayoutKind.Sequential)]
-        public struct WINDOWCOMPOSITIONATTRIBDATA
-        {
-            public WINDOWCOMPOSITIONATTRIB Attrib;
-            public IntPtr pvData;
-            public int cbData;
-        };
+        #endregion
     }
 }

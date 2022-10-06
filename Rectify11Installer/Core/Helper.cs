@@ -5,6 +5,7 @@ namespace Rectify11Installer.Core
 {
     public class Helper
     {
+        #region Public Methods
         public static bool CheckIfUpdatesPending()
         {
             WUApiLib.ISystemInformation systemInfo = new WUApiLib.SystemInformation();
@@ -80,5 +81,6 @@ namespace Rectify11Installer.Core
                 ok.AppendLine(resources.GetString("installWallpapers"));
             return ok;
         }
+        #endregion
     }
 }

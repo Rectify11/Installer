@@ -5,15 +5,12 @@ namespace Rectify11Installer.Win32
 {
     public class NativeMethods
     {
-		[DllImport("user32.dll")]
+        #region P/Invoke
+        [DllImport("user32.dll")]
 		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool revert);
 
 		[DllImport("user32.dll")]
 		public static extern int EnableMenuItem(IntPtr hMenu, int IDEnableItem, int enable);
-		public const int SC_CLOSE = 0xF060;
-		public const int MF_BYCOMMAND = 0;
-		public const int MF_ENABLED = 0;
-		public const int MF_GRAYED = 1;
 
 		[DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)]
         internal static extern IntPtr CreateCompatibleDC(IntPtr hDC);
@@ -28,11 +25,17 @@ namespace Rectify11Installer.Win32
 
         [DllImport("gdi32.dll")]
         internal static extern bool BitBlt(IntPtr hdc, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, uint dwRop);
-        public const int WP_CAPTION = 1;
-        public const int CS_ACTIVE = 1;
-
+       
         [DllImport("dwmapi.dll")]
         public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref MARGINS margins);
+        #endregion
+        #region Flags
+        public const int SC_CLOSE = 0xF060;
+        public const int MF_BYCOMMAND = 0;
+        public const int MF_ENABLED = 0;
+        public const int MF_GRAYED = 1;
+        public const int WP_CAPTION = 1;
+        public const int CS_ACTIVE = 1;
         [StructLayout(LayoutKind.Sequential)]
         public class BITMAPINFO
         {
@@ -80,7 +83,9 @@ namespace Rectify11Installer.Win32
             public int cyTopHeight;      // height of top border that retains its size
             public int cyBottomHeight;   // height of bottom border that retains its size
         };
-		public static bool SetCloseButton(frmWizard frm, bool enable)
+        #endregion
+        #region Public Methods
+        public static bool SetCloseButton(frmWizard frm, bool enable)
 		{
 			IntPtr hMenu = NativeMethods.GetSystemMenu(frm.Handle, false);
 			if (hMenu != IntPtr.Zero)
@@ -91,6 +96,7 @@ namespace Rectify11Installer.Win32
 				return true;
 			}
 			return false;
-		}
-	}
+        }
+        #endregion
+    }
 }

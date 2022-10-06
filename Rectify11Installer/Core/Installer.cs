@@ -7,7 +7,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,25 +15,10 @@ namespace Rectify11Installer.Core
 {
     public class Installer
     {
-        #region P/Invoke
-        [return: MarshalAs(UnmanagedType.Bool)]
-        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
-        [Flags]
-        enum MoveFileFlags
-        {
-            MOVEFILE_REPLACE_EXISTING = 0x00000001,
-            MOVEFILE_COPY_ALLOWED = 0x00000002,
-            MOVEFILE_DELAY_UNTIL_REBOOT = 0x00000004,
-            MOVEFILE_WRITE_THROUGH = 0x00000008,
-            MOVEFILE_CREATE_HARDLINK = 0x00000010,
-            MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
-        }
-        #endregion
         #region Variables
         private string newhardlink;
         #endregion
-        #region Main
+        #region Public Methods
         public async Task<bool> Install(frmWizard frm)
         {
             /*
@@ -91,6 +75,7 @@ namespace Rectify11Installer.Core
                 {
                     reg.SetValue("PendingFiles", filelist.ToArray());
                     reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
+                    reg.SetValue("Version", new Label().ProductVersion);
                 }
                 reg.Close();
             }
@@ -133,12 +118,6 @@ namespace Rectify11Installer.Core
                 return false;
             }
             return false;
-        }
-        private static void TakeFullOwnership(string file)
-        {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "takeown.exe") + " /F " + file, AppWinStyle.Hide, true, -1);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Users:(F)", AppWinStyle.Hide, true, -1);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "icacls.exe") + " " + file + " /grant Administrators:(F)", AppWinStyle.Hide, true, -1);
         }
         private enum PatchType
         {

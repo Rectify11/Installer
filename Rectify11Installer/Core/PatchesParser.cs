@@ -5,6 +5,7 @@ namespace Rectify11Installer
 {
     public class PatchesParser
     {
+        #region Public Methods
         public static Patches GetAll()
         {
             XmlSerializer ser = new XmlSerializer(typeof(Patches));
@@ -15,5 +16,6 @@ namespace Rectify11Installer
             }
             return patches;
         }
+        #endregion
     }
 }
