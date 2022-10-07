@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Globalization;
 using System.IO;
@@ -32,8 +31,6 @@ namespace Rectify11.Phase2
             if (reg != null)
                 pendingFiles = (string[])reg.GetValue("PendingFiles");
             reg.Close();
-            Interaction.Shell("cmd.exe /c takeown /F " + Variables.sysresdir, AppWinStyle.Hide, true);
-            Interaction.Shell("cmd.exe /c icacls " + Variables.sysresdir + " /grant Everyone:(F) /c", AppWinStyle.Hide, true);
             foreach (string file in r11dir)
             {
                 foreach (string regFile in pendingFiles)
@@ -41,9 +38,9 @@ namespace Rectify11.Phase2
                     if (regFile.Contains(Path.GetFileName(file)))
                     {
                         string newval = "";
-                        if (regFile.Contains("%lang%"))
+                        if (regFile.Contains("%sys32%"))
                         {
-                            newval = regFile.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                            newval = regFile.Replace(@"%sys32%", Variables.sys32Folder);
                         }
                         else if (regFile.Contains("mun"))
                         {
@@ -68,14 +65,8 @@ namespace Rectify11.Phase2
                         Console.WriteLine(final);
                         Console.Write("Final path: ");
                         Console.WriteLine(Path.Combine(Path.GetDirectoryName(newval), final));
-
-                        Interaction.Shell("cmd.exe /c takeown /F " + newval, AppWinStyle.Hide, true);
-                        Interaction.Shell("cmd.exe /c icacls " + newval + " /grant SYSTEM:(F)", AppWinStyle.Hide, true);
                         File.Move(newval, Path.Combine(Path.GetDirectoryName(newval), final));
                         File.Copy(file, newval, true);
-                        Interaction.Shell("cmd.exe /c icacls " + newval + " /reset", AppWinStyle.Hide, true);
-                        Interaction.Shell("cmd.exe /c icacls " + newval + " /inheritance:d", AppWinStyle.Hide, true);
-                        Interaction.Shell("cmd.exe /c icacls " + newval + " /setowner \"NT Service\\TrustedInstaller\"", AppWinStyle.Hide, true);
                         MoveFileEx(Path.Combine(Path.GetDirectoryName(newval), final), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
                 }

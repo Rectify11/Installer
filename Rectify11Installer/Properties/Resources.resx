@@ -175,4 +175,7 @@
   <data name="NSudoLC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NSudoLC.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Rectify11Phase2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rectify11.Phase2.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

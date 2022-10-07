@@ -328,6 +328,7 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Resources\NSudoLC.exe" />
+    <None Include="Resources\Rectify11.Phase2.exe" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <None Include="Resources\PsExec64.exe" />
