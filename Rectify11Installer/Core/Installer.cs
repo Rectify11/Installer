@@ -21,15 +21,10 @@ namespace Rectify11Installer.Core
         #region Public Methods
         public async Task<bool> Install(frmWizard frm)
         {
-            /*
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "PaExec64.exe")))
-                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "PaExec64.exe"), Properties.Resources.PsExec64);
-            */
             if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
-
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "files.7z")))
-                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
+			
+            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
 
             if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
@@ -82,10 +77,9 @@ namespace Rectify11Installer.Core
 		        if (!File.Exists(Path.Combine(Variables.r11Folder, "NSudoLC.exe")))
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "NSudoLC.exe"), Properties.Resources.NSudoLC);
 
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe")))
-                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
 
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") , AppWinStyle.NormalFocus, true);
+                Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe /T") , AppWinStyle.NormalFocus, true);
 
             }
             if (InstallOptions.InstallThemes)
@@ -176,8 +170,8 @@ namespace Rectify11Installer.Core
                 }
                 if (!File.Exists(Path.Combine(backupfolder, name)))
                 {
-                    File.Copy(file, Path.Combine(backupfolder, name));
-                    File.Copy(file, Path.Combine(tempfolder, name));
+                    //File.Copy(file, Path.Combine(backupfolder, name));
+                    File.Copy(file, Path.Combine(tempfolder, name), true);
                 }
 
                 string filename = name + ".res";
@@ -232,43 +226,44 @@ namespace Rectify11Installer.Core
             if (patch.HardlinkTarget.Contains("%sys32%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
-                Installer.Patch(newhardlink, patch, PatchType.General);
+                Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%lang%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-                Installer.Patch(newhardlink, patch, PatchType.Mui);
+                Patch(newhardlink, patch, PatchType.Mui);
             }
             else if (patch.HardlinkTarget.Contains("%en-US%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-                Installer.Patch(newhardlink, patch, PatchType.Mui);
+                Patch(newhardlink, patch, PatchType.Mui);
             }
             else if (patch.HardlinkTarget.Contains("mun"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
-                Installer.Patch(newhardlink, patch, PatchType.General);
+                Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%branding%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
-                Installer.Patch(newhardlink, patch, PatchType.General);
+                Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%prog%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
-                Installer.Patch(newhardlink, patch, PatchType.General);
+                Patch(newhardlink, patch, PatchType.General);
             }
             else if (patch.HardlinkTarget.Contains("%diag%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
-                Installer.Patch(newhardlink, patch, PatchType.Troubleshooter);
+                Patch(newhardlink, patch, PatchType.Troubleshooter);
             }
             else if (patch.HardlinkTarget.Contains("%windir%"))
             {
                 newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-                Installer.Patch(newhardlink, patch, PatchType.General);
+                Patch(newhardlink, patch, PatchType.General);
             }
+			/*
             // only for comctl so idc
             else if (patch.HardlinkTarget.Contains("%winsxs%"))
             {
@@ -299,25 +294,26 @@ namespace Rectify11Installer.Core
                 {
                     if (finaldirs[i].Contains("amd64_"))
                     {
-                        Installer.Patch(Path.Combine(finaldirs[i], "comctl32.dll"), patch, PatchType.General);
+						Patch(Path.Combine(finaldirs[i], "comctl32.dll"), patch, PatchType.General);
                     }
                     else if (finaldirs[i].Contains("x86_"))
                     {
-                        Installer.Patch(Path.Combine(finaldirs[i], "comctl32.dll"), patch, PatchType.x86);
+                        Patch(Path.Combine(finaldirs[i], "comctl32.dll"), patch, PatchType.x86);
                     }
                 }
             }
+			*/
             if (!string.IsNullOrWhiteSpace(patch.x86))
             {
                 if (patch.HardlinkTarget.Contains("%sys32%"))
                 {
                     newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sysWOWFolder);
-                    Installer.Patch(newhardlink, patch, PatchType.x86);
+                    Patch(newhardlink, patch, PatchType.x86);
                 }
                 else if (patch.HardlinkTarget.Contains("%prog%"))
                 {
                     newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles86);
-                    Installer.Patch(newhardlink, patch, PatchType.x86);
+                    Patch(newhardlink, patch, PatchType.x86);
                 }
             }
         }

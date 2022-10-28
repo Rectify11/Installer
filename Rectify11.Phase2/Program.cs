@@ -37,51 +37,31 @@ namespace Rectify11.Phase2
                 {
                     if (regFile.Contains(Path.GetFileName(file)))
                     {
-                        string newval = "";
-                        if (regFile.Contains("%sys32%"))
-                        {
-                            newval = regFile.Replace(@"%sys32%", Variables.sys32Folder);
-                        }
-                        else if (regFile.Contains("mun"))
-                        {
-                            newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
-                        }
-                        else if (regFile.Contains("%basebrdlang%"))
-                        {
-                            newval = regFile.Replace(@"%basebrdlang%", Path.Combine(Variables.brandingFolder, "Basebrd", CultureInfo.CurrentUICulture.Name));
-                        }
-                        else if (regFile.Contains("%winlang%"))
-                        {
-                            newval = regFile.Replace(@"%winlang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
-                        }
-
-                        string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(newval)) + Path.GetExtension(newval);
-                        string final = Path.GetFileName(newval.Replace(extension, "") + "_original" + extension);
-                        Console.WriteLine();
-                        Console.WriteLine(newval);
-                        Console.Write("Original name: ");
-                        Console.WriteLine(Path.GetFileName(newval));
-                        Console.Write("New name: ");
-                        Console.WriteLine(final);
-                        Console.Write("Final path: ");
-                        Console.WriteLine(Path.Combine(Path.GetDirectoryName(newval), final));
-                        File.Move(newval, Path.Combine(Path.GetDirectoryName(newval), final));
-                        File.Copy(file, newval, true);
-                        MoveFileEx(Path.Combine(Path.GetDirectoryName(newval), final), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+						// TrustedInstaller part
+						if (args[0] == "/T")
+						{
+							string newval = "";
+							if (regFile.Contains("mun"))
+								newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
+							Console.WriteLine();
+							Console.WriteLine(newval);
+							Console.Write("Final path: ");
+							Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup"));
+							File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval)));
+							File.Copy(file, newval, true);
+						}
                     }
                 }
             }
-
-
         }
     }
     public class Variables
     {
         public static string windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-        public static string r11Folder = System.IO.Path.Combine(windir, "Rectify11");
-        public static string r11Files = System.IO.Path.Combine(r11Folder, "files");
-        public static string sysresdir = System.IO.Path.Combine(windir, "SystemResources");
+        public static string r11Folder = Path.Combine(windir, "Rectify11");
+        public static string r11Files = Path.Combine(r11Folder, "files");
+        public static string sysresdir = Path.Combine(windir, "SystemResources");
         public static string sys32Folder = Environment.SystemDirectory;
-        public static string brandingFolder = System.IO.Path.Combine(windir, "Branding");
+        public static string brandingFolder = Path.Combine(windir, "Branding");
     }
 }

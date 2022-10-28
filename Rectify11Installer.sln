@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.2092
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rectify11Installer", "Rectify11Installer\Rectify11Installer.csproj", "{F1F7B13F-9EF7-4B77-9500-B062CC9DB17D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rectify11.Phase2", "Rectify11.Phase2\Rectify11.Phase2.csproj", "{8D66B017-3A76-439B-847B-C7379191E109}"
@@ -43,6 +45,7 @@ Global
 		{8D66B017-3A76-439B-847B-C7379191E109}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8D66B017-3A76-439B-847B-C7379191E109}.Release|Win32.ActiveCfg = Release|Any CPU
 		{8D66B017-3A76-439B-847B-C7379191E109}.Release|x64.ActiveCfg = Release|Any CPU
+		{8D66B017-3A76-439B-847B-C7379191E109}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
