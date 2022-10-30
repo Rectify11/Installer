@@ -84,7 +84,7 @@ namespace Rectify11Installer.Core
             }
             if (InstallOptions.InstallThemes)
             {
-                frm.InstallerProgress = "Installing Themes";
+                frm.InstallerProgress = "Installing Themes...";
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true));
             }
             AddToControlPanel();
