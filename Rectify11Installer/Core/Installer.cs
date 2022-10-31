@@ -5,9 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -51,7 +49,8 @@ namespace Rectify11Installer.Core
                 PatchesPatch[] ok = patches.Items;
                 decimal i = 0;
                 List<string> filelist = new List<string>();
-                foreach (PatchesPatch patch in ok)
+                List<string> x86list = new List<string>();
+				foreach (PatchesPatch patch in ok)
                 {
                     foreach (string items in InstallOptions.iconsList)
                     {
@@ -60,6 +59,8 @@ namespace Rectify11Installer.Core
                             decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
                             frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
                             filelist.Add(patch.HardlinkTarget);
+							if (!string.IsNullOrWhiteSpace(patch.x86))
+								x86list.Add(patch.HardlinkTarget);
                             MatchAndApplyRule(patch);
                             i++;
                         }
@@ -69,7 +70,8 @@ namespace Rectify11Installer.Core
                 if (reg != null)
                 {
                     reg.SetValue("PendingFiles", filelist.ToArray());
-                    reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
+                    reg.SetValue("x86PendingFiles", x86list.ToArray());
+					reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
                     reg.SetValue("Version", new Label().ProductVersion);
                 }
                 reg.Close();

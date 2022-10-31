@@ -40,28 +40,71 @@ namespace Rectify11.Phase2
 						// TrustedInstaller part
 						if (args[0] == "/T")
 						{
-							string newval = "";
 							if (regFile.Contains("mun"))
-								newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
-							Console.WriteLine();
-							Console.WriteLine(newval);
-							Console.Write("Final path: ");
-							Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup"));
-							File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval)));
-							File.Copy(file, newval, true);
+							{
+								string newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
+								MoveFile(newval, file);
+							}
+							// will improve later
+							else if (regFile.Contains("%sys32%"))
+							{
+								string newval = regFile.Replace(@"%sys32%", Variables.sys32Folder);
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%lang%"))
+							{
+								string newval = regFile.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%en-US%"))
+							{
+								string newval = regFile.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%branding%"))
+							{
+								string newval = regFile.Replace(@"%branding%", Variables.brandingFolder);
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%prog%"))
+							{
+								string newval = regFile.Replace(@"%prog%", Variables.progfiles);
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%windir%"))
+							{
+								string newval = regFile.Replace(@"%windir%", Variables.windir);
+								MoveFile(newval, file);
+							}
+							// troubleshooter later
+							// x86 later
 						}
                     }
                 }
             }
         }
-    }
+
+		private static void MoveFile(string newval, string file)
+		{
+			Console.WriteLine();
+			Console.WriteLine(newval);
+			Console.Write("Final path: ");
+			Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup"));
+			File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval)));
+			File.Copy(file, newval, true);
+		}
+	}
     public class Variables
     {
-        public static string windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-        public static string r11Folder = Path.Combine(windir, "Rectify11");
-        public static string r11Files = Path.Combine(r11Folder, "files");
-        public static string sysresdir = Path.Combine(windir, "SystemResources");
-        public static string sys32Folder = Environment.SystemDirectory;
-        public static string brandingFolder = Path.Combine(windir, "Branding");
-    }
+		public static string windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+		public static string r11Folder = System.IO.Path.Combine(windir, "Rectify11");
+		public static string r11Files = System.IO.Path.Combine(r11Folder, "files");
+		public static string sys32Folder = Environment.SystemDirectory;
+		public static string sysWOWFolder = Environment.GetFolderPath(Environment.SpecialFolder.SystemX86);
+		public static string sysresdir = System.IO.Path.Combine(windir, "SystemResources");
+		public static string brandingFolder = System.IO.Path.Combine(windir, "Branding");
+		public static string progfiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+		public static string progfiles86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+		public static string diag = System.IO.Path.Combine(windir, "diagnostics", "system");
+	}
 }
