@@ -103,7 +103,6 @@
   <Patch Mui="AdmTmpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
   <Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
   <Patch Mui="ApproveChildRequest.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ApproveChildRequest.exe" />
-  <Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\audiosrv.dll.mui" />
   <Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\audiosrv.dll.mui" />
 	<Patch Mui="autoplay.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\autoplay.dll" />
   <Patch Mui="baaupdate.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\baaupdate.exe" />
@@ -113,7 +112,6 @@
 
   <Patch Mui="bdechangepin.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\bdechangepin.exe" />
   <Patch Mui="BdeHdCfg.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BdeHdCfg.exe" />
-  <Patch Mui="bdeunlock.exe.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\bdeunlock.exe.mui" />
   <Patch Mui="bdeunlock.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\bdeunlock.exe.mui" />
   <Patch Mui="BitLockerWizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BitLockerWizard.exe" />
   <Patch Mui="BitLockerWizardElev.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BitLockerWizardElev.exe" />
@@ -186,7 +184,6 @@
 	<Patch Mui="MicrosoftEdgeDevTools.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\MicrosoftEdgeDevTools.exe" />
 	<Patch Mui="miguiresource.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\miguiresource.dll" />
 	<Patch Mui="mmc.exe.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\mmc.exe.mui" />
-  <Patch Mui="mmc.exe.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%en-US%\mmc.exe.mui" />
 	<Patch Mui="mobsync.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\mobsync.exe" />
 	<Patch Mui="modemui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\modemui.dll" />
 	<Patch Mui="MSchedExe.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\MSchedExe.exe" />
@@ -213,7 +210,6 @@
   <Patch Mui="pnidui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pnidui.dll" />
   <Patch Mui="powercfg.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\powercfg.cpl" />
   <Patch Mui="powrprof.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\powrprof.dll.mui" />
-  <Patch Mui="powrprof.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\powrprof.dll.mui" />
 	<Patch Mui="PresentationSettings.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\PresentationSettings.exe" />
 	<Patch Mui="PrintIsolationHost.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\PrintIsolationHost.exe" />
 	<Patch Mui="proquota.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\proquota.exe" />
@@ -230,10 +226,8 @@
 	<Patch Mui="sdcpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sdcpl.dll" />
 	<Patch Mui="sdclt.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\sdclt.exe" />
   <Patch Mui="SearchFilterHost.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\SearchFilterHost.exe.mui" />
-  <Patch Mui="SearchFilterHost.exe.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\SearchFilterHost.exe.mui" />
 	<Patch Mui="SearchFolder.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\SearchFolder.dll" />
 	<Patch Mui="SearchProtocolHost.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\SearchProtocolHost.exe.mui" />
-  <Patch Mui="SearchProtocolHost.exe.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\SearchProtocolHost.exe.mui" />
 	<Patch Mui="SecEdit.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\SecEdit.exe" />
   <Patch Mui="setup_wm.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\setup_wm.exe" />
 	<Patch Mui="setupapi.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\setupapi.dll.mui" />
@@ -290,7 +284,6 @@
 	<Patch Mui="wextract.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wextract.exe" />
 	<Patch Mui="wiaacmgr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wiaacmgr.exe" />
   <Patch Mui="wincredui.dll.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\wincredui.dll.mui" />
-  <Patch Mui="wincredui.dll.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%en-US%\wincredui.dll.mui" />
 	<Patch Mui="wksprt.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wksprt.exe" />
 	<Patch Mui="wlanpref.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanpref.dll" />
 	<Patch Mui="wlrmdr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wlrmdr.exe" />
