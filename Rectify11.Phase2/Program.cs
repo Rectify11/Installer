@@ -44,7 +44,6 @@ namespace Rectify11.Phase2
 				{
 					if (regFile.Contains(Path.GetFileName(file)))
 					{
-						// TrustedInstaller part
 						if (regFile.Contains("mun"))
 						{
 							string newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
@@ -82,7 +81,6 @@ namespace Rectify11.Phase2
 							MoveFile(newval, file);
 						}
 						// troubleshooter later
-						// x86 later
 					}
 				}
 				if (x86Files != null)
