@@ -12,3 +12,4 @@ packages/
 *.7z
 *.db
 *.suo
+*.exe
