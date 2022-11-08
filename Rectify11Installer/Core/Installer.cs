@@ -48,8 +48,8 @@ namespace Rectify11Installer.Core
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] ok = patches.Items;
 				decimal i = 0;
-				List<string> filelist = new List<string>();
-				List<string> x86list = new List<string>();
+				List<string> fileList = new List<string>();
+				List<string> x86List = new List<string>();
 				foreach (PatchesPatch patch in ok)
 				{
 					foreach (string items in InstallOptions.iconsList)
@@ -58,9 +58,9 @@ namespace Rectify11Installer.Core
 						{
 							decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
 							frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
-							filelist.Add(patch.HardlinkTarget);
+							fileList.Add(patch.HardlinkTarget);
 							if (!string.IsNullOrWhiteSpace(patch.x86))
-								x86list.Add(patch.HardlinkTarget);
+								x86List.Add(patch.HardlinkTarget);
 							MatchAndApplyRule(patch);
 							i++;
 						}
@@ -69,9 +69,9 @@ namespace Rectify11Installer.Core
 				var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey("Rectify11", true);
 				if (reg != null)
 				{
-					reg.SetValue("PendingFiles", filelist.ToArray());
-					if (x86list.Count != 0)
-						reg.SetValue("x86PendingFiles", x86list.ToArray());
+					reg.SetValue("PendingFiles", fileList.ToArray());
+					if (x86List.Count != 0)
+						reg.SetValue("x86PendingFiles", x86List.ToArray());
 					reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
 					reg.SetValue("Version", Application.ProductVersion);
 				}
@@ -85,11 +85,13 @@ namespace Rectify11Installer.Core
 				Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), AppWinStyle.NormalFocus, true);
 
 			}
+			/*
 			if (InstallOptions.InstallThemes)
 			{
 				frm.InstallerProgress = "Installing Themes";
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true));
 			}
+			*/
 			AddToControlPanel();
 			frm.InstallerProgress = "Cleaning up...";
 			Directory.Delete(Variables.r11Files, true);
