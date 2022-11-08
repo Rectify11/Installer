@@ -144,8 +144,8 @@ namespace Rectify11.Phase2
 			Console.WriteLine();
 			Console.WriteLine(newval);
 			Console.Write("Final path: ");
-			Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval)));
-			File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval)));
+			Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval)));
+			File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval)));
 			File.Copy(file, newval, true);
 		}
 	}
