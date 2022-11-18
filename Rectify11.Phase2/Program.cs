@@ -126,8 +126,10 @@ namespace Rectify11.Phase2
 			Console.WriteLine();
 			Console.WriteLine(newval);
 			Console.Write("Final path: ");
-			Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval)));
-			File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval)));
+			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval));
+			Console.WriteLine(finalpath);
+			if (!File.Exists(finalpath))
+				File.Move(newval, finalpath);
 			File.Copy(file, newval, true);
 		}
 		private static void MoveFilex86(string newval, string file)
@@ -135,8 +137,10 @@ namespace Rectify11.Phase2
 			Console.WriteLine();
 			Console.WriteLine(newval);
 			Console.Write("Final path: ");
-			Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval)));
-			File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval)));
+			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
+			Console.WriteLine(finalpath);
+			if (!File.Exists(finalpath))
+				File.Move(newval, finalpath);
 			File.Copy(file, newval, true);
 		}
 		private static void MoveTrouble(string newval, string file, string name)
@@ -144,8 +148,10 @@ namespace Rectify11.Phase2
 			Console.WriteLine();
 			Console.WriteLine(newval);
 			Console.Write("Final path: ");
-			Console.WriteLine(Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval)));
-			File.Move(newval, Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval)));
+			string finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
+			Console.WriteLine(finalpath);
+			if (!File.Exists(finalpath))
+				File.Move(newval, finalpath);
 			File.Copy(file, newval, true);
 		}
 	}
