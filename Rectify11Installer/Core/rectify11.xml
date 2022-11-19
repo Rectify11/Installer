@@ -104,7 +104,7 @@
   <Patch Mui="AdmTmpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
   <Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
   <Patch Mui="ApproveChildRequest.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ApproveChildRequest.exe" />
-  <Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\audiosrv.dll.mui" />
+  <Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\audiosrv.dll.mui" />
 	<Patch Mui="autoplay.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\autoplay.dll" />
   <Patch Mui="baaupdate.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\baaupdate.exe" />
   
@@ -141,6 +141,8 @@
   <Patch Mui="CustomInstallExec.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\CustomInstallExec.exe" />
   <Patch Mui="Defrag.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\Defrag.exe" />
   <Patch Mui="desk.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\desk.cpl" />
+  <Patch Mui="deskadp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\deskadp.dll" />
+  <Patch Mui="deskmon.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\deskmon.dll" />
   <Patch Mui="DeviceEject.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\DeviceEject.exe" />
   <Patch Mui="DevicePairingWizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\DevicePairingWizard.exe" />
   <Patch Mui="DeviceProperties.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\DeviceProperties.exe" />
@@ -272,6 +274,9 @@
   <Patch Mui="Troubleshooter: Search" mask="ICONGROUP," HardlinkTarget="%diag%\Search\DiagPackage.dll" />
   <Patch Mui="Troubleshooter: Speech" mask="ICONGROUP," HardlinkTarget="%diag%\Speech\DiagPackage.dll" />
   <Patch Mui="Troubleshooter: Video" mask="ICONGROUP," HardlinkTarget="%diag%\Video\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: WindowsMediaPlayerConfiguration" mask="ICONGROUP," HardlinkTarget="%diag%\WindowsMediaPlayerConfiguration\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: WindowsMediaPlayerMediaLibrary" mask="ICONGROUP," HardlinkTarget="%diag%\WindowsMediaPlayerMediaLibrary\DiagPackage.dll" />
+  <Patch Mui="Troubleshooter: WindowsMediaPlayerPlayDVD" mask="ICONGROUP," HardlinkTarget="%diag%\WindowsMediaPlayerPlayDVD\DiagPackage.dll" />
   <Patch Mui="Troubleshooter: WindowsUpdate" mask="ICONGROUP," HardlinkTarget="%diag%\WindowsUpdate\DiagPackage.dll" />
   
 	<Patch Mui="TSWorkspace.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\TSWorkspace.dll" />
