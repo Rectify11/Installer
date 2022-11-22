@@ -2,31 +2,28 @@
 using System;
 using System.Globalization;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace Rectify11.Phase2
 {
-	class Program
+	internal class Program
 	{
-		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-		static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName,
-		  MoveFileFlags dwFlags);
+		private static string[] pendingFiles = null;
+		private static string[] x86Files = null;
 
-		[Flags]
-		enum MoveFileFlags
+		private static void Main(string[] args)
 		{
-			MOVEFILE_REPLACE_EXISTING = 0x00000001,
-			MOVEFILE_COPY_ALLOWED = 0x00000002,
-			MOVEFILE_DELAY_UNTIL_REBOOT = 0x00000004,
-			MOVEFILE_WRITE_THROUGH = 0x00000008,
-			MOVEFILE_CREATE_HARDLINK = 0x00000010,
-			MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
-		}
-		static void Main(string[] args)
-		{
-			string[] pendingFiles = null;
-			string[] x86Files = null;
+			var backupDir = Path.Combine(Variables.r11Folder, "Backup");
+			var backupDiagDir = Path.Combine(Variables.r11Folder, "Backup", "Diag");
+			if (!Directory.Exists(backupDir))
+			{
+				Directory.CreateDirectory(backupDir);
+			}
+
+			if (!Directory.Exists(backupDiagDir))
+			{
+				Directory.CreateDirectory(backupDiagDir);
+			}
+
 			var r11Dir = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp"));
 			var r11DiagDir = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "Diag"));
 			var r11Reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey("Rectify11", false);
@@ -42,9 +39,9 @@ namespace Rectify11.Phase2
 			r11Reg.Close();
 			if (pendingFiles != null)
 			{
-				foreach (string regFile in pendingFiles)
+				foreach (string file in r11Dir)
 				{
-					foreach (string file in r11Dir)
+					foreach (string regFile in pendingFiles)
 					{
 						if (regFile.Contains(Path.GetFileName(file)))
 						{
@@ -53,7 +50,6 @@ namespace Rectify11.Phase2
 								string newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
 								MoveFile(newval, file);
 							}
-							// will improve later
 							else if (regFile.Contains("%sys32%"))
 							{
 								string newval = regFile.Replace(@"%sys32%", Variables.sys32Folder);
@@ -85,35 +81,38 @@ namespace Rectify11.Phase2
 								MoveFile(newval, file);
 							}
 						}
-						if (x86Files != null)
+					}
+					if (x86Files != null)
+					{
+						foreach (string x86file in x86Files)
 						{
-							foreach (string x86file in x86Files)
+							if (x86file.Contains(Path.GetFileName(file)))
 							{
-								if (x86file.Contains(Path.GetFileName(file)))
+								if (x86file.Contains("%sys32%"))
 								{
-									if (x86file.Contains("%sys32%"))
-									{
-										string newval = x86file.Replace(@"%sys32%", Variables.sysWOWFolder);
-										MoveFilex86(newval, file);
-									}
-									else if (x86file.Contains("%prog%"))
-									{
-										string newval = x86file.Replace(@"%prog%", Variables.progfiles86);
-										MoveFilex86(newval, file);
-									}
+									string newval = x86file.Replace(@"%sys32%", Variables.sysWOWFolder);
+									MoveFilex86(newval, file);
+								}
+								else if (x86file.Contains("%prog%"))
+								{
+									string newval = x86file.Replace(@"%prog%", Variables.progfiles86);
+									MoveFilex86(newval, file);
 								}
 							}
 						}
 					}
-					foreach (string file in r11DiagDir)
+				}
+				foreach (string diagFile in r11DiagDir)
+				{
+					foreach (string regFile in pendingFiles)
 					{
 						if (regFile.Contains("%diag%"))
 						{
 							string name = regFile.Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
-							if (name.Contains(Path.GetFileNameWithoutExtension(file).Replace("DiagPackage", "")))
+							if (name.Contains(Path.GetFileNameWithoutExtension(diagFile).Replace("DiagPackage", "")))
 							{
 								string newval = regFile.Replace("%diag%", Variables.diag);
-								MoveTrouble(newval, file, name);
+								MoveTrouble(newval, diagFile, name);
 							}
 						}
 					}
@@ -129,8 +128,11 @@ namespace Rectify11.Phase2
 			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval));
 			Console.WriteLine(finalpath);
 			if (!File.Exists(finalpath))
+			{
 				File.Move(newval, finalpath);
+			}
 			File.Copy(file, newval, true);
+
 		}
 		private static void MoveFilex86(string newval, string file)
 		{
@@ -140,7 +142,9 @@ namespace Rectify11.Phase2
 			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
 			Console.WriteLine(finalpath);
 			if (!File.Exists(finalpath))
+			{
 				File.Move(newval, finalpath);
+			}
 			File.Copy(file, newval, true);
 		}
 		private static void MoveTrouble(string newval, string file, string name)
@@ -151,7 +155,9 @@ namespace Rectify11.Phase2
 			string finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
 			Console.WriteLine(finalpath);
 			if (!File.Exists(finalpath))
+			{
 				File.Move(newval, finalpath);
+			}
 			File.Copy(file, newval, true);
 		}
 	}
