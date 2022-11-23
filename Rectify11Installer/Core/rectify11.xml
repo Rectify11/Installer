@@ -137,7 +137,6 @@
   <Patch Mui="credwiz.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\credwiz.exe" />
   <Patch Mui="cscript.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cscript.exe" />
   <Patch Mui="cscui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cscui.dll" />
-  <Patch Mui="ctfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ctfmon.exe" />
   <Patch Mui="CustomInstallExec.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\CustomInstallExec.exe" />
   <Patch Mui="Defrag.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\Defrag.exe" />
   <Patch Mui="desk.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\desk.cpl" />
