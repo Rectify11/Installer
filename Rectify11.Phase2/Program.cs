@@ -2,7 +2,6 @@
 using System;
 using System.Globalization;
 using System.IO;
-using System.Runtime;
 
 namespace Rectify11.Phase2
 {
@@ -11,10 +10,8 @@ namespace Rectify11.Phase2
 		private static string[] pendingFiles = null;
 		private static string[] x86Files = null;
 
-		private static void Main(string[] args)
+		private static void Main()
 		{
-			ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
-			ProfileOptimization.StartProfile("Startup.Profile");
 			var backupDir = Path.Combine(Variables.r11Folder, "Backup");
 			var backupDiagDir = Path.Combine(Variables.r11Folder, "Backup", "Diag");
 			var tempDiagDir = Path.Combine(Variables.r11Folder, "Tmp", "Diag");

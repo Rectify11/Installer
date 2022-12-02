@@ -3,6 +3,7 @@ using Rectify11Installer.Win32;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Runtime;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -16,6 +17,8 @@ namespace Rectify11Installer
 		[STAThread]
 		static void Main()
 		{
+			ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
+			ProfileOptimization.StartProfile("Startup.Profile");
 			if (Environment.OSVersion.Version.Build >= 10240)
 			{
 				Theme.InitTheme();
