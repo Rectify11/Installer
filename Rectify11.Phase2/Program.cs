@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Runtime;
 
 namespace Rectify11.Phase2
 {
@@ -12,8 +13,11 @@ namespace Rectify11.Phase2
 
 		private static void Main(string[] args)
 		{
+			ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
+			ProfileOptimization.StartProfile("Startup.Profile");
 			var backupDir = Path.Combine(Variables.r11Folder, "Backup");
 			var backupDiagDir = Path.Combine(Variables.r11Folder, "Backup", "Diag");
+			var tempDiagDir = Path.Combine(Variables.r11Folder, "Tmp", "Diag");
 			if (!Directory.Exists(backupDir))
 			{
 				Directory.CreateDirectory(backupDir);
@@ -22,6 +26,12 @@ namespace Rectify11.Phase2
 			if (!Directory.Exists(backupDiagDir))
 			{
 				Directory.CreateDirectory(backupDiagDir);
+			}
+
+			// temp solution
+			if (!Directory.Exists(tempDiagDir))
+			{
+				Directory.CreateDirectory(tempDiagDir);
 			}
 
 			var r11Dir = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp"));
