@@ -20,18 +20,26 @@ namespace Rectify11Installer.Core
 		public async Task<bool> Install(frmWizard frm)
 		{
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
+			{
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
+			}
 
 			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
 
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
+			{
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
+			}
 
 			if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+			{
 				Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
+			}
 
 			if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+			{
 				Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
+			}
 
 			File.Copy(Path.Combine(Application.StartupPath, "Rectify11Installer.exe"), Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
 
@@ -60,7 +68,10 @@ namespace Rectify11Installer.Core
 							frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
 							fileList.Add(patch.HardlinkTarget);
 							if (!string.IsNullOrWhiteSpace(patch.x86))
+							{
 								x86List.Add(patch.HardlinkTarget);
+							}
+
 							MatchAndApplyRule(patch);
 							i++;
 						}
@@ -71,14 +82,19 @@ namespace Rectify11Installer.Core
 				{
 					reg.SetValue("PendingFiles", fileList.ToArray());
 					if (x86List.Count != 0)
+					{
 						reg.SetValue("x86PendingFiles", x86List.ToArray());
+					}
+
 					reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
 					reg.SetValue("Version", Application.ProductVersion);
 				}
 				reg.Close();
 
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "NSudoLC.exe")))
+				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "NSudoLC.exe"), Properties.Resources.NSudoLC);
+				}
 
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
 
@@ -163,7 +179,9 @@ namespace Rectify11Installer.Core
 				}
 
 				if (string.IsNullOrWhiteSpace(name))
+				{
 					return;
+				}
 
 				if (type == PatchType.Troubleshooter)
 				{
@@ -182,9 +200,13 @@ namespace Rectify11Installer.Core
 				string filename = name + ".res";
 				string filepath;
 				if (type == PatchType.Troubleshooter)
+				{
 					filepath = Path.Combine(Variables.r11Files, "Diag");
+				}
 				else
+				{
 					filepath = Variables.r11Files;
+				}
 
 				if (patch.mask.Contains("|"))
 				{
