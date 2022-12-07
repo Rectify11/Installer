@@ -210,7 +210,7 @@
 	<Patch Mui="hotplug.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\hotplug.dll" />
 	<Patch Mui="iernonce.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\iernonce.dll" />
 	<Patch Mui="iexpress.exe" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\iexpress.exe" />
-	<Patch Mui="inetppui.dll" mask="ICONGROUP," HardlinkTarget="%sysresdir%\inetppui.dll" />
+	<Patch Mui="inetppui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\inetppui.dll" />
 	<Patch Mui="isoburn.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\isoburn.exe" />
 	<Patch Mui="lpksetup.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\lpksetup.exe" />
 	<Patch Mui="LicenseManagerShellext.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\LicenseManagerShellext.exe" />
