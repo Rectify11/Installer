@@ -109,6 +109,9 @@ namespace Rectify11Installer.Core
 			}
 			*/
 			AddToControlPanel();
+			// refresh icon cache
+			try { await Task.Run(() => Interaction.Shell("ie4uinit -show", AppWinStyle.NormalFocus, true)); }
+			catch { }
 			frm.InstallerProgress = "Cleaning up...";
 			Directory.Delete(Variables.r11Files, true);
 			File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
