@@ -15,6 +15,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <LangVersion>8.0</LangVersion>
     <PublishUrl>output\</PublishUrl>
     <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>3.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <LangVersion>8.0</LangVersion>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -354,4 +354,11 @@
       <TargetFrameworkSDKToolsDirectory>$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
     </PropertyGroup>
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>$(ProjectDir)\ILrepack.exe $(TargetPath) /out:$(ProjectDir)bin\output\Rectify11Installer.exe libmsstyle.dll TaskDialog.dll AeroWizard.dll ar\Rectify11Installer.resources.dll de\Rectify11Installer.resources.dll el\Rectify11Installer.resources.dll es\Rectify11Installer.resources.dll hr\Rectify11Installer.resources.dll  it\Rectify11Installer.resources.dll ko\Rectify11Installer.resources.dll  nl\Rectify11Installer.resources.dll pl\Rectify11Installer.resources.dll pt\Rectify11Installer.resources.dll ru\Rectify11Installer.resources.dll vi\Rectify11Installer.resources.dll zh-CN\Rectify11Installer.resources.dll
+rd /s /q $(TargetDir)
+md $(TargetDir)
+copy $(ProjectDir)bin\output\*.* $(TargetDir)
+rd /s /q $(ProjectDir)bin\output</PostBuildEvent>
+  </PropertyGroup>
 </Project>
