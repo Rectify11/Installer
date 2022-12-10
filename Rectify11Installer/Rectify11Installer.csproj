@@ -94,6 +94,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -157,6 +158,12 @@
     </Compile>
     <Compile Include="Pages\EulaPage.Designer.cs">
       <DependentUpon>EulaPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Experimental.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Experimental.Designer.cs">
+      <DependentUpon>Experimental.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\InstallConfirmation.cs">
       <SubType>UserControl</SubType>
@@ -326,6 +333,7 @@
     </Content>
     <None Include="Resources\NSudoLC.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
+    <None Include="Resources\incomplete.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <None Include="Resources\PsExec64.exe" />

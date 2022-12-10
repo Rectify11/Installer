@@ -234,7 +234,7 @@
 	<Patch Mui="modemui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\modemui.dll" />
 	<Patch Mui="MSchedExe.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\MSchedExe.exe" />
 	<Patch Mui="msconfig.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\msconfig.exe" />
-	<Patch Mui="msftedit.dll" mask="CURSORGROUP," HardlinkTarget="%sys32%\msftedit.dll" />
+	<!--<Patch Mui="msftedit.dll" mask="CURSORGROUP," HardlinkTarget="%sys32%\msftedit.dll" />-->
 	<Patch Mui="msieftp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\msieftp.dll" />
 	<Patch Mui="msinfo32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\msinfo32.exe" />
 	<Patch Mui="mshta.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\mshta.exe" />
@@ -250,7 +250,7 @@
 	<Patch Mui="notepad.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\notepad.exe" />
 	<Patch Mui="nslookup.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\nslookup.exe" />
 	<Patch Mui="ntlanui2.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\ntlanui2.dll" />
-	<Patch Mui="ntprint.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\ntprint.dll" />
+	<Patch Mui="ntprint.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ntprint.exe" />
 	<Patch Mui="objsel.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\objsel.dll" />
 	<Patch Mui="occache.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\occache.dll" />
 	<Patch Mui="odbcad32.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%sys32%\odbcad32.exe" />
@@ -374,6 +374,7 @@
 	<Patch Mui="WerFaultSecure.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WerFaultSecure.exe" />
 	<Patch Mui="wextract.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wextract.exe" />
 	<Patch Mui="wfs.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wfs.exe" />
+	<Patch Mui="wfsr.dll" mask="ICONGROUP,|CURSORGROUP," HardlinkTarget="%sys32%\wfsr.dll" />
 	<Patch Mui="wiaacmgr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wiaacmgr.exe" />
 	<Patch Mui="wincredui.dll.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\wincredui.dll.mui" />
 	<Patch Mui="Windows.Storage.Search.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Windows.Storage.Search.dll" />

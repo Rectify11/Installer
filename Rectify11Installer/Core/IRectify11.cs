@@ -12,6 +12,7 @@ namespace Rectify11Installer.Core
 		public static EPPage EPPage = new EPPage();
 		public static InstallConfirmation InstallConfirmation = new InstallConfirmation();
 		public static ProgressPage ProgressPage;
+		public static Experimental ExperimentalPage = new Experimental();
 	}
 	public class InstallOptions
 	{

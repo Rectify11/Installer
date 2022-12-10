@@ -13,6 +13,7 @@ namespace Rectify11Installer
 	{
 		#region Variables
 		public static bool IsItemsSelected;
+		private bool acknowledged = false;
 		private bool idleinit = false;
 		public string InstallerProgress
 		{
@@ -57,7 +58,7 @@ namespace Rectify11Installer
 				// current instance to change button state.
 				RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
 				RectifyPages.ProgressPage = new ProgressPage(this);
-
+				expPage.Controls.Add(RectifyPages.ExperimentalPage);
 				eulPage.Controls.Add(RectifyPages.EulaPage);
 				installPage.Controls.Add(RectifyPages.InstallOptnsPage);
 				themePage.Controls.Add(RectifyPages.ThemeChoicePage);
@@ -109,13 +110,28 @@ namespace Rectify11Installer
 					DarkMode.UpdateFrame(this, false);
 				}
 			}
-			else if (page == RectifyPages.EulaPage)
+			else if (page == RectifyPages.ExperimentalPage)
 			{
 				if (!Theme.IsUsingDarkMode)
 				{
 					DarkMode.UpdateFrame(this, true);
 				}
 
+				tableLayoutPanel1.Visible = true;
+				tableLayoutPanel2.Visible = true;
+				nextButton.ButtonText = resources.GetString("buttonNext");
+				nextButton.Enabled = true;
+				navPane.SelectedTab = expPage;
+			}
+			else if (page == RectifyPages.EulaPage)
+			{
+				if (acknowledged)
+				{
+					if (!Theme.IsUsingDarkMode)
+					{
+						DarkMode.UpdateFrame(this, true);
+					}
+				}
 				tableLayoutPanel1.Visible = true;
 				tableLayoutPanel2.Visible = true;
 				nextButton.ButtonText = resources.GetString("buttonAgree");
@@ -190,14 +206,20 @@ namespace Rectify11Installer
 				{
 					e.Cancel = true;
 				}
-
 				SystemEvents.UserPreferenceChanged -= new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
-
 			}
 		}
 		private void NextButton_Click(object sender, EventArgs e)
 		{
-			if (navPane.SelectedTab == eulPage)
+			if (navPane.SelectedTab == expPage)
+			{
+				if (!acknowledged)
+				{
+					acknowledged = true;
+				}
+				Navigate(RectifyPages.EulaPage);
+			}
+			else if (navPane.SelectedTab == eulPage)
 			{
 				Navigate(RectifyPages.InstallOptnsPage);
 			}
@@ -240,7 +262,11 @@ namespace Rectify11Installer
 
 		private void BackButton_Click(object sender, EventArgs e)
 		{
-			if (navPane.SelectedTab == eulPage)
+			if (navPane.SelectedTab == expPage)
+			{
+				Navigate(RectifyPages.WelcomePage);
+			}
+			else if (navPane.SelectedTab == eulPage)
 			{
 				Navigate(RectifyPages.WelcomePage);
 			}
@@ -284,7 +310,14 @@ namespace Rectify11Installer
 		{
 			if (Helper.CheckIfUpdatesPending())
 			{
-				Navigate(RectifyPages.EulaPage);
+				if (!acknowledged)
+				{
+					Navigate(RectifyPages.ExperimentalPage);
+				}
+				else
+				{
+					Navigate(RectifyPages.EulaPage);
+				}
 			}
 		}
 

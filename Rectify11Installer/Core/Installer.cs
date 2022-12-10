@@ -96,9 +96,11 @@ namespace Rectify11Installer.Core
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "NSudoLC.exe"), Properties.Resources.NSudoLC);
 				}
 
+				frm.InstallerProgress = "Replacing files";
+
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
 
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), AppWinStyle.NormalFocus, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), AppWinStyle.Hide, true));
 
 			}
 			/*
