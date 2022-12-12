@@ -132,6 +132,7 @@
 	<Patch Mui="bdeunlock.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\bdeunlock.exe.mui" />
 	<Patch Mui="BitLockerWizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BitLockerWizard.exe" />
 	<Patch Mui="BitLockerWizardElev.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BitLockerWizardElev.exe" />
+	<Patch Mui="Bubbles.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\Bubbles.scr" />
 	<Patch Mui="cabview.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cabview.dll" />
 	<Patch Mui="CastingShellExt.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\CastingShellExt.dll" />
 	<Patch Mui="calc.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\calc.exe" />
@@ -240,6 +241,7 @@
 	<Patch Mui="mshta.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\mshta.exe" />
 	<Patch Mui="msra.exe.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\msra.exe" />
 	<Patch Mui="MultiDigiMon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\MultiDigiMon.exe" />
+	<Patch Mui="Mystify.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\Mystify.scr" />
 	<Patch Mui="ncpa.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\ncpa.cpl" />
 	<Patch Mui="ndadmin.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ndadmin.exe" />
 	<Patch Mui="ndfapi.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\ndfapi.dll" />
@@ -258,6 +260,7 @@
 	<Patch Mui="OptionalFeatures.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\OptionalFeatures.exe" />
 	<Patch Mui="pautoenr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pautoenr.dll" />
 	<Patch Mui="perfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\perfmon.exe" />
+	<Patch Mui="PhotoScreensaver.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\PhotoScreensaver.scr" />
 	<Patch Mui="photowiz.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\photowiz.dll" />
 	<Patch Mui="playtomenu.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\playtomenu.dll" />
 	<Patch Mui="pmcsnap.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\pmcsnap.dll" />
@@ -282,6 +285,7 @@
 	<Patch Mui="RelPost.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\RelPost.exe" />
 	<Patch Mui="repair-bde.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\repair-bde.exe" />
 	<Patch Mui="resmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\resmon.exe" />
+	<Patch Mui="Ribbons.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\Ribbons.scr" />
 	<Patch Mui="rstrui.exe" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\rstrui.exe" />
 	<Patch Mui="runonce.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\runonce.exe" />
 	<Patch Mui="sapi.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\Speech\SpeechUX\sapi.cpl" />
@@ -289,6 +293,7 @@
 	<Patch Mui="scansetting.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\scansetting.dll" />
 	<Patch Mui="scavengeui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\scavengeui.dll" />
 	<Patch Mui="scksp.dll" mask="BITMAP," HardlinkTarget="%sys32%\scksp.dll" />
+	<Patch Mui="Scrnsave.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\Scrnsave.scr" />
 	<Patch Mui="scrptadm.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\scrptadm.dll" />
 	<Patch Mui="sdcpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sdcpl.dll" />
 	<Patch Mui="sdclt.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\sdclt.exe" />
@@ -318,6 +323,7 @@
 	<Patch Mui="srcore.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\srcore.dll" />
 	<Patch Mui="srm.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\srm.dll" />
 	<Patch Mui="srrstr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\srrstr.dll" />
+	<Patch Mui="SSText3D.scr" mask="ICONGROUP,|JPG," HardlinkTarget="%sys32%\SSText3D.scr" />
 	<Patch Mui="sti.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sti.dll" />
 	<Patch Mui="sti_ci.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sti_ci.dll" />
 	<Patch Mui="sysfxui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sysfxui.dll" />
