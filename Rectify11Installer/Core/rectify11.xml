@@ -361,7 +361,7 @@
 	<Patch Mui="uiribbon.dll" mask="PNG," HardlinkTarget="%sys32%\uiribbon.dll" />
 	<Patch Mui="unimdm.tsp" mask="ICONGROUP," HardlinkTarget="%sys32%\unimdm.tsp" />
 	<Patch Mui="url.dll" mask="ICONGROUP," x86="true" HardlinkTarget="%sys32%\url.dll" />
-	<Patch Mui="urlmon.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\urlmon.dll" />
+	<!--<Patch Mui="urlmon.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\urlmon.dll" />-->
 	<Patch Mui="usbui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\usbui.dll" />
 	<Patch Mui="verifiergui.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\verifiergui.exe" />
 	<Patch Mui="wbemcntl.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\wbem\wbemcntl.dll" />
