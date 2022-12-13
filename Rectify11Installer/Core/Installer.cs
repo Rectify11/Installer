@@ -55,16 +55,16 @@ namespace Rectify11Installer.Core
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] ok = patches.Items;
-				decimal i = 0;
-				List<string> fileList = new List<string>();
-				List<string> x86List = new List<string>();
+				decimal progress = 0;
+				List<string> fileList = new();
+				List<string> x86List = new();
 				foreach (PatchesPatch patch in ok)
 				{
 					foreach (string items in InstallOptions.iconsList)
 					{
 						if (patch.Mui.Contains(items))
 						{
-							decimal number = Math.Round((i / InstallOptions.iconsList.Count) * 100m);
+							decimal number = Math.Round((progress / InstallOptions.iconsList.Count) * 100m);
 							frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
 							fileList.Add(patch.HardlinkTarget);
 							if (!string.IsNullOrWhiteSpace(patch.x86))
@@ -73,7 +73,7 @@ namespace Rectify11Installer.Core
 							}
 
 							MatchAndApplyRule(patch);
-							i++;
+							progress++;
 						}
 					}
 				}
@@ -90,7 +90,6 @@ namespace Rectify11Installer.Core
 					reg.SetValue("Version", Application.ProductVersion);
 				}
 				reg.Close();
-
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "NSudoLC.exe")))
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "NSudoLC.exe"), Properties.Resources.NSudoLC);
@@ -99,7 +98,11 @@ namespace Rectify11Installer.Core
 				frm.InstallerProgress = "Replacing files";
 
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
-
+				if (Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp", "mmc")))
+				{
+					Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp", "mmc"), true);
+				}
+				Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), AppWinStyle.Hide, true));
 
 			}
@@ -116,6 +119,7 @@ namespace Rectify11Installer.Core
 			catch { }
 			frm.InstallerProgress = "Cleaning up...";
 			Directory.Delete(Variables.r11Files, true);
+			Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
 			File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 			frm.InstallerProgress = "Done";
 			NativeMethods.SetCloseButton(frm, true);

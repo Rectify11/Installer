@@ -114,7 +114,7 @@
 	<Patch Mui="wuapi.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wuapi.dll.mun" />
 
 	<!--Dll and Exe files-->
-	<Patch Mui="AdmTmpl.dll.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\AdmTmpl.dll.mui" />
+	<Patch Mui="AdmTmpl.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
 	<Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
 	<Patch Mui="ApproveChildRequest.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ApproveChildRequest.exe" />
 	<Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\audiosrv.dll.mui" />
