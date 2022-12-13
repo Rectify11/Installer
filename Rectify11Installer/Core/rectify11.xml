@@ -255,8 +255,8 @@
 	<Patch Mui="ntprint.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ntprint.exe" />
 	<Patch Mui="objsel.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\objsel.dll" />
 	<Patch Mui="occache.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\occache.dll" />
-	<Patch Mui="odbcad32.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%sys32%\odbcad32.exe" />
-	<Patch Mui="odbcint.dll" mask="ICONGROUP,|BITMAP," x86="true" HardlinkTarget="%sys32%\odbcint.dll" />
+	<Patch Mui="odbcad32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\odbcad32.exe" />
+	<Patch Mui="odbcint.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\odbcint.dll" />
 	<Patch Mui="OptionalFeatures.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\OptionalFeatures.exe" />
 	<Patch Mui="pautoenr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pautoenr.dll" />
 	<Patch Mui="perfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\perfmon.exe" />
