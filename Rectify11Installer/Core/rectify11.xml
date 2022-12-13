@@ -170,7 +170,7 @@
 	<Patch Mui="DiagCpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\DiagCpl.dll" />
 	<Patch Mui="dialer.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\dialer.exe" />
 	<Patch Mui="Display.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Display.dll" />
-	<Patch Mui="dmdlgs.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\dmdlgs.dll" />
+	<Patch Mui="dmdlgs.dll" mask="BITMAP," HardlinkTarget="%sys32%\dmdlgs.dll" />
 	<Patch Mui="dot3gpui.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\dot3gpui.dll" />
 	<Patch Mui="dot3mm.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\dot3mm.dll" />
 	<Patch Mui="dot3ui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\dot3ui.dll" />
