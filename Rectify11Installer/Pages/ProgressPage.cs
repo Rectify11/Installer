@@ -8,7 +8,7 @@ namespace Rectify11Installer.Pages
 	{
 		private frmWizard frmwiz;
 		private Timer timer2;
-		private int duration = 15;
+		private int duration = 30;
 		public ProgressPage(frmWizard frm)
 		{
 			InitializeComponent();
@@ -23,7 +23,7 @@ namespace Rectify11Installer.Pages
 		{
 			timer1.Stop();
 			progressText.Text = "Restarting your PC";
-			progressInfo.Text = "Rectify11 has finished patching your system, your pc needs to be restarted in order to apply the changes, it will automatically restart in 15 seconds";
+			progressInfo.Text = "Rectify11 has finished patching your system, your pc needs to be restarted in order to apply the changes, it will automatically restart in " + duration.ToString()+ " seconds";
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.incomplete;
 			timer2.Start();
