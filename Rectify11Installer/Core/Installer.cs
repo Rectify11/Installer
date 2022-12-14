@@ -119,7 +119,6 @@ namespace Rectify11Installer.Core
 			catch { }
 			frm.InstallerProgress = "Cleaning up...";
 			Directory.Delete(Variables.r11Files, true);
-			Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
 			File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 			frm.InstallerProgress = "Done";
 			NativeMethods.SetCloseButton(frm, true);
