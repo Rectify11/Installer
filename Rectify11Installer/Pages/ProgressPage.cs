@@ -1,16 +1,45 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
 {
 	public partial class ProgressPage : WizardPage
 	{
 		private frmWizard frmwiz;
+		private Timer timer2;
+		private int duration = 15;
 		public ProgressPage(frmWizard frm)
 		{
 			InitializeComponent();
+			timer2 = new()
+			{
+				Interval = 1000
+			};
+			timer2.Tick += Timer2_Tick;
 			frmwiz = frm;
 		}
+		public void StartReset()
+		{
+			timer1.Stop();
+			progressText.Text = "Restarting your PC";
+			progressInfo.Text = "Rectify11 has finished patching your system, your pc needs to be restarted in order to apply the changes, it will automatically restart in 15 seconds";
+			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
+			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.incomplete;
+			timer2.Start();
+		}
+
+		private void Timer2_Tick(object sender, EventArgs e)
+		{
+			duration -= 1;
+			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
+			if (duration == 0)
+			{
+				timer2.Stop();
+				Win32.NativeMethods.Reboot();
+			}
+		}
+
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			NextText();
@@ -39,7 +68,7 @@ namespace Rectify11Installer.Pages
 			{
 				this.Title = Title;
 				this.Description = Description;
-				this.Side = image;
+				Side = image;
 			}
 		}
 		private int CurrentTextIndex = -1;
@@ -47,7 +76,9 @@ namespace Rectify11Installer.Pages
 		{
 			CurrentTextIndex++;
 			if (CurrentTextIndex >= Rectify11InstallerTexts.Length)
-				timer1.Stop();
+			{
+				CurrentTextIndex = -1;
+			}
 			else
 			{
 				var t = Rectify11InstallerTexts[CurrentTextIndex];

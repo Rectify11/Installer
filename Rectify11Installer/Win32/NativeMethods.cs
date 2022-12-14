@@ -1,11 +1,34 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+#nullable enable
 
 namespace Rectify11Installer.Win32
 {
 	public class NativeMethods
 	{
 		#region P/Invoke
+		[DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool LookupPrivilegeValue(string? lpSystemName, string lpName, out LUID lpLuid);
+
+		[DllImport("advapi32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool AdjustTokenPrivileges(IntPtr TokenHandle, [MarshalAs(UnmanagedType.Bool)] bool DisableAllPrivileges, ref TOKEN_PRIVILEGES NewState, UInt32 Zero, IntPtr Null1, IntPtr Null2);
+
+		[DllImport("kernel32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool CloseHandle(IntPtr hObject);
+
+		[DllImport("user32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool ExitWindowsEx(ExitWindows uFlags, ShutdownReason dwReason);
+
+		[DllImport("advapi32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool OpenProcessToken(IntPtr ProcessHandle, UInt32 DesiredAccess, out IntPtr TokenHandle);
+
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool revert);
 
@@ -36,6 +59,10 @@ namespace Rectify11Installer.Win32
 		public const int MF_GRAYED = 1;
 		public const int WP_CAPTION = 1;
 		public const int CS_ACTIVE = 1;
+		private const UInt32 TOKEN_QUERY = 0x0008;
+		private const UInt32 TOKEN_ADJUST_PRIVILEGES = 0x0020;
+		private const UInt32 SE_PRIVILEGE_ENABLED = 0x00000002;
+		private const string SE_SHUTDOWN_NAME = "SeShutdownPrivilege";
 		[StructLayout(LayoutKind.Sequential)]
 		public class BITMAPINFO
 		{
@@ -83,6 +110,46 @@ namespace Rectify11Installer.Win32
 			public int cyTopHeight;      // height of top border that retains its size
 			public int cyBottomHeight;   // height of bottom border that retains its size
 		};
+		[Flags]
+		private enum ExitWindows : uint
+		{
+			LogOff = 0x00,
+			ShutDown = 0x01,
+			Reboot = 0x02,
+			PowerOff = 0x08,
+			RestartApps = 0x40,
+			Force = 0x04,
+			ForceIfHung = 0x10,
+		}
+
+		[Flags]
+		private enum ShutdownReason : uint
+		{
+			MajorOther = 0x00000000,
+			MinorOther = 0x00000000,
+			FlagPlanned = 0x80000000
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct LUID
+		{
+			public uint LowPart;
+			public int HighPart;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct LUID_AND_ATTRIBUTES
+		{
+			public LUID Luid;
+			public UInt32 Attributes;
+		}
+		private struct TOKEN_PRIVILEGES
+		{
+			public UInt32 PrivilegeCount;
+			[MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
+			public LUID_AND_ATTRIBUTES[] Privileges;
+		}
+
 		#endregion
 		#region Public Methods
 		public static bool SetCloseButton(frmWizard frm, bool enable)
@@ -96,6 +163,60 @@ namespace Rectify11Installer.Win32
 				return true;
 			}
 			return false;
+		}
+		public static void Reboot()
+		{
+			IntPtr tokenHandle = IntPtr.Zero;
+
+			try
+			{
+				// get process token
+				if (!OpenProcessToken(Process.GetCurrentProcess().Handle,
+					TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES,
+					out tokenHandle))
+				{
+					throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to open process token handle");
+				}
+
+				// lookup the shutdown privilege
+				TOKEN_PRIVILEGES tokenPrivs = new();
+				tokenPrivs.PrivilegeCount = 1;
+				tokenPrivs.Privileges = new LUID_AND_ATTRIBUTES[1];
+				tokenPrivs.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+				if (!LookupPrivilegeValue(null,
+					SE_SHUTDOWN_NAME,
+					out tokenPrivs.Privileges[0].Luid))
+				{
+					throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to open lookup shutdown privilege");
+				}
+
+				// add the shutdown privilege to the process token
+				if (!AdjustTokenPrivileges(tokenHandle,
+					false,
+					ref tokenPrivs,
+					0,
+					IntPtr.Zero,
+					IntPtr.Zero))
+				{
+					throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to adjust process token privileges");
+				}
+
+				// reboot
+				if (!ExitWindowsEx(ExitWindows.Reboot,
+					ShutdownReason.MajorOther | ShutdownReason.MinorOther | ShutdownReason.FlagPlanned))
+				{
+					throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to reboot system");
+				}
+			}
+			finally
+			{
+				// close the process token
+				if (tokenHandle != IntPtr.Zero)
+				{
+					CloseHandle(tokenHandle);
+				}
+			}
 		}
 		#endregion
 	}

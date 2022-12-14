@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
-using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -104,6 +104,7 @@ namespace Rectify11Installer.Core
 				}
 				Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), AppWinStyle.Hide, true));
+				await Task.Run(() => Thread.Sleep(3000));
 
 			}
 			/*
@@ -121,7 +122,6 @@ namespace Rectify11Installer.Core
 			Directory.Delete(Variables.r11Files, true);
 			File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 			frm.InstallerProgress = "Done";
-			NativeMethods.SetCloseButton(frm, true);
 			return true;
 		}
 		#endregion
