@@ -104,6 +104,17 @@ namespace Rectify11Installer.Core
 				}
 				Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), AppWinStyle.Hide, true));
+				while (true)
+				{
+					if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+					{
+						break;
+					}
+					else
+					{
+						Thread.Sleep(1000);
+					}
+				}
 			}
 			/*
 			if (InstallOptions.InstallThemes)
