@@ -162,12 +162,8 @@ namespace Rectify11.Phase2
 								{
 									if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11Msc[j]))
 									{
-										Console.WriteLine(langMsc[i]);
-										if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
-										{
-											File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
-										}
-										File.Copy(r11Msc[j], langMsc[i], true);
+										File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
+										File.Copy(r11Msc[j], langMsc[i]);
 									}
 								}
 							}
@@ -175,31 +171,22 @@ namespace Rectify11.Phase2
 							{
 								if (Path.GetFileName(usaMsc[i]) == Path.GetFileName(r11Msc[j]))
 								{
-									Console.WriteLine(usaMsc[i]);
-									if (!File.Exists(Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i]))))
-									{
-										File.Move(usaMsc[i], Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i])));
-									}
-									File.Copy(r11Msc[j], usaMsc[i], true);
+									File.Move(usaMsc[i], Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i])));
+									File.Copy(r11Msc[j], usaMsc[i]);
 								}
 							}
 							for (int i = 0; i < sysMsc.Count; i++)
 							{
 								if (Path.GetFileName(sysMsc[i]) == Path.GetFileName(r11Msc[j]))
 								{
-									Console.WriteLine(sysMsc[i]);
-									if (!File.Exists(Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i]))))
-									{
-										File.Move(sysMsc[i], Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i])));
-									}
-									File.Copy(r11Msc[j], sysMsc[i], true);
+									File.Move(sysMsc[i], Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i])));
+									File.Copy(r11Msc[j], sysMsc[i]);
 								}
 							}
 						}
 					}
 				}
 			}
-			Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
 		}
 
 		private static void MoveFile(string newval, string file)
