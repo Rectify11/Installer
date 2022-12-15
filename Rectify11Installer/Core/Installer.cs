@@ -41,7 +41,7 @@ namespace Rectify11Installer.Core
 				Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
 			}
 
-			File.Copy(Path.Combine(Application.StartupPath, "Rectify11Installer.exe"), Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
+			File.Copy(System.Reflection.Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
 
 			if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
 			{

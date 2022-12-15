@@ -233,16 +233,6 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] NSudoLC {
-            get {
-                object obj = ResourceManager.GetObject("NSudoLC", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] Rectify11Phase2 {
             get {
                 object obj = ResourceManager.GetObject("Rectify11Phase2", resourceCulture);
