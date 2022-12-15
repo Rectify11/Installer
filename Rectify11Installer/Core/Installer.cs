@@ -104,7 +104,7 @@ namespace Rectify11Installer.Core
 				}
 				Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.Hide, true));
-				Thread.Sleep(30000);
+				Thread.Sleep(15000);
 			}
 			/*
 			if (InstallOptions.InstallThemes)
