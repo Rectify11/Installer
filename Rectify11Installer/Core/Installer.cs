@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace Rectify11Installer.Core
 				Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
 			}
 
-			File.Copy(System.Reflection.Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
+			File.Copy(Path.Combine(Application.StartupPath, "Rectify11Installer.exe"), Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
 
 			if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
 			{
@@ -104,7 +105,17 @@ namespace Rectify11Installer.Core
 				}
 				Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.Hide, true));
-				Thread.Sleep(15000);
+				while (true)
+				{
+					if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+					{
+						break;
+					}
+					else
+					{
+						Thread.Sleep(1000);
+					}
+				}
 			}
 			/*
 			if (InstallOptions.InstallThemes)
@@ -115,11 +126,21 @@ namespace Rectify11Installer.Core
 			*/
 			AddToControlPanel();
 			// refresh icon cache
-			try { await Task.Run(() => Interaction.Shell("ie4uinit -show", AppWinStyle.NormalFocus, true)); }
+			try { await Task.Run(() => Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true)); }
 			catch { }
+			DirectoryInfo di = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("localappdata"), "microsoft", "windows", "explorer"));
+			FileInfo[] files = di.GetFiles("*.db");
+
+			foreach (FileInfo file in files)
+				try
+				{
+					file.Attributes = FileAttributes.Normal;
+					File.Delete(file.FullName);
+				}
+				catch { }
+
 			frm.InstallerProgress = "Cleaning up...";
 			Directory.Delete(Variables.r11Files, true);
-			Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
 			File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 			return true;
 		}
