@@ -216,6 +216,9 @@ namespace Rectify11Installer.Core
 					if (!Directory.Exists(backupfolder))
 					{
 						Directory.CreateDirectory(backupfolder);
+					}
+					if (!Directory.Exists(tempfolder))
+					{
 						Directory.CreateDirectory(tempfolder);
 					}
 				}
