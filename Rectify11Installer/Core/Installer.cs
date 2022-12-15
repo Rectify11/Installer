@@ -90,9 +90,9 @@ namespace Rectify11Installer.Core
 					reg.SetValue("Version", Application.ProductVersion);
 				}
 				reg.Close();
-				if (!File.Exists(Path.Combine(Variables.r11Folder, "NSudoLC.exe")))
+				if (!File.Exists(Path.Combine(Variables.r11Folder, "aRun.exe")))
 				{
-					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "NSudoLC.exe"), Properties.Resources.NSudoLC);
+					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
 				}
 
 				frm.InstallerProgress = "Replacing files";
@@ -103,7 +103,8 @@ namespace Rectify11Installer.Core
 					Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp", "mmc"), true);
 				}
 				Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoLC.exe") + " -U:T -P:E " + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), AppWinStyle.Hide, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.Hide, true));
+				Thread.Sleep(30000);
 			}
 			/*
 			if (InstallOptions.InstallThemes)

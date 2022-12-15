@@ -91,6 +91,16 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AdvancedRun {
+            get {
+                object obj = ResourceManager.GetObject("AdvancedRun", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap blackPreview {
@@ -250,7 +260,7 @@ namespace Rectify11Installer.Properties {
         ///	&lt;Patch Mui=&quot;accessibilitycpl.dll.mun&quot; mask=&quot;ICONGROUP,|UIFILE,&quot; HardlinkTarget=&quot;%sysresdir%\accessibilitycpl.dll.mun&quot; /&gt;
         ///	&lt;Patch Mui=&quot;aclui.dll.mun&quot; mask=&quot;ICONGROUP,|IMAGE,|UIFILE,&quot; HardlinkTarget=&quot;%sysresdir%\aclui.dll.mun&quot; /&gt;
         ///	&lt;Patch Mui=&quot;actioncentercpl.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;%sysresdir%\actioncentercpl.dll.mun&quot; /&gt;
-        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;%sysr [rest of string was truncated]&quot;;.
+        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarg [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string rectify11xml {
             get {

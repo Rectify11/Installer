@@ -338,6 +338,7 @@
     <None Include="Resources\NSudoLC.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
     <None Include="Resources\incomplete.png" />
+    <None Include="Resources\AdvancedRun.exe" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <None Include="Resources\PsExec64.exe" />
