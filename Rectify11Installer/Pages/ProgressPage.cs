@@ -51,12 +51,12 @@ namespace Rectify11Installer.Pages
 		}
 		private static InstallerTexts[] Rectify11InstallerTexts =
 		{
-			new InstallerTexts("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.install),
-			new InstallerTexts("Rectify11 has a better theme", "It took 3 months for the Rectify11 team to create a great consistent light and dark theme.", Properties.Resources.themepage),
-			new InstallerTexts("Rectify11 has better performance", "At the Rectify11 team, we value performance strongly.", Properties.Resources.installoptns),
-			new InstallerTexts("Rectify11 has changed everything", "We changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.install),
-			new InstallerTexts("Control panel Rectified", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.ep),
-			new InstallerTexts("Thank you!", "Rectify11's team appreciates your support, thanks for choosing us.", Properties.Resources.install)
+			new InstallerTexts("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
+			new InstallerTexts("Rectify11 has a better Theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
+			new InstallerTexts("Rectify11 has better Performance", "We strongly value performance. You can choose things that you want to debloat in your system.", Properties.Resources.perf),
+			new InstallerTexts("Rectify11 has changed everything", "We have changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.ep),
+			new InstallerTexts("Control Panel Rectified", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
+			new InstallerTexts("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
 		};
 		private class InstallerTexts
 		{
