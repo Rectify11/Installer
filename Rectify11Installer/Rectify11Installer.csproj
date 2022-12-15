@@ -246,6 +246,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.id.resx" />
     <EmbeddedResource Include="Strings\Rectify11.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.it.Designer.cs</LastGenOutput>

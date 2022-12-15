@@ -185,7 +185,6 @@ namespace Rectify11Installer
 				Installer installer = new();
 				await Task.Run(() => installer.Install(this));
 				RectifyPages.ProgressPage.StartReset();
-				NativeMethods.SetCloseButton(this, false);
 			}
 		}
 		#endregion
