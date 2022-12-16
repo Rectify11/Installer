@@ -127,7 +127,7 @@
     <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}Autorzy nie mają żadnego związku z Microsoft. To jest projekt stworzony przez społeczność.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
-    <value>Zanim zainstalujesz, zapoznaj się z postaniowieniami licensji Rectify11</value>
+    <value>Zanim zainstalujesz, zapoznaj się z postaniowieniami licencyjnymi</value>
   </data>
   <data name="installNote" xml:space="preserve">
     <value>Zainstaluj Rectify11 na instalacji systemu Windows.</value>
@@ -139,10 +139,10 @@
     <value>Przywraca oryginalny styl Windows.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
-    <value>Odinstaluj Rectify11</value>
+    <value>Odinstaluj</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Zaktualizuj bieżącą instalację.</value>
+    <value>Zaaktualizuj bieżącą instalację.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Aktualizuj</value>
@@ -172,7 +172,7 @@
     <value>Wybierz motyw</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personalizacja doświadcznenia</value>
+    <value>Personalizuj swoje doświadcznenia</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Instalator Rectify11</value>
@@ -190,7 +190,7 @@
     <value>Kopiowanie plików...</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ instalator uruchomi komputer ponownie.</value>
+    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ komputer zostanie uruchomiony ponownie w celu zastosowania zmian.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
     <value>Zainstaluj Rectify11 na tej instalacji Windows.</value>
@@ -199,7 +199,7 @@
     <value>Zostaną wykonane następujące akcje:</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Użyj interfejsu wstążki</value>
+    <value>Użyj interfejsu wstążki z Windows 8-10</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>Rozszerz efekt Mica na pasek adresu</value>
