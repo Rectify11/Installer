@@ -30,7 +30,7 @@
 	<Patch Mui="dsuiext.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\dsuiext.dll.mun" />
 	<Patch Mui="easeofaccessdialog.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\easeofaccessdialog.exe.mun" />
 	<Patch Mui="edputil.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\edputil.dll.mun" />
-	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" />
+	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|IMAGE,|BITMAP,|CURSORGROUP," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" />
 	<Patch Mui="filemgmt.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\filemgmt.dll.mun" />
 	<Patch Mui="firewallcontrolpanel.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\firewallcontrolpanel.dll.mun" />
 	<Patch Mui="gpedit.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\gpedit.dll.mun" />
