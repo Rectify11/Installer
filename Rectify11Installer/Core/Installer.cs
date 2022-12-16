@@ -53,6 +53,12 @@ namespace Rectify11Installer.Core
 			}
 			if (InstallOptions.iconsList.Count > 0)
 			{
+				try
+				{
+					Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide, true);
+				}
+				catch { }
+
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] ok = patches.Items;
@@ -117,31 +123,106 @@ namespace Rectify11Installer.Core
 					}
 				}
 			}
-			/*
 			if (InstallOptions.InstallThemes)
 			{
 				frm.InstallerProgress = "Installing Themes";
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Files, "Extras", "UltraUXThemePatcher_4.3.4.exe"), AppWinStyle.NormalFocus, true));
+				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes);
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
+				{
+					Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
+						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true, -1);
+				}
+				try {
+
+					DirectoryInfo cursors = new DirectoryInfo(Path.Combine(Variables.r11Folder, "themes", "cursors"));
+					DirectoryInfo[] curdir = cursors.GetDirectories("*", SearchOption.TopDirectoryOnly);
+					DirectoryInfo themedir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "themes", "themes"));
+					DirectoryInfo[] msstyleDirList = themedir.GetDirectories("*", SearchOption.TopDirectoryOnly);
+					FileInfo[] themefiles = themedir.GetFiles("*.theme");
+
+					try
+					{
+						Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+					}
+					catch { }
+					try
+					{
+						File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
+					}
+					catch { }
+					try
+					{
+						File.Copy(Path.Combine(Variables.r11Folder, "themes", "Elevate.exe"), Path.Combine(Variables.windir, "Elevate.exe"), true);
+					}
+					catch { }
+					try 
+					{
+						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "ThemeTool.reg"), AppWinStyle.Hide, true); 
+					}
+					catch { }
+
+					foreach (DirectoryInfo dir in curdir)
+						try
+						{
+							if (Directory.Exists(Path.Combine(Variables.windir, "cursors", dir.Name)))
+							{
+								Directory.Delete(Path.Combine(Variables.windir, "cursors", dir.Name), true);
+							}
+							Directory.Move(dir.FullName, Path.Combine(Variables.windir, "cursors", dir.Name));	
+						}
+						catch { }
+
+					foreach (FileInfo file in themefiles)
+						try
+						{
+							File.Copy(file.FullName, Path.Combine(Variables.windir, "Resources", "Themes", file.Name), true);
+						}
+						catch { }
+
+					foreach (DirectoryInfo directory in msstyleDirList)
+						try
+						{
+							Directory.Move(directory.FullName, Path.Combine(Variables.windir, "Resources", "Themes", directory.Name));
+						}
+						catch { }
+
+				}
+				catch { }
+
 			}
-			*/
 			AddToControlPanel();
 			// refresh icon cache
 			try { await Task.Run(() => Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true)); }
 			catch { }
-			DirectoryInfo di = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("localappdata"), "microsoft", "windows", "explorer"));
-			FileInfo[] files = di.GetFiles("*.db");
+			try
+			{
+				DirectoryInfo di = new DirectoryInfo(Path.Combine(Environment.GetEnvironmentVariable("localappdata"), "microsoft", "windows", "explorer"));
+				FileInfo[] files = di.GetFiles("*.db");
 
-			foreach (FileInfo file in files)
+				foreach (FileInfo file in files)
+					try
+					{
+						file.Attributes = FileAttributes.Normal;
+						File.Delete(file.FullName);
+					}
+					catch { }
+			}
+			catch { }
+			frm.InstallerProgress = "Cleaning up...";
+			try
+			{
+				Directory.Delete(Variables.r11Files, true);
+				File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 				try
 				{
-					file.Attributes = FileAttributes.Normal;
-					File.Delete(file.FullName);
+					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
+					File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
 				}
 				catch { }
+			}
+			catch { }
 
-			frm.InstallerProgress = "Cleaning up...";
-			Directory.Delete(Variables.r11Files, true);
-			File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 			return true;
 		}
 		#endregion
