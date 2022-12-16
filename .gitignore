@@ -12,5 +12,6 @@ packages/
 *.7z
 *.db
 *.suo
+*.ini
 Rectify11.Phase2.exe
 /Rectify11Installer/Resources/AdvancedRun.cfg
