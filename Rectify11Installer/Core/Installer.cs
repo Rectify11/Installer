@@ -53,6 +53,14 @@ namespace Rectify11Installer.Core
 			}
 			if (InstallOptions.iconsList.Count > 0)
 			{
+				if (InstallOptions.iconsList.Contains("ssText3d.scr"))
+                {
+					try
+					{
+						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "files", "screensaver.reg"), AppWinStyle.Hide, true);
+					}
+					catch { }
+				}
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] ok = patches.Items;
@@ -147,7 +155,7 @@ namespace Rectify11Installer.Core
 					catch { }
 					try 
 					{
-						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + (Path.Combine(Variables.r11Folder, "themes", "ThemeTool.reg"), AppWinStyle.Hide, true)); 
+						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "ThemeTool.reg"), AppWinStyle.Hide, true); 
 					}
 					catch { }
 
