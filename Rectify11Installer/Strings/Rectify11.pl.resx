@@ -127,10 +127,10 @@
     <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}Autorzy nie mają żadnego związku z Microsoft. To jest projekt stworzony przez społeczność.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
-    <value>Zanim zainstalujesz Rectify11, musisz zaakceptować tą licencję</value>
+    <value>Zanim zainstalujesz, zapoznaj się z postaniowieniami licensji Rectify11</value>
   </data>
   <data name="installNote" xml:space="preserve">
-    <value>Zainstaluj Rectify11 na twojej instalacji Windows.</value>
+    <value>Zainstaluj Rectify11 na instalacji systemu Windows.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
     <value>Zainstaluj</value>
@@ -142,7 +142,7 @@
     <value>Odinstaluj Rectify11</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Zaktualizuj twoją bieżącą instalację Rectify11.</value>
+    <value>Zaktualizuj bieżącą instalację.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Aktualizuj</value>
@@ -154,7 +154,7 @@
     <value>Zapraszamy</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>Instalator zainstaluje Rectify11 aby poprawić wygląd systemu Windows. Wybierz opcję aby kontynuować.</value>
+    <value>Rectify11 poprawia wygląd systemu Windows. Wybierz opcję aby kontynuować.</value>
   </data>
   <data name="buttonAgree" xml:space="preserve">
     <value>Zgadzam się</value>
@@ -163,7 +163,7 @@
     <value>Postanowienia licencyjne</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Możesz wybrać co zostanie zainstalowane</value>
+    <value>Zaznacz, jakie komponenty zostaną zainstalowane</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Wybierz, co chcesz zainstalować</value>
@@ -235,10 +235,10 @@
     <value>Tapety Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Instaluj Explorerpatcher</value>
+    <value>Instaluj ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Instaluj Shell</value>
+    <value>Instaluj Nilesoft Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
     <value>Instaluj motywy</value>
@@ -249,7 +249,14 @@
   <data name="installWinver" xml:space="preserve">
     <value>Instaluj Winver</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Podsumowanie</value>
+     <data name="exitText" xml:space="preserve">
+    <value>Czy chcesz anulować instalację Rectify11?</value>
+  </data>
   </data>
 </root>
