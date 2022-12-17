@@ -160,7 +160,11 @@ namespace Rectify11Installer.Core
 					foreach (DirectoryInfo dir in curdir)
 						try
 						{
-							Directory.Move(dir.FullName, Path.Combine(Variables.windir, "cursors", dir.Name));
+							if (Directory.Exists(Path.Combine(Variables.windir, "cursors", dir.Name)))
+							{
+								Directory.Delete(Path.Combine(Variables.windir, "cursors", dir.Name), true);
+							}
+							Directory.Move(dir.FullName, Path.Combine(Variables.windir, "cursors", dir.Name));	
 						}
 						catch { }
 
@@ -205,7 +209,12 @@ namespace Rectify11Installer.Core
 			{
 				Directory.Delete(Variables.r11Files, true);
 				File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
-				File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
+				try
+				{
+					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
+					File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
+				}
+				catch { }
 			}
 			catch { }
 
