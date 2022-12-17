@@ -190,6 +190,7 @@
 	<Patch Mui="EhStorPwdMgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\EhStorPwdMgr.dll" />
 	<Patch Mui="eqossnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\eqossnap.dll" />
 	<Patch Mui="eventvwr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\eventvwr.exe" />
+	<Patch Mui="explorer.exe.mui" mask="ICONGROUP," HardlinkTarget="%windirLang%\explorer.exe.mui" />
 	<Patch Mui="Faultrep.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Faultrep.dll" />
 	<Patch Mui="fde.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\fde.dll" />
 	<Patch Mui="fhcpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\fhcpl.dll" />

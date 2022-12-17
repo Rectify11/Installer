@@ -385,6 +385,16 @@ namespace Rectify11Installer.Core
 				newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
 				Patch(newhardlink, patch, PatchType.Mui);
 			}
+			else if (patch.HardlinkTarget.Contains("%windirLang%"))
+			{
+				newhardlink = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+				Patch(newhardlink, patch, PatchType.Mui);
+			}
+			else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
+			{
+				newhardlink = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+				Patch(newhardlink, patch, PatchType.Mui);
+			}
 			else if (patch.HardlinkTarget.Contains("mun"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);

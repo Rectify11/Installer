@@ -73,6 +73,16 @@ namespace Rectify11.Phase2
 								string newval = regFile.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
 								MoveFile(newval, file);
 							}
+							else if (regFile.Contains("%windirLang%"))
+							{
+								string newval = regFile.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%windirEn-US%"))
+							{
+								string newval = regFile.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+								MoveFile(newval, file);
+							}
 							else if (regFile.Contains("%branding%"))
 							{
 								string newval = regFile.Replace(@"%branding%", Variables.brandingFolder);
