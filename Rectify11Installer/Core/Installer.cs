@@ -151,6 +151,11 @@ namespace Rectify11Installer.Core
 						File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
 					}
 					catch { }
+					try
+					{
+						File.Copy(Path.Combine(Variables.r11Folder, "themes", "Elevate.exe"), Path.Combine(Variables.windir, "Elevate.exe"), true);
+					}
+					catch { }
 					try 
 					{
 						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "ThemeTool.reg"), AppWinStyle.Hide, true); 
