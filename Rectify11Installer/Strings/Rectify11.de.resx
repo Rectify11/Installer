@@ -130,7 +130,7 @@
     <value>Lizenzvereinbarung</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 Diese Software wird ohne jegliche ausdrückliche oder stille Garantie zur Verfügung gestellt. In KEINEM Fall kann der Autor für Schäden haftbar gemacht werden, die durch die Verwendung dieser Software entstehen.\par{\pntext\f0 2.\tab}Rectify11 kann von jedem kostenlos genutzt werden, aber Sie können es nicht verkaufen. Sie dürfen dieses Produkt nicht ohne schriftliche Genehmigung des Autors als Teil eines anderen Produkts bündeln.\par{\pntext\f0 3.\tab}Sie können nicht behaupten, dass Sie die Software selbst entwickelt haben.\par{\pntext\f0 4.\tab}Dieser Hinweis darf aus keiner Distribution entfernt oder abgeändert werden.\par\pard\par\parCopyright \'a9 Microsoft Corporation und das Rectify11-Team.\par{\pntext\f0\space} Wir stehen in KEINER Weise mit der Microsoft Corporation in Verbindung. Dies ist ein von der Community entwickeltes Projekt.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Bevor Sie Rectify11 installieren können, müssen Sie der Lizenzvereinbarung zustimmen:</value>
@@ -160,7 +160,7 @@
     <value>Willkommen</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>Das Installationsprogramm wird alle nötigen Schritte ausführen, um Rectify11 auf Ihrem System für eine konsistentere Erfahrung zu installieren. Bitte wählen Sie die gewünschte Option.</value>
+    <value>Das Installationsprogramm wird alle nötigen Schritte ausführen, um Rectify11 auf Ihrem System für eine konsistentere Erfahrung zu installieren. Bitte wählen Sie die gewünschte Option, um fortzufahren.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>Sie können auswählen, welche Teile des Systems verbessert werden.</value>
@@ -255,5 +255,8 @@
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Zusammenfassung</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie die Installation abbrechen möchten?</value>
   </data>
 </root>
