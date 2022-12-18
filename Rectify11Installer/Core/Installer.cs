@@ -167,7 +167,7 @@ namespace Rectify11Installer.Core
 					catch { }
 					try 
 					{
-						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "ThemeTool.reg"), AppWinStyle.Hide, true); 
+						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true); 
 					}
 					catch { }
 
@@ -266,6 +266,9 @@ namespace Rectify11Installer.Core
 			General = 0,
 			Mui,
 			Troubleshooter,
+			Ignore,
+			MinVersion,
+			MaxVersion,
 			x86
 
 		}
@@ -319,6 +322,7 @@ namespace Rectify11Installer.Core
 				}
 
 				string filename = name + ".res";
+				string masks = patch.mask;
 				string filepath;
 				if (type == PatchType.Troubleshooter)
 				{
@@ -331,7 +335,11 @@ namespace Rectify11Installer.Core
 
 				if (patch.mask.Contains("|"))
 				{
-					string[] str = patch.mask.Split('|');
+					if (!String.IsNullOrWhiteSpace(patch.Ignore) && ((!String.IsNullOrWhiteSpace(patch.MinVersion) && Environment.OSVersion.Version.Build >= Int32.Parse(patch.MinVersion)) || (!String.IsNullOrWhiteSpace(patch.MaxVersion) && Environment.OSVersion.Version.Build <= Int32.Parse(patch.MaxVersion))))
+					{
+						masks = masks.Replace(patch.Ignore, "");
+					}
+					string[] str = masks.Split('|');
 					for (int i = 0; i < str.Length; i++)
 					{
 						if (type == PatchType.x86)
@@ -356,6 +364,10 @@ namespace Rectify11Installer.Core
 				}
 				else
 				{
+					if (!String.IsNullOrWhiteSpace(patch.Ignore) && ((!String.IsNullOrWhiteSpace(patch.MinVersion) && Environment.OSVersion.Version.Build >= Int32.Parse(patch.MinVersion)) || (!String.IsNullOrWhiteSpace(patch.MaxVersion) && Environment.OSVersion.Version.Build <= Int32.Parse(patch.MaxVersion))))
+					{
+						masks = masks.Replace(patch.Ignore, "");
+					}
 					if (type == PatchType.x86)
 					{
 						filename = Path.GetFileNameWithoutExtension(name).Remove(Path.GetFileNameWithoutExtension(name).Length - 2, 2) + Path.GetExtension(name) + ".res";
@@ -366,14 +378,14 @@ namespace Rectify11Installer.Core
 							" -open " + Path.Combine(tempfolder, name) +
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "delete" +
-							" -mask " + patch.mask, AppWinStyle.Hide, true);
+							" -mask " + masks, AppWinStyle.Hide, true);
 					}
 					Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							" -open " + Path.Combine(tempfolder, name) +
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "addskip" +
 							" -resource " + Path.Combine(filepath, filename) +
-							" -mask " + patch.mask, AppWinStyle.Hide, true);
+							" -mask " + masks, AppWinStyle.Hide, true);
 				}
 			}
 		}
