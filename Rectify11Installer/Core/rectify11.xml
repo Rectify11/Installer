@@ -93,7 +93,7 @@
 	<Patch Mui="sysdm.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sysdm.cpl.mun" />
 	<Patch Mui="sysmon.ocx.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\sysmon.ocx.mun" />
 	<Patch Mui="tapiui.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\tapiui.dll.mun" />
-	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" Ignore="|UIFILE," MinVersion="22557"/>
+	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" Ignore="|UIFILE," MaxVersion="22557"/>
 	<Patch Mui="themecpl.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\themecpl.dll.mun" />
 	<Patch Mui="themeui.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\themeui.dll.mun" />
 	<Patch Mui="timedate.cpl.mun" mask="ICONGROUP,|PNGFILE," HardlinkTarget="%sysresdir%\timedate.cpl.mun" />
@@ -321,6 +321,7 @@
 	<Patch Mui="SpeechUX.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Speech\SpeechUX\SpeechUX.dll" />
 	<Patch Mui="speechuxcpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Speech\SpeechUX\speechuxcpl.dll" />
 	<Patch Mui="SpeechUXWiz.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\Speech\SpeechUX\SpeechUXWiz.exe" />
+	<Patch Mui="splwow64.exe" mask="ICONGROUP," HardlinkTarget="%windir%\splwow64.exe" />
 	<Patch Mui="spoolsv.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\spoolsv.exe" />
 	<Patch Mui="srcore.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\srcore.dll" />
 	<Patch Mui="srm.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\srm.dll" />
