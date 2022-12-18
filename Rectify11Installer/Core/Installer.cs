@@ -53,21 +53,6 @@ namespace Rectify11Installer.Core
 			}
 			if (InstallOptions.iconsList.Count > 0)
 			{
-				try
-				{
-					Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide, true);
-				}
-				catch { }
-				try
-				{
-					Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg") + '"' + " /RunAs 8 /Run", AppWinStyle.Hide, true);
-				}
-				catch { }
-				try
-				{
-					File.Copy(Path.Combine(Variables.r11Files, "iconres.dll"), Path.Combine(Variables.sys32Folder, "iconres.dll"), true);
-				}
-				catch { }
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] ok = patches.Items;
@@ -114,11 +99,26 @@ namespace Rectify11Installer.Core
 				frm.InstallerProgress = "Replacing files";
 
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
+
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp", "mmc")))
 				{
 					Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp", "mmc"), true);
 				}
-				Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
+				try
+				{
+					Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
+				}
+				catch { }
+				try
+				{
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true));
+				}
+				catch { }
+				try
+				{
+					await Task.Run(() => File.Copy(Path.Combine(Variables.r11Files, "iconres.dll"), Path.Combine(Variables.sys32Folder, "iconres.dll"), true));
+				}
+				catch { }
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.Hide, true));
 				while (true)
 				{
