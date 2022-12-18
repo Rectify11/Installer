@@ -126,7 +126,7 @@
 	<!--Branding-->
 	<Patch Mui="basebrd.dll" mask="IMAGE," HardlinkTarget="%branding%\Basebrd\basebrd.dll" />
 
-	<Patch Mui="basecsp.dll.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\basecsp.dll.mui" />
+	<Patch Mui="basecsp.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\basecsp.dll" />
 	<Patch Mui="bdechangepin.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\bdechangepin.exe" />
 	<Patch Mui="BdeHdCfg.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BdeHdCfg.exe" />
 	<Patch Mui="bdeunlock.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\bdeunlock.exe.mui" />
