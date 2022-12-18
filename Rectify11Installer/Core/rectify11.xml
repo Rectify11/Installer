@@ -93,7 +93,7 @@
 	<Patch Mui="sysdm.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sysdm.cpl.mun" />
 	<Patch Mui="sysmon.ocx.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\sysmon.ocx.mun" />
 	<Patch Mui="tapiui.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\tapiui.dll.mun" />
-	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />
+	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />
 	<Patch Mui="themecpl.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\themecpl.dll.mun" />
 	<Patch Mui="themeui.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\themeui.dll.mun" />
 	<Patch Mui="timedate.cpl.mun" mask="ICONGROUP,|PNGFILE," HardlinkTarget="%sysresdir%\timedate.cpl.mun" />
@@ -209,6 +209,7 @@
 	<Patch Mui="hdwwiz.cpl" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\hdwwiz.cpl" />
 	<Patch Mui="hdwwiz.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\hdwwiz.exe" />
 	<Patch Mui="hhctrl.ocx" mask="ICONGROUP,|BITMAP,|CURSORGROUP," HardlinkTarget="%sys32%\hhctrl.ocx" />
+	<Patch Mui="hh.exe" mask="ICONGROUP," HardlinkTarget="%windir%\hh.exe" />
 	<Patch Mui="hotplug.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\hotplug.dll" />
 	<Patch Mui="iernonce.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\iernonce.dll" />
 	<Patch Mui="iexpress.exe" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\iexpress.exe" />
