@@ -60,12 +60,12 @@ namespace Rectify11Installer.Core
 				catch { }
 				try
 				{
-					Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true);
+					Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg") + '"' + " /RunAs 8 /Run", AppWinStyle.Hide, true);
 				}
 				catch { }
 				try
 				{
-					File.Copy(Path.Combine(Variables.r11Files, "iconres.dll"), Variables.sys32Folder, true);
+					File.Copy(Path.Combine(Variables.r11Files, "iconres.dll"), Path.Combine(Variables.sys32Folder, "iconres.dll"), true);
 				}
 				catch { }
 				// Get all patches
