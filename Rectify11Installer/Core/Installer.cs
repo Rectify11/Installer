@@ -58,7 +58,16 @@ namespace Rectify11Installer.Core
 					Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide, true);
 				}
 				catch { }
-
+				try
+				{
+					Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true);
+				}
+				catch { }
+				try
+				{
+					File.Copy(Path.Combine(Variables.r11Files, "iconres.dll"), Variables.sys32Folder, true);
+				}
+				catch { }
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] ok = patches.Items;
