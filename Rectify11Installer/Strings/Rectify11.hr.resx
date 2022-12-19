@@ -256,4 +256,7 @@
   <data name="summaryHeader" xml:space="preserve">
     <value>Sažetak</value>
   </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Jeste li sigurni da želite otkazati instalaciju?</value>
+  </data>
 </root>

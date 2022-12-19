@@ -256,4 +256,7 @@
   <data name="summaryHeader" xml:space="preserve">
     <value>Summary</value>
   </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Είστε σίγουροι ότι θέλετε να ακυρώσετε την εγκατάσταση;</value>
+  </data>
 </root>
