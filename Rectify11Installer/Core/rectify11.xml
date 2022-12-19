@@ -147,9 +147,6 @@
 	<Patch Mui="cmmon32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmmon32.exe" />
 	<Patch Mui="cmstp.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmstp.exe" />
 	<Patch Mui="colorcpl.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\colorcpl.exe" />
-	<!--
-  <Patch Mui="comctl32.dll" mask="ICONGROUP,|BITMAP,|CURSORGROUP" HardlinkTarget="%winsxs%\*.common-*\comctl32.dll" />
-	-->
 	<Patch Mui="ComputerDefaults.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ComputerDefaults.exe" />
 	<Patch Mui="conhost.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\conhost.exe" />
 	<Patch Mui="control.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\control.exe" />
@@ -237,7 +234,7 @@
 	<Patch Mui="modemui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\modemui.dll" />
 	<Patch Mui="MSchedExe.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\MSchedExe.exe" />
 	<Patch Mui="msconfig.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\msconfig.exe" />
-	<!--<Patch Mui="msftedit.dll" mask="CURSORGROUP," HardlinkTarget="%sys32%\msftedit.dll" />-->
+	<Patch Mui="msftedit.dll" mask="CURSORGROUP," HardlinkTarget="%sys32%\msftedit.dll" />
 	<Patch Mui="msieftp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\msieftp.dll" />
 	<Patch Mui="msinfo32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\msinfo32.exe" />
 	<Patch Mui="mshta.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\mshta.exe" />
@@ -370,7 +367,6 @@
 	<Patch Mui="uiribbon.dll" mask="PNG," HardlinkTarget="%sys32%\uiribbon.dll" />
 	<Patch Mui="unimdm.tsp" mask="ICONGROUP," HardlinkTarget="%sys32%\unimdm.tsp" />
 	<Patch Mui="url.dll" mask="ICONGROUP," x86="true" HardlinkTarget="%sys32%\url.dll" />
-	<!--<Patch Mui="urlmon.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\urlmon.dll" />-->
 	<Patch Mui="usbui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\usbui.dll" />
 	<Patch Mui="verifiergui.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\verifiergui.exe" />
 	<Patch Mui="wbemcntl.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\wbem\wbemcntl.dll" />
@@ -413,10 +409,5 @@
 	<Patch Mui="wusa.exe.mui" mask="ICONGROUP," HardlinkTarget="%lang%\wusa.exe.mui" />
 	<Patch Mui="xwizards.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\xwizards.dll" />
 	<Patch Mui="xwizard.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\xwizard.exe" />
-
-	<!--TODO: fix-->
-	<!--<Patch Mui="microsoft-windows-themeui" mask="ICONGROUP,|PNG," HardlinkTarget="%sysresdir%\timedate.dll.mun" />-->
-	<!--<Patch Mui="microsoft-windows-timedate" mask="ICONGROUP," HardlinkTarget="%sysresdir%\tlsext.cpl.mun" />-->
-	<!--<Patch Mui="microsoft-windows-van" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wscedit.dll.mun" />-->
 
 </Patches>
