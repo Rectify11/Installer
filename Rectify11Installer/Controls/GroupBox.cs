@@ -7,27 +7,7 @@ namespace Rectify11Installer.Controls
 {
     public partial class GroupBox : Control
     {
-        private NavigationButtonType t;
         private Bitmap Glyph;
-        public NavigationButtonType NavigationButtonType
-        {
-            get { return t; }
-            set
-            {
-                t = value;
-                if (Enabled)
-                {
-                    SetState(ThemeParts.Normal);
-                    Invalidate();
-                }
-                else
-                {
-                    SetState(ThemeParts.Disabled);
-                    Invalidate();
-                }
-
-            }
-        }
 
         public new bool Enabled
         {
@@ -50,7 +30,7 @@ namespace Rectify11Installer.Controls
         public GroupBox()
         {
             this.Location = new Point(3, 28);
-            this.Size = new Size(347, 294);
+            this.Size = new Size(345, 294);
             this.SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             this.BackColor = Theme.IsUsingDarkMode ? Color.Black : Color.White;
             SetState(ThemeParts.Normal);

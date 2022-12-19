@@ -55,8 +55,7 @@
 			this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.groupBox1.Location = new System.Drawing.Point(0, 48);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Forward;
-			this.groupBox1.Size = new System.Drawing.Size(347, 294);
+			this.groupBox1.Size = new System.Drawing.Size(345, 294);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.Text = "groupBox1";
 			// 
