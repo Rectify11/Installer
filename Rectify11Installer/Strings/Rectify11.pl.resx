@@ -255,8 +255,8 @@
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Podsumowanie</value>
-     <data name="exitText" xml:space="preserve">
-    <value>Czy chcesz anulować instalację Rectify11?</value>
   </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Czy chcesz anulować instalację Rectify11?</value>
   </data>
 </root>
