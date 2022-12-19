@@ -159,6 +159,9 @@
   <data name="welcome" xml:space="preserve">
     <value>Benvenuto</value>
   </data>
+  <data name="welcomeDescription" xml:space="preserve">
+    <value>Questo setup ti guiderà nei vari passaggi richiesti per installare Rectify11 sul tuo PC, per un'esperienza più consistente. Seleziona l'opzione che desideri per continuare.</value>
+  </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>Puoi scegliere cosa verrà Rettificato.</value>
   </data>
@@ -216,7 +219,44 @@
   <data name="summaryTitle" xml:space="preserve">
     <value>Stai per fare quanto segue:</value>
   </data>
-  <data name="welcomeDescription" xml:space="preserve">
-    <value>Questo setup ti guiderà nei vari passaggi richiesti per installare Rectify11 sul tuo PC, per un'esperienza più consistente. Seleziona l'opzione che desideri per continuare.</value>
+  <data name="buttonInstall" xml:space="preserve">
+    <value>Installare</value>
+  </data>
+  <data name="optionExtra" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="optionIcons" xml:space="preserve">
+    <value>Icone di sistema</value>
+  </data>
+  <data name="optionThemes" xml:space="preserve">
+    <value>Temi</value>
+  </data>
+  <data name="optionWallpaper" xml:space="preserve">
+    <value>Rectify11 Sfondi</value>
+  </data>
+  <data name="installEP" xml:space="preserve">
+    <value>Installare ExplorerPatcher</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Installare shell</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Installare i temi</value>
+  </data>
+  <data name="installWallpapers" xml:space="preserve">
+    <value>Installare gli sfondi</value>
+  </data>
+  <data name="installWinver" xml:space="preserve">
+    <value>Installare Winver</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="summaryHeader" xml:space="preserve">
+    <value>Sintesi</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Siete sicuri di voler annullare l'installazione?</value>
   </data>
 </root>
