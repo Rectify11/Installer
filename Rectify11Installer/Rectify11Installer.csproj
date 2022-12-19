@@ -132,6 +132,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\IMmc.cs" />
+    <Compile Include="Core\IMmcParser.cs" />
     <Compile Include="Core\Installer.cs" />
     <Compile Include="Core\InstallStatus.cs" />
     <Compile Include="Core\IRectify11.cs" />

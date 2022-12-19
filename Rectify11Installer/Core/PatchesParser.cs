@@ -8,7 +8,7 @@ namespace Rectify11Installer
 		#region Public Methods
 		public static Patches GetAll()
 		{
-			XmlSerializer ser = new XmlSerializer(typeof(Patches));
+			XmlSerializer ser = new(typeof(Patches));
 			Patches patches;
 			using (var reader = new StringReader(Properties.Resources.rectify11xml))
 			{
