@@ -205,6 +205,7 @@
 	<Patch Mui="gcdef.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\gcdef.dll" />
 	<Patch Mui="hdwwiz.cpl" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\hdwwiz.cpl" />
 	<Patch Mui="hdwwiz.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\hdwwiz.exe" />
+	<Patch Mui="HelpPane.exe" mask="ICONGROUP," HardlinkTarget="%windir%\HelpPane.exe" />
 	<Patch Mui="hhctrl.ocx" mask="ICONGROUP,|BITMAP,|CURSORGROUP," HardlinkTarget="%sys32%\hhctrl.ocx" />
 	<Patch Mui="hh.exe" mask="ICONGROUP," HardlinkTarget="%windir%\hh.exe" />
 	<Patch Mui="hotplug.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\hotplug.dll" />
