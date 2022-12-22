@@ -256,4 +256,7 @@
   <data name="summaryHeader" xml:space="preserve">
     <value>Samenvatting</value>
   </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Weet je zeker dat je de installatie wilt annuleren?</value>
+  </data>
 </root>

@@ -117,24 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="welcome" xml:space="preserve">
-    <value>Bienvenido</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Versión: </value>
-  </data>
-  <data name="optionThemes" xml:space="preserve">
-    <value>Temas</value>
-  </data>
-  <data name="buttonInstall" xml:space="preserve">
-    <value>Instalar</value>
-  </data>
-  <data name="summaryHeader" xml:space="preserve">
-    <value>Resumen</value>
-  </data>
-  <data name="uninstallTitle" xml:space="preserve">
-    <value>Desinstalar Rectify11</value>
-  </data>
   <data name="buttonAgree" xml:space="preserve">
     <value>Aceptar</value>
   </data>
@@ -144,65 +126,41 @@
   <data name="buttonNext" xml:space="preserve">
     <value>Siguiente</value>
   </data>
-  <data name="installWinver" xml:space="preserve">
-    <value>Instalar Winver</value>
-  </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Instalar fondos de pantalla</value>
-  </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Instalar shell</value>
-  </data>
-  <data name="optionWallpaper" xml:space="preserve">
-    <value>Fondos de pantalla de Rectify11</value>
-  </data>
-  <data name="updateTitle" xml:space="preserve">
-    <value>Actualizar ahora</value>
-  </data>
-  <data name="optionIcons" xml:space="preserve">
-    <value>Iconos del sistema</value>
-  </data>
-  <data name="optionExtra" xml:space="preserve">
-    <value>Extras</value>
-  </data>
-  <data name="installThemes" xml:space="preserve">
-    <value>Instalar temas</value>
-  </data>
-  <data name="installEP" xml:space="preserve">
-    <value>Instalar ExplorerPatcher</value>
-  </data>
-  <data name="installTitle" xml:space="preserve">
-    <value>Instalar ahora</value>
-  </data>
-  <data name="installNote" xml:space="preserve">
-    <value>Rectifica su instalación de Windows.</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Instalador de Rectify11</value>
-  </data>
-  <data name="themeDark" xml:space="preserve">
-    <value>Oscuro</value>
-  </data>
-  <data name="themeLight" xml:space="preserve">
-    <value>Claro</value>
-  </data>
-  <data name="themeBlack" xml:space="preserve">
-    <value>Oscuro con Mica</value>
+  <data name="eulaPageHeader" xml:space="preserve">
+    <value>Acuerdo de licencia</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
     <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 Este software se proporciona «tal cual», sin ninguna garantía expresa o implícita. En NINGÚN caso el autor se hará responsable de cualquier daño resultante del uso de este software.\par{\pntext\f0 2.\tab}Rectify11 es de uso gratuito para cualquier persona, pero no puede venderlo. No puede incluir este producto como parte de otro sin el correspondiente permiso por escrito del autor.\par{\pntext\f0 3.\tab}Usted no puede afirmar que ha creado el software.\par{\pntext\f0 4.\tab}Este aviso no puede ser eliminado o alterado de ninguna distribución.\par\pard\par\'a9 Microsoft Corporation y el equipo de Rectify11.\par{\pntext\f0\space} NO estamos afiliados a Microsoft Corporation de NINGUNA manera. Este es un proyecto hecho por la comunidad.\par}</value>
   </data>
-  <data name="updateNote" xml:space="preserve">
-    <value>Actualiza su instalación existente de Rectify11.</value>
+  <data name="eulaTitle" xml:space="preserve">
+    <value>Antes de instalar Rectify11, debe aceptar este acuerdo de licencia:</value>
+  </data>
+  <data name="installNote" xml:space="preserve">
+    <value>Rectifica su instalación de Windows.</value>
+  </data>
+  <data name="installTitle" xml:space="preserve">
+    <value>Instalar ahora</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
     <value>Restaura el aspecto original de Windows.</value>
   </data>
+  <data name="uninstallTitle" xml:space="preserve">
+    <value>Desinstalar Rectify11</value>
+  </data>
+  <data name="updateNote" xml:space="preserve">
+    <value>Actualiza su instalación existente de Rectify11.</value>
+  </data>
+  <data name="updateTitle" xml:space="preserve">
+    <value>Actualizar ahora</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versión: </value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Bienvenido</value>
+  </data>
   <data name="welcomeDescription" xml:space="preserve">
     <value>El asistente le guiará a través de los distintos pasos necesarios para instalar Rectify11 en su equipo para una experiencia más consistente. Seleccione la opción que desee para continuar.</value>
-  </data>
-  <data name="themeHeader" xml:space="preserve">
-    <value>Personalice su experiencia</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>Puede elegir lo que será rectificado.</value>
@@ -213,11 +171,41 @@
   <data name="themeChoiceTitle" xml:space="preserve">
     <value>Seleccione el tema que desee.</value>
   </data>
-  <data name="eulaPageHeader" xml:space="preserve">
-    <value>Acuerdo de licencia</value>
+  <data name="themeHeader" xml:space="preserve">
+    <value>Personalice su experiencia</value>
   </data>
-  <data name="eulaTitle" xml:space="preserve">
-    <value>Antes de instalar Rectify11, debe aceptar este acuerdo de licencia:</value>
+  <data name="Title" xml:space="preserve">
+    <value>Instalador de Rectify11</value>
+  </data>
+  <data name="themeBlack" xml:space="preserve">
+    <value>Oscuro con Mica</value>
+  </data>
+  <data name="themeDark" xml:space="preserve">
+    <value>Oscuro</value>
+  </data>
+  <data name="themeLight" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="epEnhRibbon" xml:space="preserve">
+    <value>Usar la cinta mejorada</value>
+  </data>
+  <data name="epExtMica" xml:space="preserve">
+    <value>Efecto Mica en la parte superior del explorador</value>
+  </data>
+  <data name="epHeader" xml:space="preserve">
+    <value>Personalice su escritorio</value>
+  </data>
+  <data name="epTitle" xml:space="preserve">
+    <value>Seleccione su experiencia de escritorio deseada</value>
+  </data>
+  <data name="epW10Radio" xml:space="preserve">
+    <value>Windows 10 (redondeado)</value>
+  </data>
+  <data name="epW10Taskbar" xml:space="preserve">
+    <value>Barra de tareas de Windows 10</value>
+  </data>
+  <data name="epW11Radio" xml:space="preserve">
+    <value>Windows 11 (predeterminado)</value>
   </data>
   <data name="progressText" xml:space="preserve">
     <value>Copiando archivos...</value>
@@ -231,25 +219,44 @@
   <data name="summaryTitle" xml:space="preserve">
     <value>Está a punto de hacer lo siguiente:</value>
   </data>
-  <data name="epW10Taskbar" xml:space="preserve">
-    <value>Barra de tareas de Windows 10</value>
+  <data name="buttonInstall" xml:space="preserve">
+    <value>Instalar</value>
   </data>
-  <data name="epW10Radio" xml:space="preserve">
-    <value>Windows 10 (redondeado)</value>
+  <data name="optionExtra" xml:space="preserve">
+    <value>Extras</value>
   </data>
-  <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 (predeterminado)</value>
+  <data name="optionIcons" xml:space="preserve">
+    <value>Iconos del sistema</value>
   </data>
-  <data name="epEnhRibbon" xml:space="preserve">
-    <value>Usar la cinta mejorada</value>
+  <data name="optionThemes" xml:space="preserve">
+    <value>Temas</value>
   </data>
-  <data name="epExtMica" xml:space="preserve">
-    <value>Efecto Mica en la parte superior del explorador</value>
+  <data name="optionWallpaper" xml:space="preserve">
+    <value>Fondos de pantalla de Rectify11</value>
   </data>
-  <data name="epTitle" xml:space="preserve">
-    <value>Seleccione su experiencia de escritorio deseada</value>
+  <data name="installEP" xml:space="preserve">
+    <value>Instalar ExplorerPatcher</value>
   </data>
-  <data name="epHeader" xml:space="preserve">
-    <value>Personalice su escritorio</value>
+  <data name="installShell" xml:space="preserve">
+    <value>Instalar shell</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Instalar temas</value>
+  </data>
+  <data name="installWallpapers" xml:space="preserve">
+    <value>Instalar fondos de pantalla</value>
+  </data>
+  <data name="installWinver" xml:space="preserve">
+    <value>Instalar Winver</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="summaryHeader" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>¿Está seguro de que desea cancelar la instalación?</value>
   </data>
 </root>

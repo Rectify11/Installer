@@ -30,7 +30,7 @@
 	<Patch Mui="dsuiext.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\dsuiext.dll.mun" />
 	<Patch Mui="easeofaccessdialog.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\easeofaccessdialog.exe.mun" />
 	<Patch Mui="edputil.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\edputil.dll.mun" />
-	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|IMAGE,|BITMAP,|CURSORGROUP," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" />
+	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|IMAGE,|CURSORGROUP," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" />
 	<Patch Mui="filemgmt.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\filemgmt.dll.mun" />
 	<Patch Mui="firewallcontrolpanel.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\firewallcontrolpanel.dll.mun" />
 	<Patch Mui="gpedit.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\gpedit.dll.mun" />
@@ -205,6 +205,7 @@
 	<Patch Mui="gcdef.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\gcdef.dll" />
 	<Patch Mui="hdwwiz.cpl" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\hdwwiz.cpl" />
 	<Patch Mui="hdwwiz.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\hdwwiz.exe" />
+	<Patch Mui="HelpPane.exe" mask="ICONGROUP," HardlinkTarget="%windir%\HelpPane.exe" />
 	<Patch Mui="hhctrl.ocx" mask="ICONGROUP,|BITMAP,|CURSORGROUP," HardlinkTarget="%sys32%\hhctrl.ocx" />
 	<Patch Mui="hh.exe" mask="ICONGROUP," HardlinkTarget="%windir%\hh.exe" />
 	<Patch Mui="hotplug.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\hotplug.dll" />
