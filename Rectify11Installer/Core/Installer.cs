@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MMC;
 
 namespace Rectify11Installer.Core
 {
@@ -99,16 +100,6 @@ namespace Rectify11Installer.Core
 				frm.InstallerProgress = "Replacing files";
 
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
-
-				if (Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp", "mmc")))
-				{
-					Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp", "mmc"), true);
-				}
-				try
-				{
-					Directory.Move(Path.Combine(Variables.r11Files, "mmc"), Path.Combine(Variables.r11Folder, "Tmp", "mmc"));
-				}
-				catch { }
 				try
 				{
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true));
@@ -119,7 +110,8 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => File.Copy(Path.Combine(Variables.r11Files, "iconres.dll"), Path.Combine(Variables.sys32Folder, "iconres.dll"), true));
 				}
 				catch { }
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.Hide, true));
+				IMmcHelper.PatchAll();
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 				while (true)
 				{
 					if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))

@@ -102,6 +102,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="TaskDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KPreisser.UI.TaskDialog.1.0.0\lib\net472\TaskDialog.dll</HintPath>
     </Reference>
@@ -132,8 +133,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\Helper.cs" />
-    <Compile Include="Core\IMmc.cs" />
-    <Compile Include="Core\IMmcParser.cs" />
+    <Compile Include="Core\IMmcHelper.cs" />
     <Compile Include="Core\Installer.cs" />
     <Compile Include="Core\InstallStatus.cs" />
     <Compile Include="Core\IRectify11.cs" />
