@@ -39,6 +39,13 @@ namespace MMC
 					}
 				}
 				Directory.Delete(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), true);
+				var msc = Path.Combine(tempDir, "msc");
+				if (CultureInfo.CurrentUICulture.Name != "en-US")
+				{
+					File.Copy(Path.Combine(msc, "lusrmgr.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "lusrmgr.msc"), true);
+					File.Copy(Path.Combine(msc, "taskschd.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "taskschd.msc"), true);
+					File.Copy(Path.Combine(msc, "WmiMgmt.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "WmiMgmt.msc"), true);
+				}
 			}
 			return true;
 		}
@@ -104,8 +111,13 @@ namespace MMC
 							Debug.WriteLine(langMsc[i]);
 							if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(r11Msc[j]))))
 							{
-								File.Copy(r11Msc[j], Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(r11Msc[j])));
-								File.Copy(langMsc[i], Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp", Path.GetFileName(langMsc[i])));
+								if (Path.GetFileName(langMsc[i]) != "lusrmgr.msc" 
+									|| Path.GetFileName(langMsc[i]) != "taskschd.msc" 
+									|| Path.GetFileName(langMsc[i]) != "WmiMgmt.msc")
+								{
+									File.Copy(r11Msc[j], Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(r11Msc[j])), true);
+									File.Copy(langMsc[i], Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp", Path.GetFileName(langMsc[i])), true);
+								}
 							}
 						}
 					}
@@ -113,7 +125,7 @@ namespace MMC
 			}
 			for (int i = 0; i < r11Msc.Count; i++)
 			{
-				File.Copy(r11Msc[i], Path.Combine(tempDir, "msc", Path.GetFileName(r11Msc[i])));
+				File.Copy(r11Msc[i], Path.Combine(tempDir, "msc", Path.GetFileName(r11Msc[i])), true);
 			}
 			return true;
 		}
