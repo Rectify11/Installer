@@ -105,11 +105,6 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide, true));
 				}
 				catch { }
-				try
-				{
-					await Task.Run(() => File.Copy(Path.Combine(Variables.r11Files, "iconres.dll"), Path.Combine(Variables.sys32Folder, "iconres.dll"), true));
-				}
-				catch { }
 				IMmcHelper.PatchAll();
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 				while (true)
