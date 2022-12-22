@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -44,6 +45,7 @@ namespace Rectify11.Phase2
 				}
 
 			}
+			MoveIconres();
 			r11Reg.Close();
 			if (pendingFiles != null)
 			{
@@ -252,6 +254,17 @@ namespace Rectify11.Phase2
 				File.Move(newval, finalpath);
 			}
 			File.Copy(file, newval, true);
+		}
+		private static void MoveIconres()
+		{
+			string iconresDest = Path.Combine(Variables.sys32Folder, "iconres.dll");
+			string iconres = Path.Combine(Variables.r11Files, "iconres.dll");
+			try
+			{
+				File.Copy(iconres, iconresDest, true);
+				Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true);
+			}
+			catch { }
 		}
 	}
 	public class Variables
