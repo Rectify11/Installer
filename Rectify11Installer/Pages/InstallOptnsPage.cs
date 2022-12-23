@@ -51,7 +51,7 @@ namespace Rectify11Installer.Pages
                 }
                 else
 				{
-                    if (InstallStatus.InstalledVersion == "3.0.0.0")
+                    if (InstallStatus.InstalledVersion == "3.0.0.0" && !InstallStatus.IsRectify11Installed)
                     {
                         if (Properties.Resources.newfiles.Contains(patch.Mui))
                         {
