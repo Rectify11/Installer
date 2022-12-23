@@ -213,12 +213,12 @@ namespace Rectify11Installer.Core
 						}
 						catch { }
 
-					var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+					var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
 					if (InstallOptions.ThemeLight == true)
 					{
 						if (key != null)
 						{
-							Interaction.Shell(Path.Combine(Variables.windir, "Resources", "Themes", "lightrectified.theme"), AppWinStyle.NormalFocus, true);
+							Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "lightrectified.theme"));
 							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
 						}
 					}
@@ -226,7 +226,7 @@ namespace Rectify11Installer.Core
 					{
 						if (key != null)
 						{
-							Interaction.Shell(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme"), AppWinStyle.NormalFocus, true);
+							Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme"));
 							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
 						}
 					}
@@ -234,7 +234,7 @@ namespace Rectify11Installer.Core
 					{
 						if (key != null)
 						{
-							Interaction.Shell(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme"), AppWinStyle.NormalFocus, true);
+							Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme"));
 							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
 						}
 					}
