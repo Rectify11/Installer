@@ -10,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MMC;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Rectify11Installer.Core
 {
@@ -125,8 +127,8 @@ namespace Rectify11Installer.Core
 			}
 			try
 			{
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist32.exe") + " /install /quiet /norestart", AppWinStyle.Hide, true));
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist64.exe") + " /install /quiet /norestart", AppWinStyle.Hide, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist32.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist64.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true));
 			}
 			catch { }
 			if (InstallOptions.InstallThemes)
@@ -138,6 +140,22 @@ namespace Rectify11Installer.Core
 					Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
 						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true, -1);
+				}
+				if (IsArm64() == true)
+				{
+					try
+					{
+						File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_arm64);
+					}
+					catch { }
+				}
+				else
+				{
+					try
+					{
+						File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_x64);
+					}
+					catch { }
 				}
 				try
 				{
@@ -160,8 +178,7 @@ namespace Rectify11Installer.Core
 					catch { }
 					try
 					{
-						await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "themes", "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true));
-						File.Copy(Path.Combine(Variables.r11Folder, "themes", "SecureUXHelper.exe"), Path.Combine(Variables.windir, "SecureUXHelper.exe"), true);
+						await Task.Run(() => Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true));
 					}
 					catch { }
 					try
@@ -201,6 +218,7 @@ namespace Rectify11Installer.Core
 					{
 						if (key != null)
 						{
+							Interaction.Shell(Path.Combine(Variables.windir, "Resources", "Themes", "lightrectified.theme"), AppWinStyle.NormalFocus, true);
 							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
 						}
 					}
@@ -208,6 +226,7 @@ namespace Rectify11Installer.Core
 					{
 						if (key != null)
 						{
+							Interaction.Shell(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme"), AppWinStyle.NormalFocus, true);
 							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
 						}
 					}
@@ -215,6 +234,7 @@ namespace Rectify11Installer.Core
 					{
 						if (key != null)
 						{
+							Interaction.Shell(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme"), AppWinStyle.NormalFocus, true);
 							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
 						}
 					}
@@ -245,6 +265,8 @@ namespace Rectify11Installer.Core
 			{
 				Directory.Delete(Variables.r11Files, true);
 				File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
+				File.Delete(Path.Combine(Variables.r11Folder, "vcredist32.exe"));
+				File.Delete(Path.Combine(Variables.r11Folder, "vcredist64.exe"));
 				try
 				{
 					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
@@ -256,6 +278,34 @@ namespace Rectify11Installer.Core
 
 			return true;
 		}
+		public static bool IsArm64()
+		{
+			var handle = Process.GetCurrentProcess().Handle;
+			try
+			{
+				IsWow64Process2(handle, out var processMachine, out var nativeMachine);
+				if (nativeMachine == 0xaa64)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			catch {
+
+				return false;
+			}
+		}
+
+		[DllImport("kernel32.dll", SetLastError = true)]
+		private static extern bool IsWow64Process2(
+			IntPtr process,
+			out ushort processMachine,
+			out ushort nativeMachine
+		);
+
 		#endregion
 		#region Private Methods
 		private bool AddToControlPanel()

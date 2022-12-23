@@ -338,6 +338,8 @@
     <Content Include="Core\rectify11.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\SecureUxHelper-x64.exe" />
+    <None Include="Resources\SecureUxHelper-arm64.exe" />
     <None Include="Resources\VC_redist.x86.exe" />
     <None Include="Resources\VC_redist.x64.exe" />
     <None Include="Resources\theme.png" />
