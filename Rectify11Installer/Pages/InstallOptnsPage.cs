@@ -24,6 +24,26 @@ namespace Rectify11Installer.Pages
         {
             if (!idleinit)
             {
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+                {
+                    File.WriteAllText(Path.Combine(Variables.r11Folder, "newfiles.txt"), Properties.Resources.newfiles);
+                    if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles")))
+                    {
+                        Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
+                    }
+                    string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+                    foreach (string file in newFiles)
+                    {
+                        if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file)))
+                        {
+                            File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                        }
+                        if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
+                        {
+                            File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                        }
+                    }
+                }
                 Patches list = PatchesParser.GetAll();
                 PatchesPatch[] ok = list.Items;
                 var basicNode = treeView1.Nodes[0].Nodes[0];

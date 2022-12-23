@@ -278,6 +278,7 @@ namespace Rectify11Installer.Core
 				File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 				File.Delete(Path.Combine(Variables.r11Folder, "vcredist32.exe"));
 				File.Delete(Path.Combine(Variables.r11Folder, "vcredist64.exe"));
+				File.Delete(Path.Combine(Variables.r11Folder, "newfiles.txt"));
 				try
 				{
 					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);

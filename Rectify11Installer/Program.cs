@@ -46,17 +46,6 @@ namespace Rectify11Installer
 			Application.SetCompatibleTextRenderingDefault(false);
 			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-			if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
-			{
-				string[] newFiles = File.ReadAllLines(Properties.Resources.newfiles);
-				foreach (string file in newFiles)
-				{
-					if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
-                    {
-						File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", file + "_old"));
-                    }
-				}
-			}
 			Application.Run(new frmWizard());
 		}
 	}
