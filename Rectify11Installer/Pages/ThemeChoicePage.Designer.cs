@@ -97,46 +97,13 @@
             this.themeSel.Items.Add(resources.GetString("themeBlack"));
             this.themeSel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
-            // patcherSelection
-            // 
-            this.patcherSelection.Font = new System.Drawing.Font("Segoe UI Semibold", 10.50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.patcherSelection.Name = "patcherSelection";
-            this.patcherSelection.Location = new System.Drawing.Point(0, 185);
-            this.patcherSelection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.patcherSelection.Size = new System.Drawing.Size(361, 20);
-            this.patcherSelection.TabIndex = 6;
-            this.patcherSelection.Text = "UxTheme patcher: ";
-            // 
-            // ultraRadio
-            // 
-            this.ultraRadio.Location = new System.Drawing.Point(150, 185);
-            this.ultraRadio.Name = "lightRadio";
-            this.ultraRadio.Size = new System.Drawing.Size(129, 29);
-            this.ultraRadio.TabIndex = 4;
-            this.ultraRadio.TabStop = true;
-            this.ultraRadio.Text = "SecureUxTheme";
-            this.ultraRadio.UseVisualStyleBackColor = true;
-            // 
-            // secureRadio
-            // 
-            this.secureRadio.Location = new System.Drawing.Point(150, 205);
-            this.secureRadio.Name = "blackRadio";
-            this.secureRadio.Size = new System.Drawing.Size(161, 34);
-            this.secureRadio.TabIndex = 5;
-            this.secureRadio.TabStop = true;
-            this.secureRadio.Text = "UltraUXThemePatcher";
-            this.secureRadio.UseVisualStyleBackColor = true;
-            // 
             // ThemeChoicePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ultraRadio);
-            this.Controls.Add(this.secureRadio);
             this.Controls.Add(this.themeTitle);
             this.Controls.Add(this.themeSel);
             this.Controls.Add(this.themeSelection);
-            this.Controls.Add(this.patcherSelection);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ThemeChoicePage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.themepage;

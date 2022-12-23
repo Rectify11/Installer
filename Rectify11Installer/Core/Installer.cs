@@ -28,6 +28,10 @@ namespace Rectify11Installer.Core
 
 			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
 
+			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "vcredist32.exe"), Properties.Resources.VC_redist_x86);
+
+			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "vcredist64.exe"), Properties.Resources.VC_redist_x64);
+
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
 			{
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
@@ -119,6 +123,12 @@ namespace Rectify11Installer.Core
 					}
 				}
 			}
+			try
+			{
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist32.exe") + " /install /quiet /norestart", AppWinStyle.Hide, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist64.exe") + " /install /quiet /norestart", AppWinStyle.Hide, true));
+			}
+			catch { }
 			if (InstallOptions.InstallThemes)
 			{
 				frm.InstallerProgress = "Installing Themes";
@@ -129,7 +139,8 @@ namespace Rectify11Installer.Core
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
 						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true, -1);
 				}
-				try {
+				try
+				{
 
 					DirectoryInfo cursors = new DirectoryInfo(Path.Combine(Variables.r11Folder, "themes", "cursors"));
 					DirectoryInfo[] curdir = cursors.GetDirectories("*", SearchOption.TopDirectoryOnly);
@@ -149,12 +160,14 @@ namespace Rectify11Installer.Core
 					catch { }
 					try
 					{
-						File.Copy(Path.Combine(Variables.r11Folder, "themes", "Elevate.exe"), Path.Combine(Variables.windir, "Elevate.exe"), true);
+						await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "themes", "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true));
+						File.Copy(Path.Combine(Variables.r11Folder, "themes", "SecureUXHelper.exe"), Path.Combine(Variables.windir, "SecureUXHelper.exe"), true);
 					}
 					catch { }
-					try 
+					try
 					{
-						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true); 
+						await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide, true));
+						Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true);
 					}
 					catch { }
 
@@ -165,7 +178,7 @@ namespace Rectify11Installer.Core
 							{
 								Directory.Delete(Path.Combine(Variables.windir, "cursors", dir.Name), true);
 							}
-							Directory.Move(dir.FullName, Path.Combine(Variables.windir, "cursors", dir.Name));	
+							Directory.Move(dir.FullName, Path.Combine(Variables.windir, "cursors", dir.Name));
 						}
 						catch { }
 
@@ -183,6 +196,28 @@ namespace Rectify11Installer.Core
 						}
 						catch { }
 
+					var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+					if (InstallOptions.ThemeLight == true)
+					{
+						if (key != null)
+						{
+							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
+						}
+					}
+					else if (InstallOptions.ThemeDark == true)
+					{
+						if (key != null)
+						{
+							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
+						}
+					}
+					else if (InstallOptions.ThemeBlack == true)
+					{
+						if (key != null)
+						{
+							key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
+						}
+					}
 				}
 				catch { }
 

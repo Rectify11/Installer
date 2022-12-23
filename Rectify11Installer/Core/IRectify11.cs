@@ -21,6 +21,9 @@ namespace Rectify11Installer.Core
 		public static bool InstallWallpaper;
 		public static bool InstallWinver;
 		public static bool InstallThemes;
+		public static bool ThemeDark;
+		public static bool ThemeBlack;
+		public static bool ThemeLight;
 		public static bool InstallShell;
 		public static bool InstallIcons;
 		public static List<string> iconsList = new List<string>();

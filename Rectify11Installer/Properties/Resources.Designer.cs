@@ -327,5 +327,25 @@ namespace Rectify11Installer.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VC_redist_x64 {
+            get {
+                object obj = ResourceManager.GetObject("VC_redist_x64", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VC_redist_x86 {
+            get {
+                object obj = ResourceManager.GetObject("VC_redist_x86", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
