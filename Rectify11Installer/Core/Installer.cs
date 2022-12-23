@@ -196,7 +196,7 @@ namespace Rectify11Installer.Core
 						}
 						catch { }
 
-					var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+					var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
 					if (InstallOptions.ThemeLight == true)
 					{
 						if (key != null)
