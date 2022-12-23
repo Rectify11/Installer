@@ -187,7 +187,7 @@
     <value>Jasny</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>Kopiowanie plików...</value>
+    <value>Czy wiedziałeś, że...</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
     <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ komputer zostanie uruchomiony ponownie w celu zastosowania zmian.</value>
@@ -218,9 +218,6 @@
   </data>
   <data name="epW11Radio" xml:space="preserve">
     <value>Windows 11</value>
-      </data>
-      <data name="progressText" xml:space="preserve">
-    <value>Czy wiedziałeś, że...</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>Instaluj</value>
