@@ -130,7 +130,7 @@
     <value>Condizioni di Licenza</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 Questo software è rilasciato 'così com'è', senza alcuna garanzia espressa o implicita. In nessun caso l'autore verrà ritenuto responsabile per qualsiasi danno derivato dall'utilizzo di questo software.\par{\pntext\f0 2.\tab}Rectify11 è libero di essere usato da tutti, ma non puoi venderlo. Non puoi integrare questo prodotto come parte di un altro prodotto senza l'autorizzazione scritta dall'autore.\par{\pntext\f0 3.\tab}Non puoi affermare inoltre di aver sviluppato tu questo software.\par{\pntext\f0 4.\tab}Questo avviso non può essere rimosso o alterato da qualsiasi distribuzione.\par\pard\par\parCopyright \'a9 Microsoft Corporation e il team di Rectify11.\par{\pntext\f0\space}NON siamo affiliati con Microsoft Corporation in NESSUN modo. Questo è un progetto creato dalla community.\par}</value>
+    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 Questo software è rilasciato 'così com'è', senza alcuna garanzia espressa o implicita. In nessun caso l'autore verrà ritenuto responsabile per qualsiasi danno derivato dall'utilizzo di questo software.\par{\pntext\f0 2.\tab}Rectify11 è libero di essere usato da tutti per usi non commerciali. Non puoi integrare questo prodotto come parte di un altro prodotto senza l'autorizzazione scritta dall'autore.\par{\pntext\f0 3.\tab}Non puoi affermare inoltre di aver sviluppato tu questo software.\par{\pntext\f0 4.\tab}Questo avviso non può essere alterato o rimosso da qualsiasi distribuzione.\par\pard\par\parCopyright \'a9 Microsoft Corporation e il team di Rectify11.\par{\pntext\f0\space}NON siamo affiliati con Microsoft Corporation in NESSUN modo. Questo è un progetto creato dalla community.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Prima di poter installare Rectify11, deve accettare le condizioni di licenza:</value>
@@ -211,16 +211,16 @@
     <value>Copia dei file...</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Per favore chiudi tutto e salva il tuo lavoro dato che sarà richiesto un riavvio alla fine dell'installazione.</value>
+    <value>Per favore salva il tuo lavoro e chiudi tutto dato che sarà richiesto un riavvio alla fine dell'installazione.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
-    <value>Installa Rectify11 su questa installazione di Windows.</value>
+    <value>Installare Rectify11 su questa installazione di Windows.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>Stai per fare quanto segue:</value>
+    <value>Stai per eseguire il seguente:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
-    <value>Installare</value>
+    <value>Installa</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
     <value>Extra</value>
@@ -232,7 +232,7 @@
     <value>Temi</value>
   </data>
   <data name="optionWallpaper" xml:space="preserve">
-    <value>Rectify11 Sfondi</value>
+    <value>Sfondi di Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>Installare ExplorerPatcher</value>
