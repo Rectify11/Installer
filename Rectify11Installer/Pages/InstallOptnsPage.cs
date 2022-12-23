@@ -46,66 +46,18 @@ namespace Rectify11Installer.Pages
             {
                 if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
                 {
-                    if (patch.HardlinkTarget.Contains("%sys32%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
-                    }
-                    else if (patch.HardlinkTarget.Contains("%lang%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
-                    }
-                    else if (patch.HardlinkTarget.Contains("%en-US%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
-                    }
-                    else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
-                    }
-                    else if (patch.HardlinkTarget.Contains("%windirLang%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
-                    }
-                    else if (patch.Mui.Contains("mun"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
-                        if (File.Exists(newpath))
-                            basicNode.Nodes.Add(patch.Mui.Replace(".mun", ""));
-                    }
-                    else if (patch.HardlinkTarget.Contains("%windir%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
-                    }
-                    else if (patch.HardlinkTarget.Contains("%branding%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
-                    }
-                    // cant be fucking bothered to repeat the same logic here
-                    else if (patch.HardlinkTarget.Contains("%winsxs%"))
-                    {
-                        advNode.Nodes.Add(patch.Mui);
-                    }
-                    else if (patch.HardlinkTarget.Contains("%prog%"))
-                    {
-                        string newpath = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
-                        if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
-                    }
+                    AddFiles(patch, basicNode, advNode);
 
+                }
+                else
+				{
+                    if (InstallStatus.InstalledVersion == "3.0.0.0")
+                    {
+                        if (Properties.Resources.newfiles.Contains(patch.Mui))
+                        {
+                            AddFiles(patch, basicNode, advNode);
+                        }
+                    }
                 }
                 if (patch.HardlinkTarget.Contains("%diag%"))
                 {
@@ -117,6 +69,63 @@ namespace Rectify11Installer.Pages
                             advNode.Nodes.Add(patch.Mui);
                     }
                 }
+            }
+        }
+        private static void AddFiles(PatchesPatch patch, TreeNode basicNode, TreeNode advNode)
+		{
+            if (patch.HardlinkTarget.Contains("%sys32%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui);
+            }
+            else if (patch.HardlinkTarget.Contains("%lang%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+            }
+            else if (patch.HardlinkTarget.Contains("%en-US%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+            }
+            else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+            }
+            else if (patch.HardlinkTarget.Contains("%windirLang%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+            }
+            else if (patch.Mui.Contains("mun"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
+                if (File.Exists(newpath))
+                    basicNode.Nodes.Add(patch.Mui);
+            }
+            else if (patch.HardlinkTarget.Contains("%windir%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui);
+            }
+            else if (patch.HardlinkTarget.Contains("%branding%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui);
+            }
+            else if (patch.HardlinkTarget.Contains("%prog%"))
+            {
+                string newpath = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
+                if (File.Exists(newpath))
+                    advNode.Nodes.Add(patch.Mui);
             }
         }
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)

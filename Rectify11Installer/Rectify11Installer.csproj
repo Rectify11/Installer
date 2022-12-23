@@ -335,6 +335,7 @@
     <None Include="Resources\eula.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Core\newfiles.txt" />
     <Content Include="Core\rectify11.xml">
       <SubType>Designer</SubType>
     </Content>

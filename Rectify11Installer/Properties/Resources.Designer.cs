@@ -251,6 +251,24 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mstsc.exe.mun
+        ///imageres.dll.mun.res
+        ///wininetlui.dll.res
+        ///splwow64.exe.res
+        ///explorer.exe.mui.res
+        ///taskmgr.exe.mun.res
+        ///hh.exe.res
+        ///HelpPane.exe.res
+        ///wordpad.exe.res
+        ///explorerframe.dll.mun.res.
+        /// </summary>
+        internal static string newfiles {
+            get {
+                return ResourceManager.GetString("newfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap perf {

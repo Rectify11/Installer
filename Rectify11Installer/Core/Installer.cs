@@ -243,6 +243,7 @@ namespace Rectify11Installer.Core
 
 			}
 			AddToControlPanel();
+			InstallStatus.IsRectify11Installed = true;
 			// refresh icon cache
 			try { await Task.Run(() => Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true)); }
 			catch { }

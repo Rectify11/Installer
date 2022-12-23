@@ -226,6 +226,14 @@ namespace Rectify11.Phase2
 			{
 				File.Move(newval, finalpath);
 			}
+			else
+			{
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "trash")))
+				{
+					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "trash"));
+				}
+				File.Move(newval, Path.Combine(Variables.r11Folder, "trash", Path.GetFileName(newval)));
+			}
 			File.Copy(file, newval, true);
 
 		}
@@ -239,6 +247,14 @@ namespace Rectify11.Phase2
 			if (!File.Exists(finalpath))
 			{
 				File.Move(newval, finalpath);
+			}
+			else
+			{
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "trash")))
+				{
+					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "trash"));
+				}
+				File.Move(newval, Path.Combine(Variables.r11Folder, "trash", Path.GetFileName(newval)));
 			}
 			File.Copy(file, newval, true);
 		}
