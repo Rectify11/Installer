@@ -212,8 +212,8 @@ namespace Rectify11Installer.Pages
             var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", true);
             if (key != null)
             {
-                string build = key.GetValue("Build").ToString();
-                if (build == null || (build != null && Int32.Parse(build) < Assembly.GetEntryAssembly().GetName().Version.Build))
+                object build = key.GetValue("Build");
+                if (build == null || (build != null && Int32.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build))
                 {
                     if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
                     {
