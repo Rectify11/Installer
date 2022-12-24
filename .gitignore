@@ -12,7 +12,6 @@ packages/
 *.db
 *.suo
 *.ini
-*.7z
 Rectify11.Phase2.exe
 /Rectify11Installer/Resources/AdvancedRun.cfg
 *.pdb
