@@ -528,9 +528,13 @@ namespace Rectify11Installer.Core
 			{
 				File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
 			}
-			if (File.Exists(Path.Combine(Variables.r11Folder, "vcredist64.exe")))
+			if (File.Exists(Path.Combine(Variables.r11Folder, "extras.7z")))
 			{
-				File.Delete(Path.Combine(Variables.r11Folder, "vcredist64.exe"));
+				File.Delete(Path.Combine(Variables.r11Folder, "extras.7z"));
+			}
+			if (File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
+			{
+				File.Delete(Path.Combine(Variables.r11Folder, "vcredist.exe"));
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "newfiles.txt")))
 			{
@@ -539,6 +543,10 @@ namespace Rectify11Installer.Core
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 			{
 				Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
+			}
+			if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
+			{
+				Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "themes.7z")))
 			{
