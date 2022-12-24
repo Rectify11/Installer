@@ -19,31 +19,11 @@ namespace Rectify11Installer.Pages
             InitializeComponent();
             Application.Idle += Application_Idle;
         }
-
         void Application_Idle(object sender, System.EventArgs e)
         {
             if (!idleinit)
             {
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
-                {
-                    File.WriteAllText(Path.Combine(Variables.r11Folder, "newfiles.txt"), Properties.Resources.newfiles);
-                    if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles")))
-                    {
-                        Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
-                    }
-                    string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-                    foreach (string file in newFiles)
-                    {
-                        if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file)))
-                        {
-                            File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
-                        }
-                        if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
-                        {
-                            File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
-                        }
-                    }
-                }
+                overwriteUpdatedFiles();
                 Patches list = PatchesParser.GetAll();
                 PatchesPatch[] ok = list.Items;
                 var basicNode = treeView1.Nodes[0].Nodes[0];
@@ -221,6 +201,29 @@ namespace Rectify11Installer.Pages
                 {
                     _frmWizard.nextButton.Enabled = false;
                     frmWizard.IsItemsSelected = false;
+                }
+            }
+        }
+        private void overwriteUpdatedFiles()
+        {
+            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+            {
+                File.WriteAllText(Path.Combine(Variables.r11Folder, "newfiles.txt"), Properties.Resources.newfiles);
+                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles")))
+                {
+                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
+                }
+                string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+                foreach (string file in newFiles)
+                {
+                    if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file)))
+                    {
+                        File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                    }
+                    if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
+                    {
+                        File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                    }
                 }
             }
         }
