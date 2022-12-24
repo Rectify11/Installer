@@ -189,7 +189,7 @@ namespace Rectify11Installer.Core
 					Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme"));
 					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
 				}
-				else if (InstallOptions.ThemeBlack)
+				else
 				{
 					Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme"));
 					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
@@ -231,6 +231,7 @@ namespace Rectify11Installer.Core
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
 				}
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
+				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
 
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
 				{
@@ -261,9 +262,8 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallRuntimes()
 		{
-			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
 			Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-		      " e" + Path.Combine(Variables.r11Folder, "extras.7z") +
+		      " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
 		      " vcredist.exe", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true);
 		}
@@ -311,6 +311,7 @@ namespace Rectify11Installer.Core
 					r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
 					r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly().GetName().Version.Major.ToString(), RegistryValueKind.String);
 					r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly().GetName().Version.Minor.ToString(), RegistryValueKind.String);
+					r11key.SetValue("Build", Assembly.GetEntryAssembly().GetName().Version.Build.ToString(), RegistryValueKind.String);
 					r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
 					r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
 					return true;

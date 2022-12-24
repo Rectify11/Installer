@@ -1,7 +1,10 @@
-﻿using Rectify11Installer.Core;
+﻿using Microsoft.Win32;
+using Rectify11Installer.Core;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
@@ -206,23 +209,31 @@ namespace Rectify11Installer.Pages
         }
         private void overwriteUpdatedFiles()
         {
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", true);
+            if (key != null)
             {
-                File.WriteAllText(Path.Combine(Variables.r11Folder, "newfiles.txt"), Properties.Resources.newfiles);
-                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles")))
+                object build = key.GetValue("Build");
+                if (build == null || (build != null && Int32.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build))
                 {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
-                }
-                string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-                foreach (string file in newFiles)
-                {
-                    if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file)))
+                    if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
                     {
-                        File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
-                    }
-                    if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
-                    {
-                        File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                        File.WriteAllText(Path.Combine(Variables.r11Folder, "newfiles.txt"), Properties.Resources.newfiles);
+                        if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles")))
+                        {
+                            Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
+                        }
+                        string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+                        foreach (string file in newFiles)
+                        {
+                            if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file)))
+                            {
+                                File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                            }
+                            if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
+                            {
+                                File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                            }
+                        }
                     }
                 }
             }
