@@ -130,7 +130,7 @@
     <value>Όροι Άδειας Χρήσης</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 Αυτό το λογισμικό παρέχεται "ως έχει", χωρίς καμία ρητή ή σιωπηρή εγγύηση. Σε ΚΑΜΙΑ περίπτωση ο συγγραφέας δεν θα θεωρηθεί υπεύθυνος για τυχόν ζημίες που προκύπτουν από τη χρήση αυτού του λογισμικού.\par{\pntext\f0 2.\tab}Το Rectify11 είναι δωρεάν για χρήση από οποιονδήποτε, αλλά δεν μπορείτε να το πουλήσετε. Δεν μπορείτε να προσθέσετε αυτό το προϊόν ως μέρος άλλου προϊόντος χωρίς γραπτή άδεια από τον συγγραφέα.\par{\pntext\f0 3.\tab}Δεν μπορείτε να ισχυριστείτε ότι φτιάξατε το λογισμικό.\par{\pntext\f0 4.\tab}Αυτή η ειδοποίηση δεν μπορεί να αφαιρεθεί ή να τροποποιηθεί από οποιαδήποτε διανομή.\par\pard\par\parCopyright \'a9 Microsoft Corporation και η ομάδα του Rectify11.\par{\pntext\f0\space} ΔΕΝ είμαστε συνδεδεμένοι με την Microsoft Corporation με ΚΑΝΕΝΑΝ τρόπο. Αυτό είναι ένα κοινοτικό έργο.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Προτού μπορέσετε να εγκαταστήσετε τα Rectify11, πρέπει να συμφωνήστε στους Όρους Άδειας Χρήσης:</value>
@@ -139,7 +139,7 @@
     <value>Rectify την τρέχουσα εγκατάσταση των Windows.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
-    <value>Εγκατάσταση Τώρα</value>
+    <value>Εγκατάσταση τώρα</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
     <value>Επαναφέρει την κανονική εμφάνιση των Windows.</value>
@@ -151,7 +151,7 @@
     <value>Ενημερώστε την τρέχουσα εγκατάσταση των Rectify11.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
-    <value>Ενημέρωση Τώρα</value>
+    <value>Ενημέρωση τώρα</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Έκδοση: </value>
@@ -160,7 +160,7 @@
     <value>Καλώς ορίσατε</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>Η εγκατάσταση θα περάσει από τα διάφορα βήματα που απαιτούνται για την εγκατάσταση των Rectify11 στον υπολογιστή σας, για μια πιο σταθερή εμπειρία. Επιλέξτε την επιθυμητή επιλογή για να συ.</value>
+    <value>Η εγκατάσταση θα περάσει από τα διάφορα βήματα που απαιτούνται για την εγκατάσταση των Rectify11 στον υπολογιστή σας, για μια πιο σταθερή εμπειρία. Επιλέξτε την επιθυμητή επιλογή για να συνεχίσετε.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>Επιλέξτε τι θα γίνει Rectified.</value>
@@ -190,7 +190,7 @@
     <value>Χρησιμοποιήστε τη βελτιωμένη Ribbon</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
-    <value>Επέκταση του Mica στη γραμμή πλοήγησης του εξερευνητή</value>
+    <value>Επέκταση του Mica στη γραμμή πλοήγησης της εξερεύνησης αρχείων</value>
   </data>
   <data name="epHeader" xml:space="preserve">
     <value>Προσαρμόστε την επιφάνεια εργασίας σας</value>
@@ -205,7 +205,7 @@
     <value>Γραμμή εργασιών των Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 Προεπιλογή</value>
+    <value>Προεπιλογή των Windows 11</value>
   </data>
   <data name="progressText" xml:space="preserve">
     <value>Αντιγραφή αρχείων...</value>
@@ -223,7 +223,7 @@
     <value>Εγκατάσταση</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
-    <value>'Εξτρα</value>
+    <value>Έξτρα</value>
   </data>
   <data name="optionIcons" xml:space="preserve">
     <value>Εικονίδια συστήματος</value>
@@ -232,7 +232,7 @@
     <value>Θέματα</value>
   </data>
   <data name="optionWallpaper" xml:space="preserve">
-    <value>Rectify11 Wallpapers</value>
+    <value>Ταπετσαρίες των Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>Εγκατάσταση του ExplorerPatcher</value>
@@ -247,7 +247,7 @@
     <value>Εγκαταστήστε ταπετσαρίες</value>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>Εγκατάσταση του Winver</value>
+    <value>Εγκατάσταση του WinVer</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
