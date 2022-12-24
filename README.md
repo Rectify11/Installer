@@ -1,3 +1,4 @@
+![SkibidiDopDopDopDopYesYesYesYes11](https://user-images.githubusercontent.com/63112005/209448992-48f43baa-d97b-494a-aa65-e429481ee9f7.png)
 # SkibidiDopDopDopDopYesYesYesYes11Installer
 SkibidiDopDopDopDopYesYesYesYes11 installer source code. Based on Rectify11 installer. Note: in beta (rp3), also images aren't correct but I have no idea how to fix that. 
 
