@@ -132,7 +132,7 @@ namespace Rectify11Installer.Core
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
 						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
 
-				InstallThemes();
+				await Task.Run(() => InstallThemes());
 			}
 			AddToControlPanel();
 			InstallStatus.IsRectify11Installed = true;
