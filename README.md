@@ -1,5 +1,7 @@
-# Rectify11Installer
-Official Rectify11 installer source code. Note: not completed. 
+# SkibidiDopDopDopDopYesYesYesYes11Installer
+SkibidiDopDopDopDopYesYesYesYes11 installer source code. Based on Rectify11 installer. Note: in beta (rp3), also images aren't correct but I have no idea how to fix that. 
+
+Original: https://github.com/MishaTY/Rectify11Installer
 
 Discord community: https://discord.gg/rectify11-development-hub-972654790536482896
 
