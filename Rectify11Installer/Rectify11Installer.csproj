@@ -297,6 +297,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\extras.7z" />
     <None Include="Resources\themes.7z" />
   </ItemGroup>
   <ItemGroup>
@@ -342,8 +343,6 @@
     </Content>
     <None Include="Resources\SecureUxHelper-x64.exe" />
     <None Include="Resources\SecureUxHelper-arm64.exe" />
-    <None Include="Resources\VC_redist.x86.exe" />
-    <None Include="Resources\VC_redist.x64.exe" />
     <None Include="Resources\theme.png" />
     <None Include="Resources\NSudoLC.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
