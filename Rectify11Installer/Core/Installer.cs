@@ -189,7 +189,7 @@ namespace Rectify11Installer.Core
 					Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme"));
 					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
 				}
-				else if (InstallOptions.ThemeBlack)
+				else
 				{
 					Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme"));
 					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
