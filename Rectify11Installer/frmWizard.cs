@@ -183,7 +183,7 @@ namespace Rectify11Installer
 				Variables.isInstall = true;
 				navPane.SelectedTab = progressPage;
 				Installer installer = new();
-				await Task.Run(() => installer.Install(this));
+				await installer.Install(this);
 				RectifyPages.ProgressPage.StartReset();
 			}
 		}

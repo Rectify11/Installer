@@ -51,6 +51,13 @@ namespace Rectify11Installer.Win32
 
 		[DllImport("dwmapi.dll")]
 		public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref MARGINS margins);
+
+		[DllImport("kernel32.dll", SetLastError = true)]
+		private static extern bool IsWow64Process2(
+			IntPtr process,
+			out ushort processMachine,
+			out ushort nativeMachine
+		);
 		#endregion
 		#region Flags
 		public const int SC_CLOSE = 0xF060;
@@ -167,7 +174,6 @@ namespace Rectify11Installer.Win32
 		public static void Reboot()
 		{
 			IntPtr tokenHandle = IntPtr.Zero;
-
 			try
 			{
 				// get process token
@@ -216,6 +222,27 @@ namespace Rectify11Installer.Win32
 				{
 					CloseHandle(tokenHandle);
 				}
+			}
+		}
+		public static bool IsArm64()
+		{
+			var handle = Process.GetCurrentProcess().Handle;
+			try
+			{
+				IsWow64Process2(handle, out var processMachine, out var nativeMachine);
+				if (nativeMachine == 0xaa64)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			catch
+			{
+
+				return false;
 			}
 		}
 		#endregion

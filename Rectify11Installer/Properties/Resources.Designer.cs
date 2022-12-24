@@ -252,15 +252,14 @@ namespace Rectify11Installer.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to mstsc.exe.mun
-        ///imageres.dll.mun.res
-        ///wininetlui.dll.res
-        ///splwow64.exe.res
-        ///explorer.exe.mui.res
-        ///taskmgr.exe.mun.res
-        ///hh.exe.res
-        ///HelpPane.exe.res
-        ///wordpad.exe.res
-        ///explorerframe.dll.mun.res.
+        ///imageres.dll.mun
+        ///wininetlui.dll
+        ///taskmgr.exe.mun
+        ///wordpad.exe
+        ///explorerframe.dll.mun
+        ///cabview.dll
+        ///CustomInstallExec.exe
+        ///msxml3.dll.mun.
         /// </summary>
         internal static string newfiles {
             get {
@@ -362,26 +361,6 @@ namespace Rectify11Installer.Properties {
         internal static byte[] themes {
             get {
                 object obj = ResourceManager.GetObject("themes", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] VC_redist_x64 {
-            get {
-                object obj = ResourceManager.GetObject("VC_redist_x64", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] VC_redist_x86 {
-            get {
-                object obj = ResourceManager.GetObject("VC_redist_x86", resourceCulture);
                 return ((byte[])(obj));
             }
         }
