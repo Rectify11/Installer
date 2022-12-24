@@ -211,10 +211,10 @@
     <value>Wybierz wygląd pulpitu</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
-    <value>Włącz pasek zadań Windows 10</value>
+    <value>Windows 10 (zaokrąglone)</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 (oryginalne)</value>
+    <value>Włącz pasek zadań Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
     <value>Windows 11</value>
