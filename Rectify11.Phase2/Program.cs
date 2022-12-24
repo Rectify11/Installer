@@ -1,32 +1,38 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace Rectify11.Phase2
 {
-	class Program
+	internal class Program
 	{
-		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-		static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName,
-		  MoveFileFlags dwFlags);
+		private static string[] pendingFiles = null;
+		private static string[] x86Files = null;
 
-		[Flags]
-		enum MoveFileFlags
+		private static void Main()
 		{
-			MOVEFILE_REPLACE_EXISTING = 0x00000001,
-			MOVEFILE_COPY_ALLOWED = 0x00000002,
-			MOVEFILE_DELAY_UNTIL_REBOOT = 0x00000004,
-			MOVEFILE_WRITE_THROUGH = 0x00000008,
-			MOVEFILE_CREATE_HARDLINK = 0x00000010,
-			MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
-		}
-		static void Main(string[] args)
-		{
-			string[] pendingFiles = null;
-			string[] x86Files = null;
+			var backupDir = Path.Combine(Variables.r11Folder, "Backup");
+			var backupDiagDir = Path.Combine(Variables.r11Folder, "Backup", "Diag");
+			var tempDiagDir = Path.Combine(Variables.r11Folder, "Tmp", "Diag");
+			if (!Directory.Exists(backupDir))
+			{
+				Directory.CreateDirectory(backupDir);
+			}
+
+			if (!Directory.Exists(backupDiagDir))
+			{
+				Directory.CreateDirectory(backupDiagDir);
+			}
+
+			// temp solution
+			if (!Directory.Exists(tempDiagDir))
+			{
+				Directory.CreateDirectory(tempDiagDir);
+			}
+
 			var r11Dir = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp"));
 			var r11DiagDir = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "Diag"));
 			var r11Reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey("Rectify11", false);
@@ -39,12 +45,13 @@ namespace Rectify11.Phase2
 				}
 
 			}
+			MoveIconres();
 			r11Reg.Close();
 			if (pendingFiles != null)
 			{
-				foreach (string regFile in pendingFiles)
+				foreach (string file in r11Dir)
 				{
-					foreach (string file in r11Dir)
+					foreach (string regFile in pendingFiles)
 					{
 						if (regFile.Contains(Path.GetFileName(file)))
 						{
@@ -53,7 +60,6 @@ namespace Rectify11.Phase2
 								string newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
 								MoveFile(newval, file);
 							}
-							// will improve later
 							else if (regFile.Contains("%sys32%"))
 							{
 								string newval = regFile.Replace(@"%sys32%", Variables.sys32Folder);
@@ -67,6 +73,16 @@ namespace Rectify11.Phase2
 							else if (regFile.Contains("%en-US%"))
 							{
 								string newval = regFile.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%windirLang%"))
+							{
+								string newval = regFile.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+								MoveFile(newval, file);
+							}
+							else if (regFile.Contains("%windirEn-US%"))
+							{
+								string newval = regFile.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
 								MoveFile(newval, file);
 							}
 							else if (regFile.Contains("%branding%"))
@@ -85,40 +101,126 @@ namespace Rectify11.Phase2
 								MoveFile(newval, file);
 							}
 						}
-						if (x86Files != null)
+					}
+					if (x86Files != null)
+					{
+						foreach (string x86file in x86Files)
 						{
-							foreach (string x86file in x86Files)
+							if (x86file.Contains(Path.GetFileName(file)))
 							{
-								if (x86file.Contains(Path.GetFileName(file)))
+								if (x86file.Contains("%sys32%"))
 								{
-									if (x86file.Contains("%sys32%"))
+									string newval = x86file.Replace(@"%sys32%", Variables.sysWOWFolder);
+									MoveFilex86(newval, file);
+								}
+								else if (x86file.Contains("%prog%"))
+								{
+									string newval = x86file.Replace(@"%prog%", Variables.progfiles86);
+									MoveFilex86(newval, file);
+								}
+							}
+						}
+					}
+				}
+				foreach (string diagFile in r11DiagDir)
+				{
+					foreach (string regFile in pendingFiles)
+					{
+						if (regFile.Contains("%diag%"))
+						{
+							string name = regFile.Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
+							if (name.Contains(Path.GetFileNameWithoutExtension(diagFile).Replace("DiagPackage", "")))
+							{
+								string newval = regFile.Replace("%diag%", Variables.diag);
+								MoveTrouble(newval, diagFile, name);
+							}
+						}
+					}
+				}
+				foreach (string regFile in pendingFiles)
+				{
+					if (regFile.Contains("mmcbase.dll.mun") 
+						|| regFile.Contains("mmcndmgr.dll.mun") 
+						|| regFile.Contains("mmc.exe"))
+					{
+						if (!Directory.Exists(Path.Combine(backupDir, "msc")))
+						{
+							Directory.CreateDirectory(Path.Combine(backupDir, "msc"));
+							if (CultureInfo.CurrentUICulture.Name != "en-US")
+							{
+								Directory.CreateDirectory(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name));
+							}
+							Directory.CreateDirectory(Path.Combine(backupDir, "msc", "en-US"));
+						}
+						var langFolder = Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name);
+						var usaFolder = Path.Combine(Variables.sys32Folder, "en-US");
+						List<string> langMsc = new List<string>(Directory.GetFiles(langFolder, "*.msc", SearchOption.TopDirectoryOnly));
+						List<string> usaMsc = new List<string>(Directory.GetFiles(usaFolder, "*.msc", SearchOption.TopDirectoryOnly));
+						List<string> sysMsc = new List<string>(Directory.GetFiles(Variables.sys32Folder, "*.msc", SearchOption.TopDirectoryOnly));
+						List<string> r11Msc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc"), "*.msc", SearchOption.TopDirectoryOnly));
+						if (CultureInfo.CurrentUICulture.Name != "en-US")
+						{
+							for (int i = 0; i < langMsc.Count; i++)
+							{
+								for (int j = 0; j < usaMsc.Count; j++)
+								{
+									if (Path.GetFileName(langMsc[i]) == Path.GetFileName(usaMsc[j]))
 									{
-										string newval = x86file.Replace(@"%sys32%", Variables.sysWOWFolder);
-										MoveFilex86(newval, file);
+										usaMsc.RemoveAt(j);
 									}
-									else if (x86file.Contains("%prog%"))
+								}
+							}
+						}
+						for (int j = 0; j < r11Msc.Count; j++)
+						{
+							for (int i = 0; i < usaMsc.Count; i++)
+							{
+								if (Path.GetFileName(usaMsc[i]) == Path.GetFileName(r11Msc[j]))
+								{
+									Console.WriteLine(usaMsc[i]);
+									if (!File.Exists(Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i]))))
 									{
-										string newval = x86file.Replace(@"%prog%", Variables.progfiles86);
-										MoveFilex86(newval, file);
+										File.Move(usaMsc[i], Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i])));
+									}
+									File.Copy(r11Msc[j], usaMsc[i], true);
+								}
+							}
+							for (int i = 0; i < sysMsc.Count; i++)
+							{
+								if (Path.GetFileName(sysMsc[i]) == Path.GetFileName(r11Msc[j]))
+								{
+									Console.WriteLine(sysMsc[i]);
+									if (!File.Exists(Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i]))))
+									{
+										File.Move(sysMsc[i], Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i])));
+									}
+									File.Copy(r11Msc[j], sysMsc[i], true);
+								}
+							}
+						}
+						if (CultureInfo.CurrentUICulture.Name != "en-US")
+						{
+							List<string> r11LangMsc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
+							for (int j = 0; j < r11LangMsc.Count; j++)
+							{
+								for (int i = 0; i < langMsc.Count; i++)
+								{
+									if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11LangMsc[j]))
+									{
+										Console.WriteLine(langMsc[i]);
+										if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
+										{
+											File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
+										}
+										File.Copy(r11LangMsc[j], langMsc[i], true);
 									}
 								}
 							}
 						}
 					}
-					foreach (string file in r11DiagDir)
-					{
-						if (regFile.Contains("%diag%"))
-						{
-							string name = regFile.Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
-							if (name.Contains(Path.GetFileNameWithoutExtension(file).Replace("DiagPackage", "")))
-							{
-								string newval = regFile.Replace("%diag%", Variables.diag);
-								MoveTrouble(newval, file, name);
-							}
-						}
-					}
 				}
 			}
+			Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
 		}
 
 		private static void MoveFile(string newval, string file)
@@ -129,8 +231,11 @@ namespace Rectify11.Phase2
 			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval));
 			Console.WriteLine(finalpath);
 			if (!File.Exists(finalpath))
+			{
 				File.Move(newval, finalpath);
+			}
 			File.Copy(file, newval, true);
+
 		}
 		private static void MoveFilex86(string newval, string file)
 		{
@@ -140,7 +245,9 @@ namespace Rectify11.Phase2
 			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
 			Console.WriteLine(finalpath);
 			if (!File.Exists(finalpath))
+			{
 				File.Move(newval, finalpath);
+			}
 			File.Copy(file, newval, true);
 		}
 		private static void MoveTrouble(string newval, string file, string name)
@@ -151,8 +258,21 @@ namespace Rectify11.Phase2
 			string finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
 			Console.WriteLine(finalpath);
 			if (!File.Exists(finalpath))
+			{
 				File.Move(newval, finalpath);
+			}
 			File.Copy(file, newval, true);
+		}
+		private static void MoveIconres()
+		{
+			string iconresDest = Path.Combine(Variables.sys32Folder, "iconres.dll");
+			string iconres = Path.Combine(Variables.r11Files, "iconres.dll");
+			try
+			{
+				File.Copy(iconres, iconresDest, true);
+				Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true);
+			}
+			catch { }
 		}
 	}
 	public class Variables

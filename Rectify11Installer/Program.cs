@@ -3,23 +3,26 @@ using Rectify11Installer.Win32;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Runtime;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
 {
-	static class Program
+	internal static class Program
 	{
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main()
+		private static void Main()
 		{
+			ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
+			ProfileOptimization.StartProfile("Startup.Profile");
 			if (Environment.OSVersion.Version.Build >= 10240)
 			{
 				Theme.InitTheme();
-                if ((Environment.OSVersion.Version.Build >= 17763) && (Environment.OSVersion.Version.Build < 18362))
+				if ((Environment.OSVersion.Version.Build >= 17763) && (Environment.OSVersion.Version.Build < 18362))
 				{
 					DarkMode.AllowDarkModeForApp(true);
 				}
@@ -29,7 +32,10 @@ namespace Rectify11Installer
 				}
 			}
 			if (!Directory.Exists(Variables.r11Folder))
+			{
 				Directory.CreateDirectory(Variables.r11Folder);
+			}
+
 			if ((!File.Exists(Path.Combine(Variables.r11Folder, "Dark.msstyles"))) && (!File.Exists(Path.Combine(Variables.r11Folder, "light.msstyles"))))
 			{
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Dark.msstyles"), Properties.Resources.Dark);

@@ -130,7 +130,7 @@
     <value>Licentieovereenkomst</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 Deze software wordt 'as-is' geleverd, zonder enige expliciete of impliciete garantie. In geen geval zal de auteur aansprakelijk worden gesteld voor enige schade voortkomend uit het gebruik van deze software.par{pntext\f0 2.tab}Rectify11 is vrij te gebruiken door iedereen, maar je kunt het niet verkopen. Je mag dit product niet bundelen als onderdeel van een ander product zonder schriftelijke toestemming van de auteur.\par{pntext\f0 3.ab}Je mag niet beweren dat je de software hebt gemaakt.\par{pntext\f0 4.ab}Deze mededeling mag niet worden verwijderd of veranderd van enige distributie.\par\pard\parCopyright 'a9 Microsoft Corporation and the Rectify11 Team.\par{pntext\f0} Wij zijn op geen enkele manier verbonden met Microsoft Corporation. Dit is een door de gemeenschap gemaakt project.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Voordat u Rectify11 kunt installeren, moet u akkoord gaan met deze licentieovereenkomst:</value>
@@ -163,7 +163,7 @@
     <value>De setup zal de verschillende stappen doorlopen die nodig zijn om Rectify11 op uw PC te installeren, voor een meer consistente ervaring. Selecteer de gewenste optie om verder te gaan.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>U kunt kiezen wat herstelt zal worden.</value>
+    <value>U kunt kiezen wat verbeterd zal worden.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Kies wat u wilt installeren</value>
@@ -196,7 +196,7 @@
     <value>Uw bureaublad aanpassen</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>Selecteer uw gewenste desktop ervaring</value>
+    <value>Selecteer uw gewenste desktopervaring</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
     <value>Windows 10 Afgerond</value>
@@ -211,7 +211,7 @@
     <value>Wist je dat</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Sluit alle geopende programma's af en sla uw werk op want aan het eind van de installatie moet het system opnieuw worden opgestart.</value>
+    <value>Sluit alle geopende programma's af en sla uw werk op, want aan het eind van de installatie wordt het systeem opnieuw opgestart.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
     <value>Installeer Rectify11 op deze Windows installatie.</value>
@@ -220,19 +220,19 @@
     <value>Je staat op het punt om het volgende te doen:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
-    <value>Begin Installatie</value>
+    <value>Installeer</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
     <value>Extra's</value>
   </data>
   <data name="optionIcons" xml:space="preserve">
-    <value>Systeem pictogrammen</value>
+    <value>Systeempictogrammen</value>
   </data>
   <data name="optionThemes" xml:space="preserve">
     <value>Thema's</value>
   </data>
   <data name="optionWallpaper" xml:space="preserve">
-    <value>Rectify11 Achtergronden</value>
+    <value>Rectify11 achtergronden</value>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>Installeer ExplorerPatcher</value>
@@ -241,10 +241,10 @@
     <value>Installeer Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>Installeer Thema's</value>
+    <value>Installeer thema's</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
-    <value>Rectify11 Achtergronden</value>
+    <value>Rectify11 achtergronden</value>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>Installeer Winver</value>
@@ -255,5 +255,8 @@
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Samenvatting</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Weet je zeker dat je de installatie wilt annuleren?</value>
   </data>
 </root>

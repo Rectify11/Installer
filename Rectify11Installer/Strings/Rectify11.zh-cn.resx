@@ -256,4 +256,7 @@
   <data name="summaryHeader" xml:space="preserve">
     <value>总结</value>
   </data>
+  <data name="exitText" xml:space="preserve">
+    <value>你确定要取消安装吗？</value>
+  </data>
 </root>

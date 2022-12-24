@@ -130,7 +130,7 @@
     <value>Condizioni di Licenza</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}NON siamo affiliati con Microsoft Corporation in NESSUN modo. Questo è un progetto creato dalla community.\par}</value>
+    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 Questo software è rilasciato 'così com'è', senza alcuna garanzia espressa o implicita. In nessun caso l'autore verrà ritenuto responsabile per qualsiasi danno derivato dall'utilizzo di questo software.\par{\pntext\f0 2.\tab}Rectify11 è libero di essere usato da tutti per usi non commerciali. Non puoi integrare questo prodotto come parte di un altro prodotto senza l'autorizzazione scritta dall'autore.\par{\pntext\f0 3.\tab}Non puoi affermare inoltre di aver sviluppato tu questo software.\par{\pntext\f0 4.\tab}Questo avviso non può essere alterato o rimosso da qualsiasi distribuzione.\par\pard\par\parCopyright \'a9 Microsoft Corporation e il team di Rectify11.\par{\pntext\f0\space}NON siamo affiliati con Microsoft Corporation in NESSUN modo. Questo è un progetto creato dalla community.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Prima di poter installare Rectify11, deve accettare le condizioni di licenza:</value>
@@ -158,6 +158,9 @@
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Benvenuto</value>
+  </data>
+  <data name="welcomeDescription" xml:space="preserve">
+    <value>Questo setup ti guiderà nei vari passaggi richiesti per installare Rectify11 sul tuo PC, per un'esperienza più consistente. Seleziona l'opzione che desideri per continuare.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>Puoi scegliere cosa verrà Rettificato.</value>
@@ -199,24 +202,61 @@
     <value>Windows 10 Arrotondato</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 Taskbar</value>
+    <value>Barra delle applicazioni di Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 Predefinito</value>
+    <value>Predefinito di Windows 11</value>
   </data>
   <data name="progressText" xml:space="preserve">
     <value>Copia dei file...</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Per favore chiudi tutto e salva il tuo lavoro dato che sarà richiesto un riavvio alla fine dell'installazione.</value>
+    <value>Per favore salva il tuo lavoro e chiudi tutto dato che sarà richiesto un riavvio alla fine dell'installazione.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
-    <value>Installa Rectify11 su questa installazione di Windows.</value>
+    <value>Installare Rectify11 su questa installazione di Windows.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>Stai per fare quanto segue:</value>
+    <value>Stai per eseguire il seguente:</value>
   </data>
-  <data name="welcomeDescription" xml:space="preserve">
-    <value>Questo setup ti guiderà nei vari passaggi richiesti per installare Rectify11 sul tuo PC, per un'esperienza più consistente. Seleziona l'opzione che desideri per continuare.</value>
+  <data name="buttonInstall" xml:space="preserve">
+    <value>Installa</value>
+  </data>
+  <data name="optionExtra" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="optionIcons" xml:space="preserve">
+    <value>Icone di sistema</value>
+  </data>
+  <data name="optionThemes" xml:space="preserve">
+    <value>Temi</value>
+  </data>
+  <data name="optionWallpaper" xml:space="preserve">
+    <value>Sfondi di Rectify11</value>
+  </data>
+  <data name="installEP" xml:space="preserve">
+    <value>Installare ExplorerPatcher</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Installare shell</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Installare i temi</value>
+  </data>
+  <data name="installWallpapers" xml:space="preserve">
+    <value>Installare gli sfondi</value>
+  </data>
+  <data name="installWinver" xml:space="preserve">
+    <value>Installare Winver</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="summaryHeader" xml:space="preserve">
+    <value>Sintesi</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Siete sicuri di voler annullare l'installazione?</value>
   </data>
 </root>

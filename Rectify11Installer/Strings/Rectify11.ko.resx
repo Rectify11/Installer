@@ -127,106 +127,106 @@
     <value>다음</value>
   </data>
   <data name="eulaPageHeader" xml:space="preserve">
-    <value>계약 동의서</value>
+    <value>라이센스 동의</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
     <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space} We are NOT affilated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
-    <value>Rectify11을 설치하기 전, 동의를 하셔야 합니다. :</value>
+    <value>Rectify11을 설치하기 전, 이 라이센스에 동의해 주시기 바랍니다.</value>
   </data>
   <data name="installNote" xml:space="preserve">
-    <value>현재 윈도우를 향상합니다.</value>
+    <value>현 윈도우 설치를 수정합니다.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
-    <value>지금 설치하기</value>
+    <value>바로 설치</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>원래대로의 Windows 11로 바꾸기</value>
+    <value>원래의 윈도우 모습으로 돌아갑니다.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
-    <value>Rectify11 삭제하기</value>
+    <value>Rectify11 삭제</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>현재 Rectify11를 업데이트 하기</value>
+    <value>설치된 Rectify11을 업데이트하기</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
-    <value>지금 업데이트 하기</value>
+    <value>지금 업데이트</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>버전: </value>
+    <value>버전:</value>
   </data>
   <data name="welcome" xml:space="preserve">
-    <value>환영합니다.</value>
+    <value>설치를 시작하겠습니다.</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>설치가  정확한 디자인 경험을 위한 PC에 Rectify11을 설치하기 위해 필요한 몇가지 스탭을 시작할 겁니다. 원하는 옵션을 클릭해 계속하세요.</value>
+    <value>이 컴퓨터에 일관된 디자인을 위해 Rectify11을 설치하기 전, 필요한 몇가지 단계를 거칠 겁니다. 다음을 눌러서 설치를 시작하세요.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>어떤 것이 향상될지 고를 수 있습니다:</value>
+    <value>개선할 걸 고를 수 있습니다.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
-    <value>무엇을 설치할 지 고르세요.</value>
+    <value>설치할 걸 고르기</value>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
-    <value>원하는 테마를 선택해주세요.</value>
+    <value>원하는 테마를 선택하세요.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>바탕화면 꾸미기</value>
+    <value>개인 설정</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Rectify11 설치기</value>
+    <value>Rectify11 설치</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Mica 이펙트와 다크 모드</value>
+    <value>Mica 효과, 다크 테마</value>
   </data>
   <data name="themeDark" xml:space="preserve">
-    <value>다크 모드</value>
+    <value>다크 테마</value>
   </data>
   <data name="themeLight" xml:space="preserve">
-    <value>라이트 모드</value>
+    <value>라이트 테마</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>향상된 리본 UI 쓰기</value>
+    <value>재디자인된 리본 설치</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
-    <value>Mica 효과를 파일 탐색기 탐색창까지 확장하기</value>
+    <value>Mica 효과를 파일 탐색기 탐색 창까지 확장하기</value>
   </data>
   <data name="epHeader" xml:space="preserve">
-    <value>바탕 화면을 꾸미세요</value>
+    <value>바탕 화면 꾸미기</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>원하는 바탕 화면의 추가 요소를 선택하세요.</value>
+    <value>원하는 바탕화면 환경을 선택하세요</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
-    <value>둥근 윈도우 10 시작 메뉴</value>
+    <value>둥근 Windows 10 메뉴</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>윈도우 10 작업표시줄</value>
+    <value>Windows 10 작업 표시줄</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>기본 윈도우 11 시작 메뉴</value>
+    <value>그대로</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>파일 복사중..</value>
+    <value>알고 계셨나요..</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>설치 끝날 무렵에 재시작이 필요하니 하던 일은 멈추시고 저장을 못하셨으면 저장을 해주세요.</value>
+    <value>컴퓨터 재시작이 설치 끝 무렵에 필요하니 현재 하고 계신 작업은 중단해 주세요.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
-    <value>이 윈도우에 Rectify11을 설치합니다.</value>
+    <value>Rectify11을 이 컴퓨터에 설치합니다.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>이제부터 이 작업을 할 예정입니다:</value>
+    <value>예정 작업들:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>설치</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
-    <value>추가:</value>
+    <value>그 외 것들</value>
   </data>
   <data name="optionIcons" xml:space="preserve">
-    <value>시스템 아이콘들</value>
+    <value>시스템 아이콘</value>
   </data>
   <data name="optionThemes" xml:space="preserve">
     <value>테마</value>
@@ -235,18 +235,28 @@
     <value>Rectify11 배경화면</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Explorerpatcher 설치</value>
+    <value>ExplorerPatcher 설치하기</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>새로운 우클릭 메뉴 설치</value>
+    <value>우클릭 메뉴 설치하기</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>테마 설치</value>
+    <value>테마 설치하기</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
     <value>배경화면 설치하기</value>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>Winver 설치하기</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="summaryHeader" xml:space="preserve">
+    <value>요약</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>정말로 설치를 끝내시겠습니까?</value>
   </data>
 </root>

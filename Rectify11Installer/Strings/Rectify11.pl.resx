@@ -124,25 +124,25 @@
     <value>Dalej</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par\parCopyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}Autorzy nie mają żadnego związku z Microsoft. To jest projekt stworzony przez społeczność.\par}</value>
+      <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 OPROGRAMOWANIE JEST DOSTARCZONE W STANIE TAKIM, W JAKIM SIĘ ZNAJDUJE, BEZ ŻADNYCH GWARANCJI, JAWNYCH BĄDŹ DOROZUMIANYCH, W TYM Z TYTUŁU WARTOŚCI HANDLOWEJ, PRZYDATNOŚCI DO OKREŚLONEGO CELU I NIENARUSZALNOŚCI PRAW OSÓB TRZECICH. W ŻADNYM WYPADKU AUTORZY BĄDŹ WŁAŚCICIELE PRAW AUTORSKICH NIE PONOSZĄ ODPOWIEDZIALNOŚCI ZA JAKIEKOLWIEK ROSZCZENIA, SZKODY LUB INNE ZOBOWIĄZANIA, POWSTAŁE W WYNIKU REALIZACJI UMOWY, CZYNÓW NIEDOZWOLONYCH LUB W INNY SPOSÓB, DOTYCZĄCE OPROGRAMOWANIA BĄDŹ WYNIKAJĄCE Z JEGO STOSOWANIA LUB INNEGO UŻYTKOWANIA. \par{\pntext\f0 2.\tab}Rectify11 może być używany przez każdego, ale nie można go sprzedawać. Nie można dostarczać tego produktu jako część innego produktu bez pisemnej zgody autora. \par{\pntext\f0 3.\tab}Nie możesz twierdzić, że to Ty stworzyłeś oprogramowanie. \par{\pntext\f0 4.\tab}Niniejsza informacja nie może być usunięta lub zmieniona z jakiejkolwiek wersji.\par\pard\par\parCopyright \'a9 Microsoft Corporation i zespół Rectify11.\par{\pntext\f0\space}Autorzy nie mają żadnego związku z Microsoft Corporation. To jest projekt stworzony przez społeczność.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
-    <value>Zanim zainstalujesz Rectify11, musisz zaakceptować tą licencję</value>
+    <value>Zapoznaj się z postaniowieniami licencyjnymi</value>
   </data>
   <data name="installNote" xml:space="preserve">
-    <value>Zainstaluj Rectify11 na twojej instalacji Windows.</value>
+    <value>Zainstaluj Rectify11.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
     <value>Zainstaluj</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>Przywraca oryginalny styl Windows.</value>
+    <value>Odinstaluj Rectify11.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
-    <value>Odinstaluj Rectify11</value>
+    <value>Odinstaluj</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Zaktualizuj twoją bieżącą instalację Rectify11.</value>
+    <value>Zaaktualizuj Rectify11.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Aktualizuj</value>
@@ -154,7 +154,7 @@
     <value>Zapraszamy</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>Instalator zainstaluje Rectify11 aby poprawić wygląd systemu Windows. Wybierz opcję aby kontynuować.</value>
+    <value>Rectify11 poprawia wygląd systemu Windows. Wybierz opcję aby kontynuować.</value>
   </data>
   <data name="buttonAgree" xml:space="preserve">
     <value>Zgadzam się</value>
@@ -163,7 +163,7 @@
     <value>Postanowienia licencyjne</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Możesz wybrać co zostanie zainstalowane</value>
+    <value>Zaznacz, jakie komponenty zostaną zainstalowane</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Wybierz, co chcesz zainstalować</value>
@@ -172,7 +172,7 @@
     <value>Wybierz motyw</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personalizacja doświadcznenia</value>
+    <value>Personalizuj swoje doświadczenie</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Instalator Rectify11</value>
@@ -187,19 +187,19 @@
     <value>Jasny</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>Kopiowanie plików...</value>
+    <value>Czy wiedziałeś, że...</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ instalator uruchomi komputer ponownie.</value>
+    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ komputer zostanie uruchomiony ponownie w celu zastosowania zmian.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
-    <value>Zainstaluj Rectify11 na tej instalacji Windows.</value>
+    <value>Instalacja Rectify11 na systemie Windows</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
     <value>Zostaną wykonane następujące akcje:</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Użyj interfejsu wstążki</value>
+    <value>Użyj interfejsu wstążki z Windows 8-10</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>Rozszerz efekt Mica na pasek adresu</value>
@@ -214,10 +214,10 @@
     <value>Windows 10 (zaokrąglone)</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Pasek zadań Windows 10</value>
+    <value>Windows 10 (oryginalne)</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Domyślny Windows 11</value>
+    <value>Windows 11</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>Instaluj</value>
@@ -235,10 +235,10 @@
     <value>Tapety Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Instaluj Explorerpatcher</value>
+    <value>Instaluj ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Instaluj Shell</value>
+    <value>Instaluj Nilesoft Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
     <value>Instaluj motywy</value>
@@ -249,7 +249,14 @@
   <data name="installWinver" xml:space="preserve">
     <value>Instaluj Winver</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Podsumowanie</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Czy chcesz anulować instalację Rectify11?</value>
   </data>
 </root>

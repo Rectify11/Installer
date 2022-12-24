@@ -40,6 +40,7 @@
             this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
             this.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.expPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.epPage = new Rectify11Installer.Controls.DarkAwareTabPage();
@@ -184,6 +185,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.navPane.Controls.Add(this.wlcmPage);
             this.navPane.Controls.Add(this.eulPage);
+            this.navPane.Controls.Add(this.expPage);
             this.navPane.Controls.Add(this.installPage);
             this.navPane.Controls.Add(this.themePage);
             this.navPane.Controls.Add(this.epPage);
@@ -217,6 +219,16 @@
             this.eulPage.Size = new System.Drawing.Size(365, 284);
             this.eulPage.TabIndex = 9;
             this.eulPage.Text = "Eula";
+            // 
+            // expPage
+            // 
+            this.expPage.BackColor = System.Drawing.Color.White;
+            this.expPage.ForeColor = System.Drawing.Color.Black;
+            this.expPage.Location = new System.Drawing.Point(0, 44);
+            this.expPage.Name = "expPage";
+            this.expPage.Size = new System.Drawing.Size(365, 284);
+            this.expPage.TabIndex = 9;
+            this.expPage.Text = "Experimental";
             // 
             // installPage
             // 
@@ -363,6 +375,7 @@
         private Controls.DarkAwareTabPage rebootPage;
         private Controls.DarkAwareTabPage wlcmPage;
         private Controls.DarkAwareTabPage eulPage;
+        private Controls.DarkAwareTabPage expPage;
         private Controls.DarkAwareLabel versionLabel;
         private Controls.DarkAwareLabel progressLabel;
         public Controls.WinUIButton nextButton;

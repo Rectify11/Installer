@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props" Condition="Exists('..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -28,6 +29,7 @@
     <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>3.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <LangVersion>9.0</LangVersion>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -79,6 +81,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Rectify11Installer.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AeroWizard, Version=2.3.1.0, Culture=neutral, PublicKeyToken=915e74f5d64b8f37, processorArchitecture=MSIL">
       <HintPath>..\packages\AeroWizard.2.3.1\lib\net45\AeroWizard.dll</HintPath>
@@ -87,13 +92,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\libmsstyle.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="TaskDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KPreisser.UI.TaskDialog.1.0.0\lib\net472\TaskDialog.dll</HintPath>
     </Reference>
@@ -124,6 +133,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\IMmcHelper.cs" />
     <Compile Include="Core\Installer.cs" />
     <Compile Include="Core\InstallStatus.cs" />
     <Compile Include="Core\IRectify11.cs" />
@@ -153,6 +163,12 @@
     </Compile>
     <Compile Include="Pages\EulaPage.Designer.cs">
       <DependentUpon>EulaPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Experimental.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Experimental.Designer.cs">
+      <DependentUpon>Experimental.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\InstallConfirmation.cs">
       <SubType>UserControl</SubType>
@@ -231,6 +247,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.id.resx" />
     <EmbeddedResource Include="Strings\Rectify11.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.it.Designer.cs</LastGenOutput>
@@ -252,6 +269,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.sr-Latn-RS.resx" />
     <EmbeddedResource Include="Strings\Rectify11.vi.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.vi.Designer.cs</LastGenOutput>
@@ -279,6 +297,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\extras.7z" />
+    <None Include="Resources\themes.7z" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -317,22 +337,20 @@
     <None Include="Resources\eula.png" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="WUApiLib">
-      <Guid>{B596CC9F-56E5-419E-A622-E01BB457431E}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Core\newfiles.txt" />
     <Content Include="Core\rectify11.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\SecureUxHelper-x64.exe" />
+    <None Include="Resources\SecureUxHelper-arm64.exe" />
+    <None Include="Resources\theme.png" />
     <None Include="Resources\NSudoLC.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
+    <None Include="Resources\incomplete.png" />
+    <None Include="Resources\AdvancedRun.exe" />
+    <None Include="Resources\cp.png" />
+    <None Include="Resources\dpi.png" />
+    <None Include="Resources\perf.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <None Include="Resources\PsExec64.exe" />
@@ -354,6 +372,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Resource.Embedder.2.2.0\build\Resource.Embedder.props'))" />
   </Target>
   <Target Name="FixAL1703Warning" BeforeTargets="GenerateSatelliteAssemblies" Condition="'$(PlatformTarget)' == 'x64'">
     <Message Text="Adjusting SDK tools directory to use x64 version of AL.EXE" />

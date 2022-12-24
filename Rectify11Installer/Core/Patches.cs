@@ -54,7 +54,13 @@ public partial class PatchesPatch {
     private string hardlinkTargetField;
     
     private string disableOnSafeModeField;
-    
+
+    private string IgnoreField;
+
+    private string MinVersionField;
+
+    private string MaxVersionField;
+
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string Mui {
@@ -107,6 +113,48 @@ public partial class PatchesPatch {
         }
         set {
             this.disableOnSafeModeField = value;
+        }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string Ignore
+    {
+        get
+        {
+            return this.IgnoreField;
+        }
+        set
+        {
+            this.IgnoreField = value;
+        }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string MinVersion
+    {
+        get
+        {
+            return this.MinVersionField;
+        }
+        set
+        {
+            this.MinVersionField = value;
+        }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string MaxVersion
+    {
+        get
+        {
+            return this.MaxVersionField;
+        }
+        set
+        {
+            this.MaxVersionField = value;
         }
     }
 }

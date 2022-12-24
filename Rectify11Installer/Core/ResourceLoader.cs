@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
-using System.ComponentModel;
 using System.Resources;
 
 namespace Rectify11Installer.Core
 {
-    class SingleAssemblyComponentResourceManager : ComponentResourceManager
+    class SingleAssemblyComponentResourceManager :
+    System.ComponentModel.ComponentResourceManager
     {
         private Type _contextTypeInfo;
         private CultureInfo _neutralResourcesCulture;
@@ -48,7 +49,7 @@ namespace Rectify11Installer.Core
                 {
                     rs = new ResourceSet(store);
                     //save for later.
-                    AddResourceSet(ResourceSets, culture, ref rs);
+                    AddResourceSet(this.ResourceSets, culture, ref rs);
                 }
                 else
                 {

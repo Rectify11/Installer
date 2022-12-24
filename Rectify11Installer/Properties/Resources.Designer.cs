@@ -19,7 +19,7 @@ namespace Rectify11Installer.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -91,11 +91,31 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AdvancedRun {
+            get {
+                object obj = ResourceManager.GetObject("AdvancedRun", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap blackPreview {
             get {
                 object obj = ResourceManager.GetObject("blackPreview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cp {
+            get {
+                object obj = ResourceManager.GetObject("cp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,6 +143,16 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dpi {
+            get {
+                object obj = ResourceManager.GetObject("dpi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ep {
             get {
                 object obj = ResourceManager.GetObject("ep", resourceCulture);
@@ -143,10 +173,30 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] extras {
+            get {
+                object obj = ResourceManager.GetObject("extras", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] files7z {
             get {
                 object obj = ResourceManager.GetObject("files7z", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap incomplete {
+            get {
+                object obj = ResourceManager.GetObject("incomplete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -211,12 +261,29 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to mstsc.exe.mun
+        ///imageres.dll.mun
+        ///wininetlui.dll
+        ///taskmgr.exe.mun
+        ///wordpad.exe
+        ///explorerframe.dll.mun
+        ///cabview.dll
+        ///CustomInstallExec.exe
+        ///msxml3.dll.mun.
         /// </summary>
-        internal static byte[] NSudoLC {
+        internal static string newfiles {
             get {
-                object obj = ResourceManager.GetObject("NSudoLC", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("newfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap perf {
+            get {
+                object obj = ResourceManager.GetObject("perf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -238,9 +305,9 @@ namespace Rectify11Installer.Properties {
         ///&lt;Patches&gt;
         ///	&lt;!--Mun files--&gt;
         ///	&lt;Patch Mui=&quot;accessibilitycpl.dll.mun&quot; mask=&quot;ICONGROUP,|UIFILE,&quot; HardlinkTarget=&quot;%sysresdir%\accessibilitycpl.dll.mun&quot; /&gt;
-        ///	&lt;Patch Mui=&quot;aclui.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;%sysresdir%\aclui.dll.mun&quot; /&gt;
+        ///	&lt;Patch Mui=&quot;aclui.dll.mun&quot; mask=&quot;ICONGROUP,|IMAGE,|UIFILE,&quot; HardlinkTarget=&quot;%sysresdir%\aclui.dll.mun&quot; /&gt;
         ///	&lt;Patch Mui=&quot;actioncentercpl.dll.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;%sysresdir%\actioncentercpl.dll.mun&quot; /&gt;
-        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarget=&quot;%sysresdir% [rest of string was truncated]&quot;;.
+        ///	&lt;Patch Mui=&quot;appwiz.cpl.mun&quot; mask=&quot;ICONGROUP,&quot; HardlinkTarg [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string rectify11xml {
             get {
@@ -259,12 +326,52 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SecureUxHelper_arm64 {
+            get {
+                object obj = ResourceManager.GetObject("SecureUxHelper_arm64", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SecureUxHelper_x64 {
+            get {
+                object obj = ResourceManager.GetObject("SecureUxHelper_x64", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap theme {
+            get {
+                object obj = ResourceManager.GetObject("theme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap themepage {
             get {
                 object obj = ResourceManager.GetObject("themepage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] themes {
+            get {
+                object obj = ResourceManager.GetObject("themes", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

@@ -205,7 +205,7 @@
     <value>Thanh tác vụ Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 như mặc định</value>
+    <value>Mặc định của Windows 11</value>
   </data>
   <data name="progressText" xml:space="preserve">
     <value>Xin chào</value>
@@ -255,5 +255,8 @@
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Sơ lược</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Bạn có chắc chắn rằng bạn muốn dừng việc cài đặt này không?</value>
   </data>
 </root>

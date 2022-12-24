@@ -19,11 +19,11 @@ namespace Rectify11Installer.Pages
             InitializeComponent();
             Application.Idle += Application_Idle;
         }
-
         void Application_Idle(object sender, System.EventArgs e)
         {
             if (!idleinit)
             {
+                overwriteUpdatedFiles();
                 Patches list = PatchesParser.GetAll();
                 PatchesPatch[] ok = list.Items;
                 var basicNode = treeView1.Nodes[0].Nodes[0];
@@ -64,11 +64,23 @@ namespace Rectify11Installer.Pages
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
                     }
+                    else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
+                    {
+                        string newpath = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+                        if (File.Exists(newpath))
+                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                    }
+                    else if (patch.HardlinkTarget.Contains("%windirLang%"))
+                    {
+                        string newpath = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+                        if (File.Exists(newpath))
+                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                    }
                     else if (patch.Mui.Contains("mun"))
                     {
                         string newpath = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
                         if (File.Exists(newpath))
-                            basicNode.Nodes.Add(patch.Mui.Replace(".mun", ""));
+                            basicNode.Nodes.Add(patch.Mui);
                     }
                     else if (patch.HardlinkTarget.Contains("%windir%"))
                     {
@@ -81,11 +93,6 @@ namespace Rectify11Installer.Pages
                         string newpath = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch.Mui);
-                    }
-                    // cant be fucking bothered to repeat the same logic here
-                    else if (patch.HardlinkTarget.Contains("%winsxs%"))
-                    {
-                        advNode.Nodes.Add(patch.Mui);
                     }
                     else if (patch.HardlinkTarget.Contains("%prog%"))
                     {
@@ -194,6 +201,29 @@ namespace Rectify11Installer.Pages
                 {
                     _frmWizard.nextButton.Enabled = false;
                     frmWizard.IsItemsSelected = false;
+                }
+            }
+        }
+        private void overwriteUpdatedFiles()
+        {
+            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+            {
+                File.WriteAllText(Path.Combine(Variables.r11Folder, "newfiles.txt"), Properties.Resources.newfiles);
+                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles")))
+                {
+                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
+                }
+                string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+                foreach (string file in newFiles)
+                {
+                    if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file)))
+                    {
+                        File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                    }
+                    if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
+                    {
+                        File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                    }
                 }
             }
         }
