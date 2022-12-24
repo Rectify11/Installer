@@ -311,6 +311,7 @@ namespace Rectify11Installer.Core
 					r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
 					r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly().GetName().Version.Major.ToString(), RegistryValueKind.String);
 					r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly().GetName().Version.Minor.ToString(), RegistryValueKind.String);
+					r11key.SetValue("Build", Assembly.GetEntryAssembly().GetName().Version.Build.ToString(), RegistryValueKind.String);
 					r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
 					r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
 					return true;
