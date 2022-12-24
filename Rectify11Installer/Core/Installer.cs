@@ -231,6 +231,7 @@ namespace Rectify11Installer.Core
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
 				}
 				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
+				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
 
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
 				{
@@ -261,9 +262,8 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallRuntimes()
 		{
-			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
 			Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-		      " e " + Path.Combine(Variables.r11Folder, "extras.7z") +
+		      " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
 		      " vcredist.exe", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true);
 		}
