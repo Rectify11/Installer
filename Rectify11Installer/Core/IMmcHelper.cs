@@ -131,6 +131,7 @@ namespace MMC
 		}
 		#endregion
 	}
+	#region Helper
 	public static class DocumentExtensions
 	{
 		public static XmlDocument ToXmlDocument(this XDocument xDocument)
@@ -152,4 +153,5 @@ namespace MMC
 			}
 		}
 	}
+	#endregion
 }

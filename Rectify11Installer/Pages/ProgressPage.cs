@@ -1,14 +1,36 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
 {
 	public partial class ProgressPage : WizardPage
 	{
+		#region Variables
 		private frmWizard frmwiz;
 		private Timer timer2;
 		private int duration = 30;
+		private int CurrentTextIndex = -1;
+		#endregion
+		#region Classes
+
+		private class InstallerTexts
+		{
+			public string Title { get; set; }
+			public string Description { get; set; }
+			public Bitmap Side { get; set; }
+
+			public InstallerTexts(string Title, string Description, Bitmap image)
+			{
+				this.Title = Title;
+				this.Description = Description;
+				Side = image;
+			}
+		}
+		#endregion
+		#region Public methods
 		public ProgressPage(frmWizard frm)
 		{
 			InitializeComponent();
@@ -27,26 +49,48 @@ namespace Rectify11Installer.Pages
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.incomplete;
 			timer2.Start();
+			frmwiz.ShowRebootButton = true;
 		}
-
+		public void Start()
+		{
+			timer1.Start();
+			NextText();
+		}
+		#endregion
+		#region Private Methods
 		private void Timer2_Tick(object sender, EventArgs e)
 		{
 			duration -= 1;
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			if (duration == 0)
 			{
+				frmwiz.InstallerProgress = "Restarting...";
 				timer2.Stop();
+				ClearIconCache();
 				Win32.NativeMethods.Reboot();
 			}
 		}
+		private void ClearIconCache()
+		{
+			Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true);
+			try
+			{
+				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
+				FileInfo[] files = di.GetFiles("*.db");
 
+				foreach (FileInfo file in files)
+				{
+					file.Attributes = FileAttributes.Normal;
+					File.Delete(file.FullName);
+				}
+			}
+			catch
+			{
+				MessageBox.Show("deleting icon cache failed");
+			}
+		}
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			NextText();
-		}
-		public void Start()
-		{
-			timer1.Start();
 			NextText();
 		}
 		private static InstallerTexts[] Rectify11InstallerTexts =
@@ -58,20 +102,6 @@ namespace Rectify11Installer.Pages
 			new InstallerTexts("Rectified Control Panel", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
 			new InstallerTexts("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
 		};
-		private class InstallerTexts
-		{
-			public string Title { get; set; }
-			public string Description { get; set; }
-			public Bitmap Side { get; set; }
-
-			public InstallerTexts(string Title, string Description, Bitmap image)
-			{
-				this.Title = Title;
-				this.Description = Description;
-				Side = image;
-			}
-		}
-		private int CurrentTextIndex = -1;
 		private void NextText()
 		{
 			CurrentTextIndex++;
@@ -87,5 +117,6 @@ namespace Rectify11Installer.Pages
 				frmwiz.UpdateSideImage = t.Side;
 			}
 		}
+		#endregion
 	}
 }

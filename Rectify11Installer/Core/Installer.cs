@@ -95,7 +95,7 @@ namespace Rectify11Installer.Core
 					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
-					IMmcHelper.PatchAll();
+					await Task.Run(() => IMmcHelper.PatchAll());
 				}
 
 				// phase 2
@@ -104,18 +104,7 @@ namespace Rectify11Installer.Core
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true));
 
-				// waits for the temp folder to be deleted (used for knowing when phase2 will be finished)
-				while (true)
-				{
-					if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
-					{
-						break;
-					}
-					else
-					{
-						Thread.Sleep(1000);
-					}
-				}
+				await Task.Run(() => WaitForPhase2());
 			}
 
 			// theme
@@ -134,7 +123,7 @@ namespace Rectify11Installer.Core
 
 				await Task.Run(() => InstallThemes());
 			}
-			AddToControlPanel();
+			await Task.Run(() => AddToControlPanel());
 			InstallStatus.IsRectify11Installed = true;
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
@@ -195,6 +184,27 @@ namespace Rectify11Installer.Core
 					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
 				}
 			}
+		}
+
+		/// <summary>
+		/// waits for phase2 to finish
+		/// </summary>
+		/// <returns>true if phase2 finished</returns>
+		private bool WaitForPhase2()
+		{
+			// waits for the temp folder to be deleted (used for knowing when phase2 will be finished)
+			while (true)
+			{
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+				{
+					break;
+				}
+				else
+				{
+					Thread.Sleep(1000);
+				}
+			}
+			return true;
 		}
 
 		/// <summary>
@@ -552,22 +562,6 @@ namespace Rectify11Installer.Core
 			if (File.Exists(Path.Combine(Variables.r11Folder, "themes.7z")))
 			{
 				File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
-			}
-			Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true);
-			try
-			{
-				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
-				FileInfo[] files = di.GetFiles("*.db");
-
-				foreach (FileInfo file in files)
-				{
-					file.Attributes = FileAttributes.Normal;
-					File.Delete(file.FullName);
-				}
-			}
-			catch
-			{
-				MessageBox.Show("deleting icon cache failed");
 			}
 		}
 	}
