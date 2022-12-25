@@ -48,6 +48,7 @@ namespace Rectify11Installer.Core
 					" x -o" + Path.Combine(Variables.r11Folder, "files") +
 					" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
 
+			frm.InstallerProgress = "Installing runtimes";
 			await Task.Run(() => InstallRuntimes());
 
 			// Icons

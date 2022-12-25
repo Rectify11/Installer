@@ -30,6 +30,10 @@ namespace Rectify11Installer
 			get { return rebootButton.Visible; }
 			set { rebootButton.Visible = value; }
 		}
+		public EventHandler SetRebootHandler
+		{
+			set { rebootButton.Click += value; }
+		}
 		private System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 		#endregion
 		#region Main

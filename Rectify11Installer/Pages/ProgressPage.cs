@@ -50,6 +50,7 @@ namespace Rectify11Installer.Pages
 			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.incomplete;
 			timer2.Start();
 			frmwiz.ShowRebootButton = true;
+			frmwiz.SetRebootHandler = rebootButton_Click;
 		}
 		public void Start()
 		{
@@ -58,14 +59,21 @@ namespace Rectify11Installer.Pages
 		}
 		#endregion
 		#region Private Methods
+		private void rebootButton_Click(object sender, EventArgs e)
+		{
+			timer2.Stop();
+			frmwiz.InstallerProgress = "Restarting...";
+			ClearIconCache();
+			Win32.NativeMethods.Reboot();
+		}
 		private void Timer2_Tick(object sender, EventArgs e)
 		{
 			duration -= 1;
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			if (duration == 0)
 			{
-				frmwiz.InstallerProgress = "Restarting...";
 				timer2.Stop();
+				frmwiz.InstallerProgress = "Restarting...";
 				ClearIconCache();
 				Win32.NativeMethods.Reboot();
 			}
