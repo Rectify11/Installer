@@ -43,76 +43,76 @@ namespace Rectify11Installer.Pages
         }
         #endregion
         #region Private Methods
-        private static void UpdateListView(PatchesPatch[] ok, TreeNode basicNode, TreeNode advNode)
+        private static void UpdateListView(PatchesPatch[] patch, TreeNode basicNode, TreeNode advNode)
         {
-            foreach (PatchesPatch patch in ok)
+            for (int i = 0; i < patch.Length; i++)
             {
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch.Mui)))
+                if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch[i].Mui)))
                 {
-                    if (patch.HardlinkTarget.Contains("%sys32%"))
+                    if (patch[i].HardlinkTarget.Contains("%sys32%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
+                            advNode.Nodes.Add(patch[i].Mui);
                     }
-                    else if (patch.HardlinkTarget.Contains("%lang%"))
+                    else if (patch[i].HardlinkTarget.Contains("%lang%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                            advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
-                    else if (patch.HardlinkTarget.Contains("%en-US%"))
+                    else if (patch[i].HardlinkTarget.Contains("%en-US%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                            advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
-                    else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
+                    else if (patch[i].HardlinkTarget.Contains("%windirEn-US%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                            advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
-                    else if (patch.HardlinkTarget.Contains("%windirLang%"))
+                    else if (patch[i].HardlinkTarget.Contains("%windirLang%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui.Replace(".mui", ""));
+                            advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
-                    else if (patch.Mui.Contains("mun"))
+                    else if (patch[i].Mui.Contains("mun"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
                         if (File.Exists(newpath))
-                            basicNode.Nodes.Add(patch.Mui);
+                            basicNode.Nodes.Add(patch[i].Mui);
                     }
-                    else if (patch.HardlinkTarget.Contains("%windir%"))
+                    else if (patch[i].HardlinkTarget.Contains("%windir%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%windir%", Variables.windir);
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
+                            advNode.Nodes.Add(patch[i].Mui);
                     }
-                    else if (patch.HardlinkTarget.Contains("%branding%"))
+                    else if (patch[i].HardlinkTarget.Contains("%branding%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
+                            advNode.Nodes.Add(patch[i].Mui);
                     }
-                    else if (patch.HardlinkTarget.Contains("%prog%"))
+                    else if (patch[i].HardlinkTarget.Contains("%prog%"))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
+                            advNode.Nodes.Add(patch[i].Mui);
                     }
 
                 }
-                if (patch.HardlinkTarget.Contains("%diag%"))
+                if (patch[i].HardlinkTarget.Contains("%diag%"))
                 {
-                    string name = patch.Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
+                    string name = patch[i].Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
                     if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag", name)))
                     {
-                        string newpath = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%diag%", Variables.diag);
                         if (File.Exists(newpath))
-                            advNode.Nodes.Add(patch.Mui);
+                            advNode.Nodes.Add(patch[i].Mui);
                     }
                 }
             }
@@ -223,15 +223,15 @@ namespace Rectify11Installer.Pages
                             Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
                         }
                         string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-                        foreach (string file in newFiles)
+                        for (int i = 0; i < newFiles.Length; i++)
                         {
-                            if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file)))
+                            if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", newFiles[i])))
                             {
-                                File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                                File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", newFiles[i]));
                             }
-                            if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", file)))
+                            if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", newFiles[i])))
                             {
-                                File.Move(Path.Combine(Variables.r11Folder, "Backup", file), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", file));
+                                File.Move(Path.Combine(Variables.r11Folder, "Backup", newFiles[i]), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", newFiles[i]));
                             }
                         }
                     }

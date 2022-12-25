@@ -58,25 +58,25 @@ namespace Rectify11Installer.Core
 			{
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
-				PatchesPatch[] ok = patches.Items;
+				PatchesPatch[] patch = patches.Items;
 				decimal progress = 0;
 				List<string> fileList = new();
 				List<string> x86List = new();
-				foreach (PatchesPatch patch in ok)
+				for (int i = 0; i < patch.Length; i++)
 				{
-					foreach (string items in InstallOptions.iconsList)
+					for (int j = 0; j < InstallOptions.iconsList.Count; j++)
 					{
-						if (patch.Mui.Contains(items))
+						if (patch[i].Mui.Contains(InstallOptions.iconsList[j]))
 						{
 							decimal number = Math.Round((progress / InstallOptions.iconsList.Count) * 100m);
-							frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
-							fileList.Add(patch.HardlinkTarget);
-							if (!string.IsNullOrWhiteSpace(patch.x86))
+							frm.InstallerProgress = "Patching " + patch[i].Mui + " (" + number + "%)";
+							fileList.Add(patch[i].HardlinkTarget);
+							if (!string.IsNullOrWhiteSpace(patch[i].x86))
 							{
-								x86List.Add(patch.HardlinkTarget);
+								x86List.Add(patch[i].HardlinkTarget);
 							}
 
-							await Task.Run(() => MatchAndApplyRule(patch));
+							await Task.Run(() => MatchAndApplyRule(patch[i]));
 							progress++;
 						}
 					}
@@ -153,14 +153,14 @@ namespace Rectify11Installer.Core
 			string filepath = string.Empty;
 			string filename = string.Empty;
 			string[] files = Directory.GetFiles(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools");
-			foreach (string fil in files)
+			for (int i = 0; i< files.Length; i++)
 			{
-				if (Path.GetFileName(fil).Contains("ODBC"))
+				if (Path.GetFileName(files[i]).Contains("ODBC"))
 				{
-					if (Path.GetFileName(fil).Contains("32"))
+					if (Path.GetFileName(files[i]).Contains("32"))
 					{
-						filename = Path.GetFileName(fil);
-						File.Delete(fil);
+						filename = Path.GetFileName(files[i]);
+						File.Delete(files[i]);
 					}
 				}
 			}
@@ -189,25 +189,25 @@ namespace Rectify11Installer.Core
 			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true);
 
-			foreach (DirectoryInfo dir in curdir)
+			for (int i = 0; i < curdir.Length; i++)
 			{
-				if (Directory.Exists(Path.Combine(Variables.windir, "cursors", dir.Name)))
+				if (Directory.Exists(Path.Combine(Variables.windir, "cursors", curdir[i].Name)))
 				{
-					Directory.Delete(Path.Combine(Variables.windir, "cursors", dir.Name), true);
+					Directory.Delete(Path.Combine(Variables.windir, "cursors", curdir[i].Name), true);
 				}
-				Directory.Move(dir.FullName, Path.Combine(Variables.windir, "cursors", dir.Name));
+				Directory.Move(curdir[i].FullName, Path.Combine(Variables.windir, "cursors", curdir[i].Name));
 			}
-			foreach (FileInfo file in themefiles)
+			for (int i = 0; i < themefiles.Length; i++)
 			{
-				File.Copy(file.FullName, Path.Combine(Variables.windir, "Resources", "Themes", file.Name), true);
+				File.Copy(themefiles[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", themefiles[i].Name), true);
 			}
-			foreach (DirectoryInfo directory in msstyleDirList)
+			for (int i = 0; i < msstyleDirList.Length; i++)
 			{
-				if(Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", directory.Name)))
+				if(Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name)))
 				{
-					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", directory.Name));
+					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
 				}
-				Directory.Move(directory.FullName, Path.Combine(Variables.windir, "Resources", "Themes", directory.Name));
+				Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
 			}
 			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
 			if (key != null)

@@ -86,10 +86,10 @@ namespace Rectify11Installer.Pages
 				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
 				FileInfo[] files = di.GetFiles("*.db");
 
-				foreach (FileInfo file in files)
+				for(int i = 0; i < files.Length; i++)
 				{
-					file.Attributes = FileAttributes.Normal;
-					File.Delete(file.FullName);
+					files[i].Attributes = FileAttributes.Normal;
+					File.Delete(files[i].FullName);
 				}
 			}
 			catch
