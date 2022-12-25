@@ -7,9 +7,11 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using vbAccelerator.Components.Shell;
 
 namespace Rectify11Installer.Core
 {
@@ -98,7 +100,10 @@ namespace Rectify11Installer.Core
 				{
 					await Task.Run(() => IMmcHelper.PatchAll());
 				}
-
+				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
+				{
+					await Task.Run(() => FixOdbc());
+				}
 				// phase 2
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 
@@ -133,6 +138,34 @@ namespace Rectify11Installer.Core
 		}
 		#endregion
 		#region Private Methods
+
+		/// <summary>
+		/// fixes 32-bit odbc shortcut icon
+		/// </summary>
+		public void FixOdbc()
+		{
+			string filepath = string.Empty;
+			string filename = string.Empty;
+			string[] files = Directory.GetFiles(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools");
+			foreach (string fil in files)
+			{
+				if (Path.GetFileName(fil).Contains("ODBC"))
+				{
+					if (Path.GetFileName(fil).Contains("32"))
+					{
+						filename = Path.GetFileName(fil);
+						File.Delete(fil);
+					}
+				}
+			}
+			using ShellLink shortcut = new();
+			shortcut.Target = Path.Combine(Variables.sysWOWFolder, "odbcad32.exe");
+			shortcut.WorkingDirectory = @"%windir%\system32";
+			shortcut.IconPath = Path.Combine(Variables.sys32Folder, "odbcint.dll");
+			shortcut.IconIndex = 0;
+			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+			shortcut.Save(Path.Combine(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools", filename));
+		}
 
 		/// <summary>
 		/// installs themes
