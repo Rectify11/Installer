@@ -37,6 +37,7 @@
             this.cancelButton = new Rectify11Installer.Controls.WinUIButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.sideImage = new System.Windows.Forms.PictureBox();
+            this.rebootButton = new();
             this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
             this.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
@@ -300,6 +301,20 @@
             this.versionLabel.Size = new System.Drawing.Size(52, 15);
             this.versionLabel.TabIndex = 3;
             this.versionLabel.Text = resources.GetString("Version");
+            //
+            // rebootButton
+            //
+            rebootButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
+                | System.Windows.Forms.AnchorStyles.Right)));
+            rebootButton.BackColor = System.Drawing.Color.Transparent;
+            rebootButton.ButtonText = resources.GetString("buttonReboot");
+            rebootButton.ForeColor = System.Drawing.Color.Black;
+            rebootButton.Location = new System.Drawing.Point(534, 390);
+            rebootButton.Name = "rebootButton";
+            rebootButton.Size = new System.Drawing.Size(78, 32);
+            rebootButton.TabIndex = 1;
+            rebootButton.Visible = false;
             // 
             // pictureBox1
             // 
@@ -336,6 +351,7 @@
             this.ClientSize = new System.Drawing.Size(644, 447);
             this.Controls.Add(this.progressLabel);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.rebootButton);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.versionLabel);
@@ -377,6 +393,7 @@
         private Controls.DarkAwareTabPage eulPage;
         private Controls.DarkAwareTabPage expPage;
         private Controls.DarkAwareLabel versionLabel;
+        private Controls.WinUIButton rebootButton;
         private Controls.DarkAwareLabel progressLabel;
         public Controls.WinUIButton nextButton;
         private System.Windows.Forms.PictureBox pictureBox1;

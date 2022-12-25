@@ -132,6 +132,7 @@
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Core\FileIcon.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\IMmcHelper.cs" />
     <Compile Include="Core\Installer.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\ResourceLoader.cs" />
+    <Compile Include="Core\ShellLink.cs" />
     <Compile Include="Core\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />
     <Compile Include="Core\Variables.cs" />
