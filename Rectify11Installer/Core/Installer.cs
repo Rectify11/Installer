@@ -131,6 +131,12 @@ namespace Rectify11Installer.Core
 			}
 			await Task.Run(() => AddToControlPanel());
 			InstallStatus.IsRectify11Installed = true;
+			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+			if (key != null)
+			{
+				key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
+			}
+			key.Close();
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
 			await Task.Run(() => Cleanup());
@@ -197,6 +203,10 @@ namespace Rectify11Installer.Core
 			}
 			foreach (DirectoryInfo directory in msstyleDirList)
 			{
+				if(Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", directory.Name)))
+				{
+					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", directory.Name));
+				}
 				Directory.Move(directory.FullName, Path.Combine(Variables.windir, "Resources", "Themes", directory.Name));
 			}
 			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
@@ -218,6 +228,7 @@ namespace Rectify11Installer.Core
 					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
 				}
 			}
+			key.Close();
 		}
 
 		/// <summary>
@@ -358,10 +369,13 @@ namespace Rectify11Installer.Core
 					r11key.SetValue("Build", Assembly.GetEntryAssembly().GetName().Version.Build.ToString(), RegistryValueKind.String);
 					r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
 					r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
+					key.Close();
 					return true;
 				}
+				key.Close();
 				return false;
 			}
+			key.Close();
 			return false;
 		}
 
