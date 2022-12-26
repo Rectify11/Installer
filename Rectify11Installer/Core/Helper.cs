@@ -71,6 +71,15 @@ namespace Rectify11Installer.Core
 				InstallOptions.InstallWallpaper = false;
 			}
 
+			if (InstallOptions.iconsList.Contains("asdfNode"))
+			{
+				InstallOptions.InstallASDF = true;
+			}
+			else
+			{
+				InstallOptions.InstallASDF = false;
+			}
+
 			return true;
 		}
 		public static bool FinalizeIRectify11()
@@ -121,6 +130,11 @@ namespace Rectify11Installer.Core
 			if (InstallOptions.InstallWinver)
 			{
 				ok.AppendLine(resources.GetString("installWinver"));
+			}
+			
+			if(InstallOptions.InstallASDF)
+			{
+				ok.AppendLine(resources.GetString("installASDF"));
 			}
 
 			if (InstallOptions.InstallShell)

@@ -262,4 +262,7 @@
   <data name="buttonReboot" xml:space="preserve">
     <value>Restart now</value>
   </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Install Accent Colorizer</value>
+  </data>
 </root>

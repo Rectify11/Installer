@@ -38,11 +38,13 @@
 			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Winver");
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("ExplorerPatcher");
 			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Shell");
+			System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Accent Colorizer");
 			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Rectify11 Wallpapers");
 			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode(resources.GetString("optionExtra"), new System.Windows.Forms.TreeNode[] {
 			treeNode2,
 			treeNode3,
 			treeNode4,
+			treeNode10,
 			treeNode5});
 			this.groupBox1 = new Rectify11Installer.Controls.GroupBox();
 			this.label1 = new Rectify11Installer.Controls.DarkAwareLabel();
@@ -97,6 +99,8 @@
 			treeNode8.Text = "Basic";
 			treeNode9.Name = "advancedNode";
 			treeNode9.Text = "Advanced";
+			treeNode10.Name = "asdfNode";
+			treeNode10.Text = "Accent Colorizer";
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
 			treeNode1,
 			treeNode7,

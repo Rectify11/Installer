@@ -205,6 +205,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install Accent Colorizer.
+        /// </summary>
+        internal static string installASDF {
+            get {
+                return ResourceManager.GetString("installASDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can choose what will be Rectified..
         /// </summary>
         internal static string installChoiceDescription {
