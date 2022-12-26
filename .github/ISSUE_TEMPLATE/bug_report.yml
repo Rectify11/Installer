@@ -12,10 +12,6 @@ body:
     attributes:
       label: Steps To Reproduce
       description: Steps to reproduce the behavior.
-      placeholder: |
-        1. Go to '....'
-        2. Click on '....'
-        3. Scroll down to '....'
     validations:
       required: true
   - type: input
@@ -39,6 +35,7 @@ body:
       description: |
         Logs, screenshots, etc relevant to this bug.
       placeholder: |
-        Copy and paste the log from the unhandled exception dialog by clicking details then copying everything. If its a phase2 bug, screenshot the console window.
+        Copy and paste the log from the unhandled exception dialog by clicking details then copying everything. 
+        If its a phase2 bug, screenshot the console window.
     validations:
       required: true
