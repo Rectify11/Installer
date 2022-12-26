@@ -17,7 +17,7 @@ namespace Rectify11Installer
 		[STAThread]
 		private static void Main(string[] args)
 		{
-			if ((Environment.OSVersion.Version.Build < 21343 && args.Length != 0 && args[0].ToLower() == "-h") || Environment.OSVersion.Version.Build >= 21343)
+			if ((Environment.OSVersion.Version.Build < 21343 && args.Length != 0 && args[0].ToLower() == "--allow-unsupported-installation") || Environment.OSVersion.Version.Build >= 21343)
 			{
 				ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
 				ProfileOptimization.StartProfile("Startup.Profile");
@@ -53,7 +53,7 @@ namespace Rectify11Installer
 			else
 			{
 				MessageBoxButtons buttons = MessageBoxButtons.OK;
-				DialogResult result = MessageBox.Show("You must be running Windows 10 build 21343 in order to install Rectify11.", "Error", buttons, MessageBoxIcon.Stop);
+				DialogResult result = MessageBox.Show("You must be running Windows 10 build 21343 or above in order to install Rectify11.", "Error", buttons, MessageBoxIcon.Stop);
 				if (result == DialogResult.OK)
 				{
 					return;
