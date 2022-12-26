@@ -25,7 +25,15 @@ namespace Rectify11Installer
 			get { return sideImage.BackgroundImage; }
 			set { sideImage.BackgroundImage = value; }
 		}
-
+		public bool ShowRebootButton
+		{
+			get { return rebootButton.Visible; }
+			set { rebootButton.Visible = value; }
+		}
+		public EventHandler SetRebootHandler
+		{
+			set { rebootButton.Click += value; }
+		}
 		private System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 		#endregion
 		#region Main
@@ -207,8 +215,13 @@ namespace Rectify11Installer
 				{
 					e.Cancel = true;
 				}
-				SystemEvents.UserPreferenceChanged -= new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
 			}
+			else if (Variables.isInstall)
+			{
+				MessageBox.Show("No");
+				e.Cancel = true;
+			}
+			SystemEvents.UserPreferenceChanged -= new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
 		}
 		private void NextButton_Click(object sender, EventArgs e)
 		{
@@ -227,6 +240,7 @@ namespace Rectify11Installer
 			else if (navPane.SelectedTab == installPage)
 			{
 				Helper.UpdateIRectify11();
+				//MessageBox.Show("EP " + InstallOptions.InstallEP + "\nASDF " + InstallOptions.InstallASDF + "\nWallpapers " + InstallOptions.InstallWallpaper + "\nWinver " + InstallOptions.InstallWinver + "\nShell " + InstallOptions.InstallShell);
 				if (InstallOptions.InstallThemes)
 				{
 					Navigate(RectifyPages.ThemeChoicePage);

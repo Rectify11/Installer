@@ -80,13 +80,13 @@ namespace Rectify11Installer.Controls
         {
             InitializeComponent();
             SetStyle(ControlStyles.Selectable | ControlStyles.StandardClick | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.SupportsTransparentBackColor, true);
-            foreach (Control control in Controls)
+            for (int i = 0; i < Controls.Count; i++)
             {
-                control.MouseEnter += new EventHandler(TheMouseEnter);
-                control.MouseLeave += new EventHandler(TheMouseLeave);
-                control.MouseDown += new MouseEventHandler(TheMouseDown);
-                control.MouseUp += new MouseEventHandler(TheMouseUp);
-                control.Click += new EventHandler(TheMouseClick);
+                Controls[i].MouseEnter += new EventHandler(TheMouseEnter);
+                Controls[i].MouseLeave += new EventHandler(TheMouseLeave);
+                Controls[i].MouseDown += new MouseEventHandler(TheMouseDown);
+                Controls[i].MouseUp += new MouseEventHandler(TheMouseUp);
+                Controls[i].Click += new EventHandler(TheMouseClick);
             }
             this.MouseEnter += new EventHandler(TheMouseEnter);
             this.MouseLeave += new EventHandler(TheMouseLeave);

@@ -7,9 +7,11 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using vbAccelerator.Components.Shell;
 
 namespace Rectify11Installer.Core
 {
@@ -48,6 +50,7 @@ namespace Rectify11Installer.Core
 					" x -o" + Path.Combine(Variables.r11Folder, "files") +
 					" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
 
+			frm.InstallerProgress = "Installing runtimes";
 			await Task.Run(() => InstallRuntimes());
 
 			// Icons
@@ -55,25 +58,25 @@ namespace Rectify11Installer.Core
 			{
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
-				PatchesPatch[] ok = patches.Items;
+				PatchesPatch[] patch = patches.Items;
 				decimal progress = 0;
 				List<string> fileList = new();
 				List<string> x86List = new();
-				foreach (PatchesPatch patch in ok)
+				for (int i = 0; i < patch.Length; i++)
 				{
-					foreach (string items in InstallOptions.iconsList)
+					for (int j = 0; j < InstallOptions.iconsList.Count; j++)
 					{
-						if (patch.Mui.Contains(items))
+						if (patch[i].Mui.Contains(InstallOptions.iconsList[j]))
 						{
 							decimal number = Math.Round((progress / InstallOptions.iconsList.Count) * 100m);
-							frm.InstallerProgress = "Patching " + patch.Mui + " (" + number + "%)";
-							fileList.Add(patch.HardlinkTarget);
-							if (!string.IsNullOrWhiteSpace(patch.x86))
+							frm.InstallerProgress = "Patching " + patch[i].Mui + " (" + number + "%)";
+							fileList.Add(patch[i].HardlinkTarget);
+							if (!string.IsNullOrWhiteSpace(patch[i].x86))
 							{
-								x86List.Add(patch.HardlinkTarget);
+								x86List.Add(patch[i].HardlinkTarget);
 							}
 
-							await Task.Run(() => MatchAndApplyRule(patch));
+							await Task.Run(() => MatchAndApplyRule(patch[i]));
 							progress++;
 						}
 					}
@@ -95,27 +98,19 @@ namespace Rectify11Installer.Core
 					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
-					IMmcHelper.PatchAll();
+					await Task.Run(() => IMmcHelper.PatchAll());
 				}
-
+				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
+				{
+					await Task.Run(() => FixOdbc());
+				}
 				// phase 2
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true));
 
-				// waits for the temp folder to be deleted (used for knowing when phase2 will be finished)
-				while (true)
-				{
-					if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
-					{
-						break;
-					}
-					else
-					{
-						Thread.Sleep(1000);
-					}
-				}
+				await Task.Run(() => WaitForPhase2());
 			}
 
 			// theme
@@ -134,8 +129,14 @@ namespace Rectify11Installer.Core
 
 				await Task.Run(() => InstallThemes());
 			}
-			AddToControlPanel();
+			await Task.Run(() => AddToControlPanel());
 			InstallStatus.IsRectify11Installed = true;
+			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+			if (key != null)
+			{
+				key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
+			}
+			key.Close();
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
 			await Task.Run(() => Cleanup());
@@ -143,6 +144,34 @@ namespace Rectify11Installer.Core
 		}
 		#endregion
 		#region Private Methods
+
+		/// <summary>
+		/// fixes 32-bit odbc shortcut icon
+		/// </summary>
+		public void FixOdbc()
+		{
+			string filepath = string.Empty;
+			string filename = string.Empty;
+			string[] files = Directory.GetFiles(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools");
+			for (int i = 0; i< files.Length; i++)
+			{
+				if (Path.GetFileName(files[i]).Contains("ODBC"))
+				{
+					if (Path.GetFileName(files[i]).Contains("32"))
+					{
+						filename = Path.GetFileName(files[i]);
+						File.Delete(files[i]);
+					}
+				}
+			}
+			using ShellLink shortcut = new();
+			shortcut.Target = Path.Combine(Variables.sysWOWFolder, "odbcad32.exe");
+			shortcut.WorkingDirectory = @"%windir%\system32";
+			shortcut.IconPath = Path.Combine(Variables.sys32Folder, "odbcint.dll");
+			shortcut.IconIndex = 0;
+			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+			shortcut.Save(Path.Combine(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools", filename));
+		}
 
 		/// <summary>
 		/// installs themes
@@ -160,21 +189,25 @@ namespace Rectify11Installer.Core
 			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true);
 
-			foreach (DirectoryInfo dir in curdir)
+			for (int i = 0; i < curdir.Length; i++)
 			{
-				if (Directory.Exists(Path.Combine(Variables.windir, "cursors", dir.Name)))
+				if (Directory.Exists(Path.Combine(Variables.windir, "cursors", curdir[i].Name)))
 				{
-					Directory.Delete(Path.Combine(Variables.windir, "cursors", dir.Name), true);
+					Directory.Delete(Path.Combine(Variables.windir, "cursors", curdir[i].Name), true);
 				}
-				Directory.Move(dir.FullName, Path.Combine(Variables.windir, "cursors", dir.Name));
+				Directory.Move(curdir[i].FullName, Path.Combine(Variables.windir, "cursors", curdir[i].Name));
 			}
-			foreach (FileInfo file in themefiles)
+			for (int i = 0; i < themefiles.Length; i++)
 			{
-				File.Copy(file.FullName, Path.Combine(Variables.windir, "Resources", "Themes", file.Name), true);
+				File.Copy(themefiles[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", themefiles[i].Name), true);
 			}
-			foreach (DirectoryInfo directory in msstyleDirList)
+			for (int i = 0; i < msstyleDirList.Length; i++)
 			{
-				Directory.Move(directory.FullName, Path.Combine(Variables.windir, "Resources", "Themes", directory.Name));
+				if(Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name)))
+				{
+					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
+				}
+				Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
 			}
 			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
 			if (key != null)
@@ -195,6 +228,28 @@ namespace Rectify11Installer.Core
 					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
 				}
 			}
+			key.Close();
+		}
+
+		/// <summary>
+		/// waits for phase2 to finish
+		/// </summary>
+		/// <returns>true if phase2 finished</returns>
+		private bool WaitForPhase2()
+		{
+			// waits for the temp folder to be deleted (used for knowing when phase2 will be finished)
+			while (true)
+			{
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+				{
+					break;
+				}
+				else
+				{
+					Thread.Sleep(1000);
+				}
+			}
+			return true;
 		}
 
 		/// <summary>
@@ -314,10 +369,13 @@ namespace Rectify11Installer.Core
 					r11key.SetValue("Build", Assembly.GetEntryAssembly().GetName().Version.Build.ToString(), RegistryValueKind.String);
 					r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
 					r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
+					key.Close();
 					return true;
 				}
+				key.Close();
 				return false;
 			}
+			key.Close();
 			return false;
 		}
 
@@ -552,22 +610,6 @@ namespace Rectify11Installer.Core
 			if (File.Exists(Path.Combine(Variables.r11Folder, "themes.7z")))
 			{
 				File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
-			}
-			Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true);
-			try
-			{
-				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
-				FileInfo[] files = di.GetFiles("*.db");
-
-				foreach (FileInfo file in files)
-				{
-					file.Attributes = FileAttributes.Normal;
-					File.Delete(file.FullName);
-				}
-			}
-			catch
-			{
-				MessageBox.Show("deleting icon cache failed");
 			}
 		}
 	}

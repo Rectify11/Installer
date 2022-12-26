@@ -73,19 +73,32 @@ namespace MMC
 		}
 		private static bool CopyFiles(List<string> langMsc, List<string> usaMsc, List<string> r11Msc)
 		{
-			if (!Directory.Exists(Path.Combine(tempDir, "msc")))
+			if (Directory.Exists(Path.Combine(tempDir, "msc")))
 			{
-				Directory.CreateDirectory(Path.Combine(tempDir, "msc"));
+				Directory.Delete(Path.Combine(tempDir, "msc"));
+			}
+			Directory.CreateDirectory(Path.Combine(tempDir, "msc"));
+			if (CultureInfo.CurrentUICulture.Name != "en-US")
+			{
+				if (Directory.Exists(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name)))
+				{
+					Directory.Delete(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name));
+				}
+				Directory.CreateDirectory(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name));
 
-				if (CultureInfo.CurrentUICulture.Name != "en-US")
+				if (Directory.Exists(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp")))
 				{
-					Directory.CreateDirectory(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name));
-					Directory.CreateDirectory(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"));
+					Directory.Delete(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"));
 				}
-				else
+				Directory.CreateDirectory(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"));
+			}
+			else
+			{
+				if (Directory.Exists(Path.Combine(tempDir, "msc", "en-US")))
 				{
-					Directory.CreateDirectory(Path.Combine(tempDir, "msc", "en-US"));
+					Directory.Delete(Path.Combine(tempDir, "msc", "en-US"));
 				}
+				Directory.CreateDirectory(Path.Combine(tempDir, "msc", "en-US"));
 			}
 			if (CultureInfo.CurrentUICulture.Name != "en-US")
 			{
@@ -111,8 +124,8 @@ namespace MMC
 							Debug.WriteLine(langMsc[i]);
 							if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(r11Msc[j]))))
 							{
-								if (Path.GetFileName(langMsc[i]) != "lusrmgr.msc" 
-									|| Path.GetFileName(langMsc[i]) != "taskschd.msc" 
+								if (Path.GetFileName(langMsc[i]) != "lusrmgr.msc"
+									|| Path.GetFileName(langMsc[i]) != "taskschd.msc"
 									|| Path.GetFileName(langMsc[i]) != "WmiMgmt.msc")
 								{
 									File.Copy(r11Msc[j], Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(r11Msc[j])), true);
@@ -131,6 +144,7 @@ namespace MMC
 		}
 		#endregion
 	}
+	#region Helper
 	public static class DocumentExtensions
 	{
 		public static XmlDocument ToXmlDocument(this XDocument xDocument)
@@ -152,4 +166,5 @@ namespace MMC
 			}
 		}
 	}
+	#endregion
 }

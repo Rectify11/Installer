@@ -19,7 +19,7 @@ namespace Rectify11Installer.Strings {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Rectify11 {
@@ -93,6 +93,15 @@ namespace Rectify11Installer.Strings {
         internal static string buttonNext {
             get {
                 return ResourceManager.GetString("buttonNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart now.
+        /// </summary>
+        internal static string buttonReboot {
+            get {
+                return ResourceManager.GetString("buttonReboot", resourceCulture);
             }
         }
         
@@ -192,6 +201,15 @@ namespace Rectify11Installer.Strings {
         internal static string exitText {
             get {
                 return ResourceManager.GetString("exitText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Accent Colorizer.
+        /// </summary>
+        internal static string installASDF {
+            get {
+                return ResourceManager.GetString("installASDF", resourceCulture);
             }
         }
         

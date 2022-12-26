@@ -49,99 +49,99 @@ namespace Rectify11.Phase2
 			r11Reg.Close();
 			if (pendingFiles != null)
 			{
-				foreach (string file in r11Dir)
+				for (int i = 0; i < r11Dir.Length; i++)
 				{
-					foreach (string regFile in pendingFiles)
+					for (int j = 0; j < pendingFiles.Length; j++)
 					{
-						if (regFile.Contains(Path.GetFileName(file)))
+						if (pendingFiles[j].Contains(Path.GetFileName(r11Dir[i])))
 						{
-							if (regFile.Contains("mun"))
+							if (pendingFiles[j].Contains("mun"))
 							{
-								string newval = regFile.Replace(@"%sysresdir%", Variables.sysresdir);
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%sysresdir%", Variables.sysresdir);
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%sys32%"))
+							else if (pendingFiles[j].Contains("%sys32%"))
 							{
-								string newval = regFile.Replace(@"%sys32%", Variables.sys32Folder);
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%sys32%", Variables.sys32Folder);
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%lang%"))
+							else if (pendingFiles[j].Contains("%lang%"))
 							{
-								string newval = regFile.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%en-US%"))
+							else if (pendingFiles[j].Contains("%en-US%"))
 							{
-								string newval = regFile.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%windirLang%"))
+							else if (pendingFiles[j].Contains("%windirLang%"))
 							{
-								string newval = regFile.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%windirEn-US%"))
+							else if (pendingFiles[j].Contains("%windirEn-US%"))
 							{
-								string newval = regFile.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%branding%"))
+							else if (pendingFiles[j].Contains("%branding%"))
 							{
-								string newval = regFile.Replace(@"%branding%", Variables.brandingFolder);
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%branding%", Variables.brandingFolder);
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%prog%"))
+							else if (pendingFiles[j].Contains("%prog%"))
 							{
-								string newval = regFile.Replace(@"%prog%", Variables.progfiles);
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%prog%", Variables.progfiles);
+								MoveFile(newval, r11Dir[i]);
 							}
-							else if (regFile.Contains("%windir%"))
+							else if (pendingFiles[j].Contains("%windir%"))
 							{
-								string newval = regFile.Replace(@"%windir%", Variables.windir);
-								MoveFile(newval, file);
+								string newval = pendingFiles[j].Replace(@"%windir%", Variables.windir);
+								MoveFile(newval, r11Dir[i]);
 							}
 						}
 					}
 					if (x86Files != null)
 					{
-						foreach (string x86file in x86Files)
+						for (int j = 0; j < x86Files.Length; j++)
 						{
-							if (x86file.Contains(Path.GetFileName(file)))
+							if (x86Files[j].Contains(Path.GetFileName(r11Dir[i])))
 							{
-								if (x86file.Contains("%sys32%"))
+								if (x86Files[j].Contains("%sys32%"))
 								{
-									string newval = x86file.Replace(@"%sys32%", Variables.sysWOWFolder);
-									MoveFilex86(newval, file);
+									string newval = x86Files[j].Replace(@"%sys32%", Variables.sysWOWFolder);
+									MoveFilex86(newval, r11Dir[i]);
 								}
-								else if (x86file.Contains("%prog%"))
+								else if (x86Files[j].Contains("%prog%"))
 								{
-									string newval = x86file.Replace(@"%prog%", Variables.progfiles86);
-									MoveFilex86(newval, file);
+									string newval = x86Files[j].Replace(@"%prog%", Variables.progfiles86);
+									MoveFilex86(newval, r11Dir[i]);
 								}
 							}
 						}
 					}
 				}
-				foreach (string diagFile in r11DiagDir)
+				for (int i  = 0; i < r11DiagDir.Length; i++)
 				{
-					foreach (string regFile in pendingFiles)
+					for (int j = 0; j < pendingFiles.Length; j++)
 					{
-						if (regFile.Contains("%diag%"))
+						if (pendingFiles[j].Contains("%diag%"))
 						{
-							string name = regFile.Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
-							if (name.Contains(Path.GetFileNameWithoutExtension(diagFile).Replace("DiagPackage", "")))
+							string name = pendingFiles[j].Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
+							if (name.Contains(Path.GetFileNameWithoutExtension(r11DiagDir[i]).Replace("DiagPackage", "")))
 							{
-								string newval = regFile.Replace("%diag%", Variables.diag);
-								MoveTrouble(newval, diagFile, name);
+								string newval = pendingFiles[j].Replace("%diag%", Variables.diag);
+								MoveTrouble(newval, r11DiagDir[i], name);
 							}
 						}
 					}
 				}
-				foreach (string regFile in pendingFiles)
+				for (int k = 0; k < pendingFiles.Length; k++)
 				{
-					if (regFile.Contains("mmcbase.dll.mun") 
-						|| regFile.Contains("mmcndmgr.dll.mun") 
-						|| regFile.Contains("mmc.exe"))
+					if (pendingFiles[k].Contains("mmcbase.dll.mun") 
+						|| pendingFiles[k].Contains("mmcndmgr.dll.mun") 
+						|| pendingFiles[k].Contains("mmc.exe"))
 					{
 						if (!Directory.Exists(Path.Combine(backupDir, "msc")))
 						{
