@@ -1,0 +1,44 @@
+name: Bug Report
+description: Create a bug report to help improve Rectify11
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of what the issue is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '....'
+        2. Click on '....'
+        3. Scroll down to '....'
+    validations:
+      required: true
+  - type: input
+    id: r11-version
+    attributes:
+      label: Rectify11 Version
+      description: Which version of Rectify11 are you using?
+      placeholder: e.g. Version: 3.0 rp3
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Windows Version
+      description: Which version of Windows are you using?
+      placeholder: e.g. Windows 11 21H2 22000.574
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs
+      description: |
+        Logs, screenshots, etc relevant to this bug.
+      placeholder: |
+        Copy and paste the log from the unhandled exception dialog by clicking details then copying everything. If its a phase2 bug, screenshot the console window.
+    validations:
+      required: true
