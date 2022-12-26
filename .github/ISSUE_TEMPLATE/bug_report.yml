@@ -23,14 +23,14 @@ body:
     attributes:
       label: Rectify11 Version
       description: Which version of Rectify11 are you using?
-      placeholder: e.g. Version: 3.0 rp3
+      placeholder: "e.g. Version: 3.0 rp3"
     validations:
       required: true
   - type: input
     attributes:
       label: Windows Version
       description: Which version of Windows are you using?
-      placeholder: e.g. Windows 11 21H2 22000.574
+      placeholder: "e.g. Windows 11 21H2 22000.574"
     validations:
       required: true
   - type: textarea
