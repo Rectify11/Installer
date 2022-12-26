@@ -240,6 +240,7 @@ namespace Rectify11Installer
 			else if (navPane.SelectedTab == installPage)
 			{
 				Helper.UpdateIRectify11();
+				//MessageBox.Show("EP " + InstallOptions.InstallEP + "\nASDF " + InstallOptions.InstallASDF + "\nWallpapers " + InstallOptions.InstallWallpaper + "\nWinver " + InstallOptions.InstallWinver + "\nShell " + InstallOptions.InstallShell);
 				if (InstallOptions.InstallThemes)
 				{
 					Navigate(RectifyPages.ThemeChoicePage);
