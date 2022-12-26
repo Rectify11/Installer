@@ -199,7 +199,7 @@
     <value>Zostaną wykonane następujące akcje:</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Użyj interfejsu wstążki z Windows 8-10</value>
+    <value>Użyj interfejsu wstążki</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>Rozszerz efekt Mica na pasek adresu</value>
@@ -214,7 +214,7 @@
     <value>Windows 10 (zaokrąglone)</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 (oryginalne)</value>
+    <value>Włącz pasek zadań Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
     <value>Windows 11</value>
