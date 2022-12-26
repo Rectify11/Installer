@@ -15,38 +15,50 @@ namespace Rectify11Installer
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		private static void Main()
+		private static void Main(string[] args)
 		{
-			ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
-			ProfileOptimization.StartProfile("Startup.Profile");
-			if (Environment.OSVersion.Version.Build >= 10240)
+			if ((Environment.OSVersion.Version.Build < 21343 && args.Length != 0 && args[0].ToLower() == "-h") || Environment.OSVersion.Version.Build >= 21343)
 			{
-				Theme.InitTheme();
-				if ((Environment.OSVersion.Version.Build >= 17763) && (Environment.OSVersion.Version.Build < 18362))
+				ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
+				ProfileOptimization.StartProfile("Startup.Profile");
+				if (Environment.OSVersion.Version.Build >= 10240)
 				{
-					DarkMode.AllowDarkModeForApp(true);
+					Theme.InitTheme();
+					if ((Environment.OSVersion.Version.Build >= 17763) && (Environment.OSVersion.Version.Build < 18362))
+					{
+						DarkMode.AllowDarkModeForApp(true);
+					}
+					else if (Environment.OSVersion.Version.Build >= 18362)
+					{
+						DarkMode.SetPreferredAppMode(DarkMode.PreferredAppMode.AllowDark);
+					}
 				}
-				else if (Environment.OSVersion.Version.Build >= 18362)
+				if (!Directory.Exists(Variables.r11Folder))
 				{
-					DarkMode.SetPreferredAppMode(DarkMode.PreferredAppMode.AllowDark);
+					Directory.CreateDirectory(Variables.r11Folder);
 				}
-			}
-			if (!Directory.Exists(Variables.r11Folder))
-			{
-				Directory.CreateDirectory(Variables.r11Folder);
-			}
 
-			if ((!File.Exists(Path.Combine(Variables.r11Folder, "Dark.msstyles"))) && (!File.Exists(Path.Combine(Variables.r11Folder, "light.msstyles"))))
-			{
-				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Dark.msstyles"), Properties.Resources.Dark);
-				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "light.msstyles"), Properties.Resources.light);
+				if ((!File.Exists(Path.Combine(Variables.r11Folder, "Dark.msstyles"))) && (!File.Exists(Path.Combine(Variables.r11Folder, "light.msstyles"))))
+				{
+					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Dark.msstyles"), Properties.Resources.Dark);
+					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "light.msstyles"), Properties.Resources.light);
+				}
+				Theme.LoadTheme();
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
+				Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
+				Application.Run(new frmWizard());
 			}
-			Theme.LoadTheme();
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
-			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-			Application.Run(new frmWizard());
+			else
+			{
+				MessageBoxButtons buttons = MessageBoxButtons.OK;
+				DialogResult result = MessageBox.Show("You must be running Windows 10 build 21343 in order to install Rectify11.", "Error", buttons, MessageBoxIcon.Stop);
+				if (result == DialogResult.OK)
+				{
+					return;
+				}
+			}
 		}
 	}
 }
