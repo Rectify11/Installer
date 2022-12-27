@@ -50,7 +50,7 @@ namespace Rectify11Installer.Core
 				frm.InstallerProgress = "Extracting files...";
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
 				{
-					Directory.Delete(Path.Combine(Variables.r11Folder, "files"));
+					Directory.Delete(Path.Combine(Variables.r11Folder, "files"), true);
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "files") +
@@ -120,7 +120,7 @@ namespace Rectify11Installer.Core
 
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 				{
-					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"));
+					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
@@ -147,6 +147,7 @@ namespace Rectify11Installer.Core
 				frm.InstallerProgress = "Installing Extras...";
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
 				{
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
 					Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
@@ -158,7 +159,7 @@ namespace Rectify11Installer.Core
 				}
 				if (InstallOptions.InstallASDF)
 				{
-					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml")));
+					await Task.Run(() => Installasdf());
 				}
 			}
 
@@ -210,7 +211,7 @@ namespace Rectify11Installer.Core
 			FileInfo[] themefiles = themedir.GetFiles("*.theme");
 			if (Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
 			{
-				Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+				Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"), true);
 			}
 			Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
 			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
@@ -233,30 +234,10 @@ namespace Rectify11Installer.Core
 			{
 				if(Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name)))
 				{
-					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
+					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name), true);
 				}
 				Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
 			}
-			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
-			if (key != null)
-			{
-				if (InstallOptions.ThemeLight)
-				{
-					Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "lightrectified.theme"));
-					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
-				}
-				else if (InstallOptions.ThemeDark)
-				{
-					Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme"));
-					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
-				}
-				else
-				{
-					Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme"));
-					key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
-				}
-			}
-			key.Close();
 		}
 
 		/// <summary>
@@ -274,6 +255,14 @@ namespace Rectify11Installer.Core
 			{
 				File.Copy(files[i].FullName, Path.Combine(Variables.windir, "web", "wallpaper", "Rectified", files[i].Name), true);
 			}
+		}
+
+		/// <summary>
+		/// installs asdf
+		/// </summary>
+		private void Installasdf()
+		{
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml"));
 		}
 
 		/// <summary>
@@ -362,9 +351,12 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallRuntimes()
 		{
-			Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-		      " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
-		      " vcredist.exe", AppWinStyle.Hide, true);
+			if (!File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
+			{
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
+				  " vcredist.exe", AppWinStyle.Hide, true);
+			}
 			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true);
 		}
 

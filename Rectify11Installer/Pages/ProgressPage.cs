@@ -1,7 +1,11 @@
 ﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
+using Rectify11Installer.Core;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
@@ -78,18 +82,45 @@ namespace Rectify11Installer.Pages
 				Win32.NativeMethods.Reboot();
 			}
 		}
-		private void ClearIconCache()
+		private async void ClearIconCache()
 		{
+			if (InstallOptions.InstallThemes)
+			{
+				RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+				if (key != null)
+				{
+					if (InstallOptions.ThemeLight)
+					{
+						await Task.Run(() => Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "lightrectified.theme")));
+						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
+					}
+					else if (InstallOptions.ThemeDark)
+					{
+						await Task.Run(() => Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme")));
+						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
+					}
+					else
+					{
+						await Task.Run(() => Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme")));
+						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
+					}
+				}
+				key.Close();
+			}
 			Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true);
 			try
 			{
+
 				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
 				FileInfo[] files = di.GetFiles("*.db");
 
-				for(int i = 0; i < files.Length; i++)
+				for (int i = 0; i < files.Length; i++)
 				{
 					files[i].Attributes = FileAttributes.Normal;
-					File.Delete(files[i].FullName);
+					if (File.Exists(files[i].FullName))
+					{
+						File.Delete(files[i].FullName);
+					}
 				}
 			}
 			catch
