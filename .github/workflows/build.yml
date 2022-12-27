@@ -18,7 +18,7 @@ jobs:
     - name: Restore NuGet Packages
       run: nuget restore Rectify11Installer.sln
     - name: Build Phase2
-      run: msbuild Rectify11Installer\Rectify11.Phase2.csproj /p:Configuration=Debug /p:platform=x64
+      run: msbuild Rectify11.Phase2\Rectify11.Phase2.csproj /p:Configuration=Debug /p:platform=x64
     - name: Build
       run: msbuild Rectify11Installer.sln /p:Configuration=Debug /p:platform=x64
     - name: Create single exe
