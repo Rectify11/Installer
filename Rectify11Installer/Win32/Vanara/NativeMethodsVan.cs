@@ -30,50 +30,13 @@ namespace Vanara.Interop
 
 		[SecurityCritical]
 		[DllImport("dwmapi.dll", PreserveSig = false)]
-		public static extern void DwmEnableBlurBehindWindow(
-		  IntPtr hWnd,
-		  ref NativeMethods.BlurBehind pBlurBehind);
-
-		[SecurityCritical]
-		[DllImport("dwmapi.dll", PreserveSig = false)]
-		public static extern void DwmEnableComposition(int compositionAction);
-
-		[SecurityCritical]
-		[DllImport("dwmapi.dll", PreserveSig = false)]
 		public static extern void DwmExtendFrameIntoClientArea(
 		  IntPtr hWnd,
 		  ref NativeMethods.Margins pMarInset);
 
 		[SecurityCritical]
-		[DllImport("dwmapi.dll", EntryPoint = "#127", PreserveSig = false)]
-		public static extern void DwmGetColorizationParameters(
-		  ref NativeMethods.ColorizationParams parameters);
-
-		[SecurityCritical]
-		[DllImport("dwmapi.dll", PreserveSig = false)]
-		public static extern void DwmGetWindowAttribute(
-		  IntPtr hwnd,
-		  NativeMethods.DWMWINDOWATTRIBUTE dwAttribute,
-		  IntPtr pvAttribute,
-		  int cbAttribute);
-
-		[SecurityCritical]
 		[DllImport("dwmapi.dll", PreserveSig = false)]
 		public static extern void DwmIsCompositionEnabled(ref int pfEnabled);
-
-		[SecurityCritical]
-		[DllImport("dwmapi.dll", EntryPoint = "#131", PreserveSig = false)]
-		public static extern void DwmSetColorizationParameters(
-		  ref NativeMethods.ColorizationParams parameters,
-		  uint unk);
-
-		[SecurityCritical]
-		[DllImport("dwmapi.dll", PreserveSig = false)]
-		public static extern void DwmSetWindowAttribute(
-		  IntPtr hwnd,
-		  NativeMethods.DWMWINDOWATTRIBUTE dwAttribute,
-		  [In] IntPtr pvAttribute,
-		  int cbAttribute);
 
 		[DllImport("gdi32.dll", SetLastError = true)]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -225,9 +188,6 @@ namespace Vanara.Interop
 		public struct BITMAPINFO
 		{
 			public NativeMethods.BITMAPINFOHEADER bmiHeader;
-			[MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
-			public NativeMethods.RGBQUAD[] bmiColors;
-
 			public BITMAPINFO(int width, int height, ushort bitCount = 32)
 			  : this()
 			{
@@ -343,17 +303,6 @@ namespace Vanara.Interop
 				hRgnBlur = region.GetHrgn(graphics);
 				dwFlags |= NativeMethods.BlurBehindFlags.BlurRegion;
 			}
-		}
-
-		public struct ColorizationParams
-		{
-			public uint Color1;
-			public uint Color2;
-			public uint Intensity;
-			public uint Unk1;
-			public uint Unk2;
-			public uint Unk3;
-			public uint Opaque;
 		}
 
 		public struct Margins

@@ -22,8 +22,10 @@ namespace Rectify11Installer.Core
         protected override ResourceSet InternalGetResourceSet(CultureInfo culture,
             bool createIfNotExists, bool tryParents)
         {
-            ResourceSet rs = (ResourceSet)this.ResourceSets[culture];
-            if (rs == null)
+#pragma warning disable CS0618 // Type or member is obsolete
+			ResourceSet rs = (ResourceSet)this.ResourceSets[culture];
+#pragma warning restore CS0618 // Type or member is obsolete
+			if (rs == null)
             {
                 Stream store = null;
                 string resourceFileName = null;
@@ -49,7 +51,9 @@ namespace Rectify11Installer.Core
                 {
                     rs = new ResourceSet(store);
                     //save for later.
+#pragma warning disable CS0618 // Type or member is obsolete
                     AddResourceSet(this.ResourceSets, culture, ref rs);
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 else
                 {
