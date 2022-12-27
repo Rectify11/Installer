@@ -97,6 +97,16 @@ namespace Rectify11Installer
 				BackColor = Color.White;
 				ForeColor = Color.Black;
 				headerText.ForeColor = Color.Black;
+				if ((Win32.NativeMethods.GetUbr() != -1
+					&& Win32.NativeMethods.GetUbr() < 51
+					&& Environment.OSVersion.Version.Build == 22000)
+					|| (Environment.OSVersion.Version.Build < 22000
+					&& Environment.OSVersion.Version.Build >= 21996))
+				{
+					tableLayoutPanel1.BackColor = Color.White;
+					tableLayoutPanel2.BackColor = Color.White;
+					headerText.ForeColor = Color.White;
+				}
 			}
 
 			wlcmPage.Controls.Add(RectifyPages.WelcomePage);

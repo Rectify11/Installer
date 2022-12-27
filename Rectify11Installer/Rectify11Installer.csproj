@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Win32\DarkMode.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
+    <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\RECT.cs" />
     <Compile Include="Win32\SafeHGlobalHandle.cs" />
     <Compile Include="Win32\Vanara\DesktopWindowManager\DesktopWindowManager.cs" />

@@ -49,8 +49,6 @@ namespace Rectify11Installer.Win32
 		};
 		#endregion
 		#region Public Methods
-		public static RegistryKey key = Registry.LocalMachine.OpenSubKey(@"software\microsoft\Windows NT\CurrentVersion");
-		public static object o = key.GetValue("UBR");
 		public static void RefreshTitleBarColor(IntPtr hWnd)
 		{
 			if (Environment.OSVersion.Version.Build < 18362)
@@ -108,31 +106,31 @@ namespace Rectify11Installer.Win32
 			}
 			if (yes)
 			{
-				if ((o != null && Convert.ToInt32(o) >= 51 && Environment.OSVersion.Version.Build >= 22000) || Environment.OSVersion.Version.Build > 22000 || Environment.OSVersion.Version.Build < 21996)
+				if ((Win32.NativeMethods.GetUbr() != -1
+					&& Win32.NativeMethods.GetUbr() >= 51
+					&& Environment.OSVersion.Version.Build == 22000)
+					|| Environment.OSVersion.Version.Build > 22000
+					|| Environment.OSVersion.Version.Build < 21996)
 				{
 					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref m);
-				}
-				else
-				{
-					return;
 				}
 			}
 			else
 			{
-				NativeMethods.MARGINS mar = new NativeMethods.MARGINS
+				NativeMethods.MARGINS mar = new()
 				{
 					cxLeftWidth = 0,
 					cxRightWidth = 0,
 					cyBottomHeight = 0,
 					cyTopHeight = 0
 				};
-				if ((o != null && Convert.ToInt32(o) >= 51 && Environment.OSVersion.Version.Build >= 22000) || Environment.OSVersion.Version.Build > 22000 || Environment.OSVersion.Version.Build < 21996)
+				if ((Win32.NativeMethods.GetUbr() != -1 
+					&& Win32.NativeMethods.GetUbr() >= 51 
+					&& Environment.OSVersion.Version.Build == 22000) 
+					|| Environment.OSVersion.Version.Build > 22000 
+					|| Environment.OSVersion.Version.Build < 21996)
 				{
 					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
-				}
-				else
-				{
-					return;
 				}
 			}
 		}

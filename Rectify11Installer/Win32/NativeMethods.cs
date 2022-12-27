@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -245,6 +246,17 @@ namespace Rectify11Installer.Win32
 				return false;
 			}
 		}
+		public static int GetUbr()
+		{
+			using RegistryKey key = Registry.LocalMachine.OpenSubKey(@"software\microsoft\Windows NT\CurrentVersion");
+			if (key != null)
+			{
+				return Convert.ToInt32(key.GetValue("UBR"));
+			}
+			return -1;
+		}
 		#endregion
+
 	}
 }
+
