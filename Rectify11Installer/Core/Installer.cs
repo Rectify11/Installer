@@ -40,22 +40,21 @@ namespace Rectify11Installer.Core
 			// backup
 			File.Copy(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
 
-			// always extract files, delete if folder exists
-			frm.InstallerProgress = "Extracting files...";
-			if (Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
-			{
-				Directory.Delete(Path.Combine(Variables.r11Folder, "files"));
-			}
-			await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-					" x -o" + Path.Combine(Variables.r11Folder, "files") +
-					" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
-
 			frm.InstallerProgress = "Installing runtimes";
 			await Task.Run(() => InstallRuntimes());
 
 			// Icons
 			if (InstallOptions.iconsList.Count > 0)
 			{
+				// extract files, delete if folder exists
+				frm.InstallerProgress = "Extracting files...";
+				if (Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
+				{
+					Directory.Delete(Path.Combine(Variables.r11Folder, "files"));
+				}
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+						" x -o" + Path.Combine(Variables.r11Folder, "files") +
+						" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] patch = patches.Items;
@@ -137,6 +136,31 @@ namespace Rectify11Installer.Core
 				key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
 			}
 			key.Close();
+
+			// extras
+			if (InstallOptions.InstallWallpaper
+				|| InstallOptions.InstallASDF
+				|| InstallOptions.InstallEP
+				|| InstallOptions.InstallShell
+				|| InstallOptions.InstallWinver)
+			{
+				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
+				{
+					Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
+				}
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+		                " x -o" + Path.Combine(Variables.r11Folder, "extras") +
+		                " " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
+				if (InstallOptions.InstallWallpaper)
+				{
+					await Task.Run(() => InstallWallpapers());
+				}
+				if (InstallOptions.InstallASDF)
+				{
+					//j
+				}
+			}
+
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
 			await Task.Run(() => Cleanup());
@@ -183,7 +207,10 @@ namespace Rectify11Installer.Core
 			DirectoryInfo themedir = new(Path.Combine(Variables.r11Folder, "themes", "themes"));
 			DirectoryInfo[] msstyleDirList = themedir.GetDirectories("*", SearchOption.TopDirectoryOnly);
 			FileInfo[] themefiles = themedir.GetFiles("*.theme");
-
+			if (Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
+			{
+				Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+			}
 			Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
 			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
 			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
@@ -229,6 +256,23 @@ namespace Rectify11Installer.Core
 				}
 			}
 			key.Close();
+		}
+
+		/// <summary>
+		/// installs wallpapers
+		/// </summary>
+		private void InstallWallpapers()
+		{
+			DirectoryInfo walldir = new(Path.Combine(Variables.r11Folder, "extras", "wallpapers"));
+			if (!Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
+			{
+				Directory.CreateDirectory(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+			}
+			FileInfo[] files = walldir.GetFiles("*.*");
+			for (int i = 0; i < files.Length; i++)
+			{
+				File.Copy(files[i].FullName, Path.Combine(Variables.windir, "web", "wallpaper", "Rectified", files[i].Name), true);
+			}
 		}
 
 		/// <summary>
@@ -602,10 +646,6 @@ namespace Rectify11Installer.Core
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 			{
 				Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
-			}
-			if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
-			{
-				Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "themes.7z")))
 			{
