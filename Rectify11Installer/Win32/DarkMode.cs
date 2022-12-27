@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace Rectify11Installer.Win32
 {
@@ -48,6 +49,8 @@ namespace Rectify11Installer.Win32
 		};
 		#endregion
 		#region Public Methods
+		public static RegistryKey key = Registry.LocalMachine.OpenSubKey(@"software\microsoft\Windows NT\CurrentVersion");
+		public static object o = key.GetValue("UBR");
 		public static void RefreshTitleBarColor(IntPtr hWnd)
 		{
 			if (Environment.OSVersion.Version.Build < 18362)
@@ -105,7 +108,14 @@ namespace Rectify11Installer.Win32
 			}
 			if (yes)
 			{
-				NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref m);
+				if ((o != null && Convert.ToInt32(o) >= 51 && Environment.OSVersion.Version.Build >= 22000) || Environment.OSVersion.Version.Build > 22000 || Environment.OSVersion.Version.Build < 21996)
+				{
+					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref m);
+				}
+				else
+				{
+					return;
+				}
 			}
 			else
 			{
@@ -116,7 +126,14 @@ namespace Rectify11Installer.Win32
 					cyBottomHeight = 0,
 					cyTopHeight = 0
 				};
-				NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
+				if ((o != null && Convert.ToInt32(o) >= 51 && Environment.OSVersion.Version.Build >= 22000) || Environment.OSVersion.Version.Build > 22000 || Environment.OSVersion.Version.Build < 21996)
+				{
+					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
+				}
+				else
+				{
+					return;
+				}
 			}
 		}
 		#endregion
