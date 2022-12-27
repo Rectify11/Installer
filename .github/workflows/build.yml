@@ -20,7 +20,7 @@ jobs:
     - name: Build Phase2
       run: msbuild Rectify11.Phase2\Rectify11.Phase2.csproj /p:Configuration=Debug /p:platform=x64
     - name: Build
-      run: msbuild Rectify11Installer.sln /p:Configuration=Debug /p:platform=x64
+      run: msbuild Rectify11Installer.sln /p:Configuration=Debug
     - name: Create single exe
       run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Debug\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Debug\Rectify11Installer.exe Rectify11Installer\bin\Debug\libmsstyle.dll Rectify11Installer\bin\Debug\TaskDialog.dll
     - name: Upload a Build Artifact
