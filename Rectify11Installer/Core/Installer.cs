@@ -144,6 +144,7 @@ namespace Rectify11Installer.Core
 				|| InstallOptions.InstallShell
 				|| InstallOptions.InstallWinver)
 			{
+				frm.InstallerProgress = "Installing Extras...";
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
 				{
 					Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
@@ -157,7 +158,7 @@ namespace Rectify11Installer.Core
 				}
 				if (InstallOptions.InstallASDF)
 				{
-					//j
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml")));
 				}
 			}
 
