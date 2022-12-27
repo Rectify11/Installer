@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: msbuild Rectify11Installer.sln /p:Configuration=Release /p:platform=x64
     - name: Create single exe
-      run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Release\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Release\Rectify11Installer.exe Rectify11Installer\bin\Release\libmsstyle.dll Rectify11Installer\bin\Release\TaskDialog.dll Rectify11Installer\bin\Release\AeroWizard.dll
+      run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Release\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Release\Rectify11Installer.exe Rectify11Installer\bin\Release\libmsstyle.dll Rectify11Installer\bin\Release\TaskDialog.dll
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.1
       with:

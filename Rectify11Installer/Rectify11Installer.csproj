@@ -85,9 +85,6 @@
     <StartupObject>Rectify11Installer.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AeroWizard, Version=2.3.1.0, Culture=neutral, PublicKeyToken=915e74f5d64b8f37, processorArchitecture=MSIL">
-      <HintPath>..\packages\AeroWizard.2.3.1\lib\net45\AeroWizard.dll</HintPath>
-    </Reference>
     <Reference Include="libmsstyle, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\libmsstyle.dll</HintPath>
@@ -128,6 +125,9 @@
     </Compile>
     <Compile Include="Controls\TabControlWithoutHeader.Designer.cs">
       <DependentUpon>TabControlWithoutHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ThemedLabel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
@@ -218,6 +218,13 @@
     <Compile Include="Win32\DarkMode.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\RECT.cs" />
+    <Compile Include="Win32\SafeHGlobalHandle.cs" />
+    <Compile Include="Win32\Vanara\DesktopWindowManager\DesktopWindowManager.cs" />
+    <Compile Include="Win32\Vanara\DesktopWindowManager\GlassExtenderProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Win32\Vanara\NativeMethods.cs" />
+    <Compile Include="Win32\VisualStylesRendererExtension.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
