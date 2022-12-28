@@ -75,7 +75,7 @@ namespace Rectify11Installer.Core
 								x86List.Add(patch[i].HardlinkTarget);
 							}
 
-							await Task.Run(() => MatchAndApplyRuleAsync(patch[i]));
+							await Task.Run(() => MatchAndApplyRule(patch[i]));
 							progress++;
 						}
 					}
@@ -97,14 +97,14 @@ namespace Rectify11Installer.Core
 					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
-					await Task.Run(() => IMmcHelper.PatchAllAsync());
+					await Task.Run(() => IMmcHelper.PatchAll());
 				}
 				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
 				{
 					await Task.Run(() => FixOdbc());
 				}
 				// phase 2
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
@@ -121,7 +121,7 @@ namespace Rectify11Installer.Core
 
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 				{
-					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
+					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true));
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
@@ -137,7 +137,7 @@ namespace Rectify11Installer.Core
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
 				{
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
-					Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
+					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true));
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 		                " x -o" + Path.Combine(Variables.r11Folder, "extras") +
@@ -172,7 +172,7 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// fixes 32-bit odbc shortcut icon
 		/// </summary>
-		public async Task FixOdbc()
+		public void FixOdbc()
 		{
 			string filepath = string.Empty;
 			string filename = string.Empty;
@@ -184,23 +184,23 @@ namespace Rectify11Installer.Core
 					if (Path.GetFileName(files[i]).Contains("32"))
 					{
 						filename = Path.GetFileName(files[i]);
-						await Task.Run(() => File.Delete(files[i]));
+						File.Delete(files[i]);
 					}
 				}
 			}
 			using ShellLink shortcut = new();
-			await Task.Run(() => shortcut.Target = Path.Combine(Variables.sysWOWFolder, "odbcad32.exe"));
-			await Task.Run(() => shortcut.WorkingDirectory = @"%windir%\system32");
-			await Task.Run(() => shortcut.IconPath = Path.Combine(Variables.sys32Folder, "odbcint.dll"));
-			await Task.Run(() => shortcut.IconIndex = 0);
-			await Task.Run(() => shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal);
-			await Task.Run(() => shortcut.Save(Path.Combine(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools", filename)));
+			shortcut.Target = Path.Combine(Variables.sysWOWFolder, "odbcad32.exe");
+			shortcut.WorkingDirectory = @"%windir%\system32";
+			shortcut.IconPath = Path.Combine(Variables.sys32Folder, "odbcint.dll");
+			shortcut.IconIndex = 0;
+			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+			shortcut.Save(Path.Combine(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools", filename));
 		}
 
 		/// <summary>
 		/// installs themes
 		/// </summary>
-		private async Task InstallThemes()
+		private void InstallThemes()
 		{
 			DirectoryInfo cursors = new(Path.Combine(Variables.r11Folder, "themes", "cursors"));
 			DirectoryInfo[] curdir = cursors.GetDirectories("*", SearchOption.TopDirectoryOnly);
@@ -209,58 +209,58 @@ namespace Rectify11Installer.Core
 			FileInfo[] themefiles = themedir.GetFiles("*.theme");
 			if (Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
 			{
-				await Task.Run(() => Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"), true));
+				Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"), true);
 			}
-			await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")));
-			await Task.Run(() => File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true));
-			await Task.Run(() => Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true));
-			await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true));
+			Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
+			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true);
 
 			for (int i = 0; i < curdir.Length; i++)
 			{
 				if (Directory.Exists(Path.Combine(Variables.windir, "cursors", curdir[i].Name)))
 				{
-					await Task.Run(() => Directory.Delete(Path.Combine(Variables.windir, "cursors", curdir[i].Name), true));
+					Directory.Delete(Path.Combine(Variables.windir, "cursors", curdir[i].Name), true);
 				}
-				await Task.Run(() => Directory.Move(curdir[i].FullName, Path.Combine(Variables.windir, "cursors", curdir[i].Name)));
+				Directory.Move(curdir[i].FullName, Path.Combine(Variables.windir, "cursors", curdir[i].Name));
 			}
 			for (int i = 0; i < themefiles.Length; i++)
 			{
-				await Task.Run(() => File.Copy(themefiles[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", themefiles[i].Name), true));
+				File.Copy(themefiles[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", themefiles[i].Name), true);
 			}
 			for (int i = 0; i < msstyleDirList.Length; i++)
 			{
 				if(Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name)))
 				{
-					await Task.Run(() => Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name), true));
+					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name), true);
 				}
-				await Task.Run(() => Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name)));
+				Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
 			}
 		}
 
 		/// <summary>
 		/// installs wallpapers
 		/// </summary>
-		private async Task InstallWallpapers()
+		private void InstallWallpapers()
 		{
 			DirectoryInfo walldir = new(Path.Combine(Variables.r11Folder, "extras", "wallpapers"));
 			if (!Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
 			{
-				await Task.Run(() => Directory.CreateDirectory(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")));
+				Directory.CreateDirectory(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
 			}
 			FileInfo[] files = walldir.GetFiles("*.*");
 			for (int i = 0; i < files.Length; i++)
 			{
-				await Task.Run(() => File.Copy(files[i].FullName, Path.Combine(Variables.windir, "web", "wallpaper", "Rectified", files[i].Name), true));
+				File.Copy(files[i].FullName, Path.Combine(Variables.windir, "web", "wallpaper", "Rectified", files[i].Name), true);
 			}
 		}
 
 		/// <summary>
 		/// installs asdf
 		/// </summary>
-		private async Task Installasdf()
+		private void Installasdf()
 		{
-			await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml"), AppWinStyle.Hide));
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml"), AppWinStyle.Hide);
 		}
 
 		/// <summary>
@@ -289,40 +289,40 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		/// <param name="icons">indicates whether icons only files are written</param>
 		/// <param name="themes">indicates whether themes only files are written</param>
-		private async Task WriteFiles(bool icons, bool themes)
+		private void WriteFiles(bool icons, bool themes)
 		{
 			if (icons)
 			{
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "aRun.exe")))
 				{
-					await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun));
+					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
 				}
-				await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2));
+				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
 			}
 			if (themes)
 			{
-				await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes));
+				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes);
 				if (Win32.NativeMethods.IsArm64())
 				{
-					await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_arm64));
+					File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_arm64);
 				}
 				else
 				{
-					await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_x64));
+					File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_x64);
 				}
 			}
 			if (!themes && !icons)
 			{
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
 				{
-					await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za));
+					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
 				}
-				await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z));
-				await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras));
+				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
+				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
 
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
 				{
-					await Task.Run(() => File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker));
+					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
 				}
 			}
 		}
@@ -347,15 +347,15 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// installs runtimes
 		/// </summary>
-		private async Task InstallRuntimes()
+		private void InstallRuntimes()
 		{
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
 			{
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
-				  " vcredist.exe", AppWinStyle.Hide, true));
+				  " vcredist.exe", AppWinStyle.Hide, true);
 			}
-			await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus));
+			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true);
 		}
 
 		/// <summary>
@@ -420,7 +420,7 @@ namespace Rectify11Installer.Core
 		/// <param name="file">The file to be patched</param>
 		/// <param name="patch">Xml element containing all the info</param>
 		/// <param name="type">The type of the file to be patched.</param>
-		private static async Task PatchAsync(string file, PatchesPatch patch, PatchType type)
+		private static async void Patch(string file, PatchesPatch patch, PatchType type)
 		{
 			if (File.Exists(file))
 			{
@@ -542,69 +542,69 @@ namespace Rectify11Installer.Core
 		/// Replaces the path and patches the file accordingly.
 		/// </summary>
 		/// <param name="patch">Xml element containing all the info</param>
-		private async Task MatchAndApplyRuleAsync(PatchesPatch patch)
+		private void MatchAndApplyRule(PatchesPatch patch)
 		{
 			if (patch.HardlinkTarget.Contains("%sys32%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.General));
+				Patch(newhardlink, patch, PatchType.General);
 			}
 			else if (patch.HardlinkTarget.Contains("%lang%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.Mui));
+				Patch(newhardlink, patch, PatchType.Mui);
 			}
 			else if (patch.HardlinkTarget.Contains("%en-US%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.Mui));
+				Patch(newhardlink, patch, PatchType.Mui);
 			}
 			else if (patch.HardlinkTarget.Contains("%windirLang%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.Mui));
+				Patch(newhardlink, patch, PatchType.Mui);
 			}
 			else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.Mui));
+				Patch(newhardlink, patch, PatchType.Mui);
 			}
 			else if (patch.HardlinkTarget.Contains("mun"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.General));
+				Patch(newhardlink, patch, PatchType.General);
 			}
 			else if (patch.HardlinkTarget.Contains("%branding%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.General));
+				Patch(newhardlink, patch, PatchType.General);
 			}
 			else if (patch.HardlinkTarget.Contains("%prog%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.General));
+				Patch(newhardlink, patch, PatchType.General);
 			}
 			else if (patch.HardlinkTarget.Contains("%diag%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.Troubleshooter));
+				Patch(newhardlink, patch, PatchType.Troubleshooter);
 			}
 			else if (patch.HardlinkTarget.Contains("%windir%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-				await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.General));
+				Patch(newhardlink, patch, PatchType.General);
 			}
 			if (!string.IsNullOrWhiteSpace(patch.x86))
 			{
 				if (patch.HardlinkTarget.Contains("%sys32%"))
 				{
 					newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sysWOWFolder);
-					await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.x86));
+					Patch(newhardlink, patch, PatchType.x86);
 				}
 				else if (patch.HardlinkTarget.Contains("%prog%"))
 				{
 					newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles86);
-					await Task.Run(() => PatchAsync(newhardlink, patch, PatchType.x86));
+					Patch(newhardlink, patch, PatchType.x86);
 				}
 			}
 		}

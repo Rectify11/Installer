@@ -84,15 +84,13 @@ namespace Rectify11Installer.Pages
 
 				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
 				FileInfo[] files = di.GetFiles("*.db");
-				if (files != null)
+
+				for (int i = 0; i < files.Length; i++)
 				{
-					for (int i = 0; i < files.Length; i++)
+					files[i].Attributes = FileAttributes.Normal;
+					if (File.Exists(files[i].FullName))
 					{
-						files[i].Attributes = FileAttributes.Normal;
-						if (File.Exists(files[i].FullName))
-						{
-							File.Delete(files[i].FullName);
-						}
+						File.Delete(files[i].FullName);
 					}
 				}
 			}
@@ -105,7 +103,7 @@ namespace Rectify11Installer.Pages
 		/// <summary>
 		/// applies the theme just before restart to set the mouse cursor properly
 		/// </summary>
-		private async Task ApplyScheme()
+		private async void ApplyScheme()
 		{
 			if (InstallOptions.InstallThemes)
 			{
@@ -154,11 +152,11 @@ namespace Rectify11Installer.Pages
 		/// <summary>
 		/// routine to perform before restarting
 		/// </summary>
-		private async Task RestartRoutineAsync()
+		private void RestartRoutine()
 		{
 			timer2.Stop();
 			frmwiz.InstallerProgress = "Restarting...";
-			await Task.Run(() => ApplyScheme());
+			ApplyScheme();
 			ClearIconCache();
 			Win32.NativeMethods.Reboot();
 		}
@@ -170,7 +168,7 @@ namespace Rectify11Installer.Pages
 
 		private async void rebootButton_Click(object sender, EventArgs e)
 		{
-			await Task.Run(() => RestartRoutineAsync());
+			await Task.Run(() => RestartRoutine());
 		}
 
 		private async void Timer2_Tick(object sender, EventArgs e)
@@ -179,7 +177,7 @@ namespace Rectify11Installer.Pages
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			if (duration == 0)
 			{
-				await Task.Run(() => RestartRoutineAsync());
+				await Task.Run(() => RestartRoutine());
 			}
 		}
 		#endregion
