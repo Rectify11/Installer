@@ -421,7 +421,7 @@ namespace Rectify11Installer.Core
 		/// <param name="file">The file to be patched</param>
 		/// <param name="patch">Xml element containing all the info</param>
 		/// <param name="type">The type of the file to be patched.</param>
-		private static async void Patch(string file, PatchesPatch patch, PatchType type)
+		private static void Patch(string file, PatchesPatch patch, PatchType type)
 		{
 			if (File.Exists(file))
 			{
@@ -497,18 +497,18 @@ namespace Rectify11Installer.Core
 						}
 						if (type != PatchType.Mui)
 						{
-							await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+							Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							" -open " + Path.Combine(tempfolder, name) +
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "delete" +
-							" -mask " + str[i], AppWinStyle.Hide, true));
+							" -mask " + str[i], AppWinStyle.Hide, true);
 						}
-						await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+						Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							" -open " + Path.Combine(tempfolder, name) +
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "addskip" +
 							" -resource " + Path.Combine(filepath, filename) +
-							" -mask " + str[i], AppWinStyle.Hide, true));
+							" -mask " + str[i], AppWinStyle.Hide, true);
 					}
 				}
 				else
@@ -523,18 +523,18 @@ namespace Rectify11Installer.Core
 					}
 					if (type != PatchType.Mui)
 					{
-						await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+						Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							 " -open " + Path.Combine(tempfolder, name) +
 							 " -save " + Path.Combine(tempfolder, name) +
 							 " -action " + "delete" +
-							 " -mask " + masks, AppWinStyle.Hide, true));
+							 " -mask " + masks, AppWinStyle.Hide, true);
 					}
-					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+					Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							" -open " + Path.Combine(tempfolder, name) +
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "addskip" +
 							" -resource " + Path.Combine(filepath, filename) +
-							" -mask " + masks, AppWinStyle.Hide, true));
+							" -mask " + masks, AppWinStyle.Hide, true);
 				}
 			}
 		}
