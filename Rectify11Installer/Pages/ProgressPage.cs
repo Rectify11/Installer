@@ -105,7 +105,7 @@ namespace Rectify11Installer.Pages
 		/// <summary>
 		/// applies the theme just before restart to set the mouse cursor properly
 		/// </summary>
-		private async void ApplyScheme()
+		private async Task ApplyScheme()
 		{
 			if (InstallOptions.InstallThemes)
 			{
@@ -154,11 +154,11 @@ namespace Rectify11Installer.Pages
 		/// <summary>
 		/// routine to perform before restarting
 		/// </summary>
-		private void RestartRoutine()
+		private async Task RestartRoutineAsync()
 		{
 			timer2.Stop();
 			frmwiz.InstallerProgress = "Restarting...";
-			ApplyScheme();
+			await Task.Run(() => ApplyScheme());
 			ClearIconCache();
 			Win32.NativeMethods.Reboot();
 		}
@@ -168,18 +168,18 @@ namespace Rectify11Installer.Pages
 			NextText();
 		}
 
-		private async void rebootButton_Click(object sender, EventArgs e)
+		private async Task rebootButton_Click(object sender, EventArgs e)
 		{
-			await Task.Run(() => RestartRoutine());
+			await Task.Run(() => RestartRoutineAsync());
 		}
 
-		private async void Timer2_Tick(object sender, EventArgs e)
+		private async Task Timer2_Tick(object sender, EventArgs e)
 		{
 			duration -= 1;
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			if (duration == 0)
 			{
-				await Task.Run(() => RestartRoutine());
+				await Task.Run(() => RestartRoutineAsync());
 			}
 		}
 		#endregion
