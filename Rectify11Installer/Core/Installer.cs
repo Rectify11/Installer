@@ -214,8 +214,8 @@ namespace Rectify11Installer.Core
 			}
 			Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
 			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
-			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
-			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true);
+			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide);
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
 
 			for (int i = 0; i < curdir.Length; i++)
 			{
@@ -356,7 +356,7 @@ namespace Rectify11Installer.Core
 				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
 				  " vcredist.exe", AppWinStyle.Hide, true);
 			}
-			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true);
+			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus);
 		}
 
 		/// <summary>
