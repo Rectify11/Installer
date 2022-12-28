@@ -70,7 +70,7 @@ namespace Rectify11Installer.Pages
 			ClearIconCache();
 			Win32.NativeMethods.Reboot();
 		}
-		private void Timer2_Tick(object sender, EventArgs e)
+		private async void Timer2_Tick(object sender, EventArgs e)
 		{
 			duration -= 1;
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
@@ -78,11 +78,35 @@ namespace Rectify11Installer.Pages
 			{
 				timer2.Stop();
 				frmwiz.InstallerProgress = "Restarting...";
-				ClearIconCache();
+				await Task.Run(() => ApplyScheme());
+				await Task.Run(() => ClearIconCache());
 				Win32.NativeMethods.Reboot();
 			}
 		}
 		private async void ClearIconCache()
+		{			
+			await Task.Run(() => Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true));
+			try
+			{
+
+				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
+				FileInfo[] files = di.GetFiles("*.db");
+
+				for (int i = 0; i < files.Length; i++)
+				{
+					files[i].Attributes = FileAttributes.Normal;
+					if (File.Exists(files[i].FullName))
+					{
+						File.Delete(files[i].FullName);
+					}
+				}
+			}
+			catch
+			{
+				MessageBox.Show("deleting icon cache failed");
+			}
+		}
+		private async void ApplyScheme()
 		{
 			if (InstallOptions.InstallThemes)
 			{
@@ -106,26 +130,6 @@ namespace Rectify11Installer.Pages
 					}
 				}
 				key.Close();
-			}
-			Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true);
-			try
-			{
-
-				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
-				FileInfo[] files = di.GetFiles("*.db");
-
-				for (int i = 0; i < files.Length; i++)
-				{
-					files[i].Attributes = FileAttributes.Normal;
-					if (File.Exists(files[i].FullName))
-					{
-						File.Delete(files[i].FullName);
-					}
-				}
-			}
-			catch
-			{
-				MessageBox.Show("deleting icon cache failed");
 			}
 		}
 		private void timer1_Tick(object sender, EventArgs e)
