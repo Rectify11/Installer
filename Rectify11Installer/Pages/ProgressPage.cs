@@ -168,12 +168,12 @@ namespace Rectify11Installer.Pages
 			NextText();
 		}
 
-		private async Task rebootButton_Click(object sender, EventArgs e)
+		private async void rebootButton_Click(object sender, EventArgs e)
 		{
 			await Task.Run(() => RestartRoutineAsync());
 		}
 
-		private async Task Timer2_Tick(object sender, EventArgs e)
+		private async void Timer2_Tick(object sender, EventArgs e)
 		{
 			duration -= 1;
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
