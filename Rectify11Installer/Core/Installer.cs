@@ -89,7 +89,7 @@ namespace Rectify11Installer.Core
 				// runs only if SSText3D.scr is selected
 				if (InstallOptions.iconsList.Contains("SSText3D.scr"))
 				{
-					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide, true));
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide));
 				}
 
 				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
@@ -97,7 +97,7 @@ namespace Rectify11Installer.Core
 					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
-					await Task.Run(() => IMmcHelper.PatchAll());
+					await Task.Run(() => IMmcHelper.PatchAllAsync());
 				}
 				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
 				{
@@ -107,7 +107,7 @@ namespace Rectify11Installer.Core
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 
 				// reg files for various file extensions
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
 
 				// waits for phase2 to end
 				await Task.Run(() => WaitForPhase2());
@@ -131,11 +131,7 @@ namespace Rectify11Installer.Core
 			}
 
 			// extras
-			if (InstallOptions.InstallWallpaper
-				|| InstallOptions.InstallASDF
-				|| InstallOptions.InstallEP
-				|| InstallOptions.InstallShell
-				|| InstallOptions.InstallWinver)
+			if (InstallOptions.InstallExtras())
 			{
 				frm.InstallerProgress = "Installing Extras...";
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))

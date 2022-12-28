@@ -27,5 +27,20 @@ namespace Rectify11Installer.Core
 		public static bool InstallShell;
 		public static bool InstallIcons;
 		public static List<string> iconsList = new List<string>();
+		public static bool InstallExtras()
+		{
+			if (InstallEP
+				|| InstallASDF
+				|| InstallWallpaper
+				|| InstallWinver
+				|| InstallShell)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 	}
 }
