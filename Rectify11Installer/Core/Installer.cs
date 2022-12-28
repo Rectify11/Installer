@@ -43,6 +43,45 @@ namespace Rectify11Installer.Core
 			frm.InstallerProgress = "Installing runtimes";
 			await Task.Run(() => InstallRuntimes());
 
+			// theme
+			if (InstallOptions.InstallThemes)
+			{
+				frm.InstallerProgress = "Installing Themes";
+				await Task.Run(() => WriteFiles(false, true));
+
+				if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
+				{
+					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true));
+				}
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
+						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
+
+				await Task.Run(() => InstallThemes());
+			}
+
+			// extras
+			if (InstallOptions.InstallExtras())
+			{
+				frm.InstallerProgress = "Installing Extras...";
+				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
+				{
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
+					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true));
+				}
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+						" x -o" + Path.Combine(Variables.r11Folder, "extras") +
+						" " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
+				if (InstallOptions.InstallWallpaper)
+				{
+					await Task.Run(() => InstallWallpapers());
+				}
+				if (InstallOptions.InstallASDF)
+				{
+					await Task.Run(() => Installasdf());
+				}
+			}
+
 			// Icons
 			if (InstallOptions.iconsList.Count > 0)
 			{
@@ -104,7 +143,7 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => FixOdbc());
 				}
 				// phase 2
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus));
 
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
@@ -112,46 +151,6 @@ namespace Rectify11Installer.Core
 				// waits for phase2 to end
 				await Task.Run(() => WaitForPhase2());
 			}
-
-			// theme
-			if (InstallOptions.InstallThemes)
-			{
-				frm.InstallerProgress = "Installing Themes";
-				await Task.Run(() => WriteFiles(false, true));
-
-				if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
-				{
-					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true));
-				}
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
-						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
-
-				await Task.Run(() => InstallThemes());
-			}
-
-			// extras
-			if (InstallOptions.InstallExtras())
-			{
-				frm.InstallerProgress = "Installing Extras...";
-				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
-				{
-					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
-					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true));
-				}
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-		                " x -o" + Path.Combine(Variables.r11Folder, "extras") +
-		                " " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
-				if (InstallOptions.InstallWallpaper)
-				{
-					await Task.Run(() => InstallWallpapers());
-				}
-				if (InstallOptions.InstallASDF)
-				{
-					await Task.Run(() => Installasdf());
-				}
-			}
-
 			await Task.Run(() => AddToControlPanel());
 			InstallStatus.IsRectify11Installed = true;
 			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
