@@ -17,6 +17,15 @@ namespace Rectify11Installer.Pages
 		private Timer timer2;
 		private int duration = 30;
 		private int CurrentTextIndex = -1;
+		private static readonly InstallerTexts[] Rectify11InstallerTexts =
+		{
+			new InstallerTexts("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
+			new InstallerTexts("Rectify11 has a better Theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
+			new InstallerTexts("Rectify11 has better Performance", "We strongly value performance. You can choose things that you want to debloat in your system.", Properties.Resources.perf),
+			new InstallerTexts("Rectify11 has changed everything", "We have changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.ep),
+			new InstallerTexts("Rectified Control Panel", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
+			new InstallerTexts("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
+		};
 		#endregion
 		#region Classes
 
@@ -49,7 +58,7 @@ namespace Rectify11Installer.Pages
 		{
 			timer1.Stop();
 			progressText.Text = "Restarting your PC";
-			progressInfo.Text = "Rectify11 has finished patching your system. Your PC needs to restart in order to apply the changes, it will automatically restart in " + duration.ToString()+ " seconds";
+			progressInfo.Text = "Rectify11 has finished patching your system. Your PC needs to restart in order to apply the changes, it will automatically restart in " + duration.ToString() + " seconds";
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.incomplete;
 			timer2.Start();
@@ -63,28 +72,12 @@ namespace Rectify11Installer.Pages
 		}
 		#endregion
 		#region Private Methods
-		private void rebootButton_Click(object sender, EventArgs e)
-		{
-			timer2.Stop();
-			frmwiz.InstallerProgress = "Restarting...";
-			ClearIconCache();
-			Win32.NativeMethods.Reboot();
-		}
-		private async void Timer2_Tick(object sender, EventArgs e)
-		{
-			duration -= 1;
-			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
-			if (duration == 0)
-			{
-				timer2.Stop();
-				frmwiz.InstallerProgress = "Restarting...";
-				await Task.Run(() => ApplyScheme());
-				await Task.Run(() => ClearIconCache());
-				Win32.NativeMethods.Reboot();
-			}
-		}
+
+		/// <summary>
+		/// clears *.db cache files
+		/// </summary>
 		private async void ClearIconCache()
-		{			
+		{
 			await Task.Run(() => Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true));
 			try
 			{
@@ -106,6 +99,10 @@ namespace Rectify11Installer.Pages
 				MessageBox.Show("deleting icon cache failed");
 			}
 		}
+
+		/// <summary>
+		/// applies the theme just before restart to set the mouse cursor properly
+		/// </summary>
 		private async void ApplyScheme()
 		{
 			if (InstallOptions.InstallThemes)
@@ -132,19 +129,10 @@ namespace Rectify11Installer.Pages
 				key.Close();
 			}
 		}
-		private void timer1_Tick(object sender, EventArgs e)
-		{
-			NextText();
-		}
-		private static InstallerTexts[] Rectify11InstallerTexts =
-		{
-			new InstallerTexts("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
-			new InstallerTexts("Rectify11 has a better Theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
-			new InstallerTexts("Rectify11 has better Performance", "We strongly value performance. You can choose things that you want to debloat in your system.", Properties.Resources.perf),
-			new InstallerTexts("Rectify11 has changed everything", "We have changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.ep),
-			new InstallerTexts("Rectified Control Panel", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
-			new InstallerTexts("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
-		};
+
+		/// <summary>
+		/// goes to the next text in the list to be shown
+		/// </summary>
 		private void NextText()
 		{
 			CurrentTextIndex++;
@@ -158,6 +146,38 @@ namespace Rectify11Installer.Pages
 				progressText.Text = t.Title;
 				progressInfo.Text = t.Description;
 				frmwiz.UpdateSideImage = t.Side;
+			}
+		}
+
+		/// <summary>
+		/// routine to perform before restarting
+		/// </summary>
+		private void RestartRoutine()
+		{
+			timer2.Stop();
+			frmwiz.InstallerProgress = "Restarting...";
+			ApplyScheme();
+			ClearIconCache();
+			Win32.NativeMethods.Reboot();
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			NextText();
+		}
+
+		private async void rebootButton_Click(object sender, EventArgs e)
+		{
+			await Task.Run(() => RestartRoutine());
+		}
+
+		private async void Timer2_Tick(object sender, EventArgs e)
+		{
+			duration -= 1;
+			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
+			if (duration == 0)
+			{
+				await Task.Run(() => RestartRoutine());
 			}
 		}
 		#endregion

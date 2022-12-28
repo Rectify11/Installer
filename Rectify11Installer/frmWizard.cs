@@ -228,8 +228,10 @@ namespace Rectify11Installer
 			}
 			else if (Variables.isInstall)
 			{
-				MessageBox.Show("No");
-				e.Cancel = true;
+				if (e.CloseReason == CloseReason.UserClosing)
+				{
+					e.Cancel = true;
+				}
 			}
 			SystemEvents.UserPreferenceChanged -= new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
 		}
@@ -365,12 +367,16 @@ namespace Rectify11Installer
 						{
 							BackColor = Color.Black;
 							ForeColor = Color.White;
+							headerText.ForeColor = Color.White;
 						}
 						else
 						{
+							headerText.ForeColor = Color.Black;
 							BackColor = Color.White;
 							ForeColor = Color.Black;
 						}
+						this.Invalidate(true);
+						this.Update();
 					}
 					break;
 			}

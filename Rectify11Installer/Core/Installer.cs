@@ -109,6 +109,7 @@ namespace Rectify11Installer.Core
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide, true));
 
+				// waits for phase2 to end
 				await Task.Run(() => WaitForPhase2());
 			}
 
@@ -128,14 +129,6 @@ namespace Rectify11Installer.Core
 
 				await Task.Run(() => InstallThemes());
 			}
-			await Task.Run(() => AddToControlPanel());
-			InstallStatus.IsRectify11Installed = true;
-			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
-			if (key != null)
-			{
-				key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
-			}
-			key.Close();
 
 			// extras
 			if (InstallOptions.InstallWallpaper
@@ -162,6 +155,15 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => Installasdf());
 				}
 			}
+
+			await Task.Run(() => AddToControlPanel());
+			InstallStatus.IsRectify11Installed = true;
+			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+			if (key != null)
+			{
+				key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
+			}
+			key.Close();
 
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
