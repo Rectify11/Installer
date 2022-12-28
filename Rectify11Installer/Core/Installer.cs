@@ -356,7 +356,7 @@ namespace Rectify11Installer.Core
 				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
 				  " vcredist.exe", AppWinStyle.Hide, true);
 			}
-			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus);
+			Interaction.Shell(Path.Combine(Variables.r11Folder, "vcredist.exe") + " /install /quiet /norestart", AppWinStyle.NormalFocus, true);
 		}
 
 		/// <summary>
