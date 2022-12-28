@@ -262,7 +262,7 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void Installasdf()
 		{
-			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml"));
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml"), AppWinStyle.Hide);
 		}
 
 		/// <summary>
