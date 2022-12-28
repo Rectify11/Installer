@@ -94,6 +94,25 @@ namespace Rectify11Installer.Core
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "files") +
 						" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
+
+				// runs only if SSText3D.scr is selected
+				if (InstallOptions.iconsList.Contains("SSText3D.scr"))
+				{
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide));
+				}
+
+				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
+				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
+					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
+					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
+				{
+					await Task.Run(() => IMmcHelper.PatchAll());
+				}
+				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
+				{
+					await Task.Run(() => FixOdbc());
+				}
+
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
 				PatchesPatch[] patch = patches.Items;
@@ -125,23 +144,6 @@ namespace Rectify11Installer.Core
 
 				frm.InstallerProgress = "Replacing files";
 
-				// runs only if SSText3D.scr is selected
-				if (InstallOptions.iconsList.Contains("SSText3D.scr"))
-				{
-					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide));
-				}
-
-				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
-				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
-					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
-				{
-					await Task.Run(() => IMmcHelper.PatchAll());
-				}
-				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
-				{
-					await Task.Run(() => FixOdbc());
-				}
 				// phase 2
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus));
 
