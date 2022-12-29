@@ -8,9 +8,9 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
+    env:
+      NUGET_CERT_REVOCATION_MODE: offline
     steps:
     - uses: actions/checkout@v3
     - name: Add MSBuild to PATH
