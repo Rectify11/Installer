@@ -155,13 +155,6 @@ namespace Rectify11Installer.Core
 			}
 			await Task.Run(() => AddToControlPanel());
 			InstallStatus.IsRectify11Installed = true;
-			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
-			if (key != null)
-			{
-				key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
-			}
-			key.Close();
-
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
 			await Task.Run(() => Cleanup());
@@ -270,18 +263,8 @@ namespace Rectify11Installer.Core
 		/// <returns>true if phase2 finished</returns>
 		private bool WaitForPhase2()
 		{
-			// waits for the temp folder to be deleted (used for knowing when phase2 will be finished)
-			while (true)
-			{
-				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
-				{
-					break;
-				}
-				else
-				{
-					Thread.Sleep(1000);
-				}
-			}
+			// Just gave the thing 30 seconds to copy files, should be enough, the while loop was causing issues it seems. 
+			Thread.Sleep(30000);
 			return true;
 		}
 
