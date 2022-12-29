@@ -24,7 +24,7 @@ namespace Rectify11Installer
 				{ }
 				else
 				{
-					TaskDialog.Show(text: "You must be running atleast Windows 10 build 21343 or higher in order to install Rectify11.",
+					TaskDialog.Show(text: "You must be running atleast Windows 11 build 21996 or higher in order to install Rectify11.",
 					instruction: "Compatibility Error",
 					title: "Rectify11 Setup",
 					buttons: TaskDialogButtons.OK,
