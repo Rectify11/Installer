@@ -138,6 +138,7 @@
     <Compile Include="Core\Installer.cs" />
     <Compile Include="Core\InstallStatus.cs" />
     <Compile Include="Core\IRectify11.cs" />
+    <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\ResourceLoader.cs" />
