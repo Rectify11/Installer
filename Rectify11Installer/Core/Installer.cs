@@ -57,7 +57,7 @@ namespace Rectify11Installer.Core
 			}
 			catch (Exception ex)
 			{
-				Logger.WriteLine("Error while copying installer. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+				Logger.WriteLine("Error while copying installer", ex);
 			}
 
 			frm.InstallerProgress = "Installing runtimes";
@@ -91,7 +91,7 @@ namespace Rectify11Installer.Core
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ", ex);
 					}
 				}
 
@@ -125,7 +125,7 @@ namespace Rectify11Installer.Core
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
 					}
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
@@ -133,22 +133,41 @@ namespace Rectify11Installer.Core
 						" " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
 				if (InstallOptions.InstallWallpaper)
 				{
-					await Task.Run(() => InstallWallpapers());
+					if (!await Task.Run(() => InstallWallpapers()))
+					{
+						Logger.WriteLine("InstallWallpapers() failed.");
+						return false;
+					}
+					Logger.WriteLine("InstallWallpapers() succeeded.");
 				}
 				if (InstallOptions.InstallASDF)
 				{
+					// always would work ig
 					await Task.Run(() => Installasdf());
+					Logger.WriteLine("Installasdf() succeeded.");
 				}
+				Logger.WriteLine("InstallExtras() succeeded.");
+				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
 			// Icons
 			if (InstallOptions.iconsList.Count > 0)
 			{
+				Logger.WriteLine("Installing icons");
+				Logger.WriteLine("────────────────");
 				// extract files, delete if folder exists
 				frm.InstallerProgress = "Extracting files...";
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
 				{
-					Directory.Delete(Path.Combine(Variables.r11Folder, "files"), true);
+					try
+					{
+						Directory.Delete(Path.Combine(Variables.r11Folder, "files"), true);
+						Logger.WriteLine(Path.Combine(Variables.r11Folder, "files") + " exists. Deleting it.");
+					}
+					catch (Exception ex)
+					{
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "files"), ex);
+					}
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "files") +
@@ -174,47 +193,75 @@ namespace Rectify11Installer.Core
 								x86List.Add(patch[i].HardlinkTarget);
 							}
 
-							await Task.Run(() => MatchAndApplyRule(patch[i]));
+							if (!await Task.Run(() => MatchAndApplyRule(patch[i])))
+							{
+								Logger.WriteLine("MatchAndApplyRule() failed");
+								return false;
+							}
 							progress++;
 						}
 					}
 				}
-				await Task.Run(() => WritePendingFiles(fileList, x86List));
+				if (!await Task.Run(() => WritePendingFiles(fileList, x86List)))
+				{
+					Logger.WriteLine("WritePendingFiles() failed");
+					return false;
+				}
 
-				await Task.Run(() => WriteFiles(true, false));
+				if (!await Task.Run(() => WriteFiles(true, false)))
+				{
+					Logger.WriteLine("WriteFiles() failed");
+					return false;
+				}
 
 				frm.InstallerProgress = "Replacing files";
-
 
 				// runs only if SSText3D.scr is selected
 				if (InstallOptions.iconsList.Contains("SSText3D.scr"))
 				{
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide));
 				}
+				Logger.WriteLine("3D text screen saver registry succeeded.");
 
 				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
 				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
 					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
-					await Task.Run(() => IMmcHelper.PatchAll());
+					if (!await Task.Run(() => IMmcHelper.PatchAll()))
+					{
+						Logger.WriteLine("IMmcHelper.PatchAll() failed.");
+						return false;
+					}
 				}
 				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
 				{
-					await Task.Run(() => FixOdbc());
+					if (!await Task.Run(() => FixOdbc()))
+					{
+						Logger.WriteLine("FixOdbc() failed.");
+						return false;
+					}
 				}
 
 				// phase 2
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + " /RunAs 8 /Run", AppWinStyle.NormalFocus));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + "  /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus));
 
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
 			}
-			await Task.Run(() => AddToControlPanel());
+			if (!await Task.Run(() => AddToControlPanel()))
+			{
+				Logger.WriteLine("AddToControlPanel() failed.");
+				return false;
+			}
 			InstallStatus.IsRectify11Installed = true;
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
-			await Task.Run(() => Cleanup());
+			if (!await Task.Run(() => Cleanup()))
+			{
+				Logger.WriteLine("Cleanup() failed.");
+				return false;
+			}
 			return true;
 		}
 		#endregion
@@ -223,7 +270,7 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// fixes 32-bit odbc shortcut icon
 		/// </summary>
-		public void FixOdbc()
+		public bool FixOdbc()
 		{
 			string filename = string.Empty;
 			string admintools = Path.Combine(Environment.GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Administrative Tools");
@@ -246,6 +293,7 @@ namespace Rectify11Installer.Core
 			shortcut.IconIndex = 0;
 			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
 			shortcut.Save(Path.Combine(admintools, filename));
+			return true;
 		}
 
 		/// <summary>
@@ -348,18 +396,28 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// installs wallpapers
 		/// </summary>
-		private void InstallWallpapers()
+		private bool InstallWallpapers()
 		{
 			DirectoryInfo walldir = new(Path.Combine(Variables.r11Folder, "extras", "wallpapers"));
 			if (!Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
 			{
-				Directory.CreateDirectory(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+				try
+				{
+					Directory.CreateDirectory(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+					Logger.WriteLine("Created " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+				}
+				catch (Exception ex)
+				{
+					Logger.WriteLine("Error creating " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					return false;
+				}
 			}
 			FileInfo[] files = walldir.GetFiles("*.*");
 			for (int i = 0; i < files.Length; i++)
 			{
 				File.Copy(files[i].FullName, Path.Combine(Variables.windir, "web", "wallpaper", "Rectified", files[i].Name), true);
 			}
+			return true;
 		}
 
 		/// <summary>
@@ -521,7 +579,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Backup") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Backup"), ex);
 					return false;
 				}
 			}
@@ -539,7 +597,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "Tmp") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "Tmp"), ex);
 					return false;
 				}
 			}
@@ -550,7 +608,7 @@ namespace Rectify11Installer.Core
 			}
 			catch (Exception ex)
 			{
-				Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Tmp") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+				Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Tmp"), ex);
 				return false;
 			}
 			return true;
@@ -595,21 +653,58 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		/// <param name="fileList">normal files list</param>
 		/// <param name="x86List">32-bit files list</param>
-		private void WritePendingFiles(List<string> fileList, List<string> x86List)
+		private bool WritePendingFiles(List<string> fileList, List<string> x86List)
 		{
-			var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey("Rectify11", true);
+			using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey("Rectify11", true);
 			if (reg != null)
 			{
-				reg.SetValue("PendingFiles", fileList.ToArray());
-				if (x86List.Count != 0)
+				try
 				{
-					reg.SetValue("x86PendingFiles", x86List.ToArray());
+					reg.SetValue("PendingFiles", fileList.ToArray());
+					Logger.WriteLine("Wrote filelist to PendingFiles");
+				}
+				catch (Exception ex)
+				{
+					Logger.WriteLine("Error writing filelist to PendingFiles", ex);
+					return false;
 				}
 
-				reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
-				reg.SetValue("Version", Application.ProductVersion);
+				if (x86List.Count != 0)
+				{
+					try
+					{
+						reg.SetValue("x86PendingFiles", x86List.ToArray());
+						Logger.WriteLine("Wrote x86list to x86PendingFiles");
+					}
+					catch (Exception ex)
+					{
+						Logger.WriteLine("Error writing x86list to x86PendingFiles", ex);
+						return false;
+					}
+				}
+				try
+				{
+					reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
+					Logger.WriteLine("Wrote CurrentUICulture.Name to Language");
+				}
+				catch (Exception ex)
+				{
+					Logger.WriteLine("Error writing CurrentUICulture.Name to Language", ex);
+					return false;
+				}
+				try
+				{
+					reg.SetValue("Version", Application.ProductVersion);
+					Logger.WriteLine("Wrote ProductVersion to Version");
+				}
+				catch (Exception ex)
+				{
+					Logger.WriteLine("Error writing ProductVersion to Version", ex);
+					return false;
+				}
+				return true;
 			}
-			reg.Close();
+			return false;
 		}
 
 		/// <summary>
@@ -652,7 +747,7 @@ namespace Rectify11Installer.Core
 		/// <param name="file">The file to be patched</param>
 		/// <param name="patch">Xml element containing all the info</param>
 		/// <param name="type">The type of the file to be patched.</param>
-		private static void Patch(string file, PatchesPatch patch, PatchType type)
+		private static bool Patch(string file, PatchesPatch patch, PatchType type)
 		{
 			if (File.Exists(file))
 			{
@@ -681,7 +776,7 @@ namespace Rectify11Installer.Core
 
 				if (string.IsNullOrWhiteSpace(name))
 				{
-					return;
+					return false;
 				}
 
 				if (type == PatchType.Troubleshooter)
@@ -767,85 +862,125 @@ namespace Rectify11Installer.Core
 							" -resource " + Path.Combine(filepath, filename) +
 							" -mask " + masks, AppWinStyle.Hide, true);
 				}
+				return true;
 			}
+			return false;
 		}
 
 		/// <summary>
 		/// Replaces the path and patches the file accordingly.
 		/// </summary>
 		/// <param name="patch">Xml element containing all the info</param>
-		private void MatchAndApplyRule(PatchesPatch patch)
+		private bool MatchAndApplyRule(PatchesPatch patch)
 		{
 			if (patch.HardlinkTarget.Contains("%sys32%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
-				Patch(newhardlink, patch, PatchType.General);
+				if (!Patch(newhardlink, patch, PatchType.General))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%lang%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-				Patch(newhardlink, patch, PatchType.Mui);
+				if (!Patch(newhardlink, patch, PatchType.Mui))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%en-US%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-				Patch(newhardlink, patch, PatchType.Mui);
+				if (!Patch(newhardlink, patch, PatchType.Mui))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%windirLang%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
-				Patch(newhardlink, patch, PatchType.Mui);
+				if (!Patch(newhardlink, patch, PatchType.Mui))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
-				Patch(newhardlink, patch, PatchType.Mui);
+				if (!Patch(newhardlink, patch, PatchType.Mui))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("mun"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
-				Patch(newhardlink, patch, PatchType.General);
+				if (!Patch(newhardlink, patch, PatchType.General))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%branding%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
-				Patch(newhardlink, patch, PatchType.General);
+				if (!Patch(newhardlink, patch, PatchType.General))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%prog%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
-				Patch(newhardlink, patch, PatchType.General);
+				if (!Patch(newhardlink, patch, PatchType.General))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%diag%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
-				Patch(newhardlink, patch, PatchType.Troubleshooter);
+				if (!Patch(newhardlink, patch, PatchType.Troubleshooter))
+				{
+					return false;
+				}
 			}
 			else if (patch.HardlinkTarget.Contains("%windir%"))
 			{
 				newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
-				Patch(newhardlink, patch, PatchType.General);
+				if (!Patch(newhardlink, patch, PatchType.General))
+				{
+					return false;
+				}
 			}
 			if (!string.IsNullOrWhiteSpace(patch.x86))
 			{
 				if (patch.HardlinkTarget.Contains("%sys32%"))
 				{
 					newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sysWOWFolder);
-					Patch(newhardlink, patch, PatchType.x86);
+					if (!Patch(newhardlink, patch, PatchType.x86))
+					{
+						return false;
+					}
 				}
 				else if (patch.HardlinkTarget.Contains("%prog%"))
 				{
 					newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles86);
-					Patch(newhardlink, patch, PatchType.x86);
+					if (!Patch(newhardlink, patch, PatchType.x86))
+					{
+						return false;
+					}
 				}
 			}
+			return true;
 		}
 
 		/// <summary>
 		/// cleans up files
 		/// </summary>
-		private void Cleanup()
+		private bool Cleanup()
 		{
+			// TODO: add error handling
 			if (Directory.Exists(Variables.r11Files))
 			{
 				Directory.Delete(Variables.r11Files, true);
@@ -874,6 +1009,7 @@ namespace Rectify11Installer.Core
 			{
 				File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
 			}
+			return true;
 		}
 	}
 	#endregion

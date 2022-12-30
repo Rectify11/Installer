@@ -4,6 +4,7 @@ using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -201,8 +202,16 @@ namespace Rectify11Installer
 				Variables.isInstall = true;
 				navPane.SelectedTab = progressPage;
 				Installer installer = new();
-				await installer.Install(this);
-				RectifyPages.ProgressPage.StartReset();
+				if (!await installer.Install(this))
+				{
+					Logger.CommitLog();
+					MessageBox.Show("Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder + "installer.log") + ", and report it to rectify11 development server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				else
+				{
+					Logger.CommitLog();
+					RectifyPages.ProgressPage.StartReset();
+				}
 			}
 		}
 		#endregion

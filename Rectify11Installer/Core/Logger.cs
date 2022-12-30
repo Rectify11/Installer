@@ -1,57 +1,23 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
 #nullable enable
 
 namespace Rectify11Installer.Core
 {
 	public class Logger
 	{
-		private static string Text = "";
-		private static FileStream? fs;
-		private static bool StartText = false;
+		private static string Text = "═════════════════════════\nSTART: " + DateTime.Now.ToString() + "\nRectify11 Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + "\n═════════════════════════\n";
 		public static void WriteLine(string s)
 		{
-			lock (Text)
-			{
-				try
-				{
-					if (!File.Exists(Path.Combine(Variables.r11Folder, "installer.log")))
-					{
-						File.WriteAllText(Path.Combine(Variables.r11Folder, "installer.log"), "");
-					}
-					Text += s + "\n";
-
-					if (fs == null)
-					{
-						fs = new FileStream("installer.log", FileMode.Create, FileAccess.Write);
-						if (!StartText)
-						{
-							Text = "═════════════════════════\nSTART: " + DateTime.Now.ToString() + "\nRectify11 Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString() +"\n═════════════════════════\n" + Text;
-							StartText = true;
-						}
-					}
-
-
-					fs.Seek(0, SeekOrigin.End);
-					byte[] bt = Encoding.ASCII.GetBytes(Text);
-					fs.Write(bt, 0, bt.Length);
-					fs.Flush();
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("A error occured while trying to write to the log file. It is safe to ignore this message.\n" + ex.ToString(), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
+			Text += s + "\n";
 		}
-		public static void CloseLog()
+		public static void WriteLine(string s, Exception ex)
 		{
-			if (fs != null)
-			{
-				fs.Close();
-			}
+			Text += s + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + Environment.NewLine;
+		}
+		public static void CommitLog()
+		{
+			System.IO.File.WriteAllText(System.IO.Path.Combine(Variables.r11Folder, "installer.log"), Text);
 		}
 
 		public static void Warn(string v)
