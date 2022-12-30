@@ -221,6 +221,7 @@ namespace Rectify11.Phase2
 				}
 			}
 			Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
+			Environment.Exit(0);
 		}
 
 		private static void MoveFile(string newval, string file)

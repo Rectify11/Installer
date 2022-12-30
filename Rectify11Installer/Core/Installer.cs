@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using vbAccelerator.Components.Shell;
@@ -34,7 +33,8 @@ namespace Rectify11Installer.Core
 		#region Public Methods
 		public async Task<bool> Install(frmWizard frm)
 		{
-			Logger.WriteLine("WriteFiles() started.");
+			Logger.WriteLine("Preparing Installation");
+			Logger.WriteLine("──────────────────────");
 			if (!await Task.Run(() => WriteFiles(false, false)))
 			{
 				Logger.WriteLine("WriteFiles() failed.");
@@ -42,7 +42,6 @@ namespace Rectify11Installer.Core
 			}
 			Logger.WriteLine("WriteFiles() succeeded.");
 
-			Logger.WriteLine("CreateDirs() started.");
 			if (!await Task.Run(() => CreateDirs()))
 			{
 				Logger.WriteLine("CreateDirs() failed.");
@@ -51,11 +50,10 @@ namespace Rectify11Installer.Core
 			Logger.WriteLine("CreateDirs() succeeded.");
 
 			// backup
-			Logger.WriteLine("Copying installer to rectify11 dir.");
 			try
 			{
 				File.Copy(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
-				Logger.WriteLine("Copied.");
+				Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
 			}
 			catch (Exception ex)
 			{
@@ -63,39 +61,72 @@ namespace Rectify11Installer.Core
 			}
 
 			frm.InstallerProgress = "Installing runtimes";
-			Logger.WriteLine("InstallRuntimes() started.");
 			if (!await Task.Run(() => InstallRuntimes()))
 			{
 				Logger.WriteLine("InstallRuntimes() failed.");
 				return false;
 			}
 			Logger.WriteLine("InstallRuntimes() succeeded.");
+			Logger.WriteLine("══════════════════════════════════════════════");
 
 			// theme
 			if (InstallOptions.InstallThemes)
 			{
 				frm.InstallerProgress = "Installing Themes";
-				await Task.Run(() => WriteFiles(false, true));
+				Logger.WriteLine("Installing Themes");
+				Logger.WriteLine("─────────────────");
+				if (!await Task.Run(() => WriteFiles(false, true)))
+				{
+					Logger.WriteLine("WriteFiles() failed.");
+					return false;
+				}
+				Logger.WriteLine("WriteFiles() succeeded.");
 
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 				{
-					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true));
+					try
+					{
+						Logger.WriteLine(Path.Combine(Variables.r11Folder, "themes") + " exists. Deleting it.");
+						await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true));
+					}
+					catch (Exception ex)
+					{
+						Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					}
 				}
+
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
 						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
+				Logger.WriteLine("Extracted themes.7z");
 
-				await Task.Run(() => InstallThemes());
+				if (!await Task.Run(() => InstallThemes()))
+				{
+					Logger.WriteLine("InstallThemes() failed.");
+					return false;
+				}
+				Logger.WriteLine("InstallThemes() succeeded.");
+				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
 			// extras
 			if (InstallOptions.InstallExtras())
 			{
 				frm.InstallerProgress = "Installing Extras...";
+				Logger.WriteLine("Installing Extras");
+				Logger.WriteLine("─────────────────");
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
 				{
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
-					await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true));
+					try
+					{
+						await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true));
+						Logger.WriteLine(Path.Combine(Variables.r11Folder, "extras") + " exists. Deleting it.");
+					}
+					catch (Exception ex)
+					{
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					}
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "extras") +
@@ -178,9 +209,6 @@ namespace Rectify11Installer.Core
 
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
-
-				// waits for phase2 to end
-				await Task.Run(() => WaitForPhase2());
 			}
 			await Task.Run(() => AddToControlPanel());
 			InstallStatus.IsRectify11Installed = true;
@@ -223,29 +251,66 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// installs themes
 		/// </summary>
-		private void InstallThemes()
+		private bool InstallThemes()
 		{
 			DirectoryInfo cursors = new(Path.Combine(Variables.r11Folder, "themes", "cursors"));
 			DirectoryInfo[] curdir = cursors.GetDirectories("*", SearchOption.TopDirectoryOnly);
 			DirectoryInfo themedir = new(Path.Combine(Variables.r11Folder, "themes", "themes"));
 			DirectoryInfo[] msstyleDirList = themedir.GetDirectories("*", SearchOption.TopDirectoryOnly);
 			FileInfo[] themefiles = themedir.GetFiles("*.theme");
+
 			if (Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
 			{
-				Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"), true);
+				try
+				{
+					Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"), true);
+					Logger.WriteLine("Deleted " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+				}
+				catch (Exception ex)
+				{
+					Logger.WriteLine("Error deleting" + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+				}
 			}
-			Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+			try
+			{
+				Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+				Logger.WriteLine("Copied wallpapers to " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+			}
+			catch (Exception ex)
+			{
+				Logger.WriteLine("Error copying wallpapers. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+			}
+
 			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
-			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide);
+			Logger.WriteLine("Copied Themetool.");
+			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
 
 			for (int i = 0; i < curdir.Length; i++)
 			{
 				if (Directory.Exists(Path.Combine(Variables.windir, "cursors", curdir[i].Name)))
 				{
-					Directory.Delete(Path.Combine(Variables.windir, "cursors", curdir[i].Name), true);
+					try
+					{
+						Directory.Delete(Path.Combine(Variables.windir, "cursors", curdir[i].Name), true);
+						Logger.WriteLine("Deleted existing cursor directory " + Path.Combine(Variables.windir, "cursors", curdir[i].Name));
+					}
+					catch (Exception ex)
+					{
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.windir, "cursors", curdir[i].Name) + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						return false;
+					}
 				}
-				Directory.Move(curdir[i].FullName, Path.Combine(Variables.windir, "cursors", curdir[i].Name));
+				try
+				{
+					Directory.Move(curdir[i].FullName, Path.Combine(Variables.windir, "cursors", curdir[i].Name));
+					Logger.WriteLine("Copied " + curdir[i].Name + " cursors");
+				}
+				catch (Exception ex)
+				{
+					Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					return false;
+				}
 			}
 			for (int i = 0; i < themefiles.Length; i++)
 			{
@@ -255,10 +320,29 @@ namespace Rectify11Installer.Core
 			{
 				if (Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name)))
 				{
-					Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name), true);
+					try
+					{
+						Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name), true);
+						Logger.WriteLine(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
+					}
+					catch (Exception ex)
+					{
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						return false;
+					}
 				}
-				Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
+				try
+				{
+					Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
+					Logger.WriteLine("Copied " + msstyleDirList[i].Name);
+				}
+				catch (Exception ex)
+				{
+					Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					return false;
+				}
 			}
+			return true;
 		}
 
 		/// <summary>
@@ -284,17 +368,6 @@ namespace Rectify11Installer.Core
 		private void Installasdf()
 		{
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml"), AppWinStyle.Hide);
-		}
-
-		/// <summary>
-		/// waits for phase2 to finish
-		/// </summary>
-		/// <returns>true if phase2 finished</returns>
-		private bool WaitForPhase2()
-		{
-			// Just gave the thing 30 seconds to copy files, should be enough, the while loop was causing issues it seems. 
-			Thread.Sleep(30000);
-			return true;
 		}
 
 		private void LogFile(string file, bool error, Exception? ex)
@@ -463,7 +536,6 @@ namespace Rectify11Installer.Core
 				try
 				{
 					Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
-					Logger.WriteLine("Deleted " + Path.Combine(Variables.r11Folder, "Tmp"));
 				}
 				catch (Exception ex)
 				{
