@@ -690,14 +690,17 @@ namespace Rectify11Installer.Core
 				Psi2.Arguments = " /install /quiet /norestart";
 				Process proc2 = Process.Start(Psi2);
 				proc2.WaitForExit();
-
-				if (proc.ExitCode == 0)
+				if (proc2.HasExited)
 				{
-					return true;
-				}
-				else
-				{
-					return false;
+					Logger.WriteLine("core31.exe exited with error code " + proc2.ExitCode.ToString());
+					if (proc.ExitCode == 0 && proc2.ExitCode == 0)
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
 				}
 			}
 			return false;
