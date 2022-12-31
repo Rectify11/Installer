@@ -129,7 +129,7 @@ namespace Rectify11Installer.Pages
 					else
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme")));
-						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme (Fixed Ribbon)" + '"', RegistryValueKind.String);
+						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme" + '"', RegistryValueKind.String);
 					}
 				}
 				key.Close();
