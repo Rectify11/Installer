@@ -81,7 +81,8 @@ namespace Rectify11Installer.Core
 					return false;
 				}
 				Logger.WriteLine("WriteFiles() succeeded.");
-
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im MicaForEveryone.exe", AppWinStyle.Hide, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micafix.exe", AppWinStyle.Hide, true));
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 				{
 					try
@@ -106,6 +107,20 @@ namespace Rectify11Installer.Core
 					return false;
 				}
 				Logger.WriteLine("InstallThemes() succeeded.");
+				try
+				{
+					if (Directory.Exists(Path.Combine(Variables.windir, "MicaForEveryone")))
+					{
+						await Task.Run(() => Directory.Delete(Path.Combine(Variables.windir, "MicaForEveryone"), true));
+					}
+					await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.windir, "MicaForEveryone")));
+					await Task.Run(() => InstallMfe());
+					Logger.WriteLine("InstallMfe() succeeded.");
+				}
+				catch 
+				{
+					Logger.WriteLine("InstallMfe() failed.");
+				}
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
@@ -425,7 +440,32 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void Installasdf()
 		{
-			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "asdf.xml"), AppWinStyle.Hide);
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "asdf.xml"), AppWinStyle.Hide);
+		}
+
+		/// <summary>
+		/// installs mfe
+		/// </summary>
+		private void InstallMfe()
+		{
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "micafix.xml"), AppWinStyle.Hide);
+			if (Directory.Exists(Path.Combine(GetEnvironmentVariable("localappdata"), "Mica For Everyone")))
+			{
+				Directory.Delete(Path.Combine(GetEnvironmentVariable("localappdata"), "Mica For Everyone"), true);
+			}
+			if (InstallOptions.ThemeLight)
+			{
+				File.Copy(Path.Combine(Variables.windir, "MicaForEveryone", "CONF", "light.conf"), Path.Combine(Variables.windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+			}
+			else if (InstallOptions.ThemeDark)
+			{
+				File.Copy(Path.Combine(Variables.windir, "MicaForEveryone", "CONF", "dark.conf"), Path.Combine(Variables.windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+			}
+			else
+			{
+				File.Copy(Path.Combine(Variables.windir, "MicaForEveryone", "CONF", "black.conf"), Path.Combine(Variables.windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+			}
 		}
 
 		private void LogFile(string file, bool error, Exception? ex)
@@ -626,6 +666,13 @@ namespace Rectify11Installer.Core
 				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
 				  " vcredist.exe", AppWinStyle.Hide, true);
 			}
+			if (!File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
+			{
+				Logger.WriteLine("Extracting core31.exe from extras.7z");
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
+				  " core31.exe", AppWinStyle.Hide, true);
+			}
 			Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
 			ProcessStartInfo Psi = new();
 			Psi.FileName = Path.Combine(Variables.r11Folder, "vcredist.exe");
@@ -636,6 +683,14 @@ namespace Rectify11Installer.Core
 			if (proc.HasExited)
 			{
 				Logger.WriteLine("vcredist.exe exited with error code " + proc.ExitCode.ToString());
+				Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
+				ProcessStartInfo Psi2 = new();
+				Psi2.FileName = Path.Combine(Variables.r11Folder, "core31.exe");
+				Psi2.WindowStyle = ProcessWindowStyle.Hidden;
+				Psi2.Arguments = " /install /quiet /norestart";
+				Process proc2 = Process.Start(Psi2);
+				proc2.WaitForExit();
+
 				if (proc.ExitCode == 0)
 				{
 					return true;
@@ -996,6 +1051,10 @@ namespace Rectify11Installer.Core
 			if (File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
 			{
 				File.Delete(Path.Combine(Variables.r11Folder, "vcredist.exe"));
+			}
+			if (File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
+			{
+				File.Delete(Path.Combine(Variables.r11Folder, "core31.exe"));
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "newfiles.txt")))
 			{
