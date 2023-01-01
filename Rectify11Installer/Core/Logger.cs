@@ -24,5 +24,9 @@ namespace Rectify11Installer.Core
 		{
 			WriteLine("[WARNING] " + v);
 		}
+		public static void Warn(string v, Exception ex)
+		{
+			WriteLine("[WARNING] " + v, ex);
+		}
 	}
 }

@@ -185,6 +185,16 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "files"), ex);
 					}
 				}
+				try
+				{
+					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
+					LogFile("files.7z", false, null);
+				}
+				catch (Exception ex)
+				{
+					LogFile("files.7z", true, ex);
+					return false;
+				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "files") +
 						" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
@@ -203,32 +213,37 @@ namespace Rectify11Installer.Core
 						{
 							decimal number = Math.Round((progress / InstallOptions.iconsList.Count) * 100m);
 							frm.InstallerProgress = "Patching " + patch[i].Mui + " (" + number + "%)";
-							fileList.Add(patch[i].HardlinkTarget);
-							if (!string.IsNullOrWhiteSpace(patch[i].x86))
-							{
-								x86List.Add(patch[i].HardlinkTarget);
-							}
-
 							if (!await Task.Run(() => MatchAndApplyRule(patch[i])))
 							{
-								Logger.WriteLine("MatchAndApplyRule() failed");
-								return false;
+								Logger.Warn("MatchAndApplyRule() on " + patch[i].Mui + " failed");
+							}
+							else
+							{
+								fileList.Add(patch[i].HardlinkTarget);
+								if (!string.IsNullOrWhiteSpace(patch[i].x86))
+								{
+									x86List.Add(patch[i].HardlinkTarget);
+								}
 							}
 							progress++;
 						}
 					}
 				}
+				Logger.WriteLine("MatchAndApplyRule() succeeded");
+
 				if (!await Task.Run(() => WritePendingFiles(fileList, x86List)))
 				{
 					Logger.WriteLine("WritePendingFiles() failed");
 					return false;
 				}
+				Logger.WriteLine("WritePendingFiles() succeeded");
 
 				if (!await Task.Run(() => WriteFiles(true, false)))
 				{
 					Logger.WriteLine("WriteFiles() failed");
 					return false;
 				}
+				Logger.WriteLine("WriteFiles() succeeded");
 
 				frm.InstallerProgress = "Replacing files";
 
@@ -236,8 +251,8 @@ namespace Rectify11Installer.Core
 				if (InstallOptions.iconsList.Contains("SSText3D.scr"))
 				{
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide));
+					Logger.WriteLine("screensaver.reg succeeded");
 				}
-				Logger.WriteLine("3D text screen saver registry succeeded.");
 
 				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
 				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
@@ -246,38 +261,52 @@ namespace Rectify11Installer.Core
 				{
 					if (!await Task.Run(() => IMmcHelper.PatchAll()))
 					{
-						Logger.WriteLine("IMmcHelper.PatchAll() failed.");
+						Logger.WriteLine("IMmcHelper.PatchAll() failed");
 						return false;
 					}
+					Logger.WriteLine("IMmcHelper.PatchAll() succeeded");
 				}
+
 				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
 				{
 					if (!await Task.Run(() => FixOdbc()))
 					{
-						Logger.WriteLine("FixOdbc() failed.");
+						Logger.WriteLine("FixOdbc() failed");
 						return false;
 					}
+					Logger.WriteLine("FixOdbc() succeeded");
 				}
 
 				// phase 2
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + "  /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus));
-				Thread.Sleep(30000);
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + "  /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
+
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
+				Logger.WriteLine("icons.reg succeeded");
+
 			}
 			if (!await Task.Run(() => AddToControlPanel()))
 			{
-				Logger.WriteLine("AddToControlPanel() failed.");
+				Logger.WriteLine("AddToControlPanel() failed");
 				return false;
 			}
+			Logger.WriteLine("AddToControlPanel() succeeded");
+
 			InstallStatus.IsRectify11Installed = true;
+
+			Logger.WriteLine("══════════════════════════════════════════════");
+
 			// cleanup
 			frm.InstallerProgress = "Cleaning up...";
+			Logger.WriteLine("Cleaning up");
+			Logger.WriteLine("───────────");
 			if (!await Task.Run(() => Cleanup()))
 			{
-				Logger.WriteLine("Cleanup() failed.");
+				Logger.WriteLine("Cleanup() failed");
 				return false;
 			}
+			Logger.WriteLine("Cleanup() succeeded");
+			Logger.WriteLine("══════════════════════════════════════════════");
 			return true;
 		}
 		#endregion
@@ -398,7 +427,7 @@ namespace Rectify11Installer.Core
 				try
 				{
 					Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
-					Logger.WriteLine("Copied " + msstyleDirList[i].Name);
+					Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
 				}
 				catch (Exception ex)
 				{
@@ -1039,38 +1068,93 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private bool Cleanup()
 		{
-			// TODO: add error handling
 			if (Directory.Exists(Variables.r11Files))
 			{
-				Directory.Delete(Variables.r11Files, true);
+				try
+				{
+					Directory.Delete(Variables.r11Files, true);
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Variables.r11Files, ex);
+				}
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "files.7z")))
 			{
-				File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "files.7z"), ex);
+				}
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "extras.7z")))
 			{
-				File.Delete(Path.Combine(Variables.r11Folder, "extras.7z"));
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "extras.7z"));
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras.7z"), ex);
+				}
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
 			{
-				File.Delete(Path.Combine(Variables.r11Folder, "vcredist.exe"));
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "vcredist.exe"));
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "vcredist.exe"), ex);
+				}
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
 			{
-				File.Delete(Path.Combine(Variables.r11Folder, "core31.exe"));
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "core31.exe"));
+				}
+				catch (Exception ex) 
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "core31.exe"), ex); 
+				}
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "newfiles.txt")))
 			{
-				File.Delete(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+				}
+				catch (Exception ex) 
+				{ 
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "newfiles.txt"), ex); 
+				}
 			}
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 			{
-				Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
+				try
+				{
+					Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "themes"), ex);
+				}
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "themes.7z")))
 			{
-				File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
+				}
+				catch (Exception ex) 
+				{ 
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "themes.7z"), ex); 
+				}
 			}
 			return true;
 		}
