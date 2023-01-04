@@ -111,11 +111,11 @@ namespace Rectify11Installer.Core
 				Logger.WriteLine("InstallThemes() succeeded.");
 				try
 				{
-					if (Directory.Exists(Path.Combine(Variables.windir, "MicaForEveryone")))
+					if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
 					{
-						await Task.Run(() => Directory.Delete(Path.Combine(Variables.windir, "MicaForEveryone"), true));
+						await Task.Run(() => Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true));
 					}
-					await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.windir, "MicaForEveryone")));
+					await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone")));
 					await Task.Run(() => InstallMfe());
 					Logger.WriteLine("InstallMfe() succeeded.");
 				}
@@ -353,51 +353,51 @@ namespace Rectify11Installer.Core
 			DirectoryInfo[] msstyleDirList = themedir.GetDirectories("*", SearchOption.TopDirectoryOnly);
 			FileInfo[] themefiles = themedir.GetFiles("*.theme");
 
-			if (Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
+			if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
 			{
 				try
 				{
-					Directory.Delete(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"), true);
-					Logger.WriteLine("Deleted " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+					Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), true);
+					Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error deleting" + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error deleting" + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
 				}
 			}
 			try
 			{
-				Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
-				Logger.WriteLine("Copied wallpapers to " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+				Directory.Move(Path.Combine(Variables.r11Folder, "themes", "wallpapers"), Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+				Logger.WriteLine("Copied wallpapers to " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
 			}
 			catch (Exception ex)
 			{
 				Logger.WriteLine("Error copying wallpapers. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
 			}
 
-			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.windir, "ThemeTool.exe"), true);
+			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.Windir, "ThemeTool.exe"), true);
 			Logger.WriteLine("Copied Themetool.");
-			Interaction.Shell(Path.Combine(Variables.windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
+			Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
 
 			for (int i = 0; i < curdir.Length; i++)
 			{
-				if (Directory.Exists(Path.Combine(Variables.windir, "cursors", curdir[i].Name)))
+				if (Directory.Exists(Path.Combine(Variables.Windir, "cursors", curdir[i].Name)))
 				{
 					try
 					{
-						Directory.Delete(Path.Combine(Variables.windir, "cursors", curdir[i].Name), true);
-						Logger.WriteLine("Deleted existing cursor directory " + Path.Combine(Variables.windir, "cursors", curdir[i].Name));
+						Directory.Delete(Path.Combine(Variables.Windir, "cursors", curdir[i].Name), true);
+						Logger.WriteLine("Deleted existing cursor directory " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name));
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Error deleting " + Path.Combine(Variables.windir, "cursors", curdir[i].Name) + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
 						return false;
 					}
 				}
 				try
 				{
-					Directory.Move(curdir[i].FullName, Path.Combine(Variables.windir, "cursors", curdir[i].Name));
+					Directory.Move(curdir[i].FullName, Path.Combine(Variables.Windir, "cursors", curdir[i].Name));
 					Logger.WriteLine("Copied " + curdir[i].Name + " cursors");
 				}
 				catch (Exception ex)
@@ -408,26 +408,26 @@ namespace Rectify11Installer.Core
 			}
 			for (int i = 0; i < themefiles.Length; i++)
 			{
-				File.Copy(themefiles[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", themefiles[i].Name), true);
+				File.Copy(themefiles[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i].Name), true);
 			}
 			for (int i = 0; i < msstyleDirList.Length; i++)
 			{
-				if (Directory.Exists(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name)))
+				if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name)))
 				{
 					try
 					{
-						Directory.Delete(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name), true);
-						Logger.WriteLine(Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
+						Directory.Delete(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), true);
+						Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Error deleting " + Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
 						return false;
 					}
 				}
 				try
 				{
-					Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.windir, "Resources", "Themes", msstyleDirList[i].Name));
+					Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name));
 					Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
 				}
 				catch (Exception ex)
@@ -445,23 +445,23 @@ namespace Rectify11Installer.Core
 		private bool InstallWallpapers()
 		{
 			DirectoryInfo walldir = new(Path.Combine(Variables.r11Folder, "extras", "wallpapers"));
-			if (!Directory.Exists(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified")))
+			if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
 			{
 				try
 				{
-					Directory.CreateDirectory(Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
-					Logger.WriteLine("Created " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified"));
+					Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+					Logger.WriteLine("Created " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error creating " + Path.Combine(Variables.windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
 					return false;
 				}
 			}
 			FileInfo[] files = walldir.GetFiles("*.*");
 			for (int i = 0; i < files.Length; i++)
 			{
-				File.Copy(files[i].FullName, Path.Combine(Variables.windir, "web", "wallpaper", "Rectified", files[i].Name), true);
+				File.Copy(files[i].FullName, Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", files[i].Name), true);
 			}
 			return true;
 		}
@@ -479,14 +479,14 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallMfe()
 		{
-			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
 			if (Win32.NativeMethods.IsArm64())
 			{
-				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "micafixARM64.xml"), AppWinStyle.Hide);
+				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafixARM64.xml"), AppWinStyle.Hide);
 			}
 			else
 			{
-				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "micafixAMD64.xml"), AppWinStyle.Hide);
+				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafixAMD64.xml"), AppWinStyle.Hide);
 			}
 			if (Directory.Exists(Path.Combine(GetEnvironmentVariable("localappdata"), "Mica For Everyone")))
 			{
@@ -494,15 +494,15 @@ namespace Rectify11Installer.Core
 			}
 			if (InstallOptions.ThemeLight)
 			{
-				File.Copy(Path.Combine(Variables.windir, "MicaForEveryone", "CONF", "light.conf"), Path.Combine(Variables.windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "light.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
 			}
 			else if (InstallOptions.ThemeDark)
 			{
-				File.Copy(Path.Combine(Variables.windir, "MicaForEveryone", "CONF", "dark.conf"), Path.Combine(Variables.windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "dark.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
 			}
 			else
 			{
-				File.Copy(Path.Combine(Variables.windir, "MicaForEveryone", "CONF", "black.conf"), Path.Combine(Variables.windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "black.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
 			}
 		}
 
@@ -575,7 +575,7 @@ namespace Rectify11Installer.Core
 				{
 					try
 					{
-						File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_arm64);
+						File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_arm64);
 						LogFile("SecureUXHelper(arm64).exe", false, null);
 					}
 					catch (Exception ex)
@@ -588,7 +588,7 @@ namespace Rectify11Installer.Core
 				{
 					try
 					{
-						File.WriteAllBytes(Path.Combine(Variables.windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_x64);
+						File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_x64);
 						LogFile("SecureUXHelper(x64).exe", false, null);
 					}
 					catch (Exception ex)
@@ -1002,7 +1002,7 @@ namespace Rectify11Installer.Core
 			}
 			else if (patch.HardlinkTarget.Contains("%windirLang%"))
 			{
-				newhardlink = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+				newhardlink = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.Windir, CultureInfo.CurrentUICulture.Name));
 				if (!Patch(newhardlink, patch, PatchType.Mui))
 				{
 					return false;
@@ -1010,7 +1010,7 @@ namespace Rectify11Installer.Core
 			}
 			else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
 			{
-				newhardlink = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+				newhardlink = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.Windir, "en-US"));
 				if (!Patch(newhardlink, patch, PatchType.Mui))
 				{
 					return false;
@@ -1026,7 +1026,7 @@ namespace Rectify11Installer.Core
 			}
 			else if (patch.HardlinkTarget.Contains("%branding%"))
 			{
-				newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
+				newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.BrandingFolder);
 				if (!Patch(newhardlink, patch, PatchType.General))
 				{
 					return false;
@@ -1050,7 +1050,7 @@ namespace Rectify11Installer.Core
 			}
 			else if (patch.HardlinkTarget.Contains("%windir%"))
 			{
-				newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.windir);
+				newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.Windir);
 				if (!Patch(newhardlink, patch, PatchType.General))
 				{
 					return false;

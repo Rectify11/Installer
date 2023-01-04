@@ -69,13 +69,13 @@ namespace Rectify11Installer.Pages
                     }
                     else if (patch[i].HardlinkTarget.Contains("%windirEn-US%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.windir, "en-US"));
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.Windir, "en-US"));
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
                     else if (patch[i].HardlinkTarget.Contains("%windirLang%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.windir, CultureInfo.CurrentUICulture.Name));
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.Windir, CultureInfo.CurrentUICulture.Name));
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
@@ -87,13 +87,13 @@ namespace Rectify11Installer.Pages
                     }
                     else if (patch[i].HardlinkTarget.Contains("%windir%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%windir%", Variables.windir);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%windir%", Variables.Windir);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui);
                     }
                     else if (patch[i].HardlinkTarget.Contains("%branding%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%branding%", Variables.brandingFolder);
+                        string newpath = patch[i].HardlinkTarget.Replace(@"%branding%", Variables.BrandingFolder);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui);
                     }
