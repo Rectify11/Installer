@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using KPreisser.UI;
+using Microsoft.Win32;
 using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
@@ -361,8 +362,13 @@ namespace Rectify11Installer
 		{
 			if (Helper.CheckIfUpdatesPending())
 			{
-				//Navigate(UninstallConfirmPage);
-			}
+                TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can try to run sfc /scannow to revert icon changes.",
+                instruction: "Incompleted Software",
+                title: "Rectify11 Setup",
+                buttons: TaskDialogButtons.OK,
+                icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+                //Navigate(UninstallConfirmPage);
+            }
 		}
 		private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
 		{
