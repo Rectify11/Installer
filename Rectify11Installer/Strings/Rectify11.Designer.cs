@@ -241,6 +241,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Patch Icons.
+        /// </summary>
+        internal static string installIcons {
+            get {
+                return ResourceManager.GetString("installIcons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rectify your current Windows installation..
         /// </summary>
         internal static string installNote {

@@ -265,4 +265,7 @@
   <data name="installASDF" xml:space="preserve">
     <value>Install Accent Colorizer</value>
   </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Patch Icons</value>
+  </data>
 </root>
