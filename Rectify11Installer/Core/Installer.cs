@@ -480,6 +480,14 @@ namespace Rectify11Installer.Core
 		private void InstallMfe()
 		{
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
+			if (Win32.NativeMethods.IsArm64())
+			{
+				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "micafixARM64.xml"), AppWinStyle.Hide);
+			}
+			else
+			{
+				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "micafixAMD64.xml"), AppWinStyle.Hide);
+			}
 			if (Directory.Exists(Path.Combine(GetEnvironmentVariable("localappdata"), "Mica For Everyone")))
 			{
 				Directory.Delete(Path.Combine(GetEnvironmentVariable("localappdata"), "Mica For Everyone"), true);
@@ -494,14 +502,6 @@ namespace Rectify11Installer.Core
 			}
 			else
 			{
-				if (Win32.NativeMethods.IsArm64())
-				{
-					Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "micafixARM64.xml"), AppWinStyle.Hide);
-				}
-				else
-				{
-					Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.windir, "MicaForEveryone", "XML", "micafixAMD64.xml"), AppWinStyle.Hide);
-				}
 				File.Copy(Path.Combine(Variables.windir, "MicaForEveryone", "CONF", "black.conf"), Path.Combine(Variables.windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
 			}
 		}

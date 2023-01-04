@@ -110,43 +110,14 @@ namespace Rectify11Installer.Core
 			}
 			return true;
 		}
-		public static int iconOnlyCount()
-		{
-			if (InstallOptions.iconsList.Contains("themeNode"))
-			{
-				InstallOptions.iconsList.Remove("themeNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("epNode"))
-			{
-				InstallOptions.iconsList.Remove("epNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("winverNode"))
-			{
-				InstallOptions.iconsList.Remove("winverNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("shellNode"))
-			{
-				InstallOptions.iconsList.Remove("shellNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("wallpapersNode"))
-			{
-				InstallOptions.iconsList.Remove("wallpapersNode");
-			}
-
-			int actualCount = InstallOptions.iconsList.Count;
-			return actualCount;
-		}
 		public static StringBuilder FinalText()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			StringBuilder ok = new StringBuilder();
 			ok.AppendLine();
 			ok.AppendLine();
-			if (iconOnlyCount() > 0)
+			FinalizeIRectify11();
+			if (InstallOptions.iconsList.Count > 0)
 			{
 				ok.AppendLine(resources.GetString("installIcons"));
 			}
