@@ -37,7 +37,7 @@
             this.cancelButton = new Rectify11Installer.Controls.WinUIButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.sideImage = new System.Windows.Forms.PictureBox();
-            this.rebootButton = new();
+            this.rebootButton = new Rectify11Installer.Controls.WinUIButton();
             this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
             this.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
