@@ -260,7 +260,7 @@ namespace Rectify11Installer.Core
 					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
-					if (!await Task.Run(() => IMmcHelper.PatchAll()))
+					if (!await Task.Run(() => MMCHelper.PatchAll()))
 					{
 						Logger.WriteLine("IMmcHelper.PatchAll() failed");
 						return false;
@@ -506,12 +506,19 @@ namespace Rectify11Installer.Core
 			}
 		}
 
-		private void LogFile(string file, bool error, Exception? ex)
+		private void LogFile(string file, bool error, Exception ex)
 		{
 			if (error)
 			{
-				Logger.WriteLine("Error while writing " + file + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
-			}
+				if(ex != null)
+				{
+                    Logger.WriteLine("Error while writing " + file + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                }
+				else
+				{
+                    Logger.WriteLine("Error while writing " + file + ". (No exception information)");
+                }
+            }
 			else
 			{
 				Logger.WriteLine("Wrote " + file);

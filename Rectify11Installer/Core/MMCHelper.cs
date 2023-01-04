@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace MMC
 {
-	internal class IMmcHelper
+	internal class MMCHelper
 	{
 		#region Variables
 		private static readonly string backupDir = Path.Combine(Rectify11Installer.Core.Variables.r11Folder, "Backup");
