@@ -118,18 +118,18 @@ namespace Rectify11Installer.Pages
 				{
 					if (InstallOptions.ThemeLight)
 					{
-						await Task.Run(() => Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "lightrectified.theme")));
-						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
+						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme")));
+						key.SetValue("ApplyTheme", Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
 					}
 					else if (InstallOptions.ThemeDark)
 					{
-						await Task.Run(() => Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "darkrectified.theme")));
-						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
+						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme")));
+						key.SetValue("ApplyTheme", Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
 					}
 					else
 					{
-						await Task.Run(() => Process.Start(Path.Combine(Variables.windir, "Resources", "Themes", "black.theme")));
-						key.SetValue("ApplyTheme", Path.Combine(Variables.windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme" + '"', RegistryValueKind.String);
+						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme")));
+						key.SetValue("ApplyTheme", Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme" + '"', RegistryValueKind.String);
 					}
 				}
 				key.Close();
