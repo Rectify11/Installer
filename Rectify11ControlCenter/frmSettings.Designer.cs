@@ -70,12 +70,12 @@ namespace Rectify11ControlCenter
             this.panel1.Controls.Add(this.previewImage);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(846, 213);
+            this.panel1.Size = new System.Drawing.Size(846, 208);
             this.panel1.TabIndex = 1;
             // 
             // deskImg
             // 
-            this.deskImg.Location = new System.Drawing.Point(41, 43);
+            this.deskImg.Location = new System.Drawing.Point(41, 44);
             this.deskImg.Name = "deskImg";
             this.deskImg.Size = new System.Drawing.Size(152, 110);
             this.deskImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -85,7 +85,7 @@ namespace Rectify11ControlCenter
             // r11Ver
             // 
             this.r11Ver.AutoSize = true;
-            this.r11Ver.Location = new System.Drawing.Point(224, 138);
+            this.r11Ver.Location = new System.Drawing.Point(224, 136);
             this.r11Ver.Name = "r11Ver";
             this.r11Ver.Size = new System.Drawing.Size(100, 15);
             this.r11Ver.TabIndex = 5;
@@ -94,7 +94,7 @@ namespace Rectify11ControlCenter
             // themeApplied
             // 
             this.themeApplied.AutoSize = true;
-            this.themeApplied.Location = new System.Drawing.Point(224, 113);
+            this.themeApplied.Location = new System.Drawing.Point(224, 111);
             this.themeApplied.Name = "themeApplied";
             this.themeApplied.Size = new System.Drawing.Size(47, 15);
             this.themeApplied.TabIndex = 4;
@@ -103,7 +103,7 @@ namespace Rectify11ControlCenter
             // pcname
             // 
             this.pcname.AutoSize = true;
-            this.pcname.Location = new System.Drawing.Point(224, 89);
+            this.pcname.Location = new System.Drawing.Point(224, 87);
             this.pcname.Name = "pcname";
             this.pcname.Size = new System.Drawing.Size(57, 15);
             this.pcname.TabIndex = 3;
@@ -112,7 +112,7 @@ namespace Rectify11ControlCenter
             // username
             // 
             this.username.AutoSize = true;
-            this.username.Location = new System.Drawing.Point(224, 65);
+            this.username.Location = new System.Drawing.Point(224, 63);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(63, 15);
             this.username.TabIndex = 2;
@@ -121,7 +121,7 @@ namespace Rectify11ControlCenter
             // OSname
             // 
             this.OSname.AutoSize = true;
-            this.OSname.Location = new System.Drawing.Point(224, 42);
+            this.OSname.Location = new System.Drawing.Point(224, 40);
             this.OSname.Name = "OSname";
             this.OSname.Size = new System.Drawing.Size(67, 15);
             this.OSname.TabIndex = 1;
