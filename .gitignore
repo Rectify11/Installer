@@ -8,6 +8,8 @@ Rectify11Installer/bin/
 Rectify11Installer/obj/
 Rectify11.Phase2/bin/
 Rectify11.Phase2/obj/
+Rectify11ControlCenter/bin/
+Rectify11ControlCenter/obj/
 packages/
 *.db
 *.suo
