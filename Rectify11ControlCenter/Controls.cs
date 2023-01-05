@@ -14,10 +14,18 @@ namespace Rectify11ControlCenter
 {
     public static class Controls
     {
-        //PreviewPane
+        #region Preview Pane
         public static string osV = "OS: " + Microsoft.DotNet.PlatformAbstractions.RuntimeEnvironment.OperatingSystem + " NT Build " + Microsoft.DotNet.PlatformAbstractions.RuntimeEnvironment.OperatingSystemVersion;
         public static string userN = "Username: " + Environment.UserName;
         public static string CumterName = "PC Name: " + Environment.MachineName;
+        public static string appliedthemefile() 
+        {
+            string pathTheme = "";
+            RegistryKey regKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes", false);
+            pathTheme = regKey.GetValue("CurrentTheme").ToString();
+            regKey.Close();
+            return Path.GetFileNameWithoutExtension(pathTheme);
+        }
         public static string theme()
         {
             string pathTheme = "";
@@ -46,6 +54,14 @@ namespace Rectify11ControlCenter
             Image image = Image.FromFile(pathWallpaper);
             return image;
         }
+        #endregion
 
+        #region Main
+        public static string themeSection = "Change Theme";
+        public static string miscSection = "Miscellaneous";
+        public static string mfeChexbox = "Use MicaForEveryone";
+        public static DirectoryInfo themedir = new DirectoryInfo(Path.Combine(Variables.Variables.Windir, "resources", "themes"));
+        public static FileInfo[] themefiles = themedir.GetFiles("*.theme");
+        #endregion
     }
 }
