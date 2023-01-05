@@ -1,3 +1,6 @@
 [submodule "SecureUxHelper"]
 	path = SecureUxHelper
 	url = https://github.com/rounk-ctrl/SecureUxHelper.git
+[submodule "Rectify11ControlCenter"]
+	path = Rectify11ControlCenter
+	url = https://github.com/ojask/Rectify11ControlCenter.git
