@@ -240,6 +240,9 @@
   <data name="installShell" xml:space="preserve">
     <value>Instaluj Nilesoft Shell</value>
   </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Instaluj ikony</value>
+  </data>
   <data name="installThemes" xml:space="preserve">
     <value>Instaluj motywy</value>
   </data>
