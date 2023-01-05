@@ -18,7 +18,7 @@ namespace Rectify11ControlCenter
             OSname.Text = Rectify11ControlCenter.Controls.osV;
             username.Text = Rectify11ControlCenter.Controls.userN;
             pcname.Text = Rectify11ControlCenter.Controls.CumterName;
-            themeApplied.Text = Rectify11ControlCenter.Controls.theme;
+            themeApplied.Text = Rectify11ControlCenter.Controls.theme();
             r11Ver.Text = Rectify11ControlCenter.Controls.r11Version;
             deskImg.Image = Rectify11ControlCenter.Controls.deskimg();
             Rectangle r = new Rectangle(0, 0, deskImg.Width, deskImg.Height);
