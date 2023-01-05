@@ -48,7 +48,7 @@ namespace Rectify11ControlCenter
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 632);
+            this.checkBox1.Location = new System.Drawing.Point(14, 589);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(75, 19);
             this.checkBox1.TabIndex = 0;
@@ -70,7 +70,7 @@ namespace Rectify11ControlCenter
             this.panel1.Controls.Add(this.previewImage);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(899, 213);
+            this.panel1.Size = new System.Drawing.Size(846, 213);
             this.panel1.TabIndex = 1;
             // 
             // deskImg
@@ -141,7 +141,7 @@ namespace Rectify11ControlCenter
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(900, 664);
+            this.ClientSize = new System.Drawing.Size(847, 621);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.checkBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -21,6 +21,14 @@ namespace Rectify11ControlCenter
             themeApplied.Text = Rectify11ControlCenter.Controls.theme;
             r11Ver.Text = Rectify11ControlCenter.Controls.r11Version;
             deskImg.Image = Rectify11ControlCenter.Controls.deskimg();
+            Rectangle r = new Rectangle(0, 0, deskImg.Width, deskImg.Height);
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            int d = 10;
+            gp.AddArc(r.X, r.Y, d, d, 180, 90);
+            gp.AddArc(r.X + r.Width - d, r.Y, d, d, 270, 90);
+            gp.AddArc(r.X + r.Width - d, r.Y + r.Height - d, d, d, 0, 90);
+            gp.AddArc(r.X, r.Y + r.Height - d, d, d, 90, 90);
+            deskImg.Region = new Region(gp);
         }
 
         private void frmSettings_Load(object sender, EventArgs e)
