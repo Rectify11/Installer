@@ -361,6 +361,7 @@
     <None Include="Resources\cp.png" />
     <None Include="Resources\dpi.png" />
     <None Include="Resources\perf.png" />
+    <None Include="Resources\Rectify11ControlCenter.exe" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <None Include="Resources\PsExec64.exe" />
