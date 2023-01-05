@@ -32,12 +32,12 @@ namespace Rectify11ControlCenter
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.themesSec = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.miscSec = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.themePrev = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.deskImg = new System.Windows.Forms.PictureBox();
@@ -80,6 +80,16 @@ namespace Rectify11ControlCenter
             this.themesSec.TabIndex = 2;
             this.themesSec.TabStop = false;
             this.themesSec.Text = "groupBox1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(263, 139);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 24);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "butt";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -128,15 +138,6 @@ namespace Rectify11ControlCenter
             this.miscSec.TabStop = false;
             this.miscSec.Text = "groupBox2";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(263, 139);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 24);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "butt";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // themePrev
             // 
             this.themePrev.Image = global::Rectify11ControlCenter.Properties.Resources.placeholder;
@@ -167,9 +168,9 @@ namespace Rectify11ControlCenter
             // 
             // deskImg
             // 
-            this.deskImg.Location = new System.Drawing.Point(41, 49);
+            this.deskImg.Location = new System.Drawing.Point(37, 36);
             this.deskImg.Name = "deskImg";
-            this.deskImg.Size = new System.Drawing.Size(152, 110);
+            this.deskImg.Size = new System.Drawing.Size(158, 111);
             this.deskImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.deskImg.TabIndex = 6;
             this.deskImg.TabStop = false;
@@ -221,10 +222,11 @@ namespace Rectify11ControlCenter
             // 
             // previewImage
             // 
-            this.previewImage.Image = global::Rectify11ControlCenter.Properties.Resources.PreviewImg;
-            this.previewImage.Location = new System.Drawing.Point(25, 31);
+            this.previewImage.Image = global::Rectify11ControlCenter.Properties.Resources.previewIcon;
+            this.previewImage.Location = new System.Drawing.Point(23, 11);
             this.previewImage.Name = "previewImage";
-            this.previewImage.Size = new System.Drawing.Size(185, 164);
+            this.previewImage.Size = new System.Drawing.Size(185, 185);
+            this.previewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.previewImage.TabIndex = 0;
             this.previewImage.TabStop = false;
             // 
@@ -239,7 +241,9 @@ namespace Rectify11ControlCenter
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.checkBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(813, 640);
             this.Name = "frmSettings";
             this.Text = "Rectify11 Control Center";
@@ -266,7 +270,6 @@ namespace Rectify11ControlCenter
         private System.Windows.Forms.Label themeApplied;
         private System.Windows.Forms.Label pcname;
         private System.Windows.Forms.Label username;
-        private System.Windows.Forms.PictureBox deskImg;
         private System.Windows.Forms.GroupBox themesSec;
         private System.Windows.Forms.GroupBox miscSec;
         private System.Windows.Forms.Label label2;
@@ -275,6 +278,7 @@ namespace Rectify11ControlCenter
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox deskImg;
     }
 }
 

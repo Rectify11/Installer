@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
+using System.Runtime.InteropServices;
+
 namespace Rectify11ControlCenter
 {
     public static class Controls
@@ -44,16 +46,34 @@ namespace Rectify11ControlCenter
                 return s;
             }
         }
-        public static string r11Version = "Rectify11 Version: " + Assembly.GetEntryAssembly().GetName().Version.ToString();
-        public static Image deskimg()
+        public static Image DeskWall(string path)
         {
-            string pathWallpaper = "";
-            RegistryKey regKey = Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop", false);
-            pathWallpaper = regKey.GetValue("WallPaper").ToString();
-            regKey.Close();
-            Image image = Image.FromFile(pathWallpaper);
-            return image;
+            Image img = Properties.Resources.bloom;
+            if (File.Exists(path))
+            {
+                var MyIni = new IniFile(path);
+                string wallpaperPath = MyIni.Read("Wallpaper", @"Control Panel\Desktop");
+                if (wallpaperPath.ToLower().Contains("%systemroot%"))
+                {
+                    wallpaperPath = wallpaperPath.ToLower().Replace("%systemroot%", Environment.GetEnvironmentVariable("systemroot"));
+                }
+                if (wallpaperPath.ToLower().Contains("%resourcedir%"))
+                {
+                    wallpaperPath = wallpaperPath.ToLower().Replace("%resourcedir%", Path.Combine(Environment.GetEnvironmentVariable("systemroot"), "resources"));
+                }
+                if (wallpaperPath.ToLower().Contains("%windir%"))
+                {
+                    wallpaperPath = wallpaperPath.ToLower().Replace("%windir%", Environment.GetEnvironmentVariable("systemroot"));
+                }
+                if (File.Exists(wallpaperPath))
+                {
+                    img = Image.FromFile(wallpaperPath);
+                }
+            }
+            return img;
         }
+
+        public static string r11Version = "Rectify11 Version: " + Assembly.GetEntryAssembly().GetName().Version.ToString();
         #endregion
         #region Main
         public static string themeSection = "Change Theme";
@@ -62,6 +82,7 @@ namespace Rectify11ControlCenter
         public static string applyButton = "Apply";
         public static DirectoryInfo themedir = new DirectoryInfo(Path.Combine(Variables.Variables.Windir, "resources", "themes"));
         public static FileInfo[] themefiles = themedir.GetFiles("*.theme");
+        public static string waitingtxt = "Please wait...";
         #endregion
     }
 }
