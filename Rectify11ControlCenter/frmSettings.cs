@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Rectify11ControlCenter
 {
@@ -21,6 +22,14 @@ namespace Rectify11ControlCenter
             themeApplied.Text = Rectify11ControlCenter.Controls.theme();
             r11Ver.Text = Rectify11ControlCenter.Controls.r11Version;
             deskImg.Image = Rectify11ControlCenter.Controls.deskimg();
+            themesSec.Text = Rectify11ControlCenter.Controls.themeSection;
+            miscSec.Text = Rectify11ControlCenter.Controls.miscSection;
+            checkBox2.Text = Rectify11ControlCenter.Controls.mfeChexbox;
+            for (int i = 0; i < Rectify11ControlCenter.Controls.themefiles.Length; i++)
+            {
+                comboBox1.Items.Add(Path.GetFileNameWithoutExtension(Rectify11ControlCenter.Controls.themefiles[i].FullName));
+            }
+            comboBox1.SelectedItem = Rectify11ControlCenter.Controls.appliedthemefile();
             Rectangle r = new Rectangle(0, 0, deskImg.Width, deskImg.Height);
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             int d = 10;
