@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Rectify11ControlCenter
 {
-    public partial class Form1 : Form
+    public partial class frmSettings : Form
     {
-        public Form1()
+        public frmSettings()
         {
             InitializeComponent();
         }

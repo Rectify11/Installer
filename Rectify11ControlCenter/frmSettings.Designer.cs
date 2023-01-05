@@ -1,7 +1,7 @@
 ﻿
 namespace Rectify11ControlCenter
 {
-    partial class Form1
+    partial class frmSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Rectify11ControlCenter
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
@@ -38,9 +38,9 @@ namespace Rectify11ControlCenter
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 609);
+            this.checkBox1.Location = new System.Drawing.Point(14, 651);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(73, 17);
+            this.checkBox1.Size = new System.Drawing.Size(75, 19);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "chexBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -49,21 +49,25 @@ namespace Rectify11ControlCenter
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackgroundImage = global::Rectify11ControlCenter.Properties.Resources.PreviewPane;
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(875, 214);
+            this.panel1.Size = new System.Drawing.Size(943, 228);
             this.panel1.TabIndex = 1;
             // 
-            // Form1
+            // frmSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(876, 638);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(944, 683);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.checkBox1);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.MinimumSize = new System.Drawing.Size(863, 660);
+            this.Name = "frmSettings";
             this.Text = "Rectify11 Control Center";
             this.ResumeLayout(false);
             this.PerformLayout();
