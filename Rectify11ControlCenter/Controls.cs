@@ -15,8 +15,8 @@ namespace Rectify11ControlCenter
     public static class Controls
     {
         //PreviewPane
-        public static string osV = "OS Version: Windows NT Build " + Environment.OSVersion.Version.ToString();
-        public static string userN = "Username: " + System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+        public static string osV = "OS Version: Windows NT Build " + Environment.OSVersion.Version.Build.ToString();
+        public static string userN = "Username: " + Environment.UserName;
         public static string CumterName = "PC Name: " + Environment.MachineName;
         public static string theme = "Theme: " + "Not implemented";
         public static string r11Version = "Rectify11 Version: " + Assembly.GetEntryAssembly().GetName().Version.ToString();
