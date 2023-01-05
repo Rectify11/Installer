@@ -262,10 +262,10 @@ namespace Rectify11Installer.Core
 				{
 					if (!await Task.Run(() => MMCHelper.PatchAll()))
 					{
-						Logger.WriteLine("IMmcHelper.PatchAll() failed");
+						Logger.WriteLine("MmcHelper.PatchAll() failed");
 						return false;
 					}
-					Logger.WriteLine("IMmcHelper.PatchAll() succeeded");
+					Logger.WriteLine("MmcHelper.PatchAll() succeeded");
 				}
 
 				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
