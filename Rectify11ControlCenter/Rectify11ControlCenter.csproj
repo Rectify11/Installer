@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="r11.ico" />
+    <None Include="Resources\placeholder.jpg" />
     <None Include="Resources\PreviewImg.png" />
     <None Include="Resources\PreviewPane.png" />
   </ItemGroup>
