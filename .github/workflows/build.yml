@@ -19,7 +19,9 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.1.3
     - name: Restore NuGet Packages
-      run: nuget restore Rectify11Installer.sln
+      run: |
+        nuget restore Rectify11Installer.sln
+        nuget restore Rectify11ControlCenter\Rectify11ControlCenter.sln
     - name: Build R11 Control Centre
       run: msbuild Rectify11ControlCenter\Rectify11ControlCenter.sln /p:Configuration=Release
     - name: R11 Control Centre single exe
