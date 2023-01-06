@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace Rectify11Installer.Pages
 {
 	public partial class ProgressPage : WizardPage
@@ -133,6 +132,14 @@ namespace Rectify11Installer.Pages
 					}
 				}
 				key.Close();
+				using ShellLink shortcut = new();
+				shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
+				shortcut.WorkingDirectory = @"%windir%\Rectify11\Rectify11ControlCenter";
+				shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
+				shortcut.IconIndex = 0;
+				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+				shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
+				shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
 			}
 		}
 
