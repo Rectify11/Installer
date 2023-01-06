@@ -496,17 +496,7 @@ namespace Rectify11Installer.Core
 			}
 			Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
 			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
-			using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\run", true);
-			key.SetValue("r11cpl", Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"));
 
-			using ShellLink shortcut = new();
-			shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
-			shortcut.WorkingDirectory = @"%windir%\Rectify11\Rectify11ControlCenter";
-			shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
-			shortcut.IconIndex = 0;
-			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-			shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
-			shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
 		}
 
 		/// <summary>
