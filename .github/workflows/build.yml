@@ -28,18 +28,24 @@ jobs:
         nuget restore Rectify11ControlCenter\Rectify11ControlCenter.sln
     - name: Build R11 Control Centre
       run: msbuild Rectify11ControlCenter\Rectify11ControlCenter.sln /p:Configuration=Release
-    - name: R11 Control Centre single exe
-      run: Rectify11Installer\ILRepack.exe Rectify11ControlCenter\Rectify11ControlCenter\bin\Release\Rectify11ControlCenter.exe /out:Rectify11Installer\Resources\Rectify11ControlCenter.exe Rectify11ControlCenter\Rectify11ControlCenter\bin\Release\Microsoft.DotNet.PlatformAbstractions.dll
     - name: Build Phase2
       run: msbuild Rectify11.Phase2\Rectify11.Phase2.csproj /p:Configuration=Debug
     - name: Build
       run: msbuild Rectify11Installer.sln /p:Configuration=Debug /p:platform=x64
     - name: Create single exe
       run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Debug\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Debug\Rectify11Installer.exe Rectify11Installer\bin\Debug\libmsstyle.dll Rectify11Installer\bin\Debug\TaskDialog.dll
-    - name: Upload a Build Artifact
+    - name: Upload R11ControlCEntre
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        # Artifact name
+        name: R11ControlCEntre (x64)
+        # A file, directory or wildcard pattern that describes what to upload
+        path: Rectify11Installer\Resources\Rectify11ControlCenter.exe
+    - name: Upload Rectify11Installer
       uses: actions/upload-artifact@v3.1.1
       with:
         # Artifact name
         name: Rectify11Installer (x64)
         # A file, directory or wildcard pattern that describes what to upload
         path: Rectify11Installer\bin\output\Debug\Rectify11Installer.exe
+   
