@@ -108,6 +108,10 @@ namespace Rectify11Installer.Core
 			{
 				InstallOptions.iconsList.Remove("wallpapersNode");
 			}
+			if (InstallOptions.iconsList.Contains("asdfNode"))
+			{
+				InstallOptions.iconsList.Remove("asdfNode");
+			}
 			return true;
 		}
 		public static StringBuilder FinalText()
