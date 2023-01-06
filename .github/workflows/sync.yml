@@ -30,7 +30,7 @@ jobs:
 
     - name: Commit update
       run: |
-        git config --global user.name 'Git bot'
+        git config --global user.name 'Github'
         git config --global user.email 'bot@noreply.github.com'
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git commit -am "Auto updated submodule references" && git push || echo "No changes to commit"
+        git commit -am "Updated submodule references" && git push || echo "No changes to commit"
