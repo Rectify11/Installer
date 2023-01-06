@@ -13,10 +13,17 @@ jobs:
       NUGET_CERT_REVOCATION_MODE: offline
     steps:
     - uses: actions/checkout@v3
+      with: 
+        token: ${{ secrets.GITHUB_TOKEN }}
+        submodules: true
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.1.3
     - name: Restore NuGet Packages
       run: nuget restore Rectify11Installer.sln
+    - name: Build R11 Control Centre
+      run: msbuild Rectify11ControlCenter\Rectify11ControlCenter.sln /p:Configuration=Release
+    - name: R11 Control Centre single exe
+      run: Rectify11Installer\ILRepack.exe Rectify11ControlCenter\Rectify11ControlCenter\bin\Release\Rectify11ControlCenter.exe /out:Rectify11Installer\Resources\Rectify11ControlCenter.exe Rectify11ControlCenter\Rectify11ControlCenter\bin\Release\Microsoft.DotNet.PlatformAbstractions.dll
     - name: Build Phase2
       run: msbuild Rectify11.Phase2\Rectify11.Phase2.csproj /p:Configuration=Debug
     - name: Build

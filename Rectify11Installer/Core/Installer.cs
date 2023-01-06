@@ -110,7 +110,6 @@ namespace Rectify11Installer.Core
 					Logger.WriteLine("InstallThemes() failed.");
 					return false;
 				}
-				Logger.WriteLine("InstallThemes() succeeded.");
 				try
 				{
 					if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
@@ -134,6 +133,7 @@ namespace Rectify11Installer.Core
 				{
 					Logger.WriteLine("Installr11cpl() failed.");
 				}
+				Logger.WriteLine("InstallThemes() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
@@ -494,8 +494,9 @@ namespace Rectify11Installer.Core
 			{
 				Directory.Delete(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), true);
 			}
-			Directory.Move(Path.Combine(Variables.r11Folder, "themes", "Rectify11ControlCenter"), Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
-			var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\run", true);
+			Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
+			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
+			using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\run", true);
 			key.SetValue("r11cpl", Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"));
 
 			using ShellLink shortcut = new();
