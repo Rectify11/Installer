@@ -262,4 +262,10 @@
   <data name="exitText" xml:space="preserve">
     <value>Czy chcesz anulować instalację Rectify11?</value>
   </data>
-</root>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Uruchom ponownie</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Instaluj Accent Colorizer</value>
+  </data>
+ </root>
