@@ -1,4 +1,3 @@
-using System;﻿
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Core;
@@ -141,8 +140,8 @@ namespace Rectify11Installer.Pages
 				shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
 				shortcut.IconIndex = 0;
 				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-				shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
-				shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
+				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
+				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
 			}
 		}
 
