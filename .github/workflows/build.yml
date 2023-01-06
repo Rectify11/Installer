@@ -5,6 +5,10 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_run:
+    workflows: ["Submodules Sync"]
+    types:
+      - completed
 
 jobs:
   build:
