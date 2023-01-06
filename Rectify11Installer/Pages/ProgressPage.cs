@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+using System;﻿
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Core;
 using System;
