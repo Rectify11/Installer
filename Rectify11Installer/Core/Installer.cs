@@ -82,9 +82,11 @@ namespace Rectify11Installer.Core
 					return false;
 				}
 				Logger.WriteLine("WriteFiles() succeeded.");
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im MicaForEveryone.exe", AppWinStyle.Hide, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micaforeveryone.exe", AppWinStyle.Hide, true));
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micafix.exe", AppWinStyle.Hide, true));
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorerframe.exe", AppWinStyle.Hide, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn mfe", AppWinStyle.Hide));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn micafix", AppWinStyle.Hide));
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
 				{
 					try
@@ -108,7 +110,6 @@ namespace Rectify11Installer.Core
 					Logger.WriteLine("InstallThemes() failed.");
 					return false;
 				}
-				Logger.WriteLine("InstallThemes() succeeded.");
 				try
 				{
 					if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
@@ -123,6 +124,16 @@ namespace Rectify11Installer.Core
 				{
 					Logger.WriteLine("InstallMfe() failed.");
 				}
+				try
+				{
+					await Task.Run(() => Installr11cpl());
+					Logger.WriteLine("Installr11cpl() succeeded.");
+				}
+				catch
+				{
+					Logger.WriteLine("Installr11cpl() failed.");
+				}
+				Logger.WriteLine("InstallThemes() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
@@ -262,10 +273,10 @@ namespace Rectify11Installer.Core
 				{
 					if (!await Task.Run(() => MMCHelper.PatchAll()))
 					{
-						Logger.WriteLine("IMmcHelper.PatchAll() failed");
+						Logger.WriteLine("MmcHelper.PatchAll() failed");
 						return false;
 					}
-					Logger.WriteLine("IMmcHelper.PatchAll() succeeded");
+					Logger.WriteLine("MmcHelper.PatchAll() succeeded");
 				}
 
 				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
@@ -475,6 +486,20 @@ namespace Rectify11Installer.Core
 		}
 
 		/// <summary>
+		/// installs control center
+		/// </summary>
+		private void Installr11cpl()
+		{
+			if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
+			{
+				Directory.Delete(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), true);
+			}
+			Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
+			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
+
+		}
+
+		/// <summary>
 		/// installs mfe
 		/// </summary>
 		private void InstallMfe()
@@ -494,11 +519,11 @@ namespace Rectify11Installer.Core
 			}
 			if (InstallOptions.ThemeLight)
 			{
-				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "light.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "lightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
 			}
 			else if (InstallOptions.ThemeDark)
 			{
-				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "dark.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "darkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
 			}
 			else
 			{
