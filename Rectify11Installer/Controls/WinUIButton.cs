@@ -71,7 +71,7 @@ namespace Rectify11Installer.Controls
 			Bitmap buttonImage = null;
 
 			//Hack to fix black borders, but we lose transpancy
-			args.Graphics.Clear(Color.White);
+			args.Graphics.Clear(Theme.IsUsingDarkMode ? Color.White : Color.Black);
 
 			VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
 
