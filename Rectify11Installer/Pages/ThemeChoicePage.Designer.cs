@@ -35,6 +35,8 @@
             this.themeSelection = new Rectify11Installer.Controls.DarkAwareLabel();
             this.patcherSelection = new Rectify11Installer.Controls.DarkAwareLabel();
             this.ultraRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
+            this.randomCheckbox1 = new();
+            this.randomCheckbox2 = new();
             this.secureRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
             this.themeSel = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
@@ -66,6 +68,26 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(342, 98);
             this.tableLayoutPanel1.TabStop = false;
+            //
+            // randomCheckbox2
+            //
+            this.randomCheckbox2.ForeColor = System.Drawing.Color.Black;
+            this.randomCheckbox2.Location = new System.Drawing.Point(4, 218);
+            this.randomCheckbox2.Name = "randomCheckbox2";
+            this.randomCheckbox2.Size = new System.Drawing.Size(288, 19);
+            this.randomCheckbox2.TabIndex = 5;
+            this.randomCheckbox2.Text = "I LOVE LGBTQ";
+            this.randomCheckbox2.UseVisualStyleBackColor = true;
+            //
+            // randomCheckbox1
+            //
+            this.randomCheckbox1.ForeColor = System.Drawing.Color.Black;
+            this.randomCheckbox1.Location = new System.Drawing.Point(4, 198);
+            this.randomCheckbox1.Name = "randomCheckbox1";
+            this.randomCheckbox1.Size = new System.Drawing.Size(288, 19);
+            this.randomCheckbox1.TabIndex = 5;
+            this.randomCheckbox1.Text = "LG";
+            this.randomCheckbox1.UseVisualStyleBackColor = true;
             // 
             // themeTitle
             // 
@@ -103,6 +125,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.themeTitle);
             this.Controls.Add(this.themeSel);
+            this.Controls.Add(this.randomCheckbox1);
+            this.Controls.Add(this.randomCheckbox2);
             this.Controls.Add(this.themeSelection);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ThemeChoicePage";
@@ -120,6 +144,8 @@
         private System.Windows.Forms.PictureBox themePreview;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Controls.DarkAwareLabel themeTitle;
+        private Controls.DarkAwareCheckBox randomCheckbox1;
+        private Controls.DarkAwareCheckBox randomCheckbox2;
         private Controls.DarkAwareLabel themeSelection;
         private Controls.DarkAwareLabel patcherSelection;
         private Controls.DarkAwareRadioButton ultraRadio;
