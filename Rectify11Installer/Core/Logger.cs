@@ -6,7 +6,11 @@ namespace Rectify11Installer.Core
 {
 	public class Logger
 	{
-		private static string Text = "═════════════════════════\nSTART: " + DateTime.Now.ToString() + "\nRectify11 Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + "\n═════════════════════════\n";
+		private static string Text =
+			"═════════════════════════════\nSTART: "
+			+ DateTime.Now.ToString()
+			+ "\nRectify11 Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString()
+			+ "\n═════════════════════════════\n";
 		public static void WriteLine(string s)
 		{
 			Text += s + "\n";

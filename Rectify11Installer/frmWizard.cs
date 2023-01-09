@@ -6,7 +6,6 @@ using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -29,12 +28,24 @@ namespace Rectify11Installer
 		}
 		public bool ShowRebootButton
 		{
-			get { return rebootButton.Visible; }
-			set { rebootButton.Visible = value; }
+			get { return tableLayoutPanel2.Visible; }
+			set
+			{
+				nextButton.Visible = false;
+				progressLabel.Location = new Point(progressLabel.Location.X, progressLabel.Location.Y - 30);
+				pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - 30);
+				cancelButton.ButtonText = resources.GetString("buttonReboot");
+				cancelButton.Click -= CancelButton_Click;
+				tableLayoutPanel2.Visible = true;
+				if (!Theme.IsUsingDarkMode)
+				{
+					DarkMode.UpdateFrame(this, true);
+				}
+			}
 		}
 		public EventHandler SetRebootHandler
 		{
-			set { rebootButton.Click += value; }
+			set { cancelButton.Click += value; }
 		}
 		private System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 		#endregion
@@ -207,6 +218,7 @@ namespace Rectify11Installer
 				{
 					Logger.CommitLog();
 					MessageBox.Show("Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder + "installer.log") + ", and report it to rectify11 development server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Application.Exit();
 				}
 				else
 				{
@@ -362,13 +374,13 @@ namespace Rectify11Installer
 		{
 			if (Helper.CheckIfUpdatesPending())
 			{
-                TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can try to run sfc /scannow to revert icon changes.",
-                instruction: "Incompleted Software",
-                title: "Rectify11 Setup",
-                buttons: TaskDialogButtons.OK,
-                icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-                //Navigate(UninstallConfirmPage);
-            }
+				TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can try to run sfc /scannow to revert icon changes.",
+				instruction: "Incompleted Software",
+				title: "Rectify11 Setup",
+				buttons: TaskDialogButtons.OK,
+				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+				//Navigate(UninstallConfirmPage);
+			}
 		}
 		private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
 		{
@@ -390,8 +402,8 @@ namespace Rectify11Installer
 							BackColor = Color.White;
 							ForeColor = Color.Black;
 						}
-						this.Invalidate(true);
-						this.Update();
+						Invalidate(true);
+						Update();
 					}
 					break;
 			}

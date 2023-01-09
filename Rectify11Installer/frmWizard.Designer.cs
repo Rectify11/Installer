@@ -37,7 +37,6 @@
             this.cancelButton = new Rectify11Installer.Controls.WinUIButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.sideImage = new System.Windows.Forms.PictureBox();
-            this.rebootButton = new Rectify11Installer.Controls.WinUIButton();
             this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
             this.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
@@ -59,6 +58,34 @@
             this.navPane.SuspendLayout();
             this.SuspendLayout();
             // 
+            // headerText
+            // 
+            this.headerText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.headerText.BackColor = System.Drawing.Color.Transparent;
+            this.headerText.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerText.ForeColor = System.Drawing.Color.Black;
+            this.headerText.Location = new System.Drawing.Point(48, 0);
+            this.headerText.Name = "headerText";
+            this.headerText.Size = new System.Drawing.Size(578, 45);
+            this.headerText.TabIndex = 1;
+            this.headerText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // navBackButton
+            // 
+            this.navBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.navBackButton.BackColor = System.Drawing.Color.Transparent;
+            this.navBackButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.navBackButton.Location = new System.Drawing.Point(3, 3);
+            this.navBackButton.Name = "navBackButton";
+            this.navBackButton.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
+            this.navBackButton.Size = new System.Drawing.Size(39, 39);
+            this.navBackButton.TabIndex = 2;
+            this.navBackButton.Text = "navigationButton2";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -76,33 +103,31 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(644, 45);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // headerText
+            // nextButton
             // 
-            this.headerText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.headerText.BackColor = System.Drawing.Color.Transparent;
-            this.headerText.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerText.ForeColor = System.Drawing.Color.Black;
-            this.headerText.Location = new System.Drawing.Point(48, 0);
-            this.headerText.Name = "headerText";
-            this.headerText.Size = new System.Drawing.Size(578, 45);
-            this.headerText.TabIndex = 1;
-            this.headerText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.nextButton.BackColor = System.Drawing.Color.Transparent;
+            this.nextButton.ButtonText = resources.GetString("buttonNext");
+            this.nextButton.ForeColor = System.Drawing.Color.Black;
+            this.nextButton.Location = new System.Drawing.Point(456, 9);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(72, 27);
+            this.nextButton.TabIndex = 1;
             // 
-            // navBackButton
+            // cancelButton
             // 
-            this.navBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.navBackButton.BackColor = System.Drawing.Color.Transparent;
-            this.navBackButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.navBackButton.Location = new System.Drawing.Point(3, 3);
-            this.navBackButton.Name = "navBackButton";
-            this.navBackButton.NavigationButtonType = Rectify11Installer.Controls.NavigationButtonType.Backward;
-            this.navBackButton.Size = new System.Drawing.Size(39, 39);
-            this.navBackButton.TabIndex = 2;
-            this.navBackButton.Text = "navigationButton2";
+            this.cancelButton.BackColor = System.Drawing.Color.Transparent;
+            this.cancelButton.ButtonText = resources.GetString("buttonCancel");
+            this.cancelButton.ForeColor = System.Drawing.Color.Black;
+            this.cancelButton.Location = new System.Drawing.Point(534, 9);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(72, 27);
+            this.cancelButton.TabIndex = 2;
             // 
             // tableLayoutPanel2
             // 
@@ -125,49 +150,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(644, 45);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // nextButton
-            // 
-            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextButton.BackColor = System.Drawing.Color.Transparent;
-            this.nextButton.ButtonText = resources.GetString("buttonNext");
-            this.nextButton.ForeColor = System.Drawing.Color.Black;
-            this.nextButton.Location = new System.Drawing.Point(456, 9);
-            this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(72, 27);
-            this.nextButton.TabIndex = 1;
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.BackColor = System.Drawing.Color.Transparent;
-            this.cancelButton.ButtonText = resources.GetString("buttonCancel");
-            this.cancelButton.ForeColor = System.Drawing.Color.Black;
-            this.cancelButton.Location = new System.Drawing.Point(534, 9);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(72, 27);
-            this.cancelButton.TabIndex = 2;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56F));
-            this.tableLayoutPanel3.Controls.Add(this.sideImage, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.navPane, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 48);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(644, 348);
-            this.tableLayoutPanel3.TabIndex = 3;
-            // 
             // sideImage
             // 
             this.sideImage.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -181,8 +163,8 @@
             // 
             // navPane
             // 
-            this.navPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.navPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.navPane.Controls.Add(this.wlcmPage);
             this.navPane.Controls.Add(this.eulPage);
@@ -200,6 +182,23 @@
             this.navPane.SelectedIndex = 0;
             this.navPane.Size = new System.Drawing.Size(361, 342);
             this.navPane.TabIndex = 1;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56F));
+            this.tableLayoutPanel3.Controls.Add(this.sideImage, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.navPane, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 48);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(644, 348);
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
             // wlcmPage
             // 
@@ -301,20 +300,6 @@
             this.versionLabel.Size = new System.Drawing.Size(52, 15);
             this.versionLabel.TabIndex = 3;
             this.versionLabel.Text = resources.GetString("Version");
-            //
-            // rebootButton
-            //
-            rebootButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
-            rebootButton.BackColor = System.Drawing.Color.Transparent;
-            rebootButton.ButtonText = resources.GetString("buttonReboot");
-            rebootButton.ForeColor = System.Drawing.Color.Black;
-            rebootButton.Location = new System.Drawing.Point(534, 390);
-            rebootButton.Name = "rebootButton";
-            rebootButton.Size = new System.Drawing.Size(78, 32);
-            rebootButton.TabIndex = 1;
-            rebootButton.Visible = false;
             // 
             // pictureBox1
             // 
@@ -351,7 +336,6 @@
             this.ClientSize = new System.Drawing.Size(644, 447);
             this.Controls.Add(this.progressLabel);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.rebootButton);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.versionLabel);
@@ -393,7 +377,6 @@
         private Controls.DarkAwareTabPage eulPage;
         private Controls.DarkAwareTabPage expPage;
         private Controls.DarkAwareLabel versionLabel;
-        private Controls.WinUIButton rebootButton;
         private Controls.DarkAwareLabel progressLabel;
         public Controls.WinUIButton nextButton;
         private System.Windows.Forms.PictureBox pictureBox1;
