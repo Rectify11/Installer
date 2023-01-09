@@ -123,7 +123,44 @@ namespace Rectify11Installer
 
 			return null;
 		}
+#nullable enable
+		public static StylePart? GetProgressbarBG(VisualStyle v)
+		{
+			foreach (var classes in v.Classes.Values)
+			{
+				if (classes.ClassName == "Progress")
+				{
+					foreach (var parts in classes.Parts)
+					{
+						if (parts.Value.PartName == "BAR")
+						{
+							return parts.Value;
+						}
+					}
+				}
+			}
 
+			return null;
+		}
+		public static StylePart? GetProgressbarFill(VisualStyle v)
+		{
+			foreach (var classes in v.Classes.Values)
+			{
+				if (classes.ClassName == "Progress")
+				{
+					foreach (var parts in classes.Parts)
+					{
+						if (parts.Value.PartName == "FILL")
+						{
+							return parts.Value;
+						}
+					}
+				}
+			}
+
+			return null;
+		}
+#nullable disable
 		public static StylePart GetButtonPart(VisualStyle v)
 		{
 			foreach (var classes in v.Classes.Values)

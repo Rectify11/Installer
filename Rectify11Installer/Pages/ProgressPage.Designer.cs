@@ -31,6 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			this.progressText = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.progressInfo = new Rectify11Installer.Controls.DarkAwareLabel();
+			//this.progressBar1 = new Rectify11Installer.Controls.CustomProgressBar();
 			this.timer1 = new System.Windows.Forms.Timer();
 			this.SuspendLayout();
 			// 
@@ -66,6 +67,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			//this.Controls.Add(this.progressBar1);
 			this.Controls.Add(this.progressText);
 			this.Controls.Add(this.progressInfo);
 			this.Name = "ProgressPage";

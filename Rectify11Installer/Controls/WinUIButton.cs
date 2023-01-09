@@ -100,6 +100,8 @@ namespace Rectify11Installer.Controls
 				case ButtonState.Pressed:
 					tpart = ThemeParts.Pressed;
 					break;
+				case ButtonState.Focused:
+					break;
 				default:
 					tpart = ThemeParts.Normal;
 					break;
@@ -129,15 +131,14 @@ namespace Rectify11Installer.Controls
 			//TextRenderer.DrawText(args.Graphics, _ButtonText, Font, new Point(Width + 3, this.Height / 2), ForeColor, flags);
 
 			var hdc = args.Graphics.GetHdc();
-			VisualStyleRenderer renderer = new VisualStyleRenderer(VisualStyleElement.Window.Caption.Active);
+			VisualStyleRenderer renderer = new(VisualStyleElement.Window.Caption.Active);
 
 			IntPtr memoryHdc = NativeMethods.CreateCompatibleDC(hdc);
 
 			var bounds = ClientRectangle;
 
-
 			// Create a device-independent bitmap and select it into our DC
-			NativeMethods.BITMAPINFO info = new NativeMethods.BITMAPINFO();
+			NativeMethods.BITMAPINFO info = new();
 			info.biSize = Marshal.SizeOf(info);
 			info.biWidth = buttonImage.Width;
 			info.biHeight = -buttonImage.Height;
@@ -260,7 +261,6 @@ namespace Rectify11Installer.Controls
 
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
-
 		}
 	}
 }

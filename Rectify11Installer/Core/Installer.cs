@@ -767,6 +767,10 @@ namespace Rectify11Installer.Core
 					{
 						return true;
 					}
+					else if (proc.ExitCode == 0 && proc2.ExitCode == 1638)
+					{
+						return true;
+					}
 					else
 					{
 						return false;
