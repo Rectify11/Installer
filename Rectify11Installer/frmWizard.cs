@@ -231,17 +231,13 @@ namespace Rectify11Installer
 		#region Private Methods
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
-			// will be replaced with taskdialog.
-			DialogResult ok = MessageBox.Show(resources.GetString("exitText"), resources.GetString("Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-			if (ok == DialogResult.Yes)
-			{
-				Application.Exit();
-			}
+			Application.Exit();
 		}
 		private void frmWizard_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (!Variables.isInstall)
 			{
+				// will be replaced with taskdialog.
 				DialogResult ok = MessageBox.Show(resources.GetString("exitText"), resources.GetString("Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 				if (ok == DialogResult.No)
 				{
