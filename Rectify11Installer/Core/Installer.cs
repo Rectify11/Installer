@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using MMC;
+using SevenZipExtractor;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -99,10 +100,8 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ", ex);
 					}
 				}
-
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
-						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
+				using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "themes.7z"));
+				archiveFile.Extract(Path.Combine(Variables.r11Folder, "themes"));
 				Logger.WriteLine("Extracted themes.7z");
 
 				if (!await Task.Run(() => InstallThemes()))
@@ -156,9 +155,9 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
 					}
 				}
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-						" x -o" + Path.Combine(Variables.r11Folder, "extras") +
-						" " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
+				using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "extras.7z"));
+				archiveFile.Extract(Path.Combine(Variables.r11Folder, "extras"));
+				Logger.WriteLine("Extracted extras.7z");
 				if (InstallOptions.InstallWallpaper)
 				{
 					if (!await Task.Run(() => InstallWallpapers()))
@@ -207,9 +206,9 @@ namespace Rectify11Installer.Core
 					LogFile("files.7z", true, ex);
 					return false;
 				}
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-						" x -o" + Path.Combine(Variables.r11Folder, "files") +
-						" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
+				using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "files.7z"));
+				archiveFile.Extract(Path.Combine(Variables.r11Folder, "files"));
+				Logger.WriteLine("Extracted files.7z");
 
 				// Get all patches
 				Patches patches = PatchesParser.GetAll();
@@ -625,19 +624,6 @@ namespace Rectify11Installer.Core
 			}
 			if (!themes && !icons)
 			{
-				if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
-				{
-					try
-					{
-						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
-						LogFile("7za.exe", false, null);
-					}
-					catch (Exception ex)
-					{
-						LogFile("7za.exe", true, ex);
-						return false;
-					}
-				}
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
@@ -729,19 +715,36 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private bool InstallRuntimes()
 		{
+			using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "extras.7z"));
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
 			{
 				Logger.WriteLine("Extracting vcredist.exe from extras.7z");
-				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
-				  " vcredist.exe", AppWinStyle.Hide, true);
+				archiveFile.Extract(entry =>
+				{
+					if (entry.FileName.Contains("vcredist.exe"))
+					{
+						return Path.Combine(Variables.r11Folder, entry.FileName);
+					}
+					else
+					{
+						return null;
+					}
+				});
 			}
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
 			{
 				Logger.WriteLine("Extracting core31.exe from extras.7z");
-				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
-				  " core31.exe", AppWinStyle.Hide, true);
+				archiveFile.Extract(entry =>
+				{
+					if (entry.FileName.Contains("core31.exe"))
+					{
+						return Path.Combine(Variables.r11Folder, entry.FileName);
+					}
+					else
+					{
+						return null;
+					}
+				});
 			}
 			Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
 			ProcessStartInfo Psi = new();
@@ -763,11 +766,8 @@ namespace Rectify11Installer.Core
 				if (proc2.HasExited)
 				{
 					Logger.WriteLine("core31.exe exited with error code " + proc2.ExitCode.ToString());
-					if (proc.ExitCode == 0 && proc2.ExitCode == 0)
-					{
-						return true;
-					}
-					else if (proc.ExitCode == 0 && proc2.ExitCode == 1638)
+					if ((proc.ExitCode == 0 || proc.ExitCode == 3010) 
+						&& (proc2.ExitCode == 0 || proc2.ExitCode == 1638))
 					{
 						return true;
 					}
