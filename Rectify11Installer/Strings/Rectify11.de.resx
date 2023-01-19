@@ -193,7 +193,7 @@
     <value>Mica in der Navigationsleiste des Explorers anzeigen</value>
   </data>
   <data name="epHeader" xml:space="preserve">
-    <value>Personalisieren Sie hren Desktop</value>
+    <value>Personalisieren Sie Ihren Desktop</value>
   </data>
   <data name="epTitle" xml:space="preserve">
     <value>Wählen Sie Ihre bevorzugte Desktop-Erfahrung</value>
@@ -258,5 +258,14 @@
   </data>
   <data name="exitText" xml:space="preserve">
     <value>Sind Sie sicher, dass Sie die Installation abbrechen möchten?</value>
+  </data>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Jetzt neu starten</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Accent Colorizer installieren</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Icons patchen</value>
   </data>
 </root>
