@@ -1,3 +1,4 @@
+using KPreisser.UI;
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Core;
@@ -103,7 +104,10 @@ namespace Rectify11Installer.Pages
 			}
 			catch
 			{
-				MessageBox.Show("deleting icon cache failed");
+				TaskDialog.Show(text: "deleting icon cache failed",
+					title: "Rectify11 Setup",
+					buttons: TaskDialogButtons.OK,
+					icon: TaskDialogStandardIcon.Information);
 			}
 		}
 
