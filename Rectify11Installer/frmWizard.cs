@@ -217,7 +217,10 @@ namespace Rectify11Installer
 				if (!await installer.Install(this))
 				{
 					Logger.CommitLog();
-					MessageBox.Show("Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder + "installer.log") + ", and report it to rectify11 development server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder + "installer.log") + ", and report it to rectify11 development server",
+						title: "Error",
+						buttons: TaskDialogButtons.OK,
+						icon: TaskDialogStandardIcon.Error);
 					Application.Exit();
 				}
 				else
@@ -237,9 +240,11 @@ namespace Rectify11Installer
 		{
 			if (!Variables.isInstall)
 			{
-				// will be replaced with taskdialog.
-				DialogResult ok = MessageBox.Show(resources.GetString("exitText"), resources.GetString("Title"), MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-				if (ok == DialogResult.No)
+				TaskDialogResult ok = TaskDialog.Show(text: resources.GetString("exitText"),
+					title: resources.GetString("Title"),
+					buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
+					icon: TaskDialogStandardIcon.Information);
+				if (ok == TaskDialogResult.No)
 				{
 					e.Cancel = true;
 				}
