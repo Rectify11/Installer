@@ -1,14 +1,14 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using MMC;
-using SevenZipExtractor;
+using SharpCompress.Archives;
+using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using vbAccelerator.Components.Shell;
@@ -100,8 +100,13 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ", ex);
 					}
 				}
-				using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "themes.7z"));
-				archiveFile.Extract(Path.Combine(Variables.r11Folder, "themes"));
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
+				{
+					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "themes"));
+				}
+				var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "themes.7z"));
+				await Task.Run(() => archive.WriteToDirectory(Path.Combine(Variables.r11Folder, "themes"), new ExtractionOptions() { ExtractFullPath = true }));
+				archive.Dispose();
 				Logger.WriteLine("Extracted themes.7z");
 
 				if (!await Task.Run(() => InstallThemes()))
@@ -119,7 +124,7 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => InstallMfe());
 					Logger.WriteLine("InstallMfe() succeeded.");
 				}
-				catch 
+				catch
 				{
 					Logger.WriteLine("InstallMfe() failed.");
 				}
@@ -155,8 +160,13 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
 					}
 				}
-				using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "extras.7z"));
-				archiveFile.Extract(Path.Combine(Variables.r11Folder, "extras"));
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
+				{
+					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "extras"));
+				}
+				var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "extras.7z"));
+				await Task.Run(() => archive.WriteToDirectory(Path.Combine(Variables.r11Folder, "extras"), new ExtractionOptions() { ExtractFullPath = true }));
+				archive.Dispose();
 				Logger.WriteLine("Extracted extras.7z");
 				if (InstallOptions.InstallWallpaper)
 				{
@@ -206,8 +216,13 @@ namespace Rectify11Installer.Core
 					LogFile("files.7z", true, ex);
 					return false;
 				}
-				using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "files.7z"));
-				archiveFile.Extract(Path.Combine(Variables.r11Folder, "files"));
+				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
+				{
+					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "files"));
+				}
+				var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "files.7z"));
+				await Task.Run(() => archive.WriteToDirectory(Path.Combine(Variables.r11Folder, "files"), new ExtractionOptions() { ExtractFullPath = true }));
+				archive.Dispose();
 				Logger.WriteLine("Extracted files.7z");
 
 				// Get all patches
@@ -289,7 +304,10 @@ namespace Rectify11Installer.Core
 				}
 
 				// phase 2
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe") + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"' + "  /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
+					+ " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
+					+ " /CommandLine " + "\'" + "/install" + "\'"
+					+ " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 
 				// reg files for various file extensions
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
@@ -534,15 +552,15 @@ namespace Rectify11Installer.Core
 		{
 			if (error)
 			{
-				if(ex != null)
+				if (ex != null)
 				{
-                    Logger.WriteLine("Error while writing " + file + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
-                }
+					Logger.WriteLine("Error while writing " + file + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+				}
 				else
 				{
-                    Logger.WriteLine("Error while writing " + file + ". (No exception information)");
-                }
-            }
+					Logger.WriteLine("Error while writing " + file + ". (No exception information)");
+				}
+			}
 			else
 			{
 				Logger.WriteLine("Wrote " + file);
@@ -715,37 +733,36 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private bool InstallRuntimes()
 		{
-			using ArchiveFile archiveFile = new(Path.Combine(Variables.r11Folder, "extras.7z"));
+			var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "extras.7z"));
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
 			{
 				Logger.WriteLine("Extracting vcredist.exe from extras.7z");
-				archiveFile.Extract(entry =>
+				foreach (var entry in archive.Entries)
 				{
-					if (entry.FileName.Contains("vcredist.exe"))
+					if (!entry.IsDirectory)
 					{
-						return Path.Combine(Variables.r11Folder, entry.FileName);
+						if (entry.Key.Contains("vcredist.exe"))
+						{
+							entry.WriteToFile(Path.Combine(Variables.r11Folder, entry.Key));
+						}
 					}
-					else
-					{
-						return null;
-					}
-				});
+				}
 			}
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
 			{
 				Logger.WriteLine("Extracting core31.exe from extras.7z");
-				archiveFile.Extract(entry =>
+				foreach (var entry in archive.Entries)
 				{
-					if (entry.FileName.Contains("core31.exe"))
+					if (!entry.IsDirectory)
 					{
-						return Path.Combine(Variables.r11Folder, entry.FileName);
+						if (entry.Key.Contains("core31.exe"))
+						{
+							entry.WriteToFile(Path.Combine(Variables.r11Folder, entry.Key));
+						}
 					}
-					else
-					{
-						return null;
-					}
-				});
+				}
 			}
+			archive.Dispose();
 			Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
 			ProcessStartInfo Psi = new();
 			Psi.FileName = Path.Combine(Variables.r11Folder, "vcredist.exe");
@@ -766,7 +783,7 @@ namespace Rectify11Installer.Core
 				if (proc2.HasExited)
 				{
 					Logger.WriteLine("core31.exe exited with error code " + proc2.ExitCode.ToString());
-					if ((proc.ExitCode == 0 || proc.ExitCode == 3010) 
+					if ((proc.ExitCode == 0 || proc.ExitCode == 3010)
 						&& (proc2.ExitCode == 0 || proc2.ExitCode == 1638))
 					{
 						return true;
@@ -1156,15 +1173,37 @@ namespace Rectify11Installer.Core
 					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "vcredist.exe"), ex);
 				}
 			}
+			if (File.Exists(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe")))
+			{
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"));
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"), ex);
+				}
+			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
 			{
 				try
 				{
 					File.Delete(Path.Combine(Variables.r11Folder, "core31.exe"));
 				}
-				catch (Exception ex) 
+				catch (Exception ex)
 				{
-					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "core31.exe"), ex); 
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "core31.exe"), ex);
+				}
+			}
+			if (File.Exists(Path.Combine(Variables.r11Folder, "extras", "core31.exe")))
+			{
+				try
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "extras", "core31.exe"));
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras", "core31.exe"), ex);
 				}
 			}
 			if (File.Exists(Path.Combine(Variables.r11Folder, "newfiles.txt")))
@@ -1173,9 +1212,9 @@ namespace Rectify11Installer.Core
 				{
 					File.Delete(Path.Combine(Variables.r11Folder, "newfiles.txt"));
 				}
-				catch (Exception ex) 
-				{ 
-					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "newfiles.txt"), ex); 
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "newfiles.txt"), ex);
 				}
 			}
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
@@ -1195,9 +1234,9 @@ namespace Rectify11Installer.Core
 				{
 					File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
 				}
-				catch (Exception ex) 
-				{ 
-					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "themes.7z"), ex); 
+				catch (Exception ex)
+				{
+					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "themes.7z"), ex);
 				}
 			}
 			return true;
