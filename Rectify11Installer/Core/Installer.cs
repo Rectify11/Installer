@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using MMC;
-using SharpCompress.Archives;
-using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
