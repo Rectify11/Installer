@@ -100,13 +100,9 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ", ex);
 					}
 				}
-				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
-				{
-					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "themes"));
-				}
-				var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "themes.7z"));
-				await Task.Run(() => archive.WriteToDirectory(Path.Combine(Variables.r11Folder, "themes"), new ExtractionOptions() { ExtractFullPath = true }));
-				archive.Dispose();
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
+						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
 				Logger.WriteLine("Extracted themes.7z");
 
 				if (!await Task.Run(() => InstallThemes()))
@@ -160,13 +156,9 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
 					}
 				}
-				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
-				{
-					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "extras"));
-				}
-				var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "extras.7z"));
-				await Task.Run(() => archive.WriteToDirectory(Path.Combine(Variables.r11Folder, "extras"), new ExtractionOptions() { ExtractFullPath = true }));
-				archive.Dispose();
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+						" x -o" + Path.Combine(Variables.r11Folder, "extras") +
+						" " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
 				Logger.WriteLine("Extracted extras.7z");
 				if (InstallOptions.InstallWallpaper)
 				{
@@ -216,13 +208,9 @@ namespace Rectify11Installer.Core
 					LogFile("files.7z", true, ex);
 					return false;
 				}
-				if (!Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
-				{
-					Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "files"));
-				}
-				var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "files.7z"));
-				await Task.Run(() => archive.WriteToDirectory(Path.Combine(Variables.r11Folder, "files"), new ExtractionOptions() { ExtractFullPath = true }));
-				archive.Dispose();
+				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+						" x -o" + Path.Combine(Variables.r11Folder, "files") +
+						" " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
 				Logger.WriteLine("Extracted files.7z");
 
 				// Get all patches
@@ -642,6 +630,19 @@ namespace Rectify11Installer.Core
 			}
 			if (!themes && !icons)
 			{
+				if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
+				{
+					try
+					{
+						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
+						LogFile("7za.exe", false, null);
+					}
+					catch (Exception ex)
+					{
+						LogFile("7za.exe", true, ex);
+						return false;
+					}
+				}
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
@@ -733,36 +734,20 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private bool InstallRuntimes()
 		{
-			var archive = ArchiveFactory.Open(Path.Combine(Variables.r11Folder, "extras.7z"));
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
 			{
 				Logger.WriteLine("Extracting vcredist.exe from extras.7z");
-				foreach (var entry in archive.Entries)
-				{
-					if (!entry.IsDirectory)
-					{
-						if (entry.Key.Contains("vcredist.exe"))
-						{
-							entry.WriteToFile(Path.Combine(Variables.r11Folder, entry.Key));
-						}
-					}
-				}
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") + 
+					" e -o" + Variables.r11Folder + " " 
+					+ Path.Combine(Variables.r11Folder, "extras.7z") + " vcredist.exe", AppWinStyle.Hide, true);
 			}
 			if (!File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
 			{
 				Logger.WriteLine("Extracting core31.exe from extras.7z");
-				foreach (var entry in archive.Entries)
-				{
-					if (!entry.IsDirectory)
-					{
-						if (entry.Key.Contains("core31.exe"))
-						{
-							entry.WriteToFile(Path.Combine(Variables.r11Folder, entry.Key));
-						}
-					}
-				}
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+				  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
+				  " core31.exe", AppWinStyle.Hide, true);
 			}
-			archive.Dispose();
 			Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
 			ProcessStartInfo Psi = new();
 			Psi.FileName = Path.Combine(Variables.r11Folder, "vcredist.exe");
