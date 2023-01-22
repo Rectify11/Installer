@@ -38,7 +38,7 @@
             this.randomCheckbox1 = new();
             this.randomCheckbox2 = new();
             this.secureRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
-            this.themeSel = new System.Windows.Forms.ComboBox();
+            this.themeSel = new Controls.DarkAwareComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themePreview)).BeginInit();
             this.SuspendLayout();
@@ -150,6 +150,6 @@
         private Controls.DarkAwareLabel patcherSelection;
         private Controls.DarkAwareRadioButton ultraRadio;
         private Controls.DarkAwareRadioButton secureRadio;
-        private System.Windows.Forms.ComboBox themeSel;
+        private Controls.DarkAwareComboBox themeSel;
     }
 }
