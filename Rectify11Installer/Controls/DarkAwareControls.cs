@@ -9,8 +9,7 @@ namespace Rectify11Installer.Controls
 	{
 		private const int WM_LBUTTONDBLCLK = 0x0203;
 		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
-		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName,
-												string pszSubIdList);
+		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		// hack to disable artifacts
 		protected override CreateParams CreateParams
 		{
@@ -150,8 +149,7 @@ namespace Rectify11Installer.Controls
 	public class DarkAwareRadioButton : RadioButton
 	{
 		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
-		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName,
-												string pszSubIdList);
+		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareRadioButton()
 		{
 			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
@@ -181,8 +179,7 @@ namespace Rectify11Installer.Controls
 	public class DarkAwareCheckBox : CheckBox
 	{
 		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
-		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName,
-												string pszSubIdList);
+		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareCheckBox()
 		{
 			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
@@ -205,6 +202,36 @@ namespace Rectify11Installer.Controls
 			else
 			{
 				SetWindowTheme(Handle, "Explorer", null);
+				ForeColor = Color.Black;
+			}
+		}
+	}
+	public class DarkAwareComboBox : ComboBox
+	{
+		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
+		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
+		public DarkAwareComboBox()
+		{
+			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			{
+				UpdateTheming();
+			};
+		}
+		protected override void CreateHandle()
+		{
+			base.CreateHandle();
+			UpdateTheming();
+		}
+		private void UpdateTheming()
+		{
+			if (Theme.IsUsingDarkMode)
+			{
+				SetWindowTheme(Handle, "DarkMode_CFD", null);
+				ForeColor = Color.White;
+			}
+			else
+			{
+				SetWindowTheme(Handle, "CFD", null);
 				ForeColor = Color.Black;
 			}
 		}
