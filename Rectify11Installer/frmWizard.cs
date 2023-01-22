@@ -14,6 +14,7 @@ namespace Rectify11Installer
 	{
 		#region Variables
 		public static bool IsItemsSelected;
+		private bool isWelcomePage = true;
 		private bool acknowledged = false;
 		private bool idleinit = false;
 		public string InstallerProgress
@@ -133,13 +134,14 @@ namespace Rectify11Installer
 			sideImage.BackgroundImage = page.SideImage;
 			if (page == RectifyPages.WelcomePage)
 			{
-				navPane.SelectedTab = wlcmPage;
 				tableLayoutPanel1.Visible = false;
 				tableLayoutPanel2.Visible = false;
 				if (!Theme.IsUsingDarkMode)
 				{
 					DarkMode.UpdateFrame(this, false);
 				}
+				isWelcomePage = true;
+				navPane.SelectedTab = wlcmPage;
 			}
 			else if (page == RectifyPages.ExperimentalPage)
 			{
@@ -152,6 +154,7 @@ namespace Rectify11Installer
 				tableLayoutPanel2.Visible = true;
 				nextButton.ButtonText = resources.GetString("buttonNext");
 				nextButton.Enabled = true;
+				isWelcomePage = false;
 				navPane.SelectedTab = expPage;
 			}
 			else if (page == RectifyPages.EulaPage)
@@ -167,6 +170,7 @@ namespace Rectify11Installer
 				tableLayoutPanel2.Visible = true;
 				nextButton.ButtonText = resources.GetString("buttonAgree");
 				nextButton.Enabled = true;
+				isWelcomePage = false;
 				navPane.SelectedTab = eulPage;
 			}
 			else if (page == RectifyPages.InstallOptnsPage)
@@ -375,7 +379,7 @@ namespace Rectify11Installer
 		{
 			if (Helper.CheckIfUpdatesPending())
 			{
-				TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can try to run sfc /scannow to revert icon changes.",
+				TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can run sfc /scannow to revert icon changes.",
 				instruction: "Incompleted Software",
 				title: "Rectify11 Setup",
 				buttons: TaskDialogButtons.OK,
@@ -402,6 +406,14 @@ namespace Rectify11Installer
 							headerText.ForeColor = Color.Black;
 							BackColor = Color.White;
 							ForeColor = Color.Black;
+						}
+						if (isWelcomePage && !Theme.IsUsingDarkMode)
+						{
+							DarkMode.UpdateFrame(this, false);
+						}
+						else
+						{
+							DarkMode.UpdateFrame(this, true);
 						}
 						Invalidate(true);
 						Update();
