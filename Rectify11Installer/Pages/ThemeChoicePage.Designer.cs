@@ -121,8 +121,6 @@
             // 
             // ThemeChoicePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.themeTitle);
             this.Controls.Add(this.themeSel);
             this.Controls.Add(this.randomCheckbox1);

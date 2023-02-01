@@ -44,8 +44,6 @@ namespace Rectify11Installer.Pages
 			//
 			// ExperimentalPage
 			//
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.label1);
 			this.Name = "ExperimentalPage";
