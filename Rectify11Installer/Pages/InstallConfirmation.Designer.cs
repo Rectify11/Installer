@@ -70,8 +70,6 @@
             // 
             // InstallConfirmation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.summaryFooter);
             this.Controls.Add(this.summaryItems);
             this.Controls.Add(this.summaryTitle);

@@ -111,8 +111,6 @@
 			// 
 			// InstallOptnsPage
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.groupBox1);
