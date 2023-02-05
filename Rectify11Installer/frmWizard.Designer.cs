@@ -50,6 +50,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressLabel = new Controls.DarkAwareLabel();
             this.versionLabel = new Controls.DarkAwareLabel();
+            this.timer = new System.Windows.Forms.Timer();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -157,6 +158,7 @@
             this.sideImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.sideImage.Location = new System.Drawing.Point(49, 72);
             this.sideImage.Name = "sideImage";
+            this.sideImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.sideImage.Size = new System.Drawing.Size(178, 194);
             this.sideImage.TabIndex = 0;
             this.sideImage.TabStop = false;
@@ -300,6 +302,7 @@
             this.versionLabel.Size = new System.Drawing.Size(52, 15);
             this.versionLabel.TabIndex = 3;
             this.versionLabel.Text = resources.GetString("Version");
+            this.versionLabel.Click += VersionLabel_Click;
             // 
             // pictureBox1
             // 
@@ -325,6 +328,11 @@
             this.progressLabel.Size = new System.Drawing.Size(300, 40);
             this.progressLabel.TabIndex = 3;
             this.progressLabel.Visible = false;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 40;
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmWizard
             // 
@@ -379,6 +387,7 @@
         public Controls.WinUIButton nextButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Controls.WinUIButton cancelButton;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
