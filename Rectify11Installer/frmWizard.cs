@@ -13,6 +13,8 @@ namespace Rectify11Installer
 	public partial class frmWizard : Form
 	{
 		#region Variables
+		private int timerFrames;
+		private int timerFramesTmp;
 		public static bool IsItemsSelected;
 		private bool isWelcomePage = true;
 		private bool acknowledged = false;
@@ -131,7 +133,9 @@ namespace Rectify11Installer
 		private async void Navigate(WizardPage page)
 		{
 			headerText.Text = page.WizardHeader;
-			sideImage.BackgroundImage = page.SideImage;
+			sideImage.Image = page.SideImage;
+			if (!sideImage.Enabled)
+				sideImage.Enabled = true;
 			if (page == RectifyPages.WelcomePage)
 			{
 				tableLayoutPanel1.Visible = false;
@@ -199,6 +203,9 @@ namespace Rectify11Installer
 				RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();
 				nextButton.ButtonText = resources.GetString("buttonInstall");
 				navPane.SelectedTab = summaryPage;
+				timerFrames = 72;
+				timerFramesTmp = 0;
+				timer.Start();
 			}
 			else if (page == RectifyPages.ProgressPage)
 			{
@@ -236,6 +243,17 @@ namespace Rectify11Installer
 		}
 		#endregion
 		#region Private Methods
+		private void timer1_Tick(object sender, EventArgs e)
+        {
+			timerFramesTmp++;
+			if (timerFramesTmp == timerFrames)
+            {
+				timerFrames = 0;
+				timerFramesTmp = 0;
+				sideImage.Enabled = false;
+				timer.Stop();
+            }
+        }
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
@@ -385,6 +403,16 @@ namespace Rectify11Installer
 				buttons: TaskDialogButtons.OK,
 				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
 				//Navigate(UninstallConfirmPage);
+			}
+		}
+		int clicks = 0;
+		private void VersionLabel_Click(object sender, EventArgs e)
+		{
+			clicks++;
+			if (clicks == 5)
+			{
+				clicks = 0;
+				// add code to debug page
 			}
 		}
 		private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
