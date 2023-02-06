@@ -19,99 +19,26 @@ namespace Rectify11Installer.Core
 
 				return false;
 			}
-			else
-			{
-				return true;
-			}
+			return true;
 		}
 		public static bool UpdateIRectify11()
 		{
-			if (InstallOptions.iconsList.Contains("themeNode"))
-			{
-				InstallOptions.InstallThemes = true;
-			}
-			else
-			{
-				InstallOptions.InstallThemes = false;
-			}
-
-			if (InstallOptions.iconsList.Contains("epNode"))
-			{
-				InstallOptions.InstallEP = true;
-			}
-			else
-			{
-				InstallOptions.InstallEP = false;
-			}
-
-			if (InstallOptions.iconsList.Contains("winverNode"))
-			{
-				InstallOptions.InstallWinver = true;
-			}
-			else
-			{
-				InstallOptions.InstallWinver = false;
-			}
-
-			if (InstallOptions.iconsList.Contains("shellNode"))
-			{
-				InstallOptions.InstallShell = true;
-			}
-			else
-			{
-				InstallOptions.InstallShell = false;
-			}
-
-			if (InstallOptions.iconsList.Contains("wallpapersNode"))
-			{
-				InstallOptions.InstallWallpaper = true;
-			}
-			else
-			{
-				InstallOptions.InstallWallpaper = false;
-			}
-
-			if (InstallOptions.iconsList.Contains("asdfNode"))
-			{
-				InstallOptions.InstallASDF = true;
-			}
-			else
-			{
-				InstallOptions.InstallASDF = false;
-			}
-
+			InstallOptions.InstallThemes = InstallOptions.iconsList.Contains("themeNode");
+			InstallOptions.InstallEP = InstallOptions.iconsList.Contains("epNode");
+			InstallOptions.InstallWinver = InstallOptions.iconsList.Contains("winverNode");
+			InstallOptions.InstallShell = InstallOptions.iconsList.Contains("shellNode");
+			InstallOptions.InstallWallpaper = InstallOptions.iconsList.Contains("wallpapersNode");
+			InstallOptions.InstallASDF = InstallOptions.iconsList.Contains("asdfNode");
 			return true;
 		}
 		public static bool FinalizeIRectify11()
 		{
-			if (InstallOptions.iconsList.Contains("themeNode"))
-			{
-				InstallOptions.iconsList.Remove("themeNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("epNode"))
-			{
-				InstallOptions.iconsList.Remove("epNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("winverNode"))
-			{
-				InstallOptions.iconsList.Remove("winverNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("shellNode"))
-			{
-				InstallOptions.iconsList.Remove("shellNode");
-			}
-
-			if (InstallOptions.iconsList.Contains("wallpapersNode"))
-			{
-				InstallOptions.iconsList.Remove("wallpapersNode");
-			}
-			if (InstallOptions.iconsList.Contains("asdfNode"))
-			{
-				InstallOptions.iconsList.Remove("asdfNode");
-			}
+			InstallOptions.iconsList.Remove("themeNode");
+			InstallOptions.iconsList.Remove("epNode");
+			InstallOptions.iconsList.Remove("winverNode");
+			InstallOptions.iconsList.Remove("shellNode");
+			InstallOptions.iconsList.Remove("wallpapersNode");
+			InstallOptions.iconsList.Remove("asdfNode");
 			return true;
 		}
 		public static StringBuilder FinalText()
