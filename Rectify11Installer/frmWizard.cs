@@ -87,6 +87,7 @@ namespace Rectify11Installer
 				installPage.Controls.Add(RectifyPages.InstallOptnsPage);
 				themePage.Controls.Add(RectifyPages.ThemeChoicePage);
 				epPage.Controls.Add(RectifyPages.EPPage);
+				debPage.Controls.Add(RectifyPages.DebugPage);
 				progressPage.Controls.Add(RectifyPages.ProgressPage);
 				summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
 				RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
@@ -136,6 +137,8 @@ namespace Rectify11Installer
 			sideImage.Image = page.SideImage;
 			if (!sideImage.Enabled)
 				sideImage.Enabled = true;
+			if (!nextButton.Visible)
+				nextButton.Visible = true;
 			if (page == RectifyPages.WelcomePage)
 			{
 				tableLayoutPanel1.Visible = false;
@@ -196,6 +199,20 @@ namespace Rectify11Installer
 			{
 				nextButton.ButtonText = resources.GetString("buttonNext");
 				navPane.SelectedTab = epPage;
+			}
+			else if (page == RectifyPages.DebugPage)
+            {
+				if (!Theme.IsUsingDarkMode)
+				{
+					DarkMode.UpdateFrame(this, true);
+				}
+
+				tableLayoutPanel1.Visible = true;
+				tableLayoutPanel2.Visible = true;
+				nextButton.Visible = false;
+				isWelcomePage = false;
+				navPane.SelectedTab = debPage;
+
 			}
 			else if (page == RectifyPages.InstallConfirmation)
 			{
@@ -350,6 +367,10 @@ namespace Rectify11Installer
 			{
 				Navigate(RectifyPages.InstallOptnsPage);
 			}
+			else if (navPane.SelectedTab == debPage)
+			{
+				Navigate(RectifyPages.WelcomePage);
+			}
 			else if (navPane.SelectedTab == epPage)
 			{
 				if (InstallOptions.InstallThemes)
@@ -409,10 +430,10 @@ namespace Rectify11Installer
 		private void VersionLabel_Click(object sender, EventArgs e)
 		{
 			clicks++;
-			if (clicks == 5)
+			if (clicks == 2)
 			{
 				clicks = 0;
-				// add code to debug page
+				Navigate(RectifyPages.DebugPage);
 			}
 		}
 		private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)

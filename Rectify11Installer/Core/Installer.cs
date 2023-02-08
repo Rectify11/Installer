@@ -556,8 +556,8 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// writes all the needed files
 		/// </summary>
-		/// <param name="icons">indicates whether icons only files are written</param>
-		/// <param name="themes">indicates whether themes only files are written</param>
+		/// <param name="icons">indicates whether icon only files are written</param>
+		/// <param name="themes">indicates whether theme only files are written</param>
 		private bool WriteFiles(bool icons, bool themes)
 		{
 			if (icons)

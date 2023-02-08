@@ -76,7 +76,7 @@
             this.randomCheckbox2.Name = "randomCheckbox2";
             this.randomCheckbox2.Size = new System.Drawing.Size(288, 19);
             this.randomCheckbox2.TabIndex = 5;
-            this.randomCheckbox2.Text = "I LOVE LGBTQ";
+            this.randomCheckbox2.Text = "L";
             this.randomCheckbox2.UseVisualStyleBackColor = true;
             //
             // randomCheckbox1

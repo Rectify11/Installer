@@ -9,6 +9,10 @@ namespace Rectify11Installer.Core
 		#region Public Methods
 		public static bool CheckIfUpdatesPending()
 		{
+			if (Variables.skipUpdateCheck)
+            {
+				return true;
+            }
 			if (RebootRequired())
 			{
 				TaskDialog.Show(text: "You cannot install Rectify11 as Windows Updates are pending.",
@@ -16,7 +20,6 @@ namespace Rectify11Installer.Core
 					title: "Rectify11 Setup",
 					buttons: TaskDialogButtons.OK,
 					icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-
 				return false;
 			}
 			return true;
