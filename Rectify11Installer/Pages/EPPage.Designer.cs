@@ -152,6 +152,11 @@
             this.Controls.Add(this.darkAwareLabel1);
             this.Name = "EPPage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.ep;
+            this.HeaderVisible = true;
+            this.FooterVisible = true;
+            this.NextButtonEnabled = true;
+            this.Page = Rectify11Installer.Core.TabPages.epPage;
+            this.NextButtonText = resources.GetString("buttonNext");
             this.WizardHeader = resources.GetString("epHeader");
             ((System.ComponentModel.ISupportInitialize)(this.w10StartImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.w11StartImg)).EndInit();

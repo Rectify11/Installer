@@ -62,6 +62,13 @@
             this.Name = "EulaPage";
             this.WizardHeader = resources.GetString("eulaPageHeader");
             this.SideImage = global::Rectify11Installer.Properties.Resources.eula;
+            this.HeaderVisible = true;
+            this.FooterVisible = true;
+            this.UpdateFrame = true;
+            this.IsWelcomePage = false;
+            this.NextButtonEnabled = true;
+            this.NextButtonText = resources.GetString("buttonAgree");
+            this.Page = Rectify11Installer.Core.TabPages.eulPage;
             this.ResumeLayout(false);
 
         }

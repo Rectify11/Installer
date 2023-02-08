@@ -89,5 +89,6 @@ namespace Rectify11Installer.Core
 		}
 		public static bool isInstall { get; set; } = false;
 		public static bool skipUpdateCheck { get; set; } = false;
+		public static bool IsItemsSelected { get; set; }
 	}
 }

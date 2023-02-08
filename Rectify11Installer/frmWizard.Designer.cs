@@ -38,16 +38,16 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.sideImage = new System.Windows.Forms.PictureBox();
             this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
-            this.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.expPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.debPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.epPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            this.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.expPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.debPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.epPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            Core.TabPages.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressLabel = new Controls.DarkAwareLabel();
             this.versionLabel = new Controls.DarkAwareLabel();
@@ -169,16 +169,16 @@
             this.navPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.navPane.Controls.Add(this.wlcmPage);
-            this.navPane.Controls.Add(this.eulPage);
-            this.navPane.Controls.Add(this.expPage);
-            this.navPane.Controls.Add(this.debPage);
-            this.navPane.Controls.Add(this.installPage);
-            this.navPane.Controls.Add(this.themePage);
-            this.navPane.Controls.Add(this.epPage);
-            this.navPane.Controls.Add(this.summaryPage);
-            this.navPane.Controls.Add(this.progressPage);
-            this.navPane.Controls.Add(this.rebootPage);
+            this.navPane.Controls.Add(Core.TabPages.wlcmPage);
+            this.navPane.Controls.Add(Core.TabPages.eulPage);
+            this.navPane.Controls.Add(Core.TabPages.expPage);
+            this.navPane.Controls.Add(Core.TabPages.debPage);
+            this.navPane.Controls.Add(Core.TabPages.installPage);
+            this.navPane.Controls.Add(Core.TabPages.themePage);
+            this.navPane.Controls.Add(Core.TabPages.epPage);
+            this.navPane.Controls.Add(Core.TabPages.summaryPage);
+            this.navPane.Controls.Add(Core.TabPages.progressPage);
+            this.navPane.Controls.Add(Core.TabPages.rebootPage);
             this.navPane.ItemSize = new System.Drawing.Size(10, 20);
             this.navPane.Location = new System.Drawing.Point(280, 0);
             this.navPane.Multiline = true;
@@ -206,103 +206,103 @@
             // 
             // wlcmPage
             // 
-            this.wlcmPage.BackColor = System.Drawing.Color.White;
-            this.wlcmPage.ForeColor = System.Drawing.Color.Black;
-            this.wlcmPage.Location = new System.Drawing.Point(0, 44);
-            this.wlcmPage.Name = "wlcmPage";
-            this.wlcmPage.Size = new System.Drawing.Size(361, 284);
-            this.wlcmPage.TabIndex = 8;
-            this.wlcmPage.Text = "Welcome";
+            Core.TabPages.wlcmPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.wlcmPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.wlcmPage.Location = new System.Drawing.Point(0, 44);
+            Core.TabPages.wlcmPage.Name = "wlcmPage";
+            Core.TabPages.wlcmPage.Size = new System.Drawing.Size(361, 284);
+            Core.TabPages.wlcmPage.TabIndex = 8;
+            Core.TabPages.wlcmPage.Text = "Welcome";
             // 
             // eulPage
             // 
-            this.eulPage.BackColor = System.Drawing.Color.White;
-            this.eulPage.ForeColor = System.Drawing.Color.Black;
-            this.eulPage.Location = new System.Drawing.Point(0, 44);
-            this.eulPage.Name = "eulPage";
-            this.eulPage.Size = new System.Drawing.Size(365, 284);
-            this.eulPage.TabIndex = 9;
-            this.eulPage.Text = "Eula";
+            Core.TabPages.eulPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.eulPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.eulPage.Location = new System.Drawing.Point(0, 44);
+            Core.TabPages.eulPage.Name = "eulPage";
+            Core.TabPages.eulPage.Size = new System.Drawing.Size(365, 284);
+            Core.TabPages.eulPage.TabIndex = 9;
+            Core.TabPages.eulPage.Text = "Eula";
             // 
             // expPage
             // 
-            this.expPage.BackColor = System.Drawing.Color.White;
-            this.expPage.ForeColor = System.Drawing.Color.Black;
-            this.expPage.Location = new System.Drawing.Point(0, 44);
-            this.expPage.Name = "expPage";
-            this.expPage.Size = new System.Drawing.Size(365, 284);
-            this.expPage.TabIndex = 9;
-            this.expPage.Text = "Experimental";
+            Core.TabPages.expPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.expPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.expPage.Location = new System.Drawing.Point(0, 44);
+            Core.TabPages.expPage.Name = "expPage";
+            Core.TabPages.expPage.Size = new System.Drawing.Size(365, 284);
+            Core.TabPages.expPage.TabIndex = 9;
+            Core.TabPages.expPage.Text = "Experimental";
             // 
             // debPage
             // 
-            this.debPage.BackColor = System.Drawing.Color.White;
-            this.debPage.ForeColor = System.Drawing.Color.Black;
-            this.debPage.Location = new System.Drawing.Point(0, 44);
-            this.debPage.Name = "debPage";
-            this.debPage.Size = new System.Drawing.Size(365, 284);
-            this.debPage.TabIndex = 9;
-            this.debPage.Text = "Debug";
+            Core.TabPages.debPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.debPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.debPage.Location = new System.Drawing.Point(0, 44);
+            Core.TabPages.debPage.Name = "debPage";
+            Core.TabPages.debPage.Size = new System.Drawing.Size(365, 284);
+            Core.TabPages.debPage.TabIndex = 9;
+            Core.TabPages.debPage.Text = "Debug";
             // 
             // installPage
             // 
-            this.installPage.BackColor = System.Drawing.Color.White;
-            this.installPage.ForeColor = System.Drawing.Color.Black;
-            this.installPage.Location = new System.Drawing.Point(4, 44);
-            this.installPage.Name = "installPage";
-            this.installPage.Size = new System.Drawing.Size(333, 284);
-            this.installPage.TabIndex = 2;
-            this.installPage.Text = "Install";
+            Core.TabPages.installPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.installPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.installPage.Location = new System.Drawing.Point(4, 44);
+            Core.TabPages.installPage.Name = "installPage";
+            Core.TabPages.installPage.Size = new System.Drawing.Size(333, 284);
+            Core.TabPages.installPage.TabIndex = 2;
+            Core.TabPages.installPage.Text = "Install";
             // 
             // themePage
             // 
-            this.themePage.BackColor = System.Drawing.Color.White;
-            this.themePage.ForeColor = System.Drawing.Color.Black;
-            this.themePage.Location = new System.Drawing.Point(4, 44);
-            this.themePage.Name = "themePage";
-            this.themePage.Size = new System.Drawing.Size(333, 284);
-            this.themePage.TabIndex = 3;
-            this.themePage.Text = "Theme";
+            Core.TabPages.themePage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.themePage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.themePage.Location = new System.Drawing.Point(4, 44);
+            Core.TabPages.themePage.Name = "themePage";
+            Core.TabPages.themePage.Size = new System.Drawing.Size(333, 284);
+            Core.TabPages.themePage.TabIndex = 3;
+            Core.TabPages.themePage.Text = "Theme";
             // 
             // epPage
             // 
-            this.epPage.BackColor = System.Drawing.Color.White;
-            this.epPage.ForeColor = System.Drawing.Color.Black;
-            this.epPage.Location = new System.Drawing.Point(4, 44);
-            this.epPage.Name = "epPage";
-            this.epPage.Size = new System.Drawing.Size(333, 284);
-            this.epPage.TabIndex = 4;
-            this.epPage.Text = "Ep";
+            Core.TabPages.epPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.epPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.epPage.Location = new System.Drawing.Point(4, 44);
+            Core.TabPages.epPage.Name = "epPage";
+            Core.TabPages.epPage.Size = new System.Drawing.Size(333, 284);
+            Core.TabPages.epPage.TabIndex = 4;
+            Core.TabPages.epPage.Text = "Ep";
             // 
             // summaryPage
             // 
-            this.summaryPage.BackColor = System.Drawing.Color.White;
-            this.summaryPage.ForeColor = System.Drawing.Color.Black;
-            this.summaryPage.Location = new System.Drawing.Point(4, 44);
-            this.summaryPage.Name = "summaryPage";
-            this.summaryPage.Size = new System.Drawing.Size(333, 284);
-            this.summaryPage.TabIndex = 5;
-            this.summaryPage.Text = "Summary";
+            Core.TabPages.summaryPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.summaryPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.summaryPage.Location = new System.Drawing.Point(4, 44);
+            Core.TabPages.summaryPage.Name = "summaryPage";
+            Core.TabPages.summaryPage.Size = new System.Drawing.Size(333, 284);
+            Core.TabPages.summaryPage.TabIndex = 5;
+            Core.TabPages.summaryPage.Text = "Summary";
             // 
             // progressPage
             // 
-            this.progressPage.BackColor = System.Drawing.Color.White;
-            this.progressPage.ForeColor = System.Drawing.Color.Black;
-            this.progressPage.Location = new System.Drawing.Point(4, 44);
-            this.progressPage.Name = "progressPage";
-            this.progressPage.Size = new System.Drawing.Size(333, 284);
-            this.progressPage.TabIndex = 6;
-            this.progressPage.Text = "Progress";
+            Core.TabPages.progressPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.progressPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.progressPage.Location = new System.Drawing.Point(4, 44);
+            Core.TabPages.progressPage.Name = "progressPage";
+            Core.TabPages.progressPage.Size = new System.Drawing.Size(333, 284);
+            Core.TabPages.progressPage.TabIndex = 6;
+            Core.TabPages.progressPage.Text = "Progress";
             // 
             // rebootPage
             // 
-            this.rebootPage.BackColor = System.Drawing.Color.White;
-            this.rebootPage.ForeColor = System.Drawing.Color.Black;
-            this.rebootPage.Location = new System.Drawing.Point(4, 44);
-            this.rebootPage.Name = "rebootPage";
-            this.rebootPage.Size = new System.Drawing.Size(333, 284);
-            this.rebootPage.TabIndex = 7;
-            this.rebootPage.Text = "Reboot";
+            Core.TabPages.rebootPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.rebootPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.rebootPage.Location = new System.Drawing.Point(4, 44);
+            Core.TabPages.rebootPage.Name = "rebootPage";
+            Core.TabPages.rebootPage.Size = new System.Drawing.Size(333, 284);
+            Core.TabPages.rebootPage.TabIndex = 7;
+            Core.TabPages.rebootPage.Text = "Reboot";
             // 
             // versionLabel
             // 
@@ -385,16 +385,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox sideImage;
         private Controls.TabControlWithoutHeader navPane;
-        private Controls.DarkAwareTabPage installPage;
-        private Controls.DarkAwareTabPage themePage;
-        private Controls.DarkAwareTabPage epPage;
-        private Controls.DarkAwareTabPage summaryPage;
-        private Controls.DarkAwareTabPage progressPage;
-        private Controls.DarkAwareTabPage rebootPage;
-        private Controls.DarkAwareTabPage wlcmPage;
-        private Controls.DarkAwareTabPage eulPage;
-        private Controls.DarkAwareTabPage expPage;
-        private Controls.DarkAwareTabPage debPage;
         private Controls.DarkAwareLabel versionLabel;
         private Controls.DarkAwareLabel progressLabel;
         public Controls.WinUIButton nextButton;

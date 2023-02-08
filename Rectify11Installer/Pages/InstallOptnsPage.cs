@@ -197,13 +197,13 @@ namespace Rectify11Installer.Pages
                 if ((!_frmWizard.nextButton.Enabled) && (InstallOptions.iconsList.Count > 0))
                 {
                     _frmWizard.nextButton.Enabled = true;
-                    frmWizard.IsItemsSelected = true;
+                    Variables.IsItemsSelected = true;
 
                 }
                 else if (InstallOptions.iconsList.Count == 0)
                 {
                     _frmWizard.nextButton.Enabled = false;
-                    frmWizard.IsItemsSelected = false;
+                    Variables.IsItemsSelected = false;
                 }
             }
         }

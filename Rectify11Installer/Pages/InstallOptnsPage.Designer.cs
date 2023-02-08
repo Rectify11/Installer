@@ -117,6 +117,10 @@
 			this.Name = "InstallOptnsPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.installoptns;
 			this.WizardHeader = resources.GetString("installChoiceTitle");
+			this.HeaderVisible = true;
+			this.FooterVisible = true;
+			this.Page = Rectify11Installer.Core.TabPages.installPage;
+			this.NextButtonText = resources.GetString("buttonNext");
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

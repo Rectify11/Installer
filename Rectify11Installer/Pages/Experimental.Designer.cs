@@ -31,6 +31,8 @@ namespace Rectify11Installer.Pages
 		{
 			this.label1 = new Controls.DarkAwareLabel();
 			this.SuspendLayout();
+			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
+
 			// 
 			// label1
 			// 
@@ -49,6 +51,13 @@ namespace Rectify11Installer.Pages
 			this.Name = "ExperimentalPage";
 			this.WizardHeader = "Incomplete Software";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.incomplete;
+			this.HeaderVisible = true;
+			this.FooterVisible = true;
+			this.UpdateFrame = true;
+			this.IsWelcomePage = false;
+			this.NextButtonEnabled = true;
+			this.NextButtonText = resources.GetString("buttonNext");
+			this.Page = Rectify11Installer.Core.TabPages.expPage;
 			this.ResumeLayout(false);
 		}
 

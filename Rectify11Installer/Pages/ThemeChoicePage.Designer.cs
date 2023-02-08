@@ -129,7 +129,12 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ThemeChoicePage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.themepage;
+            this.HeaderVisible = true;
+            this.FooterVisible = true;
+            this.NextButtonEnabled = true;
+            this.Page = Rectify11Installer.Core.TabPages.themePage;
             this.WizardHeader = resources.GetString("themeHeader");
+            this.NextButtonText = resources.GetString("buttonNext");
             ((System.ComponentModel.ISupportInitialize)(this.themePreview)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

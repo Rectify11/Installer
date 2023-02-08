@@ -87,6 +87,11 @@
             this.Controls.Add(this.wlcmPageTitle);
             this.Name = "WelcomePage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.install;
+            this.HeaderVisible = false;
+            this.FooterVisible = false;
+            this.UpdateFrame = false;
+            this.IsWelcomePage = true;
+            this.Page = Rectify11Installer.Core.TabPages.wlcmPage;
             this.Size = new System.Drawing.Size(333, 322);
             this.ResumeLayout(false);
             this.PerformLayout();
