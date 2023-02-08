@@ -154,6 +154,7 @@
             this.SideImage = global::Rectify11Installer.Properties.Resources.ep;
             this.HeaderVisible = true;
             this.FooterVisible = true;
+            this.UpdateFrame = true;
             this.NextButtonEnabled = true;
             this.Page = Rectify11Installer.Core.TabPages.epPage;
             this.NextButtonText = resources.GetString("buttonNext");

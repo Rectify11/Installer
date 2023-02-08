@@ -1,5 +1,7 @@
 ﻿using KPreisser.UI;
 using Microsoft.Win32;
+using System;
+using System.Reflection;
 using System.Text;
 
 namespace Rectify11Installer.Core
@@ -94,6 +96,96 @@ namespace Rectify11Installer.Core
 			using RegistryKey auKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired");
 			using RegistryKey cbsKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending");
 			return (auKey != null || cbsKey != null);
+		}
+		#endregion
+	}
+
+	public class InstallStatus
+	{
+		#region Public Methods
+		public static bool IsRectify11Installed
+		{
+			get
+			{
+				using RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+				if (key == null)
+				{
+					return false;
+				}
+
+				var b = key.GetValue("IsInstalled");
+				if (b == null)
+				{
+					return false;
+				}
+
+				var value = (int)b;
+				return value == 1;
+			}
+			set
+			{
+				using RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11");
+				key.SetValue("IsInstalled", value ? 1 : 0);
+			}
+		}
+		public static string InstalledVersion
+		{
+			get
+			{
+				using RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+				if (key == null)
+				{
+					return null;
+				}
+
+				var b = key.GetValue("Version");
+				if (b == null)
+				{
+					return null;
+				}
+
+				var value = (string)b;
+				return value;
+			}
+			set
+			{
+				using RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11");
+				key.SetValue("Version", value);
+			}
+		}
+		#endregion
+	}
+
+	public class Logger
+	{
+		#region Variables
+		private static string Text =
+			"═════════════════════════════\nSTART: "
+			+ DateTime.Now.ToString()
+			+ "\nRectify11 Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString()
+			+ "\n═════════════════════════════\n";
+		#endregion
+		#region Public Methods
+		public static void WriteLine(string s)
+		{
+			Text += s + "\n";
+		}
+		public static void WriteLine(string s, Exception ex)
+		{
+			Text += s + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + Environment.NewLine;
+		}
+		public static void CommitLog()
+		{
+			System.IO.File.WriteAllText(System.IO.Path.Combine(Variables.r11Folder, "installer.log"), Text);
+		}
+
+		public static void Warn(string v)
+		{
+			WriteLine("[WARNING] " + v);
+		}
+		public static void Warn(string v, Exception ex)
+		{
+			WriteLine("[WARNING] " + v, ex);
 		}
 		#endregion
 	}

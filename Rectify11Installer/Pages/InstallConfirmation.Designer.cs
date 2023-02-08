@@ -79,6 +79,7 @@
             this.HeaderVisible = true;
             this.FooterVisible = true;
             this.NextButtonEnabled = true;
+            this.UpdateFrame = true;
             this.Page = Rectify11Installer.Core.TabPages.summaryPage;
             this.NextButtonText = resources.GetString("buttonInstall");
             this.ResumeLayout(false);
