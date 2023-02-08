@@ -15,7 +15,6 @@ namespace Rectify11Installer
 		#region Variables
 		private int timerFrames;
 		private int timerFramesTmp;
-		public static bool IsItemsSelected;
 		private bool isWelcomePage = true;
 		private bool acknowledged = false;
 		private bool idleinit = false;
@@ -26,8 +25,8 @@ namespace Rectify11Installer
 		}
 		public Image UpdateSideImage
 		{
-			get { return sideImage.BackgroundImage; }
-			set { sideImage.BackgroundImage = value; }
+			get { return sideImage.Image; }
+			set { sideImage.Image = value; }
 		}
 		public bool ShowRebootButton
 		{
@@ -82,14 +81,14 @@ namespace Rectify11Installer
 				// current instance to change button state.
 				RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
 				RectifyPages.ProgressPage = new ProgressPage(this);
-				expPage.Controls.Add(RectifyPages.ExperimentalPage);
-				eulPage.Controls.Add(RectifyPages.EulaPage);
-				installPage.Controls.Add(RectifyPages.InstallOptnsPage);
-				themePage.Controls.Add(RectifyPages.ThemeChoicePage);
-				epPage.Controls.Add(RectifyPages.EPPage);
-				debPage.Controls.Add(RectifyPages.DebugPage);
-				progressPage.Controls.Add(RectifyPages.ProgressPage);
-				summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
+				TabPages.expPage.Controls.Add(RectifyPages.ExperimentalPage);
+				TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
+				TabPages.installPage.Controls.Add(RectifyPages.InstallOptnsPage);
+				TabPages.themePage.Controls.Add(RectifyPages.ThemeChoicePage);
+				TabPages.epPage.Controls.Add(RectifyPages.EPPage);
+                TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
+				TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
+				TabPages.summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
 				RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
 				RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
 				nextButton.Click += NextButton_Click;
@@ -126,126 +125,58 @@ namespace Rectify11Installer
 				}
 			}
 
-			wlcmPage.Controls.Add(RectifyPages.WelcomePage);
+			TabPages.wlcmPage.Controls.Add(RectifyPages.WelcomePage);
 			RectifyPages.WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
 		}
 		#endregion
+		bool LastState;
 		#region Navigation
 		private async void Navigate(WizardPage page)
 		{
 			headerText.Text = page.WizardHeader;
 			sideImage.Image = page.SideImage;
+			tableLayoutPanel1.Visible = page.HeaderVisible;
+			tableLayoutPanel2.Visible = page.FooterVisible;
+			navPane.SelectedTab = page.Page;
 			if (!sideImage.Enabled)
 				sideImage.Enabled = true;
-			if (!nextButton.Visible)
-				nextButton.Visible = true;
-			if (page == RectifyPages.WelcomePage)
-			{
-				tableLayoutPanel1.Visible = false;
-				tableLayoutPanel2.Visible = false;
-				if (!Theme.IsUsingDarkMode)
-				{
-					DarkMode.UpdateFrame(this, false);
-				}
-				isWelcomePage = true;
-				navPane.SelectedTab = wlcmPage;
-			}
-			else if (page == RectifyPages.ExperimentalPage)
-			{
-				if (!Theme.IsUsingDarkMode)
-				{
-					DarkMode.UpdateFrame(this, true);
-				}
-
-				tableLayoutPanel1.Visible = true;
-				tableLayoutPanel2.Visible = true;
-				nextButton.ButtonText = resources.GetString("buttonNext");
-				nextButton.Enabled = true;
-				isWelcomePage = false;
-				navPane.SelectedTab = expPage;
-			}
-			else if (page == RectifyPages.EulaPage)
-			{
-				if (acknowledged)
-				{
-					if (!Theme.IsUsingDarkMode)
-					{
-						DarkMode.UpdateFrame(this, true);
-					}
-				}
-				tableLayoutPanel1.Visible = true;
-				tableLayoutPanel2.Visible = true;
-				nextButton.ButtonText = resources.GetString("buttonAgree");
-				nextButton.Enabled = true;
-				isWelcomePage = false;
-				navPane.SelectedTab = eulPage;
-			}
-			else if (page == RectifyPages.InstallOptnsPage)
-			{
-				nextButton.ButtonText = resources.GetString("buttonNext");
-				if (!IsItemsSelected)
-				{
-					nextButton.Enabled = false;
-				}
-
-				navPane.SelectedTab = installPage;
-			}
-			else if (page == RectifyPages.ThemeChoicePage)
-			{
-				nextButton.ButtonText = resources.GetString("buttonNext");
-				navPane.SelectedTab = themePage;
-			}
-			else if (page == RectifyPages.EPPage)
-			{
-				nextButton.ButtonText = resources.GetString("buttonNext");
-				navPane.SelectedTab = epPage;
-			}
-			else if (page == RectifyPages.DebugPage)
+			if (!Theme.IsUsingDarkMode)
             {
-				if (!Theme.IsUsingDarkMode)
+				if (page.UpdateFrame != LastState)
 				{
-					DarkMode.UpdateFrame(this, true);
+					DarkMode.UpdateFrame(this, page.UpdateFrame);
 				}
-
-				tableLayoutPanel1.Visible = true;
-				tableLayoutPanel2.Visible = true;
-				nextButton.Visible = false;
-				isWelcomePage = false;
-				navPane.SelectedTab = debPage;
-
+				LastState = page.UpdateFrame;
+			}
+			isWelcomePage = page.IsWelcomePage;
+			nextButton.Enabled = page.NextButtonEnabled;
+			nextButton.ButtonText = page.NextButtonText;
+			if (page == RectifyPages.InstallOptnsPage)
+			{
+				nextButton.Enabled = Variables.IsItemsSelected;
 			}
 			else if (page == RectifyPages.InstallConfirmation)
 			{
 				RectifyPages.InstallConfirmation.Summary = resources.GetString("summaryItems");
 				RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();
-				nextButton.ButtonText = resources.GetString("buttonInstall");
-				navPane.SelectedTab = summaryPage;
 				timerFrames = 72;
 				timerFramesTmp = 0;
 				timer.Start();
 			}
 			else if (page == RectifyPages.ProgressPage)
 			{
-				tableLayoutPanel1.Visible = false;
-				tableLayoutPanel2.Visible = false;
 				versionLabel.Visible = false;
 				Helper.FinalizeIRectify11();
-				if (!Theme.IsUsingDarkMode)
-				{
-					DarkMode.UpdateFrame(this, false);
-				}
-
 				pictureBox1.Visible = true;
 				progressLabel.Visible = true;
 				RectifyPages.ProgressPage.Start();
 				NativeMethods.SetCloseButton(this, false);
 				Variables.isInstall = true;
-				navPane.SelectedTab = progressPage;
 				Installer installer = new();
+				Logger.CommitLog();
 				if (!await installer.Install(this))
 				{
-					Logger.CommitLog();
-					TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder + "installer.log") + ", and report it to rectify11 development server",
+					TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
 						title: "Error",
 						buttons: TaskDialogButtons.OK,
 						icon: TaskDialogStandardIcon.Error);
@@ -253,7 +184,6 @@ namespace Rectify11Installer
 				}
 				else
 				{
-					Logger.CommitLog();
 					RectifyPages.ProgressPage.StartReset();
 				}
 			}
@@ -299,7 +229,7 @@ namespace Rectify11Installer
 		}
 		private void NextButton_Click(object sender, EventArgs e)
 		{
-			if (navPane.SelectedTab == expPage)
+			if (navPane.SelectedTab == TabPages.expPage)
 			{
 				if (!acknowledged)
 				{
@@ -307,11 +237,11 @@ namespace Rectify11Installer
 				}
 				Navigate(RectifyPages.EulaPage);
 			}
-			else if (navPane.SelectedTab == eulPage)
+			else if (navPane.SelectedTab == TabPages.eulPage)
 			{
 				Navigate(RectifyPages.InstallOptnsPage);
 			}
-			else if (navPane.SelectedTab == installPage)
+			else if (navPane.SelectedTab == TabPages.installPage)
 			{
 				Helper.UpdateIRectify11();
 				//MessageBox.Show("EP " + InstallOptions.InstallEP + "\nASDF " + InstallOptions.InstallASDF + "\nWallpapers " + InstallOptions.InstallWallpaper + "\nWinver " + InstallOptions.InstallWinver + "\nShell " + InstallOptions.InstallShell);
@@ -328,7 +258,7 @@ namespace Rectify11Installer
 					Navigate(RectifyPages.InstallConfirmation);
 				}
 			}
-			else if (navPane.SelectedTab == themePage)
+			else if (navPane.SelectedTab == TabPages.themePage)
 			{
 				if (InstallOptions.InstallEP)
 				{
@@ -339,11 +269,11 @@ namespace Rectify11Installer
 					Navigate(RectifyPages.InstallConfirmation);
 				}
 			}
-			else if (navPane.SelectedTab == epPage)
+			else if (navPane.SelectedTab == TabPages.epPage)
 			{
 				Navigate(RectifyPages.InstallConfirmation);
 			}
-			else if (navPane.SelectedTab == summaryPage)
+			else if (navPane.SelectedTab == TabPages.summaryPage)
 			{
 				Navigate(RectifyPages.ProgressPage);
 			}
@@ -351,27 +281,27 @@ namespace Rectify11Installer
 
 		private void BackButton_Click(object sender, EventArgs e)
 		{
-			if (navPane.SelectedTab == expPage)
+			if (navPane.SelectedTab == TabPages.expPage)
 			{
 				Navigate(RectifyPages.WelcomePage);
 			}
-			else if (navPane.SelectedTab == eulPage)
+			else if (navPane.SelectedTab == TabPages.eulPage)
 			{
 				Navigate(RectifyPages.WelcomePage);
 			}
-			else if (navPane.SelectedTab == installPage)
+			else if (navPane.SelectedTab == TabPages.installPage)
 			{
 				Navigate(RectifyPages.EulaPage);
 			}
-			else if (navPane.SelectedTab == themePage)
+			else if (navPane.SelectedTab == TabPages.themePage)
 			{
 				Navigate(RectifyPages.InstallOptnsPage);
 			}
-			else if (navPane.SelectedTab == debPage)
+			else if (navPane.SelectedTab == TabPages.debPage)
 			{
 				Navigate(RectifyPages.WelcomePage);
 			}
-			else if (navPane.SelectedTab == epPage)
+			else if (navPane.SelectedTab == TabPages.epPage)
 			{
 				if (InstallOptions.InstallThemes)
 				{
@@ -382,7 +312,7 @@ namespace Rectify11Installer
 					Navigate(RectifyPages.InstallOptnsPage);
 				}
 			}
-			else if (navPane.SelectedTab == summaryPage)
+			else if (navPane.SelectedTab == TabPages.summaryPage)
 			{
 				if (InstallOptions.InstallEP)
 				{

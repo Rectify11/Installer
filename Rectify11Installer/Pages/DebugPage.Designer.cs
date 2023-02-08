@@ -49,6 +49,12 @@ namespace Rectify11Installer.Pages
             this.Controls.Add(this.checkBox1);
             this.Name = "DebugPage";
             this.WizardHeader = "Debug";
+            this.HeaderVisible = true;
+            this.FooterVisible = true;
+            this.Page = Rectify11Installer.Core.TabPages.debPage;
+            this.UpdateFrame = true;
+            this.IsWelcomePage = false;
+            this.NextButtonEnabled = false;
             this.SideImage = global::Rectify11Installer.Properties.Resources.incomplete;
             this.ResumeLayout(false);
         }

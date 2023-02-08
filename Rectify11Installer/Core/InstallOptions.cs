@@ -15,6 +15,19 @@ namespace Rectify11Installer.Core
 		public static Experimental ExperimentalPage = new Experimental();
 		public static DebugPage DebugPage = new DebugPage();
 	}
+	public class TabPages
+    {
+		public static Controls.DarkAwareTabPage installPage;
+		public static Controls.DarkAwareTabPage themePage;
+		public static Controls.DarkAwareTabPage epPage;
+		public static Controls.DarkAwareTabPage summaryPage;
+		public static Controls.DarkAwareTabPage progressPage;
+		public static Controls.DarkAwareTabPage rebootPage;
+		public static Controls.DarkAwareTabPage wlcmPage;
+		public static Controls.DarkAwareTabPage eulPage;
+		public static Controls.DarkAwareTabPage expPage;
+		public static Controls.DarkAwareTabPage debPage;
+	}
 	public class InstallOptions
 	{
 		public static bool InstallEP;

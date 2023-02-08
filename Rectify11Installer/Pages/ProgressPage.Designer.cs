@@ -70,6 +70,10 @@
 			this.Controls.Add(this.progressInfo);
 			this.Name = "ProgressPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.install;
+			this.HeaderVisible = false;
+			this.FooterVisible = false;
+			this.UpdateFrame = false;
+			this.Page = Rectify11Installer.Core.TabPages.progressPage;
 			this.ResumeLayout(false);
 
 		}
