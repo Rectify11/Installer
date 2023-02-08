@@ -146,6 +146,7 @@ namespace Rectify11Installer.Pages
 				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
 				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
 				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
+				shortcut.Dispose();
 			}
 		}
 

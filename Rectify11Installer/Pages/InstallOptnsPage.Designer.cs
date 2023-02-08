@@ -119,6 +119,7 @@
 			this.WizardHeader = resources.GetString("installChoiceTitle");
 			this.HeaderVisible = true;
 			this.FooterVisible = true;
+			this.UpdateFrame = true;
 			this.Page = Rectify11Installer.Core.TabPages.installPage;
 			this.NextButtonText = resources.GetString("buttonNext");
 			this.ResumeLayout(false);

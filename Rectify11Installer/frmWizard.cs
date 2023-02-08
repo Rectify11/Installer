@@ -86,7 +86,7 @@ namespace Rectify11Installer
 				TabPages.installPage.Controls.Add(RectifyPages.InstallOptnsPage);
 				TabPages.themePage.Controls.Add(RectifyPages.ThemeChoicePage);
 				TabPages.epPage.Controls.Add(RectifyPages.EPPage);
-                TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
+				TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
 				TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
 				TabPages.summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
 				RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
@@ -129,7 +129,6 @@ namespace Rectify11Installer
 			RectifyPages.WelcomePage.UninstallButton.Enabled = InstallStatus.IsRectify11Installed;
 		}
 		#endregion
-		bool LastState;
 		#region Navigation
 		private async void Navigate(WizardPage page)
 		{
@@ -141,12 +140,8 @@ namespace Rectify11Installer
 			if (!sideImage.Enabled)
 				sideImage.Enabled = true;
 			if (!Theme.IsUsingDarkMode)
-            {
-				if (page.UpdateFrame != LastState)
-				{
-					DarkMode.UpdateFrame(this, page.UpdateFrame);
-				}
-				LastState = page.UpdateFrame;
+			{
+				DarkMode.UpdateFrame(this, page.UpdateFrame);
 			}
 			isWelcomePage = page.IsWelcomePage;
 			nextButton.Enabled = page.NextButtonEnabled;
@@ -191,16 +186,16 @@ namespace Rectify11Installer
 		#endregion
 		#region Private Methods
 		private void timer1_Tick(object sender, EventArgs e)
-        {
+		{
 			timerFramesTmp++;
 			if (timerFramesTmp == timerFrames)
-            {
+			{
 				timerFrames = 0;
 				timerFramesTmp = 0;
 				sideImage.Enabled = false;
 				timer.Stop();
-            }
-        }
+			}
+		}
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
