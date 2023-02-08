@@ -228,11 +228,13 @@ namespace Rectify11Installer.Controls
 			{
 				SetWindowTheme(Handle, "DarkMode_CFD", null);
 				ForeColor = Color.White;
+				BackColor = Color.Black;
 			}
 			else
 			{
 				SetWindowTheme(Handle, "CFD", null);
 				ForeColor = Color.Black;
+				BackColor = Color.White;
 			}
 		}
 	}

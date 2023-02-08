@@ -41,6 +41,7 @@
             this.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.expPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.debPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
             this.epPage = new Rectify11Installer.Controls.DarkAwareTabPage();
@@ -171,6 +172,7 @@
             this.navPane.Controls.Add(this.wlcmPage);
             this.navPane.Controls.Add(this.eulPage);
             this.navPane.Controls.Add(this.expPage);
+            this.navPane.Controls.Add(this.debPage);
             this.navPane.Controls.Add(this.installPage);
             this.navPane.Controls.Add(this.themePage);
             this.navPane.Controls.Add(this.epPage);
@@ -231,6 +233,16 @@
             this.expPage.Size = new System.Drawing.Size(365, 284);
             this.expPage.TabIndex = 9;
             this.expPage.Text = "Experimental";
+            // 
+            // debPage
+            // 
+            this.debPage.BackColor = System.Drawing.Color.White;
+            this.debPage.ForeColor = System.Drawing.Color.Black;
+            this.debPage.Location = new System.Drawing.Point(0, 44);
+            this.debPage.Name = "debPage";
+            this.debPage.Size = new System.Drawing.Size(365, 284);
+            this.debPage.TabIndex = 9;
+            this.debPage.Text = "Debug";
             // 
             // installPage
             // 
@@ -328,11 +340,11 @@
             this.progressLabel.Size = new System.Drawing.Size(300, 40);
             this.progressLabel.TabIndex = 3;
             this.progressLabel.Visible = false;
-            // 
+            //
             // timer
-            // 
+            //
             this.timer.Interval = 40;
-            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Tick += timer1_Tick;
             // 
             // frmWizard
             // 
@@ -382,6 +394,7 @@
         private Controls.DarkAwareTabPage wlcmPage;
         private Controls.DarkAwareTabPage eulPage;
         private Controls.DarkAwareTabPage expPage;
+        private Controls.DarkAwareTabPage debPage;
         private Controls.DarkAwareLabel versionLabel;
         private Controls.DarkAwareLabel progressLabel;
         public Controls.WinUIButton nextButton;

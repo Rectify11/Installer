@@ -159,6 +159,12 @@
     <Compile Include="Controls\NavButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Pages\DebugPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\DebugPage.Designer.cs">
+      <DependentUpon>DebugPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EPPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -356,6 +362,7 @@
     <None Include="Resources\Rectify11.Phase2.exe" />
     <None Include="Resources\AdvancedRun.exe" />
     <None Include="Resources\Rectify11ControlCenter.exe" />
+    <None Include="Resources\installConfirm.gif" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />
