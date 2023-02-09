@@ -1,6 +1,6 @@
 ﻿namespace Rectify11Installer.Controls
 {
-    partial class GroupBox
+	sealed partial class GroupBox
     {
         /// <summary>
         /// Required designer variable.

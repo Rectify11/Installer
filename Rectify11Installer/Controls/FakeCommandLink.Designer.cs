@@ -1,6 +1,6 @@
 ﻿namespace Rectify11Installer.Controls
 {
-    partial class FakeCommandLink
+	sealed partial class FakeCommandLink
     {
         /// <summary> 
         /// Required designer variable.

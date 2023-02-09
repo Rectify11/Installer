@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace vbAccelerator.Components.Shell
+namespace Rectify11Installer.Core
 {
 	#region File icon
 	/// <summary>
@@ -20,13 +20,13 @@ namespace vbAccelerator.Components.Shell
 		[StructLayout(LayoutKind.Sequential)]
 		private struct SHFILEINFO
 		{
-			public IntPtr hIcon;
-			public int iIcon;
-			public int dwAttributes;
+			public readonly IntPtr hIcon;
+			private readonly int iIcon;
+			private readonly int dwAttributes;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_PATH)]
-			public string szDisplayName;
+			public readonly string szDisplayName;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
-			public string szTypeName;
+			public readonly string szTypeName;
 		}
 
 		[DllImport("shell32")]
@@ -37,18 +37,10 @@ namespace vbAccelerator.Components.Shell
 			uint cbFileInfo,
 			uint uFlags);
 
-		[DllImport("user32.dll")]
-		private static extern int DestroyIcon(IntPtr hIcon);
-
-		private const int FORMAT_MESSAGE_ALLOCATE_BUFFER = 0x100;
-		private const int FORMAT_MESSAGE_ARGUMENT_ARRAY = 0x2000;
-		private const int FORMAT_MESSAGE_FROM_HMODULE = 0x800;
-		private const int FORMAT_MESSAGE_FROM_STRING = 0x400;
 		private const int FORMAT_MESSAGE_FROM_SYSTEM = 0x1000;
 		private const int FORMAT_MESSAGE_IGNORE_INSERTS = 0x200;
-		private const int FORMAT_MESSAGE_MAX_WIDTH_MASK = 0xFF;
 		[DllImport("kernel32")]
-		private extern static int FormatMessage(
+		private static extern int FormatMessage(
 			int dwFlags,
 			IntPtr lpSource,
 			int dwMessageId,
@@ -58,7 +50,7 @@ namespace vbAccelerator.Components.Shell
 			int argumentsLong);
 
 		[DllImport("kernel32")]
-		private extern static int GetLastError();
+		private static extern int GetLastError();
 		#endregion
 
 		#region Member Variables
@@ -66,12 +58,12 @@ namespace vbAccelerator.Components.Shell
 		private string displayName;
 		private string typeName;
 		private SHGetFileInfoConstants flags;
-		private Icon fileIcon;
+
 		#endregion
 
 		#region Enumerations
 		[Flags]
-		public enum SHGetFileInfoConstants : int
+		public enum SHGetFileInfoConstants
 		{
 			SHGFI_ICON = 0x100,                // get icon 
 			SHGFI_DISPLAYNAME = 0x200,         // get display name 
@@ -95,46 +87,11 @@ namespace vbAccelerator.Components.Shell
 		#endregion
 
 		#region Implementation
-		/// <summary>
-		/// Gets/sets the flags used to extract the icon
-		/// </summary>
-		public FileIcon.SHGetFileInfoConstants Flags
-		{
-			get
-			{
-				return flags;
-			}
-			set
-			{
-				flags = value;
-			}
-		}
-
-		/// <summary>
-		/// Gets/sets the filename to get the icon for
-		/// </summary>
-		public string FileName
-		{
-			get
-			{
-				return fileName;
-			}
-			set
-			{
-				fileName = value;
-			}
-		}
 
 		/// <summary>
 		/// Gets the icon for the chosen file
 		/// </summary>
-		public Icon ShellIcon
-		{
-			get
-			{
-				return fileIcon;
-			}
-		}
+		public Icon ShellIcon { get; private set; }
 
 		/// <summary>
 		/// Gets the display name for the selected file
@@ -166,20 +123,20 @@ namespace vbAccelerator.Components.Shell
 		/// </summary>
 		public void GetInfo()
 		{
-			fileIcon = null;
+			ShellIcon = null;
 			typeName = "";
 			displayName = "";
 
-			SHFILEINFO shfi = new SHFILEINFO();
-			uint shfiSize = (uint)Marshal.SizeOf(shfi.GetType());
+			var shfi = new SHFILEINFO();
+			var shfiSize = (uint)Marshal.SizeOf(shfi.GetType());
 
-			int ret = SHGetFileInfo(
+			var ret = SHGetFileInfo(
 				fileName, 0, ref shfi, shfiSize, (uint)(flags));
 			if (ret != 0)
 			{
 				if (shfi.hIcon != IntPtr.Zero)
 				{
-					fileIcon = System.Drawing.Icon.FromHandle(shfi.hIcon);
+					ShellIcon = Icon.FromHandle(shfi.hIcon);
 					// Now owned by the GDI+ object
 					//DestroyIcon(shfi.hIcon);
 				}
@@ -189,10 +146,10 @@ namespace vbAccelerator.Components.Shell
 			else
 			{
 
-				int err = GetLastError();
+				var err = GetLastError();
 				Console.WriteLine("Error {0}", err);
-				string txtS = new string('\0', 256);
-				int len = FormatMessage(
+				var txtS = new string('\0', 256);
+				var len = FormatMessage(
 					FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
 					IntPtr.Zero, err, 0, txtS, 256, 0);
 				Console.WriteLine("Len {0} text {1}", len, txtS);
@@ -236,7 +193,7 @@ namespace vbAccelerator.Components.Shell
 		/// for</param>
 		/// <param name="flags">The flags to use when extracting the
 		/// icon and other shell information.</param>
-		public FileIcon(string fileName, FileIcon.SHGetFileInfoConstants flags)
+		public FileIcon(string fileName, SHGetFileInfoConstants flags)
 		{
 			this.fileName = fileName;
 			this.flags = flags;
@@ -255,9 +212,9 @@ namespace vbAccelerator.Components.Shell
 		#region ComInterop for IShellLink
 
 		#region IPersist Interface
-		[ComImportAttribute()]
-		[GuidAttribute("0000010C-0000-0000-C000-000000000046")]
-		[InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+		[ComImport()]
+		[Guid("0000010C-0000-0000-C000-000000000046")]
+		[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		private interface IPersist
 		{
 			[PreserveSig]
@@ -267,9 +224,9 @@ namespace vbAccelerator.Components.Shell
 		#endregion
 
 		#region IPersistFile Interface
-		[ComImportAttribute()]
-		[GuidAttribute("0000010B-0000-0000-C000-000000000046")]
-		[InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+		[ComImport()]
+		[Guid("0000010B-0000-0000-C000-000000000046")]
+		[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		private interface IPersistFile
 		{
 			// can't get this to go if I extend IPersist, so put it here:
@@ -300,9 +257,9 @@ namespace vbAccelerator.Components.Shell
 		#endregion
 
 		#region IShellLink Interface
-		[ComImportAttribute()]
-		[GuidAttribute("000214EE-0000-0000-C000-000000000046")]
-		[InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+		[ComImport()]
+		[Guid("000214EE-0000-0000-C000-000000000046")]
+		[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		private interface IShellLinkA
 		{
 			//[helpstring("Retrieves the path and filename of a shell link object")]
@@ -382,9 +339,9 @@ namespace vbAccelerator.Components.Shell
 		}
 
 
-		[ComImportAttribute()]
-		[GuidAttribute("000214F9-0000-0000-C000-000000000046")]
-		[InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+		[ComImport()]
+		[Guid("000214F9-0000-0000-C000-000000000046")]
+		[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		private interface IShellLinkW
 		{
 			//[helpstring("Retrieves the path and filename of a shell link object")]
@@ -465,9 +422,9 @@ namespace vbAccelerator.Components.Shell
 		#endregion
 
 		#region ShellLinkCoClass
-		[GuidAttribute("00021401-0000-0000-C000-000000000046")]
-		[ClassInterfaceAttribute(ClassInterfaceType.None)]
-		[ComImportAttribute()]
+		[Guid("00021401-0000-0000-C000-000000000046")]
+		[ClassInterface(ClassInterfaceType.None)]
+		[ComImport()]
 		private class CShellLink{}
 
 		#endregion
@@ -475,71 +432,59 @@ namespace vbAccelerator.Components.Shell
 		#region Private IShellLink enumerations
 		private enum EShellLinkGP : uint
 		{
-			SLGP_SHORTPATH = 1,
 			SLGP_UNCPRIORITY = 2
 		}
 
 		[Flags]
 		private enum EShowWindowFlags : uint
 		{
-			SW_HIDE = 0,
-			SW_SHOWNORMAL = 1,
 			SW_NORMAL = 1,
-			SW_SHOWMINIMIZED = 2,
-			SW_SHOWMAXIMIZED = 3,
 			SW_MAXIMIZE = 3,
-			SW_SHOWNOACTIVATE = 4,
-			SW_SHOW = 5,
-			SW_MINIMIZE = 6,
 			SW_SHOWMINNOACTIVE = 7,
-			SW_SHOWNA = 8,
-			SW_RESTORE = 9,
-			SW_SHOWDEFAULT = 10,
-			SW_MAX = 10
 		}
 		#endregion
 
 		#region IShellLink Private structs
 
-		[StructLayoutAttribute(LayoutKind.Sequential, Pack=4, Size=0, CharSet=CharSet.Unicode)]
+		[StructLayout(LayoutKind.Sequential, Pack=4, Size=0, CharSet=CharSet.Unicode)]
 		private struct _WIN32_FIND_DATAW
 		{
-			public uint dwFileAttributes;
-			public _FILETIME ftCreationTime;
-			public _FILETIME ftLastAccessTime;
-			public _FILETIME ftLastWriteTime;
-			public uint nFileSizeHigh;
-			public uint nFileSizeLow;
-			public uint dwReserved0;
-			public uint dwReserved1;
+			public readonly uint dwFileAttributes;
+			public readonly _FILETIME ftCreationTime;
+			public readonly _FILETIME ftLastAccessTime;
+			public readonly _FILETIME ftLastWriteTime;
+			public readonly uint nFileSizeHigh;
+			public readonly uint nFileSizeLow;
+			public readonly uint dwReserved0;
+			public readonly uint dwReserved1;
 			[MarshalAs(UnmanagedType.ByValTStr , SizeConst = 260)] // MAX_PATH
-			public string cFileName;
+			public readonly string cFileName;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
-			public string cAlternateFileName;
+			public readonly string cAlternateFileName;
 		}
 
-		[StructLayoutAttribute(LayoutKind.Sequential, Pack=4, Size=0, CharSet=CharSet.Ansi)]
+		[StructLayout(LayoutKind.Sequential, Pack=4, Size=0, CharSet=CharSet.Ansi)]
 		private struct _WIN32_FIND_DATAA
 		{
-			public uint dwFileAttributes;
-			public _FILETIME ftCreationTime;
-			public _FILETIME ftLastAccessTime;
-			public _FILETIME ftLastWriteTime;
-			public uint nFileSizeHigh;
-			public uint nFileSizeLow;
-			public uint dwReserved0;
-			public uint dwReserved1;
+			public readonly uint dwFileAttributes;
+			public readonly _FILETIME ftCreationTime;
+			public readonly _FILETIME ftLastAccessTime;
+			public readonly _FILETIME ftLastWriteTime;
+			public readonly uint nFileSizeHigh;
+			public readonly uint nFileSizeLow;
+			public readonly uint dwReserved0;
+			public readonly uint dwReserved1;
 			[MarshalAs(UnmanagedType.ByValTStr , SizeConst = 260)] // MAX_PATH
-			public string cFileName;
+			public readonly string cFileName;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
-			public string cAlternateFileName;
+			public readonly string cAlternateFileName;
 		}
 
-		[StructLayoutAttribute(LayoutKind.Sequential, Pack=4, Size=0)]
+		[StructLayout(LayoutKind.Sequential, Pack=4, Size=0)]
 		private struct _FILETIME 
 		{
-			public uint dwLowDateTime;
-			public uint dwHighDateTime;
+			public readonly uint dwLowDateTime;
+			public readonly uint dwHighDateTime;
 		}  
 		#endregion	
 
@@ -547,16 +492,13 @@ namespace vbAccelerator.Components.Shell
 		private class UnManagedMethods
 		{
 			[DllImport("Shell32", CharSet=CharSet.Auto)]
-			internal extern static int ExtractIconEx (
+			internal static extern int ExtractIconEx (
 				[MarshalAs(UnmanagedType.LPTStr)] 
 				string lpszFile,
 				int nIconIndex,
 				IntPtr[] phIconLarge, 
 				IntPtr[] phIconSmall,
 				int nIcons);
-
-			[DllImport("user32")]
-			internal static extern int DestroyIcon(IntPtr hIcon);
 		}
 		#endregion
 
@@ -645,7 +587,7 @@ namespace vbAccelerator.Components.Shell
 		/// </summary>
 		public ShellLink()
 		{
-			if (System.Environment.OSVersion.Platform == PlatformID.Win32NT)
+			if (Environment.OSVersion.Platform == PlatformID.Win32NT)
 			{
 				linkW = (IShellLinkW)new CShellLink();
 			}
@@ -729,8 +671,8 @@ namespace vbAccelerator.Components.Shell
 		private Icon getIcon(bool large)
 		{
 			// Get icon index and path:
-			int iconIndex = 0;
-			StringBuilder iconPath = new StringBuilder(260, 260);
+			int iconIndex;
+			var iconPath = new StringBuilder(260, 260);
 			if (linkA == null)
 			{
 				linkW.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
@@ -739,15 +681,15 @@ namespace vbAccelerator.Components.Shell
 			{
 				linkA.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
 			}
-			string iconFile = iconPath.ToString();
+			var iconFile = iconPath.ToString();
 
 			// If there are no details set for the icon, then we must use
 			// the shell to get the icon for the target:
 			if (iconFile.Length == 0)
 			{
 				// Use the FileIcon object to get the icon:
-				FileIcon.SHGetFileInfoConstants flags = FileIcon.SHGetFileInfoConstants.SHGFI_ICON |
-					FileIcon.SHGetFileInfoConstants.SHGFI_ATTRIBUTES;
+				var flags = FileIcon.SHGetFileInfoConstants.SHGFI_ICON |
+				            FileIcon.SHGetFileInfoConstants.SHGFI_ATTRIBUTES;
 				if (large)
 				{
 					flags = flags | FileIcon.SHGetFileInfoConstants.SHGFI_LARGEICON;
@@ -756,17 +698,16 @@ namespace vbAccelerator.Components.Shell
 				{
 					flags = flags | FileIcon.SHGetFileInfoConstants.SHGFI_SMALLICON;
 				}
-				FileIcon fileIcon = new FileIcon(Target, flags);
+				var fileIcon = new FileIcon(Target, flags);
 				return fileIcon.ShellIcon;
 			}
 			else
 			{
 				// Use ExtractIconEx to get the icon:
-				IntPtr[] hIconEx = new IntPtr[1] {IntPtr.Zero};			
-				int iconCount = 0;
+				var hIconEx = new[] {IntPtr.Zero};
 				if (large)
 				{
-					iconCount = UnManagedMethods.ExtractIconEx(
+					UnManagedMethods.ExtractIconEx(
 						iconFile,
 						iconIndex,
 						hIconEx,
@@ -775,7 +716,7 @@ namespace vbAccelerator.Components.Shell
 				}
 				else
 				{
-					iconCount = UnManagedMethods.ExtractIconEx(
+					UnManagedMethods.ExtractIconEx(
 						iconFile,
 						iconIndex,
 						null,
@@ -800,22 +741,21 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{
-				StringBuilder iconPath = new StringBuilder(260, 260);
-				int iconIndex = 0;
+				var iconPath = new StringBuilder(260, 260);
 				if (linkA == null)
 				{
-					linkW.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
+					linkW.GetIconLocation(iconPath, iconPath.Capacity, out _);
 				}
 				else
 				{
-					linkA.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
+					linkA.GetIconLocation(iconPath, iconPath.Capacity, out _);
 				}
 				return iconPath.ToString();
 			}
 			set
 			{
-				StringBuilder iconPath = new StringBuilder(260, 260);
-				int iconIndex = 0;
+				var iconPath = new StringBuilder(260, 260);
+				int iconIndex;
 				if (linkA == null)
 				{
 					linkW.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
@@ -842,8 +782,8 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{
-				StringBuilder iconPath = new StringBuilder(260, 260);
-				int iconIndex = 0;
+				var iconPath = new StringBuilder(260, 260);
+				int iconIndex;
 				if (linkA == null)
 				{
 					linkW.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
@@ -856,15 +796,14 @@ namespace vbAccelerator.Components.Shell
 			}
 			set
 			{
-				StringBuilder iconPath = new StringBuilder(260, 260);
-				int iconIndex = 0;
+				var iconPath = new StringBuilder(260, 260);
 				if (linkA == null)
 				{
-					linkW.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
+					linkW.GetIconLocation(iconPath, iconPath.Capacity, out _);
 				}
 				else
 				{
-					linkA.GetIconLocation(iconPath, iconPath.Capacity, out iconIndex);
+					linkA.GetIconLocation(iconPath, iconPath.Capacity, out _);
 				}
 				if (linkA == null)
 				{
@@ -884,15 +823,15 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{		
-				StringBuilder target = new StringBuilder(260, 260);
+				var target = new StringBuilder(260, 260);
 				if (linkA == null)
 				{
-					_WIN32_FIND_DATAW fd = new _WIN32_FIND_DATAW();
+					var fd = new _WIN32_FIND_DATAW();
 					linkW.GetPath(target, target.Capacity, ref fd, (uint)EShellLinkGP.SLGP_UNCPRIORITY);
 				}
 				else
 				{
-					_WIN32_FIND_DATAA fd = new _WIN32_FIND_DATAA();
+					var fd = new _WIN32_FIND_DATAA();
 					linkA.GetPath(target, target.Capacity, ref fd, (uint)EShellLinkGP.SLGP_UNCPRIORITY);
 				}
 				return target.ToString();
@@ -917,7 +856,7 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{
-				StringBuilder path = new StringBuilder(260, 260);
+				var path = new StringBuilder(260, 260);
 				if (linkA == null)
 				{
 					linkW.GetWorkingDirectory(path, path.Capacity);
@@ -948,7 +887,7 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{
-				StringBuilder description = new StringBuilder(1024, 1024);
+				var description = new StringBuilder(1024, 1024);
 				if (linkA == null)
 				{
 					linkW.GetDescription(description, description.Capacity);
@@ -979,7 +918,7 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{				
-				StringBuilder arguments = new StringBuilder(260, 260);
+				var arguments = new StringBuilder(260, 260);
 				if (linkA == null)
 				{
 					linkW.GetArguments(arguments, arguments.Capacity);
@@ -1011,7 +950,7 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{
-				uint cmd = 0;
+				uint cmd;
 				if (linkA == null)
 				{
 					linkW.GetShowCmd(out cmd);
@@ -1042,7 +981,7 @@ namespace vbAccelerator.Components.Shell
 		{
 			get
 			{
-				short key = 0;
+				short key;
 				if (linkA == null)
 				{
 					linkW.GetHotkey(out key);

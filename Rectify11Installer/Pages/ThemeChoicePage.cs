@@ -30,8 +30,8 @@ namespace Rectify11Installer.Pages
 
         void themeSel_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            ComboBox comboBox = (ComboBox)sender;
-            int val = comboBox.SelectedIndex;
+            var comboBox = (ComboBox)sender;
+            var val = comboBox.SelectedIndex;
             switch (val)
             {
                 case 0:

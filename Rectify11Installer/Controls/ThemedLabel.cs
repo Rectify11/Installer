@@ -9,7 +9,7 @@ namespace AeroWizard
 {
 	[DefaultProperty("Text")]
 	[ToolboxItem(true)]
-	public class ThemedLabel : Label
+	public sealed class ThemedLabel : Label
 	{
 		public ThemedLabel()
 		{
@@ -38,7 +38,7 @@ namespace AeroWizard
 
 		public override Size GetPreferredSize(Size proposedSize)
 		{
-			Size preferredSize = base.GetPreferredSize(proposedSize);
+			var preferredSize = base.GetPreferredSize(proposedSize);
 			if (Text.Length > 0)
 			{
 				preferredSize.Width += 10;
@@ -70,7 +70,7 @@ namespace AeroWizard
 					using NativeMethods.SafeDCHandle hdc = new(e.Graphics);
 					NativeMethods.DrawThemeParentBackground(Handle, hdc, ClientRectangle);
 				}
-				Rectangle r = ThemedLabel.DeflateRect(ClientRectangle, Padding);
+				var r = ThemedLabel.DeflateRect(ClientRectangle, Padding);
 				NativeMethods.RECT rR = r;
 				if (Image != null)
 				{
@@ -101,8 +101,8 @@ namespace AeroWizard
 
 				if (IsDesignMode(this) || hTheme.IsInvalid || !Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled())
 				{
-					Brush brush = Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled() ? SystemBrushes.ActiveCaptionText : SystemBrushes.ControlText;
-					StringFormat format = new StringFormat(StringFormat.GenericDefault);
+					var brush = Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled() ? SystemBrushes.ActiveCaptionText : SystemBrushes.ControlText;
+					var format = new StringFormat(StringFormat.GenericDefault);
 					if (GetRightToLeftProperty(this) == RightToLeft.Yes)
 					{
 						format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
@@ -112,18 +112,18 @@ namespace AeroWizard
 				}
 				else
 				{
-					TextFormatFlags tff = CreateTextFormatFlags(RtlTranslateAlignment(TextAlign), AutoEllipsis, UseMnemonic);
+					var tff = CreateTextFormatFlags(RtlTranslateAlignment(TextAlign), AutoEllipsis, UseMnemonic);
 					VisualStyleRendererExtension.DrawWrapper(e.Graphics, ClientRectangle, g =>
 					{
 						using (new NativeMethods.SafeDCObjectHandle(g, Font.ToHfont()))
 						{
-							NativeMethods.DrawThemeTextOptions pOptions = new NativeMethods.DrawThemeTextOptions(true)
+							var pOptions = new NativeMethods.DrawThemeTextOptions(true)
 							{
 								GlowSize = 10,
 								AntiAliasedAlpha = true,
 								TextColor = ForeColor
 							};
-							NativeMethods.RECT pRect = new NativeMethods.RECT(4, 0, Width - 4, Height);
+							var pRect = new NativeMethods.RECT(4, 0, Width - 4, Height);
 							NativeMethods.DrawThemeTextEx(hTheme, g, 1, 1, Text, Text.Length, tff, ref pRect, ref pOptions);
 						}
 					});
@@ -141,10 +141,10 @@ namespace AeroWizard
 		}
 		private bool IsDesignMode(Control ctrl)
 		{
-			Control p = ctrl;
+			var p = ctrl;
 			while (p is not null)
 			{
-				System.ComponentModel.ISite site = p.Site;
+				var site = p.Site;
 				if (site is not null && site.DesignMode)
 				{
 					return true;
@@ -171,7 +171,7 @@ namespace AeroWizard
 		  bool showEllipsis,
 		  bool useMnemonic)
 		{
-			TextFormatFlags textFormatFlags = TextFormatFlags.SingleLine;
+			var textFormatFlags = TextFormatFlags.SingleLine;
 			if ((textAlign & (System.Drawing.ContentAlignment.BottomLeft | System.Drawing.ContentAlignment.BottomCenter | System.Drawing.ContentAlignment.BottomRight)) != 0)
 			{
 				textFormatFlags |= TextFormatFlags.Bottom;

@@ -139,8 +139,6 @@
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\MMCHelper.cs" />
     <Compile Include="Core\Installer.cs" />
-    <Compile Include="Core\InstallOptions.cs" />
-    <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\ResourceLoader.cs" />
     <Compile Include="Core\ShellLink.cs" />

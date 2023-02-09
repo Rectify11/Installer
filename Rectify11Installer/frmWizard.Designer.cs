@@ -1,6 +1,6 @@
 ﻿namespace Rectify11Installer
 {
-    partial class frmWizard
+	sealed partial class FrmWizard
     {
         /// <summary>
         /// Required designer variable.
@@ -344,7 +344,7 @@
             // timer
             //
             this.timer.Interval = 40;
-            this.timer.Tick += timer1_Tick;
+            this.timer.Tick += Timer1_Tick;
             // 
             // frmWizard
             // 
@@ -365,7 +365,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("r11")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmWizard";
+            this.Name = "FrmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = resources.GetString("Title");
             this.tableLayoutPanel1.ResumeLayout(false);

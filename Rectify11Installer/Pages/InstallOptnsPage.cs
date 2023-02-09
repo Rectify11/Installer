@@ -12,11 +12,11 @@ namespace Rectify11Installer.Pages
     public partial class InstallOptnsPage : WizardPage
     {
         #region Variables
-        private readonly frmWizard _frmWizard;
+        private readonly FrmWizard _frmWizard;
         bool idleinit;
         #endregion
         #region Main
-        public InstallOptnsPage(frmWizard Frm)
+        public InstallOptnsPage(FrmWizard Frm)
         {
             _frmWizard = Frm;
             InitializeComponent();
@@ -27,8 +27,8 @@ namespace Rectify11Installer.Pages
             if (!idleinit)
             {
                 overwriteUpdatedFiles();
-                Patches list = PatchesParser.GetAll();
-                PatchesPatch[] ok = list.Items;
+                var list = PatchesParser.GetAll();
+                var ok = list.Items;
                 var basicNode = treeView1.Nodes[0].Nodes[0];
                 var advNode = treeView1.Nodes[0].Nodes[1];
                 UpdateListView(ok, basicNode, advNode);
@@ -45,61 +45,61 @@ namespace Rectify11Installer.Pages
         #region Private Methods
         private static void UpdateListView(PatchesPatch[] patch, TreeNode basicNode, TreeNode advNode)
         {
-            for (int i = 0; i < patch.Length; i++)
+            for (var i = 0; i < patch.Length; i++)
             {
                 if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch[i].Mui)))
                 {
                     if (patch[i].HardlinkTarget.Contains("%sys32%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui);
                     }
                     else if (patch[i].HardlinkTarget.Contains("%lang%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
                     else if (patch[i].HardlinkTarget.Contains("%en-US%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
                     else if (patch[i].HardlinkTarget.Contains("%windirEn-US%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.Windir, "en-US"));
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.Windir, "en-US"));
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
                     else if (patch[i].HardlinkTarget.Contains("%windirLang%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.Windir, CultureInfo.CurrentUICulture.Name));
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.Windir, CultureInfo.CurrentUICulture.Name));
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
                     }
                     else if (patch[i].Mui.Contains("mun"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
                         if (File.Exists(newpath))
                             basicNode.Nodes.Add(patch[i].Mui);
                     }
                     else if (patch[i].HardlinkTarget.Contains("%windir%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%windir%", Variables.Windir);
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%windir%", Variables.Windir);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui);
                     }
                     else if (patch[i].HardlinkTarget.Contains("%branding%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%branding%", Variables.BrandingFolder);
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%branding%", Variables.BrandingFolder);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui);
                     }
                     else if (patch[i].HardlinkTarget.Contains("%prog%"))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui);
                     }
@@ -107,10 +107,10 @@ namespace Rectify11Installer.Pages
                 }
                 if (patch[i].HardlinkTarget.Contains("%diag%"))
                 {
-                    string name = patch[i].Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
+                    var name = patch[i].Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
                     if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag", name)))
                     {
-                        string newpath = patch[i].HardlinkTarget.Replace(@"%diag%", Variables.diag);
+                        var newpath = patch[i].HardlinkTarget.Replace(@"%diag%", Variables.diag);
                         if (File.Exists(newpath))
                             advNode.Nodes.Add(patch[i].Mui);
                     }
@@ -212,7 +212,7 @@ namespace Rectify11Installer.Pages
             var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", true);
             if (key != null)
             {
-                object build = key.GetValue("Build");
+                var build = key.GetValue("Build");
                 if (build == null || (build != null && Int32.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build))
                 {
                     if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
@@ -222,8 +222,8 @@ namespace Rectify11Installer.Pages
                         {
                             Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
                         }
-                        string[] newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-                        for (int i = 0; i < newFiles.Length; i++)
+                        var newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+                        for (var i = 0; i < newFiles.Length; i++)
                         {
                             if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", newFiles[i])))
                             {

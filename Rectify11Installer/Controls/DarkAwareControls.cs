@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Controls
 {
@@ -15,14 +16,14 @@ namespace Rectify11Installer.Controls
 		{
 			get
 			{
-				CreateParams cp = base.CreateParams;
+				var cp = base.CreateParams;
 				cp.ExStyle |= 0x02000000; //WS_EX_COMPOSITED
 				return cp;
 			}
 		}
 		public DarkAwareTreeView()
 		{
-			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			Theme.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -65,7 +66,7 @@ namespace Rectify11Installer.Controls
 	{
 		public DarkAwareLabel()
 		{
-			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			Theme.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -93,7 +94,7 @@ namespace Rectify11Installer.Controls
 	{
 		public DarkAwareRichTextBox()
 		{
-			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			Theme.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -122,7 +123,7 @@ namespace Rectify11Installer.Controls
 	{
 		public DarkAwareTabPage()
 		{
-			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			Theme.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -152,7 +153,7 @@ namespace Rectify11Installer.Controls
 		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareRadioButton()
 		{
-			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			Theme.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -182,7 +183,7 @@ namespace Rectify11Installer.Controls
 		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareCheckBox()
 		{
-			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			Theme.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -212,7 +213,7 @@ namespace Rectify11Installer.Controls
 		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareComboBox()
 		{
-			Theme.OnThemeChanged += delegate (object sender, EventArgs e)
+			Theme.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};

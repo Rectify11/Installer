@@ -160,9 +160,9 @@ namespace Rectify11Installer.Win32
 
 		#endregion
 		#region Public Methods
-		public static bool SetCloseButton(frmWizard frm, bool enable)
+		public static bool SetCloseButton(FrmWizard frm, bool enable)
 		{
-			IntPtr hMenu = NativeMethods.GetSystemMenu(frm.Handle, false);
+			var hMenu = NativeMethods.GetSystemMenu(frm.Handle, false);
 			if (hMenu != IntPtr.Zero)
 			{
 				NativeMethods.EnableMenuItem(hMenu,
@@ -174,7 +174,7 @@ namespace Rectify11Installer.Win32
 		}
 		public static void Reboot()
 		{
-			IntPtr tokenHandle = IntPtr.Zero;
+			var tokenHandle = IntPtr.Zero;
 			try
 			{
 				// get process token
@@ -248,7 +248,7 @@ namespace Rectify11Installer.Win32
 		}
 		public static int GetUbr()
 		{
-			using RegistryKey key = Registry.LocalMachine.OpenSubKey(@"software\microsoft\Windows NT\CurrentVersion");
+			using var key = Registry.LocalMachine.OpenSubKey(@"software\microsoft\Windows NT\CurrentVersion");
 			if (key != null)
 			{
 				return Convert.ToInt32(key.GetValue("UBR"));
