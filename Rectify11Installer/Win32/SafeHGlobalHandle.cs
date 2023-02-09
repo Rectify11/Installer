@@ -72,7 +72,7 @@ namespace System.Runtime.InteropServices
 		/// <summary>Allocates from unmanaged memory sufficient memory to hold an object of type T.</summary>
 		/// <typeparam name="T">Native type</typeparam>
 		/// <returns>SafeHGlobalHandle object to an native (unmanaged) memory block the size of T.</returns>
-		public static SafeHGlobalHandle AllocHGlobal<T>() => new SafeHGlobalHandle(Marshal.SizeOf(typeof(T)));
+		public static SafeHGlobalHandle AllocHGlobal<T>() => new(Marshal.SizeOf(typeof(T)));
 
 		/// <summary>
 		/// Allocates from unmanaged memory to represent an array of structures and marshals the structure elements to the native array of
@@ -129,7 +129,7 @@ namespace System.Runtime.InteropServices
 		public static implicit operator IntPtr(SafeHGlobalHandle h) => h.DangerousGetHandle();
 
 		/// <summary>Allows to assign IntPtr to SafeHGlobalHandle</summary>
-		public static implicit operator SafeHGlobalHandle(IntPtr ptr) => new SafeHGlobalHandle(ptr, 0, true);
+		public static implicit operator SafeHGlobalHandle(IntPtr ptr) => new(ptr, 0, true);
 
 		/// <summary>
 		/// Adds reference to other SafeHGlobalHandle objects, the pointer to which are referred to by this object. This is to ensure that

@@ -1,31 +1,35 @@
-﻿using libmsstyle;
+﻿using System;
+using System.IO;
+using System.Linq;
+using libmsstyle;
 using Microsoft.Win32;
 using Rectify11Installer.Controls;
-using Rectify11Installer.Core;
-using System;
-using System.IO;
 
-namespace Rectify11Installer
+namespace Rectify11Installer.Core
 {
 	public class Theme
 	{
 		#region Variables
-		public static VisualStyle DarkStyle = new VisualStyle();
-		public static VisualStyle LightStyle = new VisualStyle();
+		public static VisualStyle DarkStyle = new();
+		public static VisualStyle LightStyle = new();
 		public static bool IsUsingDarkMode { get; private set; }
 		#endregion
 		#region Public Methods
 		public static void InitTheme()
 		{
 			var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
-			var registryValueObject = key.GetValue("AppsUseLightTheme");
-			if (registryValueObject == null)
+			if (key != null)
 			{
-				return;
+				var registryValueObject = key.GetValue("AppsUseLightTheme");
+				if (registryValueObject == null)
+				{
+					return;
+				}
+
+				var registryValue = (int)registryValueObject;
+				IsUsingDarkMode = registryValue <= 0;
 			}
 
-			var registryValue = (int)registryValueObject;
-			IsUsingDarkMode = registryValue <= 0;
 			SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
 		}
 		public static event EventHandler OnThemeChanged;
@@ -38,145 +42,44 @@ namespace Rectify11Installer
 
 		public static StylePart GetNavArrowPart(VisualStyle v, NavigationButtonType type)
 		{
-			foreach (var classes in v.Classes.Values)
-			{
-				if (classes.ClassName == "Navigation")
+			return (from classes in v.Classes.Values
+				where classes.ClassName == "Navigation"
+				let partStr = type switch
 				{
-					string PartStr = "";
-					switch (type)
-					{
-						case NavigationButtonType.Forward:
-							PartStr = "FORWARDBUTTON";
-							break;
-						case NavigationButtonType.Backward:
-							PartStr = "BACKBUTTON";
-							break;
-						case NavigationButtonType.Menu:
-							PartStr = "MENUBUTTON";
-							break;
-						default:
-							throw new NotImplementedException();
-					}
-					foreach (var parts in classes.Parts)
-					{
-						if (parts.Value.PartName == PartStr)
-						{
-							return parts.Value;
-						}
-					}
+					NavigationButtonType.Forward => "FORWARDBUTTON",
+					NavigationButtonType.Backward => "BACKBUTTON",
+					NavigationButtonType.Menu => "MENUBUTTON",
+					_ => throw new NotImplementedException()
 				}
-			}
-
-			return null;
+				from parts in classes.Parts
+				where parts.Value.PartName == partStr
+				select parts.Value).FirstOrDefault();
 		}
 		public static StylePart GetCommandLinkPart(VisualStyle v)
 		{
-			foreach (var classes in v.Classes.Values)
-			{
-				if (classes.ClassName == "Button")
-				{
-					foreach (var parts in classes.Parts)
-					{
-						if (parts.Value.PartName == "COMMANDLINK")
-						{
-							return parts.Value;
-						}
-					}
-				}
-			}
-
-			return null;
+			return (from classes in v.Classes.Values where classes.ClassName == "Button" from parts in classes.Parts where parts.Value.PartName == "COMMANDLINK" select parts.Value).FirstOrDefault();
 		}
 		public static StylePart GetGroupBox(VisualStyle v)
 		{
-			foreach (var classes in v.Classes.Values)
-			{
-				if (classes.ClassName == "Button")
-				{
-					foreach (var parts in classes.Parts)
-					{
-						if (parts.Value.PartName == "GROUPBOX")
-						{
-							return parts.Value;
-						}
-					}
-				}
-			}
-
-			return null;
+			return (from classes in v.Classes.Values where classes.ClassName == "Button" from parts in classes.Parts where parts.Value.PartName == "GROUPBOX" select parts.Value).FirstOrDefault();
 		}
 		public static StylePart GetCommandLinkGlyphPart(VisualStyle v)
 		{
-			foreach (var classes in v.Classes.Values)
-			{
-				if (classes.ClassName == "Button")
-				{
-					foreach (var parts in classes.Parts)
-					{
-						if (parts.Value.PartName == "COMMANDLINKGLYPH")
-						{
-							return parts.Value;
-						}
-					}
-				}
-			}
-
-			return null;
+			return (from classes in v.Classes.Values where classes.ClassName == "Button" from parts in classes.Parts where parts.Value.PartName == "COMMANDLINKGLYPH" select parts.Value).FirstOrDefault();
 		}
 #nullable enable
-		public static StylePart? GetProgressbarBG(VisualStyle v)
+		public static StylePart? GetProgressbarBg(VisualStyle v)
 		{
-			foreach (var classes in v.Classes.Values)
-			{
-				if (classes.ClassName == "Progress")
-				{
-					foreach (var parts in classes.Parts)
-					{
-						if (parts.Value.PartName == "BAR")
-						{
-							return parts.Value;
-						}
-					}
-				}
-			}
-
-			return null;
+			return (from classes in v.Classes.Values where classes.ClassName == "Progress" from parts in classes.Parts where parts.Value.PartName == "BAR" select parts.Value).FirstOrDefault();
 		}
 		public static StylePart? GetProgressbarFill(VisualStyle v)
 		{
-			foreach (var classes in v.Classes.Values)
-			{
-				if (classes.ClassName == "Progress")
-				{
-					foreach (var parts in classes.Parts)
-					{
-						if (parts.Value.PartName == "FILL")
-						{
-							return parts.Value;
-						}
-					}
-				}
-			}
-
-			return null;
+			return (from classes in v.Classes.Values where classes.ClassName == "Progress" from parts in classes.Parts where parts.Value.PartName == "FILL" select parts.Value).FirstOrDefault();
 		}
 #nullable disable
 		public static StylePart GetButtonPart(VisualStyle v)
 		{
-			foreach (var classes in v.Classes.Values)
-			{
-				if (classes.ClassName == "Button")
-				{
-					foreach (var parts in classes.Parts)
-					{
-						if (parts.Value.PartName == "PUSHBUTTON")
-						{
-							return parts.Value;
-						}
-					}
-				}
-			}
-			return null;
+			return (from classes in v.Classes.Values where classes.ClassName == "Button" from parts in classes.Parts where parts.Value.PartName == "PUSHBUTTON" select parts.Value).FirstOrDefault();
 		}
 		#endregion
 		#region Private Methods

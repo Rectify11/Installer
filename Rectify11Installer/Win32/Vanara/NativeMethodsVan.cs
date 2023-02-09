@@ -144,7 +144,7 @@ namespace Vanara.Interop
 		  NativeMethods.WindowThemeNonClientAttributes ncAttrs,
 		  int ncAttrMasks = 2147483647)
 		{
-			NativeMethods.WTA_OPTIONS attributes = new NativeMethods.WTA_OPTIONS()
+			var attributes = new NativeMethods.WTA_OPTIONS()
 			{
 				Flags = ncAttrs,
 				Mask = ncAttrMasks == int.MaxValue ? (int)ncAttrs : ncAttrMasks
@@ -209,7 +209,7 @@ namespace Vanara.Interop
 			public int biYPelsPerMeter;
 			public uint biClrUsed;
 			public uint biClrImportant;
-			public static readonly NativeMethods.BITMAPINFOHEADER Default = new NativeMethods.BITMAPINFOHEADER()
+			public static readonly NativeMethods.BITMAPINFOHEADER Default = new()
 			{
 				biSize = (uint)Marshal.SizeOf(typeof(NativeMethods.BITMAPINFOHEADER))
 			};
@@ -311,8 +311,8 @@ namespace Vanara.Interop
 			public int Right;
 			public int Top;
 			public int Bottom;
-			public static readonly NativeMethods.Margins Empty = new NativeMethods.Margins(0);
-			public static readonly NativeMethods.Margins Infinite = new NativeMethods.Margins(-1);
+			public static readonly NativeMethods.Margins Empty = new(0);
+			public static readonly NativeMethods.Margins Infinite = new(-1);
 
 			public Margins(int left, int right, int top, int bottom)
 			{
@@ -523,9 +523,9 @@ namespace Vanara.Interop
 				set => Right = value + Left;
 			}
 
-			public static implicit operator Rectangle(NativeMethods.RECT r) => new Rectangle(r.Left, r.Top, r.Width, r.Height);
+			public static implicit operator Rectangle(NativeMethods.RECT r) => new(r.Left, r.Top, r.Width, r.Height);
 
-			public static implicit operator NativeMethods.RECT(Rectangle r) => new NativeMethods.RECT(r);
+			public static implicit operator NativeMethods.RECT(Rectangle r) => new(r);
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -581,16 +581,16 @@ namespace Vanara.Interop
 				set => Right = value + Left;
 			}
 
-			public static implicit operator Rectangle(NativeMethods.PRECT r) => new Rectangle(r.Left, r.Top, r.Width, r.Height);
+			public static implicit operator Rectangle(NativeMethods.PRECT r) => new(r.Left, r.Top, r.Width, r.Height);
 
 			public static implicit operator NativeMethods.PRECT(Rectangle? r) => !r.HasValue ? null : new NativeMethods.PRECT(r.Value);
 
-			public static implicit operator NativeMethods.PRECT(Rectangle r) => new NativeMethods.PRECT(r);
+			public static implicit operator NativeMethods.PRECT(Rectangle r) => new(r);
 		}
 
 		public class SafeDCHandle : SafeHandle
 		{
-			public static readonly NativeMethods.SafeDCHandle Null = new NativeMethods.SafeDCHandle(IntPtr.Zero);
+			public static readonly NativeMethods.SafeDCHandle Null = new(IntPtr.Zero);
 			private readonly IDeviceContext idc;
 
 			public SafeDCHandle(IntPtr hDC, bool ownsHandle = true)
@@ -606,13 +606,13 @@ namespace Vanara.Interop
 				SetHandle(dc.GetHdc());
 			}
 
-			public static NativeMethods.SafeDCHandle ScreenCompatibleDCHandle => new NativeMethods.SafeDCHandle(NativeMethods.CreateCompatibleDC(IntPtr.Zero));
+			public static NativeMethods.SafeDCHandle ScreenCompatibleDCHandle => new(NativeMethods.CreateCompatibleDC(IntPtr.Zero));
 
 			public override bool IsInvalid => handle == IntPtr.Zero;
 
-			public static implicit operator NativeMethods.SafeDCHandle(Graphics graphics) => new NativeMethods.SafeDCHandle(graphics);
+			public static implicit operator NativeMethods.SafeDCHandle(Graphics graphics) => new(graphics);
 
-			public NativeMethods.SafeDCHandle GetCompatibleDCHandle() => new NativeMethods.SafeDCHandle(NativeMethods.CreateCompatibleDC(handle));
+			public NativeMethods.SafeDCHandle GetCompatibleDCHandle() => new(NativeMethods.CreateCompatibleDC(handle));
 
 			protected override bool ReleaseHandle()
 			{
@@ -1037,7 +1037,7 @@ namespace Vanara.Interop
 			public static readonly NativeMethods.HRESULT E_POINTER;
 			public static readonly NativeMethods.HRESULT E_UNEXPECTED;
 			public static readonly NativeMethods.HRESULT S_FALSE;
-			public static readonly NativeMethods.HRESULT S_OK = new NativeMethods.HRESULT(0U);
+			public static readonly NativeMethods.HRESULT S_OK = new(0U);
 			public static readonly NativeMethods.HRESULT SCRIPT_E_REPORTED;
 			public static readonly NativeMethods.HRESULT STG_E_INVALIDFUNCTION;
 			public static readonly NativeMethods.HRESULT WC_E_GREATERTHAN;
@@ -1098,7 +1098,7 @@ namespace Vanara.Interop
 					return null;
 				}
 
-				Exception exception = Marshal.GetExceptionForHR((int)_value, new IntPtr(-1));
+				var exception = Marshal.GetExceptionForHR((int)_value, new IntPtr(-1));
 				if (exception.GetType() == typeof(COMException))
 				{
 					if (Facility != NativeMethods.Facility.Win32)
@@ -1110,11 +1110,11 @@ namespace Vanara.Interop
 				}
 				if (!string.IsNullOrEmpty(message))
 				{
-					Type[] types = new Type[1] { typeof(string) };
-					ConstructorInfo constructor = exception.GetType().GetConstructor(types);
+					var types = new Type[1] { typeof(string) };
+					var constructor = exception.GetType().GetConstructor(types);
 					if (null != constructor)
 					{
-						object[] parameters = new object[1]
+						var parameters = new object[1]
 						{
 			   message
 						};
@@ -1146,7 +1146,7 @@ namespace Vanara.Interop
 			[SecuritySafeCritical]
 			public void ThrowIfFailed(string message)
 			{
-				Exception exception = GetException(message);
+				var exception = GetException(message);
 				if (exception != null)
 				{
 					throw exception;
@@ -1155,7 +1155,7 @@ namespace Vanara.Interop
 
 			public override string ToString()
 			{
-				foreach (FieldInfo field in typeof(NativeMethods.HRESULT).GetFields(BindingFlags.Static | BindingFlags.Public))
+				foreach (var field in typeof(NativeMethods.HRESULT).GetFields(BindingFlags.Static | BindingFlags.Public))
 				{
 					if (field.FieldType == typeof(NativeMethods.HRESULT) && (NativeMethods.HRESULT)field.GetValue(null) == this)
 					{
@@ -1164,7 +1164,7 @@ namespace Vanara.Interop
 				}
 				if (Facility == NativeMethods.Facility.Win32)
 				{
-					foreach (FieldInfo field in typeof(NativeMethods.Win32Error).GetFields(BindingFlags.Static | BindingFlags.Public))
+					foreach (var field in typeof(NativeMethods.Win32Error).GetFields(BindingFlags.Static | BindingFlags.Public))
 					{
 						if (field.FieldType == typeof(NativeMethods.Win32Error) && (NativeMethods.HRESULT)(NativeMethods.Win32Error)field.GetValue(null) == this)
 						{
@@ -1198,7 +1198,7 @@ namespace Vanara.Interop
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
 			public string szTip;
 			public NativeMethods.THBF dwFlags;
-			public static NativeMethods.THUMBBUTTON Default = new NativeMethods.THUMBBUTTON()
+			public static NativeMethods.THUMBBUTTON Default = new()
 			{
 				dwMask = NativeMethods.THB.FLAGS,
 				dwFlags = NativeMethods.THBF.HIDDEN
@@ -1227,7 +1227,7 @@ namespace Vanara.Interop
 			public static readonly NativeMethods.Win32Error ERROR_OUTOFMEMORY;
 			public static readonly NativeMethods.Win32Error ERROR_PATH_NOT_FOUND;
 			public static readonly NativeMethods.Win32Error ERROR_SHARING_VIOLATION;
-			public static readonly NativeMethods.Win32Error ERROR_SUCCESS = new NativeMethods.Win32Error(0);
+			public static readonly NativeMethods.Win32Error ERROR_SUCCESS = new(0);
 			public static readonly NativeMethods.Win32Error ERROR_TIMEOUT;
 			public static readonly NativeMethods.Win32Error ERROR_TOO_MANY_OPEN_FILES;
 
@@ -1271,7 +1271,7 @@ namespace Vanara.Interop
 			public override int GetHashCode() => _value.GetHashCode();
 
 			[SecurityCritical]
-			public static NativeMethods.Win32Error GetLastError() => new NativeMethods.Win32Error(Marshal.GetLastWin32Error());
+			public static NativeMethods.Win32Error GetLastError() => new(Marshal.GetLastWin32Error());
 
 			public static bool operator ==(
 			  NativeMethods.Win32Error errLeft,
@@ -1309,9 +1309,9 @@ namespace Vanara.Interop
 
 			public Size ToSize() => this;
 
-			public static implicit operator Size(NativeMethods.SIZE s) => new Size(s.width, s.height);
+			public static implicit operator Size(NativeMethods.SIZE s) => new(s.width, s.height);
 
-			public static implicit operator NativeMethods.SIZE(Size s) => new NativeMethods.SIZE(s.Width, s.Height);
+			public static implicit operator NativeMethods.SIZE(Size s) => new(s.Width, s.Height);
 		}
 
 		[UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Unicode)]
@@ -1507,7 +1507,7 @@ namespace Vanara.Interop
 
 			public Point ShadowOffset
 			{
-				get => new Point(ptShadowOffset.X, ptShadowOffset.Y);
+				get => new(ptShadowOffset.X, ptShadowOffset.Y);
 				set
 				{
 					ptShadowOffset = value;
@@ -1535,7 +1535,7 @@ namespace Vanara.Interop
 				}
 			}
 
-			public static NativeMethods.DrawThemeTextOptions Default => new NativeMethods.DrawThemeTextOptions(true);
+			public static NativeMethods.DrawThemeTextOptions Default => new(true);
 
 			private void SetFlag(NativeMethods.DrawThemeTextOptionsMasks f, bool value)
 			{

@@ -1,14 +1,23 @@
 ﻿using libmsstyle;
 using System.Drawing;
 using System.Windows.Forms;
+using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Controls
 {
     // will be used later
-    public class CustomProgressBar : ProgressBar
+    public sealed class CustomProgressBar : ProgressBar
     {
         private bool _error = false;
-        public bool Error { get { return _error; } set { _error = value; Invalidate(); } }
+        public bool Error 
+        { 
+	        get => _error;
+	        set
+	        {
+		        _error = value; 
+		        Invalidate();
+	        }
+        }
         public CustomProgressBar()
         {
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -21,7 +30,7 @@ namespace Rectify11Installer.Controls
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Rectangle rec = e.ClipRectangle;
+            var rec = e.ClipRectangle;
 
             rec.Width = (int)(rec.Width * ((double)Value / Maximum));
 
@@ -32,9 +41,9 @@ namespace Rectify11Installer.Controls
             }
             else
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
 
-                var part = Theme.GetProgressbarBG(currentTheme);
+                var part = Theme.GetProgressbarBg(currentTheme);
                 var renderer2 = new PartRenderer(currentTheme, part);
                 var b = renderer2.RenderPreview(ThemeParts.Normal, Width, Height);
 
@@ -50,12 +59,12 @@ namespace Rectify11Installer.Controls
             }
             else
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
 
                 var part = Theme.GetProgressbarFill(currentTheme);
 
-				using PartRenderer renderer2 = new PartRenderer(currentTheme, part);
-				ThemeParts tpart = Error ? ThemeParts.Pressed : ThemeParts.Normal;
+				using var renderer2 = new PartRenderer(currentTheme, part);
+				var tpart = Error ? ThemeParts.Pressed : ThemeParts.Normal;
 				var b = renderer2.RenderPreview(tpart, rec.Width, rec.Height);
 
 				e.Graphics.DrawImage(b, new Point(0, 0));

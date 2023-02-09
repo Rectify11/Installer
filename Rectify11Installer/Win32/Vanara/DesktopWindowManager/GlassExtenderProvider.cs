@@ -13,7 +13,7 @@ namespace Vanara.Interop.DesktopWindowManager
   [Description("Extender for a Form that adds Aero glass properties.")]
   public class GlassExtenderProvider : Component, IExtenderProvider
   {
-    private readonly Dictionary<Control, GlassExtenderProvider.GlassFormProperties> formProps = new Dictionary<Control, GlassExtenderProvider.GlassFormProperties>();
+    private readonly Dictionary<Control, GlassExtenderProvider.GlassFormProperties> formProps = new();
 
     [Category("Behavior")]
     [Description("Indicates whether extending glass into the client area is enabled.")]
@@ -55,7 +55,7 @@ namespace Vanara.Interop.DesktopWindowManager
 
     public void SetGlassMargins(Form form, Padding value)
     {
-      GlassExtenderProvider.GlassFormProperties glassFormProperties = form != null ? this.GetFormProperties(form) : throw new ArgumentNullException(nameof (form));
+      var glassFormProperties = form != null ? this.GetFormProperties(form) : throw new ArgumentNullException(nameof (form));
       if (value == Padding.Empty)
       {
         glassFormProperties.GlassMargins = Padding.Empty;
@@ -79,7 +79,7 @@ namespace Vanara.Interop.DesktopWindowManager
     {
       if (disposing)
       {
-        foreach (Control key in this.formProps.Keys)
+        foreach (var key in this.formProps.Keys)
         {
           if (key is Form form && !form.IsDisposed)
             this.UnhookForm(form);
@@ -99,7 +99,7 @@ namespace Vanara.Interop.DesktopWindowManager
     {
       if (e.Button != MouseButtons.Left)
         return;
-      GlassExtenderProvider.GlassFormProperties formProperties = this.GetFormProperties(sender as Form);
+      var formProperties = this.GetFormProperties(sender as Form);
       if (!formProperties.GlassMarginMovesForm)
         return;
       formProperties.FormMoveTracking = true;
@@ -110,12 +110,12 @@ namespace Vanara.Interop.DesktopWindowManager
     {
       if (!(sender is Form form))
         return;
-      GlassExtenderProvider.GlassFormProperties formProperties = this.GetFormProperties(form);
+      var formProperties = this.GetFormProperties(form);
       if (!formProperties.FormMoveTracking || GlassExtenderProvider.GetNonGlassArea(form, formProperties).Contains(e.Location))
         return;
-      Point screen = form.PointToScreen(e.Location);
-      Point p = new Point(screen.X - formProperties.FormMoveLastMousePos.X, screen.Y - formProperties.FormMoveLastMousePos.Y);
-      Point location = form.Location;
+      var screen = form.PointToScreen(e.Location);
+      var p = new Point(screen.X - formProperties.FormMoveLastMousePos.X, screen.Y - formProperties.FormMoveLastMousePos.Y);
+      var location = form.Location;
       location.Offset(p);
       form.Location = location;
       formProperties.FormMoveLastMousePos = screen;
@@ -163,7 +163,7 @@ namespace Vanara.Interop.DesktopWindowManager
       }
       else
       {
-        using (Region region = new Region(form.ClientRectangle))
+        using (var region = new Region(form.ClientRectangle))
         {
           region.Exclude(GlassExtenderProvider.GetNonGlassArea(form, prop));
           g.FillRegion(Brushes.Black, region);
@@ -174,17 +174,17 @@ namespace Vanara.Interop.DesktopWindowManager
 
     private void InvalidateNonGlassClientArea(Form form)
     {
-      Padding glassMargins = this.GetGlassMargins(form);
+      var glassMargins = this.GetGlassMargins(form);
       if (glassMargins == Padding.Empty)
         return;
-            Rectangle rc = Rectangle.Empty;
-      ref Rectangle local = ref rc;
-      int left = glassMargins.Left;
-      int top = glassMargins.Top;
-      Rectangle clientRectangle = form.ClientRectangle;
-      int width = clientRectangle.Width - glassMargins.Right;
+            var rc = Rectangle.Empty;
+      ref var local = ref rc;
+      var left = glassMargins.Left;
+      var top = glassMargins.Top;
+      var clientRectangle = form.ClientRectangle;
+      var width = clientRectangle.Width - glassMargins.Right;
       clientRectangle = form.ClientRectangle;
-      int height = clientRectangle.Height - glassMargins.Bottom;
+      var height = clientRectangle.Height - glassMargins.Bottom;
       local = new Rectangle(left, top, width, height);
       form.Invalidate(rc, false);
     }

@@ -8,25 +8,24 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using vbAccelerator.Components.Shell;
 
 namespace Rectify11Installer.Pages
 {
 	public partial class ProgressPage : WizardPage
 	{
 		#region Variables
-		private frmWizard frmwiz;
+		private FrmWizard frmwiz;
 		private Timer timer2;
 		private int duration = 30;
 		private int CurrentTextIndex = -1;
 		private static readonly InstallerTexts[] Rectify11InstallerTexts =
 		{
-			new InstallerTexts("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
-			new InstallerTexts("Rectify11 has a better Theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
-			new InstallerTexts("Rectify11 has better Performance", "We strongly value performance. You can choose things that you want to debloat in your system.", Properties.Resources.perf),
-			new InstallerTexts("Rectify11 has changed everything", "We have changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.ep),
-			new InstallerTexts("Rectified Control Panel", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
-			new InstallerTexts("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
+			new("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
+			new("Rectify11 has a better Theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
+			new("Rectify11 has better Performance", "We strongly value performance. You can choose things that you want to debloat in your system.", Properties.Resources.perf),
+			new("Rectify11 has changed everything", "We have changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.ep),
+			new("Rectified Control Panel", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
+			new("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
 		};
 		#endregion
 		#region Classes
@@ -46,7 +45,7 @@ namespace Rectify11Installer.Pages
 		}
 		#endregion
 		#region Public methods
-		public ProgressPage(frmWizard frm)
+		public ProgressPage(FrmWizard frm)
 		{
 			InitializeComponent();
 			timer2 = new()
@@ -85,9 +84,9 @@ namespace Rectify11Installer.Pages
 			{
 
 				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
-				FileInfo[] files = di.GetFiles("*.db");
+				var files = di.GetFiles("*.db");
 
-				for (int i = 0; i < files.Length; i++)
+				for (var i = 0; i < files.Length; i++)
 				{
 					files[i].Attributes = FileAttributes.Normal;
 					if (File.Exists(files[i].FullName))
@@ -95,7 +94,7 @@ namespace Rectify11Installer.Pages
 						File.Delete(files[i].FullName);
 					}
 				}
-				RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
 				if (key != null)
 				{
 					key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
@@ -118,7 +117,7 @@ namespace Rectify11Installer.Pages
 		{
 			if (InstallOptions.InstallThemes)
 			{
-				RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
 				if (key != null)
 				{
 					if (InstallOptions.ThemeLight)

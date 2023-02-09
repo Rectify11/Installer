@@ -1,6 +1,9 @@
 ﻿using KPreisser.UI;
 using Microsoft.Win32;
+using Rectify11Installer.Pages;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 
@@ -15,16 +18,14 @@ namespace Rectify11Installer.Core
             {
 				return true;
             }
-			if (RebootRequired())
-			{
-				TaskDialog.Show(text: "You cannot install Rectify11 as Windows Updates are pending.",
-					instruction: "Compatibility Error",
-					title: "Rectify11 Setup",
-					buttons: TaskDialogButtons.OK,
-					icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-				return false;
-			}
-			return true;
+
+			if (!RebootRequired()) return true;
+			TaskDialog.Show(text: "You cannot install Rectify11 as Windows Updates are pending.",
+				instruction: "Compatibility Error",
+				title: "Rectify11 Setup",
+				buttons: TaskDialogButtons.OK,
+				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+			return false;
 		}
 		public static bool UpdateIRectify11()
 		{
@@ -49,7 +50,7 @@ namespace Rectify11Installer.Core
 		public static StringBuilder FinalText()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
-			StringBuilder ok = new StringBuilder();
+			var ok = new StringBuilder();
 			ok.AppendLine();
 			ok.AppendLine();
 			FinalizeIRectify11();
@@ -93,8 +94,8 @@ namespace Rectify11Installer.Core
 		#region Private Methods
 		private static bool RebootRequired()
 		{
-			using RegistryKey auKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired");
-			using RegistryKey cbsKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending");
+			using var auKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired");
+			using var cbsKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending");
 			return (auKey != null || cbsKey != null);
 		}
 		#endregion
@@ -107,62 +108,92 @@ namespace Rectify11Installer.Core
 		{
 			get
 			{
-				using RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
-				if (key == null)
-				{
-					return false;
-				}
-
-				var b = key.GetValue("IsInstalled");
-				if (b == null)
-				{
-					return false;
-				}
-
-				var value = (int)b;
+				using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+				var b = key?.GetValue("IsInstalled");
+				var value = (int?)b;
 				return value == 1;
 			}
 			set
 			{
-				using RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11");
-				key.SetValue("IsInstalled", value ? 1 : 0);
+				using var key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11");
+				key?.SetValue("IsInstalled", value ? 1 : 0);
 			}
 		}
 		public static string InstalledVersion
 		{
 			get
 			{
-				using RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
-				if (key == null)
-				{
-					return null;
-				}
-
-				var b = key.GetValue("Version");
-				if (b == null)
-				{
-					return null;
-				}
-
+				using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+				var b = key?.GetValue("Version");
 				var value = (string)b;
 				return value;
 			}
 			set
 			{
-				using RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11");
-				key.SetValue("Version", value);
+				using var key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11");
+				key?.SetValue("Version", value);
 			}
 		}
 		#endregion
 	}
+
+	#region Pages
+	public class RectifyPages
+	{
+		public static WelcomePage WelcomePage = new();
+		public static EulaPage EulaPage = new();
+		public static InstallOptnsPage InstallOptnsPage;
+		public static ThemeChoicePage ThemeChoicePage = new();
+		public static EPPage EPPage = new();
+		public static InstallConfirmation InstallConfirmation = new();
+		public static ProgressPage ProgressPage;
+		public static Experimental ExperimentalPage = new();
+		public static DebugPage DebugPage = new();
+	}
+	public class TabPages
+	{
+		public static Controls.DarkAwareTabPage installPage;
+		public static Controls.DarkAwareTabPage themePage;
+		public static Controls.DarkAwareTabPage epPage;
+		public static Controls.DarkAwareTabPage summaryPage;
+		public static Controls.DarkAwareTabPage progressPage;
+		public static Controls.DarkAwareTabPage rebootPage;
+		public static Controls.DarkAwareTabPage wlcmPage;
+		public static Controls.DarkAwareTabPage eulPage;
+		public static Controls.DarkAwareTabPage expPage;
+		public static Controls.DarkAwareTabPage debPage;
+	}
+	public class InstallOptions
+	{
+		public static bool InstallEP;
+		public static bool InstallASDF;
+		public static bool InstallWallpaper;
+		public static bool InstallWinver;
+		public static bool InstallThemes;
+		public static bool ThemeDark;
+		public static bool ThemeBlack;
+		public static bool ThemeLight;
+		public static bool InstallShell;
+		public static bool InstallIcons;
+		public static List<string> iconsList = new();
+		public static bool InstallExtras()
+		{
+			return InstallEP
+			       || InstallASDF
+			       || InstallWallpaper
+			       || InstallWinver
+			       || InstallShell;
+		}
+	}
+	#endregion
 
 	public class Logger
 	{
 		#region Variables
 		private static string Text =
 			"═════════════════════════════\nSTART: "
-			+ DateTime.Now.ToString()
-			+ "\nRectify11 Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString()
+			+ DateTime.Now.ToString(CultureInfo.CurrentCulture)
+			+ "\nRectify11 Version: " + Assembly.GetExecutingAssembly().GetName().Version
 			+ "\n═════════════════════════════\n";
 		#endregion
 		#region Public Methods
