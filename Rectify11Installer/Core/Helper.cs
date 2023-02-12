@@ -20,7 +20,7 @@ namespace Rectify11Installer.Core
             }
 
 			if (!RebootRequired()) return true;
-			TaskDialog.Show(text: "You cannot install Rectify11 as Windows Updates are pending.",
+			TaskDialog.Show(text: "You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.",
 				instruction: "Compatibility Error",
 				title: "Rectify11 Setup",
 				buttons: TaskDialogButtons.OK,
