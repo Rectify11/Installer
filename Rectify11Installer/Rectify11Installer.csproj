@@ -136,6 +136,7 @@
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Core\ExtrasOptions.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\MMCHelper.cs" />
     <Compile Include="Core\Installer.cs" />

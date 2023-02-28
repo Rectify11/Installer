@@ -388,6 +388,10 @@ namespace Rectify11Installer
 						{
 							DarkMode.UpdateFrame(this, false);
 						}
+						else if (Variables.isInstall && !Theme.IsUsingDarkMode)
+						{
+							DarkMode.UpdateFrame(this, false);
+						}
 						else
 						{
 							DarkMode.UpdateFrame(this, true);
