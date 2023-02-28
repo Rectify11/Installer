@@ -8,6 +8,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Rectify11Installer.Win32;
 using static System.Environment;
 
 namespace Rectify11Installer.Core
@@ -55,14 +56,17 @@ namespace Rectify11Installer.Core
 			}
 
 			frm.InstallerProgress = "Installing runtimes";
-			if (!await Task.Run(() => InstallRuntimes()))
+			if (!await Task.Run(InstallRuntimes))
 			{
 				Logger.WriteLine("InstallRuntimes() failed.");
 				return false;
 			}
 			Logger.WriteLine("InstallRuntimes() succeeded.");
 			Logger.WriteLine("══════════════════════════════════════════════");
-
+			if (!Theme.IsUsingDarkMode)
+			{
+				DarkMode.UpdateFrame(frm, false);
+			}
 			// theme
 			if (InstallOptions.InstallThemes)
 			{
@@ -365,7 +369,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error deleting" + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error deleting" + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 				}
 			}
 			try
@@ -375,7 +379,7 @@ namespace Rectify11Installer.Core
 			}
 			catch (Exception ex)
 			{
-				Logger.WriteLine("Error copying wallpapers. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+				Logger.WriteLine("Error copying wallpapers. " + ex.Message + NewLine + ex.StackTrace + NewLine);
 			}
 
 			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.Windir, "ThemeTool.exe"), true);
@@ -394,7 +398,7 @@ namespace Rectify11Installer.Core
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 						return false;
 					}
 				}
@@ -405,7 +409,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 					return false;
 				}
 			}
@@ -424,7 +428,7 @@ namespace Rectify11Installer.Core
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + NewLine + ex.StackTrace + NewLine);
 						return false;
 					}
 				}
@@ -435,7 +439,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 					return false;
 				}
 			}
@@ -457,7 +461,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 					return false;
 				}
 			}
@@ -496,7 +500,7 @@ namespace Rectify11Installer.Core
 		private void InstallMfe()
 		{
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
-			if (Win32.NativeMethods.IsArm64())
+			if (NativeMethods.IsArm64())
 			{
 				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafixARM64.xml"), AppWinStyle.Hide);
 			}
@@ -528,7 +532,7 @@ namespace Rectify11Installer.Core
 			{
 				if (ex != null)
 				{
-					Logger.WriteLine("Error while writing " + file + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error while writing " + file + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 				}
 				else
 				{
@@ -586,7 +590,7 @@ namespace Rectify11Installer.Core
 					LogFile("themes.7z", true, ex);
 					return false;
 				}
-				if (Win32.NativeMethods.IsArm64())
+				if (NativeMethods.IsArm64())
 				{
 					try
 					{
@@ -917,7 +921,7 @@ namespace Rectify11Installer.Core
 
 				if (patch.mask.Contains("|"))
 				{
-					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && Environment.OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && Environment.OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
+					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
 					{
 						masks = masks.Replace(patch.Ignore, "");
 					}
@@ -946,7 +950,7 @@ namespace Rectify11Installer.Core
 				}
 				else
 				{
-					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && Environment.OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && Environment.OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
+					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
 					{
 						masks = masks.Replace(patch.Ignore, "");
 					}
