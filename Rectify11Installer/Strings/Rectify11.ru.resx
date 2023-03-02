@@ -259,4 +259,13 @@
   <data name="exitText" xml:space="preserve">
     <value>Вы уверены, что хотите отменить установку?</value>
   </data>
+    <data name="buttonReboot" xml:space="preserve">
+    <value>Перезагрузить сейчас</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Установить Accent Colorizer</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Пропатчить иконки</value>
+  </data>
 </root>
