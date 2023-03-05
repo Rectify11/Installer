@@ -76,7 +76,7 @@
             this.randomCheckbox2.Name = "randomCheckbox2";
             this.randomCheckbox2.Size = new System.Drawing.Size(288, 19);
             this.randomCheckbox2.TabIndex = 5;
-            this.randomCheckbox2.Text = "L";
+            this.randomCheckbox2.Text = "Use Tabbed instead of Mica";
             this.randomCheckbox2.UseVisualStyleBackColor = true;
             //
             // randomCheckbox1
@@ -86,7 +86,7 @@
             this.randomCheckbox1.Name = "randomCheckbox1";
             this.randomCheckbox1.Size = new System.Drawing.Size(288, 19);
             this.randomCheckbox1.TabIndex = 5;
-            this.randomCheckbox1.Text = "LG";
+            this.randomCheckbox1.Text = "Skip MicaForEveryone installation";
             this.randomCheckbox1.UseVisualStyleBackColor = true;
             // 
             // themeTitle
