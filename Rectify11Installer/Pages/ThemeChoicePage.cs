@@ -42,7 +42,7 @@ namespace Rectify11Installer.Pages
         private void RandomCheckbox2_CheckedChanged(object sender, System.EventArgs e)
         {
             InstallOptions.TabbedNotMica = false;
-            if (this.randomCheckbox1.Checked)
+            if (this.randomCheckbox2.Checked)
             {
 
                 InstallOptions.TabbedNotMica = true;
