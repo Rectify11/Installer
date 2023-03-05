@@ -108,13 +108,16 @@ namespace Rectify11Installer.Core
 				}
 				try
 				{
-					if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
+					if (!InstallOptions.SkipMFE)
 					{
-						await Task.Run(() => Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true));
+						if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
+						{
+							await Task.Run(() => Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true));
+						}
+						await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone")));
+						await Task.Run(() => InstallMfe());
+						Logger.WriteLine("InstallMfe() succeeded.");
 					}
-					await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone")));
-					await Task.Run(() => InstallMfe());
-					Logger.WriteLine("InstallMfe() succeeded.");
 				}
 				catch
 				{
@@ -512,17 +515,36 @@ namespace Rectify11Installer.Core
 			{
 				Directory.Delete(Path.Combine(GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone"), true);
 			}
-			if (InstallOptions.ThemeLight)
+			if (InstallOptions.TabbedNotMica)
 			{
-				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "lightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-			}
-			else if (InstallOptions.ThemeDark)
-			{
-				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "darkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				if (InstallOptions.ThemeLight)
+				{
+					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "Tlightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				}
+				else if (InstallOptions.ThemeDark)
+				{
+					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "Tdarkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				}
+				else
+				{
+					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "Tblack.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				}
 			}
 			else
 			{
-				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "black.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+
+				if (InstallOptions.ThemeLight)
+				{
+					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "lightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				}
+				else if (InstallOptions.ThemeDark)
+				{
+					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "darkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				}
+				else
+				{
+					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "black.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				}
 			}
 		}
 
