@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Controls
 {
@@ -18,7 +19,7 @@ namespace Rectify11Installer.Controls
 		Disabled,
 		Focused
 	}
-	public class WinUIButton : Control
+	public sealed class WinUIButton : Control
 	{
 		private string _ButtonText = "";
 		[Browsable(false), DesignerSerializationVisibility(
@@ -61,7 +62,7 @@ namespace Rectify11Installer.Controls
 		{
 			get
 			{
-				CreateParams parms = base.CreateParams;
+				var parms = base.CreateParams;
 				parms.ExStyle |= 0x20;
 				return parms;
 			}
@@ -71,9 +72,9 @@ namespace Rectify11Installer.Controls
 			Bitmap buttonImage = null;
 
 			//Hack to fix black borders, but we lose transpancy
-			args.Graphics.Clear(Color.White);
+			args.Graphics.Clear(Theme.IsUsingDarkMode ? Color.White : Color.Black);
 
-			VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+			var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
 
 			//Update text borders
 			if (Theme.IsUsingDarkMode)
@@ -85,7 +86,7 @@ namespace Rectify11Installer.Controls
 				ForeColor = Color.Black;
 			}
 
-			ThemeParts tpart = ThemeParts.Defaulted;
+			var tpart = ThemeParts.Defaulted;
 			switch (CurrentState)
 			{
 				case ButtonState.Normal:
@@ -100,6 +101,8 @@ namespace Rectify11Installer.Controls
 				case ButtonState.Pressed:
 					tpart = ThemeParts.Pressed;
 					break;
+				case ButtonState.Focused:
+					break;
 				default:
 					tpart = ThemeParts.Normal;
 					break;
@@ -108,9 +111,9 @@ namespace Rectify11Installer.Controls
 			{
 				buttonImage = new Bitmap(Width, Height);
 
-				Graphics g = Graphics.FromImage(buttonImage);
-				Rectangle rectt = new Rectangle(0, 0, Width, Height);
-				LinearGradientBrush lBrush = new LinearGradientBrush(rectt, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
+				var g = Graphics.FromImage(buttonImage);
+				var rectt = new Rectangle(0, 0, Width, Height);
+				var lBrush = new LinearGradientBrush(rectt, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
 				g.FillRectangle(lBrush, rectt);
 			}
 			else
@@ -129,25 +132,24 @@ namespace Rectify11Installer.Controls
 			//TextRenderer.DrawText(args.Graphics, _ButtonText, Font, new Point(Width + 3, this.Height / 2), ForeColor, flags);
 
 			var hdc = args.Graphics.GetHdc();
-			VisualStyleRenderer renderer = new VisualStyleRenderer(VisualStyleElement.Window.Caption.Active);
+			VisualStyleRenderer renderer = new(VisualStyleElement.Window.Caption.Active);
 
-			IntPtr memoryHdc = NativeMethods.CreateCompatibleDC(hdc);
+			var memoryHdc = NativeMethods.CreateCompatibleDC(hdc);
 
 			var bounds = ClientRectangle;
 
-
 			// Create a device-independent bitmap and select it into our DC
-			NativeMethods.BITMAPINFO info = new NativeMethods.BITMAPINFO();
+			NativeMethods.BITMAPINFO info = new();
 			info.biSize = Marshal.SizeOf(info);
 			info.biWidth = buttonImage.Width;
 			info.biHeight = -buttonImage.Height;
 			info.biPlanes = 1;
 			info.biBitCount = 32;
 			info.biCompression = 0; // BI_RGB
-			IntPtr dib = NativeMethods.CreateDIBSection(memoryHdc, info, 0, out int* pixels, IntPtr.Zero, 0);
-			for (int y = 0; y < buttonImage.Height; y++)
+			var dib = NativeMethods.CreateDIBSection(memoryHdc, info, 0, out var pixels, IntPtr.Zero, 0);
+			for (var y = 0; y < buttonImage.Height; y++)
 			{
-				for (int x = 0; x < buttonImage.Width; x++)
+				for (var x = 0; x < buttonImage.Width; x++)
 				{
 					var pixel = buttonImage.GetPixel(x, y);
 					var d = Theme.IsUsingDarkMode ? Color.Black : Color.White;
@@ -260,7 +262,6 @@ namespace Rectify11Installer.Controls
 
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
-
 		}
 	}
 }

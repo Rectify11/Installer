@@ -70,14 +70,18 @@
             // 
             // InstallConfirmation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.summaryFooter);
             this.Controls.Add(this.summaryItems);
             this.Controls.Add(this.summaryTitle);
             this.Name = "InstallConfirmation";
             this.WizardHeader = resources.GetString("summaryHeader");
             this.SideImage = global::Rectify11Installer.Properties.Resources.installConfirm;
+            this.HeaderVisible = true;
+            this.FooterVisible = true;
+            this.NextButtonEnabled = true;
+            this.UpdateFrame = true;
+            this.Page = Rectify11Installer.Core.TabPages.summaryPage;
+            this.NextButtonText = resources.GetString("buttonInstall");
             this.ResumeLayout(false);
             this.PerformLayout();
         }

@@ -1,7 +1,7 @@
 # Rectify11Installer
 Official Rectify11 installer source code. Note: not completed. 
 
-Discord community: https://discord.gg/rectify11-development-hub-972654790536482896
+Discord community: https://discord.gg/gsgu9GCtsk
 
 # Projects used
  - [Resource Hacker](http://www.angusj.com/resourcehacker/) for replacing resources in files

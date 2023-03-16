@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Runtime;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -25,10 +26,10 @@ namespace Rectify11Installer
 				else
 				{
 					TaskDialog.Show(text: "You must be running at least Windows 10 build 21343 or higher in order to install Rectify11.",
-					instruction: "Compatibility Error",
-					title: "Rectify11 Setup",
-					buttons: TaskDialogButtons.OK,
-					icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+						instruction: "Compatibility Error",
+						title: "Rectify11 Setup",
+						buttons: TaskDialogButtons.OK,
+						icon: TaskDialogStandardIcon.SecurityErrorRedBar);
 					return;
 				}
 			}
@@ -61,7 +62,7 @@ namespace Rectify11Installer
 			Application.SetCompatibleTextRenderingDefault(false);
 			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-			Application.Run(new frmWizard());
+			Application.Run(new FrmWizard());
 		}
 	}
 }

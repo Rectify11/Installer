@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Microsoft.Win32;
+using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Win32
 {
@@ -57,10 +57,10 @@ namespace Rectify11Installer.Win32
 			}
 			else
 			{
-				int size = Marshal.SizeOf(Theme.IsUsingDarkMode);
-				IntPtr ptr = Marshal.AllocHGlobal(size);
+				var size = Marshal.SizeOf(Theme.IsUsingDarkMode);
+				var ptr = Marshal.AllocHGlobal(size);
 				Marshal.StructureToPtr(Theme.IsUsingDarkMode, ptr, false);
-				WINDOWCOMPOSITIONATTRIBDATA data = new WINDOWCOMPOSITIONATTRIBDATA
+				var data = new WINDOWCOMPOSITIONATTRIBDATA
 				{
 					Attrib = WINDOWCOMPOSITIONATTRIB.WCA_USEDARKMODECOLORS,
 					pvData = ptr,
@@ -69,14 +69,14 @@ namespace Rectify11Installer.Win32
 				SetWindowCompositionAttribute(hWnd, ref data);
 			}
 		}
-		public static void UpdateFrame(frmWizard frm, bool yes)
+		public static void UpdateFrame(FrmWizard frm, bool yes)
 		{
-			bool extend = Theme.IsUsingDarkMode;
+			var extend = Theme.IsUsingDarkMode;
 
 			if (Environment.OSVersion.Version.Build >= 22523)
 			{
-				int micaValue = 0x02;
-				int tabbedvalue = 0x04;
+				var micaValue = 0x02;
+				var tabbedvalue = 0x04;
 				if (extend)
 				{
 					DwmSetWindowAttribute(frm.Handle, DWMATTRIB.DWMWA_SYSTEMBACKDROP_TYPE, ref micaValue, Marshal.SizeOf(typeof(int)));
@@ -89,11 +89,11 @@ namespace Rectify11Installer.Win32
 
 			else
 			{
-				int trueValue = 0x01;
+				var trueValue = 0x01;
 				DwmSetWindowAttribute(frm.Handle, DWMATTRIB.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
 			}
-			bool DarkMode = Theme.IsUsingDarkMode;
-			NativeMethods.MARGINS m = new NativeMethods.MARGINS();
+			var DarkMode = Theme.IsUsingDarkMode;
+			var m = new NativeMethods.MARGINS();
 
 			if (DarkMode)
 			{
@@ -106,11 +106,10 @@ namespace Rectify11Installer.Win32
 			}
 			if (yes)
 			{
-				if ((Win32.NativeMethods.GetUbr() != -1
-					&& Win32.NativeMethods.GetUbr() >= 51
-					&& Environment.OSVersion.Version.Build == 22000)
-					|| Environment.OSVersion.Version.Build > 22000
-					|| Environment.OSVersion.Version.Build < 21996)
+				if ((NativeMethods.GetUbr() != -1
+				     && NativeMethods.GetUbr() >= 51
+				     && Environment.OSVersion.Version.Build == 22000)
+				    || Environment.OSVersion.Version.Build is > 22000 or < 21996)
 				{
 					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref m);
 				}
@@ -124,11 +123,10 @@ namespace Rectify11Installer.Win32
 					cyBottomHeight = 0,
 					cyTopHeight = 0
 				};
-				if ((Win32.NativeMethods.GetUbr() != -1 
-					&& Win32.NativeMethods.GetUbr() >= 51 
-					&& Environment.OSVersion.Version.Build == 22000) 
-					|| Environment.OSVersion.Version.Build > 22000 
-					|| Environment.OSVersion.Version.Build < 21996)
+				if ((NativeMethods.GetUbr() != -1 
+				     && NativeMethods.GetUbr() >= 51 
+				     && Environment.OSVersion.Version.Build == 22000) 
+				    || Environment.OSVersion.Version.Build is > 22000 or < 21996)
 				{
 					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
 				}

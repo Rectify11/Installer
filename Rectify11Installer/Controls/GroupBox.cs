@@ -2,27 +2,21 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Controls
 {
-    public partial class GroupBox : Control
+    public sealed partial class GroupBox : Control
     {
         private Bitmap Glyph;
 
         public new bool Enabled
         {
-            get { return base.Enabled; }
+            get => base.Enabled;
             set
             {
                 base.Enabled = value;
-                if (value)
-                {
-                    SetState(ThemeParts.Normal);
-                }
-                else
-                {
-                    SetState(ThemeParts.Disabled);
-                }
+                SetState(value ? ThemeParts.Normal : ThemeParts.Disabled);
                 this.Invalidate();
             }
         }
@@ -49,10 +43,10 @@ namespace Rectify11Installer.Controls
 
         private void SetState(ThemeParts c)
         {
-            //IsDesignMode and licesning did not work for me
+            //IsDesignMode and licensing did not work for me
             if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
             {
-                VisualStyle currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+                var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
                 if (currentTheme != null)
                 {
                     var part = Theme.GetGroupBox(currentTheme);
@@ -67,9 +61,9 @@ namespace Rectify11Installer.Controls
             else
             {
                 Glyph = new Bitmap(Width, Height);
-                Graphics g = Graphics.FromImage(Glyph);
-                Rectangle rect = new Rectangle(0, 0, Width, Height);
-                LinearGradientBrush lBrush = new LinearGradientBrush(rect, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
+                var g = Graphics.FromImage(Glyph);
+                var rect = new Rectangle(0, 0, Width, Height);
+                var lBrush = new LinearGradientBrush(rect, Color.Red, Color.Orange, LinearGradientMode.BackwardDiagonal);
                 g.FillRectangle(lBrush, rect);
             }
             this.Invalidate();

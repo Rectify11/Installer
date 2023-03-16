@@ -56,14 +56,19 @@
             // 
             // EulaPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Name = "EulaPage";
             this.WizardHeader = resources.GetString("eulaPageHeader");
             this.SideImage = global::Rectify11Installer.Properties.Resources.eula;
+            this.HeaderVisible = true;
+            this.FooterVisible = true;
+            this.UpdateFrame = true;
+            this.IsWelcomePage = false;
+            this.NextButtonEnabled = true;
+            this.NextButtonText = resources.GetString("buttonAgree");
+            this.Page = Rectify11Installer.Core.TabPages.eulPage;
             this.ResumeLayout(false);
 
         }

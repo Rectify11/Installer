@@ -97,6 +97,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -105,6 +106,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CustomProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkAwareControls.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -132,14 +136,10 @@
     <Compile Include="Controls\WinUIButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Core\FileIcon.cs" />
+    <Compile Include="Core\ExtrasOptions.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\MMCHelper.cs" />
     <Compile Include="Core\Installer.cs" />
-    <Compile Include="Core\InstallStatus.cs" />
-    <Compile Include="Core\InstallOptions.cs" />
-    <Compile Include="Core\Logger.cs" />
-    <Compile Include="Core\PatchesParser.cs" />
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\ResourceLoader.cs" />
     <Compile Include="Core\ShellLink.cs" />
@@ -154,6 +154,12 @@
     </Compile>
     <Compile Include="Controls\NavButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\DebugPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\DebugPage.Designer.cs">
+      <DependentUpon>DebugPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\EPPage.cs">
       <SubType>UserControl</SubType>
@@ -341,10 +347,6 @@
   <ItemGroup>
     <None Include="Resources\Dark.msstyles" />
     <None Include="Resources\files.7z" />
-    <None Include="Resources\install.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\eula.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core\newfiles.txt" />
@@ -353,30 +355,14 @@
     </Content>
     <None Include="Resources\SecureUxHelper-x64.exe" />
     <None Include="Resources\SecureUxHelper-arm64.exe" />
-    <None Include="Resources\theme.png" />
-    <None Include="Resources\NSudoLC.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
-    <None Include="Resources\incomplete.png" />
     <None Include="Resources\AdvancedRun.exe" />
-    <None Include="Resources\cp.png" />
-    <None Include="Resources\dpi.png" />
-    <None Include="Resources\perf.png" />
     <None Include="Resources\Rectify11ControlCenter.exe" />
+    <None Include="Resources\installConfirm.gif" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
-    <None Include="Resources\PsExec64.exe" />
-    <None Include="Resources\installprogress.gif" />
-    <None Include="Resources\darkPreview.png" />
-    <None Include="Resources\blackPreview.png" />
-    <None Include="Resources\10start.png" />
-    <None Include="Resources\11start.png" />
-    <None Include="Resources\ep.png" />
-    <None Include="Resources\installConfirm.png" />
     <Content Include="r11.ico" />
     <None Include="Resources\7za.exe" />
-    <Content Include="Resources\installoptns.png" />
-    <None Include="Resources\lightPreview.png" />
-    <None Include="Resources\themepage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

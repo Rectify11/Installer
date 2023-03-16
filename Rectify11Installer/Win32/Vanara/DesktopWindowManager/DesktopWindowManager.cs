@@ -49,7 +49,7 @@ namespace Vanara.Interop.DesktopWindowManager
     {
       if (window == null)
         throw new ArgumentNullException(nameof (window));
-      Vanara.Interop.NativeMethods.Margins pMarInset = new Vanara.Interop.NativeMethods.Margins(padding);
+      var pMarInset = new Vanara.Interop.NativeMethods.Margins(padding);
       Vanara.Interop.NativeMethods.DwmExtendFrameIntoClientArea(window.Handle, ref pMarInset);
     }
 
@@ -57,7 +57,7 @@ namespace Vanara.Interop.DesktopWindowManager
     {
       if (!Vanara.Interop.DesktopWindowManager.DesktopWindowManager.CompositionSupported || !File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "dwmapi.dll")))
         return false;
-      int pfEnabled = 0;
+      var pfEnabled = 0;
       Vanara.Interop.NativeMethods.DwmIsCompositionEnabled(ref pfEnabled);
       return pfEnabled != 0;
     }
@@ -85,7 +85,7 @@ namespace Vanara.Interop.DesktopWindowManager
     }
 
     [SecuritySafeCritical]
-    private class MessageWindow : NativeWindow, IDisposable
+    private sealed class MessageWindow : NativeWindow, IDisposable
     {
       private const int WM_DWMCOLORIZATIONCOLORCHANGED = 800;
       private const int WM_DWMCOMPOSITIONCHANGED = 798;
@@ -93,7 +93,7 @@ namespace Vanara.Interop.DesktopWindowManager
 
       public MessageWindow()
       {
-        CreateParams cp = new CreateParams()
+        var cp = new CreateParams()
         {
           Style = 0,
           ExStyle = 0,
@@ -121,7 +121,7 @@ namespace Vanara.Interop.DesktopWindowManager
         {
           try
           {
-            EventHandler eventHandler = (EventHandler) Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList[Vanara.Interop.DesktopWindowManager.DesktopWindowManager.keys[idx]];
+            var eventHandler = (EventHandler) Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList[Vanara.Interop.DesktopWindowManager.DesktopWindowManager.keys[idx]];
             if (eventHandler == null)
               return;
             eventHandler((object) null, EventArgs.Empty);

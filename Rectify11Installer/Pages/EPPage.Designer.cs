@@ -141,8 +141,6 @@
             // 
             // EPPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.w11StartRad);
             this.Controls.Add(this.flowLayoutPanel);
             this.flowLayoutPanel.Controls.Add(this.chkW10Taskbar);
@@ -154,6 +152,12 @@
             this.Controls.Add(this.darkAwareLabel1);
             this.Name = "EPPage";
             this.SideImage = global::Rectify11Installer.Properties.Resources.ep;
+            this.HeaderVisible = true;
+            this.FooterVisible = true;
+            this.UpdateFrame = true;
+            this.NextButtonEnabled = true;
+            this.Page = Rectify11Installer.Core.TabPages.epPage;
+            this.NextButtonText = resources.GetString("buttonNext");
             this.WizardHeader = resources.GetString("epHeader");
             ((System.ComponentModel.ISupportInitialize)(this.w10StartImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.w11StartImg)).EndInit();
