@@ -168,16 +168,18 @@ namespace Rectify11Installer
 				Installer installer = new();
 				Logger.CommitLog();
 				if (!await installer.Install(this))
-				{
-					TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+                {
+                    Logger.CommitLog();
+                    TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
 						title: "Error",
 						buttons: TaskDialogButtons.OK,
 						icon: TaskDialogStandardIcon.Error);
 					Application.Exit();
 				}
 				else
-				{
-					RectifyPages.ProgressPage.StartReset();
+                {
+                    Logger.CommitLog();
+                    RectifyPages.ProgressPage.StartReset();
 				}
 			}
 		}
