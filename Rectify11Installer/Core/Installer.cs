@@ -322,7 +322,8 @@ namespace Rectify11Installer.Core
 			}
 			Logger.WriteLine("Cleanup() succeeded");
 			Logger.WriteLine("══════════════════════════════════════════════");
-			return true;
+            Logger.CommitLog();
+            return true;
 		}
 		#endregion
 		#region Private Methods
