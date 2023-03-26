@@ -769,32 +769,39 @@ namespace Rectify11Installer.Core
 				  " core31.exe", AppWinStyle.Hide, true);
 			}
 			Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
-			ProcessStartInfo Psi = new()
+			ProcessStartInfo vcinfo = new()
 			{
 				FileName = Path.Combine(Variables.r11Folder, "vcredist.exe"),
 				WindowStyle = ProcessWindowStyle.Hidden,
 				Arguments = " /install /quiet /norestart"
 			};
-			var proc = Process.Start(Psi);
-			if (proc == null) return false;
-			proc.WaitForExit();
-			if (!proc.HasExited) return false;
-			Logger.WriteLine("vcredist.exe exited with error code " + proc.ExitCode.ToString());
+			var vcproc = Process.Start(vcinfo);
+			if (vcproc == null) return false;
+			vcproc.WaitForExit();
+			if (!vcproc.HasExited) return false;
+			Logger.WriteLine("vcredist.exe exited with error code " + vcproc.ExitCode.ToString());
+			if (vcproc.ExitCode != 0 && vcproc.ExitCode != 1638 && vcproc.ExitCode != 3010)
+			{
+				return false;
+			}
+
 			Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
-			ProcessStartInfo Psi2 = new()
+			ProcessStartInfo core3info = new()
 			{
 				FileName = Path.Combine(Variables.r11Folder, "core31.exe"),
 				WindowStyle = ProcessWindowStyle.Hidden,
 				Arguments = " /install /quiet /norestart"
 			};
-			var proc2 = Process.Start(Psi2);
-			if (proc2 == null) return false;
-			proc2.WaitForExit();
-			if (!proc2.HasExited) return false;
-			Logger.WriteLine("core31.exe exited with error code " + proc2.ExitCode.ToString());
-			return proc.ExitCode == 0 || proc2.ExitCode == 1638;
-
-		}
+			var core3proc = Process.Start(core3info);
+			if (core3proc == null) return false;
+			core3proc.WaitForExit();
+			if (!core3proc.HasExited) return false;
+			Logger.WriteLine("core31.exe exited with error code " + core3proc.ExitCode.ToString());
+            if (core3proc.ExitCode != 0 && core3proc.ExitCode != 1638 && core3proc.ExitCode != 3010)
+            {
+                return false;
+            }
+        }
 
 		/// <summary>
 		/// sets required registry values for phase 2
