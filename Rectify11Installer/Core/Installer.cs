@@ -792,8 +792,7 @@ namespace Rectify11Installer.Core
 			proc2.WaitForExit();
 			if (!proc2.HasExited) return false;
 			Logger.WriteLine("core31.exe exited with error code " + proc2.ExitCode.ToString());
-			return proc.ExitCode is 0 or 3010
-				   && proc2.ExitCode is 0 or 1638;
+			return proc.ExitCode == 0 || proc2.ExitCode == 1638;
 
 		}
 
