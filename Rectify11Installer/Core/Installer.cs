@@ -801,6 +801,7 @@ namespace Rectify11Installer.Core
             {
                 return false;
             }
+return true;
         }
 
 		/// <summary>
