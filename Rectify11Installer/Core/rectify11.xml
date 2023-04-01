@@ -135,8 +135,8 @@
 	<Patch Mui="BitLockerWizardElev.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\BitLockerWizardElev.exe" />
 	<Patch Mui="bthci.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\bthci.dll" />
 	<Patch Mui="BthPanContextHandler.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\BthPanContextHandler.dll" />
-	<Patch Mui="bthprops.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\bthprops.dll" />
-	<Patch Mui="bthudtask.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\bthudtask.dll" />
+	<Patch Mui="bthprops.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\bthprops.cpl" />
+	<Patch Mui="bthudtask.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\bthudtask.exe" />
 	<Patch Mui="btpanui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\btpanui.dll" />
 	<Patch Mui="Bubbles.scr" mask="ICONGROUP,|BMP," HardlinkTarget="%sys32%\Bubbles.scr" />
 	<Patch Mui="cabview.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\cabview.dll" />
