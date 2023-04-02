@@ -172,19 +172,19 @@
     <value>Select your desired theme.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personalize your experience</value>
+    <value>Personnalizer votre experiènce</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Rectify11 Installer</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Dark with Mica</value>
+    <value>Foncé with Mica</value>
   </data>
   <data name="themeDark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Foncé</value>
   </data>
   <data name="themeLight" xml:space="preserve">
-    <value>Light</value>
+    <value>Clair</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
     <value>Use Enhanced Ribbon</value>
@@ -193,79 +193,79 @@
     <value>Extend Mica to explorer navigation bar</value>
   </data>
   <data name="epHeader" xml:space="preserve">
-    <value>Customize your Desktop</value>
+    <value>Personnaliser votre Bureau</value>
   </data>
   <data name="epTitle" xml:space="preserve">
     <value>Select your desired desktop experience</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
-    <value>Windows 10 Rounded</value>
+    <value>Rondée Windows 10</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 Taskbar</value>
+    <value>Barre des tâches Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 Default</value>
+    <value>Default de Windows 11</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>Did you know</value>
+    <value>Le saviez-vous?</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Please close everything and save your work as a reboot will be required at the end of the installation.</value>
+    <value>SVP fermer tout et sauvegarder votre travail, en tant qu'un redémarrage est requis à la fin d'installation.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
-    <value>Install Rectify11 on this Windows installation.</value>
+    <value>Installer Rectify11 sur cette installation de Windows.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>You are about to do the following:</value>
+    <value>Vous êtes sur le point de faire ce qui suit:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
-    <value>Install</value>
+    <value>Installer</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
     <value>Extras</value>
   </data>
   <data name="optionIcons" xml:space="preserve">
-    <value>System icons</value>
+    <value>Icônes du système</value>
   </data>
   <data name="optionThemes" xml:space="preserve">
-    <value>Themes</value>
+    <value>Thèmes</value>
   </data>
   <data name="optionWallpaper" xml:space="preserve">
-    <value>Rectify11 Wallpapers</value>
+    <value>Arrière-plans Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Install ExplorerPatcher</value>
+    <value>Installer ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Install Shell</value>
+    <value>Installer Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>Install Themes</value>
+    <value>Installer Thèmes</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
-    <value>Install Wallpapers</value>
+    <value>Installer Wallpapers</value>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>Install Winver</value>
+    <value>Installer Winver</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
-    <value>Summary</value>
+    <value>Summaire</value>
   </data>
   <data name="exitText" xml:space="preserve">
-    <value>Are you sure you want to cancel the installation?</value>
+    <value>Êtes-vous sur que vous voulez annuler cette installation?</value>
   </data>
   <data name="buttonReboot" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Redémarrer maintenant</value>
   </data>
   <data name="installASDF" xml:space="preserve">
-    <value>Install Accent Colorizer</value>
+    <value>Installer Accent Colorizer</value>
   </data>
   <data name="installIcons" xml:space="preserve">
-    <value>Patch Icons</value>
+    <value>Correcter les icônes</value>
   </data>
 </root>
