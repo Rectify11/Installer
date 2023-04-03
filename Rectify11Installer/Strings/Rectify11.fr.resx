@@ -142,7 +142,7 @@
     <value>Installer</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>Restores the original Windows look.</value>
+    <value>Rétablisser les visuels originaux.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>Désinstaller Rectify11</value>
@@ -160,19 +160,19 @@
     <value>Bienvenue!</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>The setup will go through the various steps required to install Rectify11 on your PC, for a more consistent experience. Select your desirable option to continue.</value>
+    <value>Cette installation passera par les differents étapes necessaires pour installer Rectify11 sur votre, pour une experience plus cohérente. Sélectionnez l'option souhaitée pour continuer.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
     <value>Vous pouvez choisir qui ce qui sera rectifié.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
-    <value>Choose what to install</value>
+    <value>Choisir ce qu'il faut fait installer.</value>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
-    <value>Select your desired theme.</value>
+    <value>Choisir votre thème désiré.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personnalizer votre experiènce</value>
+    <value>Personnalizer votre experiènce.</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Rectify11 Installer</value>
@@ -187,7 +187,7 @@
     <value>Clair</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Use Enhanced Ribbon</value>
+    <value>Utiliser "Enhanced Ribbon"</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>Extend Mica to explorer navigation bar</value>
@@ -196,7 +196,7 @@
     <value>Personnaliser votre Bureau</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>Select your desired desktop experience</value>
+    <value>Sélectionnez votre experience de bureau souhaitée.</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
     <value>Rondée Windows 10</value>
