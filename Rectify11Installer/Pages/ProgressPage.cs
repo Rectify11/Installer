@@ -20,11 +20,11 @@ namespace Rectify11Installer.Pages
 		private int CurrentTextIndex = -1;
 		private static readonly InstallerTexts[] Rectify11InstallerTexts =
 		{
-			new("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
-			new("Rectify11 has a better Theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
-			new("Rectify11 has better Performance", "We strongly value performance. You can choose things that you want to debloat in your system.", Properties.Resources.perf),
-			new("Rectify11 has changed everything", "We have changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.ep),
-			new("Rectified Control Panel", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
+			new("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly?", Properties.Resources.dpi),
+			new("Rectify11 has a better theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
+			new("Rectify11 has better performance", "We strongly value performance by allowing you to choose things that you want to debloat in your system.", Properties.Resources.perf),
+			new("Rectify11 has changed everything", "We have changed the ins and outs of Windows 11, resulting in a more consistent operating system.", Properties.Resources.ep),
+			new("Rectified Control Panel", "We changed many details in the Control Panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
 			new("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
 		};
 		#endregion
