@@ -234,8 +234,14 @@
     <Compile Include="Win32\VisualStylesRendererExtension.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <EmbeddedResource Include="Strings\Rectify11.ar.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.ar.Designer.cs</LastGenOutput>
@@ -347,22 +353,12 @@
     <Content Include="Core\rectify11.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Resources\_11start.png" />
-    <None Include="Resources\_10start.png" />
     <None Include="Resources\SecureUxHelper-x64.exe" />
     <None Include="Resources\SecureUxHelper-arm64.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
     <None Include="Resources\AdvancedRun.exe" />
     <None Include="Resources\Rectify11ControlCenter.exe" />
     <None Include="Resources\installConfirm.gif" />
-    <None Include="Resources\discord.png" />
-    <None Include="Resources\done.png" />
-    <None Include="Resources\halal.png" />
-    <None Include="Resources\Group 1.png" />
-    <None Include="Resources\installoptns.png" />
-    <None Include="Resources\lightPreview.png.png" />
-    <None Include="Resources\blackPreview.png" />
-    <None Include="Resources\darkPreview.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />
