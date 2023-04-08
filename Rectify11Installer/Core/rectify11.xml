@@ -269,7 +269,8 @@
 	<Patch Mui="pautoenr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pautoenr.dll" />
 	<Patch Mui="perfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\perfmon.exe" />
 	<Patch Mui="PhotoScreensaver.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\PhotoScreensaver.scr" />
-	<Patch Mui="photowiz.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\photowiz.dll" />
+	<Patch Mui="photowiz.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\photowiz.dll" />
+	<Patch Mui="photowiz.dll.mui" mask="HTML," HardlinkTarget="%lang%\photowiz.dll.mui" />
 	<Patch Mui="playtomenu.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\playtomenu.dll" />
 	<Patch Mui="pmcsnap.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\pmcsnap.dll" />
 	<Patch Mui="pnidui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pnidui.dll" />
