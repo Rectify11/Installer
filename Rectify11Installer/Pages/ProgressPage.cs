@@ -20,13 +20,14 @@ namespace Rectify11Installer.Pages
 		private int CurrentTextIndex = -1;
 		private static readonly InstallerTexts[] Rectify11InstallerTexts =
 		{
-			new("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
-			new("Rectify11 has a better Theme", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.theme),
-			new("Rectify11 has better Performance", "We strongly value performance. You can choose things that you want to debloat in your system.", Properties.Resources.perf),
-			new("Rectify11 has changed everything", "We have changed many icons in many different DLL's, resulting in a more consistent operating system.", Properties.Resources.ep),
-			new("Rectified Control Panel", "We changed many details in the control panel, such as removing old gradients and adding back removed items", Properties.Resources.cp),
-			new("Thank you!", "The team appreciates your support, thank you for installing Rectify11.", Properties.Resources.install)
-		};
+			new("Rectify11 has changed everything", "We have modernized many icons in many different system files, resulting in a more consistent and fluent user experience.", Properties.Resources.iconnewtree),
+            new("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
+            new("Rectify11 has an improved, more consistent theme.", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.themepage),
+            new("Rectify11 has better Performance", "We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.", Properties.Resources.perf),
+            new("Rectified Control Panel", "We improved many details in the control panel, such as modernizing old visuals and adding back removed items", Properties.Resources.cp),
+            new("Need an introduction or technical support?", "You can ask us anything on our official discord server. The link is on the github page, where you downloaded the installer.", Properties.Resources.discord),
+            new("Thank you!", "We appreciate your support, thank you for installing Rectify11.", Properties.Resources.cool)
+        };
 		#endregion
 		#region Classes
 
@@ -59,9 +60,9 @@ namespace Rectify11Installer.Pages
 		{
 			timer1.Stop();
 			progressText.Text = "Restarting your PC";
-			progressInfo.Text = "Rectify11 has finished patching your system. Your PC needs to restart in order to apply the changes, it will automatically restart in " + duration.ToString() + " seconds";
+			progressInfo.Text = "Rectify11 has finished installing. Your device needs to restart in order to complete the installation, it will automatically restart in " + duration.ToString() + " seconds";
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
-			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.incomplete;
+			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.done;
 			timer2.Start();
 			frmwiz.ShowRebootButton = true;
 			frmwiz.SetRebootHandler = rebootButton_Click;
