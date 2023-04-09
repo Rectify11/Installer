@@ -343,30 +343,24 @@ namespace Rectify11Installer
 
 		private void InstallButton_Click(object sender, EventArgs e)
 		{
-			if (Helper.CheckIfUpdatesPending())
+			if (!_acknowledged)
 			{
-				if (!_acknowledged)
-				{
-					Navigate(RectifyPages.ExperimentalPage);
-				}
-				else
-				{
-					Navigate(RectifyPages.EulaPage);
-				}
+				Navigate(RectifyPages.ExperimentalPage);
+			}
+			else
+			{
+				Navigate(RectifyPages.EulaPage);
 			}
 		}
 
 		private void UninstallButton_Click(object sender, EventArgs e)
 		{
-			if (Helper.CheckIfUpdatesPending())
-			{
-				TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can run sfc /scannow to revert icon changes.",
-				instruction: "Incomplete Software",
-				title: "Rectify11 Setup",
-				buttons: TaskDialogButtons.OK,
-				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-				//Navigate(UninstallConfirmPage);
-			}
+			TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can run sfc /scannow to revert icon changes.",
+			instruction: "Incomplete Software",
+			title: "Rectify11 Setup",
+			buttons: TaskDialogButtons.OK,
+			icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+			//Navigate(UninstallConfirmPage);
 		}
 
 		private void VersionLabel_Click(object sender, EventArgs e)
