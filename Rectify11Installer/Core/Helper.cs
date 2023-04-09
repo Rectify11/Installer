@@ -33,6 +33,7 @@ namespace Rectify11Installer.Core
 			InstallOptions.InstallEP = InstallOptions.iconsList.Contains("epNode");
 			InstallOptions.InstallWinver = InstallOptions.iconsList.Contains("winverNode");
 			InstallOptions.InstallShell = InstallOptions.iconsList.Contains("shellNode");
+			InstallOptions.InstallGadgets = InstallOptions.iconsList.Contains("gadgetsNode");
 			InstallOptions.InstallWallpaper = InstallOptions.iconsList.Contains("wallpapersNode");
 			InstallOptions.InstallASDF = InstallOptions.iconsList.Contains("asdfNode");
 			return true;
@@ -41,7 +42,8 @@ namespace Rectify11Installer.Core
 		{
 			InstallOptions.iconsList.Remove("themeNode");
 			InstallOptions.iconsList.Remove("epNode");
-			InstallOptions.iconsList.Remove("winverNode");
+            InstallOptions.iconsList.Remove("gadgetsNode");
+            InstallOptions.iconsList.Remove("winverNode");
 			InstallOptions.iconsList.Remove("shellNode");
 			InstallOptions.iconsList.Remove("wallpapersNode");
 			InstallOptions.iconsList.Remove("asdfNode");
@@ -83,7 +85,12 @@ namespace Rectify11Installer.Core
 				ok.AppendLine(resources.GetString("installShell"));
 			}
 
-			if (InstallOptions.InstallWallpaper)
+            if (InstallOptions.InstallGadgets)
+            {
+                ok.AppendLine(resources.GetString("installGadgets"));
+            }
+
+            if (InstallOptions.InstallWallpaper)
 			{
 				ok.AppendLine(resources.GetString("installWallpapers"));
 			}
@@ -169,7 +176,8 @@ namespace Rectify11Installer.Core
 		public static bool InstallASDF;
 		public static bool InstallWallpaper;
 		public static bool InstallWinver;
-		public static bool InstallThemes;
+        public static bool InstallGadgets;
+        public static bool InstallThemes;
 		public static bool ThemeDark;
 		public static bool ThemeBlack;
 		public static bool ThemeLight;
@@ -183,6 +191,7 @@ namespace Rectify11Installer.Core
 			return InstallEP
 			       || InstallASDF
 			       || InstallWallpaper
+				   || InstallGadgets
 			       || InstallWinver
 			       || InstallShell;
 		}

@@ -9,9 +9,10 @@ namespace Rectify11Installer.Core
 		// add extra options here
 		private static List<Tuple<string, string>> options = new()
 		{
-			new("winverNode", "Winver"),
-			new("epNode", "ExplorerPatcher"),
-			new("shellNode", "Shell"),
+            new("shellNode", "Nilesoft Shell"),
+            new("gadgetsNode", "Rectified Gadgets"),
+            new("winverNode", "Rectified winver"),
+			// new("epNode", "ExplorerPatcher"),
 			new("asdfNode", "Accent Colorizer"),
 			new("wallpapersNode", Rectify11Installer.Strings.Rectify11.optionWallpaper)
 		};

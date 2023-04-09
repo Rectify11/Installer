@@ -174,7 +174,19 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => Installasdf());
 					Logger.WriteLine("Installasdf() succeeded.");
 				}
-				Logger.WriteLine("InstallExtras() succeeded.");
+                if (InstallOptions.InstallGadgets)
+                {
+                    // always would work ig 2
+                    await Task.Run(() => InstallGadgets());
+                    Logger.WriteLine("InstallGadgets() succeeded.");
+                }
+                if (InstallOptions.InstallShell)
+                {
+                    // always would work ig 3
+                    await Task.Run(() => InstallShell());
+                    Logger.WriteLine("InstallShell() succeeded.");
+                }
+                Logger.WriteLine("InstallExtras() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
@@ -485,10 +497,26 @@ namespace Rectify11Installer.Core
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "asdf.xml"), AppWinStyle.Hide);
 		}
 
-		/// <summary>
-		/// installs control center
-		/// </summary>
-		private void Installr11cpl()
+        /// <summary>
+        /// installs gadgets
+        /// </summary>
+        private void InstallGadgets()
+        {
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
+        }
+
+        /// <summary>
+        /// installs nilesoft shell
+        /// </summary>
+        private void InstallShell()
+        {
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn nilesoftshell /xml " + Path.Combine(Variables.r11Folder, "extras", "nileshell", "Shell.xml"), AppWinStyle.Hide);
+        }
+
+        /// <summary>
+        /// installs control center
+        /// </summary>
+        private void Installr11cpl()
 		{
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
 			{
