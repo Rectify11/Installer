@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="buttonAgree" xml:space="preserve">
+    <value>Kabul Et</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="buttonNext" xml:space="preserve">
+    <value>Sonraki</value>
+  </data>
+  <data name="eulaPageHeader" xml:space="preserve">
+    <value>Lisans Anlaşması</value>
+  </data>
+  <data name="eulaR11" xml:space="preserve">
+    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+  </data>
+  <data name="eulaTitle" xml:space="preserve">
+    <value>Rectify11'i yüklemeden önce, lisans anlaşmasını kabul etmeniz gerekiyor:</value>
+  </data>
+  <data name="installNote" xml:space="preserve">
+    <value>Şuanki Windows kurulumunuzu Rectify'layın.</value>
+  </data>
+  <data name="installTitle" xml:space="preserve">
+    <value>Şimdi Yükle</value>
+  </data>
+  <data name="uninstallNote" xml:space="preserve">
+    <value>Orijinal Windows görünümünü geri getirir.</value>
+  </data>
+  <data name="uninstallTitle" xml:space="preserve">
+    <value>Rectify11'i kaldır</value>
+  </data>
+  <data name="updateNote" xml:space="preserve">
+    <value>Şuanki yüklü olan Rectify11 kurulumunuzu güncelleyin.</value>
+  </data>
+  <data name="updateTitle" xml:space="preserve">
+    <value>Şimdi Güncelle</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Sürüm: </value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Hoş Geldiniz</value>
+  </data>
+  <data name="welcomeDescription" xml:space="preserve">
+    <value>Daha kararlı bir deneyim için, kurulum Rectify11'i yüklemek için gerekli olan bazı adımlardan geçecek. Devam etmek için istediğiniz seçeneği seçin.</value>
+  </data>
+  <data name="installChoiceDescription" xml:space="preserve">
+    <value>Neylerin Rectify'lanacağını seçebilirsiniz.</value>
+  </data>
+  <data name="installChoiceTitle" xml:space="preserve">
+    <value>Ne yükleyeceğinizi seçin</value>
+  </data>
+  <data name="themeChoiceTitle" xml:space="preserve">
+    <value>Arzu ettiğiniz temayı seçin.</value>
+  </data>
+  <data name="themeHeader" xml:space="preserve">
+    <value>Deneyiminizi kişiselleştirin</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Rectify11 Kurucusu</value>
+  </data>
+  <data name="themeBlack" xml:space="preserve">
+    <value>Mica ile Kara</value>
+  </data>
+  <data name="themeDark" xml:space="preserve">
+    <value>Kara</value>
+  </data>
+  <data name="themeLight" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="epEnhRibbon" xml:space="preserve">
+    <value>Enhanced Ribbon'u Kullanın</value>
+  </data>
+  <data name="epExtMica" xml:space="preserve">
+    <value>Mica'yı dosya gezgini navigasyon çubuğuna genişletin</value>
+  </data>
+  <data name="epHeader" xml:space="preserve">
+    <value>Masaüstünüzü kişiselleştirin</value>
+  </data>
+  <data name="epTitle" xml:space="preserve">
+    <value>Arzu ettiğiniz masaüstü deneyimini seçin</value>
+  </data>
+  <data name="epW10Radio" xml:space="preserve">
+    <value>Windows 10 Yuvarlaştırılmış</value>
+  </data>
+  <data name="epW10Taskbar" xml:space="preserve">
+    <value>Windows 10 Görev Çubuğu</value>
+  </data>
+  <data name="epW11Radio" xml:space="preserve">
+    <value>Windows 11 Varsayılanı</value>
+  </data>
+  <data name="progressText" xml:space="preserve">
+    <value>Biliyor muydunuz</value>
+  </data>
+  <data name="summaryFooter" xml:space="preserve">
+    <value>Kurulumun sonunda yeniden başlatmaya ihtiyaç olacağı için lütfen her şeyi kapatın ve işinizi kaydedin.</value>
+  </data>
+  <data name="summaryItems" xml:space="preserve">
+    <value>Bu Windows kurulumuna Rectify11 yükleyin.</value>
+  </data>
+  <data name="summaryTitle" xml:space="preserve">
+    <value>Aşağıdaki şeyler yapılacaktır:</value>
+  </data>
+  <data name="buttonInstall" xml:space="preserve">
+    <value>Yükle</value>
+  </data>
+  <data name="optionExtra" xml:space="preserve">
+    <value>Ekstalar</value>
+  </data>
+  <data name="optionIcons" xml:space="preserve">
+    <value>Sistem simgleri</value>
+  </data>
+  <data name="optionThemes" xml:space="preserve">
+    <value>Temalar</value>
+  </data>
+  <data name="optionWallpaper" xml:space="preserve">
+    <value>Rectify11 Duvar Kağıtları</value>
+  </data>
+  <data name="installEP" xml:space="preserve">
+    <value>ExplorerPatcher'ı Yükle</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Shell'i Yükle</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Temaları Yükle</value>
+  </data>
+  <data name="installWallpapers" xml:space="preserve">
+    <value>Duvar Kağıtlarını Yükle</value>
+  </data>
+  <data name="installWinver" xml:space="preserve">
+    <value>Winver'i Yükle</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="summaryHeader" xml:space="preserve">
+    <value>Özet</value>
+  </data>
+  <data name="exitText" xml:space="preserve">
+    <value>Kurulumu iptal etmek istediğinize emin misiniz?</value>
+  </data>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Şimdi Yeniden Başlat</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Accent Colorizer'i Yükle</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Simgeleri Yamala</value>
+  </data>
+</root>
