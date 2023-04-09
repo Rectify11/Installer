@@ -1,4 +1,4 @@
-# Rectify11Installer
+![alt text](https://github.com/MishaTy/Rectify11Installer/blob/master/logo.png "Rectify11 Installer")
 Official Rectify11 Installer source code. Note: not completed. 
 
 Official Discord community: https://discord.gg/gsgu9GCtsk
