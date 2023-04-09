@@ -12,21 +12,6 @@ namespace Rectify11Installer.Core
 	public class Helper
 	{
 		#region Public Methods
-		public static bool CheckIfUpdatesPending()
-		{
-			if (Variables.skipUpdateCheck)
-            {
-				return true;
-            }
-
-			if (!RebootRequired()) return true;
-			TaskDialog.Show(text: "You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.",
-				instruction: "Compatibility Error",
-				title: "Rectify11 Setup",
-				buttons: TaskDialogButtons.OK,
-				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-			return false;
-		}
 		public static bool UpdateIRectify11()
 		{
 			InstallOptions.InstallThemes = InstallOptions.iconsList.Contains("themeNode");
@@ -99,12 +84,6 @@ namespace Rectify11Installer.Core
 		}
 		#endregion
 		#region Private Methods
-		private static bool RebootRequired()
-		{
-			using var auKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired");
-			using var cbsKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending");
-			return (auKey != null || cbsKey != null);
-		}
 		#endregion
 	}
 
