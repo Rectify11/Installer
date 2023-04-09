@@ -8,6 +8,8 @@
 	<Patch Mui="aclui.dll.mun" mask="ICONGROUP,|IMAGE,|UIFILE," HardlinkTarget="%sysresdir%\aclui.dll.mun" />
 	<Patch Mui="actioncentercpl.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\actioncentercpl.dll.mun" />
 	<Patch Mui="appwiz.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\appwiz.cpl.mun" />
+	<Patch Mui="compstui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\compstui.dll.mun" />
+	<Patch Mui="moricons.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\moricons.dll.mun" />
 	<Patch Mui="authfwgp.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\authfwgp.dll.mun" />
 	<Patch Mui="batmeter.dll.mun" mask="BITMAP," HardlinkTarget="%sysresdir%\batmeter.dll.mun" />
 	<Patch Mui="colorui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\colorui.dll.mun" />
