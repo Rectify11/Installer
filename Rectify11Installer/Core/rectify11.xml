@@ -419,6 +419,7 @@
 	<Patch Mui="wmplayer.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\wmplayer.exe" />
 	<Patch Mui="wmpshare.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\wmpshare.exe" />
 	<Patch Mui="wordpad.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows NT\Accessories\wordpad.exe" />
+	<Patch Mui="PhotoViewer.dll" mask="ICONGROUP,|PNG," x86="true" HardlinkTarget="%prog%\Windows Photo Viewer\PhotoViewer.dll" />
 	<Patch Mui="WorkFolders.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFolders.exe" />
 	<Patch Mui="WorkfoldersControl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkfoldersControl.dll" />
 	<Patch Mui="WorkFoldersRes.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFoldersRes.dll" />
