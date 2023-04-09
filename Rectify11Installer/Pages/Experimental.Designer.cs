@@ -42,7 +42,7 @@ namespace Rectify11Installer.Pages
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.label1.Size = new System.Drawing.Size(341, 250);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "This version of the installer is for testing purposes only. \nIt currently only contains icons and texture changes as well as the visual styles. Rectify11 3.0, the complete version, will be released in the near future. \n\nRemember to report bugs you find in this version to the Discord Server. \nWith this in mind, welcome to the Rectify11 3.0 Release Preview 3 installer, select Next to continue.";
+			this.label1.Text = "This version of the installer is for testing purposes only. \nRectify11 3.0, the complete version, will be released in the near future. \n\nRemember to report bugs you find in this version to the Official Recitify11 Discord Server. \nWith this in mind, welcome to the Rectify11 3.0 Release Preview 3 installer, select Next to continue.";
 			//
 			// ExperimentalPage
 			//
