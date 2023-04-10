@@ -77,7 +77,7 @@
             this.randomCheckbox2.Size = new System.Drawing.Size(288, 19);
             this.randomCheckbox2.TabIndex = 5;
             this.randomCheckbox2.Enabled = false;
-            this.randomCheckbox2.Text = "Use Tabbed instead of Mica";
+            this.randomCheckbox2.Text = "Use Mica Alt instead of Mica";
             this.randomCheckbox2.UseVisualStyleBackColor = true;
             //
             // randomCheckbox1

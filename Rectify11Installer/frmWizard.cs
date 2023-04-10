@@ -22,7 +22,17 @@ namespace Rectify11Installer
 		public string InstallerProgress
 		{
 			get => progressLabel.Text;
-			set => progressLabel.Text = value;
+			set
+			{
+				if(this.InvokeRequired)
+				{
+					this.Invoke((MethodInvoker)delegate () { InstallerProgress = value; });
+				}
+				else
+				{
+                    progressLabel.Text = value;
+                }
+			}
 		}
 		public Image UpdateSideImage
 		{
@@ -93,7 +103,7 @@ namespace Rectify11Installer
 			nextButton.Click += NextButton_Click;
 			navBackButton.Click += BackButton_Click;
 			cancelButton.Click += CancelButton_Click;
-			versionLabel.Text = versionLabel.Text + ProductVersion;
+			versionLabel.Text += ProductVersion;
 			SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
 			_idleInit = true;
 		}

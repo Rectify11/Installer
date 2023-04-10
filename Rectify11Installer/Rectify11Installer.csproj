@@ -359,6 +359,10 @@
     <None Include="Resources\AdvancedRun.exe" />
     <None Include="Resources\Rectify11ControlCenter.exe" />
     <None Include="Resources\installConfirm.gif" />
+    <None Include="Resources\cool.png" />
+    <None Include="Resources\iconnewtree.png" />
+    <None Include="Resources\done.png" />
+    <None Include="Resources\discord.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />

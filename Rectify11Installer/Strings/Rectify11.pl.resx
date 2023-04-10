@@ -124,7 +124,7 @@
     <value>Dalej</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-      <value>{\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 OPROGRAMOWANIE JEST DOSTARCZONE W STANIE TAKIM, W JAKIM SIĘ ZNAJDUJE, BEZ ŻADNYCH GWARANCJI, JAWNYCH BĄDŹ DOROZUMIANYCH, W TYM Z TYTUŁU WARTOŚCI HANDLOWEJ, PRZYDATNOŚCI DO OKREŚLONEGO CELU I NIENARUSZALNOŚCI PRAW OSÓB TRZECICH. W ŻADNYM WYPADKU AUTORZY BĄDŹ WŁAŚCICIELE PRAW AUTORSKICH NIE PONOSZĄ ODPOWIEDZIALNOŚCI ZA JAKIEKOLWIEK ROSZCZENIA, SZKODY LUB INNE ZOBOWIĄZANIA, POWSTAŁE W WYNIKU REALIZACJI UMOWY, CZYNÓW NIEDOZWOLONYCH LUB W INNY SPOSÓB, DOTYCZĄCE OPROGRAMOWANIA BĄDŹ WYNIKAJĄCE Z JEGO STOSOWANIA LUB INNEGO UŻYTKOWANIA. \par{\pntext\f0 2.\tab}Rectify11 może być używany przez każdego, ale nie można go sprzedawać. Nie można dostarczać tego produktu jako część innego produktu bez pisemnej zgody autora. \par{\pntext\f0 3.\tab}Nie możesz twierdzić, że to Ty stworzyłeś oprogramowanie. \par{\pntext\f0 4.\tab}Niniejsza informacja nie może być usunięta lub zmieniona z jakiejkolwiek wersji.\par\pard\par\parCopyright \'a9 Microsoft Corporation i zespół Rectify11.\par{\pntext\f0\space}Autorzy nie mają żadnego związku z Microsoft Corporation. To jest projekt stworzony przez społeczność.\par}</value>
+    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Zapoznaj się z postaniowieniami licencyjnymi</value>
@@ -263,7 +263,7 @@
     <value>Czy chcesz anulować instalację Rectify11?</value>
   </data>
   <data name="buttonReboot" xml:space="preserve">
-    <value>Uruchom ponownie</value>
+    <value>Restart</value>
   </data>
   <data name="installASDF" xml:space="preserve">
     <value>Instaluj Accent Colorizer</value>
