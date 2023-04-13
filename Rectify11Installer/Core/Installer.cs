@@ -804,15 +804,7 @@ namespace Rectify11Installer.Core
 				Arguments = " /install /quiet /norestart"
 			};
 			var vcproc = Process.Start(vcinfo);
-			if (vcproc == null) return false;
 			vcproc.WaitForExit();
-			if (!vcproc.HasExited) return false;
-			Logger.WriteLine("vcredist.exe exited with error code " + vcproc.ExitCode.ToString());
-			if (vcproc.ExitCode != 0 && vcproc.ExitCode != 1638 && vcproc.ExitCode != 3010)
-			{
-				return false;
-			}
-
 			Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
 			ProcessStartInfo core3info = new()
 			{
@@ -821,14 +813,6 @@ namespace Rectify11Installer.Core
 				Arguments = " /install /quiet /norestart"
 			};
 			var core3proc = Process.Start(core3info);
-			if (core3proc == null) return false;
-			core3proc.WaitForExit();
-			if (!core3proc.HasExited) return false;
-			Logger.WriteLine("core31.exe exited with error code " + core3proc.ExitCode.ToString());
-            if (core3proc.ExitCode != 0 && core3proc.ExitCode != 1638 && core3proc.ExitCode != 3010)
-            {
-                return false;
-            }
 return true;
         }
 
