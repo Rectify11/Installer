@@ -135,12 +135,11 @@ namespace Rectify11Installer.Pages
 					else
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme")));
-						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme" + '"';
+						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark theme with Mica" + '"';
 					}
 				}
 				key.SetValue("ApplyTheme", s, RegistryValueKind.String);
 				key.SetValue("DeleteJunk", "del " + Path.Combine(SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
-				System.Threading.Thread.Sleep(3);
 				key.Close();
 				using ShellLink shortcut = new();
 				shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
