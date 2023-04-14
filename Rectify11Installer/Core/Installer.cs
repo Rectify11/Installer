@@ -453,7 +453,10 @@ namespace Rectify11Installer.Core
 				{
 					try
 					{
-						Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(SpecialFolder.LocalApplicationData.ToString(), "junk"));
+						Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
+	                    + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
+	                    + " /CommandLine " + "\'" + "rmdir /s /q " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + "\'"
+	                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
 						Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
 					}
 					catch (Exception ex)
