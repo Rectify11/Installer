@@ -8,7 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static System.Environment;
 namespace Rectify11Installer.Pages
 {
 	public partial class ProgressPage : WizardPage
@@ -25,7 +25,7 @@ namespace Rectify11Installer.Pages
             new("Rectify11 has more consistent theme.", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.themepage),
             new("Rectify11 has better Performance", "We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.", Properties.Resources.perf),
             new("Rectified Control Panel", "We improved many details in the control panel, such as modernizing old visuals and adding back removed items", Properties.Resources.cp),
-            new("Need help or technical support?", "You can ask us anything on our official discord server. The link is on the github page, where you downloaded the installer.", Properties.Resources.discord),
+            new("Need help or technical support?", "You can ask us anything on our official discord server. The link is on the github page, from where you have downloaded the installer.", Properties.Resources.discord),
             new("Thank you!", "We appreciate your support, thank you for installing Rectify11.", Properties.Resources.cool)
         };
 		#endregion
@@ -119,24 +119,28 @@ namespace Rectify11Installer.Pages
 			if (InstallOptions.InstallThemes)
 			{
 				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+				string s = "e";
 				if (key != null)
 				{
 					if (InstallOptions.ThemeLight)
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme")));
-						key.SetValue("ApplyTheme", Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"', RegistryValueKind.String);
+						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"';
 					}
 					else if (InstallOptions.ThemeDark)
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme")));
-						key.SetValue("ApplyTheme", Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"', RegistryValueKind.String);
+						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"';
 					}
 					else
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme")));
-						key.SetValue("ApplyTheme", Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme" + '"', RegistryValueKind.String);
+						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark Mica theme" + '"';
 					}
 				}
+				key.SetValue("ApplyTheme", s, RegistryValueKind.String);
+				key.SetValue("DeleteJunk", "del " + Path.Combine(SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
+				System.Threading.Thread.Sleep(3);
 				key.Close();
 				using ShellLink shortcut = new();
 				shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
@@ -168,7 +172,6 @@ namespace Rectify11Installer.Pages
 				frmwiz.UpdateSideImage = t.Side;
 			}
 		}
-
 		/// <summary>
 		/// routine to perform before restarting
 		/// </summary>
