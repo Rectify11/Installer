@@ -206,38 +206,17 @@ namespace Rectify11Installer
 				timer.Stop();
 			}
 		}
-		private void CancelButton_Click(object sender, EventArgs e)
-		{
-			Application.Exit();
-		}
+		private void CancelButton_Click(object sender, EventArgs e) => Application.Exit();
 		private void FrmWizard_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			switch (Variables.isInstall)
+			if (!Variables.isInstall)
 			{
-				case false:
-				{
-					var ok = TaskDialog.Show(text: _resources.GetString("exitText"),
-						title: _resources.GetString("Title"),
-						buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
-						icon: TaskDialogStandardIcon.Information);
-					if (ok == TaskDialogResult.No)
-					{
-						e.Cancel = true;
-					}
-
-					break;
-				}
-				case true:
-				{
-					if (e.CloseReason == CloseReason.UserClosing)
-					{
-						e.Cancel = true;
-					}
-
-					break;
-				}
+				if (TaskDialog.Show(text: _resources.GetString("exitText"),
+					title: _resources.GetString("Title"),
+					buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
+					icon: TaskDialogStandardIcon.Information) == TaskDialogResult.No) e.Cancel = true;
 			}
-
+			else if (e.CloseReason == CloseReason.UserClosing) e.Cancel = true;
 			SystemEvents.UserPreferenceChanged -= SystemEvents_UserPreferenceChanged;
 		}
 		private void NextButton_Click(object sender, EventArgs e)
@@ -345,14 +324,8 @@ namespace Rectify11Installer
 		{
 			if (Helper.CheckIfUpdatesPending())
 			{
-				if (!_acknowledged)
-				{
-					Navigate(RectifyPages.ExperimentalPage);
-				}
-				else
-				{
-					Navigate(RectifyPages.EulaPage);
-				}
+				if (!_acknowledged) Navigate(RectifyPages.ExperimentalPage);
+				else Navigate(RectifyPages.EulaPage);
 			}
 		}
 
@@ -378,40 +351,36 @@ namespace Rectify11Installer
 		}
 		private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
 		{
-			switch (e.Category)
+			if (e.Category == UserPreferenceCategory.General)
 			{
-				case UserPreferenceCategory.General:
-					{
-						Theme.InitTheme();
-						DarkMode.RefreshTitleBarColor(Handle);
-						if (Theme.IsUsingDarkMode)
-						{
-							BackColor = Color.Black;
-							ForeColor = Color.White;
-							headerText.ForeColor = Color.White;
-						}
-						else
-						{
-							headerText.ForeColor = Color.Black;
-							BackColor = Color.White;
-							ForeColor = Color.Black;
-						}
-						if (_isWelcomePage && !Theme.IsUsingDarkMode)
-						{
-							DarkMode.UpdateFrame(this, false);
-						}
-						else if (Variables.isInstall && !Theme.IsUsingDarkMode)
-						{
-							DarkMode.UpdateFrame(this, false);
-						}
-						else
-						{
-							DarkMode.UpdateFrame(this, true);
-						}
-						Invalidate(true);
-						Update();
-					}
-					break;
+				Theme.InitTheme();
+				DarkMode.RefreshTitleBarColor(Handle);
+				if (Theme.IsUsingDarkMode)
+				{
+					BackColor = Color.Black;
+					ForeColor = Color.White;
+					headerText.ForeColor = Color.White;
+				}
+				else
+				{
+					headerText.ForeColor = Color.Black;
+					BackColor = Color.White;
+					ForeColor = Color.Black;
+				}
+				if (_isWelcomePage && !Theme.IsUsingDarkMode)
+				{
+					DarkMode.UpdateFrame(this, false);
+				}
+				else if (Variables.isInstall && !Theme.IsUsingDarkMode)
+				{
+					DarkMode.UpdateFrame(this, false);
+				}
+				else
+				{
+					DarkMode.UpdateFrame(this, true);
+				}
+				Invalidate(true);
+				Update();
 			}
 		}
 		#endregion

@@ -36,5 +36,9 @@ namespace Rectify11Installer.Core
 		public static bool skipUpdateCheck { get; set; } = false;
 
 		public static bool IsItemsSelected { get; set; }
+
+		// runtimes
+		public static bool vcRedist { get; set; }
+		public static bool core31 { get; set; }
 	}
 }

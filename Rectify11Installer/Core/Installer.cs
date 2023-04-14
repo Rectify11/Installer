@@ -62,7 +62,20 @@ namespace Rectify11Installer.Core
 				Logger.WriteLine("InstallRuntimes() failed.");
 				return false;
 			}
-			Logger.WriteLine("InstallRuntimes() succeeded.");
+			if (Variables.vcRedist && Variables.core31)
+			{
+				Logger.WriteLine("InstallRuntimes() succeeded.");
+			}
+			else if (!Variables.vcRedist)
+			{
+				Logger.Warn("vcredist.exe installation failed.");
+				RuntimeInstallError("Visual C++ Runtime", "Visual C++ Runtime is used for MicaForEveryone and AccentColorizer.", "https://aka.ms/vs/17/release/vc_redist.x64.exe");
+			}
+			else if (!Variables.core31)
+			{
+				Logger.Warn("core31.exe installation failed.");
+				RuntimeInstallError(".NET Core 3.1", ".NET Core 3.1 is used for MicaForEveryone.", "https://dotnet.microsoft.com/en-us/download/dotnet/3.1");
+			}
 			Logger.WriteLine("══════════════════════════════════════════════");
 			if (!Theme.IsUsingDarkMode)
 			{
@@ -805,17 +818,16 @@ namespace Rectify11Installer.Core
 				Arguments = " /install /quiet /norestart"
 			};
 			var vcproc = Process.Start(vcinfo);
-			if (vcproc == null) { runtimeInstallError("Visual C++ runtime", 
-				                                      "https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170");}
+			if (vcproc == null) return false;
 			vcproc.WaitForExit();
-			if (!vcproc.HasExited) { runtimeInstallError("Visual C++ runtime", 
-				                                         "https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170"); }
+			if (!vcproc.HasExited) return false;
 			Logger.WriteLine("vcredist.exe exited with error code " + vcproc.ExitCode.ToString());
 			if (vcproc.ExitCode != 0 && vcproc.ExitCode != 1638 && vcproc.ExitCode != 3010)
 			{
-				runtimeInstallError("Visual C++ runtime", 
-					                "https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170");
+				Variables.vcRedist = false;
 			}
+			else Variables.vcRedist = true;
+
 			Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
 			ProcessStartInfo core3info = new()
 			{
@@ -824,29 +836,35 @@ namespace Rectify11Installer.Core
 				Arguments = " /install /quiet /norestart"
 			};
 			var core3proc = Process.Start(core3info);
-			if (core3proc == null) { runtimeInstallError(".Net Core 3.1 Desktop Runtime", 
-				                                         "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.32-windows-x64-installer"); }
+			if (core3proc == null) return false;
 			core3proc.WaitForExit();
-			if (!core3proc.HasExited) {
-				runtimeInstallError(".Net Core 3.1 Desktop Runtime",
-								    "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.32-windows-x64-installer");
-			};
+			if (!core3proc.HasExited) return false;
 			Logger.WriteLine("core31.exe exited with error code " + core3proc.ExitCode.ToString());
 			if (core3proc.ExitCode != 0 && core3proc.ExitCode != 1638 && core3proc.ExitCode != 3010)
 			{
-				runtimeInstallError(".Net Core 3.1 Desktop Runtime",
-								    "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.32-windows-x64-installer");
+				Variables.core31 = false;
 			}
+			else Variables.core31 = true;
 			return true;
-        }
-		private void runtimeInstallError(string s, string a)
+		}
+
+		private void RuntimeInstallError(string app, string info, string link)
         {
-			TaskDialog.Show(text: "An error has been occured while installing " + s + ", you will have to manually install it after Rectify11's installation is complete.",
-	        instruction: "Runtime install Error",
-	        title: "Rectify11 Setup",
-	        buttons: TaskDialogButtons.OK,
-	        icon: TaskDialogStandardIcon.SecurityWarningYellowBar);
-			Logger.WriteLine("Installation of " + s + " failed, Skipping. user can install it manually using the link: " + a);
+			TaskDialog td = new();
+			td.Page.Text = "Installation of " + app + " has failed. You need to install it manually.";
+			td.Page.Instruction = "Runtime installation error";
+			td.Page.Title = "Rectify11 Setup";
+			td.Page.StandardButtons = TaskDialogButtons.OK;
+			td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
+			td.Page.EnableHyperlinks = true;
+			TaskDialogExpander tde = new();
+			tde.Text = info + " \nDownload from <a href=\"" + link + "\">here</a>";
+			tde.Expanded = false;
+			tde.ExpandFooterArea = true;
+			tde.CollapsedButtonText = "More information";
+			tde.ExpandedButtonText = "Less information";
+			td.Page.Expander = tde;
+			td.Show();
 		}
 		/// <summary>
 		/// sets required registry values for phase 2
