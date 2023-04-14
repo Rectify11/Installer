@@ -813,7 +813,8 @@ namespace Rectify11Installer.Core
 				Arguments = " /install /quiet /norestart"
 			};
 			var core3proc = Process.Start(core3info);
-return true;
+			core3proc.WaitForExit();
+			return true;
         }
 
 		/// <summary>
