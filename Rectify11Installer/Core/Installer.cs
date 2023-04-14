@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Rectify11Installer.Win32;
 using static System.Environment;
+using KPreisser.UI;
 
 namespace Rectify11Installer.Core
 {
@@ -778,7 +779,7 @@ namespace Rectify11Installer.Core
 		}
 
 		/// <summary>
-		/// installs runtimes
+		/// installs runtimes and shows a warning message if the installation of runtimes fails.
 		/// </summary>
 		private bool InstallRuntimes()
 		{
@@ -804,7 +805,17 @@ namespace Rectify11Installer.Core
 				Arguments = " /install /quiet /norestart"
 			};
 			var vcproc = Process.Start(vcinfo);
+			if (vcproc == null) { runtimeInstallError("Visual C++ runtime", 
+				                                      "https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170");}
 			vcproc.WaitForExit();
+			if (!vcproc.HasExited) { runtimeInstallError("Visual C++ runtime", 
+				                                         "https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170"); }
+			Logger.WriteLine("vcredist.exe exited with error code " + vcproc.ExitCode.ToString());
+			if (vcproc.ExitCode != 0 && vcproc.ExitCode != 1638 && vcproc.ExitCode != 3010)
+			{
+				runtimeInstallError("Visual C++ runtime", 
+					                "https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170");
+			}
 			Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
 			ProcessStartInfo core3info = new()
 			{
@@ -813,10 +824,30 @@ namespace Rectify11Installer.Core
 				Arguments = " /install /quiet /norestart"
 			};
 			var core3proc = Process.Start(core3info);
+			if (core3proc == null) { runtimeInstallError(".Net Core 3.1 Desktop Runtime", 
+				                                         "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.32-windows-x64-installer"); }
 			core3proc.WaitForExit();
+			if (!core3proc.HasExited) {
+				runtimeInstallError(".Net Core 3.1 Desktop Runtime",
+								    "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.32-windows-x64-installer");
+			};
+			Logger.WriteLine("core31.exe exited with error code " + core3proc.ExitCode.ToString());
+			if (core3proc.ExitCode != 0 && core3proc.ExitCode != 1638 && core3proc.ExitCode != 3010)
+			{
+				runtimeInstallError(".Net Core 3.1 Desktop Runtime",
+								    "https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-3.1.32-windows-x64-installer");
+			}
 			return true;
         }
-
+		private void runtimeInstallError(string s, string a)
+        {
+			TaskDialog.Show(text: "An error has been occured while installing " + s + ", you will have to manually install it after Rectify11's installation is complete.",
+	        instruction: "Runtime install Error",
+	        title: "Rectify11 Setup",
+	        buttons: TaskDialogButtons.OK,
+	        icon: TaskDialogStandardIcon.SecurityWarningYellowBar);
+			Logger.WriteLine("Installation of " + s + " failed, Skipping. user can install it manually using the link: " + a);
+		}
 		/// <summary>
 		/// sets required registry values for phase 2
 		/// </summary>
