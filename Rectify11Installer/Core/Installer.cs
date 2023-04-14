@@ -113,6 +113,7 @@ namespace Rectify11Installer.Core
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
 						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
+
 				Logger.WriteLine("Extracted themes.7z");
 
 				if (!await Task.Run(() => InstallThemes()))
@@ -453,10 +454,12 @@ namespace Rectify11Installer.Core
 				{
 					try
 					{
+						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
 						Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
 	                    + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
 	                    + " /CommandLine " + "\'" + "rmdir /s /q " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + "\'"
 	                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
+						File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
 						Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
 					}
 					catch (Exception ex)
