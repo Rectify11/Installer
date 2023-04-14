@@ -139,7 +139,7 @@ namespace Rectify11Installer.Pages
 					}
 				}
 				key.SetValue("ApplyTheme", s, RegistryValueKind.String);
-				key.SetValue("DeleteJunk", "del " + Path.Combine(SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
+				key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
 				key.Close();
 				using ShellLink shortcut = new();
 				shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
