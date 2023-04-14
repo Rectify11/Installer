@@ -453,7 +453,7 @@ namespace Rectify11Installer.Core
 				{
 					try
 					{
-						Directory.Delete(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), true);
+						Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(SpecialFolder.LocalApplicationData.ToString(), "junk"));
 						Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
 					}
 					catch (Exception ex)
