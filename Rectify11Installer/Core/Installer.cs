@@ -544,9 +544,16 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallUserAvatars()
 		{
-			if (!Directory.Exists(Path.Combine(SpecialFolder.CommonApplicationData.ToString(), "Microsoft", "User Account Pictures", "Default Pictures"))){
+			if (!Directory.Exists(Path.Combine(Variables.sysdrv, "programdata", "Microsoft", "User Account Pictures", "Default Pictures"))){
 
-				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "userAV"),Path.Combine(SpecialFolder.CommonApplicationData.ToString(), "Microsoft", "User Account Pictures", "Default Pictures"));
+				Directory.CreateDirectory(Path.Combine(Variables.sysdrv, "programdata", "Microsoft", "User Account Pictures", "Default Pictures"));
+            }
+
+			DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Files, "extras", "UserAV"));
+			for (int i = 0; i < info.GetFiles().Length; i++)
+            {
+				File.Copy(Path.Combine(Variables.r11Files, "extras", "userAV", info.GetFiles("*.*")[i].Name),
+					      Path.Combine(Variables.sysdrv, "programdata", "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), false);
             }
 		}
 
