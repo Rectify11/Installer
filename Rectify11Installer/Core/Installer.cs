@@ -201,6 +201,12 @@ namespace Rectify11Installer.Core
                     await Task.Run(() => InstallShell());
                     Logger.WriteLine("InstallShell() succeeded.");
                 }
+				if (InstallOptions.userAvatars)
+                {
+					// always would work ig 4
+					await Task.Run(() => InstallUserAvatars());
+					Logger.WriteLine("InstallUserAvatars() succeeded.");
+                }
                 Logger.WriteLine("InstallExtras() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
@@ -532,6 +538,17 @@ namespace Rectify11Installer.Core
         {
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn nilesoftshell /xml " + Path.Combine(Variables.r11Folder, "extras", "nileshell", "Shell.xml"), AppWinStyle.Hide);
         }
+
+		/// <summary>
+		/// installs User Avatars
+		/// </summary>
+		private void InstallUserAvatars()
+		{
+			if (!Directory.Exists(Path.Combine(SpecialFolder.CommonApplicationData.ToString(), "Microsoft", "User Account Pictures", "Default Pictures"))){
+
+				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "userAV"),Path.Combine(SpecialFolder.CommonApplicationData.ToString(), "Microsoft", "User Account Pictures", "Default Pictures"));
+            }
+		}
 
         /// <summary>
         /// installs control center
