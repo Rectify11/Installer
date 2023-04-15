@@ -178,7 +178,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {\rtf1\ansi\pard{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20 This software is provided &apos;as-is&apos;, without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to {\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided &apos;as-is&apos;, without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string eulaR11 {
             get {
@@ -481,6 +481,15 @@ namespace Rectify11Installer.Strings {
         internal static string updateTitle {
             get {
                 return ResourceManager.GetString("updateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install User avatars.
+        /// </summary>
+        internal static string userAvatars {
+            get {
+                return ResourceManager.GetString("userAvatars", resourceCulture);
             }
         }
         

@@ -268,4 +268,7 @@
   <data name="installIcons" xml:space="preserve">
     <value>Patch Icons</value>
   </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Install User avatars</value>
+  </data>
 </root>

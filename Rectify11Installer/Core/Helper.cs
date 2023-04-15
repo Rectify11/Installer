@@ -36,6 +36,7 @@ namespace Rectify11Installer.Core
 			InstallOptions.InstallGadgets = InstallOptions.iconsList.Contains("gadgetsNode");
 			InstallOptions.InstallWallpaper = InstallOptions.iconsList.Contains("wallpapersNode");
 			InstallOptions.InstallASDF = InstallOptions.iconsList.Contains("asdfNode");
+			InstallOptions.userAvatars = InstallOptions.iconsList.Contains("useravNode");
 			return true;
 		}
 		public static bool FinalizeIRectify11()
@@ -47,6 +48,7 @@ namespace Rectify11Installer.Core
 			InstallOptions.iconsList.Remove("shellNode");
 			InstallOptions.iconsList.Remove("wallpapersNode");
 			InstallOptions.iconsList.Remove("asdfNode");
+			InstallOptions.iconsList.Remove("useravNode");
 			return true;
 		}
 		public static StringBuilder FinalText()
@@ -95,6 +97,10 @@ namespace Rectify11Installer.Core
 				ok.AppendLine(resources.GetString("installWallpapers"));
 			}
 
+			if (InstallOptions.userAvatars)
+			{
+				ok.AppendLine(resources.GetString("userAvatars"));
+			}
 			return ok;
 		}
 		#endregion
@@ -185,6 +191,7 @@ namespace Rectify11Installer.Core
 		public static bool InstallIcons;
 		public static bool SkipMFE;
 		public static bool TabbedNotMica;
+		public static bool userAvatars;
 		public static List<string> iconsList = new();
 		public static bool InstallExtras()
 		{

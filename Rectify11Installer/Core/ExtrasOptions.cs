@@ -9,13 +9,14 @@ namespace Rectify11Installer.Core
 		// add extra options here ok
 		private static List<Tuple<string, string>> options = new()
 		{
-            new("shellNode", "Nilesoft Shell"),
-            new("gadgetsNode", "Rectified Gadgets"),
-            // new("winverNode", "WinverUWP"),
+			new("shellNode", "Nilesoft Shell"),
+			new("gadgetsNode", "Rectified Gadgets"),
+			// new("winverNode", "WinverUWP"),
 			// new("rectpadNode", "RectifyPad"),
 			// new("epNode", "ExplorerPatcher"), 
 			new("asdfNode", "Enable Accent Color Colorizing"),
-			new("wallpapersNode", Rectify11Installer.Strings.Rectify11.optionWallpaper)
+			new("wallpapersNode", Rectify11Installer.Strings.Rectify11.optionWallpaper),
+			new("useravNode", "Remastered user avatars")
 		};
 		public static List<TreeNode> GetExtras()
 		{
