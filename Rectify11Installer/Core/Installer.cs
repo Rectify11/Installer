@@ -546,14 +546,14 @@ namespace Rectify11Installer.Core
 		{
 			if (!Directory.Exists(GetEnvironmentVariable("systemdrive") + @"\programdata\Microsoft\User Account Pictures\Default Pictures")){
 
-				Directory.CreateDirectory(Path.Combine(Variables.sysdrv, @"\programdata", "Microsoft", "User Account Pictures", "Default Pictures"));
+				Directory.CreateDirectory(GetEnvironmentVariable("systemdrive") + @"\programdata\Microsoft\User Account Pictures\Default Pictures");
 			}
 
 			DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
 			for (int i = 0; i < info.GetFiles().Length; i++)
             {
 				File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
-					      Path.Combine(Variables.sysdrv, "programdata", "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
+					      Path.Combine(GetEnvironmentVariable("systemdrive") + @"\programdata\Microsoft\User Account Pictures\Default Pictures", info.GetFiles("*.*")[i].Name), true);
             }
 		}
 
