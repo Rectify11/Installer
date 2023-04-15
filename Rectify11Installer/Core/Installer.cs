@@ -552,7 +552,7 @@ namespace Rectify11Installer.Core
 			DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
 			for (int i = 0; i < info.GetFiles().Length; i++)
             {
-				File.Copy(Path.Combine(Variables.r11Files, "extras", "userAV", info.GetFiles("*.*")[i].Name),
+				File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
 					      Path.Combine(Variables.sysdrv, "programdata", "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
             }
 		}
