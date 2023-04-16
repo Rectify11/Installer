@@ -13,7 +13,6 @@ namespace Rectify11Installer.Core
 	/// </summary>
 	public class FileIcon
 	{
-
 		#region UnmanagedCode
 		private const int MAX_PATH = 260;
 
