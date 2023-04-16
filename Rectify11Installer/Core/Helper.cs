@@ -213,6 +213,26 @@ namespace Rectify11Installer.Core
 		{
 			WriteLine("[WARNING] " + v, ex);
 		}
+
+		public static void LogFile(string file, bool error, Exception ex)
+		{
+			if (error)
+			{
+				if (ex != null)
+				{
+					Logger.WriteLine("Error while writing " + file + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
+				}
+				else
+				{
+					Logger.WriteLine("Error while writing " + file + ". (No exception information)");
+				}
+			}
+			else
+			{
+				Logger.WriteLine("Wrote " + file);
+			}
+		}
+
 		#endregion
 	}
 }

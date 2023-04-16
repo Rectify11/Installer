@@ -13,6 +13,7 @@ namespace Rectify11Installer.Pages
     {
         #region Variables
         private readonly FrmWizard _frmWizard;
+        private bool ExtrasSel = false;
         bool idleinit;
         #endregion
         #region Main
@@ -51,6 +52,7 @@ namespace Rectify11Installer.Pages
             {
                 if (option.Name == e.Node.Name)
                 {
+                    ExtrasSel = true;
                     // Update the Image property of the PictureBox based on the selected TreeNode
                     switch (e.Node.Name)
                     {
@@ -81,6 +83,14 @@ namespace Rectify11Installer.Pages
                             break;
                     }
                     return;
+                }
+				else
+				{
+                    if (ExtrasSel)
+                    {
+                        _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.installoptns;
+                        ExtrasSel = false;
+                    }
                 }
             }
         }
