@@ -104,7 +104,7 @@ namespace Rectify11Installer
 			navBackButton.Click += BackButton_Click;
 			cancelButton.Click += CancelButton_Click;
 			versionLabel.Text += ProductVersion;
-			SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+			Theme.OnThemeChanged += SystemEvents_UserPreferenceChanged;
 			_idleInit = true;
 		}
 
@@ -169,7 +169,7 @@ namespace Rectify11Installer
 			else if (page == RectifyPages.ProgressPage)
 			{
 				versionLabel.Visible = false;
-				Helper.FinalizeIRectify11();
+				ExtrasOptions.FinalizeIRectify11();
 				pictureBox1.Visible = true;
 				progressLabel.Visible = true;
 				RectifyPages.ProgressPage.Start();
@@ -217,7 +217,7 @@ namespace Rectify11Installer
 					icon: TaskDialogStandardIcon.Information) == TaskDialogResult.No) e.Cancel = true;
 			}
 			else if (e.CloseReason == CloseReason.UserClosing) e.Cancel = true;
-			SystemEvents.UserPreferenceChanged -= SystemEvents_UserPreferenceChanged;
+			Theme.OnThemeChanged -= SystemEvents_UserPreferenceChanged;
 		}
 		private void NextButton_Click(object sender, EventArgs e)
 		{
@@ -235,7 +235,7 @@ namespace Rectify11Installer
 			}
 			else if (navPane.SelectedTab == TabPages.installPage)
 			{
-				Helper.UpdateIRectify11();
+				ExtrasOptions.UpdateIRectify11();
 				if (InstallOptions.InstallThemes)
 				{
 					Navigate(RectifyPages.ThemeChoicePage);
@@ -349,11 +349,11 @@ namespace Rectify11Installer
 			_clicks = 0;
 			Navigate(RectifyPages.DebugPage);
 		}
-		private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+		private void SystemEvents_UserPreferenceChanged(object sender, EventArgs e)
 		{
-			if (e.Category == UserPreferenceCategory.General)
+			UserPreferenceChangedEventArgs ev = (UserPreferenceChangedEventArgs)e;
+			if (ev.Category == UserPreferenceCategory.General)
 			{
-				Theme.InitTheme();
 				DarkMode.RefreshTitleBarColor(Handle);
 				if (Theme.IsUsingDarkMode)
 				{
