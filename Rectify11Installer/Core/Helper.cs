@@ -220,7 +220,7 @@ namespace Rectify11Installer.Core
 			{
 				if (ex != null)
 				{
-					Logger.WriteLine("Error while writing " + file + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
+					Logger.WriteLine("Error while writing " + file + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
 				}
 				else
 				{
