@@ -1,271 +1,271 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
+	<!-- 
+		Microsoft ResX Schema 
+		
+		Version 2.0
+		
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+		
+		Example:
+		
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">2.0</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+				<value>[base64 mime encoded serialized .NET Framework object]</value>
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+				<value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+				<comment>This is a comment</comment>
+		</data>
+								
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+		
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+		
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+		
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+		
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+						: System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+						: and then encoded with base64 encoding.
+		
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+						: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+						: and then encoded with base64 encoding.
 
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="buttonAgree" xml:space="preserve">
-    <value>동의</value>
-  </data>
-  <data name="buttonCancel" xml:space="preserve">
-    <value>취소</value>
-  </data>
-  <data name="buttonNext" xml:space="preserve">
-    <value>다음</value>
-  </data>
-  <data name="eulaPageHeader" xml:space="preserve">
-    <value>라이센스 동의</value>
-  </data>
-  <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
-  </data>
-  <data name="eulaTitle" xml:space="preserve">
-    <value>Rectify11을 설치하기 전, 이 라이센스에 동의해 주시기 바랍니다.</value>
-  </data>
-  <data name="installNote" xml:space="preserve">
-    <value>현 윈도우 설치를 수정합니다.</value>
-  </data>
-  <data name="installTitle" xml:space="preserve">
-    <value>바로 설치</value>
-  </data>
-  <data name="uninstallNote" xml:space="preserve">
-    <value>원래의 윈도우 모습으로 돌아갑니다.</value>
-  </data>
-  <data name="uninstallTitle" xml:space="preserve">
-    <value>Rectify11 삭제</value>
-  </data>
-  <data name="updateNote" xml:space="preserve">
-    <value>설치된 Rectify11을 업데이트하기</value>
-  </data>
-  <data name="updateTitle" xml:space="preserve">
-    <value>업데이트</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>버전:</value>
-  </data>
-  <data name="welcome" xml:space="preserve">
-    <value>설치를 시작하겠습니다.</value>
-  </data>
-  <data name="welcomeDescription" xml:space="preserve">
-    <value>이 컴퓨터에 일관된 디자인을 위해 Rectify11을 설치하기 전, 필요한 몇가지 단계를 거칠 겁니다. 다음을 눌러서 설치를 시작하세요.</value>
-  </data>
-  <data name="installChoiceDescription" xml:space="preserve">
-    <value>원하시는 서드 파티 프로그램을 고르세요.</value>
-  </data>
-  <data name="installChoiceTitle" xml:space="preserve">
-    <value>설치할 프로그램 선택</value>
-  </data>
-  <data name="themeChoiceTitle" xml:space="preserve">
-    <value>원하는 테마를 선택하세요.</value>
-  </data>
-  <data name="themeHeader" xml:space="preserve">
-    <value>개인 설정</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Rectify11 설치</value>
-  </data>
-  <data name="themeBlack" xml:space="preserve">
-    <value>Mica 다크 테마</value>
-  </data>
-  <data name="themeDark" xml:space="preserve">
-    <value>다크 테마</value>
-  </data>
-  <data name="themeLight" xml:space="preserve">
-    <value>라이트 테마</value>
-  </data>
-  <data name="epEnhRibbon" xml:space="preserve">
-    <value>새로운 파일 탐색기 리본 설치</value>
-  </data>
-  <data name="epExtMica" xml:space="preserve">
-    <value>Mica 효과를 파일 탐색기 탐색 창까지 확장하기</value>
-  </data>
-  <data name="epHeader" xml:space="preserve">
-    <value>바탕 화면 꾸미기</value>
-  </data>
-  <data name="epTitle" xml:space="preserve">
-    <value>원하는 바탕화면 환경을 선택하세요</value>
-  </data>
-  <data name="epW10Radio" xml:space="preserve">
-    <value>Windows 10 메뉴(윈도우 11 모서리 기능 포함)</value>
-  </data>
-  <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 작업 표시줄</value>
-  </data>
-  <data name="epW11Radio" xml:space="preserve">
-    <value>그대로</value>
-  </data>
-  <data name="progressText" xml:space="preserve">
-    <value>알고 계셨나요..</value>
-  </data>
-  <data name="summaryFooter" xml:space="preserve">
-    <value>컴퓨터 재시작이 설치 끝 무렵에 필요하니 현재 하고 계신 작업은 중단해 주세요.</value>
-  </data>
-  <data name="summaryItems" xml:space="preserve">
-    <value>Rectify11을 이 컴퓨터에 설치합니다.</value>
-  </data>
-  <data name="summaryTitle" xml:space="preserve">
-    <value>작업:</value>
-  </data>
-  <data name="buttonInstall" xml:space="preserve">
-    <value>설치</value>
-  </data>
-  <data name="optionExtra" xml:space="preserve">
-    <value>그 외 것들</value>
-  </data>
-  <data name="optionIcons" xml:space="preserve">
-    <value>시스템 아이콘</value>
-  </data>
-  <data name="optionThemes" xml:space="preserve">
-    <value>테마</value>
-  </data>
-  <data name="optionWallpaper" xml:space="preserve">
-    <value>Rectify11 배경화면</value>
-  </data>
-  <data name="installEP" xml:space="preserve">
-    <value>ExplorerPatcher 설치하기</value>
-  </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Nilesoft 셸</value>
-  </data>
-  <data name="installThemes" xml:space="preserve">
-    <value>테마</value>
-  </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>배경화면</value>
-  </data>
-  <data name="installWinver" xml:space="preserve">
-    <value>Winver 설치하기</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="summaryHeader" xml:space="preserve">
-    <value>요약</value>
-  </data>
-  <data name="exitText" xml:space="preserve">
-    <value>설치를 중단하시겠습니까?</value>
-  </data>
-  <data name="buttonReboot" xml:space="preserve">
-    <value>지금 재시작하기</value>
-  </data>
-  <data name="installASDF" xml:space="preserve">
-    <value>AccentColorizer</value>
-  </data>
-  <data name="installIcons" xml:space="preserve">
-    <value>아이콘 패치</value>
-  </data>
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+						: using a System.ComponentModel.TypeConverter
+						: and then encoded with base64 encoding.
+		-->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="buttonAgree" xml:space="preserve">
+		<value>동의</value>
+	</data>
+	<data name="buttonCancel" xml:space="preserve">
+		<value>취소</value>
+	</data>
+	<data name="buttonNext" xml:space="preserve">
+		<value>다음</value>
+	</data>
+	<data name="eulaPageHeader" xml:space="preserve">
+		<value>라이센스 동의</value>
+	</data>
+	<data name="eulaR11" xml:space="preserve">
+		<value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+	</data>
+	<data name="eulaTitle" xml:space="preserve">
+		<value>Rectify11을 설치하기 전, 이 라이센스에 동의해 주시기 바랍니다.</value>
+	</data>
+	<data name="installNote" xml:space="preserve">
+		<value>현 윈도우 설치를 수정합니다.</value>
+	</data>
+	<data name="installTitle" xml:space="preserve">
+		<value>바로 설치</value>
+	</data>
+	<data name="uninstallNote" xml:space="preserve">
+		<value>원래의 윈도우 모습으로 돌아갑니다.</value>
+	</data>
+	<data name="uninstallTitle" xml:space="preserve">
+		<value>Rectify11 삭제</value>
+	</data>
+	<data name="updateNote" xml:space="preserve">
+		<value>설치된 Rectify11을 업데이트하기</value>
+	</data>
+	<data name="updateTitle" xml:space="preserve">
+		<value>업데이트</value>
+	</data>
+	<data name="Version" xml:space="preserve">
+		<value>버전:</value>
+	</data>
+	<data name="welcome" xml:space="preserve">
+		<value>설치를 시작하겠습니다.</value>
+	</data>
+	<data name="welcomeDescription" xml:space="preserve">
+		<value>이 컴퓨터에 일관된 디자인을 위해 Rectify11을 설치하기 전, 필요한 몇가지 단계를 거칠 겁니다. 다음을 눌러서 설치를 시작하세요.</value>
+	</data>
+	<data name="installChoiceDescription" xml:space="preserve">
+		<value>원하시는 서드 파티 프로그램을 고르세요.</value>
+	</data>
+	<data name="installChoiceTitle" xml:space="preserve">
+		<value>설치할 프로그램 선택</value>
+	</data>
+	<data name="themeChoiceTitle" xml:space="preserve">
+		<value>원하는 테마를 선택하세요.</value>
+	</data>
+	<data name="themeHeader" xml:space="preserve">
+		<value>개인 설정</value>
+	</data>
+	<data name="Title" xml:space="preserve">
+		<value>Rectify11 설치</value>
+	</data>
+	<data name="themeBlack" xml:space="preserve">
+		<value>Mica 다크 테마</value>
+	</data>
+	<data name="themeDark" xml:space="preserve">
+		<value>다크 테마</value>
+	</data>
+	<data name="themeLight" xml:space="preserve">
+		<value>라이트 테마</value>
+	</data>
+	<data name="epEnhRibbon" xml:space="preserve">
+		<value>새로운 파일 탐색기 리본 설치</value>
+	</data>
+	<data name="epExtMica" xml:space="preserve">
+		<value>Mica 효과를 파일 탐색기 탐색 창까지 확장하기</value>
+	</data>
+	<data name="epHeader" xml:space="preserve">
+		<value>바탕 화면 꾸미기</value>
+	</data>
+	<data name="epTitle" xml:space="preserve">
+		<value>원하는 바탕화면 환경을 선택하세요</value>
+	</data>
+	<data name="epW10Radio" xml:space="preserve">
+		<value>Windows 10 메뉴(윈도우 11 모서리 기능 포함)</value>
+	</data>
+	<data name="epW10Taskbar" xml:space="preserve">
+		<value>Windows 10 작업 표시줄</value>
+	</data>
+	<data name="epW11Radio" xml:space="preserve">
+		<value>그대로</value>
+	</data>
+	<data name="progressText" xml:space="preserve">
+		<value>알고 계셨나요..</value>
+	</data>
+	<data name="summaryFooter" xml:space="preserve">
+		<value>컴퓨터 재시작이 설치 끝 무렵에 필요하니 현재 하고 계신 작업은 중단해 주세요.</value>
+	</data>
+	<data name="summaryItems" xml:space="preserve">
+		<value>Rectify11을 이 컴퓨터에 설치합니다.</value>
+	</data>
+	<data name="summaryTitle" xml:space="preserve">
+		<value>작업:</value>
+	</data>
+	<data name="buttonInstall" xml:space="preserve">
+		<value>설치</value>
+	</data>
+	<data name="optionExtra" xml:space="preserve">
+		<value>그 외 것들</value>
+	</data>
+	<data name="optionIcons" xml:space="preserve">
+		<value>시스템 아이콘</value>
+	</data>
+	<data name="optionThemes" xml:space="preserve">
+		<value>테마</value>
+	</data>
+	<data name="optionWallpaper" xml:space="preserve">
+		<value>Rectify11 배경화면</value>
+	</data>
+	<data name="installEP" xml:space="preserve">
+		<value>ExplorerPatcher 설치하기</value>
+	</data>
+	<data name="installShell" xml:space="preserve">
+		<value>Nilesoft 셸</value>
+	</data>
+	<data name="installThemes" xml:space="preserve">
+		<value>테마</value>
+	</data>
+	<data name="installWallpapers" xml:space="preserve">
+		<value>배경화면</value>
+	</data>
+	<data name="installWinver" xml:space="preserve">
+		<value>Winver 설치하기</value>
+	</data>
+	<assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+	<data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+		<value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+	</data>
+	<data name="summaryHeader" xml:space="preserve">
+		<value>요약</value>
+	</data>
+	<data name="exitText" xml:space="preserve">
+		<value>설치를 중단하시겠습니까?</value>
+	</data>
+	<data name="buttonReboot" xml:space="preserve">
+		<value>지금 재시작하기</value>
+	</data>
+	<data name="installASDF" xml:space="preserve">
+		<value>AccentColorizer</value>
+	</data>
+	<data name="installIcons" xml:space="preserve">
+		<value>아이콘 패치</value>
+	</data>
 </root>

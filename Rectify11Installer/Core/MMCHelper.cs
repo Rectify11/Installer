@@ -124,10 +124,10 @@ namespace Rectify11Installer.Core
 					if (Path.GetFileName(langMsc[i]) != Path.GetFileName(r11Msc[j])) continue;
 					Debug.WriteLine(langMsc[i]);
 					if (File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name,
-						    Path.GetFileName(r11Msc[j])))) continue;
+							Path.GetFileName(r11Msc[j])))) continue;
 					if (Path.GetFileName(langMsc[i]) == "lusrmgr.msc"
-					    && Path.GetFileName(langMsc[i]) == "taskschd.msc"
-					    && Path.GetFileName(langMsc[i]) == "WmiMgmt.msc") continue;
+						&& Path.GetFileName(langMsc[i]) == "taskschd.msc"
+						&& Path.GetFileName(langMsc[i]) == "WmiMgmt.msc") continue;
 					File.Copy(r11Msc[j], Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(r11Msc[j])), true);
 					File.Copy(langMsc[i], Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp", Path.GetFileName(langMsc[i])), true);
 				}

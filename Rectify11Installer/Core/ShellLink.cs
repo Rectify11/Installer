@@ -688,7 +688,7 @@ namespace Rectify11Installer.Core
 			{
 				// Use the FileIcon object to get the icon:
 				var flags = FileIcon.SHGetFileInfoConstants.SHGFI_ICON |
-				            FileIcon.SHGetFileInfoConstants.SHGFI_ATTRIBUTES;
+							FileIcon.SHGetFileInfoConstants.SHGFI_ATTRIBUTES;
 				if (large)
 				{
 					flags = flags | FileIcon.SHGetFileInfoConstants.SHGFI_LARGEICON;

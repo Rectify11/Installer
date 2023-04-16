@@ -107,9 +107,9 @@ namespace Rectify11Installer.Win32
 			if (yes)
 			{
 				if ((NativeMethods.GetUbr() != -1
-				     && NativeMethods.GetUbr() >= 51
-				     && Environment.OSVersion.Version.Build == 22000)
-				    || Environment.OSVersion.Version.Build is > 22000 or < 21996)
+					 && NativeMethods.GetUbr() >= 51
+					 && Environment.OSVersion.Version.Build == 22000)
+					|| Environment.OSVersion.Version.Build is > 22000 or < 21996)
 				{
 					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref m);
 				}
@@ -124,9 +124,9 @@ namespace Rectify11Installer.Win32
 					cyTopHeight = 0
 				};
 				if ((NativeMethods.GetUbr() != -1 
-				     && NativeMethods.GetUbr() >= 51 
-				     && Environment.OSVersion.Version.Build == 22000) 
-				    || Environment.OSVersion.Version.Build is > 22000 or < 21996)
+					 && NativeMethods.GetUbr() >= 51 
+					 && Environment.OSVersion.Version.Build == 22000) 
+					|| Environment.OSVersion.Version.Build is > 22000 or < 21996)
 				{
 					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);
 				}
