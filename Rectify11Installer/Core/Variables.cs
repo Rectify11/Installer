@@ -9,7 +9,7 @@ namespace Rectify11Installer.Core
 	{
 		//TODO: For v4 add iso patching
 
-		public static string sysdrv => Environment.GetEnvironmentVariable("systemdrive");
+		public static string progdata => Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
 
 		public static string Windir => Environment.GetFolderPath(Environment.SpecialFolder.Windows);
 

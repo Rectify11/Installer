@@ -160,9 +160,10 @@ namespace Rectify11Installer.Core
 				if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
 				{
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
 					try
 					{
-						await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true));
+						Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
 						Logger.WriteLine(Path.Combine(Variables.r11Folder, "extras") + " exists. Deleting it.");
 					}
 					catch (Exception ex)
@@ -536,24 +537,36 @@ namespace Rectify11Installer.Core
         /// </summary>
         private void InstallShell()
         {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn nilesoftshell /xml " + Path.Combine(Variables.r11Folder, "extras", "nileshell", "Shell.xml"), AppWinStyle.Hide);
-        }
+			if (!Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+            {
+				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft"), Path.Combine(Variables.Windir, "nilesoft"));
+			}
+
+			ProcessStartInfo shlinfo2 = new()
+			{
+				FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
+				WindowStyle = ProcessWindowStyle.Hidden,
+				Arguments = " -r"
+			};
+			var shlInstproc2 = Process.Start(shlinfo2);
+			shlInstproc2.WaitForExit();
+		}
 
 		/// <summary>
 		/// installs User Avatars
 		/// </summary>
 		private void InstallUserAvatars()
 		{
-			if (!Directory.Exists(GetEnvironmentVariable("systemdrive") + @"\programdata\Microsoft\User Account Pictures\Default Pictures")){
+			if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"))){
 
-				Directory.CreateDirectory(GetEnvironmentVariable("systemdrive") + @"\programdata\Microsoft\User Account Pictures\Default Pictures");
+				Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
 			}
 
 			DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
 			for (int i = 0; i < info.GetFiles().Length; i++)
             {
 				File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
-					      Path.Combine(GetEnvironmentVariable("systemdrive") + @"\programdata\Microsoft\User Account Pictures\Default Pictures", info.GetFiles("*.*")[i].Name), true);
+					      Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
             }
 		}
 
