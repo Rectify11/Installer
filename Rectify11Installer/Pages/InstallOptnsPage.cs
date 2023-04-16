@@ -21,6 +21,7 @@ namespace Rectify11Installer.Pages
             _frmWizard = Frm;
             InitializeComponent();
             Application.Idle += Application_Idle;
+            treeView1.AfterSelect += TreeView1_AfterSelect;
         }
         void Application_Idle(object sender, System.EventArgs e)
         {
@@ -41,6 +42,49 @@ namespace Rectify11Installer.Pages
                 idleinit = true;
             }
         }
+
+        // Add extras preview cause e
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            // Check if the selected TreeNode is in ExtrasOptions.cs list
+            foreach (var option in ExtrasOptions.GetExtras())
+            {
+                if (option.Name == e.Node.Name)
+                {
+                    // Update the Image property of the PictureBox based on the selected TreeNode
+                    switch (e.Node.Name)
+                    {
+                        case "shellNode":
+                            _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.menus;
+                            break;
+                        case "gadgetsNode":
+                            _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.gadgets;
+                            break;
+                        case "asdfNode":
+                            _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.asdf;
+                            break;
+                        case "wallpapersNode":
+                            _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.wallpapers;
+                            break;
+                        case "useravNode":
+                            _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.avatars;
+                            break;
+                        // disabled until i will make them work
+                        // case "sysiconsNode":
+                        //     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.iconnewtree;
+                        //     break;
+                        // case "themesNode":
+                        //     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.theme;
+                        //     break;
+                        default:
+                            _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.installoptns;
+                            break;
+                    }
+                    return;
+                }
+            }
+        }
+
         #endregion
         #region Private Methods
         private static void UpdateListView(PatchesPatch[] patch, TreeNode basicNode, TreeNode advNode)

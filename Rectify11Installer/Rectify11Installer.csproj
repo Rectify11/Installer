@@ -358,6 +358,8 @@
     <Content Include="Core\rectify11.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\wallpapers.png" />
+    <None Include="Resources\U.png" />
     <None Include="Resources\SecureUxHelper-x64.exe" />
     <None Include="Resources\SecureUxHelper-arm64.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
@@ -368,6 +370,11 @@
     <None Include="Resources\iconnewtree.png" />
     <None Include="Resources\done.png" />
     <None Include="Resources\discord.png" />
+    <None Include="Resources\asdf.bmp" />
+    <None Include="Resources\asdf.png" />
+    <None Include="Resources\avatars.png" />
+    <None Include="Resources\menus.png" />
+    <None Include="Resources\gadgets.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />
