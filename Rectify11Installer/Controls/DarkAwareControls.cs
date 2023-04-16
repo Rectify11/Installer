@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Rectify11Installer.Core;
+using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Controls
 {

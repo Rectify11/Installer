@@ -1,7 +1,7 @@
 ﻿using libmsstyle;
+using Rectify11Installer.Core;
 using System.Drawing;
 using System.Windows.Forms;
-using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Controls
 {
@@ -9,12 +9,12 @@ namespace Rectify11Installer.Controls
 	public sealed class CustomProgressBar : ProgressBar
 	{
 		private bool _error = false;
-		public bool Error 
-		{ 
+		public bool Error
+		{
 			get => _error;
 			set
 			{
-				_error = value; 
+				_error = value;
 				Invalidate();
 			}
 		}

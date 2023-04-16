@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using Rectify11Installer.Core;
+﻿using Rectify11Installer.Core;
+using System.Windows.Forms;
 namespace Rectify11Installer.Pages
 {
 	public partial class ThemeChoicePage : WizardPage
@@ -52,7 +52,8 @@ namespace Rectify11Installer.Pages
 		private void RandomCheckbox1_CheckedChanged(object sender, System.EventArgs e)
 		{
 			InstallOptions.SkipMFE = false;
-			if (this.randomCheckbox1.Checked) {
+			if (this.randomCheckbox1.Checked)
+			{
 
 				InstallOptions.SkipMFE = true;
 			}

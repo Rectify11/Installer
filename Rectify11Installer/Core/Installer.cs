@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualBasic;
+﻿using KPreisser.UI;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
+using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,8 +10,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Rectify11Installer.Win32;
-using KPreisser.UI;
 
 namespace Rectify11Installer.Core
 {
@@ -556,7 +556,8 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallUserAvatars()
 		{
-			if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"))){
+			if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+			{
 
 				Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
 			}

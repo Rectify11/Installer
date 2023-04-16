@@ -24,7 +24,7 @@ namespace Rectify11Installer
 			get => progressLabel.Text;
 			set
 			{
-				if(this.InvokeRequired)
+				if (this.InvokeRequired)
 				{
 					this.Invoke((MethodInvoker)delegate () { InstallerProgress = value; });
 				}

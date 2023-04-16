@@ -27,7 +27,7 @@ namespace Rectify11Installer.Core
 				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
 			return false;
 		}
-		
+
 		public static StringBuilder FinalText()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
@@ -53,8 +53,8 @@ namespace Rectify11Installer.Core
 			{
 				ok.AppendLine(resources.GetString("installWinver"));
 			}
-			
-			if(InstallOptions.InstallASDF)
+
+			if (InstallOptions.InstallASDF)
 			{
 				ok.AppendLine(resources.GetString("installASDF"));
 			}

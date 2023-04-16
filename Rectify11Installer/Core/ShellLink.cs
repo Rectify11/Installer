@@ -217,7 +217,7 @@ namespace Rectify11Installer.Core
 		private interface IPersist
 		{
 			[PreserveSig]
-				//[helpstring("Returns the class identifier for the component object")]
+			//[helpstring("Returns the class identifier for the component object")]
 			void GetClassID(out Guid pClassID);
 		}
 		#endregion
@@ -237,12 +237,12 @@ namespace Rectify11Installer.Core
 
 			//[helpstring("Opens the specified file and initializes the object from its contents")]		
 			void Load(
-				[MarshalAs(UnmanagedType.LPWStr)] string pszFileName, 
+				[MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
 				uint dwMode);
 
 			//[helpstring("Saves the object into the specified file")]		
 			void Save(
-				[MarshalAs(UnmanagedType.LPWStr)] string pszFileName, 
+				[MarshalAs(UnmanagedType.LPWStr)] string pszFileName,
 				[MarshalAs(UnmanagedType.Bool)] bool fRemember);
 
 			//[helpstring("Notifies the object that save is completed")]		
@@ -263,9 +263,9 @@ namespace Rectify11Installer.Core
 		{
 			//[helpstring("Retrieves the path and filename of a shell link object")]
 			void GetPath(
-				[Out(), MarshalAs(UnmanagedType.LPStr)] StringBuilder pszFile, 
-				int cchMaxPath, 
-				ref _WIN32_FIND_DATAA pfd, 
+				[Out(), MarshalAs(UnmanagedType.LPStr)] StringBuilder pszFile,
+				int cchMaxPath,
+				ref _WIN32_FIND_DATAA pfd,
 				uint fFlags);
 
 			//[helpstring("Retrieves the list of shell link item identifiers")]
@@ -278,7 +278,7 @@ namespace Rectify11Installer.Core
 			void GetDescription(
 				[Out(), MarshalAs(UnmanagedType.LPStr)] StringBuilder pszFile,
 				int cchMaxName);
-		
+
 			//[helpstring("Sets the shell link description string")]
 			void SetDescription(
 				[MarshalAs(UnmanagedType.LPStr)] string pszName);
@@ -294,7 +294,7 @@ namespace Rectify11Installer.Core
 
 			//[helpstring("Retrieves the shell link command-line arguments")]
 			void GetArguments(
-				[Out(), MarshalAs(UnmanagedType.LPStr)] StringBuilder pszArgs, 
+				[Out(), MarshalAs(UnmanagedType.LPStr)] StringBuilder pszArgs,
 				int cchMaxPath);
 
 			//[helpstring("Sets the shell link command-line arguments")]
@@ -313,23 +313,23 @@ namespace Rectify11Installer.Core
 
 			//[helpstring("Retrieves the location (path and index) of the shell link icon")]
 			void GetIconLocation(
-				[Out(), MarshalAs(UnmanagedType.LPStr)] StringBuilder pszIconPath, 
-				int cchIconPath, 
+				[Out(), MarshalAs(UnmanagedType.LPStr)] StringBuilder pszIconPath,
+				int cchIconPath,
 				out int piIcon);
-		
+
 			//[helpstring("Sets the location (path and index) of the shell link icon")]
 			void SetIconLocation(
-				[MarshalAs(UnmanagedType.LPStr)] string pszIconPath, 
+				[MarshalAs(UnmanagedType.LPStr)] string pszIconPath,
 				int iIcon);
 
 			//[helpstring("Sets the shell link relative path")]
 			void SetRelativePath(
-				[MarshalAs(UnmanagedType.LPStr)] string pszPathRel, 
+				[MarshalAs(UnmanagedType.LPStr)] string pszPathRel,
 				uint dwReserved);
 
 			//[helpstring("Resolves a shell link. The system searches for the shell link object and updates the shell link path and its list of identifiers (if necessary)")]
 			void Resolve(
-				IntPtr hWnd, 
+				IntPtr hWnd,
 				uint fFlags);
 
 			//[helpstring("Sets the shell link path and filename")]
@@ -345,9 +345,9 @@ namespace Rectify11Installer.Core
 		{
 			//[helpstring("Retrieves the path and filename of a shell link object")]
 			void GetPath(
-				[Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, 
-				int cchMaxPath, 
-				ref _WIN32_FIND_DATAW pfd, 
+				[Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile,
+				int cchMaxPath,
+				ref _WIN32_FIND_DATAW pfd,
 				uint fFlags);
 
 			//[helpstring("Retrieves the list of shell link item identifiers")]
@@ -360,7 +360,7 @@ namespace Rectify11Installer.Core
 			void GetDescription(
 				[Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile,
 				int cchMaxName);
-		
+
 			//[helpstring("Sets the shell link description string")]
 			void SetDescription(
 				[MarshalAs(UnmanagedType.LPWStr)] string pszName);
@@ -376,7 +376,7 @@ namespace Rectify11Installer.Core
 
 			//[helpstring("Retrieves the shell link command-line arguments")]
 			void GetArguments(
-				[Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszArgs, 
+				[Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszArgs,
 				int cchMaxPath);
 
 			//[helpstring("Sets the shell link command-line arguments")]
@@ -395,23 +395,23 @@ namespace Rectify11Installer.Core
 
 			//[helpstring("Retrieves the location (path and index) of the shell link icon")]
 			void GetIconLocation(
-				[Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszIconPath, 
-				int cchIconPath, 
+				[Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszIconPath,
+				int cchIconPath,
 				out int piIcon);
-		
+
 			//[helpstring("Sets the location (path and index) of the shell link icon")]
 			void SetIconLocation(
-				[MarshalAs(UnmanagedType.LPWStr)] string pszIconPath, 
+				[MarshalAs(UnmanagedType.LPWStr)] string pszIconPath,
 				int iIcon);
 
 			//[helpstring("Sets the shell link relative path")]
 			void SetRelativePath(
-				[MarshalAs(UnmanagedType.LPWStr)] string pszPathRel, 
+				[MarshalAs(UnmanagedType.LPWStr)] string pszPathRel,
 				uint dwReserved);
 
 			//[helpstring("Resolves a shell link. The system searches for the shell link object and updates the shell link path and its list of identifiers (if necessary)")]
 			void Resolve(
-				IntPtr hWnd, 
+				IntPtr hWnd,
 				uint fFlags);
 
 			//[helpstring("Sets the shell link path and filename")]
@@ -424,10 +424,10 @@ namespace Rectify11Installer.Core
 		[Guid("00021401-0000-0000-C000-000000000046")]
 		[ClassInterface(ClassInterfaceType.None)]
 		[ComImport()]
-		private class CShellLink{}
+		private class CShellLink { }
 
 		#endregion
-	
+
 		#region Private IShellLink enumerations
 		private enum EShellLinkGP : uint
 		{
@@ -445,7 +445,7 @@ namespace Rectify11Installer.Core
 
 		#region IShellLink Private structs
 
-		[StructLayout(LayoutKind.Sequential, Pack=4, Size=0, CharSet=CharSet.Unicode)]
+		[StructLayout(LayoutKind.Sequential, Pack = 4, Size = 0, CharSet = CharSet.Unicode)]
 		private struct _WIN32_FIND_DATAW
 		{
 			public readonly uint dwFileAttributes;
@@ -456,13 +456,13 @@ namespace Rectify11Installer.Core
 			public readonly uint nFileSizeLow;
 			public readonly uint dwReserved0;
 			public readonly uint dwReserved1;
-			[MarshalAs(UnmanagedType.ByValTStr , SizeConst = 260)] // MAX_PATH
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] // MAX_PATH
 			public readonly string cFileName;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
 			public readonly string cAlternateFileName;
 		}
 
-		[StructLayout(LayoutKind.Sequential, Pack=4, Size=0, CharSet=CharSet.Ansi)]
+		[StructLayout(LayoutKind.Sequential, Pack = 4, Size = 0, CharSet = CharSet.Ansi)]
 		private struct _WIN32_FIND_DATAA
 		{
 			public readonly uint dwFileAttributes;
@@ -473,29 +473,29 @@ namespace Rectify11Installer.Core
 			public readonly uint nFileSizeLow;
 			public readonly uint dwReserved0;
 			public readonly uint dwReserved1;
-			[MarshalAs(UnmanagedType.ByValTStr , SizeConst = 260)] // MAX_PATH
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] // MAX_PATH
 			public readonly string cFileName;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
 			public readonly string cAlternateFileName;
 		}
 
-		[StructLayout(LayoutKind.Sequential, Pack=4, Size=0)]
-		private struct _FILETIME 
+		[StructLayout(LayoutKind.Sequential, Pack = 4, Size = 0)]
+		private struct _FILETIME
 		{
 			public readonly uint dwLowDateTime;
 			public readonly uint dwHighDateTime;
-		}  
-		#endregion	
+		}
+		#endregion
 
 		#region UnManaged Methods
 		private class UnManagedMethods
 		{
-			[DllImport("Shell32", CharSet=CharSet.Auto)]
-			internal static extern int ExtractIconEx (
-				[MarshalAs(UnmanagedType.LPTStr)] 
+			[DllImport("Shell32", CharSet = CharSet.Auto)]
+			internal static extern int ExtractIconEx(
+				[MarshalAs(UnmanagedType.LPTStr)]
 				string lpszFile,
 				int nIconIndex,
-				IntPtr[] phIconLarge, 
+				IntPtr[] phIconLarge,
 				IntPtr[] phIconSmall,
 				int nIcons);
 		}
@@ -562,7 +562,7 @@ namespace Rectify11Installer.Core
 			/// call IPersistFile::IsDirty to determine whether or not 
 			/// the link object has changed. 
 			/// </summary>
-			SLR_UPDATE  = 0x4
+			SLR_UPDATE = 0x4
 		}
 
 		public enum LinkDisplayMode : uint
@@ -621,7 +621,7 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		public void Dispose()
 		{
-			if (linkW != null ) 
+			if (linkW != null)
 			{
 				Marshal.ReleaseComObject(linkW);
 				linkW = null;
@@ -703,7 +703,7 @@ namespace Rectify11Installer.Core
 			else
 			{
 				// Use ExtractIconEx to get the icon:
-				var hIconEx = new[] {IntPtr.Zero};
+				var hIconEx = new[] { IntPtr.Zero };
 				if (large)
 				{
 					UnManagedMethods.ExtractIconEx(
@@ -730,7 +730,7 @@ namespace Rectify11Installer.Core
 					//UnManagedMethods.DestroyIcon(hIconEx[0]);
 				}
 				return icon;
-			}				
+			}
 		}
 
 		/// <summary>
@@ -821,7 +821,7 @@ namespace Rectify11Installer.Core
 		public string Target
 		{
 			get
-			{		
+			{
 				var target = new StringBuilder(260, 260);
 				if (linkA == null)
 				{
@@ -870,7 +870,7 @@ namespace Rectify11Installer.Core
 			{
 				if (linkA == null)
 				{
-					linkW.SetWorkingDirectory(value);	
+					linkW.SetWorkingDirectory(value);
 				}
 				else
 				{
@@ -916,7 +916,7 @@ namespace Rectify11Installer.Core
 		public string Arguments
 		{
 			get
-			{				
+			{
 				var arguments = new StringBuilder(260, 260);
 				if (linkA == null)
 				{
@@ -1019,7 +1019,7 @@ namespace Rectify11Installer.Core
 		public void Save(
 			string linkFile
 			)
-		{   
+		{
 			// Save the object to disk
 			if (linkA == null)
 			{
@@ -1038,15 +1038,15 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		/// <param name="linkFile">The shortcut file (.lnk) to load</param>
 		public void Open(
-			string linkFile			
+			string linkFile
 			)
 		{
-			Open(linkFile, 
-				IntPtr.Zero, 
+			Open(linkFile,
+				IntPtr.Zero,
 				(EShellLinkResolveFlags.SLR_ANY_MATCH | EShellLinkResolveFlags.SLR_NO_UI),
 				1);
 		}
-		
+
 		/// <summary>
 		/// Loads a shortcut from the specified file, and allows flags controlling
 		/// the UI behaviour if the shortcut's target isn't found to be set.
@@ -1055,14 +1055,14 @@ namespace Rectify11Installer.Core
 		/// <param name="hWnd">The window handle of the application's UI, if any</param>
 		/// <param name="resolveFlags">Flags controlling resolution behaviour</param>
 		public void Open(
-			string linkFile, 
-			IntPtr hWnd, 
+			string linkFile,
+			IntPtr hWnd,
 			EShellLinkResolveFlags resolveFlags
 			)
 		{
-			Open(linkFile, 
-				hWnd, 
-				resolveFlags, 
+			Open(linkFile,
+				hWnd,
+				resolveFlags,
 				1);
 		}
 
@@ -1077,14 +1077,14 @@ namespace Rectify11Installer.Core
 		/// <param name="timeOut">Timeout if SLR_NO_UI is specified, in ms.</param>
 		public void Open(
 			string linkFile,
-			IntPtr hWnd, 
+			IntPtr hWnd,
 			EShellLinkResolveFlags resolveFlags,
 			ushort timeOut
 			)
 		{
 			uint flags;
 
-			if ((resolveFlags & EShellLinkResolveFlags.SLR_NO_UI) 
+			if ((resolveFlags & EShellLinkResolveFlags.SLR_NO_UI)
 				== EShellLinkResolveFlags.SLR_NO_UI)
 			{
 				flags = (uint)((int)resolveFlags | (timeOut << 16));

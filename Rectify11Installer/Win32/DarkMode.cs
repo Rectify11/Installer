@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Rectify11Installer.Core;
+using System;
 using System.Runtime.InteropServices;
-using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Win32
 {
@@ -123,9 +123,9 @@ namespace Rectify11Installer.Win32
 					cyBottomHeight = 0,
 					cyTopHeight = 0
 				};
-				if ((NativeMethods.GetUbr() != -1 
-					 && NativeMethods.GetUbr() >= 51 
-					 && Environment.OSVersion.Version.Build == 22000) 
+				if ((NativeMethods.GetUbr() != -1
+					 && NativeMethods.GetUbr() >= 51
+					 && Environment.OSVersion.Version.Build == 22000)
 					|| Environment.OSVersion.Version.Build is > 22000 or < 21996)
 				{
 					NativeMethods.DwmExtendFrameIntoClientArea(frm.Handle, ref mar);

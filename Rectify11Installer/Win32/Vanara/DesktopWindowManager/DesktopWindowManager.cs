@@ -1,9 +1,6 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Forms;
 
@@ -48,7 +45,7 @@ namespace Vanara.Interop.DesktopWindowManager
 		public static void ExtendFrameIntoClientArea(this IWin32Window window, Padding padding)
 		{
 			if (window == null)
-				throw new ArgumentNullException(nameof (window));
+				throw new ArgumentNullException(nameof(window));
 			var pMarInset = new Vanara.Interop.NativeMethods.Margins(padding);
 			Vanara.Interop.NativeMethods.DwmExtendFrameIntoClientArea(window.Handle, ref pMarInset);
 		}
@@ -70,7 +67,7 @@ namespace Vanara.Interop.DesktopWindowManager
 					Vanara.Interop.DesktopWindowManager.DesktopWindowManager._window = new Vanara.Interop.DesktopWindowManager.DesktopWindowManager.MessageWindow();
 				if (Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList == null)
 					Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList = new EventHandlerList();
-				Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList.AddHandler(id, (Delegate) value);
+				Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList.AddHandler(id, (Delegate)value);
 			}
 		}
 
@@ -80,7 +77,7 @@ namespace Vanara.Interop.DesktopWindowManager
 			{
 				if (Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList == null)
 					return;
-				Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList.RemoveHandler(id, (Delegate) value);
+				Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList.RemoveHandler(id, (Delegate)value);
 			}
 		}
 
@@ -121,10 +118,10 @@ namespace Vanara.Interop.DesktopWindowManager
 				{
 					try
 					{
-						var eventHandler = (EventHandler) Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList[Vanara.Interop.DesktopWindowManager.DesktopWindowManager.keys[idx]];
+						var eventHandler = (EventHandler)Vanara.Interop.DesktopWindowManager.DesktopWindowManager.eventHandlerList[Vanara.Interop.DesktopWindowManager.DesktopWindowManager.keys[idx]];
 						if (eventHandler == null)
 							return;
-						eventHandler((object) null, EventArgs.Empty);
+						eventHandler((object)null, EventArgs.Empty);
 					}
 					catch
 					{

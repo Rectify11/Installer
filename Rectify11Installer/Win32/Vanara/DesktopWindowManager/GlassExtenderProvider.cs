@@ -1,5 +1,4 @@
-﻿using AeroWizard;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Vanara.Interop.DesktopWindowManager
 {
-	[ProvideProperty("GlassEnabled", typeof (Form))]
+	[ProvideProperty("GlassEnabled", typeof(Form))]
 	[ToolboxItem(true)]
-	[ProvideProperty("GlassMargins", typeof (Form))]
+	[ProvideProperty("GlassMargins", typeof(Form))]
 	[Description("Extender for a Form that adds Aero glass properties.")]
 	public class GlassExtenderProvider : Component, IExtenderProvider
 	{
@@ -22,27 +21,27 @@ namespace Vanara.Interop.DesktopWindowManager
 		public bool GetGlassEnabled(Form form)
 		{
 			GlassExtenderProvider.GlassFormProperties glassFormProperties;
-			return !this.formProps.TryGetValue((Control) form, out glassFormProperties) || glassFormProperties.GlassEnabled;
+			return !this.formProps.TryGetValue((Control)form, out glassFormProperties) || glassFormProperties.GlassEnabled;
 		}
 
-				[Description("Specifies if clicking and dragging within the margin will move the form. ")]
+		[Description("Specifies if clicking and dragging within the margin will move the form. ")]
 		[DefaultValue(true)]
 		[DisplayName("GlassMarginMovesForm")]
 		[Category("Behavior")]
 		public bool GetGlassMarginMovesForm(Form form)
 		{
 			GlassExtenderProvider.GlassFormProperties glassFormProperties;
-			return !this.formProps.TryGetValue((Control) form, out glassFormProperties) || glassFormProperties.GlassMarginMovesForm;
+			return !this.formProps.TryGetValue((Control)form, out glassFormProperties) || glassFormProperties.GlassMarginMovesForm;
 		}
 
 		[Category("Layout")]
 		[DisplayName("GlassMargins")]
 		[Description("Specifies the interior glass margin of the form. Set to -1 for full window glass.")]
-		[DefaultValue(typeof (Padding), "0")]
+		[DefaultValue(typeof(Padding), "0")]
 		public Padding GetGlassMargins(Form form)
 		{
 			GlassExtenderProvider.GlassFormProperties glassFormProperties;
-			return this.formProps.TryGetValue((Control) form, out glassFormProperties) ? glassFormProperties.GlassMargins : Padding.Empty;
+			return this.formProps.TryGetValue((Control)form, out glassFormProperties) ? glassFormProperties.GlassMargins : Padding.Empty;
 		}
 
 		public void SetGlassEnabled(Form form, bool value)
@@ -55,7 +54,7 @@ namespace Vanara.Interop.DesktopWindowManager
 
 		public void SetGlassMargins(Form form, Padding value)
 		{
-			var glassFormProperties = form != null ? this.GetFormProperties(form) : throw new ArgumentNullException(nameof (form));
+			var glassFormProperties = form != null ? this.GetFormProperties(form) : throw new ArgumentNullException(nameof(form));
 			if (value == Padding.Empty)
 			{
 				glassFormProperties.GlassMargins = Padding.Empty;
@@ -65,15 +64,15 @@ namespace Vanara.Interop.DesktopWindowManager
 			{
 				glassFormProperties.GlassMargins = value;
 				form.Paint += new PaintEventHandler(this.form_Paint);
-					form.MouseDown += new MouseEventHandler(this.form_MouseDown);
-					form.MouseMove += new MouseEventHandler(this.form_MouseMove);
-					form.MouseUp += new MouseEventHandler(this.form_MouseUp);
-					form.Resize += new EventHandler(this.form_Resize);
-					form.Shown += new EventHandler(this.form_Shown);
+				form.MouseDown += new MouseEventHandler(this.form_MouseDown);
+				form.MouseMove += new MouseEventHandler(this.form_MouseMove);
+				form.MouseUp += new MouseEventHandler(this.form_MouseUp);
+				form.Resize += new EventHandler(this.form_Resize);
+				form.Shown += new EventHandler(this.form_Shown);
 			}
 			form.Invalidate();
 		}
-				bool IExtenderProvider.CanExtend(object form) => form != this && form is Form;
+		bool IExtenderProvider.CanExtend(object form) => form != this && form is Form;
 
 		protected override void Dispose(bool disposing)
 		{
@@ -103,7 +102,7 @@ namespace Vanara.Interop.DesktopWindowManager
 			if (!formProperties.GlassMarginMovesForm)
 				return;
 			formProperties.FormMoveTracking = true;
-			formProperties.FormMoveLastMousePos = ((Control) sender).PointToScreen(e.Location);
+			formProperties.FormMoveLastMousePos = ((Control)sender).PointToScreen(e.Location);
 		}
 
 		private void form_MouseMove(object sender, MouseEventArgs e)
@@ -143,8 +142,8 @@ namespace Vanara.Interop.DesktopWindowManager
 			Form form)
 		{
 			GlassExtenderProvider.GlassFormProperties formProperties;
-			if (!this.formProps.TryGetValue((Control) form, out formProperties))
-				this.formProps.Add((Control) form, formProperties = new GlassExtenderProvider.GlassFormProperties());
+			if (!this.formProps.TryGetValue((Control)form, out formProperties))
+				this.formProps.Add((Control)form, formProperties = new GlassExtenderProvider.GlassFormProperties());
 			return formProperties;
 		}
 
@@ -155,7 +154,7 @@ namespace Vanara.Interop.DesktopWindowManager
 			if (g == null)
 				g = form.CreateGraphics();
 			GlassExtenderProvider.GlassFormProperties prop;
-			if (!this.formProps.TryGetValue((Control) form, out prop))
+			if (!this.formProps.TryGetValue((Control)form, out prop))
 				return;
 			if (prop.GlassMargins == new Padding(-1))
 			{
@@ -177,7 +176,7 @@ namespace Vanara.Interop.DesktopWindowManager
 			var glassMargins = this.GetGlassMargins(form);
 			if (glassMargins == Padding.Empty)
 				return;
-						var rc = Rectangle.Empty;
+			var rc = Rectangle.Empty;
 			ref var local = ref rc;
 			var left = glassMargins.Left;
 			var top = glassMargins.Top;
