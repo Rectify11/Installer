@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualBasic;
+﻿using KPreisser.UI;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
+using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,8 +10,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Rectify11Installer.Win32;
-using KPreisser.UI;
 
 namespace Rectify11Installer.Core
 {
@@ -189,25 +189,25 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => Installasdf());
 					Logger.WriteLine("Installasdf() succeeded.");
 				}
-                if (InstallOptions.InstallGadgets)
-                {
-                    // always would work ig 2
-                    await Task.Run(() => InstallGadgets());
-                    Logger.WriteLine("InstallGadgets() succeeded.");
-                }
-                if (InstallOptions.InstallShell)
-                {
-                    // always would work ig 3
-                    await Task.Run(() => InstallShell());
-                    Logger.WriteLine("InstallShell() succeeded.");
-                }
+				if (InstallOptions.InstallGadgets)
+				{
+					// always would work ig 2
+					await Task.Run(() => InstallGadgets());
+					Logger.WriteLine("InstallGadgets() succeeded.");
+				}
+				if (InstallOptions.InstallShell)
+				{
+					// always would work ig 3
+					await Task.Run(() => InstallShell());
+					Logger.WriteLine("InstallShell() succeeded.");
+				}
 				if (InstallOptions.userAvatars)
-                {
+				{
 					// always would work ig 4
 					await Task.Run(() => InstallUserAvatars());
 					Logger.WriteLine("InstallUserAvatars() succeeded.");
-                }
-                Logger.WriteLine("InstallExtras() succeeded.");
+				}
+				Logger.WriteLine("InstallExtras() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
@@ -355,8 +355,8 @@ namespace Rectify11Installer.Core
 			}
 			Logger.WriteLine("Cleanup() succeeded");
 			Logger.WriteLine("══════════════════════════════════════════════");
-            Logger.CommitLog();
-            return true;
+			Logger.CommitLog();
+			return true;
 		}
 		#endregion
 		#region Private Methods
@@ -462,9 +462,9 @@ namespace Rectify11Installer.Core
 					{
 						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
 						Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
-	                    + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
-	                    + " /CommandLine " + "\'" + "/c rmdir /s /q " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + "\'"
-	                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
+						+ " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
+						+ " /CommandLine " + "\'" + "/c rmdir /s /q " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + "\'"
+						+ " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
 						File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
 						Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
 					}
@@ -523,21 +523,21 @@ namespace Rectify11Installer.Core
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "asdf.xml"), AppWinStyle.Hide);
 		}
 
-        /// <summary>
-        /// installs gadgets
-        /// </summary>
-        private void InstallGadgets()
-        {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
-        }
+		/// <summary>
+		/// installs gadgets
+		/// </summary>
+		private void InstallGadgets()
+		{
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
+		}
 
-        /// <summary>
-        /// installs nilesoft shell
-        /// </summary>
-        private void InstallShell()
-        {
+		/// <summary>
+		/// installs nilesoft shell
+		/// </summary>
+		private void InstallShell()
+		{
 			if (!Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
-            {
+			{
 				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft"), Path.Combine(Variables.Windir, "nilesoft"));
 			}
 
@@ -556,23 +556,24 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallUserAvatars()
 		{
-			if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"))){
+			if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+			{
 
 				Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
 			}
 
 			DirectoryInfo info = new(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
 			for (int i = 0; i < info.GetFiles().Length; i++)
-            {
+			{
 				File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
-					      Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
-            }
+						  Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
+			}
 		}
 
-        /// <summary>
-        /// installs control center
-        /// </summary>
-        private void Installr11cpl()
+		/// <summary>
+		/// installs control center
+		/// </summary>
+		private void Installr11cpl()
 		{
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
 			{
@@ -871,7 +872,7 @@ namespace Rectify11Installer.Core
 		}
 
 		private void RuntimeInstallError(string app, string info, string link)
-        {
+		{
 			TaskDialog td = new();
 			td.Page.Text = "Installation of " + app + " has failed. You need to install it manually.";
 			td.Page.Instruction = "Runtime installation error";

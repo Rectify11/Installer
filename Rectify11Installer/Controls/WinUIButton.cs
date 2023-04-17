@@ -1,4 +1,5 @@
 ﻿using libmsstyle;
+using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using System;
 using System.ComponentModel;
@@ -7,7 +8,6 @@ using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using Rectify11Installer.Core;
 
 namespace Rectify11Installer.Controls
 {
