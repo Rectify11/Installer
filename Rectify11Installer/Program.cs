@@ -19,18 +19,36 @@ namespace Rectify11Installer
 		[STAThread]
 		private static void Main(string[] args)
 		{
+			using var mutex = new Mutex(false, "Rectify11Setup");
+			bool isAnotherInstanceOpen = !mutex.WaitOne(TimeSpan.Zero);
+			if (isAnotherInstanceOpen) return;
 			if (Environment.OSVersion.Version.Build < 21343)
 			{
 				if (args.Length != 0 && args[0].ToLower() == "--allow")
 				{ }
 				else
 				{
-					TaskDialog.Show(text: "You must be running at least Windows 10 build 21343 or higher in order to install Rectify11.",
-						instruction: "Compatibility Error",
-						title: "Rectify11 Setup",
-						buttons: TaskDialogButtons.OK,
-						icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-					return;
+					bool yes = false;
+					TaskDialog td = new();
+					td.Page.Text = "Windows 10 build 21343 or higher is recommended in order to install Rectify11.";
+					td.Page.Instruction = "Compatibility Error";
+					td.Page.Title = "Rectify11 Setup";
+					td.Page.StandardButtons = TaskDialogButtons.OK;
+					td.Page.Icon = TaskDialogStandardIcon.SecurityErrorRedBar;
+					td.Page.EnableHyperlinks = true;
+					TaskDialogExpander tde = new();
+					tde.Text = "<a href=\"link1\">Run anyway(not recommended)</a>";
+					tde.Expanded = false;
+					tde.CollapsedButtonText = "More information";
+					tde.ExpandedButtonText = "Less information";
+					td.Page.HyperlinkClicked += (s, e) =>
+					{
+						yes = true;
+						td.Close();
+					};
+					td.Page.Expander = tde;
+					td.Show();
+					if (!yes) return;
 				}
 			}
 			ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
