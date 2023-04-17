@@ -15,9 +15,9 @@ namespace Rectify11Installer.Core
 		public static bool CheckIfUpdatesPending()
 		{
 			if (Variables.skipUpdateCheck)
-            {
+			{
 				return true;
-            }
+			}
 
 			if (!RebootRequired()) return true;
 			TaskDialog.Show(text: "You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.",
@@ -27,7 +27,7 @@ namespace Rectify11Installer.Core
 				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
 			return false;
 		}
-		
+
 		public static StringBuilder FinalText()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
@@ -53,8 +53,8 @@ namespace Rectify11Installer.Core
 			{
 				ok.AppendLine(resources.GetString("installWinver"));
 			}
-			
-			if(InstallOptions.InstallASDF)
+
+			if (InstallOptions.InstallASDF)
 			{
 				ok.AppendLine(resources.GetString("installASDF"));
 			}
@@ -64,12 +64,12 @@ namespace Rectify11Installer.Core
 				ok.AppendLine(resources.GetString("installShell"));
 			}
 
-            if (InstallOptions.InstallGadgets)
-            {
-                ok.AppendLine(resources.GetString("installGadgets"));
-            }
+			if (InstallOptions.InstallGadgets)
+			{
+				ok.AppendLine(resources.GetString("installGadgets"));
+			}
 
-            if (InstallOptions.InstallWallpaper)
+			if (InstallOptions.InstallWallpaper)
 			{
 				ok.AppendLine(resources.GetString("installWallpapers"));
 			}
@@ -159,8 +159,8 @@ namespace Rectify11Installer.Core
 		public static bool InstallASDF;
 		public static bool InstallWallpaper;
 		public static bool InstallWinver;
-        public static bool InstallGadgets;
-        public static bool InstallThemes;
+		public static bool InstallGadgets;
+		public static bool InstallThemes;
 		public static bool ThemeDark;
 		public static bool ThemeBlack;
 		public static bool ThemeLight;
@@ -173,11 +173,11 @@ namespace Rectify11Installer.Core
 		public static bool InstallExtras()
 		{
 			return InstallEP
-			       || InstallASDF
-			       || InstallWallpaper
+				   || InstallASDF
+				   || InstallWallpaper
 				   || InstallGadgets
-			       || InstallWinver
-			       || InstallShell;
+				   || InstallWinver
+				   || InstallShell;
 		}
 	}
 	#endregion

@@ -6,24 +6,24 @@ using System.Resources;
 
 namespace Rectify11Installer.Core
 {
-    class SingleAssemblyComponentResourceManager : ComponentResourceManager
+	class SingleAssemblyComponentResourceManager : ComponentResourceManager
 	{
-        private Type _contextTypeInfo;
-        private CultureInfo _neutralResourcesCulture;
+		private Type _contextTypeInfo;
+		private CultureInfo _neutralResourcesCulture;
 
-        public SingleAssemblyComponentResourceManager(Type t)
-            : base(t)
-        {
-            _contextTypeInfo = t;
-        }
+		public SingleAssemblyComponentResourceManager(Type t)
+			: base(t)
+		{
+			_contextTypeInfo = t;
+		}
 
-        protected override ResourceSet InternalGetResourceSet(CultureInfo culture,
-            bool createIfNotExists, bool tryParents)
-        {
+		protected override ResourceSet InternalGetResourceSet(CultureInfo culture,
+			bool createIfNotExists, bool tryParents)
+		{
 #pragma warning disable CS0618 // Type or member is obsolete
 			var rs = (ResourceSet)this.ResourceSets[culture];
 #pragma warning restore CS0618 // Type or member is obsolete
-	        if (rs != null) return rs;
+			if (rs != null) return rs;
 
 			//lazy-load default language (without caring about duplicate assignment in race conditions, no harm done);
 			this._neutralResourcesCulture ??= GetNeutralResourcesLanguage(this.MainAssembly);
@@ -51,26 +51,26 @@ namespace Rectify11Installer.Core
 				rs = base.InternalGetResourceSet(culture, createIfNotExists, tryParents);
 			}
 			return rs;
-        }
+		}
 
-        //private method in framework, had to be re-specified here.
-        private static void AddResourceSet(Hashtable localResourceSets,
-            CultureInfo culture, ref ResourceSet rs)
-        {
-            lock (localResourceSets)
-            {
-                var objA = (ResourceSet)localResourceSets[culture];
-                if (objA != null)
-                {
-	                if (Equals(objA, rs)) return;
-	                rs.Dispose();
-	                rs = objA;
-                }
-                else
-                {
-                    localResourceSets.Add(culture, rs);
-                }
-            }
-        }
-    }
+		//private method in framework, had to be re-specified here.
+		private static void AddResourceSet(Hashtable localResourceSets,
+			CultureInfo culture, ref ResourceSet rs)
+		{
+			lock (localResourceSets)
+			{
+				var objA = (ResourceSet)localResourceSets[culture];
+				if (objA != null)
+				{
+					if (Equals(objA, rs)) return;
+					rs.Dispose();
+					rs = objA;
+				}
+				else
+				{
+					localResourceSets.Add(culture, rs);
+				}
+			}
+		}
+	}
 }
