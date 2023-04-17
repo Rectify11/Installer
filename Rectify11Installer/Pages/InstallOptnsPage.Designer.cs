@@ -113,6 +113,6 @@
 		private Controls.DarkAwareLabel label1;
 		private Controls.DarkAwareTreeView treeView1;
 		public System.Windows.Forms.TreeNode treeNode4;
-        public System.Windows.Forms.TreeNode treeNode1;
+		public System.Windows.Forms.TreeNode treeNode1;
 	}
 }

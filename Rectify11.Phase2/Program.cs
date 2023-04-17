@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 
 namespace Rectify11.Phase2
 {
@@ -202,7 +201,7 @@ namespace Rectify11.Phase2
 					{
 						for (int k = 0; k < uninstallFiles.Length; k++)
 						{
-							if (uninstallFiles[k].Contains(Path.GetFileName(backupFiles[i])) 
+							if (uninstallFiles[k].Contains(Path.GetFileName(backupFiles[i]))
 								&& String.Equals(uninstallFiles[k], patches.Items[j].Mui))
 							{
 								string backupPath = backupFiles[i];
