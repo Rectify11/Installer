@@ -1,9 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using libmsstyle;
+﻿using libmsstyle;
 using Microsoft.Win32;
 using Rectify11Installer.Controls;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Rectify11Installer.Core
 {
@@ -43,17 +43,17 @@ namespace Rectify11Installer.Core
 		public static StylePart GetNavArrowPart(VisualStyle v, NavigationButtonType type)
 		{
 			return (from classes in v.Classes.Values
-				where classes.ClassName == "Navigation"
-				let partStr = type switch
-				{
-					NavigationButtonType.Forward => "FORWARDBUTTON",
-					NavigationButtonType.Backward => "BACKBUTTON",
-					NavigationButtonType.Menu => "MENUBUTTON",
-					_ => throw new NotImplementedException()
-				}
-				from parts in classes.Parts
-				where parts.Value.PartName == partStr
-				select parts.Value).FirstOrDefault();
+					where classes.ClassName == "Navigation"
+					let partStr = type switch
+					{
+						NavigationButtonType.Forward => "FORWARDBUTTON",
+						NavigationButtonType.Backward => "BACKBUTTON",
+						NavigationButtonType.Menu => "MENUBUTTON",
+						_ => throw new NotImplementedException()
+					}
+					from parts in classes.Parts
+					where parts.Value.PartName == partStr
+					select parts.Value).FirstOrDefault();
 		}
 		public static StylePart GetCommandLinkPart(VisualStyle v)
 		{

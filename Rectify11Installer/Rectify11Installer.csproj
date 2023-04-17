@@ -222,11 +222,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Rectify11.resx</DependentUpon>
     </Compile>
-    <Compile Include="Strings\Rectify11.ko.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Rectify11.ko.resx</DependentUpon>
-    </Compile>
     <Compile Include="Win32\DarkMode.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\RECT.cs" />
