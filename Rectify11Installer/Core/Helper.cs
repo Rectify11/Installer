@@ -171,6 +171,7 @@ namespace Rectify11Installer.Core
 		public static bool SkipMFE;
 		public static bool TabbedNotMica;
 		public static bool userAvatars;
+		public static int CMenuStyle = 1;
 		public static List<string> iconsList = new();
 		public static bool InstallExtras()
 		{
