@@ -161,6 +161,7 @@ namespace Rectify11Installer.Core
 				{
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
 					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
+					await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AcrylicMenusLoader.exe", AppWinStyle.Hide, true));
 					try
 					{
 						Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
@@ -537,19 +538,62 @@ namespace Rectify11Installer.Core
         /// </summary>
         private void InstallShell()
         {
-			if (!Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+			if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+			{
+				if (File.Exists(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "shell.nss")))
+				{
+					File.Delete(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "shell.nss"));
+				}
+				File.Copy(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "imports", "static.nss"), Path.Combine(Variables.Windir, "nilesoft", "imports", "static.nss"), true);
+				if (!Directory.Exists(Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus")))
+				{
+					Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus"), Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus"));
+				}
+				for (int i=1; i<=4; i++) 
+				{
+					File.Copy(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "config"+i.ToString()+".txt"), Path.Combine(Variables.Windir, "nilesoft", "config" + i.ToString() + ".txt"), true);
+				}
+			}
+			else
             {
 				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft"), Path.Combine(Variables.Windir, "nilesoft"));
 			}
-
 			ProcessStartInfo shlinfo2 = new()
 			{
 				FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
 				WindowStyle = ProcessWindowStyle.Hidden,
 				Arguments = " -r"
 			};
-			var shlInstproc2 = Process.Start(shlinfo2);
-			shlInstproc2.WaitForExit();
+
+			string text = "";
+			var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+			int num = InstallOptions.CMenuStyle;
+			if (num >= 1 && num <= 5)
+			{
+				if (key.GetValue("AcrylMenus") != null)
+				{
+					key.DeleteValue("AcrylMenus");
+				}
+				text = File.ReadAllText(Path.Combine(Variables.Windir, "nilesoft", "config"+num+".txt"));
+				File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
+				var shlInstproc2 = Process.Start(shlinfo2);
+				shlInstproc2.WaitForExit();
+				if (num == 4)
+                {
+					key.SetValue("AcrylMenus", Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe"), RegistryValueKind.String);
+				}
+				else if (num == 5)
+				{
+					ProcessStartInfo shlinfo3 = new()
+					{
+						FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
+						WindowStyle = ProcessWindowStyle.Hidden,
+						Arguments = " -u"
+					};
+					var shlUnInstproc = Process.Start(shlinfo3);
+					shlUnInstproc.WaitForExit();
+				}
+			}
 		}
 
 		/// <summary>

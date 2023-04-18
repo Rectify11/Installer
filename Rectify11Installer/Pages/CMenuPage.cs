@@ -10,44 +10,37 @@ namespace Rectify11Installer.Pages
 		{
 			InitializeComponent();
 			Rad1.Checked = true;
-			for (int i=1; i<=5; i++)
+			for(int i=1; i<=5; i++)
             {
-				Controls.DarkAwareRadioButton rad = this.Controls.Find("Rad" + i.ToString(), true).FirstOrDefault() as Controls.DarkAwareRadioButton;
-                rad.CheckedChanged += Rad_CheckedChanged;
+				Controls.DarkAwareRadioButton rad = getButton(i);
+				rad.CheckedChanged += CMenuPage_CheckedChanged;
+            }
+			
+		}
+
+        private void CMenuPage_CheckedChanged(object sender, EventArgs e)
+        {
+			if (((Controls.DarkAwareRadioButton)sender).Checked) 
+			{
+				getButton(Int32.Parse(((Controls.DarkAwareRadioButton)sender).Name.Replace("Rad","")));
 			}
-			setImageAndType();
-		}
 
-        private void Rad_CheckedChanged(object sender, EventArgs e)
-        {
-			setImageAndType();
-		}
-
-        private int getCheckedButton()
-        {
-			int j=1;
-			for (int i=1; i<=5; i++)
-            {
-				Controls.DarkAwareRadioButton rad = this.Controls.Find("Rad" + i.ToString(), true).FirstOrDefault() as Controls.DarkAwareRadioButton;
-				if (rad.Checked)
-                {
-					j = i;
-					break;
-                }
-            }
-			return j;
         }
 
-
-        private void setImageAndType()
+        private Controls.DarkAwareRadioButton getButton(int num)
         {
-			string a = "L";
-			if (Theme.IsUsingDarkMode)
-            {
-				a = "D";
-            }
-			PrevImg.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject("_"+getCheckedButton().ToString()+a);
-			InstallOptions.CMenuStyle = getCheckedButton();
-        }
+			Controls.DarkAwareRadioButton rad = this.Controls.Find("Rad" + num.ToString(), true).FirstOrDefault() as Controls.DarkAwareRadioButton;
+			if (rad.Checked)
+			{
+				string a = "L";
+				if (Theme.IsUsingDarkMode)
+				{
+					a = "D";
+				}
+				PrevImg.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject("_" + num + a);
+				InstallOptions.CMenuStyle = num;
+			}
+			return rad;
+		}
 	}
 }

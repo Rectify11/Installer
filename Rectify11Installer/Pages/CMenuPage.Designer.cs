@@ -68,8 +68,8 @@
 			this.Rad1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad1.Location = new System.Drawing.Point(0, 70);
 			this.Rad1.Name = "Rad1";
-			this.Rad1.Size = new System.Drawing.Size(190, 35);
-			this.Rad1.TabIndex = 3;
+			this.Rad1.Size = new System.Drawing.Size(160, 35);
+			this.Rad1.TabIndex = 1;
 			this.Rad1.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad1.TabStop = true;
 			this.Rad1.Text = "Enhanced Fluent Menus (More Options)";
@@ -82,10 +82,10 @@
 			this.Rad2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad2.Location = new System.Drawing.Point(0, 110);
 			this.Rad2.Name = "Rad2";
-			this.Rad2.Size = new System.Drawing.Size(190, 35);
-			this.Rad2.TabIndex = 4;
+			this.Rad2.Size = new System.Drawing.Size(160, 35);
+			this.Rad2.TabIndex = 2;
 			this.Rad2.TabStop = true;
-			this.Rad2.Text = "Enhanced Fluent Menus (All Items in root of the menu)";
+			this.Rad2.Text = "Enhanced Fluent Menus (All Items in root)";
 			this.Rad2.UseVisualStyleBackColor = true;
 			// 
 			// Rad3
@@ -94,7 +94,7 @@
 			this.Rad3.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad3.Location = new System.Drawing.Point(0, 150);
 			this.Rad3.Name = "Rad3";
-			this.Rad3.Size = new System.Drawing.Size(190, 35);
+			this.Rad3.Size = new System.Drawing.Size(160, 35);
 			this.Rad3.TabIndex = 3;
 			this.Rad3.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad3.TabStop = true;
@@ -108,7 +108,7 @@
 			this.Rad4.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad4.Location = new System.Drawing.Point(0, 180);
 			this.Rad4.Name = "Rad4";
-			this.Rad4.Size = new System.Drawing.Size(190, 35);
+			this.Rad4.Size = new System.Drawing.Size(160, 35);
 			this.Rad4.TabIndex = 4;
 			this.Rad4.TabStop = true;
 			this.Rad4.Text = "Classic Menus with transparency";
@@ -120,8 +120,8 @@
 			this.Rad5.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad5.Location = new System.Drawing.Point(0, 220);
 			this.Rad5.Name = "Rad5";
-			this.Rad5.Size = new System.Drawing.Size(190, 35);
-			this.Rad5.TabIndex = 3;
+			this.Rad5.Size = new System.Drawing.Size(160, 35);
+			this.Rad5.TabIndex = 5;
 			this.Rad5.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad5.TabStop = true;
 			this.Rad5.Text = "Windows 11 Default";
