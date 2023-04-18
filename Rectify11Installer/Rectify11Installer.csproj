@@ -376,6 +376,16 @@
     <None Include="Resources\avatars.png" />
     <None Include="Resources\gadgets.png" />
     <None Include="Resources\menus.png" />
+    <None Include="Resources\1D.png" />
+    <None Include="Resources\1L.png" />
+    <None Include="Resources\2D.png" />
+    <None Include="Resources\2L.png" />
+    <None Include="Resources\3D.png" />
+    <None Include="Resources\3L.png" />
+    <None Include="Resources\4D.png" />
+    <None Include="Resources\4L.png" />
+    <None Include="Resources\5D.png" />
+    <None Include="Resources\5L.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />
