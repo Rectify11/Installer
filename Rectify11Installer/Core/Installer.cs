@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Rectify11Installer.Win32;
 using static System.Environment;
 using KPreisser.UI;
-
+using Rectify11Installer.Core;
 namespace Rectify11Installer.Core
 {
 	public class Installer
@@ -113,9 +113,7 @@ namespace Rectify11Installer.Core
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "themes") +
 						" " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
-
 				Logger.WriteLine("Extracted themes.7z");
-
 				if (!await Task.Run(() => InstallThemes()))
 				{
 					Logger.WriteLine("InstallThemes() failed.");
@@ -176,6 +174,7 @@ namespace Rectify11Installer.Core
 						" x -o" + Path.Combine(Variables.r11Folder, "extras") +
 						" " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
 				Logger.WriteLine("Extracted extras.7z");
+				
 				if (InstallOptions.InstallWallpaper)
 				{
 					if (!await Task.Run(() => InstallWallpapers()))
@@ -324,7 +323,6 @@ namespace Rectify11Installer.Core
 					}
 					Logger.WriteLine("FixOdbc() succeeded");
 				}
-
 				// phase 2
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
 					+ " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'

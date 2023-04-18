@@ -168,6 +168,7 @@ namespace Rectify11Installer.Core
 		public static bool ThemeLight;
 		public static bool InstallShell;
 		public static bool InstallIcons;
+		public static bool InstallSounds;
 		public static bool SkipMFE;
 		public static bool TabbedNotMica;
 		public static bool userAvatars;
