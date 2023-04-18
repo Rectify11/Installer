@@ -36,7 +36,7 @@ namespace Rectify11Installer
 					td.Page.Icon = TaskDialogStandardIcon.SecurityErrorRedBar;
 					td.Page.EnableHyperlinks = true;
 					TaskDialogExpander tde = new();
-					tde.Text = "<a href=\"link1\">Run anyway(not recommended)</a>";
+					tde.Text = "<a href=\"link1\">Run anyway (not recommended)</a>";
 					tde.Expanded = false;
 					tde.CollapsedButtonText = "More information";
 					tde.ExpandedButtonText = "Less information";

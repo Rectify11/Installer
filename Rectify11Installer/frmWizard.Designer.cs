@@ -44,6 +44,7 @@
 			Core.TabPages.debPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
+			Core.TabPages.cmenupage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.epPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
@@ -175,6 +176,7 @@
 			this.navPane.Controls.Add(Core.TabPages.debPage);
 			this.navPane.Controls.Add(Core.TabPages.installPage);
 			this.navPane.Controls.Add(Core.TabPages.themePage);
+			this.navPane.Controls.Add(Core.TabPages.cmenupage);
 			this.navPane.Controls.Add(Core.TabPages.epPage);
 			this.navPane.Controls.Add(Core.TabPages.summaryPage);
 			this.navPane.Controls.Add(Core.TabPages.progressPage);
@@ -263,6 +265,16 @@
 			Core.TabPages.themePage.Size = new System.Drawing.Size(333, 284);
 			Core.TabPages.themePage.TabIndex = 3;
 			Core.TabPages.themePage.Text = "Theme";
+			// 
+			// cmenupage
+			// 
+			Core.TabPages.cmenupage.BackColor = System.Drawing.Color.White;
+			Core.TabPages.cmenupage.ForeColor = System.Drawing.Color.Black;
+			Core.TabPages.cmenupage.Location = new System.Drawing.Point(4, 44);
+			Core.TabPages.cmenupage.Name = "cmenupage";
+			Core.TabPages.cmenupage.Size = new System.Drawing.Size(333, 284);
+			Core.TabPages.cmenupage.TabIndex = 4;
+			Core.TabPages.cmenupage.Text = "CMenu";
 			// 
 			// epPage
 			// 

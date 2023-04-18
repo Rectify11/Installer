@@ -94,6 +94,7 @@ namespace Rectify11Installer
 			TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
 			TabPages.installPage.Controls.Add(RectifyPages.InstallOptnsPage);
 			TabPages.themePage.Controls.Add(RectifyPages.ThemeChoicePage);
+			TabPages.cmenupage.Controls.Add(RectifyPages.CMenuPage);
 			TabPages.epPage.Controls.Add(RectifyPages.EPPage);
 			TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
 			TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
@@ -240,6 +241,10 @@ namespace Rectify11Installer
 				{
 					Navigate(RectifyPages.ThemeChoicePage);
 				}
+				else if (InstallOptions.InstallShell)
+				{
+					Navigate(RectifyPages.CMenuPage);
+				}
 				else if (InstallOptions.InstallEP)
 				{
 					Navigate(RectifyPages.EPPage);
@@ -251,6 +256,21 @@ namespace Rectify11Installer
 			}
 			else if (navPane.SelectedTab == TabPages.themePage)
 			{
+				if (InstallOptions.InstallShell)
+                {
+					Navigate(RectifyPages.CMenuPage);
+                }
+				else if (InstallOptions.InstallEP)
+				{
+					Navigate(RectifyPages.EPPage);
+				}
+				else
+				{
+					Navigate(RectifyPages.InstallConfirmation);
+				}
+			}
+			else if (navPane.SelectedTab == TabPages.cmenupage)
+            {
 				if (InstallOptions.InstallEP)
 				{
 					Navigate(RectifyPages.EPPage);
@@ -292,9 +312,24 @@ namespace Rectify11Installer
 			{
 				Navigate(RectifyPages.WelcomePage);
 			}
+			else if (navPane.SelectedTab == TabPages.cmenupage)
+            {
+				if (InstallOptions.InstallThemes)
+				{
+					Navigate(RectifyPages.ThemeChoicePage);
+				}
+				else
+				{
+					Navigate(RectifyPages.InstallOptnsPage);
+				}
+			}
 			else if (navPane.SelectedTab == TabPages.epPage)
 			{
-				if (InstallOptions.InstallThemes)
+				if (InstallOptions.InstallShell)
+				{
+					Navigate(RectifyPages.CMenuPage);
+				}
+				else if (InstallOptions.InstallThemes)
 				{
 					Navigate(RectifyPages.ThemeChoicePage);
 				}
@@ -309,11 +344,15 @@ namespace Rectify11Installer
 				{
 					Navigate(RectifyPages.EPPage);
 				}
+				else if (InstallOptions.InstallShell)
+				{
+					Navigate(RectifyPages.CMenuPage);
+				}
 				else if (InstallOptions.InstallThemes)
 				{
 					Navigate(RectifyPages.ThemeChoicePage);
 				}
-				else
+				else 
 				{
 					Navigate(RectifyPages.InstallOptnsPage);
 				}
