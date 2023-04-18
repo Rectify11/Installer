@@ -31,11 +31,11 @@
 			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			this.darkAwareLabel1 = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.PrevImg = new System.Windows.Forms.PictureBox();
-			this.CompactRad = new Rectify11Installer.Controls.DarkAwareRadioButton();
-			this.FullRad = new Rectify11Installer.Controls.DarkAwareRadioButton();
-			this.ClassicRad = new Rectify11Installer.Controls.DarkAwareRadioButton();
-			this.ClassicwTransparentRad = new Rectify11Installer.Controls.DarkAwareRadioButton();
-			this.DefaultMenu = new Rectify11Installer.Controls.DarkAwareRadioButton();
+			this.Rad1 = new Rectify11Installer.Controls.DarkAwareRadioButton();
+			this.Rad2 = new Rectify11Installer.Controls.DarkAwareRadioButton();
+			this.Rad3 = new Rectify11Installer.Controls.DarkAwareRadioButton();
+			this.Rad4 = new Rectify11Installer.Controls.DarkAwareRadioButton();
+			this.Rad5 = new Rectify11Installer.Controls.DarkAwareRadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.PrevImg)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -61,78 +61,78 @@
 			this.PrevImg.TabStop = false;
 		//	this.w11StartImg.Click += new System.EventHandler(this.w11StartImg_Click);
 			// 
-			// CompactRad
+			// Rad1
 			// 
-			this.CompactRad.ForeColor = System.Drawing.Color.Black;
-			this.CompactRad.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.CompactRad.Location = new System.Drawing.Point(0, 70);
-			this.CompactRad.Name = "CompactRad";
-			this.CompactRad.Size = new System.Drawing.Size(190, 35);
-			this.CompactRad.TabIndex = 3;
-			this.CompactRad.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.CompactRad.TabStop = true;
-			this.CompactRad.Text = "Enhanced Fluent Menus (More Options)";
-			this.CompactRad.UseVisualStyleBackColor = true;
+			this.Rad1.ForeColor = System.Drawing.Color.Black;
+			this.Rad1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad1.Location = new System.Drawing.Point(0, 70);
+			this.Rad1.Name = "Rad1";
+			this.Rad1.Size = new System.Drawing.Size(190, 35);
+			this.Rad1.TabIndex = 3;
+			this.Rad1.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad1.TabStop = true;
+			this.Rad1.Text = "Enhanced Fluent Menus (More Options)";
+			this.Rad1.UseVisualStyleBackColor = true;
 			// 
-			// FullRad
+			// Rad2
 			// 
-			this.FullRad.ForeColor = System.Drawing.Color.Black;
-			this.FullRad.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.FullRad.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.FullRad.Location = new System.Drawing.Point(0, 110);
-			this.FullRad.Name = "FullRad";
-			this.FullRad.Size = new System.Drawing.Size(190, 35);
-			this.FullRad.TabIndex = 4;
-			this.FullRad.TabStop = true;
-			this.FullRad.Text = "Enhanced Fluent Menus (All Items in root of the menu)";
-			this.FullRad.UseVisualStyleBackColor = true;
+			this.Rad2.ForeColor = System.Drawing.Color.Black;
+			this.Rad2.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad2.Location = new System.Drawing.Point(0, 110);
+			this.Rad2.Name = "Rad2";
+			this.Rad2.Size = new System.Drawing.Size(190, 35);
+			this.Rad2.TabIndex = 4;
+			this.Rad2.TabStop = true;
+			this.Rad2.Text = "Enhanced Fluent Menus (All Items in root of the menu)";
+			this.Rad2.UseVisualStyleBackColor = true;
 			// 
-			// ClassicRad
+			// Rad3
 			// 
-			this.ClassicRad.ForeColor = System.Drawing.Color.Black;
-			this.ClassicRad.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.ClassicRad.Location = new System.Drawing.Point(0, 150);
-			this.ClassicRad.Name = "ClassicRad";
-			this.ClassicRad.Size = new System.Drawing.Size(190, 35);
-			this.ClassicRad.TabIndex = 3;
-			this.ClassicRad.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.ClassicRad.TabStop = true;
-			this.ClassicRad.Text = "Classic Context Menus";
-			this.ClassicRad.UseVisualStyleBackColor = true;
+			this.Rad3.ForeColor = System.Drawing.Color.Black;
+			this.Rad3.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad3.Location = new System.Drawing.Point(0, 150);
+			this.Rad3.Name = "Rad3";
+			this.Rad3.Size = new System.Drawing.Size(190, 35);
+			this.Rad3.TabIndex = 3;
+			this.Rad3.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad3.TabStop = true;
+			this.Rad3.Text = "Classic Context Menus";
+			this.Rad3.UseVisualStyleBackColor = true;
 			// 
-			// ClassicwTransparentRad
+			// Rad4
 			// 
-			this.ClassicwTransparentRad.ForeColor = System.Drawing.Color.Black;
-			this.ClassicwTransparentRad.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.ClassicwTransparentRad.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.ClassicwTransparentRad.Location = new System.Drawing.Point(0, 180);
-			this.ClassicwTransparentRad.Name = "ClassicwTransparentRad";
-			this.ClassicwTransparentRad.Size = new System.Drawing.Size(190, 35);
-			this.ClassicwTransparentRad.TabIndex = 4;
-			this.ClassicwTransparentRad.TabStop = true;
-			this.ClassicwTransparentRad.Text = "Classic Menus with transparency";
-			this.ClassicwTransparentRad.UseVisualStyleBackColor = true;
+			this.Rad4.ForeColor = System.Drawing.Color.Black;
+			this.Rad4.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad4.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad4.Location = new System.Drawing.Point(0, 180);
+			this.Rad4.Name = "Rad4";
+			this.Rad4.Size = new System.Drawing.Size(190, 35);
+			this.Rad4.TabIndex = 4;
+			this.Rad4.TabStop = true;
+			this.Rad4.Text = "Classic Menus with transparency";
+			this.Rad4.UseVisualStyleBackColor = true;
 			// 
-			// DefaultMenu
+			// Rad5
 			// 
-			this.DefaultMenu.ForeColor = System.Drawing.Color.Black;
-			this.DefaultMenu.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.DefaultMenu.Location = new System.Drawing.Point(0, 220);
-			this.DefaultMenu.Name = "DefaultMenu";
-			this.DefaultMenu.Size = new System.Drawing.Size(190, 35);
-			this.DefaultMenu.TabIndex = 3;
-			this.DefaultMenu.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.DefaultMenu.TabStop = true;
-			this.DefaultMenu.Text = "Windows 11 Default";
-			this.DefaultMenu.UseVisualStyleBackColor = true;
+			this.Rad5.ForeColor = System.Drawing.Color.Black;
+			this.Rad5.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad5.Location = new System.Drawing.Point(0, 220);
+			this.Rad5.Name = "Rad5";
+			this.Rad5.Size = new System.Drawing.Size(190, 35);
+			this.Rad5.TabIndex = 3;
+			this.Rad5.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.Rad5.TabStop = true;
+			this.Rad5.Text = "Windows 11 Default";
+			this.Rad5.UseVisualStyleBackColor = true;
 			// 
 			// CMenuPage
 			// 
-			this.Controls.Add(this.DefaultMenu);
-			this.Controls.Add(this.ClassicwTransparentRad);
-			this.Controls.Add(this.ClassicRad);
-			this.Controls.Add(this.FullRad);
-			this.Controls.Add(this.CompactRad);
+			this.Controls.Add(this.Rad5);
+			this.Controls.Add(this.Rad4);
+			this.Controls.Add(this.Rad3);
+			this.Controls.Add(this.Rad2);
+			this.Controls.Add(this.Rad1);
 			this.Controls.Add(this.PrevImg);
 			this.Controls.Add(this.darkAwareLabel1);
 			this.Name = "EPPage";
@@ -154,10 +154,10 @@
 
 		private Controls.DarkAwareLabel darkAwareLabel1;
 		private System.Windows.Forms.PictureBox PrevImg;
-		private Controls.DarkAwareRadioButton DefaultMenu;
-		private Controls.DarkAwareRadioButton ClassicwTransparentRad;
-		private Controls.DarkAwareRadioButton ClassicRad;
-		private Controls.DarkAwareRadioButton CompactRad;
-		private Controls.DarkAwareRadioButton FullRad;
+		private Controls.DarkAwareRadioButton Rad5;
+		private Controls.DarkAwareRadioButton Rad4;
+		private Controls.DarkAwareRadioButton Rad3;
+		private Controls.DarkAwareRadioButton Rad1;
+		private Controls.DarkAwareRadioButton Rad2;
 	}
 }
