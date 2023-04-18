@@ -16,7 +16,7 @@ namespace Rectify11Installer.Core
 			// new("epNode", "ExplorerPatcher"), 
 			new("asdfNode", "Enable Accent Color Colorizing"),
 			new("wallpapersNode", Rectify11Installer.Strings.Rectify11.optionWallpaper),
-			new("useravNode", "Remastered user avatars")
+			new("useravNode", "Remastered user avatars"),
 		};
 		public static List<TreeNode> GetExtras()
 		{

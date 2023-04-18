@@ -1,7 +1,5 @@
-﻿using KPreisser.UI;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
-using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,6 +8,9 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Rectify11Installer.Win32;
+using static System.Environment;
+using KPreisser.UI;
 
 namespace Rectify11Installer.Core
 {
@@ -189,25 +190,25 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => Installasdf());
 					Logger.WriteLine("Installasdf() succeeded.");
 				}
-				if (InstallOptions.InstallGadgets)
-				{
-					// always would work ig 2
-					await Task.Run(() => InstallGadgets());
-					Logger.WriteLine("InstallGadgets() succeeded.");
-				}
-				if (InstallOptions.InstallShell)
-				{
-					// always would work ig 3
-					await Task.Run(() => InstallShell());
-					Logger.WriteLine("InstallShell() succeeded.");
-				}
+                if (InstallOptions.InstallGadgets)
+                {
+                    // always would work ig 2
+                    await Task.Run(() => InstallGadgets());
+                    Logger.WriteLine("InstallGadgets() succeeded.");
+                }
+                if (InstallOptions.InstallShell)
+                {
+                    // always would work ig 3
+                    await Task.Run(() => InstallShell());
+                    Logger.WriteLine("InstallShell() succeeded.");
+                }
 				if (InstallOptions.userAvatars)
-				{
+                {
 					// always would work ig 4
 					await Task.Run(() => InstallUserAvatars());
 					Logger.WriteLine("InstallUserAvatars() succeeded.");
-				}
-				Logger.WriteLine("InstallExtras() succeeded.");
+                }
+                Logger.WriteLine("InstallExtras() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
@@ -233,11 +234,11 @@ namespace Rectify11Installer.Core
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
-					Logger.LogFile("files.7z", false, null);
+					LogFile("files.7z", false, null);
 				}
 				catch (Exception ex)
 				{
-					Logger.LogFile("files.7z", true, ex);
+					LogFile("files.7z", true, ex);
 					return false;
 				}
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
@@ -302,7 +303,7 @@ namespace Rectify11Installer.Core
 
 				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
 				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-					|| InstallOptions.iconsList.Contains("mmc.exe")
+					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
 					if (!await Task.Run(() => MMCHelper.PatchAll()))
@@ -355,8 +356,8 @@ namespace Rectify11Installer.Core
 			}
 			Logger.WriteLine("Cleanup() succeeded");
 			Logger.WriteLine("══════════════════════════════════════════════");
-			Logger.CommitLog();
-			return true;
+            Logger.CommitLog();
+            return true;
 		}
 		#endregion
 		#region Private Methods
@@ -367,7 +368,7 @@ namespace Rectify11Installer.Core
 		public bool FixOdbc()
 		{
 			var filename = string.Empty;
-			var admintools = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Administrative Tools");
+			var admintools = Path.Combine(Environment.GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Administrative Tools");
 			var files = Directory.GetFiles(admintools);
 			for (var i = 0; i < files.Length; i++)
 			{
@@ -406,7 +407,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error deleting" + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error deleting" + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 				}
 			}
 			try
@@ -416,7 +417,7 @@ namespace Rectify11Installer.Core
 			}
 			catch (Exception ex)
 			{
-				Logger.WriteLine("Error copying wallpapers. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+				Logger.WriteLine("Error copying wallpapers. " + ex.Message + NewLine + ex.StackTrace + NewLine);
 			}
 
 			File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.Windir, "ThemeTool.exe"), true);
@@ -435,7 +436,7 @@ namespace Rectify11Installer.Core
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 						return false;
 					}
 				}
@@ -446,7 +447,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 					return false;
 				}
 			}
@@ -462,15 +463,15 @@ namespace Rectify11Installer.Core
 					{
 						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
 						Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
-						+ " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
-						+ " /CommandLine " + "\'" + "/c rmdir /s /q " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + "\'"
-						+ " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
+	                    + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
+	                    + " /CommandLine " + "\'" + "/c rmdir /s /q " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + "\'"
+	                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
 						File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
 						Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
 					}
 					catch (Exception ex)
 					{
-						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+						Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + NewLine + ex.StackTrace + NewLine);
 						return false;
 					}
 				}
@@ -481,7 +482,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 					return false;
 				}
 			}
@@ -503,7 +504,7 @@ namespace Rectify11Installer.Core
 				}
 				catch (Exception ex)
 				{
-					Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+					Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 					return false;
 				}
 			}
@@ -523,21 +524,21 @@ namespace Rectify11Installer.Core
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "asdf.xml"), AppWinStyle.Hide);
 		}
 
-		/// <summary>
-		/// installs gadgets
-		/// </summary>
-		private void InstallGadgets()
-		{
-			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
-		}
+        /// <summary>
+        /// installs gadgets
+        /// </summary>
+        private void InstallGadgets()
+        {
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
+        }
 
-		/// <summary>
-		/// installs nilesoft shell
-		/// </summary>
-		private void InstallShell()
-		{
+        /// <summary>
+        /// installs nilesoft shell
+        /// </summary>
+        private void InstallShell()
+        {
 			if (!Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
-			{
+            {
 				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft"), Path.Combine(Variables.Windir, "nilesoft"));
 			}
 
@@ -556,24 +557,23 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallUserAvatars()
 		{
-			if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
-			{
+			if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"))){
 
 				Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
 			}
 
-			DirectoryInfo info = new(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
+			DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
 			for (int i = 0; i < info.GetFiles().Length; i++)
-			{
+            {
 				File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
-						  Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
-			}
+					      Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
+            }
 		}
 
-		/// <summary>
-		/// installs control center
-		/// </summary>
-		private void Installr11cpl()
+        /// <summary>
+        /// installs control center
+        /// </summary>
+        private void Installr11cpl()
 		{
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
 			{
@@ -589,55 +589,52 @@ namespace Rectify11Installer.Core
 		private void InstallMfe()
 		{
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
-			if (Directory.Exists(Path.Combine(Environment.GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone")))
+			if (Directory.Exists(Path.Combine(GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone")))
 			{
-				Directory.Delete(Path.Combine(Environment.GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone"), true);
+				Directory.Delete(Path.Combine(GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone"), true);
 			}
-			if (InstallOptions.TabbedNotMica)
+            string t = "";
+            if (InstallOptions.TabbedNotMica)
 			{
-				if (InstallOptions.ThemeLight)
+				t = "T";
+			}
+			if (InstallOptions.ThemeLight)
+			{
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "lightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+			}
+			else if (InstallOptions.ThemeDark)
+			{
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "darkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+			}
+			else
+			{
+				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "black.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+				string amdorarm = "AMD";
+				if (NativeMethods.IsArm64())
 				{
-					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "Tlightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+					amdorarm = "ARM";
 				}
-				else if (InstallOptions.ThemeDark)
+				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide);
+			}
+
+		}
+
+		private void LogFile(string file, bool error, Exception ex)
+		{
+			if (error)
+			{
+				if (ex != null)
 				{
-					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "Tdarkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+					Logger.WriteLine("Error while writing " + file + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
 				}
 				else
 				{
-					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "Tblack.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-					if (NativeMethods.IsArm64())
-					{
-						Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafixARM64.xml"), AppWinStyle.Hide);
-					}
-					else
-					{
-						Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafixAMD64.xml"), AppWinStyle.Hide);
-					}
+					Logger.WriteLine("Error while writing " + file + ". (No exception information)");
 				}
 			}
 			else
 			{
-				if (InstallOptions.ThemeLight)
-				{
-					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "lightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-				}
-				else if (InstallOptions.ThemeDark)
-				{
-					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "darkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-				}
-				else
-				{
-					File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", "black.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-					if (NativeMethods.IsArm64())
-					{
-						Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafixARM64.xml"), AppWinStyle.Hide);
-					}
-					else
-					{
-						Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafixAMD64.xml"), AppWinStyle.Hide);
-					}
-				}
+				Logger.WriteLine("Wrote " + file);
 			}
 		}
 
@@ -655,22 +652,22 @@ namespace Rectify11Installer.Core
 					try
 					{
 						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
-						Logger.LogFile("aRun.exe", false, null);
+						LogFile("aRun.exe", false, null);
 					}
 					catch (Exception ex)
 					{
-						Logger.LogFile("aRun.exe", true, ex);
+						LogFile("aRun.exe", true, ex);
 						return false;
 					}
 				}
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
-					Logger.LogFile("Rectify11.Phase2.exe", false, null);
+					LogFile("Rectify11.Phase2.exe", false, null);
 				}
 				catch (Exception ex)
 				{
-					Logger.LogFile("Rectify11.Phase2.exe", true, ex);
+					LogFile("Rectify11.Phase2.exe", true, ex);
 					return false;
 				}
 			}
@@ -679,11 +676,11 @@ namespace Rectify11Installer.Core
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes);
-					Logger.LogFile("themes.7z", false, null);
+					LogFile("themes.7z", false, null);
 				}
 				catch (Exception ex)
 				{
-					Logger.LogFile("themes.7z", true, ex);
+					LogFile("themes.7z", true, ex);
 					return false;
 				}
 				if (NativeMethods.IsArm64())
@@ -691,11 +688,11 @@ namespace Rectify11Installer.Core
 					try
 					{
 						File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_arm64);
-						Logger.LogFile("SecureUXHelper(arm64).exe", false, null);
+						LogFile("SecureUXHelper(arm64).exe", false, null);
 					}
 					catch (Exception ex)
 					{
-						Logger.LogFile("SecureUXHelper(arm64).exe", true, ex);
+						LogFile("SecureUXHelper(arm64).exe", true, ex);
 						return false;
 					}
 				}
@@ -704,11 +701,11 @@ namespace Rectify11Installer.Core
 					try
 					{
 						File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_x64);
-						Logger.LogFile("SecureUXHelper(x64).exe", false, null);
+						LogFile("SecureUXHelper(x64).exe", false, null);
 					}
 					catch (Exception ex)
 					{
-						Logger.LogFile("SecureUXHelper(x64).exe", true, ex);
+						LogFile("SecureUXHelper(x64).exe", true, ex);
 						return false;
 					}
 				}
@@ -720,32 +717,32 @@ namespace Rectify11Installer.Core
 					try
 					{
 						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
-						Logger.LogFile("7za.exe", false, null);
+						LogFile("7za.exe", false, null);
 					}
 					catch (Exception ex)
 					{
-						Logger.LogFile("7za.exe", true, ex);
+						LogFile("7za.exe", true, ex);
 						return false;
 					}
 				}
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
-					Logger.LogFile("files.7z", false, null);
+					LogFile("files.7z", false, null);
 				}
 				catch (Exception ex)
 				{
-					Logger.LogFile("files.7z", true, ex);
+					LogFile("files.7z", true, ex);
 					return false;
 				}
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
-					Logger.LogFile("extras.7z", false, null);
+					LogFile("extras.7z", false, null);
 				}
 				catch (Exception ex)
 				{
-					Logger.LogFile("extras.7z", true, ex);
+					LogFile("extras.7z", true, ex);
 					return false;
 				}
 				if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
@@ -753,11 +750,11 @@ namespace Rectify11Installer.Core
 					try
 					{
 						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
-						Logger.LogFile("ResourceHacker.exe", false, null);
+						LogFile("ResourceHacker.exe", false, null);
 					}
 					catch (Exception ex)
 					{
-						Logger.LogFile("ResourceHacker.exe", true, ex);
+						LogFile("ResourceHacker.exe", true, ex);
 						return false;
 					}
 				}
@@ -872,7 +869,7 @@ namespace Rectify11Installer.Core
 		}
 
 		private void RuntimeInstallError(string app, string info, string link)
-		{
+        {
 			TaskDialog td = new();
 			td.Page.Text = "Installation of " + app + " has failed. You need to install it manually.";
 			td.Page.Instruction = "Runtime installation error";
@@ -889,7 +886,6 @@ namespace Rectify11Installer.Core
 			td.Page.Expander = tde;
 			td.Show();
 		}
-
 		/// <summary>
 		/// sets required registry values for phase 2
 		/// </summary>
@@ -1045,7 +1041,7 @@ namespace Rectify11Installer.Core
 
 				if (patch.mask.Contains("|"))
 				{
-					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && Environment.OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && Environment.OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
+					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
 					{
 						masks = masks.Replace(patch.Ignore, "");
 					}
@@ -1074,7 +1070,7 @@ namespace Rectify11Installer.Core
 				}
 				else
 				{
-					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && Environment.OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && Environment.OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
+					if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
 					{
 						masks = masks.Replace(patch.Ignore, "");
 					}

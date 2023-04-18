@@ -155,6 +155,12 @@
     <Compile Include="Controls\NavButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Pages\CMenuPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\CMenuPage.Designer.cs">
+      <DependentUpon>CMenuPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DebugPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -368,8 +374,8 @@
     <None Include="Resources\asdf.bmp" />
     <None Include="Resources\asdf.png" />
     <None Include="Resources\avatars.png" />
-    <None Include="Resources\menus.png" />
     <None Include="Resources\gadgets.png" />
+    <None Include="Resources\menus.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />

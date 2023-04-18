@@ -134,6 +134,7 @@ namespace Rectify11Installer.Core
 		public static EulaPage EulaPage = new();
 		public static InstallOptnsPage InstallOptnsPage;
 		public static ThemeChoicePage ThemeChoicePage = new();
+		public static CMenuPage CMenuPage = new();
 		public static EPPage EPPage = new();
 		public static InstallConfirmation InstallConfirmation = new();
 		public static ProgressPage ProgressPage;
@@ -144,6 +145,7 @@ namespace Rectify11Installer.Core
 	{
 		public static Controls.DarkAwareTabPage installPage;
 		public static Controls.DarkAwareTabPage themePage;
+		public static Controls.DarkAwareTabPage cmenupage;
 		public static Controls.DarkAwareTabPage epPage;
 		public static Controls.DarkAwareTabPage summaryPage;
 		public static Controls.DarkAwareTabPage progressPage;

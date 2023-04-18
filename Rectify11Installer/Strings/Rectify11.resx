@@ -271,4 +271,7 @@
   <data name="userAvatars" xml:space="preserve">
     <value>Install User avatars</value>
   </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Context menu style</value>
+  </data>
 </root>
