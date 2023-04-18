@@ -549,7 +549,7 @@ namespace Rectify11Installer.Core
 				{
 					Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus"), Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus"));
 				}
-				for (int i=1; i<=4; i++) 
+				for (int i=1; i<=5; i++) 
 				{
 					File.Copy(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "config"+i.ToString()+".txt"), Path.Combine(Variables.Windir, "nilesoft", "config" + i.ToString() + ".txt"), true);
 				}
@@ -584,13 +584,8 @@ namespace Rectify11Installer.Core
 				}
 				else if (num == 5)
 				{
-					ProcessStartInfo shlinfo3 = new()
-					{
-						FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
-						WindowStyle = ProcessWindowStyle.Hidden,
-						Arguments = " -u"
-					};
-					var shlUnInstproc = Process.Start(shlinfo3);
+					shlinfo2.Arguments = " -u";
+					var shlUnInstproc = Process.Start(shlinfo2);
 					shlUnInstproc.WaitForExit();
 				}
 			}
