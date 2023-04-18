@@ -56,9 +56,10 @@
 			this.PrevImg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.PrevImg.Location = new System.Drawing.Point(190, 53);
 			this.PrevImg.Name = "PrevImg";
-			this.PrevImg.Size = new System.Drawing.Size(140, 200);
+			this.PrevImg.Size = new System.Drawing.Size(160, 200);
 			this.PrevImg.TabIndex = 0;
 			this.PrevImg.TabStop = false;
+			this.PrevImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 		//	this.w11StartImg.Click += new System.EventHandler(this.w11StartImg_Click);
 			// 
 			// Rad1

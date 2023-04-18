@@ -1,22 +1,35 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
-
+using Rectify11Installer.Core;
 namespace Rectify11Installer.Pages
 {
 	public partial class CMenuPage : WizardPage
 	{
-
 		public CMenuPage()
 		{
 			InitializeComponent();
-		}
-		private int getCheckedButton()
-        {
-			int j=0;
+			Rad1.Checked = true;
 			for (int i=1; i<=5; i++)
             {
-				Controls.DarkAwareRadioButton checkedrad = this.Controls.Find("Rad" + i.ToString(), true).FirstOrDefault() as Controls.DarkAwareRadioButton; 
-				if (checkedrad.Checked)
+				Controls.DarkAwareRadioButton rad = this.Controls.Find("Rad" + i.ToString(), true).FirstOrDefault() as Controls.DarkAwareRadioButton;
+                rad.CheckedChanged += Rad_CheckedChanged;
+			}
+			setImageAndType();
+		}
+
+        private void Rad_CheckedChanged(object sender, EventArgs e)
+        {
+			setImageAndType();
+		}
+
+        private int getCheckedButton()
+        {
+			int j=1;
+			for (int i=1; i<=5; i++)
+            {
+				Controls.DarkAwareRadioButton rad = this.Controls.Find("Rad" + i.ToString(), true).FirstOrDefault() as Controls.DarkAwareRadioButton;
+				if (rad.Checked)
                 {
 					j = i;
 					break;
@@ -25,33 +38,16 @@ namespace Rectify11Installer.Pages
 			return j;
         }
 
-		private void setImageAndBool()
+
+        private void setImageAndType()
         {
-            switch (getCheckedButton())
-			{
-				case 1:{
-						//WIP
-						break;
-					}
-
-				case 2:{
-						//WIP
-						break;
-					}
-
-				case 3:{
-						//WIP
-						break;
-                    }
-				case 4:{
-						//WIP
-						break;
-                    }
-				case 5:{
-						//WIP
-						break;
-                    }
-			}
+			string a = "L";
+			if (Theme.IsUsingDarkMode)
+            {
+				a = "D";
+            }
+			PrevImg.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject("_"+getCheckedButton().ToString()+a);
+			InstallOptions.CMenuStyle = getCheckedButton();
         }
 	}
 }
