@@ -51,7 +51,7 @@ namespace Rectify11Installer.Core
 			InstallOptions.iconsList.Remove("wallpapersNode");
 			InstallOptions.iconsList.Remove("asdfNode");
 			InstallOptions.iconsList.Remove("useravNode");
-			InstallOptions.iconsList.Remove("soundzNode");
+			InstallOptions.iconsList.Remove("soundNode");
 			return true;
 		}
 	}
