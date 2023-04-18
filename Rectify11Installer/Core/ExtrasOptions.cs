@@ -17,6 +17,7 @@ namespace Rectify11Installer.Core
 			new("asdfNode", "Enable Accent Color Colorizing"),
 			new("wallpapersNode", Rectify11Installer.Strings.Rectify11.optionWallpaper),
 			new("useravNode", "Remastered user avatars"),
+			new("soundNode","Remastered Logon, Logoff, and Shutdown sounds")
 		};
 		public static List<TreeNode> GetExtras()
 		{
@@ -37,6 +38,7 @@ namespace Rectify11Installer.Core
 			InstallOptions.InstallWallpaper = InstallOptions.iconsList.Contains("wallpapersNode");
 			InstallOptions.InstallASDF = InstallOptions.iconsList.Contains("asdfNode");
 			InstallOptions.userAvatars = InstallOptions.iconsList.Contains("useravNode");
+			InstallOptions.InstallSounds = InstallOptions.iconsList.Contains("soundNode");
 			return true;
 		}
 		public static bool FinalizeIRectify11()
@@ -49,6 +51,7 @@ namespace Rectify11Installer.Core
 			InstallOptions.iconsList.Remove("wallpapersNode");
 			InstallOptions.iconsList.Remove("asdfNode");
 			InstallOptions.iconsList.Remove("useravNode");
+			InstallOptions.iconsList.Remove("soundzNode");
 			return true;
 		}
 	}
