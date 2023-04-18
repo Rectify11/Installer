@@ -267,6 +267,7 @@
   </data>
   <data name="installASDF" xml:space="preserve">
     <value>Włącz kolor wiodący dla aplikacji Win32</value>
+  </data>
   <data name="userAvatars" xml:space="preserve">
     <value>Zainstaluj awatary użytkownika</value>
   </data>
