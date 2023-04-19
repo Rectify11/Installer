@@ -21,7 +21,7 @@ namespace Rectify11Installer
 			using var mutex = new Mutex(false, "Rectify11Setup");
 			bool isAnotherInstanceOpen = !mutex.WaitOne(TimeSpan.Zero);
 			if (isAnotherInstanceOpen) return;
-			if (Environment.OSVersion.Version.Build < 21343)
+			if (Environment.OSVersion.Version.Build <= 21343)
 			{
 				if (args.Length != 0 && args[0].ToLower() == "--allow")
 				{ }
@@ -80,6 +80,7 @@ namespace Rectify11Installer
 			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
 			Application.Run(new FrmWizard());
+			mutex.ReleaseMutex();
 		}
 	}
 }

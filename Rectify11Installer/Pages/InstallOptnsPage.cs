@@ -23,7 +23,18 @@ namespace Rectify11Installer.Pages
 			InitializeComponent();
 			Application.Idle += Application_Idle;
 			treeView1.AfterSelect += TreeView1_AfterSelect;
+			NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
 		}
+
+		private void NavigationHelper_OnNavigate(object sender, EventArgs e)
+		{
+			WizardPage page = (WizardPage)sender;
+			if (page == RectifyPages.InstallOptnsPage)
+			{
+				_frmWizard.nextButton.Enabled = Variables.IsItemsSelected;
+			}
+		}
+
 		void Application_Idle(object sender, System.EventArgs e)
 		{
 			if (!idleinit)

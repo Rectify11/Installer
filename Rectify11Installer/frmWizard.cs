@@ -13,8 +13,8 @@ namespace Rectify11Installer
 	public sealed partial class FrmWizard : Form
 	{
 		#region Variables
-		private int _timerFrames;
-		private int _timerFramesTmp;
+		public int _timerFrames;
+		public int _timerFramesTmp;
 		private bool _isWelcomePage = true;
 		private bool _acknowledged;
 		private bool _idleInit;
@@ -89,6 +89,7 @@ namespace Rectify11Installer
 			// initialize InstallOptnsPage here because it needs 
 			// current instance to change button state.
 			RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
+			RectifyPages.InstallConfirmation = new InstallConfirmation(this);
 			RectifyPages.ProgressPage = new ProgressPage(this);
 			TabPages.expPage.Controls.Add(RectifyPages.ExperimentalPage);
 			TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
@@ -154,20 +155,8 @@ namespace Rectify11Installer
 			_isWelcomePage = page.IsWelcomePage;
 			nextButton.Enabled = page.NextButtonEnabled;
 			nextButton.ButtonText = page.NextButtonText;
-
-			if (page == RectifyPages.InstallOptnsPage)
-			{
-				nextButton.Enabled = Variables.IsItemsSelected;
-			}
-			else if (page == RectifyPages.InstallConfirmation)
-			{
-				RectifyPages.InstallConfirmation.Summary = _resources.GetString("summaryItems");
-				RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();
-				_timerFrames = 72;
-				_timerFramesTmp = 0;
-				timer.Start();
-			}
-			else if (page == RectifyPages.ProgressPage)
+			NavigationHelper.InvokeOnNavigate((object)page, null);
+			if (page == RectifyPages.ProgressPage)
 			{
 				versionLabel.Visible = false;
 				ExtrasOptions.FinalizeIRectify11();
