@@ -181,7 +181,9 @@ namespace Rectify11Installer.Core
 				   || InstallWallpaper
 				   || InstallGadgets
 				   || InstallWinver
-				   || InstallShell;
+				   || InstallShell
+				   || InstallSounds
+				   || userAvatars;
 		}
 	}
 	#endregion

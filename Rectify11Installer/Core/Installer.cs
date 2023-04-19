@@ -208,7 +208,13 @@ namespace Rectify11Installer.Core
 					await Task.Run(() => InstallUserAvatars());
 					Logger.WriteLine("InstallUserAvatars() succeeded.");
                 }
-                Logger.WriteLine("InstallExtras() succeeded.");
+				if (InstallOptions.InstallSounds)
+				{
+					// always would work ig 5
+					await Task.Run(() => InstallSounds());
+					Logger.WriteLine("InstallSounds() succeeded.");
+				}
+				Logger.WriteLine("InstallExtras() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
 
@@ -531,25 +537,25 @@ namespace Rectify11Installer.Core
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
         }
 
-        /// <summary>
-        /// installs nilesoft shell
-        /// </summary>
-        private void InstallShell()
-        {
-			if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+		/// <summary>
+		/// installs nilesoft shell
+		/// </summary>
+		private void InstallShell()
+		{
+			if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft"))) 
 			{
-				if (File.Exists(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "shell.nss")))
+				DirectoryInfo niledir = new(Path.Combine(Variables.r11Folder, "extras", "nilesoft"));
+				for (int i = 0; i < niledir.GetFiles("*").Length; i++)
 				{
-					File.Delete(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "shell.nss"));
+					try
+					{
+						File.Copy(niledir.GetFiles("*")[i].FullName, Path.Combine(Variables.Windir, "nilesoft"), true);
+					}
+					catch { } //This try-catch is needed cuz installer might exception if shell.dll is still loaded, it happens sometimes even if shell is unregistered
 				}
-				File.Copy(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "imports", "static.nss"), Path.Combine(Variables.Windir, "nilesoft", "imports", "static.nss"), true);
 				if (!Directory.Exists(Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus")))
 				{
 					Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus"), Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus"));
-				}
-				for (int i=1; i<=5; i++) 
-				{
-					File.Copy(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "config"+i.ToString()+".txt"), Path.Combine(Variables.Windir, "nilesoft", "config" + i.ToString() + ".txt"), true);
 				}
 			}
 			else
@@ -607,10 +613,38 @@ namespace Rectify11Installer.Core
             }
 		}
 
-        /// <summary>
-        /// installs control center
-        /// </summary>
-        private void Installr11cpl()
+		/// <summary>
+		/// installs sounds
+		/// </summary>
+        private void InstallSounds()
+        {
+			if (!File.Exists(Path.Combine(Variables.sys32Folder, "r11Sounds.exe")))
+            {
+				File.Move(Path.Combine(Variables.r11Folder, "extras", "r11Sounds.exe"), Path.Combine(Variables.sys32Folder, "r11Sounds.exe"));
+            }
+			ProcessStartInfo sndInfo = new()
+			{
+				FileName = Path.Combine(Variables.sys32Folder, "sc.exe"),
+				WindowStyle = ProcessWindowStyle.Hidden,
+				Arguments = " create RectifySounds binPath=" + Path.Combine(Variables.sys32Folder, "r11Sounds.exe")
+			};
+			var sndInstproc = Process.Start(sndInfo);
+			sndInstproc.WaitForExit();
+			sndInfo.Arguments = " config RectifySounds start=auto";
+			var sndInstproc2 = Process.Start(sndInfo);
+			sndInstproc2.WaitForExit();
+			if (Directory.Exists(Path.Combine(Variables.Windir, "Media", "Rectified")))
+			{
+				Directory.Delete(Path.Combine(Variables.Windir, "Media", "Rectified"), true);
+			}
+			Directory.Move(Path.Combine(Variables.r11Folder, "extras","Media"), Path.Combine(Variables.Windir, "Media", "Rectified"));
+			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "extras", "Sound.reg"), AppWinStyle.Hide);
+		}
+
+		/// <summary>
+		/// installs control center
+		/// </summary>
+		private void Installr11cpl()
 		{
 			if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
 			{
