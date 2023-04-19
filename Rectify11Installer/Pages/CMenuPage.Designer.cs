@@ -52,9 +52,9 @@
 			this.darkAwareLabel1.Text = resources.GetString("epTitle");
 
 
-			this.PrevImg.BackgroundImage = global::Rectify11Installer.Properties.Resources._11start;
+			this.PrevImg.BackgroundImage = global::Rectify11Installer.Properties.Resources._5L;
 			this.PrevImg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.PrevImg.Location = new System.Drawing.Point(190, 53);
+			this.PrevImg.Location = new System.Drawing.Point(170, 53);
 			this.PrevImg.Name = "PrevImg";
 			this.PrevImg.Size = new System.Drawing.Size(160, 200);
 			this.PrevImg.TabIndex = 0;
@@ -129,12 +129,12 @@
 			// 
 			// CMenuPage
 			// 
+			this.Controls.Add(this.PrevImg);
 			this.Controls.Add(this.Rad5);
 			this.Controls.Add(this.Rad4);
 			this.Controls.Add(this.Rad3);
 			this.Controls.Add(this.Rad2);
 			this.Controls.Add(this.Rad1);
-			this.Controls.Add(this.PrevImg);
 			this.Controls.Add(this.darkAwareLabel1);
 			this.Name = "EPPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.menus;
