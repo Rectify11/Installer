@@ -573,9 +573,9 @@ namespace Rectify11Installer.Core
 			int num = InstallOptions.CMenuStyle;
 			if (num >= 1 && num <= 5)
 			{
-				if (File.Exists(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "startup", "acrylmenu.lnk")))
+				if (File.Exists(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")))
 				{
-					File.Delete(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "startup", "acrylmenu.lnk"));
+					File.Delete(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
 				}
 				text = File.ReadAllText(Path.Combine(Variables.Windir, "nilesoft", "config"+num+".txt"));
 				File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
@@ -587,7 +587,7 @@ namespace Rectify11Installer.Core
 					shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
 					shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
 					shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-					shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "startup", "acrylmenu.lnk"));
+					shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
 				}
 				else if (num == 5)
 				{
