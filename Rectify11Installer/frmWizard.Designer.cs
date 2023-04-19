@@ -404,7 +404,7 @@
 		public Controls.WinUIButton nextButton;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private Controls.WinUIButton cancelButton;
-		private System.Windows.Forms.Timer timer;
+		public System.Windows.Forms.Timer timer;
 	}
 }
 

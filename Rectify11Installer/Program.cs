@@ -80,6 +80,7 @@ namespace Rectify11Installer
 			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
 			Application.Run(new FrmWizard());
+			mutex.ReleaseMutex();
 		}
 	}
 }

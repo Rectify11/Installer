@@ -274,4 +274,7 @@
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>Context menu style</value>
   </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Install Gadgets</value>
+  </data>
 </root>

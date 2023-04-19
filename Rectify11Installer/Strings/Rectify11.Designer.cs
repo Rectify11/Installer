@@ -250,6 +250,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install Gadgets.
+        /// </summary>
+        internal static string installGadgets {
+            get {
+                return ResourceManager.GetString("installGadgets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Patch Icons.
         /// </summary>
         internal static string installIcons {

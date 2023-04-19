@@ -34,47 +34,46 @@ namespace Rectify11Installer.Core
 			var ok = new StringBuilder();
 			ok.AppendLine();
 			ok.AppendLine();
-			ExtrasOptions.FinalizeIRectify11();
 			if (InstallOptions.iconsList.Count > 0)
 			{
 				ok.AppendLine(resources.GetString("installIcons"));
 			}
-			if (InstallOptions.InstallThemes)
+			if (InstallOptions.iconsList.Contains("themeNode"))
 			{
 				ok.AppendLine(resources.GetString("installThemes"));
 			}
 
-			if (InstallOptions.InstallEP)
+			if (InstallOptions.iconsList.Contains("epNode"))
 			{
 				ok.AppendLine(resources.GetString("installEP"));
 			}
 
-			if (InstallOptions.InstallWinver)
+			if (InstallOptions.iconsList.Contains("winverNode"))
 			{
 				ok.AppendLine(resources.GetString("installWinver"));
 			}
 
-			if (InstallOptions.InstallASDF)
+			if (InstallOptions.iconsList.Contains("asdfNode"))
 			{
 				ok.AppendLine(resources.GetString("installASDF"));
 			}
 
-			if (InstallOptions.InstallShell)
+			if (InstallOptions.iconsList.Contains("shellNode"))
 			{
 				ok.AppendLine(resources.GetString("installShell"));
 			}
 
-			if (InstallOptions.InstallGadgets)
+			if (InstallOptions.iconsList.Contains("gadgetsNode"))
 			{
 				ok.AppendLine(resources.GetString("installGadgets"));
 			}
 
-			if (InstallOptions.InstallWallpaper)
+			if (InstallOptions.iconsList.Contains("wallpapersNode"))
 			{
 				ok.AppendLine(resources.GetString("installWallpapers"));
 			}
 
-			if (InstallOptions.userAvatars)
+			if (InstallOptions.iconsList.Contains("useravNode"))
 			{
 				ok.AppendLine(resources.GetString("userAvatars"));
 			}
@@ -126,6 +125,17 @@ namespace Rectify11Installer.Core
 		}
 		#endregion
 	}
+	public class NavigationHelper
+	{
+		public static event EventHandler OnNavigate;
+		public static void InvokeOnNavigate(object sender, EventArgs e)
+		{
+			if (OnNavigate != null)
+			{
+				OnNavigate.Invoke(sender, e);
+			}
+		}
+	}
 
 	#region Pages
 	public class RectifyPages
@@ -136,7 +146,7 @@ namespace Rectify11Installer.Core
 		public static ThemeChoicePage ThemeChoicePage = new();
 		public static CMenuPage CMenuPage = new();
 		public static EPPage EPPage = new();
-		public static InstallConfirmation InstallConfirmation = new();
+		public static InstallConfirmation InstallConfirmation;
 		public static ProgressPage ProgressPage;
 		public static Experimental ExperimentalPage = new();
 		public static DebugPage DebugPage = new();
@@ -157,21 +167,21 @@ namespace Rectify11Installer.Core
 	}
 	public class InstallOptions
 	{
-		public static bool InstallEP;
-		public static bool InstallASDF;
-		public static bool InstallWallpaper;
-		public static bool InstallWinver;
-		public static bool InstallGadgets;
-		public static bool InstallThemes;
-		public static bool ThemeDark;
-		public static bool ThemeBlack;
-		public static bool ThemeLight;
-		public static bool InstallShell;
-		public static bool InstallIcons;
-		public static bool InstallSounds;
-		public static bool SkipMFE;
-		public static bool TabbedNotMica;
-		public static bool userAvatars;
+		public static bool InstallEP { get; set; }
+		public static bool InstallASDF { get; set; }
+		public static bool InstallWallpaper { get; set; }
+		public static bool InstallWinver { get; set; }
+		public static bool InstallGadgets { get; set; }
+		public static bool InstallThemes { get; set; }
+		public static bool ThemeDark { get; set; }
+		public static bool ThemeBlack { get; set; }
+		public static bool ThemeLight { get; set; }
+		public static bool InstallShell { get; set; }
+		public static bool InstallIcons { get; set; }
+		public static bool InstallSounds { get; set; }
+		public static bool SkipMFE { get; set; }
+		public static bool TabbedNotMica { get; set; }
+		public static bool userAvatars { get; set; }
 		public static int CMenuStyle = 1;
 		public static List<string> iconsList = new();
 		public static bool InstallExtras()
