@@ -309,7 +309,7 @@ namespace Rectify11Installer.Core
 
 				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
 				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
+					|| InstallOptions.iconsList.Contains("mmc.exe")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
 					if (!await Task.Run(() => MMCHelper.PatchAll()))
