@@ -542,6 +542,8 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void InstallShell()
 		{
+			string s = "";
+			if (NativeMethods.IsArm64()) string s = "Arm64";
 			if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft"))) 
 			{
 				DirectoryInfo niledir = new(Path.Combine(Variables.r11Folder, "extras", "nilesoft"));
@@ -560,7 +562,7 @@ namespace Rectify11Installer.Core
 			}
 			else
             {
-				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft"), Path.Combine(Variables.Windir, "nilesoft"));
+				Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft"+s), Path.Combine(Variables.Windir, "nilesoft"));
 			}
 			ProcessStartInfo shlinfo2 = new()
 			{
@@ -684,10 +686,7 @@ namespace Rectify11Installer.Core
 			{
 				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "black.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
 				string amdorarm = "AMD";
-				if (NativeMethods.IsArm64())
-				{
-					amdorarm = "ARM";
-				}
+				if (NativeMethods.IsArm64()) amdorarm = "ARM";
 				Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide);
 			}
 
@@ -759,10 +758,7 @@ namespace Rectify11Installer.Core
 				}
 
 				string s="amd64";
-				if (NativeMethods.IsArm64())
-				{
-					s = "arm64";
-				}
+				if (NativeMethods.IsArm64()) s = "arm64";
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), (byte[])Properties.Resources.ResourceManager.GetObject("SecureUxHelper_"+s));
