@@ -546,7 +546,7 @@ namespace Rectify11Installer.Core
 			if (NativeMethods.IsArm64()) s = "Arm64";
 			if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft"))) 
 			{
-				DirectoryInfo niledir = new(Path.Combine(Variables.r11Folder, "extras", "nilesoft"));
+				DirectoryInfo niledir = new(Path.Combine(Variables.r11Folder, "extras", "nilesoft"+s));
 				for (int i = 0; i < niledir.GetFiles("*").Length; i++)
 				{
 					try
