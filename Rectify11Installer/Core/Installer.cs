@@ -620,21 +620,6 @@ namespace Rectify11Installer.Core
 		/// </summary>
         private void InstallSounds()
         {
-			if (!File.Exists(Path.Combine(Variables.sys32Folder, "r11Sounds.exe")))
-            {
-				File.Move(Path.Combine(Variables.r11Folder, "extras", "r11Sounds.exe"), Path.Combine(Variables.sys32Folder, "r11Sounds.exe"));
-            }
-			ProcessStartInfo sndInfo = new()
-			{
-				FileName = Path.Combine(Variables.sys32Folder, "sc.exe"),
-				WindowStyle = ProcessWindowStyle.Hidden,
-				Arguments = " create RectifySounds binPath=" + Path.Combine(Variables.sys32Folder, "r11Sounds.exe")
-			};
-			var sndInstproc = Process.Start(sndInfo);
-			sndInstproc.WaitForExit();
-			sndInfo.Arguments = " config RectifySounds start=auto";
-			var sndInstproc2 = Process.Start(sndInfo);
-			sndInstproc2.WaitForExit();
 			if (Directory.Exists(Path.Combine(Variables.Windir, "Media", "Rectified")))
 			{
 				Directory.Delete(Path.Combine(Variables.Windir, "Media", "Rectified"), true);
@@ -751,16 +736,16 @@ namespace Rectify11Installer.Core
 					return false;
 				}
 
-				string s="amd64";
-				if (NativeMethods.IsArm64()) s = "arm64";
+				var s = Properties.Resources.SecureUxHelper_x64;
+				if (NativeMethods.IsArm64()) s = Properties.Resources.SecureUxHelper_amd64;
 				try
 				{
-					File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), (byte[])Properties.Resources.ResourceManager.GetObject("SecureUxHelper_"+s));
-					LogFile("SecureUXHelper("+s+").exe", false, null);
+					File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), s);
+					LogFile("SecureUXHelper.exe", false, null);
 				}
 				catch (Exception ex)
 				{
-					LogFile("SecureUXHelper(" + s + ").exe", true, ex);
+					LogFile("SecureUXHelper.exe", true, ex);
 					return false;
 				}
 			}
