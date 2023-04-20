@@ -543,7 +543,7 @@ namespace Rectify11Installer.Core
 		private void InstallShell()
 		{
 			string s = "";
-			if (NativeMethods.IsArm64()) string s = "Arm64";
+			if (NativeMethods.IsArm64()) s = "Arm64";
 			if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft"))) 
 			{
 				DirectoryInfo niledir = new(Path.Combine(Variables.r11Folder, "extras", "nilesoft"));
@@ -571,33 +571,30 @@ namespace Rectify11Installer.Core
 				Arguments = " -r"
 			};
 
-			string text = "";
 			int num = InstallOptions.CMenuStyle;
-			if (num >= 1 && num <= 5)
+			if (File.Exists(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")))
 			{
-				if (File.Exists(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")))
-				{
-					File.Delete(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
-				}
-				text = File.ReadAllText(Path.Combine(Variables.Windir, "nilesoft", "config"+num+".txt"));
-				File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
-				var shlInstproc2 = Process.Start(shlinfo2);
-				shlInstproc2.WaitForExit();
-				if (num == 4)
-                {
-					using ShellLink shortcut = new();
-					shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
-					shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
-					shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-					shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
-				}
-				else if (num == 5)
-				{
-					shlinfo2.Arguments = " -u";
-					var shlUnInstproc = Process.Start(shlinfo2);
-					shlUnInstproc.WaitForExit();
-				}
+				File.Delete(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
 			}
+			string text = File.ReadAllText(Path.Combine(Variables.Windir, "nilesoft", "config" + num + ".txt"));
+			File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
+			var shlInstproc2 = Process.Start(shlinfo2);
+			shlInstproc2.WaitForExit();
+			if (num == 4)
+			{
+				using ShellLink shortcut = new();
+				shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
+				shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
+				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+				shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
+			}
+			else if (num == 5)
+			{
+				shlinfo2.Arguments = " -u";
+				var shlUnInstproc = Process.Start(shlinfo2);
+				shlUnInstproc.WaitForExit();
+			}
+
 		}
 
 		/// <summary>
