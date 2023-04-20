@@ -460,18 +460,17 @@ namespace Rectify11Installer.Core
 			{
 				File.Copy(themefiles[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i].Name), true);
 			}
+			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun1.exe"), Properties.Resources.AdvancedRun);
 			for (var i = 0; i < msstyleDirList.Length; i++)
 			{
 				if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name)))
 				{
 					try
 					{
-						File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
-						Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
+						Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun1.exe")
 	                    + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
 	                    + " /CommandLine " + "\'" + "/c rmdir /s /q " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + "\'"
 	                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
-						File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
 						Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
 					}
 					catch (Exception ex)
@@ -491,6 +490,7 @@ namespace Rectify11Installer.Core
 					return false;
 				}
 			}
+			File.Delete(Path.Combine(Variables.r11Folder, "aRun1.exe"));
 			return true;
 		}
 
