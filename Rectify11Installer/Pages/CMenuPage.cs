@@ -33,10 +33,7 @@ namespace Rectify11Installer.Pages
 			if (rad.Checked)
 			{
 				string a = "L";
-				if (Theme.IsUsingDarkMode)
-				{
-					a = "D";
-				}
+				if (Theme.IsUsingDarkMode) a = "D";
 				PrevImg.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject("_" + num + a);
 				InstallOptions.CMenuStyle = num;
 			}

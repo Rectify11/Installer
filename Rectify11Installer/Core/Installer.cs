@@ -670,10 +670,7 @@ namespace Rectify11Installer.Core
 				Directory.Delete(Path.Combine(GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone"), true);
 			}
             string t = "";
-            if (InstallOptions.TabbedNotMica)
-			{
-				t = "T";
-			}
+            if (InstallOptions.TabbedNotMica) t = "T";
 			if (InstallOptions.ThemeLight)
 			{
 				File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "lightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
