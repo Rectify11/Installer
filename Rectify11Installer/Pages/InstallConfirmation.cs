@@ -15,14 +15,12 @@ namespace Rectify11Installer.Pages
 		{
 			InitializeComponent();
 			_frm = frm;
-			NavigationHelper.OnNavigate += NavigationHelper_OnNavigate; ;
+			NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
 		}
-		// fix annoying bug where extras options doesnt get printed properly if you go back 
-		// to the options page after selecting extras
+
 		private void NavigationHelper_OnNavigate(object sender, System.EventArgs e)
 		{
-			WizardPage page = (WizardPage)sender;
-			if (page == RectifyPages.InstallConfirmation)
+			if ((WizardPage)sender == RectifyPages.InstallConfirmation)
 			{
 				RectifyPages.InstallConfirmation.Summary = _resources.GetString("summaryItems");
 				RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();

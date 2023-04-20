@@ -34,10 +34,6 @@ namespace Rectify11Installer.Core
 			var ok = new StringBuilder();
 			ok.AppendLine();
 			ok.AppendLine();
-			if (InstallOptions.iconsList.Count > 0)
-			{
-				ok.AppendLine(resources.GetString("installIcons"));
-			}
 			if (InstallOptions.iconsList.Contains("themeNode"))
 			{
 				ok.AppendLine(resources.GetString("installThemes"));

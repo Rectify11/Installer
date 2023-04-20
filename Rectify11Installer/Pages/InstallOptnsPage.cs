@@ -28,8 +28,7 @@ namespace Rectify11Installer.Pages
 
 		private void NavigationHelper_OnNavigate(object sender, EventArgs e)
 		{
-			WizardPage page = (WizardPage)sender;
-			if (page == RectifyPages.InstallOptnsPage)
+			if ((WizardPage)sender == RectifyPages.InstallOptnsPage)
 			{
 				_frmWizard.nextButton.Enabled = Variables.IsItemsSelected;
 			}
@@ -52,57 +51,6 @@ namespace Rectify11Installer.Pages
 				if (treeNode1.Nodes.Count == 0)
 					treeView1.Nodes.Remove(treeNode1);
 				idleinit = true;
-			}
-		}
-
-		// Add extras preview cause e
-		private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
-		{
-			// Check if the selected TreeNode is in ExtrasOptions.cs list
-			foreach (var option in ExtrasOptions.GetExtras())
-			{
-				if (option.Name == e.Node.Name)
-				{
-					ExtrasSel = true;
-					// Update the Image property of the PictureBox based on the selected TreeNode
-					switch (e.Node.Name)
-					{
-						case "shellNode":
-							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.menus;
-							break;
-						case "gadgetsNode":
-							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.gadgets;
-							break;
-						case "asdfNode":
-							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.asdf;
-							break;
-						case "wallpapersNode":
-							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.wallpapers;
-							break;
-						case "useravNode":
-							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.avatars;
-							break;
-						// disabled until i will make them work
-						// case "sysiconsNode":
-						//     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.iconnewtree;
-						//     break;
-						// case "themesNode":
-						//     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.theme;
-						//     break;
-						default:
-							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.installoptns;
-							break;
-					}
-					return;
-				}
-				else
-				{
-					if (ExtrasSel)
-					{
-						_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.installoptns;
-						ExtrasSel = false;
-					}
-				}
 			}
 		}
 
@@ -303,6 +251,58 @@ namespace Rectify11Installer.Pages
 				}
 			}
 		}
+
+		// Add extras preview cause e
+		private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+		{
+			// Check if the selected TreeNode is in ExtrasOptions.cs list
+			foreach (var option in ExtrasOptions.GetExtras())
+			{
+				if (option.Name == e.Node.Name)
+				{
+					ExtrasSel = true;
+					// Update the Image property of the PictureBox based on the selected TreeNode
+					switch (e.Node.Name)
+					{
+						case "shellNode":
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.menus;
+							break;
+						case "gadgetsNode":
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.gadgets;
+							break;
+						case "asdfNode":
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.asdf;
+							break;
+						case "wallpapersNode":
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.wallpapers;
+							break;
+						case "useravNode":
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.avatars;
+							break;
+						// disabled until i will make them work
+						// case "sysiconsNode":
+						//     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.iconnewtree;
+						//     break;
+						// case "themesNode":
+						//     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.theme;
+						//     break;
+						default:
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.installoptns;
+							break;
+					}
+					return;
+				}
+				else
+				{
+					if (ExtrasSel)
+					{
+						_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.installoptns;
+						ExtrasSel = false;
+					}
+				}
+			}
+		}
+
 		#endregion
 	}
 }

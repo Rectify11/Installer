@@ -2,6 +2,7 @@ using KPreisser.UI;
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Core;
+using Rectify11Installer.Win32;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -55,7 +56,9 @@ namespace Rectify11Installer.Pages
 			};
 			timer2.Tick += Timer2_Tick;
 			frmwiz = frm;
+			NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
 		}
+
 		public void StartReset()
 		{
 			timer1.Stop();
@@ -74,6 +77,36 @@ namespace Rectify11Installer.Pages
 		}
 		#endregion
 		#region Private Methods
+
+		private async void NavigationHelper_OnNavigate(object sender, EventArgs e)
+		{
+			if ((WizardPage)sender == RectifyPages.ProgressPage)
+			{
+				frmwiz.versionLabel.Visible = false;
+				ExtrasOptions.FinalizeIRectify11();
+				frmwiz.pictureBox1.Visible = true;
+				frmwiz.progressLabel.Visible = true;
+				RectifyPages.ProgressPage.Start();
+				NativeMethods.SetCloseButton(frmwiz, false);
+				Variables.isInstall = true;
+				Installer installer = new();
+				Logger.CommitLog();
+				if (!await installer.Install(frmwiz))
+				{
+					Logger.CommitLog();
+					TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+						title: "Error",
+						buttons: TaskDialogButtons.OK,
+						icon: TaskDialogStandardIcon.Error);
+					Application.Exit();
+				}
+				else
+				{
+					Logger.CommitLog();
+					RectifyPages.ProgressPage.StartReset();
+				}
+			}
+		}
 
 		/// <summary>
 		/// clears *.db cache files

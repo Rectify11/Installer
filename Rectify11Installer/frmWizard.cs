@@ -139,7 +139,7 @@ namespace Rectify11Installer
 		}
 		#endregion
 		#region Navigation
-		private async void Navigate(WizardPage page)
+		private void Navigate(WizardPage page)
 		{
 			headerText.Text = page.WizardHeader;
 			sideImage.Image = page.SideImage;
@@ -156,32 +156,6 @@ namespace Rectify11Installer
 			nextButton.Enabled = page.NextButtonEnabled;
 			nextButton.ButtonText = page.NextButtonText;
 			NavigationHelper.InvokeOnNavigate((object)page, null);
-			if (page == RectifyPages.ProgressPage)
-			{
-				versionLabel.Visible = false;
-				ExtrasOptions.FinalizeIRectify11();
-				pictureBox1.Visible = true;
-				progressLabel.Visible = true;
-				RectifyPages.ProgressPage.Start();
-				NativeMethods.SetCloseButton(this, false);
-				Variables.isInstall = true;
-				Installer installer = new();
-				Logger.CommitLog();
-				if (!await installer.Install(this))
-				{
-					Logger.CommitLog();
-					TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
-						title: "Error",
-						buttons: TaskDialogButtons.OK,
-						icon: TaskDialogStandardIcon.Error);
-					Application.Exit();
-				}
-				else
-				{
-					Logger.CommitLog();
-					RectifyPages.ProgressPage.StartReset();
-				}
-			}
 		}
 		#endregion
 		#region Private Methods

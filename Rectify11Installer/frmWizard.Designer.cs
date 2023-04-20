@@ -399,10 +399,10 @@
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
 		private System.Windows.Forms.PictureBox sideImage;
 		private Controls.TabControlWithoutHeader navPane;
-		private Controls.DarkAwareLabel versionLabel;
-		private Controls.DarkAwareLabel progressLabel;
+		public Controls.DarkAwareLabel versionLabel;
+		public Controls.DarkAwareLabel progressLabel;
 		public Controls.WinUIButton nextButton;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		public System.Windows.Forms.PictureBox pictureBox1;
 		private Controls.WinUIButton cancelButton;
 		public System.Windows.Forms.Timer timer;
 	}
