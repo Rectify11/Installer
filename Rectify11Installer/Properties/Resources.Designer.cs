@@ -441,6 +441,16 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menusD {
+            get {
+                object obj = ResourceManager.GetObject("menusD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to mstsc.exe.mun
         ///imageres.dll.mun
         ///wininetlui.dll
@@ -532,6 +542,16 @@ namespace Rectify11Installer.Properties {
             get {
                 object obj = ResourceManager.GetObject("SecureUxHelper_x64", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sound {
+            get {
+                object obj = ResourceManager.GetObject("sound", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

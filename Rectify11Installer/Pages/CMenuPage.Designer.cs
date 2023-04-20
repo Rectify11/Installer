@@ -1,4 +1,5 @@
-﻿namespace Rectify11Installer.Pages
+﻿using Rectify11Installer.Core;
+namespace Rectify11Installer.Pages
 {
 	partial class CMenuPage
 	{
@@ -138,6 +139,7 @@
 			this.Controls.Add(this.darkAwareLabel1);
 			this.Name = "EPPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.menus;
+			if (Theme.IsUsingDarkMode) this.SideImage = global::Rectify11Installer.Properties.Resources.menusD;
 			this.HeaderVisible = true;
 			this.FooterVisible = true;
 			this.UpdateFrame = true;

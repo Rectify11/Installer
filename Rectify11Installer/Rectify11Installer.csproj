@@ -359,6 +359,7 @@
     <Content Include="Core\rectify11.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\sound.png" />
     <None Include="Resources\wallpapers.png" />
     <None Include="Resources\U.png" />
     <None Include="Resources\SecureUxHelper-x64.exe" />
@@ -386,6 +387,7 @@
     <None Include="Resources\4L.png" />
     <None Include="Resources\5D.png" />
     <None Include="Resources\5L.png" />
+    <None Include="Resources\menusD.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />

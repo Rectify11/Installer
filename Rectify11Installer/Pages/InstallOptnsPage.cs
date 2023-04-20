@@ -279,6 +279,9 @@ namespace Rectify11Installer.Pages
 						case "useravNode":
 							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.avatars;
 							break;
+						case "soundNode":
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.sound;
+							break;
 						// disabled until i will make them work
 						// case "sysiconsNode":
 						//     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.iconnewtree;

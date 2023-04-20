@@ -73,6 +73,10 @@ namespace Rectify11Installer.Core
 			{
 				ok.AppendLine(resources.GetString("userAvatars"));
 			}
+			if (InstallOptions.iconsList.Contains("soundNode"))
+			{
+				ok.AppendLine("Install sounds"); //Just a placeholder string, we will deal with these later on when stuff is done
+			}
 			return ok;
 		}
 		#endregion
