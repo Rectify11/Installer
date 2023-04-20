@@ -8,13 +8,12 @@
 	<Patch Mui="aclui.dll.mun" mask="ICONGROUP,|IMAGE,|UIFILE," HardlinkTarget="%sysresdir%\aclui.dll.mun" />
 	<Patch Mui="actioncentercpl.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\actioncentercpl.dll.mun" />
 	<Patch Mui="appwiz.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\appwiz.cpl.mun" />
-	<Patch Mui="compstui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\compstui.dll.mun" />
-	<Patch Mui="moricons.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\moricons.dll.mun" />
 	<Patch Mui="authfwgp.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\authfwgp.dll.mun" />
 	<Patch Mui="batmeter.dll.mun" mask="BITMAP," HardlinkTarget="%sysresdir%\batmeter.dll.mun" />
 	<Patch Mui="colorui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\colorui.dll.mun" />
 	<Patch Mui="comdlg32.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\comdlg32.dll.mun" />
 	<Patch Mui="comres.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\comres.dll.mun" />
+	<Patch Mui="compstui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\compstui.dll.mun" />
 	<Patch Mui="connect.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\connect.dll.mun" />
 	<Patch Mui="cryptui.dll.mun" mask="ICONGROUP,|BITMAP,|CURSORGROUP," HardlinkTarget="%sysresdir%\cryptui.dll.mun" />
 	<Patch Mui="cryptuiwizard.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\cryptuiwizard.dll.mun" />
@@ -56,6 +55,7 @@
 	<Patch Mui="mmcndmgr.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\mmcndmgr.dll.mun" />
 	<Patch Mui="mmres.dll.mun" mask="ICONGROUP,|PNG," HardlinkTarget="%sysresdir%\mmres.dll.mun" />
 	<Patch Mui="mmsys.cpl.mun" mask="ICONGROUP,|PNG," HardlinkTarget="%sysresdir%\mmsys.cpl.mun" />
+	<Patch Mui="moricons.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\moricons.dll.mun" />
 	<Patch Mui="msdt.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\msdt.exe.mun" />
 	<Patch Mui="mshtml.dll.mun" mask="ICONGROUP,|CURSORGROUP," HardlinkTarget="%sysresdir%\mshtml.dll.mun" />
 	<Patch Mui="mssvp.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\mssvp.dll.mun" />
@@ -114,6 +114,7 @@
 	<Patch Mui="wscui.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wscui.cpl.mun" />
 	<Patch Mui="wsecedit.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\wsecedit.dll.mun" />
 	<Patch Mui="wuapi.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\wuapi.dll.mun" />
+	<Patch Mui="zipfldr.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\zipfldr.dll.mun" />
 
 	<!--Dll and Exe files-->
 	<Patch Mui="AdmTmpl.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
@@ -271,8 +272,10 @@
 	<Patch Mui="pautoenr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pautoenr.dll" />
 	<Patch Mui="perfmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\perfmon.exe" />
 	<Patch Mui="PhotoScreensaver.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\PhotoScreensaver.scr" />
+	<Patch Mui="PhotoViewer.dll" mask="ICONGROUP,|CURSORGROUP,|PNG,|RCDATA," x86="true" HardlinkTarget="%prog%\Windows Photo Viewer\PhotoViewer.dll" />
 	<Patch Mui="photowiz.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\photowiz.dll" />
 	<Patch Mui="photowiz.dll.mui" mask="HTML," HardlinkTarget="%lang%\photowiz.dll.mui" />
+	<Patch Mui="pifmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pifmgr.dll" />
 	<Patch Mui="playtomenu.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\playtomenu.dll" />
 	<Patch Mui="pmcsnap.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\pmcsnap.dll" />
 	<Patch Mui="pnidui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pnidui.dll" />
@@ -327,6 +330,7 @@
 
 	<Patch Mui="shutdownux.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\shutdownux.dll" />
 	<Patch Mui="shwebsvc.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\shwebsvc.dll" />
+	<Patch Mui="shdocvw.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\shdocvw.dll" />
 	<Patch Mui="sigverif.exe" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\sigverif.exe" />
 	<Patch Mui="slui.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\slui.exe" />
 	<Patch Mui="SpaceControl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\SpaceControl.dll" />
@@ -419,7 +423,6 @@
 	<Patch Mui="wmplayer.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\wmplayer.exe" />
 	<Patch Mui="wmpshare.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\wmpshare.exe" />
 	<Patch Mui="wordpad.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows NT\Accessories\wordpad.exe" />
-	<Patch Mui="PhotoViewer.dll" mask="ICONGROUP,|PNG," x86="true" HardlinkTarget="%prog%\Windows Photo Viewer\PhotoViewer.dll" />
 	<Patch Mui="WorkFolders.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFolders.exe" />
 	<Patch Mui="WorkfoldersControl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkfoldersControl.dll" />
 	<Patch Mui="WorkFoldersRes.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\WorkFoldersRes.dll" />
