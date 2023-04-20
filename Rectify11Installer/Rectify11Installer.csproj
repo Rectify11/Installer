@@ -388,6 +388,11 @@
     <None Include="Resources\5D.png" />
     <None Include="Resources\5L.png" />
     <None Include="Resources\menusD.png" />
+    <None Include="Resources\config1.txt" />
+    <None Include="Resources\config2.txt" />
+    <None Include="Resources\config3.txt" />
+    <None Include="Resources\config4.txt" />
+    <None Include="Resources\config5.txt" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />

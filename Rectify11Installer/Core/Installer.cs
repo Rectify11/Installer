@@ -576,7 +576,7 @@ namespace Rectify11Installer.Core
 			{
 				File.Delete(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
 			}
-			string text = File.ReadAllText(Path.Combine(Variables.Windir, "nilesoft", "config" + num + ".txt"));
+			string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
 			File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
 			var shlInstproc2 = Process.Start(shlinfo2);
 			shlInstproc2.WaitForExit();
@@ -737,7 +737,7 @@ namespace Rectify11Installer.Core
 				}
 
 				var s = Properties.Resources.SecureUxHelper_x64;
-				if (NativeMethods.IsArm64()) s = Properties.Resources.SecureUxHelper_amd64;
+				if (NativeMethods.IsArm64()) s = Properties.Resources.SecureUxHelper_arm64;
 				try
 				{
 					File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), s);

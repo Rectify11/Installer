@@ -1,0 +1,49 @@
+﻿j
+{
+	var
+	{
+		isw11=sys.is11
+	}
+	
+	set
+	{
+		theme
+		{
+			name="modern"
+			background
+			{
+				//opacity=85
+				//effect=1
+			}
+			image.align = 2// 0 = checked, 1 = image, 2 = both
+                  image.color = [color.default,color.accent_light1]
+		}
+
+		tip
+		{
+			enabled=1
+			opacity=100
+			width=400
+			radius=1
+			time=1.25
+			padding=[10,10]
+		}
+
+		exclude.where = !process.is_explorer
+		showdelay=100
+	}
+
+	images import 'imports/images.nss'
+
+	static
+	{	
+		import 'imports/static.nss'
+	}
+
+	dynamic
+	{
+		menu(mode="multiple" title="Pin/Unpin" image=icon.pin) { }
+		menu(mode="multiple" title=title.more_options image=icon.more_options) { }
+		import 'imports/taskbar.nss'
+	}
+}
