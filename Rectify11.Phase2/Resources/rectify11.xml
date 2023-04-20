@@ -116,6 +116,11 @@
 	<!--Dll and Exe files-->
 	<Patch Mui="AdmTmpl.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
 	<Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
+	<Patch Mui="compstui.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\compstui.dll.mun" />
+	<Patch Mui="moricons.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\moricons.dll.mun" />
+	<Patch Mui="photowiz.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\photowiz.dll" />
+	<Patch Mui="photowiz.dll.mui" mask="HTML," HardlinkTarget="%lang%\photowiz.dll.mui" />
+	<Patch Mui="PhotoViewer.dll" mask="ICONGROUP,|PNG," x86="true" HardlinkTarget="%prog%\Windows Photo Viewer\PhotoViewer.dll" />
 	<Patch Mui="ApproveChildRequest.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ApproveChildRequest.exe" />
 	<Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\audiosrv.dll.mui" />
 	<Patch Mui="AuditNativeSnapIn.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\AuditNativeSnapIn.dll" />
