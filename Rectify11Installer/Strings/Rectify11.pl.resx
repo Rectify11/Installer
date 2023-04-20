@@ -263,9 +263,15 @@
     <value>Czy chcesz anulować instalację Rectify11?</value>
   </data>
   <data name="buttonReboot" xml:space="preserve">
-    <value>Restart</value>
+    <value>Restartuj</value>
   </data>
   <data name="installASDF" xml:space="preserve">
-    <value>Instaluj Accent Colorizer</value>
+    <value>Włącz kolor wiodący dla aplikacji Win32</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Zainstaluj awatary użytkownika</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Ustawienia menu kontekstowego</value>
   </data>
  </root>

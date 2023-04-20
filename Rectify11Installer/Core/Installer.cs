@@ -309,7 +309,7 @@ namespace Rectify11Installer.Core
 
 				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
 				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
+					|| InstallOptions.iconsList.Contains("mmc.exe")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
 					if (!await Task.Run(() => MMCHelper.PatchAll()))
@@ -570,13 +570,12 @@ namespace Rectify11Installer.Core
 			};
 
 			string text = "";
-			var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
 			int num = InstallOptions.CMenuStyle;
 			if (num >= 1 && num <= 5)
 			{
-				if (key.GetValue("AcrylMenus") != null)
+				if (File.Exists(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")))
 				{
-					key.DeleteValue("AcrylMenus");
+					File.Delete(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
 				}
 				text = File.ReadAllText(Path.Combine(Variables.Windir, "nilesoft", "config"+num+".txt"));
 				File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
@@ -584,7 +583,11 @@ namespace Rectify11Installer.Core
 				shlInstproc2.WaitForExit();
 				if (num == 4)
                 {
-					key.SetValue("AcrylMenus", Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe"), RegistryValueKind.String);
+					using ShellLink shortcut = new();
+					shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
+					shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
+					shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+					shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
 				}
 				else if (num == 5)
 				{
