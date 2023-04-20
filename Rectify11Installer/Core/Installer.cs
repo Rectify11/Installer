@@ -757,31 +757,21 @@ namespace Rectify11Installer.Core
 					LogFile("themes.7z", true, ex);
 					return false;
 				}
+
+				string s="amd64";
 				if (NativeMethods.IsArm64())
 				{
-					try
-					{
-						File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_arm64);
-						LogFile("SecureUXHelper(arm64).exe", false, null);
-					}
-					catch (Exception ex)
-					{
-						LogFile("SecureUXHelper(arm64).exe", true, ex);
-						return false;
-					}
+					s = "arm64";
 				}
-				else
+				try
 				{
-					try
-					{
-						File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), Properties.Resources.SecureUxHelper_x64);
-						LogFile("SecureUXHelper(x64).exe", false, null);
-					}
-					catch (Exception ex)
-					{
-						LogFile("SecureUXHelper(x64).exe", true, ex);
-						return false;
-					}
+					File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), (byte[])Properties.Resources.ResourceManager.GetObject("SecureUxHelper_"+s));
+					LogFile("SecureUXHelper("+s+").exe", false, null);
+				}
+				catch (Exception ex)
+				{
+					LogFile("SecureUXHelper(" + s + ").exe", true, ex);
+					return false;
 				}
 			}
 			if (!themes && !icons)
