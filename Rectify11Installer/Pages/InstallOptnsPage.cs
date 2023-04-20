@@ -266,6 +266,7 @@ namespace Rectify11Installer.Pages
 					{
 						case "shellNode":
 							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.menus;
+							if (Theme.IsUsingDarkMode) _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.menusD;
 							break;
 						case "gadgetsNode":
 							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.gadgets;
@@ -280,7 +281,7 @@ namespace Rectify11Installer.Pages
 							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.avatars;
 							break;
 						case "soundNode":
-							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.sound;
+							_frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.sound;;
 							break;
 						// disabled until i will make them work
 						// case "sysiconsNode":
