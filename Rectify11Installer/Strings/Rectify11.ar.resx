@@ -261,6 +261,7 @@
   </data>
   <data name="exitText" xml:space="preserve">
     <value>هل أنت متأكد أنك تريد إلغاء التثبيت؟</value>
+  </data>
   <data name="buttonReboot" xml:space="preserve">
     <value>أعد التشغيل</value>
   </data>
@@ -273,4 +274,4 @@
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>شكل قوائم الضغط اليمين</value>
   </data>
- </root>
+</root>
