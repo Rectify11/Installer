@@ -240,6 +240,9 @@
   <data name="installShell" xml:space="preserve">
     <value>تثبيت Shell</value>
   </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>تشبيت  الأيقونات</value>
+  </data>
   <data name="installThemes" xml:space="preserve">
     <value>تثبيت النسق</value>
   </data>
@@ -254,9 +257,20 @@
     <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
-    <value>Summary</value>
+    <value>تأكد من اختيارك</value>
   </data>
   <data name="exitText" xml:space="preserve">
     <value>هل أنت متأكد أنك تريد إلغاء التثبيت؟</value>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>أعد التشغيل</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>تلوين عناصر البرامج</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>تثبيت الصور الشخصية</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>شكل قوائم الضغط اليمين</value>
   </data>
 </root>
