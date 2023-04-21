@@ -21,12 +21,12 @@ namespace Rectify11Installer.Pages
 		private int CurrentTextIndex = -1;
 		private static readonly InstallerTexts[] Rectify11InstallerTexts =
 		{
-			new("Rectify11 has changed everything", "We have modernized many icons in many different system files, resulting in a more consistent and fluent user experience.", Properties.Resources.iconnewtree),
-			new("Did you know that...", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
-			new("Rectify11 has more consistent theme.", "We have tried our best to replicate WinUI controls in our themes, and the dark theme is just amazing.", Properties.Resources.themepage),
-			new("Rectify11 has better Performance", "We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.", Properties.Resources.perf),
+			new("Rectify11 has changed everything", "We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.", Properties.Resources.iconnewtree),
+			new("Did you know?", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
+			new("Rectify11 has a more consistent theme.", "We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.", Properties.Resources.themepage),
+			new("Rectify11 has better performance", "We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.", Properties.Resources.perf),
 			new("Rectified Control Panel", "We improved many details in the control panel, such as modernizing old visuals and adding back removed items", Properties.Resources.cp),
-			new("Need help or technical support?", "You can ask us anything on our official discord server. The link is on the github page, from where you have downloaded the installer.", Properties.Resources.discord),
+			new("Need help or technical support?", "You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.", Properties.Resources.discord),
 			new("Thank you!", "We appreciate your support, thank you for installing Rectify11.", Properties.Resources.cool)
 		};
 		#endregion
