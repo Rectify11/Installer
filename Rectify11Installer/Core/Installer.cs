@@ -635,12 +635,17 @@ namespace Rectify11Installer.Core
 			sndInfo.Arguments = " config RectifySounds start=auto";
 			var sndInstproc2 = Process.Start(sndInfo);
 			sndInstproc2.WaitForExit();
-
-			if (Directory.Exists(Path.Combine(Variables.Windir, "Media", "Rectified")))
-			{
-				Directory.Delete(Path.Combine(Variables.Windir, "Media", "Rectified"), true);
-			}
-			Directory.Move(Path.Combine(Variables.r11Folder, "extras","Media"), Path.Combine(Variables.Windir, "Media", "Rectified"));
+			DirectoryInfo sndir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "Media"));
+			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun2.exe"), Properties.Resources.AdvancedRun);
+			for (int i=0; i<sndir.GetFiles().Length; i++)
+            {
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun1.exe")
+						+ " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
+						+ " /CommandLine " + "\'" + "/c copy " + '"' + sndir.GetFiles()[i].FullName + '"' + " " 
+						+ Path.Combine(Variables.Windir, "Media") + " /y" + "\'"
+						+ " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
+            }
+			File.Delete(Path.Combine(Variables.r11Folder, "aRun2.exe"));
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "extras", "Sound.reg"), AppWinStyle.Hide);
 		}
 
