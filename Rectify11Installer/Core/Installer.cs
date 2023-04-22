@@ -639,7 +639,7 @@ namespace Rectify11Installer.Core
 			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun2.exe"), Properties.Resources.AdvancedRun);
 			for (int i=0; i<sndir.GetFiles().Length; i++)
             {
-				Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun1.exe")
+				Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun2.exe")
 						+ " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
 						+ " /CommandLine " + "\'" + "/c copy " + '"' + sndir.GetFiles()[i].FullName + '"' + " " 
 						+ Path.Combine(Variables.Windir, "Media") + " /y" + "\'"
