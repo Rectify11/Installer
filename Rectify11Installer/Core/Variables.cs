@@ -42,5 +42,6 @@ namespace Rectify11Installer.Core
 		// runtimes
 		public static bool vcRedist { get; set; }
 		public static bool core31 { get; set; }
+		public static bool InstallIcons { get; set; }
 	}
 }

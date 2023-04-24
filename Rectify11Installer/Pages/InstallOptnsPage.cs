@@ -140,9 +140,15 @@ namespace Rectify11Installer.Pages
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
+						{
 							InstallOptions.iconsList.Add(x.Text);
+							Variables.InstallIcons = true;
+						}
 						else
+						{
 							InstallOptions.iconsList.Remove(x.Text);
+							Variables.InstallIcons = false;
+						}
 					});
 				}
 				if (e.Node.Name == "sysIconsNode")
@@ -151,9 +157,15 @@ namespace Rectify11Installer.Pages
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked && (x.Name != "basicNode") && (x.Name != "advancedNode"))
+						{
 							InstallOptions.iconsList.Add(x.Text);
+							Variables.InstallIcons = true;
+						}
 						else if ((x.Name != "basicNode") && (x.Name != "advancedNode"))
+						{
 							InstallOptions.iconsList.Remove(x.Text);
+							Variables.InstallIcons = false;
+						}
 					});
 				}
 				if (e.Node.Name == "advancedNode")
@@ -162,9 +174,15 @@ namespace Rectify11Installer.Pages
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
+						{
 							InstallOptions.iconsList.Add(x.Text);
+							Variables.InstallIcons = true;
+						}
 						else
+						{
 							InstallOptions.iconsList.Remove(x.Text);
+							Variables.InstallIcons = false;
+						}
 					});
 				}
 				if (e.Node.Name == "extraNode")
@@ -173,9 +191,13 @@ namespace Rectify11Installer.Pages
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
+						{
 							InstallOptions.iconsList.Add(x.Name);
+						}
 						else
+						{
 							InstallOptions.iconsList.Remove(x.Name);
+						}
 					});
 				}
 				e.Node.Ancestors().ToList().ForEach(x =>
@@ -184,28 +206,48 @@ namespace Rectify11Installer.Pages
 					if (e.Node.Checked)
 					{
 						if (x.Name == "extraNode")
+						{
 							InstallOptions.iconsList.Add(e.Node.Name);
+						}
 						else if (x.Name == "basicNode")
+						{
 							InstallOptions.iconsList.Add(e.Node.Text);
+							Variables.InstallIcons = true;
+						}
 						else if (x.Name == "advancedNode")
+						{
 							InstallOptions.iconsList.Add(e.Node.Text);
+							Variables.InstallIcons = true;
+						}
 					}
 					else
 					{
 						if (x.Name == "extraNode")
+						{
 							InstallOptions.iconsList.Remove(e.Node.Name);
+						}
 						else if (x.Name == "basicNode")
+						{
 							InstallOptions.iconsList.Remove(e.Node.Text);
+							Variables.InstallIcons = false;
+						}
 						else if (x.Name == "advancedNode")
+						{
 							InstallOptions.iconsList.Remove(e.Node.Text);
+							Variables.InstallIcons = false;
+						}
 					}
 				});
 				if (e.Node.Name == "themeNode")
 				{
 					if (e.Node.Checked)
+					{
 						InstallOptions.iconsList.Add(e.Node.Name);
+					}
 					else
+					{
 						InstallOptions.iconsList.Remove(e.Node.Name);
+					}
 				}
 				if ((!_frmWizard.nextButton.Enabled) && (InstallOptions.iconsList.Count > 0))
 				{
