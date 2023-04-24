@@ -191,6 +191,12 @@
     <Compile Include="Pages\InstallConfirmation.Designer.cs">
       <DependentUpon>InstallConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UninstallPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UninstallPage.Designer.cs">
+      <DependentUpon>UninstallPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\InstallOptnsPage.cs">
       <SubType>UserControl</SubType>
     </Compile>

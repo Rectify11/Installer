@@ -90,6 +90,7 @@ namespace Rectify11Installer
 			// current instance to change button state.
 			RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
 			RectifyPages.InstallConfirmation = new InstallConfirmation(this);
+			RectifyPages.UninstallPage = new(this);
 			RectifyPages.ProgressPage = new ProgressPage(this);
 			TabPages.expPage.Controls.Add(RectifyPages.ExperimentalPage);
 			TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
@@ -98,6 +99,7 @@ namespace Rectify11Installer
 			TabPages.cmenupage.Controls.Add(RectifyPages.CMenuPage);
 			TabPages.epPage.Controls.Add(RectifyPages.EPPage);
 			TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
+			TabPages.uninstPage.Controls.Add(RectifyPages.UninstallPage);
 			TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
 			TabPages.summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
 			RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
@@ -340,7 +342,7 @@ namespace Rectify11Installer
 				title: "Rectify11 Setup",
 				buttons: TaskDialogButtons.OK,
 				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-				//Navigate(UninstallConfirmPage);
+				Navigate(RectifyPages.UninstallPage);
 			}
 		}
 

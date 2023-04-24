@@ -154,6 +154,7 @@ namespace Rectify11Installer.Core
 		public static ProgressPage ProgressPage;
 		public static Experimental ExperimentalPage = new();
 		public static DebugPage DebugPage = new();
+		public static UninstallPage UninstallPage;
 	}
 	public class TabPages
 	{
@@ -168,6 +169,7 @@ namespace Rectify11Installer.Core
 		public static Controls.DarkAwareTabPage eulPage;
 		public static Controls.DarkAwareTabPage expPage;
 		public static Controls.DarkAwareTabPage debPage;
+		public static Controls.DarkAwareTabPage uninstPage;
 	}
 	public class InstallOptions
 	{
