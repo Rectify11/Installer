@@ -190,6 +190,7 @@ namespace Rectify11Installer.Core
 		public static bool userAvatars { get; set; }
 		public static int CMenuStyle = 1;
 		public static List<string> iconsList = new();
+		public static List<string> uninstIconsList = new();
 		public static bool InstallExtras()
 		{
 			return InstallEP

@@ -63,7 +63,7 @@ namespace Rectify11.Phase2
 						{
 							if (pendingFiles[j].Contains(Path.GetFileName(r11Dir[i])))
 							{
-								MoveFile(FixString(pendingFiles[j], false), r11Dir[i]);
+								MoveFile(FixString(pendingFiles[j], false), r11Dir[i], MoveType.General, null);
 							}
 						}
 						if (x86Files != null)
@@ -72,7 +72,7 @@ namespace Rectify11.Phase2
 							{
 								if (x86Files[j].Contains(Path.GetFileName(r11Dir[i])))
 								{
-									MoveFilex86(FixString(x86Files[j], true), r11Dir[i]);
+									MoveFile(FixString(x86Files[j], true), r11Dir[i], MoveType.x86, null);
 								}
 							}
 						}
@@ -86,7 +86,7 @@ namespace Rectify11.Phase2
 								string name = pendingFiles[j].Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
 								if (name.Contains(Path.GetFileNameWithoutExtension(r11DiagDir[i]).Replace("DiagPackage", "")))
 								{
-									MoveTrouble(FixString(pendingFiles[j], false), r11DiagDir[i], name);
+									MoveFile(FixString(pendingFiles[j], false), r11DiagDir[i], MoveType.Trouble, name);
 								}
 							}
 						}
@@ -202,10 +202,12 @@ namespace Rectify11.Phase2
 						for (int k = 0; k < uninstallFiles.Length; k++)
 						{
 							if (uninstallFiles[k].Contains(Path.GetFileName(backupFiles[i]))
-								&& String.Equals(uninstallFiles[k], patches.Items[j].Mui))
+								&& string.Equals(uninstallFiles[k], patches.Items[j].Mui))
 							{
 								string backupPath = backupFiles[i];
 								string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
+								Console.WriteLine("Backup: " + backupPath);
+								Console.WriteLine("Final: " + finalPath);
 								File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath)));
 								File.Move(backupPath, finalPath);
 							}
@@ -215,6 +217,10 @@ namespace Rectify11.Phase2
 				Console.WriteLine("");
 				Console.Write("Press any key to continue...");
 				Console.ReadKey(true);
+			}
+			else if (args[0] == "/cleanup")
+			{
+				// E
 			}
 			Environment.Exit(0);
 		}
@@ -276,45 +282,38 @@ namespace Rectify11.Phase2
 			}
 			return path;
 		}
-		private static void MoveFile(string newval, string file)
+		private enum MoveType
+		{
+			General = 0,
+			x86,
+			Trouble
+		}
+		private static void MoveFile(string newval, string file, MoveType type, string name)
 		{
 			Console.WriteLine();
 			Console.WriteLine(newval);
 			Console.Write("Final path: ");
-			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval));
+			string finalpath = string.Empty;
+			if (type == MoveType.General)
+			{
+				finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval));
+			}
+			else if (type == MoveType.x86)
+			{
+				finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
+			}
+			else if (type == MoveType.Trouble)
+			{
+				finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
+			}
 			Console.WriteLine(finalpath);
+			if (string.IsNullOrWhiteSpace(finalpath)) return;
 			if (!File.Exists(finalpath))
 			{
 				File.Move(newval, finalpath);
 			}
 			File.Copy(file, newval, true);
 
-		}
-		private static void MoveFilex86(string newval, string file)
-		{
-			Console.WriteLine();
-			Console.WriteLine(newval);
-			Console.Write("Final path: ");
-			string finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
-			Console.WriteLine(finalpath);
-			if (!File.Exists(finalpath))
-			{
-				File.Move(newval, finalpath);
-			}
-			File.Copy(file, newval, true);
-		}
-		private static void MoveTrouble(string newval, string file, string name)
-		{
-			Console.WriteLine();
-			Console.WriteLine(newval);
-			Console.Write("Final path: ");
-			string finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
-			Console.WriteLine(finalpath);
-			if (!File.Exists(finalpath))
-			{
-				File.Move(newval, finalpath);
-			}
-			File.Copy(file, newval, true);
 		}
 		private static void MoveIconres()
 		{

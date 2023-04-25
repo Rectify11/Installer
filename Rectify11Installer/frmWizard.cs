@@ -337,11 +337,13 @@ namespace Rectify11Installer
 		{
 			if (Helper.CheckIfUpdatesPending())
 			{
+				/*
 				TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can run sfc /scannow to revert icon changes.",
 				instruction: "Incomplete Software",
 				title: "Rectify11 Setup",
 				buttons: TaskDialogButtons.OK,
 				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+				*/
 				Navigate(RectifyPages.UninstallPage);
 			}
 		}

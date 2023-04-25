@@ -25,15 +25,15 @@ namespace Rectify11Installer.Pages
 			//NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
 		}
 
+		/*
 		private void NavigationHelper_OnNavigate(object sender, EventArgs e)
 		{
-			/*
 			if ((WizardPage)sender == RectifyPages.InstallOptnsPage)
 			{
 				_frmWizard.nextButton.Enabled = Variables.IsItemsSelected;
 			}
-			*/
 		}
+		*/
 
 		void Application_Idle(object sender, System.EventArgs e)
 		{
@@ -142,12 +142,12 @@ namespace Rectify11Installer.Pages
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
 						{
-							InstallOptions.iconsList.Add(x.Text);
+							InstallOptions.uninstIconsList.Add(x.Text);
 							Variables.InstallIcons = true;
 						}
 						else
 						{
-							InstallOptions.iconsList.Remove(x.Text);
+							InstallOptions.uninstIconsList.Remove(x.Text);
 							Variables.InstallIcons = false;
 						}
 					});
@@ -159,12 +159,12 @@ namespace Rectify11Installer.Pages
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked && (x.Name != "basicNode") && (x.Name != "advancedNode"))
 						{
-							InstallOptions.iconsList.Add(x.Text);
+							InstallOptions.uninstIconsList.Add(x.Text);
 							Variables.InstallIcons = true;
 						}
 						else if ((x.Name != "basicNode") && (x.Name != "advancedNode"))
 						{
-							InstallOptions.iconsList.Remove(x.Text);
+							InstallOptions.uninstIconsList.Remove(x.Text);
 							Variables.InstallIcons = false;
 						}
 					});
@@ -176,12 +176,12 @@ namespace Rectify11Installer.Pages
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
 						{
-							InstallOptions.iconsList.Add(x.Text);
+							InstallOptions.uninstIconsList.Add(x.Text);
 							Variables.InstallIcons = true;
 						}
 						else
 						{
-							InstallOptions.iconsList.Remove(x.Text);
+							InstallOptions.uninstIconsList.Remove(x.Text);
 							Variables.InstallIcons = false;
 						}
 					});
@@ -193,11 +193,11 @@ namespace Rectify11Installer.Pages
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
 						{
-							InstallOptions.iconsList.Add(x.Name);
+							InstallOptions.uninstIconsList.Add(x.Name);
 						}
 						else
 						{
-							InstallOptions.iconsList.Remove(x.Name);
+							InstallOptions.uninstIconsList.Remove(x.Name);
 						}
 					});
 				}
@@ -208,16 +208,16 @@ namespace Rectify11Installer.Pages
 					{
 						if (x.Name == "extraNode")
 						{
-							InstallOptions.iconsList.Add(e.Node.Name);
+							InstallOptions.uninstIconsList.Add(e.Node.Name);
 						}
 						else if (x.Name == "basicNode")
 						{
-							InstallOptions.iconsList.Add(e.Node.Text);
+							InstallOptions.uninstIconsList.Add(e.Node.Text);
 							Variables.InstallIcons = true;
 						}
 						else if (x.Name == "advancedNode")
 						{
-							InstallOptions.iconsList.Add(e.Node.Text);
+							InstallOptions.uninstIconsList.Add(e.Node.Text);
 							Variables.InstallIcons = true;
 						}
 					}
@@ -225,16 +225,16 @@ namespace Rectify11Installer.Pages
 					{
 						if (x.Name == "extraNode")
 						{
-							InstallOptions.iconsList.Remove(e.Node.Name);
+							InstallOptions.uninstIconsList.Remove(e.Node.Name);
 						}
 						else if (x.Name == "basicNode")
 						{
-							InstallOptions.iconsList.Remove(e.Node.Text);
+							InstallOptions.uninstIconsList.Remove(e.Node.Text);
 							Variables.InstallIcons = false;
 						}
 						else if (x.Name == "advancedNode")
 						{
-							InstallOptions.iconsList.Remove(e.Node.Text);
+							InstallOptions.uninstIconsList.Remove(e.Node.Text);
 							Variables.InstallIcons = false;
 						}
 					}
@@ -243,20 +243,20 @@ namespace Rectify11Installer.Pages
 				{
 					if (e.Node.Checked)
 					{
-						InstallOptions.iconsList.Add(e.Node.Name);
+						InstallOptions.uninstIconsList.Add(e.Node.Name);
 					}
 					else
 					{
-						InstallOptions.iconsList.Remove(e.Node.Name);
+						InstallOptions.uninstIconsList.Remove(e.Node.Name);
 					}
 				}
-				if ((!_frmWizard.nextButton.Enabled) && (InstallOptions.iconsList.Count > 0))
+				if ((!_frmWizard.nextButton.Enabled) && (InstallOptions.uninstIconsList.Count > 0))
 				{
 					_frmWizard.nextButton.Enabled = true;
 					Variables.IsItemsSelected = true;
 
 				}
-				else if (InstallOptions.iconsList.Count == 0)
+				else if (InstallOptions.uninstIconsList.Count == 0)
 				{
 					_frmWizard.nextButton.Enabled = false;
 					Variables.IsItemsSelected = false;
