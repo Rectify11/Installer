@@ -213,7 +213,8 @@ namespace Rectify11.Phase2
 							}
 							if (!string.IsNullOrWhiteSpace(patches.Items[j].x86))
 							{
-								if (Path.GetFileName(backupFiles[i]).Contains(Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui)))
+								if (Path.GetFileName(backupFiles[i]).Contains(Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui))
+									&& uninstallFiles[k].Contains(patches.Items[j].Mui))
 								{
 									Console.WriteLine("\n==x86==");
 									string backupPath = backupFiles[i];
