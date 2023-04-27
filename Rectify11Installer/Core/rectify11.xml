@@ -156,6 +156,7 @@
 	<Patch Mui="cmmon32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmmon32.exe" />
 	<Patch Mui="cmstp.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\cmstp.exe" />
 	<Patch Mui="colorcpl.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\colorcpl.exe" />
+	<Patch Mui="comdlg32.dll.mui" mask="DIALOG," HardlinkTarget="%en-US%\comdlg32.dll.mui" />
 	<Patch Mui="ComputerDefaults.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ComputerDefaults.exe" />
 	<Patch Mui="conhost.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\conhost.exe" />
 	<Patch Mui="control.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\control.exe" />
@@ -205,6 +206,7 @@
 	<Patch Mui="Fondue.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\Fondue.exe" />
 	<Patch Mui="fontext.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\fontext.dll" />
 	<Patch Mui="fontview.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\fontview.exe" />
+	<Patch Mui="fsquirt.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\fsquirt.exe" />
 	<Patch Mui="fvecpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\fvecpl.dll" />
 	<Patch Mui="fvenotify.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\fvenotify.exe" />
 	<Patch Mui="fveprompt.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\fveprompt.exe" />
