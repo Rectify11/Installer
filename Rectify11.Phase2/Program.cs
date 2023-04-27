@@ -194,22 +194,26 @@ namespace Rectify11.Phase2
 					uninstallFiles = (string[])r11Reg.GetValue("UninstallFiles");
 
 				if (uninstallFiles == null) return;
-
-				for (int i = 0; i < backupFiles.Length; i++)
+				string lastfile = "";
+				for (int k = 0; k < uninstallFiles.Length; k++)
 				{
 					for (int j = 0; j < patches.Items.Length; j++)
 					{
-						for (int k = 0; k < uninstallFiles.Length; k++)
+						for (int i = 0; i < backupFiles.Length; i++)
 						{
-							if (uninstallFiles[k].Contains(Path.GetFileName(backupFiles[i]))
+							if (backupFiles[i].Contains(uninstallFiles[k])
 								&& string.Equals(uninstallFiles[k], patches.Items[j].Mui))
 							{
-								string backupPath = backupFiles[i];
-								string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
-								Console.WriteLine("Backup: " + backupPath);
-								Console.WriteLine("Final: " + finalPath);
-								File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath)));
-								File.Move(backupPath, finalPath);
+								if (lastfile != uninstallFiles[k])
+								{
+									string backupPath = backupFiles[i];
+									string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
+									Console.WriteLine("Backup: " + backupPath);
+									Console.WriteLine("Final: " + finalPath);
+									File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath)));
+									File.Move(backupPath, finalPath);
+									lastfile = uninstallFiles[k];
+								}
 							}
 							if (!string.IsNullOrWhiteSpace(patches.Items[j].x86))
 							{

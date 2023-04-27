@@ -72,25 +72,25 @@ namespace Rectify11Installer.Pages
 					{
 						var newpath = patch[i].HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
 						if (File.Exists(newpath))
-							advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
+							advNode.Nodes.Add(patch[i].Mui);
 					}
 					else if (patch[i].HardlinkTarget.Contains("%en-US%"))
 					{
 						var newpath = patch[i].HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
 						if (File.Exists(newpath))
-							advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
+							advNode.Nodes.Add(patch[i].Mui);
 					}
 					else if (patch[i].HardlinkTarget.Contains("%windirEn-US%"))
 					{
 						var newpath = patch[i].HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.Windir, "en-US"));
 						if (File.Exists(newpath))
-							advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
+							advNode.Nodes.Add(patch[i].Mui);
 					}
 					else if (patch[i].HardlinkTarget.Contains("%windirLang%"))
 					{
 						var newpath = patch[i].HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.Windir, CultureInfo.CurrentUICulture.Name));
 						if (File.Exists(newpath))
-							advNode.Nodes.Add(patch[i].Mui.Replace(".mui", ""));
+							advNode.Nodes.Add(patch[i].Mui);
 					}
 					else if (patch[i].Mui.Contains("mun"))
 					{
