@@ -220,7 +220,7 @@ namespace Rectify11.Phase2
 									string finalPath = FixString(patches.Items[j].HardlinkTarget, true);
 									Console.WriteLine("Backup: " + backupPath);
 									Console.WriteLine("Final: " + finalPath);
-									File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath)));
+									File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui)));
 									File.Move(backupPath, finalPath);
 								}
 							}
@@ -234,6 +234,23 @@ namespace Rectify11.Phase2
 			else if (args[0] == "/cleanup")
 			{
 				// E
+				var r11Reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).OpenSubKey("Rectify11", false);
+				if (r11Reg != null)
+					uninstallFiles = (string[])r11Reg.GetValue("UninstallFiles");
+
+				if (uninstallFiles == null) return;
+
+				var tmpFiles = Directory.GetFiles(Path.GetTempPath(), "*", SearchOption.TopDirectoryOnly);
+				for (int i = 0; i < tmpFiles.Length; i++)
+				{
+					for (int j = 0; j < uninstallFiles.Length; j++)
+					{
+						if (tmpFiles[i].Contains(uninstallFiles[j]))
+						{
+							File.Delete(tmpFiles[i]);
+						}
+					}
+				}
 			}
 			Environment.Exit(0);
 		}
