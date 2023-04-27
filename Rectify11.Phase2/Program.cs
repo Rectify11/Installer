@@ -211,6 +211,19 @@ namespace Rectify11.Phase2
 								File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath)));
 								File.Move(backupPath, finalPath);
 							}
+							if (!string.IsNullOrWhiteSpace(patches.Items[j].x86))
+							{
+								if (Path.GetFileName(backupFiles[i]).Contains(Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui)))
+								{
+									Console.WriteLine("\n==x86==");
+									string backupPath = backupFiles[i];
+									string finalPath = FixString(patches.Items[j].HardlinkTarget, true);
+									Console.WriteLine("Backup: " + backupPath);
+									Console.WriteLine("Final: " + finalPath);
+									File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath)));
+									File.Move(backupPath, finalPath);
+								}
+							}
 						}
 					}
 				}
