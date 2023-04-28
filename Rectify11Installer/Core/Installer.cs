@@ -624,6 +624,10 @@ namespace Rectify11Installer.Core
 			{
 				File.Move(Path.Combine(Variables.r11Folder, "extras", "r11Sounds.exe"), Path.Combine(Variables.sys32Folder, "r11Sounds.exe"));
 			}
+			if (!Directory.Exists(Path.Combine(Variables.Windir, "Media", "dm")))
+			{
+				Directory.CreateDirectory(Path.Combine(Variables.Windir, "Media", "dm"));
+			}
 			ProcessStartInfo sndInfo = new()
 			{
 				FileName = Path.Combine(Variables.sys32Folder, "sc.exe"),
