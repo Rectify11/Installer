@@ -620,15 +620,15 @@ namespace Rectify11Installer.Core
 		/// </summary>
         private void InstallSounds()
         {
-			if (!File.Exists(Path.Combine(Variables.sys32Folder, "ClassicSoundsService.exe")))
+			if (!File.Exists(Path.Combine(Variables.Windir, "Media", "ClassicSoundsService.exe")))
 			{
-				File.Move(Path.Combine(Variables.r11Folder, "extras", "ClassicSoundsService.exe"), Path.Combine(Variables.sys32Folder, "ClassicSoundsService.exe"));
+				File.Move(Path.Combine(Variables.r11Folder, "extras", "ClassicSoundsService.exe"), Path.Combine(Variables.Windir, "media", "ClassicSoundsService.exe"));
 			}
 			if (!Directory.Exists(Path.Combine(Variables.Windir, "Media", "dm")))
 			{
 				Directory.CreateDirectory(Path.Combine(Variables.Windir, "Media", "dm"));
 			}
-			Interaction.Shell(Path.Combine(Variables.sys32Folder, "ClassicSoundsService.exe") + " +", AppWinStyle.NormalFocus, true);
+			Interaction.Shell(Path.Combine(Variables.Windir, "Media", "ClassicSoundsService.exe") + " +", AppWinStyle.NormalFocus, true);
 			DirectoryInfo sndir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "Media"));
 			DirectoryInfo snDMdir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "Media", "dm"));
 			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun2.exe"), Properties.Resources.AdvancedRun);
