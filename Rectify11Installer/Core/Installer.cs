@@ -632,6 +632,9 @@ namespace Rectify11Installer.Core
 			DirectoryInfo sndir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "Media"));
 			DirectoryInfo snDMdir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "Media", "dm"));
 			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun2.exe"), Properties.Resources.AdvancedRun);
+
+			Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun2.exe") + " /EXEFilename " + '"' + 
+				Path.Combine(Variables.Windir, "Media", "ClassicSoundsService.exe") + '"' + " /CommandLine " + "\'" + " +" + "\'" + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
 			for (int i=0; i<sndir.GetFiles().Length; i++)
             {
 				Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun2.exe")
