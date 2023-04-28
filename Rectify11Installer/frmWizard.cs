@@ -322,6 +322,10 @@ namespace Rectify11Installer
 					Navigate(RectifyPages.InstallOptnsPage);
 				}
 			}
+			else if (navPane.SelectedTab == TabPages.uninstPage)
+			{
+				Navigate(RectifyPages.WelcomePage);
+			}
 		}
 
 		private void InstallButton_Click(object sender, EventArgs e)
