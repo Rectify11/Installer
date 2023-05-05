@@ -10,7 +10,7 @@ namespace Rectify11Installer.Core
 		private static List<Tuple<string, string>> options = new()
 		{
 			new("shellNode", "Enhanced context menus"),
-			new("gadgetsNode", "Rectified Gadgets"),
+			// new("gadgetsNode", "Rectified Gadgets"),
 			// new("winverNode", "WinverUWP"),
 			// new("rectpadNode", "RectifyPad"),
 			// new("epNode", "ExplorerPatcher"), 
