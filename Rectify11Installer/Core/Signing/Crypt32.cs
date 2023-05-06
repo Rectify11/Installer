@@ -150,7 +150,7 @@ namespace Rectify11Installer.Core.Signing
         #region Dll imports
         [DllImport("CRYPT32.DLL", EntryPoint = "CertGetCertificateContextProperty", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CertGetCertificateContextProperty([In] CERT_CONTEXT* pCertContext, [In] Int32 dwPropId, [Out] IntPtr pvData, [In, Out] ref Int32 pcbData);
+        public static extern bool CertGetCertificateContextProperty([In] CERT_CONTEXT* pCertContext, [In] int dwPropId, [Out] void* pvData, [In, Out] ref int pcbData);
 
         [DllImport("CRYPT32.DLL", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]

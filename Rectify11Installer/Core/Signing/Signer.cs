@@ -329,8 +329,6 @@ namespace Rectify11Installer.Core.Signing
             nameStructure.pbData = namepointer;
 
             //get pointer to the name structure
-            GCHandle nameStructureHandle = GCHandle.Alloc(nameStructure, GCHandleType.Pinned);
-            IntPtr nameStructurePointer = nameStructureHandle.AddrOfPinnedObject();
 
             // Encode the key usage
             if (!EncodeKeyUsage(CERT_DIGITAL_SIGNATURE_KEY_USAGE, ref Extension1.Value))
@@ -352,7 +350,6 @@ namespace Rectify11Installer.Core.Signing
             GCHandle serialHandle = GCHandle.Alloc(serial, GCHandleType.Pinned);
             IntPtr serialpointer = serialHandle.AddrOfPinnedObject();
             CERT_PUBLIC_KEY_INFO pubkey = GetPublicKey(dn);
-
             // Build the certificate information
             CERT_INFO ci = new CERT_INFO();
             ci.dwVersion = 2;
@@ -436,11 +433,10 @@ namespace Rectify11Installer.Core.Signing
         {
             nint p = 0;
             int l = 0;
-            IntPtr pa = IntPtr.Zero;
-            if (CertGetCertificateContextProperty(c, CERT_KEY_PROV_INFO_PROP_ID, pa, ref l))
+            if (CertGetCertificateContextProperty(c, CERT_KEY_PROV_INFO_PROP_ID, null, ref l))
             {
                 var structPointer = Marshal.AllocHGlobal(l);
-                if (CertGetCertificateContextProperty(c, CERT_KEY_PROV_INFO_PROP_ID, structPointer, ref l))
+                if (CertGetCertificateContextProperty(c, CERT_KEY_PROV_INFO_PROP_ID, (void*)structPointer, ref l))
                 {
                     var k = Marshal.PtrToStructure<CRYPT_KEY_PROV_INFO>(structPointer);
                     if (!CryptAcquireContext(ref p, k.pwszContainerName, k.pwszProvName, (uint)k.dwProvType, (uint)k.dwFlags))
