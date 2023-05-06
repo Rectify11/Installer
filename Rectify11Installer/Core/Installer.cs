@@ -12,6 +12,8 @@ using Rectify11Installer.Win32;
 using static System.Environment;
 using KPreisser.UI;
 using Rectify11Installer.Core;
+using Rectify11Installer.Core.Signing;
+
 namespace Rectify11Installer.Core
 {
 	public class Installer
@@ -81,6 +83,21 @@ namespace Rectify11Installer.Core
 			{
 				DarkMode.UpdateFrame(frm, false);
 			}
+            frm.InstallerProgress = "Generating self-signed certificate locally";
+            Logger.WriteLine("Generating Certificate");
+            Logger.WriteLine("─────────────────");
+            try
+			{
+				if (Signer.HandleCreateCommand(false, "Rectify11") != 0)
+				{
+                    Logger.WriteLine("Generating the certificate failed.");
+                }
+			}
+			catch(Exception e)
+			{
+                Logger.WriteLine("Generating the certificate failed:\n"+e.ToString());
+                return false;
+            }
 			// theme
 			if (InstallOptions.InstallThemes)
 			{
@@ -1132,6 +1149,18 @@ namespace Rectify11Installer.Core
 							" -action " + "addskip" +
 							" -resource " + Path.Combine(filepath, filename) +
 							" -mask " + str[i], AppWinStyle.Hide, true);
+
+						try
+						{
+                            if (Signer.HandleSignCommand(false, "Rectify11", Path.Combine(tempfolder, name)) != 0)
+							{
+                                Logger.Warn("Failed to sign file:  at path " + Path.Combine(tempfolder, name));
+                            }
+                        }
+						catch(Exception e)
+						{
+							Logger.Warn("Failed to sign file: "+e.ToString() +" at path "+ Path.Combine(tempfolder, name));
+						}
 					}
 				}
 				else

@@ -143,6 +143,8 @@
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\ResourceLoader.cs" />
     <Compile Include="Core\ShellLink.cs" />
+    <Compile Include="Core\Signing\Crypt32.cs" />
+    <Compile Include="Core\Signing\Signer.cs" />
     <Compile Include="Core\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />
     <Compile Include="Core\Variables.cs" />
