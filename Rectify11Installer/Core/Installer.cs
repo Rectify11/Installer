@@ -19,6 +19,7 @@ namespace Rectify11Installer.Core
 	public class Installer
 	{
 		#region Variables
+		public const string CertName = "Rectify11";
 		private string newhardlink;
 		private enum PatchType
 		{
@@ -88,7 +89,7 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("─────────────────");
             try
 			{
-				if (Signer.HandleCreateCommand(false, "Rectify11") != 0)
+				if (Signer.HandleCreateCommand(true, CertName) != 0)
 				{
                     Logger.WriteLine("Generating the certificate failed.");
                 }
@@ -1180,7 +1181,7 @@ namespace Rectify11Installer.Core
 				//sign the file
                 try
                 {
-                    if (Signer.HandleSignCommand(false, "Rectify11", Path.Combine(tempfolder, name)) != 0)
+                    if (Signer.HandleSignCommand(true, CertName, Path.Combine(tempfolder, name)) != 0)
                     {
                         Logger.Warn("Failed to sign file at path " + Path.Combine(tempfolder, name));
                     }
