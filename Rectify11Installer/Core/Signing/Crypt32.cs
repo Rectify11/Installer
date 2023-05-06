@@ -11,7 +11,7 @@ namespace Rectify11Installer.Core.Signing
 {
     //Note: this code is a big mess. Use the HandleSignCommand and HandleCreateCommand to use.
     //The code is based off of signer.exe by Jeffrey Bush. https://www.coderforlife.com/projects/win7boot/extras/
-    public class Crypt32
+    public unsafe class Crypt32
     {
         private const int CERT_STORE_PROV_SYSTEM_W = 10;
         private const int CERT_SYSTEM_STORE_LOCAL_MACHINE = (2 << 16);
@@ -53,7 +53,7 @@ namespace Rectify11Installer.Core.Signing
         {
             return CertOpenStore(CERT_STORE_PROV_SYSTEM_W, 0, IntPtr.Zero, machine ? CERT_SYSTEM_STORE_LOCAL_MACHINE : CERT_SYSTEM_STORE_CURRENT_USER, name);
         }
-        public static bool HasPrivateKey(IntPtr cert)
+        public static bool HasPrivateKey(CERT_CONTEXT* cert)
         {
             return CryptFindCertificateKeyProvInfo(cert, CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG, IntPtr.Zero).ToInt64() > 0;
         }
@@ -150,11 +150,11 @@ namespace Rectify11Installer.Core.Signing
         #region Dll imports
         [DllImport("CRYPT32.DLL", EntryPoint = "CertGetCertificateContextProperty", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CertGetCertificateContextProperty([In] IntPtr pCertContext, [In] Int32 dwPropId, [Out] IntPtr pvData, [In, Out] ref Int32 pcbData);
+        public static extern bool CertGetCertificateContextProperty([In] CERT_CONTEXT* pCertContext, [In] Int32 dwPropId, [Out] IntPtr pvData, [In, Out] ref Int32 pcbData);
 
         [DllImport("CRYPT32.DLL", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CertDeleteCertificateFromStore([In] nint pCertContext);
+        public static extern bool CertDeleteCertificateFromStore([In] CERT_CONTEXT* pCertContext);
 
         [DllImport(@"Advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool CryptGenKey(
@@ -203,34 +203,34 @@ namespace Rectify11Installer.Core.Signing
                                                                             IntPtr pbEncoded,
                                                                             [In, Out] ref uint pcbEncoded);
         [DllImport("crypt32.dll")]
-        public static extern bool CertFreeCertificateContext(IntPtr pCertContext);
+        public static extern bool CertFreeCertificateContext(CERT_CONTEXT* pCertContext);
         [DllImport("CRYPT32.DLL", EntryPoint = "CertEnumCertificatesInStore", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr CertEnumCertificatesInStore(IntPtr storeProvider, IntPtr prevCertContext);
+        public static extern CERT_CONTEXT* CertEnumCertificatesInStore(IntPtr storeProvider, CERT_CONTEXT* prevCertContext);
         [DllImport("CRYPT32.DLL", EntryPoint = "CertOpenStore", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr CertOpenStore(int storeProvider, int encodingType, IntPtr hcryptProv, int flags, string pvPara);
         [DllImport("CRYPT32.DLL", EntryPoint = "CryptFindCertificateKeyProvInfo", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr CryptFindCertificateKeyProvInfo(IntPtr cert, int flags, IntPtr reserved);
+        public static extern IntPtr CryptFindCertificateKeyProvInfo(CERT_CONTEXT* cert, int flags, IntPtr reserved);
         [DllImport("CRYPT32.DLL", EntryPoint = "CryptFindCertificateKeyProvInfo", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr CryptFindCertificateKeyProvInfo(CERT_CONTEXT cert, int flags, IntPtr reserved);
         [DllImport("crypt32.dll", EntryPoint = "CertGetNameString", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr CertGetNameString(IntPtr CertContext, int lType, int lFlags, IntPtr pTypeParameter, StringBuilder str, uint cch);
+        public static extern IntPtr CertGetNameString(CERT_CONTEXT* CertContext, int lType, int lFlags, IntPtr pTypeParameter, StringBuilder str, uint cch);
         [DllImport("CRYPT32.DLL", EntryPoint = "CertAddEncodedCertificateToStore", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CertAddEncodedCertificateToStore(IntPtr certStore, int certEncodingType, byte[] certEncoded, int certEncodedLength, int addDisposition, ref IntPtr certContext);
+        public static extern bool CertAddEncodedCertificateToStore(IntPtr certStore, int certEncodingType, byte[] certEncoded, int certEncodedLength, int addDisposition, ref CERT_CONTEXT* certContext);
         [DllImport("crypt32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [ResourceExposure(ResourceScope.None)]
         internal protected extern static
        bool CertAddCertificateContextToStore(
            [In] IntPtr hCertStore,
-           [In] IntPtr pCertContext,
+           [In] CERT_CONTEXT* pCertContext,
            [In] uint dwAddDisposition,
-           [In, Out] ref IntPtr ppStoreContext);
+           [In, Out] ref CERT_CONTEXT* ppStoreContext);
         [DllImport("crypt32.dll", EntryPoint = "CertCloseStore", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool CertCloseStore(IntPtr CertContext);
         [DllImport("crypt32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [ResourceExposure(ResourceScope.None)]
         public extern static
-        IntPtr CertCreateSelfSignCertificate(
+        CERT_CONTEXT* CertCreateSelfSignCertificate(
             [In] IntPtr hProv,
             [In] IntPtr pSubjectIssuerBlob,
             [In] uint dwFlags,
@@ -461,7 +461,7 @@ namespace Rectify11Installer.Core.Signing
             public uint dwCertEncodingType;
             public IntPtr pbCertEncoded;
             public uint cbCertEncoded;
-            public IntPtr pCertInfo;
+            public CERT_INFO* pCertInfo;
             public IntPtr hCertStore;
         }
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
@@ -516,7 +516,7 @@ namespace Rectify11Installer.Core.Signing
         public struct SIGNER_CERT_STORE_INFO
         {
             public uint cbSize;
-            public IntPtr pSigningCert;
+            public CERT_CONTEXT* pSigningCert;
             public uint dwCertPolicy;
             public IntPtr hCertStore;
         }

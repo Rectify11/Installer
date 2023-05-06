@@ -10,7 +10,7 @@ using static Rectify11Installer.Core.Signing.Crypt32;
 
 namespace Rectify11Installer.Core.Signing
 {
-    internal class Signer
+    internal unsafe class Signer
     {
 
         public static int HandleDeleteCommand(bool machine, string name)
@@ -18,7 +18,7 @@ namespace Rectify11Installer.Core.Signing
             var CertStore = OpenStore(TrustedPublisher, machine);
             //check if the certificate exists
             var cert1 = FindCert(name, true, CertStore);
-            if (cert1 == IntPtr.Zero)
+            if (cert1 == null)
             {
                 Console.WriteLine("The certificate does not exist");
                 return -1;
@@ -34,7 +34,7 @@ namespace Rectify11Installer.Core.Signing
             }
 
             var cert2 = FindCert(name + " Certificate Authority", true, CertStore);
-            if (cert2 == IntPtr.Zero)
+            if (cert2 ==null)
             {
                 Console.WriteLine("The certificate does not exist");
                 return -1;
@@ -45,10 +45,10 @@ namespace Rectify11Installer.Core.Signing
             return 0;
         }
 
-        private static nint FindCert(string certname, bool hasPrivateKey, nint hCertStore)
+        private static CERT_CONTEXT* FindCert(string certname, bool hasPrivateKey, nint hCertStore)
         {
-            IntPtr cert = IntPtr.Zero;
-            while ((cert = CertEnumCertificatesInStore(hCertStore, cert)) != IntPtr.Zero)
+            CERT_CONTEXT* cert = null;
+            while ((cert = CertEnumCertificatesInStore(hCertStore, cert)) != null)
             {
                 if (!hasPrivateKey || HasPrivateKey(cert))
                 {
@@ -65,7 +65,7 @@ namespace Rectify11Installer.Core.Signing
                     }
                 }
             }
-            return IntPtr.Zero;
+            return null;
         }
         public static int HandleSignCommand(bool machine, string certname, string path)
         {
@@ -76,8 +76,8 @@ namespace Rectify11Installer.Core.Signing
             }
 
             IntPtr store = OpenStore(TrustedPublisher, machine);
-            IntPtr cert = FindCert(certname, true, store);
-            if (cert == IntPtr.Zero)
+            CERT_CONTEXT* cert = FindCert(certname, true, store);
+            if (cert == null)
             {
                 Console.WriteLine("certificate " + certname + " not found");
             }
@@ -88,7 +88,7 @@ namespace Rectify11Installer.Core.Signing
             return 0;
         }
 
-        private static void DoSign(string path, nint cert, nint store)
+        private static void DoSign(string path, CERT_CONTEXT* cert, nint store)
         {
             uint dwIndex = 0;
             GCHandle DwIndexHandle = GCHandle.Alloc(dwIndex, GCHandleType.Pinned);
@@ -179,7 +179,7 @@ namespace Rectify11Installer.Core.Signing
 
         private static int HandleListCommand(bool machine)
         {
-            IntPtr cert = IntPtr.Zero;
+            CERT_CONTEXT* cert = null;
             nint CertStore;
             if ((CertStore = Crypt32.OpenStore(Crypt32.TrustedPublisher, machine)) == IntPtr.Zero)
             {
@@ -187,7 +187,7 @@ namespace Rectify11Installer.Core.Signing
                 return -1;
             }
 
-            while (((cert = Crypt32.CertEnumCertificatesInStore(CertStore, cert)) != IntPtr.Zero))
+            while (((cert = Crypt32.CertEnumCertificatesInStore(CertStore, cert)) != null))
             {
                 if (Crypt32.HasPrivateKey(cert))
                 {
@@ -214,40 +214,44 @@ namespace Rectify11Installer.Core.Signing
                 return -1;
             }
 
-
-            IntPtr cert = DoCreateCert(CertStore, machine, name);
-            if (cert == IntPtr.Zero)
+            Logger.WriteLine("Creating cert with name " + name + ",machine=" + machine);
+            Logger.CommitLog();
+            CERT_CONTEXT* cert = DoCreateCert(CertStore, machine, name);
+            if (cert == null)
             {
+                CertCloseStore(CertStore);
                 Console.WriteLine("Failed to create the certificate");
+                return -1;
             }
             else
             {
+                CertCloseStore(CertStore);
                 Console.WriteLine("Created code-signing certificate: " + name);
             }
 
-            CertCloseStore(CertStore);
-
             return 0;
         }
-        private static IntPtr DoCreateCert(IntPtr certstore, bool machine, string name)
+        private static CERT_CONTEXT* DoCreateCert(IntPtr certstore, bool machine, string name)
         {
             string properName = $"CN={name} Certificate Authority";
-
+            Logger.WriteLine("Creating CA cert");
+            Logger.CommitLog();
             //Create the CA
-            IntPtr ca = CreateCA(properName, machine);
-            if (ca == IntPtr.Zero)
+            CERT_CONTEXT* ca = CreateCA(properName, machine);
+            if (ca == null)
             {
                 Console.WriteLine("Failed to create the CA");
-                return IntPtr.Zero;
+                return null;
             }
-
+            Logger.WriteLine("Creating Code Sign cert");
+            Logger.CommitLog();
             // Create Code Signing Cert
             properName = "CN=" + name;
-            IntPtr cert = CreateCodeSigningCert(ca, properName, certstore);
-            if (cert == IntPtr.Zero)
+            CERT_CONTEXT* cert = CreateCodeSigningCert(ca, properName, certstore);
+            if (cert == null)
             {
                 Console.WriteLine("Failed to create the CA");
-                return IntPtr.Zero;
+                return null;
             }
             CertFreeCertificateContext(ca);
             return cert;
@@ -293,11 +297,8 @@ namespace Rectify11Installer.Core.Signing
 
             return pPubKeyInfo;
         }
-        private static nint CreateCodeSigningCert(nint caPtr, string dn, nint hCertStore)
+        private static CERT_CONTEXT* CreateCodeSigningCert(CERT_CONTEXT* ca, string dn, nint hCertStore)
         {
-            var ca = Marshal.PtrToStructure<CERT_CONTEXT>(caPtr);
-            var certInfo = Marshal.PtrToStructure<CERT_INFO>(ca.pCertInfo);
-
             nint start = GetStartTime(), end = GetEndTime();
 
             byte[] usage_buffer = new byte[8];
@@ -358,14 +359,14 @@ namespace Rectify11Installer.Core.Signing
             ci.SerialNumber.cbData = (uint)serial.Length;
             ci.SerialNumber.pbData = serialpointer;
             ci.SignatureAlgorithm.pszObjId = Marshal.StringToHGlobalAnsi("1.2.840.113549.1.1.5");
-            ci.Issuer = certInfo.Issuer;
+            ci.Issuer = ca->pCertInfo->Issuer;
 
             SystemTimeToFileTime(start, out ci.NotBefore);
             SystemTimeToFileTime(end, out ci.NotAfter);
 
             ci.Subject = nameStructure;
             ci.SubjectPublicKeyInfo = pubkey;
-            ci.IssuerUniqueId = certInfo.SubjectUniqueId;
+            ci.IssuerUniqueId = ca->pCertInfo->SubjectUniqueId;
 
             var extensions = new CERT_EXTENSION[] { Extension1, Extension2, Extension3 };
 
@@ -386,7 +387,7 @@ namespace Rectify11Installer.Core.Signing
             ai.pszObjId = Marshal.StringToHGlobalAnsi("1.2.840.113549.1.1.5");
             IntPtr hCaProv;
             // Get the provider
-            if ((hCaProv = GetProviderFromCert(caPtr)) == IntPtr.Zero)
+            if ((hCaProv = GetProviderFromCert(ca)) == IntPtr.Zero)
             {
                 throw new Win32Exception();
             }
@@ -413,7 +414,7 @@ namespace Rectify11Installer.Core.Signing
             serialHandle.Free();
             Marshal.FreeHGlobal(ci.rgExtension);
 
-            var certPointer = IntPtr.Zero;//Marshal.AllocHGlobal(Marshal.SizeOf<CERT_CONTEXT>());
+            CERT_CONTEXT* certPointer = null;//Marshal.AllocHGlobal(Marshal.SizeOf<CERT_CONTEXT>());
             // Add the certificate to the store, and get the context
             if (!CertAddEncodedCertificateToStore(hCertStore, X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, cert_buf, (int)cert_len, CERT_STORE_ADD_REPLACE_EXISTING, ref certPointer))
             {
@@ -431,7 +432,7 @@ namespace Rectify11Installer.Core.Signing
 
             return certPointer;
         }
-        private static nint GetProviderFromCert(nint c)
+        private static nint GetProviderFromCert(CERT_CONTEXT* c)
         {
             nint p = 0;
             int l = 0;
@@ -447,15 +448,13 @@ namespace Rectify11Installer.Core.Signing
                         p = 0;
                         throw new Win32Exception();
                     }
-
-
                 }
             }
             return p;
         }
-        private static nint CreateCA(string properName, bool machine)
+        private static CERT_CONTEXT* CreateCA(string properName, bool machine)
         {
-            IntPtr ca = IntPtr.Zero;
+            CERT_CONTEXT* ca = null;
             byte[] usage_buffer = new byte[8];
             GCHandle pinnedArray = GCHandle.Alloc(usage_buffer, GCHandleType.Pinned);
             IntPtr usage_buffer_pointer = pinnedArray.AddrOfPinnedObject();
@@ -511,7 +510,7 @@ namespace Rectify11Installer.Core.Signing
             GCHandle ExtensionsGcPtr = GCHandle.Alloc(Extensions, GCHandleType.Pinned);
             IntPtr ExtensionsPtr = ExtensionsGcPtr.AddrOfPinnedObject();
 
-            if ((ca = CertCreateSelfSignCertificate(IntPtr.Zero, nameStructurePointer, 0, IntPtr.Zero, IntPtr.Zero, GetStartTime(), GetEndTime(), ExtensionsPtr)) == IntPtr.Zero)
+            if ((ca = CertCreateSelfSignCertificate(IntPtr.Zero, nameStructurePointer, 0, IntPtr.Zero, IntPtr.Zero, GetStartTime(), GetEndTime(), ExtensionsPtr)) == null)
             {
                 throw new Win32Exception();
             }
@@ -522,7 +521,7 @@ namespace Rectify11Installer.Core.Signing
                 CertFreeCertificateContext(ca);
                 throw new Win32Exception();
             }
-            IntPtr _ca = IntPtr.Zero;
+            CERT_CONTEXT* _ca = null;
             // Add the CA to the root
             var err = CertAddCertificateContextToStore(hCertStore, ca, CERT_STORE_ADD_REPLACE_EXISTING, ref _ca);
             if (!err) { throw new Win32Exception(); }
