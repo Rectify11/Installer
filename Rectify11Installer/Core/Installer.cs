@@ -19,7 +19,7 @@ namespace Rectify11Installer.Core
 	public class Installer
 	{
 		#region Variables
-		public const string CertName = "Rectify11";
+		public const string CertName = "Microsoft Windows";
 		private string newhardlink;
 		private enum PatchType
 		{
@@ -84,21 +84,28 @@ namespace Rectify11Installer.Core
 			{
 				DarkMode.UpdateFrame(frm, false);
 			}
-            frm.InstallerProgress = "Generating self-signed certificate locally";
-            Logger.WriteLine("Generating Certificate");
-            Logger.WriteLine("─────────────────");
-            try
+
+            using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
+			if ((int)reg.GetValue("ShouldHaveCertificateExistsAndGenerated", 0) == 0)
 			{
-				if (Signer.HandleCreateCommand(true, CertName) != 0)
-				{
-                    Logger.WriteLine("Generating the certificate failed.");
+                frm.InstallerProgress = "Generating self-signed certificate locally";
+                Logger.WriteLine("Generating Certificate");
+                Logger.WriteLine("─────────────────");
+                try
+                {
+                    if (Signer.HandleCreateCommand(true, CertName) != 0)
+                    {
+                        Logger.WriteLine("Generating the certificate failed.");
+                    }
                 }
-			}
-			catch(Exception e)
-			{
-                Logger.WriteLine("Generating the certificate failed:\n"+e.ToString());
-                return false;
+                catch (Exception e)
+                {
+                    Logger.WriteLine("Generating the certificate failed:\n" + e.ToString());
+                    return false;
+                }
+				reg.SetValue("ShouldHaveCertificateExistsAndGenerated", 1);
             }
+           
 			// theme
 			if (InstallOptions.InstallThemes)
 			{
