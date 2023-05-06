@@ -1149,18 +1149,6 @@ namespace Rectify11Installer.Core
 							" -action " + "addskip" +
 							" -resource " + Path.Combine(filepath, filename) +
 							" -mask " + str[i], AppWinStyle.Hide, true);
-
-						try
-						{
-                            if (Signer.HandleSignCommand(false, "Rectify11", Path.Combine(tempfolder, name)) != 0)
-							{
-                                Logger.Warn("Failed to sign file:  at path " + Path.Combine(tempfolder, name));
-                            }
-                        }
-						catch(Exception e)
-						{
-							Logger.Warn("Failed to sign file: "+e.ToString() +" at path "+ Path.Combine(tempfolder, name));
-						}
 					}
 				}
 				else
@@ -1188,7 +1176,20 @@ namespace Rectify11Installer.Core
 							" -resource " + Path.Combine(filepath, filename) +
 							" -mask " + masks, AppWinStyle.Hide, true);
 				}
-				return true;
+
+				//sign the file
+                try
+                {
+                    if (Signer.HandleSignCommand(false, "Rectify11", Path.Combine(tempfolder, name)) != 0)
+                    {
+                        Logger.Warn("Failed to sign file at path " + Path.Combine(tempfolder, name));
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logger.Warn("Failed to sign file at path " + Path.Combine(tempfolder, name) + "\n" + e.ToString());
+                }
+                return true;
 			}
 			return false;
 		}
