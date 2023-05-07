@@ -265,7 +265,7 @@ namespace Rectify11Installer.Core.Signing
         {
             IntPtr hUserProv = IntPtr.Zero;
             IntPtr hUserKey = IntPtr.Zero;
-            CERT_PUBLIC_KEY_INFO pPubKeyInfo = new CERT_PUBLIC_KEY_INFO();
+            CERT_PUBLIC_KEY_INFO pPubKeyInfo;
             uint cbEncodedPubKey = 0;
             bool err;
             if (!CryptAcquireContext(ref hUserProv, dn, MS_ENHANCED_PROV, PROV_RSA_FULL, CRYPT_NEWKEYSET) && (-2146893809 != Marshal.GetLastWin32Error() || !CryptAcquireContext(ref hUserProv, dn, MS_ENHANCED_PROV, PROV_RSA_FULL, 0)))
@@ -422,7 +422,7 @@ namespace Rectify11Installer.Core.Signing
                                 throw new Exception("WARNING: PRIVATE KEY DOES NOT EXIST");
                             }
 
-
+                            nameHandle.Free();
                             return certPointer;
                         }
                     }
@@ -487,7 +487,7 @@ namespace Rectify11Installer.Core.Signing
                     //Populate the CERT_Extensions structure
                     CERT_EXTENSIONS Extensions = new CERT_EXTENSIONS();
                     Extensions.cExtension = 2;
-                    var size = Marshal.SizeOf(typeof(CERT_EXTENSION)) * 3;
+                    var size = Marshal.SizeOf(typeof(CERT_EXTENSION)) * 2;
                     Extensions.rgExtension = Marshal.AllocHGlobal(size);
 
                     var extensions = new CERT_EXTENSION[] { Extension1, Extension2 };
@@ -505,7 +505,7 @@ namespace Rectify11Installer.Core.Signing
                     GCHandle ExtensionsGcPtr = GCHandle.Alloc(Extensions, GCHandleType.Pinned);
                     IntPtr ExtensionsPtr = ExtensionsGcPtr.AddrOfPinnedObject();
 
-                    if ((ca = CertCreateSelfSignCertificate(IntPtr.Zero, nameStructurePointer, 0, IntPtr.Zero, IntPtr.Zero, GetStartTime(), GetEndTime(), ExtensionsPtr)) == null)
+                    if ((ca = CertCreateSelfSignCertificate(IntPtr.Zero, nameStructurePointer, 0, IntPtr.Zero, IntPtr.Zero, GetStartTime(), GetEndTime(), &Extensions)) == null)
                     {
                         throw new Win32Exception();
                     }

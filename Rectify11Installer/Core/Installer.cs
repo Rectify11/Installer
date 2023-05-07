@@ -86,7 +86,11 @@ namespace Rectify11Installer.Core
             }
 
             frm.InstallerProgress = "Generating self-signed certificate locally";
-            GenerateCertificate();
+            if(!GenerateCertificate())
+            {
+                Logger.Warn("GenerateCertificate() failed");
+                return false;
+            }
 
             // theme
             if (InstallOptions.InstallThemes)
@@ -410,6 +414,7 @@ namespace Rectify11Installer.Core
                     if (Signer.HandleCreateCommand(true, CertName) != 0)
                     {
                         Logger.WriteLine("Generating the certificate failed.");
+                        return false;
                     }
                 }
                 catch (Exception e)

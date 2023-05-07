@@ -241,7 +241,7 @@ namespace Rectify11Installer.Core.Signing
             [In] IntPtr pSignatureAlgorithm,
             [In] IntPtr pStartTime,
             [In] IntPtr pEndTime,
-            [In] IntPtr pExtensions);
+            [In] CERT_EXTENSIONS* pExtensions);
         [DllImport("crypt32.dll", SetLastError = true)]
         public static extern bool CertStrToName(
         uint dwCertEncodingType,
