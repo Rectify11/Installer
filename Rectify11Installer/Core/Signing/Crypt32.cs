@@ -118,13 +118,16 @@ namespace Rectify11Installer.Core.Signing
             if (CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_KEY_USAGE, ref usage, null, ref encoded.cbData))
             {
                 byte[] data = new byte[encoded.cbData];
-                var result = CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_KEY_USAGE, ref usage, data, ref encoded.cbData);
+                fixed(byte* dataptr = data)
+                {
+                    var result = CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_KEY_USAGE, ref usage, dataptr, ref encoded.cbData);
 
-                GCHandle pinnedArray3 = GCHandle.Alloc(data, GCHandleType.Pinned);
-                IntPtr pointer3 = pinnedArray3.AddrOfPinnedObject();
-
-                encoded.pbData = pointer3;
-                return result;
+                    fixed (byte* ptr = data)
+                    {
+                        encoded.pbData = ptr;
+                    }
+                    return result;
+                }
             }
             else
             {
@@ -197,10 +200,10 @@ namespace Rectify11Installer.Core.Signing
                                                                             uint dwKeySpec,
                                                                             uint dwCertEncodingType,
                                                                             int lpszStructType,
-                                                                            IntPtr pvStructInfo,
-                                                                            [In] IntPtr pSignatureAlgorithm,
+                                                                            CERT_INFO* pvStructInfo,
+                                                                            [In] CRYPT_ALGORITHM_IDENTIFIER* pSignatureAlgorithm,
                                                                             IntPtr pvHashAuxInfo,
-                                                                            IntPtr pbEncoded,
+                                                                            [Out] byte* pbEncoded,
                                                                             [In, Out] ref uint pcbEncoded);
         [DllImport("crypt32.dll")]
         public static extern bool CertFreeCertificateContext(CERT_CONTEXT* pCertContext);
@@ -253,21 +256,21 @@ namespace Rectify11Installer.Core.Signing
         uint dwCertEncodingType,
         string lpszStructType,
         ref CRYPT_BIT_BLOB pvStructInfo,
-       [Out] Byte[] pbEncoded,
+       [Out] byte* pbEncoded,
         ref uint pcbEncoded);
         [DllImport("crypt32.dll", SetLastError = true, CharSet = CharSet.Ansi)]
         internal static extern bool CryptEncodeObject(
        uint dwCertEncodingType,
        int lpszStructType,
        ref CERT_ENHKEY_USAGE pvStructInfo,
-       IntPtr pbEncoded,
+       byte* pbEncoded,
        ref uint pcbEncoded);
         [DllImport("crypt32.dll", SetLastError = true)]
         internal static extern bool CryptEncodeObject(
    uint dwCertEncodingType,
    string lpszStructType,
    ref CERT_BASIC_CONSTRAINTS_INFO pvStructInfo,
-  [Out] IntPtr pbEncoded,
+  [Out] byte* pbEncoded,
    ref uint pcbEncoded);
         [DllImport("kernel32.dll")]
         public static extern bool SystemTimeToFileTime([In] IntPtr lpSystemTime,
@@ -337,7 +340,7 @@ namespace Rectify11Installer.Core.Signing
         public struct CRYPTOAPI_BLOB
         {
             [MarshalAs(UnmanagedType.I4)] public uint cbData;
-            public IntPtr pbData;
+            public byte* pbData;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
@@ -437,7 +440,7 @@ namespace Rectify11Installer.Core.Signing
         public struct CRYPT_INTEGER_BLOB
         {
             public UInt32 cbData;
-            public IntPtr pbData;
+            public byte* pbData;
         }
         [StructLayout(LayoutKind.Sequential)]
         public struct CERT_INFO
