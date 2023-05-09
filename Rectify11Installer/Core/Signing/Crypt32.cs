@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
@@ -55,7 +56,7 @@ namespace Rectify11Installer.Core.Signing
         }
         public static bool HasPrivateKey(CERT_CONTEXT* cert)
         {
-            return CryptFindCertificateKeyProvInfo(cert, CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG, IntPtr.Zero).ToInt64() > 0;
+            return CryptFindCertificateKeyProvInfo(cert, CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG, IntPtr.Zero);
         }
         public static byte[] EncodeName(string dn)
         {
@@ -81,7 +82,7 @@ namespace Rectify11Installer.Core.Signing
             usage.cUsageIdentifier = 1;
             if (!CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, X509_ENHANCED_KEY_USAGE, ref usage, encoded.pbData, ref encoded.cbData))
             {
-                int error = (int)Marshal.GetLastWin32Error();
+                int error = Marshal.GetLastWin32Error();
 
                 throw new Win32Exception(error);
             }
@@ -96,14 +97,14 @@ namespace Rectify11Installer.Core.Signing
             bc.SubjectType.cUnusedBits = 6;
 
             byte[] datas = new byte[] { type_val };
-            GCHandle pinnedArray = GCHandle.Alloc(datas, GCHandleType.Pinned);
-            IntPtr pointer = pinnedArray.AddrOfPinnedObject();
-            bc.SubjectType.pbData = pointer;
-            if (!CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_BASIC_CONSTRAINTS, ref bc, encoded.pbData, ref encoded.cbData))
+            fixed(byte* ptr = datas)
             {
-                throw new Win32Exception();
+                bc.SubjectType.pbData = ptr;
+                if (!CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_BASIC_CONSTRAINTS, ref bc, encoded.pbData, ref encoded.cbData))
+                {
+                    throw new Win32Exception();
+                }
             }
-            pinnedArray.Free();
         }
         internal static bool EncodeKeyUsage(byte key_usage, ref CRYPTOAPI_BLOB encoded)
         {
@@ -111,27 +112,27 @@ namespace Rectify11Installer.Core.Signing
             usage.cbData = 1;
             usage.cUnusedBits = 0;
             byte[] bytes = new byte[] { key_usage };
-            GCHandle pinnedArray = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            IntPtr pointer = pinnedArray.AddrOfPinnedObject();
-
-            usage.pbData = pointer;
-            if (CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_KEY_USAGE, ref usage, null, ref encoded.cbData))
+            fixed(byte* bytesPointer = bytes)
             {
-                byte[] data = new byte[encoded.cbData];
-                fixed(byte* dataptr = data)
+                usage.pbData = bytesPointer;
+                if (CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_KEY_USAGE, ref usage, null, ref encoded.cbData))
                 {
-                    var result = CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_KEY_USAGE, ref usage, dataptr, ref encoded.cbData);
-
-                    fixed (byte* ptr = data)
+                    byte[] data = new byte[encoded.cbData];
+                    fixed (byte* dataptr = data)
                     {
-                        encoded.pbData = ptr;
+                        var result = CryptEncodeObject(X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, szOID_KEY_USAGE, ref usage, dataptr, ref encoded.cbData);
+
+                        fixed (byte* ptr = data)
+                        {
+                            encoded.pbData = ptr;
+                        }
+                        return result;
                     }
-                    return result;
                 }
-            }
-            else
-            {
-                throw new Win32Exception();
+                else
+                {
+                    throw new Win32Exception();
+                }
             }
         }
         public static IntPtr GetStartTime()
@@ -153,7 +154,7 @@ namespace Rectify11Installer.Core.Signing
         #region Dll imports
         [DllImport("CRYPT32.DLL", EntryPoint = "CertGetCertificateContextProperty", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CertGetCertificateContextProperty([In] CERT_CONTEXT* pCertContext, [In] int dwPropId, [Out] void* pvData, [In, Out] ref int pcbData);
+        public static extern bool CertGetCertificateContextProperty(CERT_CONTEXT* pCertContext, int dwPropId, [Out] void* pvData, [In, Out] ref int pcbData);
 
         [DllImport("CRYPT32.DLL", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -212,18 +213,15 @@ namespace Rectify11Installer.Core.Signing
         [DllImport("CRYPT32.DLL", EntryPoint = "CertOpenStore", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr CertOpenStore(int storeProvider, int encodingType, IntPtr hcryptProv, int flags, string pvPara);
         [DllImport("CRYPT32.DLL", EntryPoint = "CryptFindCertificateKeyProvInfo", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr CryptFindCertificateKeyProvInfo(CERT_CONTEXT* cert, int flags, IntPtr reserved);
+        public static extern bool CryptFindCertificateKeyProvInfo(CERT_CONTEXT* cert, int flags, IntPtr reserved);
         [DllImport("CRYPT32.DLL", EntryPoint = "CryptFindCertificateKeyProvInfo", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr CryptFindCertificateKeyProvInfo(CERT_CONTEXT cert, int flags, IntPtr reserved);
-        [DllImport("crypt32.dll", EntryPoint = "CertGetNameString", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr CertGetNameString(CERT_CONTEXT* CertContext, int lType, int lFlags, IntPtr pTypeParameter, StringBuilder str, uint cch);
         [DllImport("CRYPT32.DLL", EntryPoint = "CertAddEncodedCertificateToStore", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool CertAddEncodedCertificateToStore(IntPtr certStore, int certEncodingType, byte[] certEncoded, int certEncodedLength, int addDisposition, ref CERT_CONTEXT* certContext);
         [DllImport("crypt32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [ResourceExposure(ResourceScope.None)]
-        internal protected extern static
-       bool CertAddCertificateContextToStore(
+        internal protected extern static bool CertAddCertificateContextToStore(
            [In] IntPtr hCertStore,
            [In] CERT_CONTEXT* pCertContext,
            [In] uint dwAddDisposition,
@@ -235,7 +233,7 @@ namespace Rectify11Installer.Core.Signing
         public extern static
         CERT_CONTEXT* CertCreateSelfSignCertificate(
             [In] IntPtr hProv,
-            [In] IntPtr pSubjectIssuerBlob,
+            [In] CERT_NAME_BLOB* pSubjectIssuerBlob,
             [In] uint dwFlags,
             [In] IntPtr pKeyProvInfo,
             [In] IntPtr pSignatureAlgorithm,
@@ -326,7 +324,7 @@ namespace Rectify11Installer.Core.Signing
         public struct CRYPT_BIT_BLOB
         {
             public uint cbData;
-            public IntPtr pbData;
+            public byte* pbData;
             public uint cUnusedBits;
         }
         [StructLayout(LayoutKind.Sequential)]
@@ -552,7 +550,7 @@ namespace Rectify11Installer.Core.Signing
         public struct CERT_NAME_BLOB
         {
             public uint cbData;
-            public IntPtr pbData;
+            public byte* pbData;
         }
         #endregion
     }

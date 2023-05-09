@@ -316,114 +316,118 @@ namespace Rectify11Installer.Core.Signing
                     {
                         fixed (byte* eusage_buffer_ptr = e_usage_buffer)
                         {
-
-
                             CERT_EXTENSION Extension1 = new CERT_EXTENSION() { pszObjId = szOID_KEY_USAGE, fCritical = false, Value = { cbData = 8, pbData = usage_buffer_ptr } };
                             CERT_EXTENSION Extension2 = new CERT_EXTENSION() { pszObjId = szOID_ENHANCED_KEY_USAGE, fCritical = false, Value = { cbData = 256, pbData = eusage_buffer_ptr } };
                             CERT_EXTENSION Extension3 = new CERT_EXTENSION() { pszObjId = szOID_BASIC_CONSTRAINTS, fCritical = true, Value = { cbData = 32, pbData = basic_buffer_ptr } };
 
                             // Encode the name
-                            var name = Crypt32.EncodeName(dn);
-                            GCHandle nameHandle = GCHandle.Alloc(name, GCHandleType.Pinned);
-                            IntPtr namepointer = nameHandle.AddrOfPinnedObject();
-
-                            CERT_NAME_BLOB nameStructure = new CERT_NAME_BLOB();
-                            nameStructure.cbData = (uint)name.Length;
-                            nameStructure.pbData = namepointer;
-
-                            //get pointer to the name structure
-
-                            // Encode the key usage
-                            if (!EncodeKeyUsage(CERT_DIGITAL_SIGNATURE_KEY_USAGE, ref Extension1.Value))
+                            var name = EncodeName(dn);
+                            fixed (byte* namePointer = name)
                             {
-                                throw new Win32Exception();
-                            }
+                                CERT_NAME_BLOB nameStructure = new CERT_NAME_BLOB();
+                                nameStructure.cbData = (uint)name.Length;
+                                nameStructure.pbData = namePointer;
 
-                            // Encode the enhanced key usage
-                            if (!CreateCodeSigningEnKeyUsage(ref Extension2.Value))
-                            {
-                                throw new Win32Exception();
-                            }
+                                //get pointer to the name structure
 
-                            // Encode the basic constraints
-                            CreateBasicContraints(false, true, ref Extension3.Value);
-
-                            // Get basic information
-                            GenerateSerialNumber(ref serial);
-                            CERT_PUBLIC_KEY_INFO pubkey = GetPublicKey(dn);
-                            // Build the certificate information
-                            CERT_INFO ci = new CERT_INFO();
-                            ci.dwVersion = 2;
-                            ci.SerialNumber.cbData = (uint)serial.Length;
-                            ci.SerialNumber.pbData = serial_ptr;
-                            ci.SignatureAlgorithm.pszObjId = Marshal.StringToHGlobalAnsi("1.2.840.113549.1.1.5");
-                            ci.Issuer = ca->pCertInfo->Issuer;
-
-                            SystemTimeToFileTime(start, out ci.NotBefore);
-                            SystemTimeToFileTime(end, out ci.NotAfter);
-
-                            ci.Subject = nameStructure;
-                            ci.SubjectPublicKeyInfo = pubkey;
-                            ci.IssuerUniqueId = ca->pCertInfo->SubjectUniqueId;
-
-                            var extensions = new CERT_EXTENSION[] { Extension1, Extension2, Extension3 };
-
-                            ci.cExtension = (uint)extensions.Length;
-                            ci.rgExtension = Marshal.AllocHGlobal(Marshal.SizeOf<CERT_EXTENSION>() * 3);
-                            var ptr = ci.rgExtension;
-                            long LongPtr = ptr.ToInt64(); // Must work both on x86 and x64
-                            for (int I = 0; I < extensions.Length; I++)
-                            {
-                                IntPtr RectPtr = new IntPtr(LongPtr);
-                                Marshal.StructureToPtr(extensions[I], RectPtr, false); // You do not need to erase struct in this case
-                                var sz = Marshal.SizeOf(typeof(CERT_EXTENSION));
-                                LongPtr += sz;
-                            }
-
-                            // Build the algorithm information
-                            var ai = new CRYPT_ALGORITHM_IDENTIFIER();
-                            ai.pszObjId = Marshal.StringToHGlobalAnsi("1.2.840.113549.1.1.5");
-                            IntPtr hCaProv;
-                            // Get the provider
-                            if ((hCaProv = GetProviderFromCert(ca)) == IntPtr.Zero)
-                            {
-                                throw new Win32Exception();
-                            }
-
-                            byte[] cert_buf = new byte[1024];
-                            uint cert_len = 1024;
-
-                            // Sign the certificate
-                            fixed (byte* certbufferptr = cert_buf)
-                            {
-                                if (!CryptSignAndEncodeCertificate(hCaProv, AT_SIGNATURE, X509_ASN_ENCODING, X509_CERT_TO_BE_SIGNED, &ci, &ai, IntPtr.Zero, certbufferptr, ref cert_len))
+                                // Encode the key usage
+                                if (!EncodeKeyUsage(CERT_DIGITAL_SIGNATURE_KEY_USAGE, ref Extension1.Value))
                                 {
                                     throw new Win32Exception();
                                 }
+
+                                // Encode the enhanced key usage
+                                if (!CreateCodeSigningEnKeyUsage(ref Extension2.Value))
+                                {
+                                    throw new Win32Exception();
+                                }
+
+                                // Encode the basic constraints
+                                CreateBasicContraints(false, true, ref Extension3.Value);
+
+                                // Get basic information
+                                GenerateSerialNumber(ref serial);
+                                CERT_PUBLIC_KEY_INFO pubkey = GetPublicKey(dn);
+                                // Build the certificate information
+                                CERT_INFO ci = new CERT_INFO();
+                                ci.dwVersion = 2;
+                                ci.SerialNumber.cbData = (uint)serial.Length;
+                                ci.SerialNumber.pbData = serial_ptr;
+                                ci.SignatureAlgorithm.pszObjId = Marshal.StringToHGlobalAnsi("1.2.840.113549.1.1.5");
+                                ci.Issuer = ca->pCertInfo->Issuer;
+
+                                SystemTimeToFileTime(start, out ci.NotBefore);
+                                SystemTimeToFileTime(end, out ci.NotAfter);
+
+                                ci.Subject = nameStructure;
+                                ci.SubjectPublicKeyInfo = pubkey;
+                                ci.IssuerUniqueId = ca->pCertInfo->SubjectUniqueId;
+
+                                var extensions = new CERT_EXTENSION[] { Extension1, Extension2, Extension3 };
+
+                                ci.cExtension = (uint)extensions.Length;
+
+                                int ExtensionsSize = 0;
+                                foreach (var extension in extensions)
+                                {
+                                    ExtensionsSize += Marshal.SizeOf(ExtensionsSize);
+                                }
+
+                                ci.rgExtension = Marshal.AllocHGlobal(ExtensionsSize);
+                                var ptr = ci.rgExtension;
+                                long LongPtr = ptr.ToInt64(); // Must work both on x86 and x64
+                                for (int I = 0; I < extensions.Length; I++)
+                                {
+                                    IntPtr RectPtr = new IntPtr(LongPtr);
+                                    Marshal.StructureToPtr(extensions[I], RectPtr, false); // You do not need to erase struct in this case
+                                    var sz = Marshal.SizeOf(extensions[I]);
+                                    LongPtr += sz;
+                                }
+
+                                // Build the algorithm information
+                                var ai = new CRYPT_ALGORITHM_IDENTIFIER();
+                                ai.pszObjId = Marshal.StringToHGlobalAnsi("1.2.840.113549.1.1.5");
+                                IntPtr hCaProv;
+                                // Get the provider
+                                if ((hCaProv = GetProviderFromCert(ca)) == IntPtr.Zero)
+                                {
+                                    throw new Win32Exception();
+                                }
+
+                                byte[] cert_buf = new byte[1024];
+                                uint cert_len = 1024;
+
+                                // Sign the certificate
+                                fixed (byte* certbufferptr = cert_buf)
+                                {
+                                    if (!CryptSignAndEncodeCertificate(hCaProv, AT_SIGNATURE, X509_ASN_ENCODING, X509_CERT_TO_BE_SIGNED, &ci, &ai, IntPtr.Zero, certbufferptr, ref cert_len))
+                                    {
+                                        throw new Win32Exception();
+                                    }
+                                }
+
+
+                                // Cleanup a bit
+                                CryptReleaseContext(hCaProv, 0);
+                                Marshal.FreeHGlobal(ci.rgExtension);
+
+                                CERT_CONTEXT* certPointer = null;
+                                // Add the certificate to the store, and get the context
+                                if (!CertAddEncodedCertificateToStore(hCertStore, X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, cert_buf, (int)cert_len, CERT_STORE_ADD_REPLACE_EXISTING, ref certPointer))
+                                {
+                                    /* error! */
+                                    throw new NotImplementedException();
+                                }
+
+                                // Find the private key and associate it with the certificate. This needs to be done, and before the store is closed so it is fully saved.
+                                if (!HasPrivateKey(certPointer))
+                                {
+                                    CertFreeCertificateContext(certPointer);
+                                    throw new Exception("WARNING: PRIVATE KEY DOES NOT EXIST");
+                                }
+
+                                return certPointer;
                             }
-
-
-                            // Cleanup a bit
-                            CryptReleaseContext(hCaProv, 0);
-                            Marshal.FreeHGlobal(ci.rgExtension);
-
-                            CERT_CONTEXT* certPointer = null;
-                            // Add the certificate to the store, and get the context
-                            if (!CertAddEncodedCertificateToStore(hCertStore, X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, cert_buf, (int)cert_len, CERT_STORE_ADD_REPLACE_EXISTING, ref certPointer))
-                            {
-                                /* error! */
-                                throw new NotImplementedException();
-                            }
-
-                            // Find the private key and associate it with the certificate. This needs to be done, and before the store is closed so it is fully saved.
-                            if (!HasPrivateKey(certPointer))
-                            {
-                                CertFreeCertificateContext(certPointer);
-                                throw new Exception("WARNING: PRIVATE KEY DOES NOT EXIST");
-                            }
-
-                            nameHandle.Free();
-                            return certPointer;
                         }
                     }
                 }
@@ -445,6 +449,14 @@ namespace Rectify11Installer.Core.Signing
                         throw new Win32Exception();
                     }
                 }
+                else
+                {
+                    throw new Win32Exception();
+                }
+            }
+            else
+            {
+                throw new Win32Exception();
             }
             return p;
         }
@@ -454,79 +466,72 @@ namespace Rectify11Installer.Core.Signing
             byte[] usage_buffer = new byte[8];
 
             byte[] basic_buffer = new byte[32];
-            fixed(byte* usage_buffer_ptr = usage_buffer)
+            fixed (byte* usage_buffer_ptr = usage_buffer)
             {
-                fixed(byte* basic_buffer_ptr = basic_buffer)
+                fixed (byte* basic_buffer_ptr = basic_buffer)
                 {
                     CERT_EXTENSION Extension1 = new CERT_EXTENSION() { pszObjId = szOID_KEY_USAGE, fCritical = false, Value = { cbData = 8, pbData = usage_buffer_ptr } };
                     CERT_EXTENSION Extension2 = new CERT_EXTENSION() { pszObjId = szOID_BASIC_CONSTRAINTS, fCritical = true, Value = { cbData = 32, pbData = basic_buffer_ptr } };
 
                     // Encode the name
-                    var name = Crypt32.EncodeName(properName);
-                    GCHandle nameHandle = GCHandle.Alloc(name, GCHandleType.Pinned);
-                    IntPtr namepointer = nameHandle.AddrOfPinnedObject();
-
-                    CERT_NAME_BLOB nameStructure = new CERT_NAME_BLOB();
-                    nameStructure.cbData = (uint)name.Length;
-                    nameStructure.pbData = namepointer;
-
-                    //get pointer to the name structure
-                    GCHandle nameStructureHandle = GCHandle.Alloc(nameStructure, GCHandleType.Pinned);
-                    IntPtr nameStructurePointer = nameStructureHandle.AddrOfPinnedObject();
-
-                    // Encode the key usage
-                    if (!EncodeKeyUsage(CERT_DIGITAL_SIGNATURE_KEY_USAGE | CERT_NON_REPUDIATION_KEY_USAGE | CERT_KEY_CERT_SIGN_KEY_USAGE | CERT_OFFLINE_CRL_SIGN_KEY_USAGE | CERT_CRL_SIGN_KEY_USAGE, ref Extension1.Value))
+                    var name = EncodeName(properName);
+                    fixed (byte* namePointer = name)
                     {
-                        throw new Win32Exception();
-                    }
+                        CERT_NAME_BLOB nameStructure = new CERT_NAME_BLOB();
+                        nameStructure.cbData = (uint)name.Length;
+                        nameStructure.pbData = namePointer;
 
-                    // Encode the basic constraints
-                    CreateBasicContraints(true, false, ref Extension2.Value);
+                        // Encode the key usage
+                        if (!EncodeKeyUsage(CERT_DIGITAL_SIGNATURE_KEY_USAGE | CERT_NON_REPUDIATION_KEY_USAGE | CERT_KEY_CERT_SIGN_KEY_USAGE | CERT_OFFLINE_CRL_SIGN_KEY_USAGE | CERT_CRL_SIGN_KEY_USAGE, ref Extension1.Value))
+                        {
+                            throw new Win32Exception();
+                        }
+
+                        // Encode the basic constraints
+                        CreateBasicContraints(true, false, ref Extension2.Value);
 
 
-                    //Populate the CERT_Extensions structure
-                    CERT_EXTENSIONS Extensions = new CERT_EXTENSIONS();
-                    Extensions.cExtension = 2;
-                    var size = Marshal.SizeOf(typeof(CERT_EXTENSION)) * 2;
-                    Extensions.rgExtension = Marshal.AllocHGlobal(size);
+                        //Populate the CERT_Extensions structure
+                        CERT_EXTENSIONS Extensions = new CERT_EXTENSIONS();
+                        Extensions.cExtension = 2;
+                        var size = Marshal.SizeOf(typeof(CERT_EXTENSION)) * 2;
+                        Extensions.rgExtension = Marshal.AllocHGlobal(size);
 
-                    var extensions = new CERT_EXTENSION[] { Extension1, Extension2 };
-                    var ptr = Extensions.rgExtension;
-                    long LongPtr = ptr.ToInt64(); // Must work both on x86 and x64
-                    for (int I = 0; I < extensions.Length; I++)
-                    {
-                        IntPtr RectPtr = new IntPtr(LongPtr);
-                        Marshal.StructureToPtr(extensions[I], RectPtr, false); // You do not need to erase struct in this case
-                        var sz = Marshal.SizeOf(typeof(CERT_EXTENSION));
-                        LongPtr += sz;
-                    }
+                        var extensions = new CERT_EXTENSION[] { Extension1, Extension2 };
+                        var ptr = Extensions.rgExtension;
+                        long LongPtr = ptr.ToInt64(); // Must work both on x86 and x64
+                        for (int I = 0; I < extensions.Length; I++)
+                        {
+                            IntPtr RectPtr = new IntPtr(LongPtr);
+                            Marshal.StructureToPtr(extensions[I], RectPtr, false); // You do not need to erase struct in this case
+                            var sz = Marshal.SizeOf(typeof(CERT_EXTENSION));
+                            LongPtr += sz;
+                        }
 
-                    //get pointer to exts
-                    GCHandle ExtensionsGcPtr = GCHandle.Alloc(Extensions, GCHandleType.Pinned);
-                    IntPtr ExtensionsPtr = ExtensionsGcPtr.AddrOfPinnedObject();
+                        if ((ca = CertCreateSelfSignCertificate(IntPtr.Zero, &nameStructure, 0, IntPtr.Zero, IntPtr.Zero, GetStartTime(), GetEndTime(), &Extensions)) == null)
+                        {
+                            throw new Win32Exception();
+                        }
 
-                    if ((ca = CertCreateSelfSignCertificate(IntPtr.Zero, nameStructurePointer, 0, IntPtr.Zero, IntPtr.Zero, GetStartTime(), GetEndTime(), &Extensions)) == null)
-                    {
-                        throw new Win32Exception();
-                    }
-                    IntPtr hCertStore;
-                    // Open the root store
-                    if ((hCertStore = OpenStore(Root, machine)) == IntPtr.Zero)
-                    {
+                        IntPtr hCertStore;
+                        // Open the root store
+                        if ((hCertStore = OpenStore(Root, machine)) == IntPtr.Zero)
+                        {
+                            CertFreeCertificateContext(ca);
+                            throw new Win32Exception();
+                        }
+                        CERT_CONTEXT* _ca = null;
+                        // Add the CA to the root
+                        var err = CertAddCertificateContextToStore(hCertStore, ca, CERT_STORE_ADD_REPLACE_EXISTING, ref _ca);
+                        if (!err) { throw new Win32Exception(); }
+                        // Cleanup from CA
                         CertFreeCertificateContext(ca);
-                        throw new Win32Exception();
-                    }
-                    CERT_CONTEXT* _ca = null;
-                    // Add the CA to the root
-                    var err = CertAddCertificateContextToStore(hCertStore, ca, CERT_STORE_ADD_REPLACE_EXISTING, ref _ca);
-                    if (!err) { throw new Win32Exception(); }
-                    // Cleanup from CA
-                    CertFreeCertificateContext(ca);
-                    CertCloseStore(hCertStore);
+                        CertCloseStore(hCertStore);
 
-                    return _ca;
+                        return _ca;
+                    }
                 }
-            } 
+            }
         }
     }
 }
