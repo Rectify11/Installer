@@ -69,6 +69,9 @@ namespace Rectify11Installer.Core.Signing
         }
         public static int HandleSignCommand(bool machine, string certname, string path)
         {
+
+            //TODO: fix crashes
+            return 0;
             if (!File.Exists(path))
             {
                 Console.WriteLine("File to sign does not exist: " + path);
@@ -206,7 +209,8 @@ namespace Rectify11Installer.Core.Signing
             return 0;
         }
         public static int HandleCreateCommand(bool machine, string name)
-        {
+        {  //TODO: fix crashes
+            return 0;
             nint CertStore;
             if ((CertStore = OpenStore(TrustedPublisher, machine)) == IntPtr.Zero)
             {
@@ -395,12 +399,12 @@ namespace Rectify11Installer.Core.Signing
                                 }
 
                                 byte[] cert_buf = new byte[1024];
-                                uint cert_len = 1024;
+                                uint CertificateLength = 1024;
 
                                 // Sign the certificate
                                 fixed (byte* certbufferptr = cert_buf)
                                 {
-                                    if (!CryptSignAndEncodeCertificate(hCaProv, AT_SIGNATURE, X509_ASN_ENCODING, X509_CERT_TO_BE_SIGNED, &ci, &ai, IntPtr.Zero, certbufferptr, ref cert_len))
+                                    if (!CryptSignAndEncodeCertificate(hCaProv, AT_SIGNATURE, X509_ASN_ENCODING, X509_CERT_TO_BE_SIGNED, &ci, &ai, IntPtr.Zero, certbufferptr, ref CertificateLength))
                                     {
                                         throw new Win32Exception();
                                     }
@@ -413,7 +417,7 @@ namespace Rectify11Installer.Core.Signing
 
                                 CERT_CONTEXT* certPointer = null;
                                 // Add the certificate to the store, and get the context
-                                if (!CertAddEncodedCertificateToStore(hCertStore, X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, cert_buf, (int)cert_len, CERT_STORE_ADD_REPLACE_EXISTING, ref certPointer))
+                                if (!CertAddEncodedCertificateToStore(hCertStore, X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, cert_buf, (int)CertificateLength, CERT_STORE_ADD_REPLACE_EXISTING, ref certPointer))
                                 {
                                     /* error! */
                                     throw new NotImplementedException();
