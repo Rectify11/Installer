@@ -335,6 +335,7 @@ namespace Rectify11Installer
 				if (!_acknowledged) Navigate(RectifyPages.ExperimentalPage);
 				else Navigate(RectifyPages.EulaPage);
 			}
+			Installer.overwriteUpdatedFiles();
 		}
 
 		private void UninstallButton_Click(object sender, EventArgs e)
