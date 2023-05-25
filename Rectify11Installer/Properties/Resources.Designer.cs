@@ -721,8 +721,7 @@ namespace Rectify11Installer.Properties {
         ///hhctrl.ocx
         ///icsigd.dll.mun
         ///iexpress.exe
-        ///inetcpl.cpl.mun
-        /// [rest of string was truncated]&quot;;.
+        ///inetcpl.cpl.mun        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string newfiles {
             get {

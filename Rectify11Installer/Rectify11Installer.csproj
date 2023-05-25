@@ -16,7 +16,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <LangVersion>9.0</LangVersion>
     <PublishUrl>output\</PublishUrl>
     <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,6 +29,7 @@
     <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>3.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <LangVersion>9.0</LangVersion>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -143,8 +143,6 @@
     <Compile Include="Core\Patches.cs" />
     <Compile Include="Core\ResourceLoader.cs" />
     <Compile Include="Core\ShellLink.cs" />
-    <Compile Include="Core\Signing\Crypt32.cs" />
-    <Compile Include="Core\Signing\Signer.cs" />
     <Compile Include="Core\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />
     <Compile Include="Core\Variables.cs" />

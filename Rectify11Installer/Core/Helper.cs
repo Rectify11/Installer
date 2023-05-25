@@ -217,11 +217,8 @@ namespace Rectify11Installer.Core
 		#region Public Methods
 		public static void WriteLine(string s)
 		{
-          
-            Text += s + "\n";
-			CommitLog();
-
-        }
+			Text += s + "\n";
+		}
 		public static void WriteLine(string s, Exception ex)
 		{
 			Text += s + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + Environment.NewLine;
