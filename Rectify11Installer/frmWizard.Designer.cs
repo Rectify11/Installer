@@ -189,7 +189,8 @@
 			this.navPane.Name = "navPane";
 			this.navPane.SelectedIndex = 0;
 			this.navPane.Size = new System.Drawing.Size(361, 342);
-			this.navPane.TabIndex = 1;
+			this.navPane.KeyDown += tabControl1_KeyDown;
+            this.navPane.TabIndex = 1;
 			// 
 			// tableLayoutPanel3
 			// 

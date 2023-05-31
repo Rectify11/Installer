@@ -1,4 +1,5 @@
 ﻿using KPreisser.UI;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
@@ -6,6 +7,7 @@ using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Rectify11Installer
@@ -253,9 +255,23 @@ namespace Rectify11Installer
 			{
 				Navigate(RectifyPages.ProgressPage);
 			}
-		}
+            else if (navPane.SelectedTab == TabPages.uninstPage)
+            {
+                using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
+                try
+                {
+                    reg.SetValue("UninstallFiles", InstallOptions.uninstIconsList.ToArray());
+                    Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
+                    + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
+                    + " /CommandLine " + "\'" + "/uninstall" + "\'"
+                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
 
-		private void BackButton_Click(object sender, EventArgs e)
+                }
+                catch (Exception ex) { }
+            }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
 		{
 			if (navPane.SelectedTab == TabPages.expPage)
 			{
@@ -359,8 +375,15 @@ namespace Rectify11Installer
 			if (_clicks != 2) return;
 			_clicks = 0;
 			Navigate(RectifyPages.DebugPage);
-		}
-		private void SystemEvents_UserPreferenceChanged(object sender, EventArgs e)
+        }
+        private void tabControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+                e.Handled = true;
+            }
+        }
+        private void SystemEvents_UserPreferenceChanged(object sender, EventArgs e)
 		{
 			UserPreferenceChangedEventArgs ev = (UserPreferenceChangedEventArgs)e;
 			if (ev.Category == UserPreferenceCategory.General)
