@@ -177,7 +177,8 @@ namespace Rectify11Installer
 		private void CancelButton_Click(object sender, EventArgs e) => Application.Exit();
 		private void FrmWizard_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!Variables.isInstall)
+            if (Variables.IsUninstall) { }
+            else if (!Variables.isInstall)
 			{
 				if (TaskDialog.Show(text: _resources.GetString("exitText"),
 					title: _resources.GetString("Title"),
@@ -257,17 +258,8 @@ namespace Rectify11Installer
 			}
             else if (navPane.SelectedTab == TabPages.uninstPage)
             {
-                using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
-                try
-                {
-                    reg.SetValue("UninstallFiles", InstallOptions.uninstIconsList.ToArray());
-                    Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
-                    + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
-                    + " /CommandLine " + "\'" + "/uninstall" + "\'"
-                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
-
-                }
-                catch (Exception ex) { }
+				Variables.IsUninstall = true;
+				Navigate(RectifyPages.ProgressPage);
             }
         }
 

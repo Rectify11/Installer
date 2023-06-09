@@ -145,6 +145,7 @@
     <Compile Include="Core\ShellLink.cs" />
     <Compile Include="Core\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />
+    <Compile Include="Core\Uninstaller.cs" />
     <Compile Include="Core\Variables.cs" />
     <Compile Include="frmWizard.cs">
       <SubType>Form</SubType>

@@ -43,5 +43,6 @@ namespace Rectify11Installer.Core
 		public static bool vcRedist { get; set; }
 		public static bool core31 { get; set; }
 		public static bool InstallIcons { get; set; }
+		public static bool IsUninstall { get; set; } = false;
 	}
 }

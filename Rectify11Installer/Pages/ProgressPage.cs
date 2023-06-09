@@ -9,7 +9,6 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Environment;
 namespace Rectify11Installer.Pages
 {
 	public partial class ProgressPage : WizardPage
@@ -82,28 +81,40 @@ namespace Rectify11Installer.Pages
 		{
 			if ((WizardPage)sender == RectifyPages.ProgressPage)
 			{
-				frmwiz.versionLabel.Visible = false;
-				ExtrasOptions.FinalizeIRectify11();
-				frmwiz.pictureBox1.Visible = true;
-				frmwiz.progressLabel.Visible = true;
-				RectifyPages.ProgressPage.Start();
-				NativeMethods.SetCloseButton(frmwiz, false);
-				Variables.isInstall = true;
-				Installer installer = new();
-				Logger.CommitLog();
-				if (!await installer.Install(frmwiz))
+				if (Variables.IsUninstall)
 				{
-					Logger.CommitLog();
-					TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
-						title: "Error",
-						buttons: TaskDialogButtons.OK,
-						icon: TaskDialogStandardIcon.Error);
-					Application.Exit();
-				}
+                    frmwiz.versionLabel.Visible = false;
+                    frmwiz.pictureBox1.Visible = true;
+                    frmwiz.progressLabel.Visible = true;
+                    RectifyPages.ProgressPage.Start();
+                    Uninstaller uninstaller = new();
+					await uninstaller.Uninstall(frmwiz);
+                }
 				else
 				{
+					frmwiz.versionLabel.Visible = false;
+					ExtrasOptions.FinalizeIRectify11();
+					frmwiz.pictureBox1.Visible = true;
+					frmwiz.progressLabel.Visible = true;
+					RectifyPages.ProgressPage.Start();
+					NativeMethods.SetCloseButton(frmwiz, false);
+					Variables.isInstall = true;
+					Installer installer = new();
 					Logger.CommitLog();
-					RectifyPages.ProgressPage.StartReset();
+					if (!await installer.Install(frmwiz))
+					{
+						Logger.CommitLog();
+						TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+							title: "Error",
+							buttons: TaskDialogButtons.OK,
+							icon: TaskDialogStandardIcon.Error);
+						Application.Exit();
+					}
+					else
+					{
+						Logger.CommitLog();
+						RectifyPages.ProgressPage.StartReset();
+					}
 				}
 			}
 		}
@@ -172,7 +183,7 @@ namespace Rectify11Installer.Pages
 					}
 				}
 				key.SetValue("ApplyTheme", s, RegistryValueKind.String);
-				key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
+				key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(Environment.SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
 				key.Close();
 				using ShellLink shortcut = new();
 				shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
@@ -191,17 +202,25 @@ namespace Rectify11Installer.Pages
 		/// </summary>
 		private void NextText()
 		{
-			CurrentTextIndex++;
-			if (CurrentTextIndex >= Rectify11InstallerTexts.Length)
+			if (Variables.IsUninstall)
 			{
-				CurrentTextIndex = -1;
-			}
+                progressText.Text = "very J";
+                progressInfo.Text = "r11 gone";
+            }
 			else
 			{
-				var t = Rectify11InstallerTexts[CurrentTextIndex];
-				progressText.Text = t.Title;
-				progressInfo.Text = t.Description;
-				frmwiz.UpdateSideImage = t.Side;
+				CurrentTextIndex++;
+				if (CurrentTextIndex >= Rectify11InstallerTexts.Length)
+				{
+					CurrentTextIndex = -1;
+				}
+				else
+				{
+					var t = Rectify11InstallerTexts[CurrentTextIndex];
+					progressText.Text = t.Title;
+					progressInfo.Text = t.Description;
+					frmwiz.UpdateSideImage = t.Side;
+				}
 			}
 		}
 		/// <summary>

@@ -1,15 +1,13 @@
-﻿using Microsoft.Win32;
-using Rectify11Installer.Core;
+﻿using Rectify11Installer.Core;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Rectify11Installer.Pages
 {
-	public partial class UninstallPage : WizardPage
+    public partial class UninstallPage : WizardPage
 	{
 		#region Variables
 		private readonly FrmWizard _frmWizard;
@@ -22,18 +20,16 @@ namespace Rectify11Installer.Pages
 			_frmWizard = Frm;
 			InitializeComponent();
 			Application.Idle += Application_Idle;
-			//NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
+			NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
 		}
 
-		/*
 		private void NavigationHelper_OnNavigate(object sender, EventArgs e)
 		{
-			if ((WizardPage)sender == RectifyPages.InstallOptnsPage)
+			if ((WizardPage)sender == RectifyPages.UninstallPage)
 			{
 				_frmWizard.nextButton.Enabled = Variables.IsItemsSelected;
 			}
 		}
-		*/
 
 		void Application_Idle(object sender, System.EventArgs e)
 		{
