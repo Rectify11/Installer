@@ -12,5 +12,9 @@ namespace Rectify11Installer.Pages
 		{
 			Core.Variables.skipUpdateCheck = checkBox1.Checked;
 		}
-	}
+        private void CheckBox2_Click(object sender, EventArgs e)
+        {
+            Core.Variables.Phase2Skip = checkBox2.Checked;
+        }
+    }
 }

@@ -118,7 +118,7 @@ namespace Rectify11Installer.Pages
 				if (patch[i].HardlinkTarget.Contains("%diag%"))
 				{
 					var name = patch[i].Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
-					if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag", name)))
+					if (File.Exists(Path.Combine(Variables.r11Folder, "backup", "Diag", name)))
 					{
 						var newpath = patch[i].HardlinkTarget.Replace(@"%diag%", Variables.diag);
 						if (File.Exists(newpath))

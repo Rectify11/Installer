@@ -15,10 +15,13 @@ namespace Rectify11Installer.Core
             try
             {
                 reg.SetValue("UninstallFiles", InstallOptions.uninstIconsList.ToArray());
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
-                + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
-                + " /CommandLine " + "\'" + "/uninstall" + "\'"
-                + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
+                if (!Variables.Phase2Skip)
+                {
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
+                    + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
+                    + " /CommandLine " + "\'" + "/uninstall" + "\'"
+                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
+                }
 
             }
             catch (Exception ex) { }

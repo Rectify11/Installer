@@ -31,10 +31,11 @@ namespace Rectify11Installer.Pages
 		{
 			this.SuspendLayout();
 			checkBox1 = new Controls.DarkAwareCheckBox();
-			//
-			// checkBox1
-			//
-			this.checkBox1.ForeColor = System.Drawing.Color.Black;
+			checkBox2 = new Controls.DarkAwareCheckBox();
+            //
+            // checkBox1
+            //
+            this.checkBox1.ForeColor = System.Drawing.Color.Black;
 			this.checkBox1.Location = new System.Drawing.Point(4, 10);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(288, 19);
@@ -42,12 +43,24 @@ namespace Rectify11Installer.Pages
 			this.checkBox1.Text = "Disable update check";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			this.checkBox1.Click += CheckBox1_Click;
-			//
-			// DebugPage
-			//
-			this.BackColor = System.Drawing.Color.Transparent;
+            //
+            // checkBox2
+            //
+            this.checkBox2.ForeColor = System.Drawing.Color.Black;
+            this.checkBox2.Location = new System.Drawing.Point(4, 30);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(288, 19);
+            this.checkBox2.TabIndex = 0;
+            this.checkBox2.Text = "Disable phase2";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Click += CheckBox2_Click;
+            //
+            // DebugPage
+            //
+            this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.checkBox1);
-			this.Name = "DebugPage";
+			this.Controls.Add(this.checkBox2);
+            this.Name = "DebugPage";
 			this.WizardHeader = "Debug";
 			this.HeaderVisible = true;
 			this.FooterVisible = true;
@@ -61,5 +74,6 @@ namespace Rectify11Installer.Pages
 
 		#endregion
 		private Controls.DarkAwareCheckBox checkBox1;
-	}
+		private Controls.DarkAwareCheckBox checkBox2;
+    }
 }
