@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 
@@ -178,7 +179,7 @@ namespace Rectify11.Phase2
             }
             else if (args[0] == "/test")
             {
-                Console.WriteLine(Path.GetTempPath());
+
             }
             else if (args[0] == "/uninstall")
             {
@@ -230,7 +231,7 @@ namespace Rectify11.Phase2
                                 }
                             }
                         }
-                        for (int i = 0; i<backupDiagDir.Length; i++)
+                        for (int i = 0; i < backupDiagDir.Length; i++)
                         {
                             if (Path.GetFileNameWithoutExtension(backupDiagDir[i]).Replace("DiagPackage", "Troubleshooter: ").Contains(uninstallFiles[k])
                                 && string.Equals(uninstallFiles[k], patches.Items[j].Mui))
@@ -244,6 +245,39 @@ namespace Rectify11.Phase2
                         }
                     }
                 }
+                for (int k = 0; k < uninstallFiles.Length; k++)
+                {
+                    if (uninstallFiles[k].Contains("mmcbase.dll.mun")
+                        || uninstallFiles[k].Contains("mmcndmgr.dll.mun")
+                        || uninstallFiles[k].Contains("mmc.exe"))
+                    {
+                        foreach (var process in Process.GetProcessesByName("mmc"))
+                        {
+                            process.Kill();
+                        }
+                        var sys32Msc = Directory.GetFiles(Path.Combine(backup, "msc"), "*.msc", SearchOption.TopDirectoryOnly);
+                        for (int i = 0; i < sys32Msc.Length; i++)
+                        {
+                            Console.WriteLine("Backup: " + sys32Msc[i]);
+                            Console.WriteLine("Final: " + Path.Combine(Variables.sys32Folder, Path.GetFileName(sys32Msc[i])));
+                            File.Copy(sys32Msc[i], Path.Combine(Variables.sys32Folder, Path.GetFileName(sys32Msc[i])), true);
+                            File.Delete(sys32Msc[i]);
+                        }
+                        var mscLang = Directory.GetDirectories(Path.Combine(backup, "msc"));
+                        for (int i = 0; i < mscLang.Length; i++)
+                        {
+                            var files = Directory.GetFiles(mscLang[i], "*.msc", SearchOption.TopDirectoryOnly);
+                            for (int j = 0; j < files.Length; j++)
+                            {
+                                Console.WriteLine("Backup: " + files[j]);
+                                Console.WriteLine("Final: " + Path.Combine(Variables.sys32Folder, new DirectoryInfo(mscLang[i]).Name, Path.GetFileName(files[j])));
+                                File.Copy(files[j], Path.Combine(Variables.sys32Folder, new DirectoryInfo(mscLang[i]).Name, Path.GetFileName(files[j])), true);
+                                File.Delete(files[j]);
+                            }
+                        }
+                    }
+                }
+
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
                 Console.ReadKey(true);

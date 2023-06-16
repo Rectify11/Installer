@@ -64,7 +64,7 @@ namespace Rectify11Installer.Pages
 			progressText.Text = "Restarting your PC";
 			progressInfo.Text = "Rectify11 has finished installing. Your device needs to restart in order to complete the installation, it will automatically restart in " + duration.ToString() + " seconds";
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
-			frmwiz.UpdateSideImage = global::Rectify11Installer.Properties.Resources.done;
+			frmwiz.UpdateSideImage = Properties.Resources.done;
 			timer2.Start();
 			frmwiz.ShowRebootButton = true;
 			frmwiz.SetRebootHandler = rebootButton_Click;
@@ -103,8 +103,9 @@ namespace Rectify11Installer.Pages
 					Logger.CommitLog();
 					if (!await installer.Install(frmwiz))
 					{
+						Installer.Cleanup();
 						Logger.CommitLog();
-						TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+                        TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
 							title: "Error",
 							buttons: TaskDialogButtons.OK,
 							icon: TaskDialogStandardIcon.Error);

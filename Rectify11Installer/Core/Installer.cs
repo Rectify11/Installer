@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using Rectify11Installer.Win32;
 using static System.Environment;
 using KPreisser.UI;
-using Rectify11Installer.Core;
 namespace Rectify11Installer.Core
 {
 	public class Installer
@@ -31,7 +30,13 @@ namespace Rectify11Installer.Core
 		{
 			Logger.WriteLine("Preparing Installation");
 			Logger.WriteLine("──────────────────────");
-			if (!await Task.Run(() => WriteFiles(false, false)))
+
+			// goofy fix
+            using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
+            reg.SetValue("x86PendingFiles", "");
+			reg.Dispose();
+
+            if (!await Task.Run(() => WriteFiles(false, false)))
 			{
 				Logger.WriteLine("WriteFiles() failed.");
 				return false;
@@ -307,7 +312,7 @@ namespace Rectify11Installer.Core
 					Logger.WriteLine("screensaver.reg succeeded");
 				}
 
-				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui and mmcndmgr.dll.mun is selected
+				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui or mmcndmgr.dll.mun is selected
 				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
 					|| InstallOptions.iconsList.Contains("mmc.exe")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
@@ -1308,7 +1313,7 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// cleans up files
 		/// </summary>
-		private bool Cleanup()
+		public static bool Cleanup()
 		{
 			if (Directory.Exists(Variables.r11Files))
 			{

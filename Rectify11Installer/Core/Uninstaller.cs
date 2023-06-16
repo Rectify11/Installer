@@ -12,6 +12,7 @@ namespace Rectify11Installer.Core
         {
             using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
             frm.InstallerProgress = "Phase2";
+            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
             try
             {
                 reg.SetValue("UninstallFiles", InstallOptions.uninstIconsList.ToArray());
@@ -22,7 +23,6 @@ namespace Rectify11Installer.Core
                     + " /CommandLine " + "\'" + "/uninstall" + "\'"
                     + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true));
                 }
-
             }
             catch (Exception ex) { }
             return true;
