@@ -190,7 +190,6 @@ namespace Rectify11Installer.Core
 		public static bool userAvatars { get; set; }
 		public static int CMenuStyle = 1;
 		public static List<string> iconsList = new();
-		public static List<string> uninstIconsList = new();
 		public static bool InstallExtras()
 		{
 			return InstallEP
@@ -203,6 +202,11 @@ namespace Rectify11Installer.Core
 				   || userAvatars;
 		}
 	}
+	public class UninstallOptions
+    {
+        public static List<string> uninstIconsList = new();
+		public static bool UninstallThemes { get; set; }
+    }
 	#endregion
 
 	public class Logger
