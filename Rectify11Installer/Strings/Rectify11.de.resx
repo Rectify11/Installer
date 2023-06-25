@@ -268,4 +268,13 @@
   <data name="installIcons" xml:space="preserve">
     <value>Icons patchen</value>
   </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Benutzeravatare installieren</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Stil des Kontextmenüs</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Gadgets installieren</value>
+  </data>
 </root>
