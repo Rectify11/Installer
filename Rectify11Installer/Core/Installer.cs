@@ -735,13 +735,12 @@ namespace Rectify11Installer.Core
 		/// </summary>
 		private void Installr11cpl()
 		{
-			/* if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
+			if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
 			{
 				Directory.Delete(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), true);
 			}
 			Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
 			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
-			*/
 		}
 
 		/// <summary>
