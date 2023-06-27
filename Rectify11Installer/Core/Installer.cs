@@ -175,50 +175,86 @@ namespace Rectify11Installer.Core
 						Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
 					}
 				}
+				Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "extras"));
+				/*
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
 						" x -o" + Path.Combine(Variables.r11Folder, "extras") +
 						" " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
+				*/
+
 				Logger.WriteLine("Extracted extras.7z");
 				
 				if (InstallOptions.InstallWallpaper)
 				{
-					if (!await Task.Run(() => InstallWallpapers()))
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
+                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
+						+ " wallpapers", AppWinStyle.Hide, true));
+                    if (!await Task.Run(() => InstallWallpapers()))
 					{
 						Logger.WriteLine("InstallWallpapers() failed.");
 						return false;
 					}
 					Logger.WriteLine("InstallWallpapers() succeeded.");
+					Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "wallpapers"), true);
 				}
 				if (InstallOptions.InstallASDF)
 				{
-					// always would work ig
-					await Task.Run(() => Installasdf());
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
+                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
+                        + " AccentColorizer", AppWinStyle.Hide, true));
+                    // always would work ig
+                    await Task.Run(() => Installasdf());
 					Logger.WriteLine("Installasdf() succeeded.");
 				}
                 if (InstallOptions.InstallGadgets)
                 {
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
+                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
+                        + " GadgetPack", AppWinStyle.Hide, true));
                     // always would work ig 2
                     await Task.Run(() => InstallGadgets());
                     Logger.WriteLine("InstallGadgets() succeeded.");
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
                 }
                 if (InstallOptions.InstallShell)
                 {
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
+                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
+                        + " Nilesoft", AppWinStyle.Hide, true));
+
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
+                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
+                        + " NilesoftArm64", AppWinStyle.Hide, true));
                     // always would work ig 3
                     await Task.Run(() => InstallShell());
                     Logger.WriteLine("InstallShell() succeeded.");
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), true);
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), true);
                 }
-				if (InstallOptions.userAvatars)
+                if (InstallOptions.userAvatars)
                 {
-					// always would work ig 4
-					await Task.Run(() => InstallUserAvatars());
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
+                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
+                        + " userAV", AppWinStyle.Hide, true));
+                    // always would work ig 4
+                    await Task.Run(() => InstallUserAvatars());
 					Logger.WriteLine("InstallUserAvatars() succeeded.");
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
                 }
-				if (InstallOptions.InstallSounds)
+				/*
+                if (InstallOptions.InstallSounds)
 				{
 					// always would work ig 5
 					await Task.Run(() => InstallSounds());
 					Logger.WriteLine("InstallSounds() succeeded.");
 				}
+				*/
 				Logger.WriteLine("InstallExtras() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
 			}
@@ -569,9 +605,11 @@ namespace Rectify11Installer.Core
         /// <summary>
         /// installs gadgets
         /// </summary>
-        private void InstallGadgets()
+        private async void InstallGadgets()
         {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
+            // what????
+            //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
+            await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "GadgetPack") + "Install.msi /quiet /passive", AppWinStyle.Hide, true));
         }
 
 		/// <summary>
