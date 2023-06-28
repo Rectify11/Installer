@@ -46,10 +46,12 @@ namespace Rectify11Installer.Core
                 catch { }
                 if (Theme.IsUsingDarkMode)
                 {
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "Resources", "Themes", "dark.theme"), AppWinStyle.Hide, true));
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Windows (dark)" + '"', AppWinStyle.Hide, true));
                 }
                 else
                 {
+                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "Resources", "Themes", "aero.theme"), AppWinStyle.Hide, true));
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Windows (light)" + '"', AppWinStyle.Hide, true));
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
@@ -93,7 +95,7 @@ namespace Rectify11Installer.Core
                 }
                 File.Delete(Path.Combine(Variables.Windir, "SecureUXHelper.exe"));
             }
-            frm.InstallerProgress = "Done";
+            frm.InstallerProgress = "Done, you can close this window";
             return true;
         }
     }

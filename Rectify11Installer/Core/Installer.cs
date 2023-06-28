@@ -33,7 +33,7 @@ namespace Rectify11Installer.Core
 
 			// goofy fix
             using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
-            reg.SetValue("x86PendingFiles", "");
+            reg.SetValue("x86PendingFiles", "", RegistryValueKind.MultiString);
 			reg.Dispose();
 
             if (!await Task.Run(() => WriteFiles(false, false)))
@@ -380,6 +380,7 @@ namespace Rectify11Installer.Core
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
 				Logger.WriteLine("icons.reg succeeded");
 			}
+
 			if (!await Task.Run(() => AddToControlPanel()))
 			{
 				Logger.WriteLine("AddToControlPanel() failed");
@@ -1080,7 +1081,17 @@ namespace Rectify11Installer.Core
 				Logger.WriteLine("Error writing ProductVersion to Version", ex);
 				return false;
 			}
-			return true;
+            try
+            {
+                reg.SetValue("OSVersion", OSVersion.Version.ToString());
+                Logger.WriteLine("Wrote OSVersion");
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("Error writing OSVersion", ex);
+                return false;
+            }
+            return true;
 		}
 
 		/// <summary>
@@ -1105,7 +1116,7 @@ namespace Rectify11Installer.Core
 				r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly()?.GetName().Version.Minor.ToString() ?? string.Empty, RegistryValueKind.String);
 				r11key.SetValue("Build", Assembly.GetEntryAssembly()?.GetName().Version.Build.ToString() ?? string.Empty, RegistryValueKind.String);
 				r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
-				r11key.SetValue("URLInfoAbout", "https://rectify.vercel.app/", RegistryValueKind.String);
+				r11key.SetValue("URLInfoAbout", "https://rectify11.net/", RegistryValueKind.String);
 				key.Close();
 				return true;
 			}
@@ -1461,6 +1472,50 @@ namespace Rectify11Installer.Core
 				{
 					Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "themes.7z"), ex);
 				}
+			}
+            if (File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
+            {
+                try
+                {
+                    File.Delete(Path.Combine(Variables.r11Folder, "7za.exe"));
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "7za.exe"), ex);
+                }
+            }
+            if (File.Exists(Path.Combine(Variables.r11Folder, "aRun.exe")))
+            {
+                try
+                {
+                    File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "aRun.exe"), ex);
+                }
+            }
+            if (File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
+            {
+                try
+                {
+                    File.Delete(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"));
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "aRun.exe"), ex);
+                }
+            }
+            if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
+			{
+				try
+				{
+					Directory.Delete(Path.Combine(Variables.r11Folder, "extras"));
+				}
+				catch (Exception ex)
+				{
+                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
+                }
 			}
 			return true;
 		}
