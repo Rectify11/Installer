@@ -606,11 +606,18 @@ namespace Rectify11Installer.Core
         /// <summary>
         /// installs gadgets
         /// </summary>
-        private async void InstallGadgets()
+        private void InstallGadgets()
         {
             // what????
             //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
-            await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "GadgetPack") + "Install.msi /quiet /passive", AppWinStyle.Hide, true));
+            ProcessStartInfo gad = new()
+            {
+                FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
+                WindowStyle = ProcessWindowStyle.Normal,
+                Arguments = "/i " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "Install.msi") + " /quiet /passive"
+            };
+            var vcproc = Process.Start(gad);
+            vcproc.WaitForExit();
         }
 
 		/// <summary>
