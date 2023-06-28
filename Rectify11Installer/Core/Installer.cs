@@ -33,7 +33,7 @@ namespace Rectify11Installer.Core
 
 			// goofy fix
             using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
-            reg.SetValue("x86PendingFiles", "", RegistryValueKind.MultiString);
+            reg.DeleteValue("x86PendingFiles");
 			reg.Dispose();
 
             if (!await Task.Run(() => WriteFiles(false, false)))
@@ -1083,7 +1083,9 @@ namespace Rectify11Installer.Core
 			}
             try
             {
-                reg.SetValue("OSVersion", OSVersion.Version.ToString());
+				// mane fuck this shit
+				using var ubrReg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false);
+                reg.SetValue("OSVersion", OSVersion.Version.Major + "." + OSVersion.Version.Minor + "." + OSVersion.Version.Build + "." + ubrReg.GetValue("UBR").ToString());
                 Logger.WriteLine("Wrote OSVersion");
             }
             catch (Exception ex)
