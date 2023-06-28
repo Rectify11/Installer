@@ -233,8 +233,12 @@ namespace Rectify11Installer.Core
                     // always would work ig 3
                     await Task.Run(() => InstallShell());
                     Logger.WriteLine("InstallShell() succeeded.");
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), true);
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), true);
+					try
+					{
+						Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), true);
+						Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), true);
+					}
+					catch { }
                 }
                 if (InstallOptions.userAvatars)
                 {
