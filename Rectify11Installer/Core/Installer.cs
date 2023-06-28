@@ -33,7 +33,7 @@ namespace Rectify11Installer.Core
 
 			// goofy fix
             using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
-            reg.DeleteValue("x86PendingFiles");
+            reg.DeleteValue("x86PendingFiles", false);
 			reg.Dispose();
 
             if (!await Task.Run(() => WriteFiles(false, false)))
