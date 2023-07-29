@@ -236,8 +236,12 @@ namespace Rectify11Installer.Core
 					try
 					{
 						Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), true);
-						Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), true);
 					}
+					catch { }
+					try
+					{
+                        Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), true);
+                    }
 					catch { }
                 }
                 if (InstallOptions.userAvatars)
@@ -354,7 +358,7 @@ namespace Rectify11Installer.Core
 
 				// runs only if any one of mmcbase.dll.mun, mmc.exe.mui or mmcndmgr.dll.mun is selected
 				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-					|| InstallOptions.iconsList.Contains("mmc.exe")
+					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
 					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
 				{
 					if (!await Task.Run(() => MMCHelper.PatchAll()))
@@ -1519,18 +1523,25 @@ namespace Rectify11Installer.Core
                     Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "aRun.exe"), ex);
                 }
             }
-            if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
+			try
 			{
-				try
+				if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
 				{
-					Directory.Delete(Path.Combine(Variables.r11Folder, "extras"));
+					try
+					{
+						Directory.Delete(Path.Combine(Variables.r11Folder, "extras"));
+					}
+					catch (Exception ex)
+					{
+						Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
+					}
 				}
-				catch (Exception ex)
-				{
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
-                }
 			}
-			return true;
+			catch (Exception ex)
+			{
+                Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
+            }
+            return true;
 		}
 	}
 	#endregion
