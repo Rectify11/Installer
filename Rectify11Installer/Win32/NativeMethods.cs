@@ -59,9 +59,12 @@ namespace Rectify11Installer.Win32
 			out ushort processMachine,
 			out ushort nativeMachine
 		);
-		#endregion
-		#region Flags
-		public const int SC_CLOSE = 0xF060;
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
+        #endregion
+        #region Flags
+        public const int SC_CLOSE = 0xF060;
 		public const int MF_BYCOMMAND = 0;
 		public const int MF_ENABLED = 0;
 		public const int MF_GRAYED = 1;
@@ -158,9 +161,19 @@ namespace Rectify11Installer.Win32
 			public LUID_AND_ATTRIBUTES[] Privileges;
 		}
 
-		#endregion
-		#region Public Methods
-		public static bool SetCloseButton(FrmWizard frm, bool enable)
+        [Flags]
+        public enum MoveFileFlags
+        {
+            MOVEFILE_REPLACE_EXISTING = 0x00000001,
+            MOVEFILE_COPY_ALLOWED = 0x00000002,
+            MOVEFILE_DELAY_UNTIL_REBOOT = 0x00000004,
+            MOVEFILE_WRITE_THROUGH = 0x00000008,
+            MOVEFILE_CREATE_HARDLINK = 0x00000010,
+            MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
+        }
+        #endregion
+        #region Public Methods
+        public static bool SetCloseButton(FrmWizard frm, bool enable)
 		{
 			var hMenu = NativeMethods.GetSystemMenu(frm.Handle, false);
 			if (hMenu != IntPtr.Zero)
@@ -256,7 +269,6 @@ namespace Rectify11Installer.Win32
 			return -1;
 		}
 		#endregion
-
 	}
 }
 

@@ -141,10 +141,7 @@ namespace Rectify11Installer.Pages
 					}
 				}
 				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
-				if (key != null)
-				{
-					key.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
-				}
+				key?.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
 				key.Close();
 			}
 			catch

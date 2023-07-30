@@ -176,10 +176,9 @@ namespace Rectify11.Phase2
                     }
                 }
                 Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
-            }
-            else if (args[0] == "/test")
-            {
-
+                Console.WriteLine("");
+                Console.Write("Press any key to continue...");
+                Console.ReadKey(true);
             }
             else if (args[0] == "/uninstall")
             {
@@ -284,23 +283,14 @@ namespace Rectify11.Phase2
             }
             else if (args[0] == "/cleanup")
             {
-                // E
-                var r11Reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).OpenSubKey("Rectify11", false);
-                if (r11Reg != null)
-                    uninstallFiles = (string[])r11Reg.GetValue("UninstallFiles");
-
-                if (uninstallFiles == null) return;
-
                 var tmpFiles = Directory.GetFiles(Path.GetTempPath(), "*", SearchOption.TopDirectoryOnly);
                 for (int i = 0; i < tmpFiles.Length; i++)
                 {
-                    for (int j = 0; j < uninstallFiles.Length; j++)
-                    {
-                        if (tmpFiles[i].Contains(uninstallFiles[j]))
-                        {
-                            File.Delete(tmpFiles[i]);
-                        }
-                    }
+			  try
+			  {
+                        File.Delete(tmpFiles[i]);
+			  }
+			  catch {}
                 }
             }
             Environment.Exit(0);

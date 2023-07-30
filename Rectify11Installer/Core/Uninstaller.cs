@@ -2,8 +2,10 @@
 using Microsoft.Win32;
 using Rectify11Installer.Win32;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
 {
@@ -16,6 +18,7 @@ namespace Rectify11Installer.Core
                 using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
                 frm.InstallerProgress = "Phase2";
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
+                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
                 try
                 {
                     reg.SetValue("UninstallFiles", UninstallOptions.uninstIconsList.ToArray());
@@ -28,6 +31,11 @@ namespace Rectify11Installer.Core
                     }
                 }
                 catch { }
+                var oldFiles = Directory.GetFiles(Path.Combine(Variables.Windir, "Temp"), "*", SearchOption.TopDirectoryOnly);
+                for (int i = 0; i < oldFiles.Length; i++)
+                {
+                    MoveFileEx(oldFiles[i], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                }
             }
             if (UninstallOptions.UninstallThemes)
             {
@@ -46,12 +54,12 @@ namespace Rectify11Installer.Core
                 catch { }
                 if (Theme.IsUsingDarkMode)
                 {
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "Resources", "Themes", "dark.theme"), AppWinStyle.Hide, true));
+                    await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "dark.theme")));
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Windows (dark)" + '"', AppWinStyle.Hide, true));
                 }
                 else
                 {
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "Resources", "Themes", "aero.theme"), AppWinStyle.Hide, true));
+                    await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "aero.theme")));
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Windows (light)" + '"', AppWinStyle.Hide, true));
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
@@ -91,7 +99,12 @@ namespace Rectify11Installer.Core
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
                 {
-                    Directory.Delete(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified"), true);
+                    Directory.Delete(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Shell"), true);
+                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Aero.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Black.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Dark.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "DarkColorized.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
                 File.Delete(Path.Combine(Variables.Windir, "SecureUXHelper.exe"));
             }
