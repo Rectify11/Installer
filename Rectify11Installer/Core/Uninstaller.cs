@@ -67,7 +67,7 @@ namespace Rectify11Installer.Core
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Windows (light)" + '"', AppWinStyle.Hide, true));
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
-                { 
+                {
                     List<string> wallpapers = new List<string>
                     {
                         "cosmic.png",
@@ -77,7 +77,7 @@ namespace Rectify11Installer.Core
                     };
                     for (int i = 0; i < wallpapers.Count; i++)
                     {
-                        if (File.Exists(Path.Combine(Variables.Windir, "web", "Wallpaper" , "Rectified", wallpapers[i])))
+                        if (File.Exists(Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i])))
                         {
                             File.Delete(Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]));
                         }
@@ -133,7 +133,7 @@ namespace Rectify11Installer.Core
                 {
                     Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true);
                 }
-			    var key = Registry.ClassesRoot.OpenSubKey(@"CLSID", true);
+                var key = Registry.ClassesRoot.OpenSubKey(@"CLSID", true);
                 key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
                 key.Dispose();
                 key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace", true);
@@ -164,7 +164,7 @@ namespace Rectify11Installer.Core
             }
             if (UninstallOptions.uninstExtrasList.Count > 0)
             {
-                for (int i = 0; i < UninstallOptions.uninstExtrasList.Count;  i++)
+                for (int i = 0; i < UninstallOptions.uninstExtrasList.Count; i++)
                 {
                     MessageBox.Show(UninstallOptions.uninstExtrasList[i]);
                     if (UninstallOptions.uninstExtrasList[i] == "wallpapersNode")
@@ -181,12 +181,10 @@ namespace Rectify11Installer.Core
                             var files = Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
                             for (int j = 0; j < files.Length; j++)
                             {
-                                for (int k = 0; k < wallpapers.Count; k++)
+                                //MessageBox.Show(Path.GetFileName(files[j]));
+                                if (!wallpapers.Contains(Path.GetFileName(files[j])))
                                 {
-                                    if (files[j] != Path.GetFileName(wallpapers[k]))
-                                    {
-                                        File.Delete(files[j]);
-                                    }
+                                    File.Delete(files[j]);
                                 }
                             }
                             if (Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")).Length == 0)
@@ -212,6 +210,52 @@ namespace Rectify11Installer.Core
                         }
                         // will fail anyways if the folder isnt empty
                         MoveFileEx(Path.Combine(Variables.r11Folder, "extras"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    }
+                    if (UninstallOptions.uninstExtrasList[i] == "useravNode")
+                    {
+                        if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+                        {
+                            Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), true);
+                        }
+                    }
+                    if (UninstallOptions.uninstExtrasList[i] == "shellNode")
+                    {
+                        if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+                        {
+                            await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AcrylicMenusLoader.exe", AppWinStyle.Hide, true));
+                            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")))
+                            {
+                                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
+                            }
+                            ProcessStartInfo shlinfo2 = new()
+                            {
+                                FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
+                                WindowStyle = ProcessWindowStyle.Hidden,
+                                Arguments = " -u"
+                            };
+                            var shlInstproc2 = Process.Start(shlinfo2);
+                            shlInstproc2.WaitForExit();
+                            await Task.Run(() => Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " delete \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\" /f"));
+                            Directory.Delete(Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus"), true);
+                            Directory.Delete(Path.Combine(Variables.Windir, "nilesoft", "imports"), true);
+                            File.Delete(Path.Combine(Variables.Windir, "nilesoft", "acrylMenu.xml"));
+                            File.Delete(Path.Combine(Variables.Windir, "nilesoft", "shell.exe"));
+                            File.Delete(Path.Combine(Variables.Windir, "nilesoft", "shell.log"));
+                            File.Delete(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"));
+                            MoveFileEx(Path.Combine(Variables.Windir, "nilesoft", "shell.dll"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            MoveFileEx(Path.Combine(Variables.Windir, "nilesoft"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        }
+                    }
+                    if (UninstallOptions.uninstExtrasList[i] == "gadgetsNode")
+                    {
+                        ProcessStartInfo gad = new()
+                        {
+                            FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
+                            WindowStyle = ProcessWindowStyle.Normal,
+                            Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33}"
+                        };
+                        var vcproc = Process.Start(gad);
+                        vcproc.WaitForExit();
                     }
                 }
             }

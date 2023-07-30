@@ -202,7 +202,7 @@ namespace Rectify11.Phase2
                         for (int i = 0; i < backupFiles.Length; i++)
                         {
                             if (backupFiles[i].Contains(uninstallFiles[k])
-                                && string.Equals(uninstallFiles[k], patches.Items[j].Mui))
+                                && patches.Items[j].Mui.Contains(uninstallFiles[k]))
                             {
                                 if (lastfile != uninstallFiles[k])
                                 {

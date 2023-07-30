@@ -631,7 +631,7 @@ namespace Rectify11Installer.Core
 		/// <summary>
 		/// installs nilesoft shell
 		/// </summary>
-		private void InstallShell()
+		private async void InstallShell()
 		{
 			string s = "";
 			if (NativeMethods.IsArm64()) s = "Arm64";
@@ -659,7 +659,7 @@ namespace Rectify11Installer.Core
 			{
 				FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
 				WindowStyle = ProcessWindowStyle.Hidden,
-				Arguments = " -r"
+				Arguments = " -r -t"
 			};
 
 			int num = InstallOptions.CMenuStyle;
@@ -669,23 +669,23 @@ namespace Rectify11Installer.Core
 			}
 			string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
 			File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
-			var shlInstproc2 = Process.Start(shlinfo2);
-			shlInstproc2.WaitForExit();
+			if (num == 1 || num == 2)
+			{
+                var shlInstproc2 = Process.Start(shlinfo2);
+                shlInstproc2.WaitForExit();
+            }
+			if (num == 3 || num == 4)
+			{
+				await Task.Run(() => Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " add \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32\" /f /ve"));
+			}
 			if (num == 4)
 			{
 				using ShellLink shortcut = new();
-				shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
+				shortcut.Target = Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
 				shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
 				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
 				shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
 			}
-			else if (num == 5)
-			{
-				shlinfo2.Arguments = " -u";
-				var shlUnInstproc = Process.Start(shlinfo2);
-				shlUnInstproc.WaitForExit();
-			}
-
 		}
 
 		/// <summary>
