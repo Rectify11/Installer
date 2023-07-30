@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
@@ -36,6 +37,8 @@ namespace Rectify11Installer.Core
                 {
                     MoveFileEx(oldFiles[i], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
+                File.Delete(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
+                File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
             }
             if (UninstallOptions.UninstallThemes)
             {
@@ -63,12 +66,21 @@ namespace Rectify11Installer.Core
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Windows (light)" + '"', AppWinStyle.Hide, true));
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
-                {
-                    try
+                { 
+                    List<string> wallpapers = new List<string>
                     {
-                        Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), true);
+                        "cosmic.png",
+                        "img0.png",
+                        "img19.png",
+                        "metal.png"
+                    };
+                    for (int i = 0; i < wallpapers.Count; i++)
+                    {
+                        if (File.Exists(Path.Combine(Variables.Windir, "web", "Wallpaper" , "Rectified", wallpapers[i])))
+                        {
+                            File.Delete(Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]));
+                        }
                     }
-                    catch { }
                 }
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " uninstall", AppWinStyle.Hide, true));
                 if (File.Exists(Path.Combine(Variables.Windir, "Themetool.exe")))
@@ -107,6 +119,30 @@ namespace Rectify11Installer.Core
                     MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
                 File.Delete(Path.Combine(Variables.Windir, "SecureUXHelper.exe"));
+
+                // waow
+                if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
+                {
+                    Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"));
+                }
+			    var key = Registry.ClassesRoot.OpenSubKey(@"CLSID", true);
+                key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
+                key.Dispose();
+                key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace", true);
+                key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
+                key.Dispose();
+                key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes");
+                key.SetValue("MS Shell Dlg 2", "Tahoma");
+                key.SetValue("MS Shell Dlg", "Microsoft Sans Serif");
+                key.Dispose();
+                key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\WindowMetrics");
+                key.SetValue("MenuHeight", "-285");
+                key.SetValue("MenuWidth", "-285");
+                key.Dispose();
+            }
+            if (UninstallOptions.uninstExtrasList.Count > 0)
+            {
+
             }
             frm.InstallerProgress = "Done, you can close this window";
             return true;
