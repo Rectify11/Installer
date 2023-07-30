@@ -39,11 +39,23 @@
 			this.groupBox1 = new Rectify11Installer.Controls.GroupBox();
 			this.label1 = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.treeView1 = new Rectify11Installer.Controls.DarkAwareTreeView();
+			this.uninstAppChk = new Rectify11Installer.Controls.DarkAwareCheckBox();
 			this.SuspendLayout();
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            //
+            // uninstApp
+            //
+            this.uninstAppChk.ForeColor = System.Drawing.Color.Black;
+            this.uninstAppChk.Location = new System.Drawing.Point(0, 300);
+            this.uninstAppChk.Name = "uninstApp";
+            this.uninstAppChk.Size = new System.Drawing.Size(188, 19);
+            this.uninstAppChk.TabIndex = 5;
+            this.uninstAppChk.Enabled = true;
+            this.uninstAppChk.Text = "Uninstall the app";
+            this.uninstAppChk.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
 			this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.groupBox1.Location = new System.Drawing.Point(0, 48);
 			this.groupBox1.Name = "groupBox1";
@@ -94,7 +106,8 @@
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.groupBox1);
-			this.Name = "UninstallPage";
+			//this.Controls.Add(this.uninstAppChk);
+            this.Name = "UninstallPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.installoptns;
 			this.WizardHeader = "Uninstall";
 			this.HeaderVisible = true;
@@ -112,6 +125,7 @@
 		private Controls.GroupBox groupBox1;
 		private Controls.DarkAwareLabel label1;
 		private Controls.DarkAwareTreeView treeView1;
+		private Controls.DarkAwareCheckBox uninstAppChk;
 		public System.Windows.Forms.TreeNode treeNode4;
 		public System.Windows.Forms.TreeNode treeNode1;
 	}

@@ -166,7 +166,6 @@ namespace Rectify11Installer.Core
             {
                 for (int i = 0; i < UninstallOptions.uninstExtrasList.Count; i++)
                 {
-                    MessageBox.Show(UninstallOptions.uninstExtrasList[i]);
                     if (UninstallOptions.uninstExtrasList[i] == "wallpapersNode")
                     {
                         if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
@@ -259,6 +258,8 @@ namespace Rectify11Installer.Core
                     }
                 }
             }
+            // cleanup
+            Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"));
             frm.InstallerProgress = "Done, you can close this window";
             return true;
         }
