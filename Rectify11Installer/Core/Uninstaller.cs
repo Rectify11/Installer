@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -81,6 +82,10 @@ namespace Rectify11Installer.Core
                             File.Delete(Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]));
                         }
                     }
+                    if (Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")).Length == 0)
+                    {
+                        Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                    }
                 }
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " uninstall", AppWinStyle.Hide, true));
                 if (File.Exists(Path.Combine(Variables.Windir, "Themetool.exe")))
@@ -111,7 +116,10 @@ namespace Rectify11Installer.Core
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
                 {
-                    Directory.Delete(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Shell"), true);
+                    if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Shell")))
+                    {
+                        Directory.Delete(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Shell"), true);
+                    }
                     MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Aero.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Black.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Dark.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -123,7 +131,7 @@ namespace Rectify11Installer.Core
                 // waow
                 if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
                 {
-                    Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"));
+                    Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true);
                 }
 			    var key = Registry.ClassesRoot.OpenSubKey(@"CLSID", true);
                 key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
@@ -131,18 +139,81 @@ namespace Rectify11Installer.Core
                 key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace", true);
                 key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
                 key.Dispose();
-                key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes");
+                key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes", true);
                 key.SetValue("MS Shell Dlg 2", "Tahoma");
                 key.SetValue("MS Shell Dlg", "Microsoft Sans Serif");
                 key.Dispose();
-                key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\WindowMetrics");
+                key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\WindowMetrics", true);
                 key.SetValue("MenuHeight", "-285");
                 key.SetValue("MenuWidth", "-285");
                 key.Dispose();
+
+                // nuke r11cp
+                if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk")))
+                {
+                    File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
+                }
+                if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk")))
+                {
+                    File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
+                }
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
+                {
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), true);
+                }
             }
             if (UninstallOptions.uninstExtrasList.Count > 0)
             {
-
+                for (int i = 0; i < UninstallOptions.uninstExtrasList.Count;  i++)
+                {
+                    MessageBox.Show(UninstallOptions.uninstExtrasList[i]);
+                    if (UninstallOptions.uninstExtrasList[i] == "wallpapersNode")
+                    {
+                        if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
+                        {
+                            List<string> wallpapers = new List<string>
+                            {
+                                "cosmic.png",
+                                "img0.png",
+                                "img19.png",
+                                "metal.png"
+                            };
+                            var files = Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                            for (int j = 0; j < files.Length; j++)
+                            {
+                                for (int k = 0; k < wallpapers.Count; k++)
+                                {
+                                    if (files[j] != Path.GetFileName(wallpapers[k]))
+                                    {
+                                        File.Delete(files[j]);
+                                    }
+                                }
+                            }
+                            if (Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")).Length == 0)
+                            {
+                                Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                            }
+                        }
+                    }
+                    if (UninstallOptions.uninstExtrasList[i] == "asdfNode")
+                    {
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide));
+                        if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
+                        {
+                            // idk File.Delete cant nuke it
+                            var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"));
+                            for (int j = 0; j < files.Length; j++)
+                            {
+                                MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            }
+                            MoveFileEx(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        }
+                        // will fail anyways if the folder isnt empty
+                        MoveFileEx(Path.Combine(Variables.r11Folder, "extras"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    }
+                }
             }
             frm.InstallerProgress = "Done, you can close this window";
             return true;
