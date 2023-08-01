@@ -241,7 +241,7 @@
     <value>تثبيت Shell</value>
   </data>
   <data name="installIcons" xml:space="preserve">
-    <value>تشبيت  الأيقونات</value>
+    <value>تثبيت  الأيقونات</value>
   </data>
   <data name="installThemes" xml:space="preserve">
     <value>تثبيت النسق</value>
