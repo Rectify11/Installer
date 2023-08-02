@@ -273,5 +273,20 @@
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>شكل قوائم الضغط اليمين</value>
+	  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>شريط جانبي حديث</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>صور شخصية حديثة</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>اختر ما تريد أن تزيله.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>تخطي تثبيت MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>استخدم Mica Alt بدل Mica</value>
   </data>
 </root>
