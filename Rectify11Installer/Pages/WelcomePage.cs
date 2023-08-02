@@ -22,19 +22,23 @@ namespace Rectify11Installer.Pages
 			InitializeComponent();
             System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 
-            // update
-            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
-            if (key != null)
-            {
-                var build = key.GetValue("Build");
-                if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
-                {
-					cmbInstall.Text = resources.GetString("updateTitle");
-                    cmbInstall.Note = resources.GetString("updateNote");
+			// update
+			try
+			{
+				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
+				if (key != null)
+				{
+					var build = key.GetValue("Build");
+					if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+					{
+						cmbInstall.Text = resources.GetString("updateTitle");
+						cmbInstall.Note = resources.GetString("updateNote");
 
-                }
-            }
-            key.Dispose();
+					}
+				}
+				key.Dispose();
+			}
+			catch { }
         }
 	}
 }

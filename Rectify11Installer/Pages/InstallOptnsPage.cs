@@ -58,17 +58,21 @@ namespace Rectify11Installer.Pages
 		private static void UpdateListView(PatchesPatch[] patch, TreeNode basicNode, TreeNode advNode)
 		{
 			string path = Path.Combine(Variables.r11Folder, "backup");
-            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
-            if (key != null)
+			try
 			{
-                var build = key.GetValue("Build");
-				if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
+				if (key != null)
 				{
-					// kinda disable the whole check
-					path = Variables.r11Folder;
+					var build = key.GetValue("Build");
+					if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+					{
+						// kinda disable the whole check
+						path = Variables.r11Folder;
+					}
 				}
-            }
-			key.Dispose();
+				key.Dispose();
+			}
+			catch { }
 			/*
 			key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);
 			if (key != null)
