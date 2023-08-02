@@ -274,4 +274,19 @@
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>Ustawienia menu kontekstowego</value>
   </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Ulepszone gadżety</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Odnowione awatary użytkownika</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Możesz wybrać, co ma zostać przywrócone.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Pomiń instalację MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Użyj Mica Alt zamiast Mica</value>
+  </data>
  </root>
