@@ -163,7 +163,7 @@
     <value>Questo setup ti guiderà nei vari passaggi richiesti per installare Rectify11 sul tuo PC, per un'esperienza più consistente. Seleziona l'opzione che preferisci per continuare.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Puoi sceglire cosa verrà Rettificato.</value>
+    <value>Puoi scegliere cosa verrà Rettificato.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Scegli cosa installare</value>
