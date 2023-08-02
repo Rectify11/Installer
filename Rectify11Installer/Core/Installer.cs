@@ -414,37 +414,6 @@ namespace Rectify11Installer.Core
             Logger.CommitLog();
             return true;
 		}
-		public static void overwriteUpdatedFiles()
-		{
-			var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", true);
-			if (key != null)
-			{
-				var build = key.GetValue("Build");
-				if (build == null || (build != null && Int32.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build))
-				{
-					if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
-					{
-						File.WriteAllText(Path.Combine(Variables.r11Folder, "newfiles.txt"), Properties.Resources.newfiles);
-						if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles")))
-						{
-							Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup", "oldfiles"));
-						}
-						var newFiles = File.ReadAllLines(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-						for (var i = 0; i < newFiles.Length; i++)
-						{
-							if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", newFiles[i])))
-							{
-								File.Delete(Path.Combine(Variables.r11Folder, "Backup", "oldfiles", newFiles[i]));
-							}
-							if (File.Exists(Path.Combine(Variables.r11Folder, "Backup", newFiles[i])))
-							{
-								File.Move(Path.Combine(Variables.r11Folder, "Backup", newFiles[i]), Path.Combine(Variables.r11Folder, "Backup", "oldfiles", newFiles[i]));
-							}
-						}
-					}
-				}
-			}
-		}
 
 		#endregion
 		#region Private Methods
@@ -1190,11 +1159,9 @@ namespace Rectify11Installer.Core
 						Directory.CreateDirectory(tempfolder);
 					}
 				}
-				if (!File.Exists(Path.Combine(backupfolder, name)))
-				{
-					//File.Copy(file, Path.Combine(backupfolder, name));
-					File.Copy(file, Path.Combine(tempfolder, name), true);
-				}
+
+				//File.Copy(file, Path.Combine(backupfolder, name));
+				File.Copy(file, Path.Combine(tempfolder, name), true);
 
 				var filename = name + ".res";
 				var masks = patch.mask;

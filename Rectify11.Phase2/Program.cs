@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Rectify11.Phase2
 {
@@ -20,7 +21,6 @@ namespace Rectify11.Phase2
             {
                 Environment.Exit(1);
             }
-
             if (args[0] == "/install")
             {
                 var backupDir = Path.Combine(Variables.r11Folder, "Backup");
@@ -176,6 +176,10 @@ namespace Rectify11.Phase2
                     }
                 }
                 Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
+                {
+                    MoveFileEx(Path.Combine(Variables.r11Folder, "Trash"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                }
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
                 Console.ReadKey(true);
@@ -281,18 +285,6 @@ namespace Rectify11.Phase2
                 Console.Write("Press any key to continue...");
                 Console.ReadKey(true);
             }
-            else if (args[0] == "/cleanup")
-            {
-                var tmpFiles = Directory.GetFiles(Path.GetTempPath(), "*", SearchOption.TopDirectoryOnly);
-                for (int i = 0; i < tmpFiles.Length; i++)
-                {
-			  try
-			  {
-                        File.Delete(tmpFiles[i]);
-			  }
-			  catch {}
-                }
-            }
             Environment.Exit(0);
         }
         private static string FixString(string path, bool x86)
@@ -377,11 +369,30 @@ namespace Rectify11.Phase2
             {
                 finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
             }
-            Console.WriteLine(finalpath);
             if (string.IsNullOrWhiteSpace(finalpath)) return;
             if (!File.Exists(finalpath))
             {
+                Console.WriteLine(finalpath);
                 File.Move(newval, finalpath);
+            }
+            else if (File.Exists(finalpath))
+            {
+                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
+                {
+                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash"));
+                }
+                finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
+                Console.WriteLine(finalpath);
+                if (File.Exists(finalpath))
+                {
+                    try
+                    {
+                        File.Delete(finalpath);
+                    }
+                    catch { }
+                }
+                File.Move(newval, finalpath);
+                MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
             }
             File.Copy(file, newval, true);
 
@@ -399,6 +410,18 @@ namespace Rectify11.Phase2
             {
                 // ignored
             }
+        }
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
+        [Flags]
+        public enum MoveFileFlags
+        {
+            MOVEFILE_REPLACE_EXISTING = 0x00000001,
+            MOVEFILE_COPY_ALLOWED = 0x00000002,
+            MOVEFILE_DELAY_UNTIL_REBOOT = 0x00000004,
+            MOVEFILE_WRITE_THROUGH = 0x00000008,
+            MOVEFILE_CREATE_HARDLINK = 0x00000010,
+            MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
         }
     }
     public class Variables

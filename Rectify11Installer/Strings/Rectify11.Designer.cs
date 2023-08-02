@@ -19,7 +19,7 @@ namespace Rectify11Installer.Strings {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Rectify11 {
@@ -214,7 +214,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install Accent Colorizer.
+        ///   Looks up a localized string similar to Accent Color Colorizing.
         /// </summary>
         internal static string installASDF {
             get {
@@ -250,7 +250,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install Gadgets.
+        ///   Looks up a localized string similar to Rectified Gadgets.
         /// </summary>
         internal static string installGadgets {
             get {
@@ -268,6 +268,24 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skip MicaForEveryone installation.
+        /// </summary>
+        internal static string installMFE {
+            get {
+                return ResourceManager.GetString("installMFE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Mica Alt instead of Mica.
+        /// </summary>
+        internal static string installMicaAlt {
+            get {
+                return ResourceManager.GetString("installMicaAlt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rectify your current Windows installation..
         /// </summary>
         internal static string installNote {
@@ -277,20 +295,11 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install Shell.
+        ///   Looks up a localized string similar to Enhanced context menus.
         /// </summary>
         internal static string installShell {
             get {
                 return ResourceManager.GetString("installShell", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Install Themes.
-        /// </summary>
-        internal static string installThemes {
-            get {
-                return ResourceManager.GetString("installThemes", resourceCulture);
             }
         }
         
@@ -304,7 +313,16 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install Wallpapers.
+        ///   Looks up a localized string similar to Remastered user avatars.
+        /// </summary>
+        internal static string installUserAV {
+            get {
+                return ResourceManager.GetString("installUserAV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectify11 Wallpapers.
         /// </summary>
         internal static string installWallpapers {
             get {
@@ -345,15 +363,6 @@ namespace Rectify11Installer.Strings {
         internal static string optionThemes {
             get {
                 return ResourceManager.GetString("optionThemes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rectify11 Wallpapers.
-        /// </summary>
-        internal static string optionWallpaper {
-            get {
-                return ResourceManager.GetString("optionWallpaper", resourceCulture);
             }
         }
         
@@ -463,6 +472,15 @@ namespace Rectify11Installer.Strings {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can choose what will be restored..
+        /// </summary>
+        internal static string uninstallChoiceDescription {
+            get {
+                return ResourceManager.GetString("uninstallChoiceDescription", resourceCulture);
             }
         }
         

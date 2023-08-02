@@ -7,6 +7,7 @@ using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -111,7 +112,8 @@ namespace Rectify11Installer
 			cancelButton.Click += CancelButton_Click;
 			versionLabel.Text += ProductVersion;
 			Theme.OnThemeChanged += SystemEvents_UserPreferenceChanged;
-			_idleInit = true;
+
+            _idleInit = true;
 		}
 
 		private void FrmWizard_Shown(object sender, EventArgs e)
@@ -343,7 +345,6 @@ namespace Rectify11Installer
 				if (!_acknowledged) Navigate(RectifyPages.ExperimentalPage);
 				else Navigate(RectifyPages.EulaPage);
 			}
-			Installer.overwriteUpdatedFiles();
 		}
 
 		private void UninstallButton_Click(object sender, EventArgs e)

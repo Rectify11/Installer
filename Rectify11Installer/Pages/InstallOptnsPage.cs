@@ -57,9 +57,36 @@ namespace Rectify11Installer.Pages
 		#region Private Methods
 		private static void UpdateListView(PatchesPatch[] patch, TreeNode basicNode, TreeNode advNode)
 		{
-			for (var i = 0; i < patch.Length; i++)
+			string path = Path.Combine(Variables.r11Folder, "backup");
+            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
+            if (key != null)
 			{
-				if (!File.Exists(Path.Combine(Variables.r11Folder, "backup", patch[i].Mui)))
+                var build = key.GetValue("Build");
+				if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+				{
+					// kinda disable the whole check
+					path = Variables.r11Folder;
+				}
+            }
+			key.Dispose();
+			/*
+			key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);
+			if (key != null)
+			{
+				var osver = key.GetValue("OSVersion");
+				if (osver != null)
+				{
+					Version ver = Version.Parse(osver.ToString());
+					if (Environment.OSVersion.Version.Build >  ver.Build)
+					{
+						path = Variables.r11Folder;
+                    }
+				}
+			}
+			*/
+            for (var i = 0; i < patch.Length; i++)
+			{
+				if (!File.Exists(Path.Combine(path, patch[i].Mui)))
 				{
 					if (patch[i].HardlinkTarget.Contains("%sys32%"))
 					{
