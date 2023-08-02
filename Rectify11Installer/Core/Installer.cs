@@ -373,11 +373,13 @@ namespace Rectify11Installer.Core
 				{
 					if (!await Task.Run(() => FixOdbc()))
 					{
-						Logger.WriteLine("FixOdbc() failed");
-						return false;
+						Logger.Warn("FixOdbc() failed");
 					}
-					Logger.WriteLine("FixOdbc() succeeded");
-				}
+					else
+					{
+                        Logger.WriteLine("FixOdbc() succeeded");
+                    }
+                }
 				// phase 2
 				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
 					+ " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
@@ -433,13 +435,20 @@ namespace Rectify11Installer.Core
 				filename = Path.GetFileName(files[i]);
 				File.Delete(files[i]);
 			}
-			using ShellLink shortcut = new();
-			shortcut.Target = Path.Combine(Variables.sysWOWFolder, "odbcad32.exe");
-			shortcut.WorkingDirectory = @"%windir%\system32";
-			shortcut.IconPath = Path.Combine(Variables.sys32Folder, "odbcint.dll");
-			shortcut.IconIndex = 0;
-			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-			if (filename != null) shortcut.Save(Path.Combine(admintools, filename));
+			try
+			{
+				using ShellLink shortcut = new();
+				shortcut.Target = Path.Combine(Variables.sysWOWFolder, "odbcad32.exe");
+				shortcut.WorkingDirectory = @"%windir%\system32";
+				shortcut.IconPath = Path.Combine(Variables.sys32Folder, "odbcint.dll");
+				shortcut.IconIndex = 0;
+				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+				if (filename != null) shortcut.Save(Path.Combine(admintools, filename));
+			}
+			catch
+			{
+				return false;
+			}
 			return true;
 		}
 
@@ -1057,13 +1066,12 @@ namespace Rectify11Installer.Core
 			}
 			try
 			{
-				reg.SetValue("Version", Application.ProductVersion);
+				reg.SetValue("Version", Assembly.GetEntryAssembly()?.GetName().Version);
 				Logger.WriteLine("Wrote ProductVersion to Version");
 			}
 			catch (Exception ex)
 			{
-				Logger.WriteLine("Error writing ProductVersion to Version", ex);
-				return false;
+				Logger.Warn("Error writing ProductVersion to Version", ex);
 			}
             try
             {
