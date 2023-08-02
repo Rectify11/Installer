@@ -127,13 +127,13 @@
     <value>Avanti</value>
   </data>
   <data name="eulaPageHeader" xml:space="preserve">
-    <value>Condizioni di Licenza</value>
+    <value>Contratto di Licenza</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
     <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
-    <value>Prima di poter installare Rectify11, deve accettare le condizioni di licenza:</value>
+    <value>Prima che tu possa installare Rectify11, devi accettare questo contratto di licenza:</value>
   </data>
   <data name="installNote" xml:space="preserve">
     <value>Rettifica la tua installazione di Windows.</value>
@@ -142,13 +142,13 @@
     <value>Installa Ora</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>Ripristina il look originale di Windows.</value>
+    <value>Ripristina l'aspetto originale di Windows.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>Disinstalla Rectify11</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Aggiorna la tua installazione esistente di Rectify11.</value>
+    <value>Aggiorna la tua installazione già esistente di Rectify11.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Aggiorna Ora</value>
@@ -160,22 +160,22 @@
     <value>Benvenuto</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>Questo setup ti guiderà nei vari passaggi richiesti per installare Rectify11 sul tuo PC, per un'esperienza più consistente. Seleziona l'opzione che desideri per continuare.</value>
+    <value>Questo setup ti guiderà nei vari passaggi richiesti per installare Rectify11 sul tuo PC, per un'esperienza più consistente. Seleziona l'opzione che preferisci per continuare.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Puoi scegliere cosa verrà Rettificato.</value>
+    <value>Puoi sceglire cosa verrà Rettificato.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Scegli cosa installare</value>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
-    <value>Scegli il tema che preferisci.</value>
+    <value>Scegli il tema che desideri.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
     <value>Personalizza la tua esperienza</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Installer di Rectify11</value>
+    <value>Installazione di Rectify11</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
     <value>Scuro con Mica</value>
@@ -196,7 +196,7 @@
     <value>Personalizza il tuo Desktop</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>Seleziona l'esperienza desktop che preferisci</value>
+    <value>Scegli l'esperienza desktop che desideri</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
     <value>Windows 10 Arrotondato</value>
@@ -205,19 +205,19 @@
     <value>Barra delle applicazioni di Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Predefinito di Windows 11</value>
+    <value>Windows 11 Predefinito</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>Copia dei file...</value>
+    <value>Lo sapevi</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Per favore salva il tuo lavoro e chiudi tutto dato che sarà richiesto un riavvio alla fine dell'installazione.</value>
+    <value>Per favore chiudi tutto e salva il tuo lavoro dato che sarà richiesto un riavvio alla fine dell'installazione.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
     <value>Installare Rectify11 su questa installazione di Windows.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>Stai per eseguire il seguente:</value>
+    <value>Stai per effettuare quanto segue:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>Installa</value>
@@ -231,32 +231,56 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Temi</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Sfondi di Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Installare ExplorerPatcher</value>
+    <value>Installa ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Installare shell</value>
-  </data>
-  <data name="installThemes" xml:space="preserve">
-    <value>Installare i temi</value>
-  </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Installare gli sfondi</value>
+    <value>Menu contestuali migliorati</value>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>Installare Winver</value>
+    <value>Installa Winver</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
-    <value>Sintesi</value>
+    <value>Riepilogo</value>
   </data>
   <data name="exitText" xml:space="preserve">
-    <value>Siete sicuri di voler annullare l'installazione?</value>
+    <value>Sei sicuro di voler annullare l'installazione?</value>
+  </data>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Riavvia Ora</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Colorizzazione con il Colore d'accento</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Patcha le Icone</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Installa Immagini account</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Stile menu contestuali</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Gadget Rettificati</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Immagini account rimasterizzate</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Puoi scegliere cosa verrà ripristinato.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Salta l'installazione di MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Usa Mica Alt al posto di Mica</value>
   </data>
 </root>
