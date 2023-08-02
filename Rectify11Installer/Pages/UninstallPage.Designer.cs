@@ -73,7 +73,7 @@
 			this.label1.Size = new System.Drawing.Size(361, 40);
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.label1.TabIndex = 1;
-			this.label1.Text = "choose what will be uninstalled.";
+			this.label1.Text = resources.GetString("uninstallChoiceDescription");
 			// 
 			// treeView1
 			// 

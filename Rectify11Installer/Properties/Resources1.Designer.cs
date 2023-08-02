@@ -691,45 +691,6 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to mstsc.exe.mun
-        ///imageres.dll.mun
-        ///wininetlui.dll
-        ///taskmgr.exe.mun
-        ///wordpad.exe
-        ///explorerframe.dll.mun
-        ///cabview.dll
-        ///CustomInstallExec.exe
-        ///msxml3.dll.mun
-        ///AuditNativeSnapIn.dll
-        ///axinstui.exe
-        ///basebrd.dll
-        ///bthci.dll
-        ///BthPanContextHandler.dll
-        ///bthprops.cpl
-        ///bthudtask.exe
-        ///btpanui.dll
-        ///Bubbles.scr
-        ///cmd.exe
-        ///comdlg32.dll.mun
-        ///compstui.dll.mun
-        ///comres.dll.mun
-        ///conhost.exe
-        ///connect.dll.mun
-        ///ddores.dll.mun
-        ///devicecenter.dll.mun
-        ///devicepairingfolder.dll.mun
-        ///hhctrl.ocx
-        ///icsigd.dll.mun
-        ///iexpress.exe
-        ///inetcpl.cpl.mun        /// [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string newfiles {
-            get {
-                return ResourceManager.GetString("newfiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap perf {

@@ -6,17 +6,17 @@ namespace Rectify11Installer.Core
 {
 	class ExtrasOptions
 	{
-		// add extra options here ok
-		private static List<Tuple<string, string>> options = new()
+        // add extra options here ok
+        private static List<Tuple<string, string>> options = new()
 		{
-			new("shellNode", "Enhanced context menus"),
-			new("gadgetsNode", "Rectified Gadgets"),
+			new("shellNode", Strings.Rectify11.installShell),
+			new("gadgetsNode", Strings.Rectify11.installGadgets),
 			// new("winverNode", "WinverUWP"),
 			// new("rectpadNode", "RectifyPad"),
 			// new("epNode", "ExplorerPatcher"), 
-			new("asdfNode", "Enable Accent Color Colorizing"),
-			new("wallpapersNode", Rectify11Installer.Strings.Rectify11.optionWallpaper),
-			new("useravNode", "Remastered user avatars")
+			new("asdfNode", Strings.Rectify11.installASDF),
+			new("wallpapersNode", Strings.Rectify11.installWallpapers),
+			new("useravNode", Strings.Rectify11.installUserAV)
 			//new("soundNode","Remastered Logon, Logoff, and Shutdown sounds")
 		};
 		public static List<TreeNode> GetExtras()

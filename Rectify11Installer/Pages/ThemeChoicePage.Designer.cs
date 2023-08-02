@@ -77,7 +77,7 @@
 			this.randomCheckbox2.Size = new System.Drawing.Size(288, 19);
 			this.randomCheckbox2.TabIndex = 5;
 			this.randomCheckbox2.Enabled = false;
-			this.randomCheckbox2.Text = "Use Mica Alt instead of Mica";
+			this.randomCheckbox2.Text = resources.GetString("installMicaAlt");
 			this.randomCheckbox2.UseVisualStyleBackColor = true;
 			//
 			// randomCheckbox1
@@ -87,7 +87,7 @@
 			this.randomCheckbox1.Name = "randomCheckbox1";
 			this.randomCheckbox1.Size = new System.Drawing.Size(288, 19);
 			this.randomCheckbox1.TabIndex = 5;
-			this.randomCheckbox1.Text = "Skip MicaForEveryone installation";
+			this.randomCheckbox1.Text = resources.GetString("installMFE");
 			this.randomCheckbox1.UseVisualStyleBackColor = true;
 			// 
 			// themeTitle

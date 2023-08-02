@@ -33,11 +33,6 @@ namespace Rectify11Installer.Core
                     }
                 }
                 catch { }
-                var oldFiles = Directory.GetFiles(Path.Combine(Variables.Windir, "Temp"), "*", SearchOption.TopDirectoryOnly);
-                for (int i = 0; i < oldFiles.Length; i++)
-                {
-                    MoveFileEx(oldFiles[i], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                }
                 File.Delete(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
                 File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
             }
@@ -259,7 +254,10 @@ namespace Rectify11Installer.Core
                 }
             }
             // cleanup
-            Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"));
+            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
+            {
+                Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"));
+            }
             frm.InstallerProgress = "Done, you can close this window";
             return true;
         }
