@@ -62,7 +62,14 @@ namespace Rectify11Installer.Pages
 		{
 			timer1.Stop();
 			progressText.Text = "Restarting your PC";
-			progressInfo.Text = "Rectify11 has finished installing. Your device needs to restart in order to complete the installation, it will automatically restart in " + duration.ToString() + " seconds";
+			if (Variables.IsUninstall)
+			{
+				progressInfo.Text = "Rectify11 has finished uninstalling. Your device needs to restart in order to complete the uninstallation, it will automatically restart in " + duration.ToString() + " seconds";
+			}
+			else
+			{
+				progressInfo.Text = "Rectify11 has finished installing. Your device needs to restart in order to complete the installation, it will automatically restart in " + duration.ToString() + " seconds";
+			}
 			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
 			frmwiz.UpdateSideImage = Properties.Resources.done;
 			timer2.Start();
@@ -87,10 +94,13 @@ namespace Rectify11Installer.Pages
                     frmwiz.pictureBox1.Visible = true;
                     frmwiz.progressLabel.Visible = true;
                     RectifyPages.ProgressPage.Start();
+                    NativeMethods.SetCloseButton(frmwiz, false);
                     Uninstaller uninstaller = new();
 					await uninstaller.Uninstall(frmwiz);
+                    NativeMethods.SetCloseButton(frmwiz, false);
+                    RectifyPages.ProgressPage.StartReset();
                 }
-				else
+                else
 				{
 					frmwiz.versionLabel.Visible = false;
 					ExtrasOptions.FinalizeIRectify11();
@@ -201,11 +211,12 @@ namespace Rectify11Installer.Pages
 		private void NextText()
 		{
 			if (Variables.IsUninstall)
-			{
-                progressText.Text = "very J";
-                progressInfo.Text = "r11 gone";
+            {
+                progressText.Text = ":(";
+                progressInfo.Text = "Rectify11 gone";
+
             }
-			else
+            else
 			{
 				CurrentTextIndex++;
 				if (CurrentTextIndex >= Rectify11InstallerTexts.Length)

@@ -214,8 +214,10 @@ namespace Rectify11.Phase2
                                     string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
-                                    File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath)));
+                                    string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath));
+                                    File.Move(finalPath, filename);
                                     File.Move(backupPath, finalPath);
+                                    MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                                     lastfile = uninstallFiles[k];
                                 }
                             }
@@ -229,8 +231,10 @@ namespace Rectify11.Phase2
                                     string finalPath = FixString(patches.Items[j].HardlinkTarget, true);
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
-                                    File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui)));
+                                    string filename = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui));
+                                    File.Move(finalPath, filename);
                                     File.Move(backupPath, finalPath);
+                                    MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                                 }
                             }
                         }
@@ -242,8 +246,10 @@ namespace Rectify11.Phase2
                                 string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
                                 Console.WriteLine("Backup: " + backupDiagDir[i]);
                                 Console.WriteLine("Final: " + finalPath + "\n");
-                                File.Move(finalPath, Path.Combine(Path.GetTempPath(), Path.GetFileName(backupDiagDir[i])));
+                                string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(backupDiagDir[i]));
+                                File.Move(finalPath, filename);
                                 File.Move(backupDiagDir[i], finalPath);
+                                MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             }
                         }
                     }
