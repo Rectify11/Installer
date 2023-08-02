@@ -182,7 +182,7 @@ namespace Rectify11.Phase2
                 Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
                 if (Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
                 {
-                    MoveFileEx(Path.Combine(Variables.r11Folder, "Trash", null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    MoveFileEx(Path.Combine(Variables.r11Folder, "Trash", null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT));
                 }
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
