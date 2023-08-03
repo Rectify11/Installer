@@ -490,8 +490,19 @@ namespace Rectify11Installer.Core
 			Logger.WriteLine("Copied Themetool.");
 			Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
+			string[] array = { "ar-SA", "zh-TW", "ja-JP", "ko-KR", "ur-PK", "fa-IR", "zh-CN" };
+            if (!array.Contains(CultureInfo.CurrentUICulture.Name))
+            {
+                try
+                {
+                    Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "winmetricsfonts.reg"), AppWinStyle.Hide);
+                }
+                catch
+                {
+                }
+            }
 
-			for (var i = 0; i < curdir.Length; i++)
+            for (var i = 0; i < curdir.Length; i++)
 			{
 				if (Directory.Exists(Path.Combine(Variables.Windir, "cursors", curdir[i].Name)))
 				{
