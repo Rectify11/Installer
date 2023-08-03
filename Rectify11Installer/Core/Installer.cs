@@ -490,17 +490,6 @@ namespace Rectify11Installer.Core
 			Logger.WriteLine("Copied Themetool.");
 			Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
-		    string[] array = { "ar-SA", "zh-TW", "ja-JP", "ko-KR", "ur-PK", "fa-IR", "zh-CN" };
-            		if (!array.Contains(CultureInfo.CurrentUICulture.Name)) 
-			{
-				try
-				{
-                  		  Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "winmetricsfonts.reg"), AppWinStyle.Hide);
-              		        }
-				catch
-				{
-				}
-			}
 
 			for (var i = 0; i < curdir.Length; i++)
 			{
@@ -1217,24 +1206,30 @@ namespace Rectify11Installer.Core
 							" -action " + "delete" +
 							" -mask " + str[i], AppWinStyle.Hide, true);
 						}
-						if (tempfolder + name == "taskmgr.exe.mun")
-						{
-							if (winver >= 22557)
-							{
-                                Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-								" -open " + Path.Combine(tempfolder, name) +
-								" -save " + Path.Combine(tempfolder, name) +
-								" -action " + "addskip" +
-								" -resource " + Path.Combine(filepath, "taskmgr22h2.exe.mun.res") +
-								" -mask " + str[i], AppWinStyle.Hide, true);
-                            }
-						}
 						Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							" -open " + Path.Combine(tempfolder, name) +
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "addskip" +
 							" -resource " + Path.Combine(filepath, filename) +
 							" -mask " + str[i], AppWinStyle.Hide, true);
+						if (tempfolder + name == "taskmgr.exe.mun")
+						{
+							if (winver >= 22557)
+							{
+								try
+								{
+                       				     		Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+									" -open " + Path.Combine(tempfolder, name) +
+									" -save " + Path.Combine(tempfolder, name) +
+									" -action " + "addskip" +
+									" -resource " + Path.Combine(filepath, "taskmgr22h2.exe.mun.res") +
+									" -mask " + str[i], AppWinStyle.Hide, true);
+								}
+								catch
+								{
+								}
+                         				}
+						}
 					}
 				}
 				else
