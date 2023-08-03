@@ -55,6 +55,10 @@ namespace Rectify11.Phase2
 
                 }
                 MoveIconres();
+                MoveDUIRes();
+                MoveIMFH();
+                MoveTwinUIFonts();
+                InstallFonts();
                 r11Reg?.Close();
                 if (pendingFiles != null)
                 {
@@ -415,6 +419,93 @@ namespace Rectify11.Phase2
             catch
             {
                 // ignored
+            }
+        }
+        private static void MoveDUIRes()
+        {
+            var duiresDest = Path.Combine(Variables.sys32Folder, "duires.dll");
+            var duires = Path.Combine(Variables.r11Files, "duires.dll");
+            try
+            {
+                File.Copy(duires, duiresDest, true);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+        private static void MoveIMFH()
+        {
+            var imfhDest = Path.Combine(Variables.sys32Folder, "ImmersiveFontHandler.dll");
+            var imfh = Path.Combine(Variables.r11Files, "ImmersiveFontHandler.dll");
+            try
+            {
+                File.Copy(imfh, imfhDest, true);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+        private static void MoveTwinUIFonts()
+        {
+            var twinuifontsDest = Path.Combine(Variables.sys32Folder, "twinuifonts.dll");
+            var twinuifonts = Path.Combine(Variables.r11Files, "twinuifonts.dll");
+            try
+            {
+                File.Copy(twinuifonts, twinuifontsDest, true);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+        private static void InstallFonts()
+        {
+            int winver = Environment.OSVersion.Version.Build;
+            var MarlettDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf");
+            var MarlettBackupDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf.backup");
+            var marlett = Path.Combine(Variables.r11Files, "marlett.ttf");
+            try
+            {
+                File.Move(MarlettDest, MarlettBackupDest);
+                File.Copy(marlett, MarlettDest, true);
+            }
+            catch
+            {
+            }
+            var BackIconsDest = Path.Combine(Variables.windir, "Fonts", "BackIcons.ttf");
+            var backicons = Path.Combine(Variables.r11Files, "BackIcons.ttf");
+            try
+            {
+                File.Copy(backicons, BackIconsDest, true);
+                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "backicons.reg"), AppWinStyle.Hide, true);
+            }
+            catch
+            {
+            }
+            if (winver < 21996)
+            {
+                var SegoeIconsDest = Path.Combine(Variables.windir, "Fonts", "SegoeIcons.ttf");
+                var segoeicons = Path.Combine(Variables.r11Files, "SegoeIcons.ttf");
+                try
+                {
+                    File.Copy(segoeicons, SegoeIconsDest, true);
+                    Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "segoeicons.reg"), AppWinStyle.Hide, true);
+                }
+                catch
+                {
+                }
+                var SegoeUIVarDest = Path.Combine(Variables.windir, "Fonts", "SegUIVar.ttf");
+                var segoeuivar = Path.Combine(Variables.r11Files, "SegUIVar.ttf");
+                try
+                {
+                    File.Copy(segoeuivar, SegoeUIVarDest, true);
+                    Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "segoeuivar.reg"), AppWinStyle.Hide, true);
+                }
+                catch
+                {
+                }
             }
         }
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
