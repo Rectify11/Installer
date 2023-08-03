@@ -490,7 +490,7 @@ namespace Rectify11Installer.Core
 			Logger.WriteLine("Copied Themetool.");
 			Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
 			Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
-		        string[] array = { "ar-SA", "zh-TW", "ja-JP", "ko-KR", "ur-PK", "fa-IR", "zh-CN" };
+		    string[] array = { "ar-SA", "zh-TW", "ja-JP", "ko-KR", "ur-PK", "fa-IR", "zh-CN" };
             		if (!array.Contains(CultureInfo.CurrentUICulture.Name)) 
 			{
 				try
@@ -1185,7 +1185,8 @@ namespace Rectify11Installer.Core
 
 				var filename = name + ".res";
 				var masks = patch.mask;
-				string filepath;
+                int winver = Environment.OSVersion.Version.Build;
+                string filepath;
 				if (type == PatchType.Troubleshooter)
 				{
 					filepath = Path.Combine(Variables.r11Files, "Diag");
@@ -1215,6 +1216,18 @@ namespace Rectify11Installer.Core
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "delete" +
 							" -mask " + str[i], AppWinStyle.Hide, true);
+						}
+						if (tempfolder + name == "taskmgr.exe.mun")
+						{
+							if (winver >= 22557)
+							{
+                                Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+								" -open " + Path.Combine(tempfolder, name) +
+								" -save " + Path.Combine(tempfolder, name) +
+								" -action " + "addskip" +
+								" -resource " + Path.Combine(filepath, "taskmgr22h2.exe.mun.res") +
+								" -mask " + str[i], AppWinStyle.Hide, true);
+                            }
 						}
 						Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							" -open " + Path.Combine(tempfolder, name) +
@@ -1339,8 +1352,8 @@ namespace Rectify11Installer.Core
 				{
 					return false;
 				}
-			}
-			if (!string.IsNullOrWhiteSpace(patch.x86))
+            }
+            if (!string.IsNullOrWhiteSpace(patch.x86))
 			{
 				if (patch.HardlinkTarget.Contains("%sys32%"))
 				{
