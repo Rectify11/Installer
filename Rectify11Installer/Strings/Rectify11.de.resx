@@ -231,20 +231,14 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Designs</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Rectify11 Hintergründe</value>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>ExplorerPatcher installieren</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Shell installieren</value>
-  </data>
-  <data name="installThemes" xml:space="preserve">
-    <value>Themes installieren</value>
-  </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Hintergrundbilder installieren</value>
+    <value>Verbesserte Kontextmenüs</value>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>Winver installieren</value>
@@ -263,7 +257,7 @@
     <value>Jetzt neu starten</value>
   </data>
   <data name="installASDF" xml:space="preserve">
-    <value>Accent Colorizer installieren</value>
+    <value>Akzentfarben-Kolorierung</value>
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>Icons patchen</value>
@@ -275,6 +269,18 @@
     <value>Stil des Kontextmenüs</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
-    <value>Gadgets installieren</value>
+    <value>Verbesserte Gadgets</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Überarbeitete Benutzeravatare</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Sie können wählen, was wiederhergestellt werden soll.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>MicaForEveryone-Installation überspringen</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Mica Alt anstelle von Mica verwenden</value>
   </data>
 </root>

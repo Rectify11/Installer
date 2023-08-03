@@ -427,7 +427,6 @@
 	<Patch Mui="wiaaut.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\wiaaut.dll" />
 	<Patch Mui="wincredui.dll.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\wincredui.dll.mui" />
 	<Patch Mui="Windows.Storage.Search.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Windows.Storage.Search.dll" />
-	<Patch Mui="Windows.UI.Immersive.dll.mui" mask="STRING_TBL," HardlinkTarget="%en-US%\Windows.UI.Immersive.dll.mui" />
 	<Patch Mui="Windows.UI.PicturePassword.dll" mask="IMAGE,|BITMAP,|UIFILE," HardlinkTarget="%sys32%\Windows.UI.PicturePassword.dll" />
 	<Patch Mui="wininetlui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wininetlui.dll" />
 	<Patch Mui="winmgmt.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wbem\winmgmt.exe" />
