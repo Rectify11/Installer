@@ -1217,28 +1217,35 @@ namespace Rectify11Installer.Core
 							" -action " + "delete" +
 							" -mask " + str[i], AppWinStyle.Hide, true);
 						}
-						Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+						if (tempfolder + name != "taskmgr.exe.mun")
+						{	
+							Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
 							" -open " + Path.Combine(tempfolder, name) +
 							" -save " + Path.Combine(tempfolder, name) +
 							" -action " + "addskip" +
 							" -resource " + Path.Combine(filepath, filename) +
 							" -mask " + str[i], AppWinStyle.Hide, true);
+						}	
+						// it's pain to get this working
 						if (tempfolder + name == "taskmgr.exe.mun")
 						{
 							if (winver >= 22557)
 							{
-								try
-								{
                        				     		Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-									" -open " + Path.Combine(tempfolder, name) +
-									" -save " + Path.Combine(tempfolder, name) +
-									" -action " + "addskip" +
-									" -resource " + Path.Combine(filepath, "taskmgr22h2.exe.mun.res") +
-									" -mask " + str[i], AppWinStyle.Hide, true);
-								}
-								catch
-								{
-								}
+								" -open " + Path.Combine(tempfolder, name) +
+								" -save " + Path.Combine(tempfolder, name) +
+								" -action " + "addskip" +
+								" -resource " + Path.Combine(filepath, "taskmgr22h2.exe.mun.res") +
+								" -mask " + str[i], AppWinStyle.Hide, true);
+                         				}
+							if (winver < 22557)
+							{
+                       					     	Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+								" -open " + Path.Combine(tempfolder, name) +
+								" -save " + Path.Combine(tempfolder, name) +
+								" -action " + "addskip" +
+								" -resource " + Path.Combine(filepath, "taskmgr.exe.mun.res") +
+								" -mask " + str[i], AppWinStyle.Hide, true);
                          				}
 						}
 					}
