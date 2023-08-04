@@ -462,7 +462,6 @@ namespace Rectify11.Phase2
         }
         private static void InstallFonts()
         {
-            int winver = Environment.OSVersion.Version.Build;
             var MarlettDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf");
             var MarlettBackupDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf.backup");
             var marlett = Path.Combine(Variables.r11Files, "marlett.ttf");
@@ -484,7 +483,7 @@ namespace Rectify11.Phase2
             catch
             {
             }
-            if (winver < 21996)
+            if (Environment.OSVersion.Version.Build <= 21996)
             {
                 var SegoeIconsDest = Path.Combine(Variables.windir, "Fonts", "SegoeIcons.ttf");
                 var segoeicons = Path.Combine(Variables.r11Files, "SegoeIcons.ttf");
