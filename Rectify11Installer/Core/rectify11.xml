@@ -32,7 +32,7 @@
 	<Patch Mui="dsuiext.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\dsuiext.dll.mun" />
 	<Patch Mui="easeofaccessdialog.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\easeofaccessdialog.exe.mun" />
 	<Patch Mui="edputil.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\edputil.dll.mun" />
-	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|BITMAP,|IMAGE,|CURSORGROUP,|UIFILE," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" />
+	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|BITMAP,|IMAGE,|CURSORGROUP,|UIFILE," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" Ignore="|UIFILE," MinVersion="21996" />
 	<Patch Mui="filemgmt.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\filemgmt.dll.mun" />
 	<Patch Mui="firewallcontrolpanel.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\firewallcontrolpanel.dll.mun" />
 	<Patch Mui="gpedit.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\gpedit.dll.mun" />
@@ -97,6 +97,7 @@
 	<Patch Mui="sysmon.ocx.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\sysmon.ocx.mun" />
 	<Patch Mui="tapiui.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\tapiui.dll.mun" />
 	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />
+	<Patch Mui="taskmgr22h2.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />
 	<Patch Mui="themecpl.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\themecpl.dll.mun" />
 	<Patch Mui="themeui.dll.mun" mask="ICONGROUP,|IMAGE,|BITMAP," HardlinkTarget="%sysresdir%\themeui.dll.mun" />
 	<Patch Mui="timedate.cpl.mun" mask="ICONGROUP,|PNGFILE," HardlinkTarget="%sysresdir%\timedate.cpl.mun" />
