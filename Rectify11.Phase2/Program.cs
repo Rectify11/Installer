@@ -58,7 +58,7 @@ namespace Rectify11.Phase2
                 MoveDUIRes();
                 MoveIMFH();
                 MoveTwinUIFonts();
-                InstallFonts();
+                //InstallFonts();
                 r11Reg?.Close();
                 if (pendingFiles != null)
                 {
