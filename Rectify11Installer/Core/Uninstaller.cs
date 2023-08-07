@@ -324,9 +324,9 @@ namespace Rectify11Installer.Core
                             catch
                             {
                                 var fil = Directory.GetFiles(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
-                                for (int i = 0; i < fil.Length; i++)
+                                for (int j = 0; j < fil.Length; j++)
                                 {
-                                    MoveFileEx(fil[i], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                    MoveFileEx(fil[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                                 }
                                 MoveFileEx(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             }

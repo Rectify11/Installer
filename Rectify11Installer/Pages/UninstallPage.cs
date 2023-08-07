@@ -11,7 +11,6 @@ namespace Rectify11Installer.Pages
 	{
 		#region Variables
 		private readonly FrmWizard _frmWizard;
-		private bool ExtrasSel = false;
 		bool idleinit;
 		#endregion
 		#region Main
