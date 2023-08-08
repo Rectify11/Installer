@@ -37,7 +37,7 @@
 	<Patch Mui="firewallcontrolpanel.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\firewallcontrolpanel.dll.mun" />
 	<Patch Mui="gpedit.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\gpedit.dll.mun" />
 	<Patch Mui="icsigd.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\icsigd.dll.mun" />
-	<Patch Mui="ieframe.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\ieframe.dll.mun" />
+	<Patch Mui="ieframe.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\ieframe.dll.mun" />
 	<Patch Mui="imageres.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\imageres.dll.mun" />
 	<Patch Mui="imagesp1.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\imagesp1.dll.mun" />
 	<Patch Mui="inetcpl.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\inetcpl.cpl.mun" />
