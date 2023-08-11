@@ -288,5 +288,23 @@
   </data>
   <data name="installMicaAlt" xml:space="preserve">
     <value>Użyj Mica Alt zamiast Mica</value>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Klasyczne menu kontekstowe</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Przeźroczyste klasyczne menu kontekstowe</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Ulepszone menu Fluent (więcej opcji)</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Ulepszone menu Fluent (więcej elementów)</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Dodaj funkcje do istniejącej instalacji.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modyfikuj</value>
+  </data>
   </data>
  </root>
