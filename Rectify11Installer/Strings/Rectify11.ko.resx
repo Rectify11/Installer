@@ -238,7 +238,7 @@
     <value>ExplorerPatcher 설치</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>우클릭 메뉴</value>
+    <value>서드파티 우클릭 메뉴 설치</value>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>Winver 설치</value>
@@ -257,22 +257,22 @@
     <value>재시작</value>
   </data>
   <data name="installASDF" xml:space="preserve">
-    <value>AccentColorizer</value>
+    <value>AccentColorizer 설치</value>
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>아이콘 패치</value>
   </data>
   <data name="userAvatars" xml:space="preserve">
-    <value>계정 사진 설치</value>
+    <value>User Profile 설치</value>
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>우클릭 메뉴 테마</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Gadgets 설치</value>
   </data>
   <data name="installUserAV" xml:space="preserve">
-    <value>리마스터된 계정 사진</value>
+    <value>리마스터된 User Profile</value>
   </data>
   <data name="uninstallChoiceDescription" xml:space="preserve">
     <value>다시 원래대로 복구할 항목을 선택해 주세요.</value>
@@ -284,7 +284,7 @@
     <value>Mica(운모) 대신 Mica Alt(운모 Alt) 설치</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
-    <value>구 우클릭 메뉴</value>
+    <value>구 우클릭 메뉴 설치</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
     <value>(투명화)구 우클릭 메뉴</value>
