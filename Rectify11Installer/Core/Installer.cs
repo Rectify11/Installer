@@ -169,6 +169,7 @@ namespace Rectify11Installer.Core
                 {
                     Logger.WriteLine("Installr11cpl() failed.");
                 }
+                Variables.RestartRequired = true;
                 Logger.WriteLine("InstallThemes() succeeded.");
                 Logger.WriteLine("══════════════════════════════════════════════");
             }
@@ -227,8 +228,8 @@ namespace Rectify11Installer.Core
                     {
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
-                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /f /tn asdf", AppWinStyle.Hide));
-                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /tn asdf", AppWinStyle.Hide));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn asdf", AppWinStyle.Hide));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide));
                         var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"));
                         for (int j =0; j < files.Length; j++)
                         {
@@ -242,6 +243,10 @@ namespace Rectify11Installer.Core
                         + " AccentColorizer", AppWinStyle.Hide, true));
                     await Task.Run(() => Installasdf());
                     Logger.WriteLine("Installasdf() succeeded.");
+                    if (!Variables.RestartRequired)
+                    {
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /run /tn asdf", AppWinStyle.Hide));
+                    }
                 }
                 if (InstallOptions.InstallGadgets)
                 {
@@ -428,6 +433,8 @@ namespace Rectify11Installer.Core
                 // reg files for various file extensions
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide));
                 Logger.WriteLine("icons.reg succeeded");
+
+                Variables.RestartRequired = true;
             }
 
             if (!await Task.Run(() => AddToControlPanel()))
@@ -681,6 +688,17 @@ namespace Rectify11Installer.Core
         {
             // what????
             //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
+            if (!File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar","sidebar.exe")))
+            {
+                ProcessStartInfo uns = new()
+                {
+                    FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
+                    WindowStyle = ProcessWindowStyle.Normal,
+                    Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33}"
+                };
+                var gaduns = Process.Start(uns);
+                gaduns.WaitForExit();
+            }
             ProcessStartInfo gad = new()
             {
                 FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),

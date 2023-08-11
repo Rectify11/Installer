@@ -124,9 +124,12 @@ namespace Rectify11Installer.Pages
 					else
 					{
 						Logger.CommitLog();
-						RectifyPages.ProgressPage.StartReset();
-					}
-				}
+						if (Variables.RestartRequired) RectifyPages.ProgressPage.StartReset();
+                        NativeMethods.SetCloseButton(frmwiz, true);
+						Variables.isInstall = false;
+                        frmwiz.InstallerProgress = "Done, you can close this window";
+                    }
+                }
 			}
 		}
 
