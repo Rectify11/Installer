@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core

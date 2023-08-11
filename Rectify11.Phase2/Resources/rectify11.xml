@@ -96,8 +96,8 @@
 	<Patch Mui="sysdm.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sysdm.cpl.mun" />
 	<Patch Mui="sysmon.ocx.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\sysmon.ocx.mun" />
 	<Patch Mui="tapiui.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\tapiui.dll.mun" />
-	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />
-	<Patch Mui="taskmgr22h2.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />	
+	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" Ignore="|UIFILE," MaxVersion="22557"/>
+	<!--<Patch Mui="taskmgr22h2.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" /> -->
 	<Patch Mui="themecpl.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\themecpl.dll.mun" />
 	<Patch Mui="themeui.dll.mun" mask="ICONGROUP,|IMAGE,|BITMAP," HardlinkTarget="%sysresdir%\themeui.dll.mun" />
 	<Patch Mui="timedate.cpl.mun" mask="ICONGROUP,|PNGFILE," HardlinkTarget="%sysresdir%\timedate.cpl.mun" />

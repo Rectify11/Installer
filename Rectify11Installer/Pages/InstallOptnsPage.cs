@@ -42,14 +42,50 @@ namespace Rectify11Installer.Pages
 				var ok = list.Items;
 				var basicNode = treeView1.Nodes[0].Nodes[0];
 				var advNode = treeView1.Nodes[0].Nodes[1];
-				UpdateListView(ok, basicNode, advNode);
+                var themeNode = treeView1.Nodes[1];
+                var extra = treeView1.Nodes[2];
+                var shell = treeView1.Nodes[2].Nodes[0];
+                var gad = treeView1.Nodes[2].Nodes[1];
+                var asdf = treeView1.Nodes[2].Nodes[2];
+                var wall = treeView1.Nodes[2].Nodes[3];
+                var av = treeView1.Nodes[2].Nodes[4];
+                UpdateListView(ok, basicNode, advNode);
 				if (basicNode.Nodes.Count == 0)
 					treeView1.Nodes.Remove(basicNode);
 				if (advNode.Nodes.Count == 0)
 					treeView1.Nodes.Remove(advNode);
 				if (treeNode1.Nodes.Count == 0)
 					treeView1.Nodes.Remove(treeNode1);
-				idleinit = true;
+                // ugh
+                if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
+                {
+                    treeView1.Nodes.Remove(themeNode);
+                }
+                if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+                {
+                    treeView1.Nodes.Remove(shell);
+                }
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
+                {
+                    treeView1.Nodes.Remove(asdf);
+                }
+                if (File.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", "img41.jpg")))
+                {
+                    treeView1.Nodes.Remove(wall);
+                }
+                if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+                {
+                    treeView1.Nodes.Remove(av);
+                }
+                if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
+                {
+                    treeView1.Nodes.Remove(gad);
+                }
+                if (extra.Nodes.Count == 0)
+                {
+                    treeView1.Nodes.Remove(extra);
+                }
+                idleinit = true;
 			}
 		}
 
