@@ -10,7 +10,7 @@ namespace Rectify11Installer.Pages
 		{
 			InitializeComponent();
 			Rad1.Checked = true;
-			for(int i=1; i<=5; i++)
+			for(int i=1; i<=4; i++)
             {
 				Controls.DarkAwareRadioButton rad = getButton(i);
 				rad.CheckedChanged += CMenuPage_CheckedChanged;
