@@ -695,7 +695,7 @@ namespace Rectify11Installer.Core
                 {
                     FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
                     WindowStyle = ProcessWindowStyle.Normal,
-                    Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33}"
+                    Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33} /qn"
                 };
                 var gaduns = Process.Start(uns);
                 gaduns.WaitForExit();

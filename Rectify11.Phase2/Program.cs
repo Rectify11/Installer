@@ -194,9 +194,13 @@ namespace Rectify11.Phase2
                 var backup = Path.Combine(Variables.r11Folder, "Backup");
                 var backupFiles = Directory.GetFiles(backup, "*", SearchOption.TopDirectoryOnly);
 
-                // later
-                var backupDiagDir = Directory.GetFiles(Path.Combine(backup, "Diag"), "*", SearchOption.TopDirectoryOnly);
+                // delete the trash dir
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
+                {
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "Trash"));
+                }
 
+                var backupDiagDir = Directory.GetFiles(Path.Combine(backup, "Diag"), "*", SearchOption.TopDirectoryOnly);
                 var r11Reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).OpenSubKey("Rectify11", false);
                 if (r11Reg != null)
                     uninstallFiles = (string[])r11Reg.GetValue("UninstallFiles");
@@ -219,6 +223,17 @@ namespace Rectify11.Phase2
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
                                     string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath));
+                                    if (File.Exists(filename))
+                                    {
+                                        try
+                                        {
+                                            File.Delete(filename);
+                                        }
+                                        catch
+                                        {
+                                            filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                                        }
+                                    }
                                     File.Move(finalPath, filename);
                                     File.Move(backupPath, finalPath);
                                     MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -236,6 +251,17 @@ namespace Rectify11.Phase2
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
                                     string filename = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui));
+                                    if (File.Exists(filename))
+                                    {
+                                        try
+                                        {
+                                            File.Delete(filename);
+                                        }
+                                        catch
+                                        {
+                                            filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                                        }
+                                    }
                                     File.Move(finalPath, filename);
                                     File.Move(backupPath, finalPath);
                                     MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -251,6 +277,17 @@ namespace Rectify11.Phase2
                                 Console.WriteLine("Backup: " + backupDiagDir[i]);
                                 Console.WriteLine("Final: " + finalPath + "\n");
                                 string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(backupDiagDir[i]));
+                                if (File.Exists(filename))
+                                {
+                                    try
+                                    {
+                                        File.Delete(filename);
+                                    }
+                                    catch
+                                    {
+                                        filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                                    }
+                                }
                                 File.Move(finalPath, filename);
                                 File.Move(backupDiagDir[i], finalPath);
                                 MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -391,7 +428,18 @@ namespace Rectify11.Phase2
                 {
                     Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash"));
                 }
-                finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
+                if (type == MoveType.General)
+                {
+                    finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
+                }
+                else if (type == MoveType.x86)
+                {
+                    finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
+                }
+                else if (type == MoveType.Trouble)
+                {
+                    finalpath = Path.Combine(Variables.r11Folder, "Trash", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
+                }
                 Console.WriteLine(finalpath);
                 if (File.Exists(finalpath))
                 {
@@ -399,7 +447,10 @@ namespace Rectify11.Phase2
                     {
                         File.Delete(finalpath);
                     }
-                    catch { }
+                    catch
+                    {
+                        finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetRandomFileName());
+                    }
                 }
                 File.Move(newval, finalpath);
                 MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);

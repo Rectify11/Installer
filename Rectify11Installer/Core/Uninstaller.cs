@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
@@ -354,37 +355,34 @@ namespace Rectify11Installer.Core
                             }
                             catch { }
                             await Task.Run(() => Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " delete \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\" /f"));
-                            try
+                            var files = Directory.GetFiles(Path.Combine(Variables.Windir, "nilesoft"));
+                            for (int j = 0; j < files.Length; j++)
                             {
-                                Directory.Delete(Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus"), true);
+                                try
+                                {
+                                    File.Delete(files[j]);
+                                }
+                                catch
+                                {
+                                    MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                }
                             }
-                            catch { }
-                            try
+                            var dir = Directory.GetDirectories(Path.Combine(Variables.Windir, "nilesoft"));
+                            for (int j = 0; j < dir.Length; j++)
                             {
-                                Directory.Delete(Path.Combine(Variables.Windir, "nilesoft", "imports"), true);
+                                var fil = Directory.GetFiles(dir[j]);
+                                for (int k = 0; k < fil.Length; k++)
+                                {
+                                    try
+                                    {
+                                        File.Delete(fil[k]);
+                                    }
+                                    catch
+                                    {
+                                        MoveFileEx(fil[k], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                    }
+                                }
                             }
-                            catch { }
-                            try
-                            {
-                                File.Delete(Path.Combine(Variables.Windir, "nilesoft", "acrylMenu.xml"));
-                            }
-                            catch { }
-                            try
-                            {
-                                File.Delete(Path.Combine(Variables.Windir, "nilesoft", "shell.exe"));
-                            }
-                            catch { }
-                            try
-                            {
-                                File.Delete(Path.Combine(Variables.Windir, "nilesoft", "shell.log"));
-                            }
-                            catch { }
-                            try
-                            {
-                                File.Delete(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"));
-                            }
-                            catch { }
-                            MoveFileEx(Path.Combine(Variables.Windir, "nilesoft", "shell.dll"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             MoveFileEx(Path.Combine(Variables.Windir, "nilesoft"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                     }
@@ -394,7 +392,7 @@ namespace Rectify11Installer.Core
                         {
                             FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
                             WindowStyle = ProcessWindowStyle.Normal,
-                            Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33}"
+                            Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33} /qn"
                         };
                         var vcproc = Process.Start(gad);
                         vcproc.WaitForExit();
