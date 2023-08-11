@@ -139,19 +139,19 @@
     <value>Verbessern Sie Ihre aktuelle Windows-Installation.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
-    <value>Jetzt installieren</value>
+    <value>Installieren</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
     <value>Stellt den originalen Windows-Look wieder her.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
-    <value>Rectify11 deinstallieren</value>
+    <value>Deinstallieren</value>
   </data>
   <data name="updateNote" xml:space="preserve">
     <value>Aktualisieren Sie Ihre bestehende Rectify11-Installation.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
-    <value>Jetzt aktualisieren</value>
+    <value>Aktualisieren</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version: </value>
@@ -282,5 +282,23 @@
   </data>
   <data name="installMicaAlt" xml:space="preserve">
     <value>Mica Alt anstelle von Mica verwenden</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Klassische Kontextmenüs</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Klassische Kontextmenüs mit Transparenz</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Verbesserte Kontextmenüs (mehr Optionen)</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Verbesserte Kontextmenüs (alle Elemente im Hauptmenü)</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Fügen Sie Ihrer bestehenden Installation weitere Funktionen hinzu.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modifizieren</value>
   </data>
 </root>
