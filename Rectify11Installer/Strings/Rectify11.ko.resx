@@ -196,7 +196,7 @@
     <value>Placeholder</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>Placeholder.</value>
+    <value>원하는 우클릭 메뉴 테마를 고르세요.</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
     <value>Windows 10 Rounded</value>
@@ -287,16 +287,16 @@
     <value>구 우클릭 메뉴 설치</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>투명화 구 우클릭 메뉴</value>
+    <value>(투명화)구 우클릭 메뉴</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
     <value>플루언트 메뉴 (더 많은 옵션 포함)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>플루언트 메뉴 (모든 항목 포함)</value>
+    <value>플루언트 메뉴 (모든 항목 표시)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
-    <value>현재 윈도우에 외부 기능들 설치.</value>
+    <value>현재 Rectify11에 추가 기능 설치.</value>
   </data>
   <data name="modifyTitle" xml:space="preserve">
     <value>수정</value>
