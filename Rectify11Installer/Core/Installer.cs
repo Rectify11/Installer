@@ -102,6 +102,8 @@ namespace Rectify11Installer.Core
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micaforeveryone.exe", AppWinStyle.Hide, true));
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micafix.exe", AppWinStyle.Hide, true));
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorerframe.exe", AppWinStyle.Hide, true));
+                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn mfe", AppWinStyle.Hide));
+                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn micafix", AppWinStyle.Hide));
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn mfe", AppWinStyle.Hide));
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn micafix", AppWinStyle.Hide));
                 if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
@@ -131,7 +133,23 @@ namespace Rectify11Installer.Core
                     {
                         if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
                         {
-                            await Task.Run(() => Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true));
+                            try
+                            {
+                                await Task.Run(() => Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true));
+                            }
+                            catch
+                            {
+                                // tf you doing
+                                if (Directory.Exists(Path.Combine(Path.GetTempPath(), "MicaForEveryone")))
+                                {
+                                    try
+                                    {
+                                        Directory.Delete(Path.Combine(Path.GetTempPath(), "MicaForEveryone"));
+                                    }
+                                    catch { }
+                                }
+                                Directory.Move(Path.Combine(Variables.Windir, "MicaForEveryone"), Path.Combine(Path.GetTempPath(), "MicaForEveryone"));
+                            }
                         }
                         await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone")));
                         await Task.Run(() => InstallMfe());
@@ -187,6 +205,10 @@ namespace Rectify11Installer.Core
 
                 if (InstallOptions.InstallWallpaper)
                 {
+                    if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "wallpapers")))
+                    {
+                        Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "wallpapers"), true);
+                    }
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
                         " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
                         + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
@@ -201,21 +223,36 @@ namespace Rectify11Installer.Core
                 }
                 if (InstallOptions.InstallASDF)
                 {
+                    if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
+                    {
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /f /tn asdf", AppWinStyle.Hide));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /tn asdf", AppWinStyle.Hide));
+                        var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"));
+                        for (int j =0; j < files.Length; j++)
+                        {
+                            File.Move(files[j], Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        }
+                    }
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
                         " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
                         + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
                         + " AccentColorizer", AppWinStyle.Hide, true));
-                    // always would work ig
                     await Task.Run(() => Installasdf());
                     Logger.WriteLine("Installasdf() succeeded.");
                 }
                 if (InstallOptions.InstallGadgets)
                 {
+                    if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "GadgetPack")))
+                    {
+                        Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
+                    }
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
                         " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
                         + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
                         + " GadgetPack", AppWinStyle.Hide, true));
-                    // always would work ig 2
                     await Task.Run(() => InstallGadgets());
                     Logger.WriteLine("InstallGadgets() succeeded.");
                     Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
@@ -231,7 +268,6 @@ namespace Rectify11Installer.Core
                         " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
                         + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
                         + " NilesoftArm64", AppWinStyle.Hide, true));
-                    // always would work ig 3
                     await Task.Run(() => InstallShell());
                     Logger.WriteLine("InstallShell() succeeded.");
                     try
@@ -247,11 +283,14 @@ namespace Rectify11Installer.Core
                 }
                 if (InstallOptions.userAvatars)
                 {
+                    if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "userAV")))
+                    {
+                        Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
+                    }
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
                         " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
                         + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
                         + " userAV", AppWinStyle.Hide, true));
-                    // always would work ig 4
                     await Task.Run(() => InstallUserAvatars());
                     Logger.WriteLine("InstallUserAvatars() succeeded.");
                     Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
@@ -259,7 +298,6 @@ namespace Rectify11Installer.Core
                 /*
                 if (InstallOptions.InstallSounds)
 				{
-					// always would work ig 5
 					await Task.Run(() => InstallSounds());
 					Logger.WriteLine("InstallSounds() succeeded.");
 				}
@@ -486,7 +524,13 @@ namespace Rectify11Installer.Core
                             }
                             catch
                             {
-                                File.Move(files[j], Path.GetTempPath());
+                                // idk why it would fail to delete a fucking png
+                                if (File.Exists(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j]))))
+                                {
+                                    File.Delete(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
+                                }
+                                File.Move(files[j], Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
+                                MoveFileEx(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             }
                         }
                     }
@@ -532,7 +576,16 @@ namespace Rectify11Installer.Core
                     }
                     catch
                     {
+                        if (Directory.Exists(Path.Combine(Path.GetTempPath(), curdir[i].Name)))
+                        {
+                            Directory.Delete(Path.Combine(Path.GetTempPath(), curdir[i].Name));
+                        }
                         Directory.Move(Path.Combine(Variables.Windir, "cursors", curdir[i].Name), Path.Combine(Path.GetTempPath(), curdir[i].Name));
+                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), curdir[i].Name));
+                        for (int j = 0; j < files.Length; j++)
+                        {
+                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        }
                     }
                 }
                 try
@@ -548,6 +601,7 @@ namespace Rectify11Installer.Core
             }
             for (var i = 0; i < themefiles.Length; i++)
             {
+                // why would it fail
                 File.Copy(themefiles[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i].Name), true);
             }
             File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun1.exe"), Properties.Resources.AdvancedRun);
@@ -557,6 +611,10 @@ namespace Rectify11Installer.Core
                 {
                     try
                     {
+                        if (Directory.Exists(Path.Combine(Path.GetTempPath(), msstyleDirList[i].Name)))
+                        {
+                            Directory.Delete(Path.Combine(Path.GetTempPath(), msstyleDirList[i].Name));
+                        }
                         Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(Path.GetTempPath(), msstyleDirList[i].Name));
                         Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
                     }
@@ -642,24 +700,24 @@ namespace Rectify11Installer.Core
             if (NativeMethods.IsArm64()) s = "Arm64";
             if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
             {
-                DirectoryInfo niledir = new(Path.Combine(Variables.r11Folder, "extras", "nilesoft" + s));
-                for (int i = 0; i < niledir.GetFiles("*").Length; i++)
+                if (File.Exists(Path.Combine(Variables.Windir, "nilesoft", "shell.exe")))
                 {
+                    ProcessStartInfo shlinfo3 = new()
+                    {
+                        FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        Arguments = " -u"
+                    };
                     try
                     {
-                        File.Copy(niledir.GetFiles("*")[i].FullName, Path.Combine(Variables.Windir, "nilesoft"), true);
+                        var shlInstproc2 = Process.Start(shlinfo3);
+                        shlInstproc2.WaitForExit();
                     }
-                    catch { } //This try-catch is needed cuz installer might exception if shell.dll is still loaded, it happens sometimes even if shell is unregistered
+                    catch { }
                 }
-                if (!Directory.Exists(Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus")))
-                {
-                    Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft", "AcrylicMenus"), Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus"));
-                }
+                Directory.Move(Path.Combine(Variables.Windir, "nilesoft"), Path.Combine(Path.GetTempPath(), "nilesoft"));
             }
-            else
-            {
-                Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft" + s), Path.Combine(Variables.Windir, "nilesoft"));
-            }
+            Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft" + s), Path.Combine(Variables.Windir, "nilesoft"));
             ProcessStartInfo shlinfo2 = new()
             {
                 FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
@@ -700,8 +758,11 @@ namespace Rectify11Installer.Core
         {
             if (!Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
             {
-
                 Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
+            }
+            else
+            {
+                Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
             }
 
             DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
