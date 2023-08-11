@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Rectify11Installer.Controls;
+using Rectify11Installer.Core;
 using System.IO;
 using System.Reflection;
 
@@ -25,6 +26,11 @@ namespace Rectify11Installer.Pages
 			// update
 			try
 			{
+				if (InstallStatus.IsRectify11Installed)
+				{
+                    cmbInstall.Text = resources.GetString("modifyTitle");
+                    cmbInstall.Note = resources.GetString("modifyNote");
+                }
 				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
 				if (key != null)
 				{
