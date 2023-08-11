@@ -163,7 +163,7 @@ namespace Rectify11Installer.Core
                 }
                 try
                 {
-                    //await Task.Run(() => Installr11cpl());
+                    await Task.Run(() => Installr11cpl());
                     Logger.WriteLine("Installr11cpl() succeeded.");
                 }
                 catch
@@ -873,6 +873,32 @@ namespace Rectify11Installer.Core
             }
             File.Delete(Path.Combine(Variables.r11Folder, "aRun2.exe"));
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "extras", "Sound.reg"), AppWinStyle.Hide);
+        }
+        /// <summary>
+		/// installs control center
+		/// </summary>
+		private void Installr11cpl()
+        {
+            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
+            {
+                try
+                {
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), true);
+                }
+                catch
+                {
+                    string name = Path.GetRandomFileName();
+                    Directory.Move(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), Path.Combine(Path.GetTempPath(), name));
+                    var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
+                    for (int j = 0; j < files.Length; j++)
+                    {
+                        MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    }
+                    MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                }
+            }
+            Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
+            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
         }
 
         /// <summary>
