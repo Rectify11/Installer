@@ -688,7 +688,7 @@ namespace Rectify11Installer.Core
         {
             // what????
             //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
-            if (!File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar","sidebar.exe")))
+            if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar","sidebar.exe")))
             {
                 ProcessStartInfo uns = new()
                 {
