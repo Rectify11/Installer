@@ -55,7 +55,7 @@
 	<Patch Mui="mmcbase.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\mmcbase.dll.mun" />
 	<Patch Mui="mmcndmgr.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\mmcndmgr.dll.mun" />
 	<Patch Mui="mmres.dll.mun" mask="ICONGROUP,|PNG," HardlinkTarget="%sysresdir%\mmres.dll.mun" />
-	<Patch Mui="mmsys.cpl.mun" mask="ICONGROUP,|PNG," HardlinkTarget="%sysresdir%\mmsys.cpl.mun" />
+	<Patch Mui="mmsys.cpl.mun" mask="ICONGROUP,|PNG,|BITMAP," HardlinkTarget="%sysresdir%\mmsys.cpl.mun" />
 	<Patch Mui="moricons.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\moricons.dll.mun" />
 	<Patch Mui="msdt.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\msdt.exe.mun" />
 	<Patch Mui="mshtml.dll.mun" mask="ICONGROUP,|CURSORGROUP," HardlinkTarget="%sysresdir%\mshtml.dll.mun" />
@@ -204,7 +204,6 @@
 	<Patch Mui="eapsimextdesktop.dll" mask="ICONGROUP,|UIFILE," HardlinkTarget="%sys32%\eapsimextdesktop.dll" />
 	<Patch Mui="easconsent.dll" mask="UIFILE," HardlinkTarget="%sys32%\easconsent.dll" />
 	<Patch Mui="efsadu.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\efsadu.dll" />
-	<Patch Mui="efsext.dll" mask="UIFILE," HardlinkTarget="%sys32%\efsext.dll" />
 	<Patch Mui="EhStorAuthn.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\EhStorAuthn.exe" />
 	<Patch Mui="EhStorPwdMgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\EhStorPwdMgr.dll" />
 	<Patch Mui="eqossnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\eqossnap.dll" />
