@@ -558,7 +558,7 @@ namespace Rectify11Installer.Core
                 var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "themes", "wallpapers"));
                 for (int j = 0; j < files.Length; j++)
                 {
-                    File.Copy(files[j], Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", Path.GetFileName(files[j])));
+                    File.Copy(files[j], Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", Path.GetFileName(files[j])), true);
                 }
                 Logger.WriteLine("Copied wallpapers to " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
             }
@@ -621,9 +621,15 @@ namespace Rectify11Installer.Core
                     {
                         if (Directory.Exists(Path.Combine(Path.GetTempPath(), msstyleDirList[i].Name)))
                         {
-                            Directory.Delete(Path.Combine(Path.GetTempPath(), msstyleDirList[i].Name));
+                            string name = Path.GetRandomFileName();
+                            Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(Path.GetTempPath(), name));
+                            Directory.Delete(Path.Combine(Path.GetTempPath(), name, "Shell"), true);
+                            var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
+                            for (int j = 0; j < files.Length; j++)
+                            {
+                                MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            }
                         }
-                        Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(Path.GetTempPath(), msstyleDirList[i].Name));
                         Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
                     }
                     catch (Exception ex)
@@ -1679,15 +1685,18 @@ namespace Rectify11Installer.Core
             }
             try
             {
-                if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
                 {
-                    try
+                    if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
                     {
-                        Directory.Delete(Path.Combine(Variables.r11Folder, "extras"));
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
+                        try
+                        {
+                            Directory.Delete(Path.Combine(Variables.r11Folder, "extras"));
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
+                        }
                     }
                 }
             }
