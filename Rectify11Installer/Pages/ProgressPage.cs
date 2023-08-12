@@ -188,31 +188,22 @@ namespace Rectify11Installer.Pages
 					if (InstallOptions.ThemeLight)
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme")));
-						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"';
+						s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"';
 					}
 					else if (InstallOptions.ThemeDark)
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme")));
-						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"';
+						s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"';
 					}
 					else
 					{
 						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme")));
-						s = Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark theme with Mica" + '"';
+						s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark theme with Mica" + '"';
 					}
 				}
 				key.SetValue("ApplyTheme", s, RegistryValueKind.String);
 				key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(Environment.SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
 				key.Close();
-				using ShellLink shortcut = new();
-				shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
-				shortcut.WorkingDirectory = @"%windir%\Rectify11\Rectify11ControlCenter";
-				shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
-				shortcut.IconIndex = 0;
-				shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
-				shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
-				shortcut.Dispose();
 			}
 		}
 

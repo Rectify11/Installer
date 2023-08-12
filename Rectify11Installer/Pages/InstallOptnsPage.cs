@@ -56,35 +56,54 @@ namespace Rectify11Installer.Pages
 					treeView1.Nodes.Remove(advNode);
 				if (treeNode1.Nodes.Count == 0)
 					treeView1.Nodes.Remove(treeNode1);
-                // ugh
-                if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
+				// ugh
+				bool skip = false;
+                try
                 {
-                    treeView1.Nodes.Remove(themeNode);
+                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
+                    if (key != null)
+                    {
+                        var build = key.GetValue("Build");
+                        if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+                        {
+							// kinda disable the whole check
+							skip = true;
+                        }
+                    }
+                    key.Dispose();
                 }
-                if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
-                {
-                    treeView1.Nodes.Remove(shell);
-                }
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
-                {
-                    treeView1.Nodes.Remove(asdf);
-                }
-                if (File.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", "img41.jpg")))
-                {
-                    treeView1.Nodes.Remove(wall);
-                }
-                if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
-                {
-                    treeView1.Nodes.Remove(av);
-                }
-                if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
-                {
-                    treeView1.Nodes.Remove(gad);
-                }
-                if (extra.Nodes.Count == 0)
-                {
-                    treeView1.Nodes.Remove(extra);
-                }
+                catch { }
+				if (!skip)
+				{
+					if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
+					{
+						treeView1.Nodes.Remove(themeNode);
+					}
+					if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+					{
+						treeView1.Nodes.Remove(shell);
+					}
+					if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
+					{
+						treeView1.Nodes.Remove(asdf);
+					}
+					if (File.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", "img41.jpg")))
+					{
+						treeView1.Nodes.Remove(wall);
+					}
+					if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+					{
+						treeView1.Nodes.Remove(av);
+					}
+					if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
+					{
+						treeView1.Nodes.Remove(gad);
+					}
+					if (extra.Nodes.Count == 0)
+					{
+						treeView1.Nodes.Remove(extra);
+					}
+				}
                 idleinit = true;
 			}
 		}

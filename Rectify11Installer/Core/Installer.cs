@@ -570,7 +570,7 @@ namespace Rectify11Installer.Core
             // todo: remove r11cp
             File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.Windir, "ThemeTool.exe"), true);
             Logger.WriteLine("Copied Themetool.");
-            Interaction.Shell(Path.Combine(Variables.Windir, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
 
             for (var i = 0; i < curdir.Length; i++)
@@ -899,6 +899,15 @@ namespace Rectify11Installer.Core
             }
             Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
             File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
+            using ShellLink shortcut = new();
+            shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
+            shortcut.WorkingDirectory = @"%windir%\Rectify11\Rectify11ControlCenter";
+            shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
+            shortcut.IconIndex = 0;
+            shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+            shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
+            shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
+            shortcut.Dispose();
         }
 
         /// <summary>
@@ -996,11 +1005,17 @@ namespace Rectify11Installer.Core
                     return false;
                 }
 
-                var s = Properties.Resources.SecureUxHelper_x64;
-                if (NativeMethods.IsArm64()) s = Properties.Resources.SecureUxHelper_arm64;
+                var s = Properties.Resources.secureux_x64;
+                var dll = Properties.Resources.ThemeDll_x64;
+                if (NativeMethods.IsArm64())
+                {
+                    s = Properties.Resources.secureux_arm64;
+                    dll = Properties.Resources.ThemeDll_arm64;
+                }
                 try
                 {
-                    File.WriteAllBytes(Path.Combine(Variables.Windir, "SecureUXHelper.exe"), s);
+                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s);
+                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll);
                     LogFile("SecureUXHelper.exe", false, null);
                 }
                 catch (Exception ex)

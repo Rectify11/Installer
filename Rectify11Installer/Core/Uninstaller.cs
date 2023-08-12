@@ -58,8 +58,14 @@ namespace Rectify11Installer.Core
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorerframe.exe", AppWinStyle.Hide, true));
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn mfe", AppWinStyle.Hide));
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn micafix", AppWinStyle.Hide));
-                var s = Properties.Resources.SecureUxHelper_x64;
-                if (NativeMethods.IsArm64()) s = Properties.Resources.SecureUxHelper_arm64;
+                var s = Properties.Resources.secureux_x64;
+                var dll = Properties.Resources.ThemeDll_x64;
+                if (NativeMethods.IsArm64())
+                { 
+                    s = Properties.Resources.secureux_arm64;
+                    dll = Properties.Resources.secureux_arm64;
+                }
+
                 try
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s);
