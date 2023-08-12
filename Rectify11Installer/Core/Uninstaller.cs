@@ -16,15 +16,20 @@ namespace Rectify11Installer.Core
         {
             if (UninstallOptions.uninstIconsList.Count > 0)
             {
+                Logger.WriteLine("Uninstalling icons");
+                Logger.WriteLine("──────────────────");
                 using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
-                frm.InstallerProgress = "Phase2";
+                frm.InstallerProgress = "Uninstalling icons";
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
+                Logger.WriteLine("Wrote Rectify11.Phase2.exe");
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
+                Logger.WriteLine("Wrote aRun.exe");
                 try
                 {
                     reg.SetValue("UninstallFiles", UninstallOptions.uninstIconsList.ToArray());
                     if (!Variables.Phase2Skip)
                     {
+                        Logger.WriteLine("Executed Rectify11.Phase2.exe");
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
                         + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
                         + " /CommandLine " + "\'" + "/uninstall" + "\'"
@@ -47,11 +52,13 @@ namespace Rectify11Installer.Core
                 catch
                 {
                     MoveFileEx(Path.Combine(Variables.r11Folder, "aRun.exe"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-
                 }
+                Console.WriteLine("══════════════════════════════════════════════");
             }
             if (UninstallOptions.UninstallThemes)
             {
+                Logger.WriteLine("Uninstalling themes");
+                Logger.WriteLine("───────────────────");
                 frm.InstallerProgress = "Uninstalling themes";
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micaforeveryone.exe", AppWinStyle.Hide, true));
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micafix.exe", AppWinStyle.Hide, true));
@@ -69,6 +76,13 @@ namespace Rectify11Installer.Core
                 try
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s);
+                    Logger.WriteLine("Wrote SecureUXHelper.exe");
+                }
+                catch { }
+                try
+                {
+                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll);
+                    Logger.WriteLine("Wrote ThemeDll.dll");
                 }
                 catch { }
                 if (Theme.IsUsingDarkMode)
@@ -102,18 +116,20 @@ namespace Rectify11Installer.Core
                             {
                                 MoveFileEx(Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             }
+                            Logger.WriteLine("Deleted "+ Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]));
                         }
                     }
                     if (Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")).Length == 0)
                     {
                         try
                         {
-                            Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                            Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), true);
                         }
                         catch
                         {
                             MoveFileEx(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
+                        Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
                     }
                 }
                 await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " uninstall", AppWinStyle.Hide, true));
@@ -124,6 +140,8 @@ namespace Rectify11Installer.Core
                         File.Delete(Path.Combine(Variables.Windir, "Themetool.exe"));
                     }
                     catch { MoveFileEx(Path.Combine(Variables.Windir, "Themetool.exe"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT); }
+                    Logger.WriteLine("Deleted "+ Path.Combine(Variables.Windir, "Themetool.exe"));
+
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "cursors", "WindowsRectified")))
                 {
@@ -140,6 +158,7 @@ namespace Rectify11Installer.Core
                         }
                         MoveFileEx(Path.Combine(Variables.Windir, "cursors", "WindowsRectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
+                    Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "cursors", "WindowsRectified"));
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "cursors", "WindowsRectifiedDark")))
                 {
@@ -156,6 +175,7 @@ namespace Rectify11Installer.Core
                         }
                         MoveFileEx(Path.Combine(Variables.Windir, "cursors", "WindowsRectifiedDark"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
+                    Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "cursors", "WindowsRectified"));
                 }
                 List<string> themefiles = new List<string>
                 {

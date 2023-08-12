@@ -586,7 +586,7 @@ namespace Rectify11Installer.Core
                     {
                         if (Directory.Exists(Path.Combine(Path.GetTempPath(), curdir[i].Name)))
                         {
-                            Directory.Delete(Path.Combine(Path.GetTempPath(), curdir[i].Name));
+                            Directory.Delete(Path.Combine(Path.GetTempPath(), curdir[i].Name), true);
                         }
                         Directory.Move(Path.Combine(Variables.Windir, "cursors", curdir[i].Name), Path.Combine(Path.GetTempPath(), curdir[i].Name));
                         var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), curdir[i].Name));
@@ -594,6 +594,8 @@ namespace Rectify11Installer.Core
                         {
                             MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
+                        Logger.WriteLine("Moved "+ Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + " to " + Path.Combine(Path.GetTempPath(), curdir[i].Name));
+
                     }
                 }
                 try
