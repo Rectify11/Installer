@@ -289,4 +289,22 @@
   <data name="installMicaAlt" xml:space="preserve">
     <value>استخدم Mica Alt بدل Mica</value>
   </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>قوائم Windows 10</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>قوائم Windows 10 شفافة</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>قوائم Nilesoft Shell مصغرة</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>قوائم Nilesoft Shell كاملة</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>أضف مميزات لجهازك.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
 </root>
