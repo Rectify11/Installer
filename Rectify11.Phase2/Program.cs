@@ -157,24 +157,31 @@ namespace Rectify11.Phase2
                                     }
                                 }
                             }
-                            if (CultureInfo.CurrentUICulture.Name != "en-US")
+                            try
                             {
-                                List<string> r11LangMsc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
-                                for (int j = 0; j < r11LangMsc.Count; j++)
+                                if (CultureInfo.CurrentUICulture.Name != "en-US")
                                 {
-                                    for (int i = 0; i < langMsc.Count; i++)
+                                    List<string> r11LangMsc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
+                                    for (int j = 0; j < r11LangMsc.Count; j++)
                                     {
-                                        if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11LangMsc[j]))
+                                        for (int i = 0; i < langMsc.Count; i++)
                                         {
-                                            Console.WriteLine(langMsc[i]);
-                                            if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
+                                            if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11LangMsc[j]))
                                             {
-                                                File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
+                                                Console.WriteLine(langMsc[i]);
+                                                if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
+                                                {
+                                                    File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
+                                                }
+                                                File.Copy(r11LangMsc[j], langMsc[i], true);
                                             }
-                                            File.Copy(r11LangMsc[j], langMsc[i], true);
                                         }
                                     }
                                 }
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Error patching language related msc files");
                             }
                         }
                     }
