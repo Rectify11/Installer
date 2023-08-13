@@ -435,6 +435,11 @@ namespace Rectify11.Phase2
                     {
                         Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash"));
                     }
+
+                    if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Trash", "Diag")))
+                    {
+                        Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash", "Diag"));
+                    }
                     if (type == MoveType.General)
                     {
                         finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
