@@ -232,7 +232,7 @@ namespace Rectify11Installer.Core
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn asdf", AppWinStyle.Hide));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide));
                         var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"));
-                        for (int j =0; j < files.Length; j++)
+                        for (int j = 0; j < files.Length; j++)
                         {
                             File.Move(files[j], Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
                             MoveFileEx(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -594,8 +594,7 @@ namespace Rectify11Installer.Core
                         {
                             MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
-                        Logger.WriteLine("Moved "+ Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + " to " + Path.Combine(Path.GetTempPath(), curdir[i].Name));
-
+                        Logger.WriteLine("Moved " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + " to " + Path.Combine(Path.GetTempPath(), curdir[i].Name));
                     }
                 }
                 try
@@ -621,17 +620,15 @@ namespace Rectify11Installer.Core
                 {
                     try
                     {
-                        if (Directory.Exists(Path.Combine(Path.GetTempPath(), msstyleDirList[i].Name)))
+                        string name = Path.GetRandomFileName();
+                        Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(Path.GetTempPath(), name));
+                        Directory.Delete(Path.Combine(Path.GetTempPath(), name, "Shell"), true);
+                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
+                        for (int j = 0; j < files.Length; j++)
                         {
-                            string name = Path.GetRandomFileName();
-                            Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(Path.GetTempPath(), name));
-                            Directory.Delete(Path.Combine(Path.GetTempPath(), name, "Shell"), true);
-                            var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                            for (int j = 0; j < files.Length; j++)
-                            {
-                                MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                            }
+                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
+                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
                     }
                     catch (Exception ex)
@@ -697,7 +694,7 @@ namespace Rectify11Installer.Core
         {
             // what????
             //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
-            if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar","sidebar.exe")))
+            if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
             {
                 ProcessStartInfo uns = new()
                 {
@@ -816,7 +813,7 @@ namespace Rectify11Installer.Core
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus));
                     Thread.Sleep(3000);
                 }
-                if (num==4)await Task.Run(() => Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")));
+                if (num == 4) await Task.Run(() => Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")));
             }
             return true;
         }
