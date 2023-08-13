@@ -43,7 +43,9 @@ namespace Rectify11Installer.Core
                 }
                 catch
                 {
-                    MoveFileEx(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    string name = Path.GetRandomFileName();
+                    File.Move(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Path.Combine(Path.GetTempPath(), name));
+                    MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
                 try
                 {
@@ -51,7 +53,10 @@ namespace Rectify11Installer.Core
                 }
                 catch
                 {
-                    MoveFileEx(Path.Combine(Variables.r11Folder, "aRun.exe"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+
+                    string name = Path.GetRandomFileName();
+                    File.Move(Path.Combine(Variables.r11Folder, "aRun.exe"), Path.Combine(Path.GetTempPath(), name));
+                    MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
                 Console.WriteLine("══════════════════════════════════════════════");
             }
@@ -114,7 +119,9 @@ namespace Rectify11Installer.Core
                             }
                             catch
                             {
-                                MoveFileEx(Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                string name = Path.GetRandomFileName();
+                                File.Move(Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]), Path.Combine(Path.GetTempPath(), name));
+                                MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             }
                             Logger.WriteLine("Deleted "+ Path.Combine(Variables.Windir, "web", "Wallpaper", "Rectified", wallpapers[i]));
                         }
@@ -127,7 +134,9 @@ namespace Rectify11Installer.Core
                         }
                         catch
                         {
-                            MoveFileEx(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            string name = Path.GetRandomFileName();
+                            Directory.Move(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), Path.Combine(Path.GetTempPath(), name));
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                         Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
                     }
@@ -139,7 +148,12 @@ namespace Rectify11Installer.Core
                     {
                         File.Delete(Path.Combine(Variables.Windir, "Themetool.exe"));
                     }
-                    catch { MoveFileEx(Path.Combine(Variables.Windir, "Themetool.exe"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT); }
+                    catch
+                    {
+                        string name = Path.GetRandomFileName();
+                        File.Move(Path.Combine(Variables.Windir, "Themetool.exe"), Path.Combine(Path.GetTempPath(), name));
+                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT); 
+                    }
                     Logger.WriteLine("Deleted "+ Path.Combine(Variables.Windir, "Themetool.exe"));
 
                 }
@@ -151,12 +165,14 @@ namespace Rectify11Installer.Core
                     }
                     catch
                     {
-                        var fil = Directory.GetFiles(Path.Combine(Variables.Windir, "cursors", "WindowsRectified"));
-                        for (int i = 0; i<fil.Length; i++)
+                        string name = Path.GetTempPath();
+                        Directory.Move(Path.Combine(Variables.Windir, "cursors", "WindowsRectified"), Path.Combine(Path.GetTempPath(), name));
+                        var fil = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
+                        for (int i = 0; i < fil.Length; i++)
                         {
                             MoveFileEx(fil[i], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
-                        MoveFileEx(Path.Combine(Variables.Windir, "cursors", "WindowsRectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
                     Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "cursors", "WindowsRectified"));
                 }
@@ -168,12 +184,14 @@ namespace Rectify11Installer.Core
                     }
                     catch
                     {
-                        var fil = Directory.GetFiles(Path.Combine(Variables.Windir, "cursors", "WindowsRectifiedDark"));
+                        string name = Path.GetTempPath();
+                        Directory.Move(Path.Combine(Variables.Windir, "cursors", "WindowsRectifiedDark"), Path.Combine(Path.GetTempPath(), name));
+                        var fil = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
                         for (int i = 0; i < fil.Length; i++)
                         {
                             MoveFileEx(fil[i], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
-                        MoveFileEx(Path.Combine(Variables.Windir, "cursors", "WindowsRectifiedDark"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
                     Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "cursors", "WindowsRectified"));
                 }
@@ -194,21 +212,32 @@ namespace Rectify11Installer.Core
                         }
                         catch
                         {
-                            MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i]), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            string name = Path.GetRandomFileName();
+                            File.Move(Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i]), Path.Combine(Path.GetTempPath(), name));
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
+                        Logger.WriteLine("Deleted " + Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i]));
                     }
                 }
                 if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
                 {
-                    if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Shell")))
+                    string name = Path.GetRandomFileName();
+                    Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified"), Path.Combine(Path.GetTempPath(), name));
+                    if (Directory.Exists(Path.Combine(Path.GetTempPath(), name, "Shell")))
                     {
-                        Directory.Delete(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Shell"), true);
+                        try
+                        {
+                            Directory.Delete(Path.Combine(Path.GetTempPath(), name, "Shell"), true);
+                        }
+                        catch { }
                     }
-                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Aero.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Black.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "Dark.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified", "DarkColorized.msstyles"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    MoveFileEx(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
+                    for (int j = 0; j < files.Length; j++)
+                    {
+                        MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    }
+                    MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    Logger.WriteLine("Deleted msstyle");
                 }
                 try
                 {
@@ -219,26 +248,48 @@ namespace Rectify11Installer.Core
                     MoveFileEx(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
 
+                try
+                {
+                    File.Delete(Path.Combine(Variables.r11Folder, "ThemeDll.dll"));
+                }
+                catch
+                {
+                    MoveFileEx(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                }
+
                 // waow
                 if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
                 {
-                    Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true);
+                    try
+                    {
+                        Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true);
+                    }
+                    catch
+                    {
+                        string name = Path.GetRandomFileName();
+                        Directory.Move(Path.Combine(Variables.Windir, "MicaForEveryone"), Path.Combine(Path.GetTempPath(), name));
+                    }
+                    Logger.WriteLine("Deleted MicaForEveryone");
                 }
-                var key = Registry.ClassesRoot.OpenSubKey(@"CLSID", true);
-                key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
-                key.Dispose();
-                key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace", true);
-                key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
-                key.Dispose();
-                key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes", true);
-                key.SetValue("MS Shell Dlg 2", "Tahoma");
-                key.SetValue("MS Shell Dlg", "Microsoft Sans Serif");
-                key.Dispose();
-                key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\WindowMetrics", true);
-                key.SetValue("MenuHeight", "-285");
-                key.SetValue("MenuWidth", "-285");
-                key.Dispose();
-
+                try
+                {
+                    var key = Registry.ClassesRoot.OpenSubKey(@"CLSID", true);
+                    key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
+                    key.Dispose();
+                    key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace", true);
+                    key.DeleteSubKeyTree("{959E11F4-0A48-49cf-8416-FF9BC49D9656}", false);
+                    key.Dispose();
+                    key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes", true);
+                    key.SetValue("MS Shell Dlg 2", "Tahoma");
+                    key.SetValue("MS Shell Dlg", "Microsoft Sans Serif");
+                    key.Dispose();
+                    key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\WindowMetrics", true);
+                    key.SetValue("MenuHeight", "-285");
+                    key.SetValue("MenuWidth", "-285");
+                    key.Dispose();
+                    Logger.WriteLine("Remove registry entries");
+                }
+                catch { }
                 // nuke r11cp
                 if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk")))
                 {
@@ -267,17 +318,23 @@ namespace Rectify11Installer.Core
                     }
                     catch
                     {
-                        var fil = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
+                        string name = Path.GetRandomFileName();
+                        Directory.Move(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), Path.Combine(Path.GetTempPath(), name));
+                        var fil = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
                         for (int i = 0; i < fil.Length; i++)
                         {
                             MoveFileEx(fil[i], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
-                        MoveFileEx(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
                 }
+                Logger.WriteLine("Deleted Rectify11 Control Center");
+                Console.WriteLine("══════════════════════════════════════════════");
             }
             if (UninstallOptions.uninstExtrasList.Count > 0)
             {
+                Logger.WriteLine("Uninstalling extras");
+                Logger.WriteLine("───────────────────");
                 for (int i = 0; i < UninstallOptions.uninstExtrasList.Count; i++)
                 {
                     if (UninstallOptions.uninstExtrasList[i] == "wallpapersNode")
@@ -294,7 +351,6 @@ namespace Rectify11Installer.Core
                             var files = Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
                             for (int j = 0; j < files.Length; j++)
                             {
-                                //MessageBox.Show(Path.GetFileName(files[j]));
                                 if (!wallpapers.Contains(Path.GetFileName(files[j])))
                                 {
                                     try
@@ -311,14 +367,17 @@ namespace Rectify11Installer.Core
                             {
                                 try
                                 {
-                                    Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                                    Directory.Delete(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), true);
                                 }
                                 catch
                                 {
-                                    MoveFileEx(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                    string name = Path.GetRandomFileName();
+                                    Directory.Move(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), Path.Combine(Path.GetTempPath(), name));
+                                    MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                                 }
                             }
                         }
+                        Logger.WriteLine("Uninstalled wallpapers");
                     }
                     if (UninstallOptions.uninstExtrasList[i] == "asdfNode")
                     {
@@ -329,15 +388,18 @@ namespace Rectify11Installer.Core
                         if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
                         {
                             // idk File.Delete cant nuke it
-                            var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"));
+                            string name = Path.GetRandomFileName();
+                            Directory.Move(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), Path.Combine(Path.GetTempPath(), name));
+                            var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
                             for (int j = 0; j < files.Length; j++)
                             {
                                 MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             }
-                            MoveFileEx(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                         // will fail anyways if the folder isnt empty
                         MoveFileEx(Path.Combine(Variables.r11Folder, "extras"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        Logger.WriteLine("Uninstalled asdf");
                     }
                     if (UninstallOptions.uninstExtrasList[i] == "useravNode")
                     {
@@ -349,14 +411,17 @@ namespace Rectify11Installer.Core
                             }
                             catch
                             {
-                                var fil = Directory.GetFiles(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
+                                string name = Path.GetRandomFileName();
+                                Directory.Move(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), Path.Combine(Path.GetTempPath(), name));
+                                var fil = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
                                 for (int j = 0; j < fil.Length; j++)
                                 {
                                     MoveFileEx(fil[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                                 }
-                                MoveFileEx(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                             }
                         }
+                        Logger.WriteLine("Uninstalled user avatars");
                     }
                     if (UninstallOptions.uninstExtrasList[i] == "shellNode")
                     {
@@ -380,7 +445,9 @@ namespace Rectify11Installer.Core
                             }
                             catch { }
                             await Task.Run(() => Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " delete \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\" /f"));
-                            var files = Directory.GetFiles(Path.Combine(Variables.Windir, "nilesoft"));
+                            string name = Path.GetRandomFileName();
+                            Directory.Move(Path.Combine(Variables.Windir, "nilesoft"), Path.Combine(Path.GetTempPath(), name));
+                            var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
                             for (int j = 0; j < files.Length; j++)
                             {
                                 try
@@ -392,7 +459,7 @@ namespace Rectify11Installer.Core
                                     MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                                 }
                             }
-                            var dir = Directory.GetDirectories(Path.Combine(Variables.Windir, "nilesoft"));
+                            var dir = Directory.GetDirectories(Path.Combine(Path.GetTempPath(), name));
                             for (int j = 0; j < dir.Length; j++)
                             {
                                 var fil = Directory.GetFiles(dir[j]);
@@ -407,8 +474,17 @@ namespace Rectify11Installer.Core
                                         MoveFileEx(fil[k], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                                     }
                                 }
+                                try
+                                {
+                                    Directory.Delete(dir[j], true);
+                                }
+                                catch
+                                {
+                                    MoveFileEx(dir[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                }
                             }
-                            MoveFileEx(Path.Combine(Variables.Windir, "nilesoft"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            Logger.WriteLine("Uninstalled shell");
                         }
                     }
                     if (UninstallOptions.uninstExtrasList[i] == "gadgetsNode")
@@ -421,6 +497,7 @@ namespace Rectify11Installer.Core
                         };
                         var vcproc = Process.Start(gad);
                         vcproc.WaitForExit();
+                        Logger.WriteLine("Uninstalled shell");
                     }
                 }
             }
@@ -429,7 +506,7 @@ namespace Rectify11Installer.Core
             {
                 try
                 {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"));
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
                 }
                 catch { }
             }

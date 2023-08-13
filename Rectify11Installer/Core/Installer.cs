@@ -145,7 +145,7 @@ namespace Rectify11Installer.Core
                                 {
                                     try
                                     {
-                                        Directory.Delete(Path.Combine(Path.GetTempPath(), "MicaForEveryone"));
+                                        Directory.Delete(Path.Combine(Path.GetTempPath(), "MicaForEveryone"), true);
                                     }
                                     catch { }
                                 }
@@ -775,6 +775,14 @@ namespace Rectify11Installer.Core
                             MoveFileEx(fil[k], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                     }
+                    try
+                    {
+                        Directory.Delete(dir[j], true);
+                    }
+                    catch
+                    {
+                        MoveFileEx(dir[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    }
                 }
                 MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
             }
@@ -829,7 +837,7 @@ namespace Rectify11Installer.Core
             }
             else
             {
-                Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
+                Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), true);
             }
 
             DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
@@ -1690,7 +1698,7 @@ namespace Rectify11Installer.Core
                     {
                         try
                         {
-                            Directory.Delete(Path.Combine(Variables.r11Folder, "extras"));
+                            Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
                         }
                         catch (Exception ex)
                         {
