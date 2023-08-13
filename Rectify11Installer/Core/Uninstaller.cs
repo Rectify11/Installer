@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using static Rectify11Installer.Win32.NativeMethods;
 
@@ -58,6 +59,7 @@ namespace Rectify11Installer.Core
                     File.Move(Path.Combine(Variables.r11Folder, "aRun.exe"), Path.Combine(Path.GetTempPath(), name));
                     MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
+                Variables.RestartRequired = true;
                 Console.WriteLine("══════════════════════════════════════════════");
             }
             if (UninstallOptions.UninstallThemes)
@@ -329,6 +331,7 @@ namespace Rectify11Installer.Core
                     }
                 }
                 Logger.WriteLine("Deleted Rectify11 Control Center");
+                Variables.RestartRequired = true;
                 Console.WriteLine("══════════════════════════════════════════════");
             }
             if (UninstallOptions.uninstExtrasList.Count > 0)
@@ -484,6 +487,12 @@ namespace Rectify11Installer.Core
                                 }
                             }
                             MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            if (!Variables.RestartRequired)
+                            {
+                                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorer.exe", AppWinStyle.Hide, true));
+                                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus));
+                                Thread.Sleep(3000);
+                            }
                             Logger.WriteLine("Uninstalled shell");
                         }
                     }
@@ -500,6 +509,7 @@ namespace Rectify11Installer.Core
                         Logger.WriteLine("Uninstalled shell");
                     }
                 }
+                Console.WriteLine("══════════════════════════════════════════════");
             }
             // cleanup
             if (Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))

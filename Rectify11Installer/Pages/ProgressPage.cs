@@ -97,8 +97,18 @@ namespace Rectify11Installer.Pages
                     NativeMethods.SetCloseButton(frmwiz, false);
                     Uninstaller uninstaller = new();
 					await uninstaller.Uninstall(frmwiz);
-                    NativeMethods.SetCloseButton(frmwiz, false);
-                    RectifyPages.ProgressPage.StartReset();
+                    Logger.CommitLog();
+					if (Variables.RestartRequired)
+					{
+                        NativeMethods.SetCloseButton(frmwiz, false);
+                        RectifyPages.ProgressPage.StartReset();
+					}
+					else
+					{
+                        timer1.Stop();
+                        NativeMethods.SetCloseButton(frmwiz, true);
+                        frmwiz.InstallerProgress = "Done, you can close this window";
+                    }
                 }
                 else
 				{

@@ -791,7 +791,7 @@ namespace Rectify11Installer.Core
             {
                 FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
                 WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = " -r -t"
+                Arguments = " -r"
             };
             int num = InstallOptions.CMenuStyle;
             string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
@@ -815,12 +815,9 @@ namespace Rectify11Installer.Core
             }
             if (!Variables.RestartRequired)
             {
-                if (num == 3 || num == 4)
-                {
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorer.exe", AppWinStyle.Hide, true));
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus));
-                    Thread.Sleep(3000);
-                }
+                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorer.exe", AppWinStyle.Hide, true));
+                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus));
+                Thread.Sleep(3000);
                 if (num == 4) await Task.Run(() => Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")));
             }
             return true;
