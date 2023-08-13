@@ -168,8 +168,16 @@ namespace Rectify11Installer.Pages
 			if (e.Action != TreeViewAction.Unknown)
 			{
 				if (e.Node.Name == "basicNode")
-				{
-					e.Node.Descendants().ToList().ForEach(x =>
+                {
+                    if (e.Node.Checked)
+                    {
+                        UninstallOptions.uninstDummylist.Add(e.Node.Text);
+                    }
+                    else
+                    {
+                        UninstallOptions.uninstDummylist.Remove(e.Node.Text);
+                    }
+                    e.Node.Descendants().ToList().ForEach(x =>
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
@@ -188,7 +196,15 @@ namespace Rectify11Installer.Pages
 				}
 				if (e.Node.Name == "sysIconsNode")
 				{
-					e.Node.Descendants().ToList().ForEach(x =>
+                    if (e.Node.Checked)
+                    {
+                        UninstallOptions.uninstDummylist.Add(e.Node.Text);
+                    }
+                    else
+                    {
+                        UninstallOptions.uninstDummylist.Remove(e.Node.Text);
+                    }
+                    e.Node.Descendants().ToList().ForEach(x =>
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked && (x.Name != "basicNode") && (x.Name != "advancedNode"))
@@ -203,11 +219,28 @@ namespace Rectify11Installer.Pages
 							UninstallOptions.uninstDummylist.Remove(x.Text);
                             Variables.InstallIcons = false;
 						}
-					});
+						else if (e.Node.Checked && ((x.Name == "basicNode") || (x.Name == "advancedNode")))
+						{
+                            UninstallOptions.uninstDummylist.Add(x.Text);
+                        }
+						else if (((x.Name == "basicNode") || (x.Name == "advancedNode")))
+						{
+                            UninstallOptions.uninstDummylist.Remove(x.Text);
+                        }
+
+                    });
 				}
 				if (e.Node.Name == "advancedNode")
 				{
-					e.Node.Descendants().ToList().ForEach(x =>
+                    if (e.Node.Checked)
+                    {
+                        UninstallOptions.uninstDummylist.Add(e.Node.Text);
+                    }
+                    else
+                    {
+                        UninstallOptions.uninstDummylist.Remove(e.Node.Text);
+                    }
+                    e.Node.Descendants().ToList().ForEach(x =>
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
@@ -226,7 +259,15 @@ namespace Rectify11Installer.Pages
 				}
 				if (e.Node.Name == "extraNode")
 				{
-					e.Node.Descendants().ToList().ForEach(x =>
+					if (e.Node.Checked)
+					{
+                        UninstallOptions.uninstDummylist.Add(e.Node.Text);
+                    }
+					else
+					{
+                        UninstallOptions.uninstDummylist.Remove(e.Node.Text);
+                    }
+                    e.Node.Descendants().ToList().ForEach(x =>
 					{
 						x.Checked = e.Node.Checked;
 						if (e.Node.Checked)
@@ -263,7 +304,11 @@ namespace Rectify11Installer.Pages
 							UninstallOptions.uninstDummylist.Add(e.Node.Text);
                             Variables.InstallIcons = true;
 						}
-					}
+						else if (x.Name == "sysIconsNode")
+						{
+                            UninstallOptions.uninstDummylist.Add(x.Text);
+                        }
+                    }
 					else
 					{
 						if (x.Name == "extraNode")
@@ -283,7 +328,11 @@ namespace Rectify11Installer.Pages
                             UninstallOptions.uninstDummylist.Remove(e.Node.Text);
                             Variables.InstallIcons = false;
 						}
-					}
+                        else if (x.Name == "sysIconsNode")
+                        {
+                            UninstallOptions.uninstDummylist.Remove(x.Text);
+                        }
+                    }
 				});
 				if (e.Node.Name == "themeNode")
 				{
@@ -309,7 +358,15 @@ namespace Rectify11Installer.Pages
 					_frmWizard.nextButton.Enabled = false;
 					Variables.IsItemsSelected = false;
 				}
-			}
+				if (UninstallOptions.uninstDummylist.Count == treeView1.GetNodeCount(true))
+				{
+					Variables.CompleteUninstall = true;
+				}
+				else
+				{
+					Variables.CompleteUninstall = false;
+				}
+            }
 		}
 
 		#endregion
