@@ -424,36 +424,56 @@ namespace Rectify11.Phase2
             }
             else if (File.Exists(finalpath))
             {
-                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
+                bool wu = false;
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+                var b = key?.GetValue("WindowsUpdate");
+                var value = (int?)b;
+                if (value == 1) wu = true;
+                if (!wu)
                 {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash"));
+                    if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
+                    {
+                        Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash"));
+                    }
+                    if (type == MoveType.General)
+                    {
+                        finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
+                    }
+                    else if (type == MoveType.x86)
+                    {
+                        finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
+                    }
+                    else if (type == MoveType.Trouble)
+                    {
+                        finalpath = Path.Combine(Variables.r11Folder, "Trash", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
+                    }
+                    Console.WriteLine(finalpath);
+                    if (File.Exists(finalpath))
+                    {
+                        try
+                        {
+                            File.Delete(finalpath);
+                        }
+                        catch
+                        {
+                            finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetRandomFileName());
+                        }
+                    }
                 }
-                if (type == MoveType.General)
+                else
                 {
-                    finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
-                }
-                else if (type == MoveType.x86)
-                {
-                    finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
-                }
-                else if (type == MoveType.Trouble)
-                {
-                    finalpath = Path.Combine(Variables.r11Folder, "Trash", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
-                }
-                Console.WriteLine(finalpath);
-                if (File.Exists(finalpath))
-                {
+                    Console.WriteLine("WU: "+ finalpath);
                     try
                     {
                         File.Delete(finalpath);
                     }
                     catch
                     {
-                        finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetRandomFileName());
+                        File.Move(finalpath, Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
                     }
                 }
                 File.Move(newval, finalpath);
-                MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                if (!wu) MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
             }
             File.Copy(file, newval, true);
 

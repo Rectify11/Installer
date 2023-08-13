@@ -73,7 +73,25 @@ namespace Rectify11Installer.Pages
                     key.Dispose();
                 }
                 catch { }
-				if (!skip)
+                try
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);
+                    if (key != null)
+                    {
+                        var build = key.GetValue("OSVersion");
+                        Version ver = Version.Parse(build.ToString());
+                        if (build != null)
+                        {
+                            if (Environment.OSVersion.Version.Build > ver.Build || Win32.NativeMethods.GetUbr() > ver.Revision)
+                            {
+								skip = true;
+                            }
+                        }
+                    }
+                    key.Dispose();
+                }
+                catch { }
+                if (!skip)
 				{
 					if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
 					{
@@ -127,6 +145,26 @@ namespace Rectify11Installer.Pages
 				}
 				key.Dispose();
 			}
+			catch { }
+			try
+			{
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);
+                if (key != null)
+                {
+                    var build = key.GetValue("OSVersion");
+					Version ver = Version.Parse(build.ToString());
+                    if (build != null)
+                    {
+						if (Environment.OSVersion.Version.Build > ver.Build || Win32.NativeMethods.GetUbr() > ver.Revision)
+						{
+                            // kinda disable the whole check
+                            path = Variables.r11Folder;
+                            Variables.WindowsUpdate = true;
+                        }
+                    }
+                }
+                key.Dispose();
+            }
 			catch { }
 			/*
 			key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);

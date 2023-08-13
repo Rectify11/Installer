@@ -1315,8 +1315,7 @@ namespace Rectify11Installer.Core
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("Error writing CurrentUICulture.Name to Language", ex);
-                return false;
+                Logger.Warn("Error writing CurrentUICulture.Name to Language", ex);
             }
             try
             {
@@ -1327,6 +1326,19 @@ namespace Rectify11Installer.Core
             {
                 Logger.Warn("Error writing ProductVersion to Version", ex);
             }
+
+
+            try
+            {
+                reg?.SetValue("WindowsUpdate", Variables.WindowsUpdate ? 1 : 0);
+                string sr = Variables.WindowsUpdate ? "1" : "0";
+                Logger.WriteLine("Wrote " + sr + "to WindowsUpdate");
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn("Error writing to WindowsUpdate", ex);
+            }
+
             try
             {
                 // mane fuck this shit
@@ -1336,8 +1348,7 @@ namespace Rectify11Installer.Core
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("Error writing OSVersion", ex);
-                return false;
+                Logger.Warn("Error writing OSVersion", ex);
             }
             return true;
         }
