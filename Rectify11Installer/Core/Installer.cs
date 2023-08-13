@@ -55,13 +55,17 @@ namespace Rectify11Installer.Core
             // backup
             try
             {
-                File.Copy(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), true);
+                frm.InstallerProgress = "Creating uninstaller";
+                await Task.Run(() => File.Copy(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), true));
                 Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
             }
             catch (Exception ex)
             {
                 Logger.WriteLine("Error while copying installer", ex);
             }
+            // create restore point
+            frm.InstallerProgress = "Creating a restore point";
+            await Task.Run(() => NativeMethods.CreateSystemRestorePoint());
 
             frm.InstallerProgress = "Installing runtimes";
             if (!await Task.Run(InstallRuntimes))
@@ -178,7 +182,7 @@ namespace Rectify11Installer.Core
             // extras
             if (InstallOptions.InstallExtras())
             {
-                frm.InstallerProgress = "Installing Extras...";
+                frm.InstallerProgress = "Installing Extras";
                 Logger.WriteLine("Installing Extras");
                 Logger.WriteLine("─────────────────");
                 if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
@@ -207,6 +211,8 @@ namespace Rectify11Installer.Core
 
                 if (InstallOptions.InstallWallpaper)
                 {
+                    frm.InstallerProgress = "Installing extras: Wallpapers";
+
                     if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "wallpapers")))
                     {
                         Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "wallpapers"), true);
@@ -225,6 +231,7 @@ namespace Rectify11Installer.Core
                 }
                 if (InstallOptions.InstallASDF)
                 {
+                    frm.InstallerProgress = "Installing extras: AccentColorizer";
                     if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
                     {
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
@@ -251,6 +258,7 @@ namespace Rectify11Installer.Core
                 }
                 if (InstallOptions.InstallGadgets)
                 {
+                    frm.InstallerProgress = "Installing extras: Gadgets";
                     if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "GadgetPack")))
                     {
                         Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
@@ -265,6 +273,7 @@ namespace Rectify11Installer.Core
                 }
                 if (InstallOptions.InstallShell)
                 {
+                    frm.InstallerProgress = "Installing extras: Enhanced context menu";
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
                         " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
                         + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
@@ -289,6 +298,7 @@ namespace Rectify11Installer.Core
                 }
                 if (InstallOptions.userAvatars)
                 {
+                    frm.InstallerProgress = "Installing extras: User avatars";
                     if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "userAV")))
                     {
                         Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);

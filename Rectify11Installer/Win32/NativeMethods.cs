@@ -62,6 +62,9 @@ namespace Rectify11Installer.Win32
         [return: MarshalAs(UnmanagedType.Bool)]
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
+
+        [DllImport("SrClient.dll")]
+        public static extern bool SRSetRestorePoint(ref RESTOREPOINTINFO SRPInfo, ref STATEMGRSTATUS SRPStatus);
         #endregion
         #region Flags
         public const int SC_CLOSE = 0xF060;
@@ -171,6 +174,23 @@ namespace Rectify11Installer.Win32
             MOVEFILE_CREATE_HARDLINK = 0x00000010,
             MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x00000020
         }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RESTOREPOINTINFO
+        {
+            public int dwEventType;
+            public int dwRestorePtType;
+            public Int64 llSequenceNumber;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 257)]
+            public string szDescription;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct STATEMGRSTATUS
+        {
+            public uint nStatus;
+            public Int64 llSequenceNumber;
+        }
         #endregion
         #region Public Methods
         public static bool SetCloseButton(FrmWizard frm, bool enable)
@@ -268,6 +288,24 @@ namespace Rectify11Installer.Win32
 			}
 			return -1;
 		}
+		public static bool CreateSystemRestorePoint()
+		{
+            RegistryKey SystemRestoreKey = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore", true);
+            SystemRestoreKey.SetValue("SystemRestorePointCreationFrequency", 0, RegistryValueKind.DWord);
+            bool result = false;
+            RESTOREPOINTINFO RPInfo = new();
+            STATEMGRSTATUS RPStatus = new();
+
+            RPInfo.dwEventType = 100;
+            RPInfo.dwRestorePtType = 0;
+            RPInfo.llSequenceNumber = 0;
+            RPInfo.szDescription = "Rectify11";
+
+            result = SRSetRestorePoint(ref RPInfo, ref RPStatus);
+            SystemRestoreKey.DeleteValue("SystemRestorePointCreationFrequency");
+            SystemRestoreKey.Dispose();
+			return true;
+        }
 		#endregion
 	}
 }
