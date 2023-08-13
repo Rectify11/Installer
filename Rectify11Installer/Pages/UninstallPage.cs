@@ -175,12 +175,14 @@ namespace Rectify11Installer.Pages
 						if (e.Node.Checked)
 						{
 							UninstallOptions.uninstIconsList.Add(x.Text);
-							Variables.InstallIcons = true;
+							UninstallOptions.uninstDummylist.Add(x.Text);
+                            Variables.InstallIcons = true;
 						}
 						else
 						{
 							UninstallOptions.uninstIconsList.Remove(x.Text);
-							Variables.InstallIcons = false;
+							UninstallOptions.uninstDummylist.Remove(x.Text);
+                            Variables.InstallIcons = false;
 						}
 					});
 				}
@@ -192,12 +194,14 @@ namespace Rectify11Installer.Pages
 						if (e.Node.Checked && (x.Name != "basicNode") && (x.Name != "advancedNode"))
 						{
 							UninstallOptions.uninstIconsList.Add(x.Text);
-							Variables.InstallIcons = true;
+							UninstallOptions.uninstDummylist.Add(x.Text);
+                            Variables.InstallIcons = true;
 						}
 						else if ((x.Name != "basicNode") && (x.Name != "advancedNode"))
 						{
 							UninstallOptions.uninstIconsList.Remove(x.Text);
-							Variables.InstallIcons = false;
+							UninstallOptions.uninstDummylist.Remove(x.Text);
+                            Variables.InstallIcons = false;
 						}
 					});
 				}
@@ -209,11 +213,13 @@ namespace Rectify11Installer.Pages
 						if (e.Node.Checked)
 						{
 							UninstallOptions.uninstIconsList.Add(x.Text);
-							Variables.InstallIcons = true;
+							UninstallOptions.uninstDummylist.Add(x.Text);
+                            Variables.InstallIcons = true;
 						}
 						else
 						{
-							UninstallOptions.uninstIconsList.Remove(x.Text);
+                            UninstallOptions.uninstIconsList.Remove(x.Text);
+                            UninstallOptions.uninstDummylist.Remove(x.Text);
 							Variables.InstallIcons = false;
 						}
 					});
@@ -226,10 +232,12 @@ namespace Rectify11Installer.Pages
 						if (e.Node.Checked)
 						{
 							UninstallOptions.uninstExtrasList.Add(x.Name);
-						}
+							UninstallOptions.uninstDummylist.Add(x.Name);
+                        }
 						else
 						{
                             UninstallOptions.uninstExtrasList.Remove(x.Name);
+                            UninstallOptions.uninstDummylist.Remove(x.Name);
                         }
                     });
 				}
@@ -241,16 +249,19 @@ namespace Rectify11Installer.Pages
 						if (x.Name == "extraNode")
 						{
                             UninstallOptions.uninstExtrasList.Add(e.Node.Name);
+                            UninstallOptions.uninstDummylist.Add(e.Node.Name);
                         }
                         else if (x.Name == "basicNode")
 						{
 							UninstallOptions.uninstIconsList.Add(e.Node.Text);
-							Variables.InstallIcons = true;
+							UninstallOptions.uninstDummylist.Add(e.Node.Text);
+                            Variables.InstallIcons = true;
 						}
 						else if (x.Name == "advancedNode")
 						{
 							UninstallOptions.uninstIconsList.Add(e.Node.Text);
-							Variables.InstallIcons = true;
+							UninstallOptions.uninstDummylist.Add(e.Node.Text);
+                            Variables.InstallIcons = true;
 						}
 					}
 					else
@@ -258,16 +269,19 @@ namespace Rectify11Installer.Pages
 						if (x.Name == "extraNode")
 						{
                             UninstallOptions.uninstExtrasList.Remove(e.Node.Name);
+                            UninstallOptions.uninstDummylist.Remove(e.Node.Name);
                         }
                         else if (x.Name == "basicNode")
 						{
 							UninstallOptions.uninstIconsList.Remove(e.Node.Text);
-							Variables.InstallIcons = false;
+							UninstallOptions.uninstDummylist.Remove(e.Node.Text);
+                            Variables.InstallIcons = false;
 						}
 						else if (x.Name == "advancedNode")
 						{
 							UninstallOptions.uninstIconsList.Remove(e.Node.Text);
-							Variables.InstallIcons = false;
+                            UninstallOptions.uninstDummylist.Remove(e.Node.Text);
+                            Variables.InstallIcons = false;
 						}
 					}
 				});
@@ -276,19 +290,21 @@ namespace Rectify11Installer.Pages
 					if (e.Node.Checked)
 					{
 						UninstallOptions.UninstallThemes = true;
-					}
-					else
+                        UninstallOptions.uninstDummylist.Add(e.Node.Text);
+                    }
+                    else
 					{
 						UninstallOptions.UninstallThemes = false;
-					}
-				}
-				if ((!_frmWizard.nextButton.Enabled) && ((UninstallOptions.uninstIconsList.Count > 0) || UninstallOptions.UninstallThemes || (UninstallOptions.uninstExtrasList.Count > 0)) )
+                        UninstallOptions.uninstDummylist.Remove(e.Node.Text);
+                    }
+                }
+				if (!_frmWizard.nextButton.Enabled && UninstallOptions.uninstDummylist.Count > 0)
 				{
 					_frmWizard.nextButton.Enabled = true;
 					Variables.IsItemsSelected = true;
 
 				}
-				else if (UninstallOptions.uninstIconsList.Count == 0 || !UninstallOptions.UninstallThemes || UninstallOptions.uninstExtrasList.Count == 0)
+				else if (UninstallOptions.uninstDummylist.Count == 0)
 				{
 					_frmWizard.nextButton.Enabled = false;
 					Variables.IsItemsSelected = false;

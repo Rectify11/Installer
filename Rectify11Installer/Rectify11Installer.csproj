@@ -377,6 +377,7 @@
     <None Include="Resources\config3.txt" />
     <None Include="Resources\config4.txt" />
     <None Include="Resources\config5.txt" />
+    <None Include="Resources\asdf.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />

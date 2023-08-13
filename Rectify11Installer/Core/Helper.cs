@@ -204,6 +204,9 @@ namespace Rectify11Installer.Core
 	}
 	public class UninstallOptions
     {
+		// does nothing
+        public static List<string> uninstDummylist = new();
+
         public static List<string> uninstIconsList = new();
         public static List<string> uninstExtrasList = new();
         public static bool UninstallThemes { get; set; }

@@ -52,7 +52,6 @@ namespace Rectify11Installer.Pages
 			this.darkAwareLabel1.Text = resources.GetString("epTitle");
 
 
-			this.PrevImg.BackgroundImage = global::Rectify11Installer.Properties.Resources._5L;
 			this.PrevImg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.PrevImg.Location = new System.Drawing.Point(170, 53);
 			this.PrevImg.Name = "PrevImg";

@@ -182,7 +182,7 @@ namespace Rectify11Installer.Core
             // extras
             if (InstallOptions.InstallExtras())
             {
-                frm.InstallerProgress = "Installing Extras";
+                frm.InstallerProgress = "Installing extras";
                 Logger.WriteLine("Installing Extras");
                 Logger.WriteLine("─────────────────");
                 if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
@@ -236,13 +236,43 @@ namespace Rectify11Installer.Core
                     {
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
-                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn asdf", AppWinStyle.Hide));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide));
-                        var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"));
-                        for (int j = 0; j < files.Length; j++)
+                        if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk")))
                         {
-                            File.Move(files[j], Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
-                            MoveFileEx(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            try
+                            {
+                                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"));
+                            }
+                            catch
+                            {
+                                File.Move(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"), Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
+                            }
+                        }
+                        if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk")))
+                        {
+                            try
+                            {
+                                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"));
+                            }
+                            catch
+                            {
+                                File.Move(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"), Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
+                            }
+                        }
+                        try
+                        {
+                            Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), true);
+                        }
+                        catch
+                        {
+                            string name = Path.GetRandomFileName();
+                            Directory.Move(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), Path.Combine(Path.GetTempPath(), name));
+                            var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
+                            for (int j = 0; j < files.Length; j++)
+                            {
+                                MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            }
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                     }
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
@@ -253,7 +283,8 @@ namespace Rectify11Installer.Core
                     Logger.WriteLine("Installasdf() succeeded.");
                     if (!Variables.RestartRequired)
                     {
-                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /run /tn asdf", AppWinStyle.Hide));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe"), AppWinStyle.Hide));
+                        await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe"), AppWinStyle.Hide));
                     }
                 }
                 if (InstallOptions.InstallGadgets)
@@ -694,7 +725,18 @@ namespace Rectify11Installer.Core
         /// </summary>
         private void Installasdf()
         {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "asdf.xml"), AppWinStyle.Hide);
+            //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "asdf.xml"), AppWinStyle.Hide);
+            using ShellLink shortcut = new();
+            shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe");
+            shortcut.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
+            shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+            shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"));
+
+            using ShellLink asdf11 = new();
+            asdf11.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+            asdf11.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
+            asdf11.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe");
+            asdf11.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"));
         }
 
         /// <summary>

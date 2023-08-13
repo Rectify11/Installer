@@ -414,19 +414,46 @@ namespace Rectify11Installer.Core
                 {
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn asdf", AppWinStyle.Hide));
                     await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide));
+                    if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk")))
+                    {
+                        try
+                        {
+                            File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"));
+                        }
+                        catch
+                        {
+                            File.Move(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"), Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
+                        }
+                    }
+                    if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk")))
+                    {
+                        try
+                        {
+                            File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"));
+                        }
+                        catch
+                        {
+                            File.Move(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"), Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
+                        }
+                    }
                     if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
                     {
-                        // idk File.Delete cant nuke it
-                        string name = Path.GetRandomFileName();
-                        Directory.Move(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), Path.Combine(Path.GetTempPath(), name));
-                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                        for (int j = 0; j < files.Length; j++)
+                        try
                         {
-                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), true);
                         }
-                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        catch
+                        {
+                            string name = Path.GetRandomFileName();
+                            Directory.Move(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), Path.Combine(Path.GetTempPath(), name));
+                            var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
+                            for (int j = 0; j < files.Length; j++)
+                            {
+                                MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            }
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        }
                     }
                     // will fail anyways if the folder isnt empty
                     MoveFileEx(Path.Combine(Variables.r11Folder, "extras"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
