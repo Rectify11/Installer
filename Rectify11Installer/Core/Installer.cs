@@ -1171,17 +1171,23 @@ namespace Rectify11Installer.Core
                 WindowStyle = ProcessWindowStyle.Hidden,
                 Arguments = " /install /quiet /norestart"
             };
-            var vcproc = Process.Start(vcinfo);
-            if (vcproc == null) return false;
-            vcproc.WaitForExit();
-            if (!vcproc.HasExited) return false;
-            Logger.WriteLine("vcredist.exe exited with error code " + vcproc.ExitCode.ToString());
-            if (vcproc.ExitCode != 0 && vcproc.ExitCode != 1638 && vcproc.ExitCode != 3010)
+            try
             {
-                Variables.vcRedist = false;
+                var vcproc = Process.Start(vcinfo);
+                if (vcproc == null) return false;
+                vcproc.WaitForExit();
+                if (!vcproc.HasExited) return false;
+                Logger.WriteLine("vcredist.exe exited with error code " + vcproc.ExitCode.ToString());
+                if (vcproc.ExitCode != 0 && vcproc.ExitCode != 1638 && vcproc.ExitCode != 3010)
+                {
+                    Variables.vcRedist = false;
+                }
+                else Variables.vcRedist = true;
             }
-            else Variables.vcRedist = true;
-
+            catch
+            {
+                return false;
+            }
             Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
             ProcessStartInfo core3info = new()
             {
@@ -1189,16 +1195,23 @@ namespace Rectify11Installer.Core
                 WindowStyle = ProcessWindowStyle.Hidden,
                 Arguments = " /install /quiet /norestart"
             };
-            var core3proc = Process.Start(core3info);
-            if (core3proc == null) return false;
-            core3proc.WaitForExit();
-            if (!core3proc.HasExited) return false;
-            Logger.WriteLine("core31.exe exited with error code " + core3proc.ExitCode.ToString());
-            if (core3proc.ExitCode != 0 && core3proc.ExitCode != 1638 && core3proc.ExitCode != 3010)
+            try
             {
-                Variables.core31 = false;
+                var core3proc = Process.Start(core3info);
+                if (core3proc == null) return false;
+                core3proc.WaitForExit();
+                if (!core3proc.HasExited) return false;
+                Logger.WriteLine("core31.exe exited with error code " + core3proc.ExitCode.ToString());
+                if (core3proc.ExitCode != 0 && core3proc.ExitCode != 1638 && core3proc.ExitCode != 3010)
+                {
+                    Variables.core31 = false;
+                }
+                else Variables.core31 = true;
             }
-            else Variables.core31 = true;
+            catch
+            {
+                return false;
+            }
             return true;
         }
 
