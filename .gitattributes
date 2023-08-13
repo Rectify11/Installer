@@ -57,4 +57,3 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
-*.7z filter=lfs diff=lfs merge=lfs -text
