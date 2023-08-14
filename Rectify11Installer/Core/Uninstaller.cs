@@ -51,6 +51,11 @@ namespace Rectify11Installer.Core
                 }
                 catch { }
             }
+            // complete uninstall
+            if (Variables.CompleteUninstall)
+            {
+
+            }
             frm.InstallerProgress = "Done, you can close this window";
             return true;
         }
