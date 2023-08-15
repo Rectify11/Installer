@@ -465,7 +465,6 @@ namespace Rectify11.Phase2
         }
         private static void MoveFile(string newval, string file, MoveType type, string name)
         {
-            Console.WriteLine();
             Console.WriteLine(newval);
             Console.Write("Final path: ");
             string finalpath = string.Empty;
@@ -526,7 +525,9 @@ namespace Rectify11.Phase2
                         }
                         catch
                         {
-                            finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetRandomFileName());
+                            string fil = Path.GetRandomFileName();
+                            finalpath = Path.Combine(Variables.r11Folder, "Trash", fil);
+                            MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                     }
                 }
@@ -539,7 +540,9 @@ namespace Rectify11.Phase2
                     }
                     catch
                     {
-                        File.Move(finalpath, Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
+                        string fil = Path.GetTempFileName();
+                        File.Move(finalpath, Path.Combine(Path.GetTempPath(), fil));
+                        MoveFileEx(Path.Combine(Path.GetTempPath(), fil), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
                 }
                 File.Move(newval, finalpath);

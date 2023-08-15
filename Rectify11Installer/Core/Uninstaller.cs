@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using static Rectify11Installer.Win32.NativeMethods;
@@ -51,12 +50,32 @@ namespace Rectify11Installer.Core
                 }
                 catch { }
             }
+            Logger.CommitLog();
             // complete uninstall
             if (Variables.CompleteUninstall)
             {
-
+                var files = Directory.GetFiles(Variables.r11Folder);
+                for (int j = 0; j < files.Length; j++)
+                {
+                    try
+                    {
+                        File.Delete(files[j]);
+                    }
+                    catch
+                    {
+                        string name = Path.GetRandomFileName();
+                        File.Move(files[j], Path.Combine(Path.GetTempPath(), name));
+                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    }
+                }
+                if (Directory.GetFiles(Variables.r11Folder).Length == 0 && Directory.GetDirectories(Variables.r11Folder).Length == 0)
+                {
+                    Directory.Delete(Variables.r11Folder, true);
+                }
+                using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true);
+                reg.DeleteSubKey("Rectify11");
             }
-            frm.InstallerProgress = "Done, you can close this window";
+            if (!Variables.RestartRequired) frm.InstallerProgress = "Done, you can close this window";
             return true;
         }
         private async Task<bool> UninstallIcons()
@@ -461,7 +480,7 @@ namespace Rectify11Installer.Core
                         }
                     }
                     // will fail anyways if the folder isnt empty
-                    MoveFileEx(Path.Combine(Variables.r11Folder, "extras"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
                     Logger.WriteLine("Uninstalled asdf");
                 }
                 if (UninstallOptions.uninstExtrasList[i] == "useravNode")
