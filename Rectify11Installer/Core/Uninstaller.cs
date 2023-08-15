@@ -73,7 +73,9 @@ namespace Rectify11Installer.Core
                     Directory.Delete(Variables.r11Folder, true);
                 }
                 using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true);
-                reg.DeleteSubKey("Rectify11");
+                reg.DeleteSubKey("Rectify11", false);
+                using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true);
+                key.DeleteSubKey("Rectify11", false);
             }
             if (!Variables.RestartRequired) frm.InstallerProgress = "Done, you can close this window";
             return true;
