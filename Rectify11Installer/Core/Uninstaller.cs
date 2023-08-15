@@ -50,6 +50,18 @@ namespace Rectify11Installer.Core
                 }
                 catch { }
             }
+            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+            {
+                if (Directory.GetFiles(Path.Combine(Variables.r11Folder, "Backup")).Length == 0
+                    && Directory.GetDirectories(Path.Combine(Variables.r11Folder, "Backup")).Length == 0)
+                {
+                    try
+                    {
+                        Directory.Delete(Path.Combine(Variables.r11Folder, "Backup"), true);
+                    }
+                    catch { }
+                }
+            }
             Logger.CommitLog();
             // complete uninstall
             if (Variables.CompleteUninstall)

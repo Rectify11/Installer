@@ -187,10 +187,6 @@ namespace Rectify11.Phase2
                     }
                 }
                 Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
-                {
-                    MoveFileEx(Path.Combine(Variables.r11Folder, "Trash"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                }
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
                 Console.ReadKey(true);
@@ -201,24 +197,6 @@ namespace Rectify11.Phase2
                 var backup = Path.Combine(Variables.r11Folder, "Backup");
                 var backupFiles = Directory.GetFiles(backup, "*", SearchOption.TopDirectoryOnly);
 
-                // delete the trash dir
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
-                {
-                    try
-                    {
-                        Directory.Delete(Path.Combine(Variables.r11Folder, "Trash"), true);
-                    }
-                    catch
-                    {
-                        string name = Path.Combine(Variables.r11Folder, "Trash");
-                        var files = Directory.GetFiles(name);
-                        for (int j = 0; j < files.Length; j++)
-                        {
-                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                        MoveFileEx(name, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                }
                 string[] backupDiagDir = new string[] { };
                 if (Directory.Exists(Path.Combine(backup, "Diag")))
                 {
@@ -495,28 +473,13 @@ namespace Rectify11.Phase2
                 if (value == 1) wu = true;
                 if (!wu)
                 {
-                    if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
-                    {
-                        Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash"));
-                    }
-
-                    if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Trash", "Diag")))
-                    {
-                        Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash", "Diag"));
-                    }
-                    if (type == MoveType.General)
-                    {
-                        finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
-                    }
-                    else if (type == MoveType.x86)
-                    {
-                        finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
-                    }
-                    else if (type == MoveType.Trouble)
-                    {
-                        finalpath = Path.Combine(Variables.r11Folder, "Trash", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
-                    }
+                    finalpath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                     Console.WriteLine(finalpath);
+                    MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                }
+                else
+                {
+                    Console.WriteLine("WU: " + finalpath);
                     if (File.Exists(finalpath))
                     {
                         try
@@ -525,28 +488,13 @@ namespace Rectify11.Phase2
                         }
                         catch
                         {
-                            string fil = Path.GetRandomFileName();
-                            finalpath = Path.Combine(Variables.r11Folder, "Trash", fil);
-                            MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            string fil = Path.GetTempFileName();
+                            File.Move(finalpath, Path.Combine(Path.GetTempPath(), fil));
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), fil), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                     }
                 }
-                else
-                {
-                    Console.WriteLine("WU: " + finalpath);
-                    try
-                    {
-                        File.Delete(finalpath);
-                    }
-                    catch
-                    {
-                        string fil = Path.GetTempFileName();
-                        File.Move(finalpath, Path.Combine(Path.GetTempPath(), fil));
-                        MoveFileEx(Path.Combine(Path.GetTempPath(), fil), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                }
                 File.Move(newval, finalpath);
-                if (!wu) MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
             }
             File.Copy(file, newval, true);
 
