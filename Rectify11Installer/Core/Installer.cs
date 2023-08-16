@@ -883,7 +883,6 @@ namespace Rectify11Installer.Core
             if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
             {
                 Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), true);
-
             }
             Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
 
@@ -1223,6 +1222,7 @@ namespace Rectify11Installer.Core
                     Variables.vcRedist = false;
                 }
                 else Variables.vcRedist = true;
+                if (vcproc.ExitCode == 0) Variables.RestartRequired = true;
             }
             catch
             {
@@ -1247,6 +1247,7 @@ namespace Rectify11Installer.Core
                     Variables.core31 = false;
                 }
                 else Variables.core31 = true;
+                if (core3proc.ExitCode == 0) Variables.RestartRequired = true;
             }
             catch
             {
