@@ -29,7 +29,7 @@ namespace Rectify11Installer
 				{
 					bool yes = false;
 					TaskDialog td = new();
-					td.Page.Text = "Windows 10 version 19H1 or higher is required in order to install Rectify11.";
+					td.Page.Text = "Windows 10 version 1903 or higher is required in order to install Rectify11.";
 					td.Page.Instruction = "Compatibility Error";
 					td.Page.Title = "Rectify11 Setup";
 					td.Page.StandardButtons = TaskDialogButtons.OK;
