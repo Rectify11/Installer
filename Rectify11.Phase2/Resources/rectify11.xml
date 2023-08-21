@@ -122,6 +122,7 @@
 
 	<!--Dll and Exe files-->
 	<Patch Mui="AdmTmpl.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
+	<Patch Mui="ApplicationFrame.dll" mask="IMAGE," HardlinkTarget="%sys32%\ApplicationFrame.dll" />
 	<Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
 	<Patch Mui="ApproveChildRequest.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ApproveChildRequest.exe" />
 	<Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\audiosrv.dll.mui" />
@@ -209,7 +210,7 @@
 	<Patch Mui="eqossnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\eqossnap.dll" />
 	<Patch Mui="eventvwr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\eventvwr.exe" />
 	<Patch Mui="explorer.exe.mui" mask="ICONGROUP," HardlinkTarget="%windirLang%\explorer.exe.mui" />
-	<Patch Mui="Faultrep.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Faultrep.dll" />
+	<Patch Mui="Faultrep.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\Faultrep.dll.mui" />
 	<Patch Mui="fde.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\fde.dll" />
 	<Patch Mui="fhcpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\fhcpl.dll" />
 	<Patch Mui="fhmanagew.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\fhmanagew.exe" />
@@ -435,7 +436,7 @@
 	<Patch Mui="wlandlg.dll" mask="BITMAP,|UIFILE," HardlinkTarget="%sys32%\wlandlg.dll" />
 	<Patch Mui="wlanui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanui.dll" />
 	<Patch Mui="wlanpref.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanpref.dll" />
-	<Patch Mui="wlrmdr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wlrmdr.exe" />
+	<Patch Mui="wlrmdr.exe.mui" mask="ICONGROUP,|UIFILE" HardlinkTarget="%lang%\wlrmdr.exe.mui" />
 	<Patch Mui="wmp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wmp.dll" />
 	<Patch Mui="wmpconfig.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\wmpconfig.exe" />
 	<Patch Mui="WMPDMC.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WMPDMC.exe" />
