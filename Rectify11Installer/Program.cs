@@ -34,6 +34,8 @@ namespace Rectify11Installer
 					td.Page.Title = "Rectify11 Setup";
 					td.Page.StandardButtons = TaskDialogButtons.OK;
 					td.Page.Icon = TaskDialogStandardIcon.SecurityErrorRedBar;
+					td.Page.EnableHyperlinks = false;
+					td.Show();
 					if (!yes) return;
 				}
 			}
