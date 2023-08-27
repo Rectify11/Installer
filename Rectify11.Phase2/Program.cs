@@ -157,33 +157,36 @@ namespace Rectify11.Phase2
                                     }
                                 }
                             }
-                            if (CultureInfo.CurrentUICulture.Name != "en-US")
+                            try
                             {
-                                List<string> r11LangMsc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
-                                for (int j = 0; j < r11LangMsc.Count; j++)
+                                if (CultureInfo.CurrentUICulture.Name != "en-US")
                                 {
-                                    for (int i = 0; i < langMsc.Count; i++)
+                                    List<string> r11LangMsc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
+                                    for (int j = 0; j < r11LangMsc.Count; j++)
                                     {
-                                        if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11LangMsc[j]))
+                                        for (int i = 0; i < langMsc.Count; i++)
                                         {
-                                            Console.WriteLine(langMsc[i]);
-                                            if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
+                                            if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11LangMsc[j]))
                                             {
-                                                File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
+                                                Console.WriteLine(langMsc[i]);
+                                                if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
+                                                {
+                                                    File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
+                                                }
+                                                File.Copy(r11LangMsc[j], langMsc[i], true);
                                             }
-                                            File.Copy(r11LangMsc[j], langMsc[i], true);
                                         }
                                     }
                                 }
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Error patching language related msc files");
                             }
                         }
                     }
                 }
                 Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
-                {
-                    MoveFileEx(Path.Combine(Variables.r11Folder, "Trash"), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                }
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
                 Console.ReadKey(true);
@@ -194,9 +197,11 @@ namespace Rectify11.Phase2
                 var backup = Path.Combine(Variables.r11Folder, "Backup");
                 var backupFiles = Directory.GetFiles(backup, "*", SearchOption.TopDirectoryOnly);
 
-                // later
-                var backupDiagDir = Directory.GetFiles(Path.Combine(backup, "Diag"), "*", SearchOption.TopDirectoryOnly);
-
+                string[] backupDiagDir = new string[] { };
+                if (Directory.Exists(Path.Combine(backup, "Diag")))
+                {
+                    backupDiagDir = Directory.GetFiles(Path.Combine(backup, "Diag"), "*", SearchOption.TopDirectoryOnly);
+                }
                 var r11Reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).OpenSubKey("Rectify11", false);
                 if (r11Reg != null)
                     uninstallFiles = (string[])r11Reg.GetValue("UninstallFiles");
@@ -219,6 +224,17 @@ namespace Rectify11.Phase2
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
                                     string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath));
+                                    if (File.Exists(filename))
+                                    {
+                                        try
+                                        {
+                                            File.Delete(filename);
+                                        }
+                                        catch
+                                        {
+                                            filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                                        }
+                                    }
                                     File.Move(finalPath, filename);
                                     File.Move(backupPath, finalPath);
                                     MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -236,6 +252,17 @@ namespace Rectify11.Phase2
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
                                     string filename = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui));
+                                    if (File.Exists(filename))
+                                    {
+                                        try
+                                        {
+                                            File.Delete(filename);
+                                        }
+                                        catch
+                                        {
+                                            filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                                        }
+                                    }
                                     File.Move(finalPath, filename);
                                     File.Move(backupPath, finalPath);
                                     MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -251,6 +278,17 @@ namespace Rectify11.Phase2
                                 Console.WriteLine("Backup: " + backupDiagDir[i]);
                                 Console.WriteLine("Final: " + finalPath + "\n");
                                 string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(backupDiagDir[i]));
+                                if (File.Exists(filename))
+                                {
+                                    try
+                                    {
+                                        File.Delete(filename);
+                                    }
+                                    catch
+                                    {
+                                        filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                                    }
+                                }
                                 File.Move(finalPath, filename);
                                 File.Move(backupDiagDir[i], finalPath);
                                 MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -268,7 +306,11 @@ namespace Rectify11.Phase2
                         {
                             process.Kill();
                         }
-                        var sys32Msc = Directory.GetFiles(Path.Combine(backup, "msc"), "*.msc", SearchOption.TopDirectoryOnly);
+                        var sys32Msc = new string[] { };
+                        if (Directory.Exists(Path.Combine(backup, "msc")))
+                        {
+                            sys32Msc = Directory.GetFiles(Path.Combine(backup, "msc"), "*.msc", SearchOption.TopDirectoryOnly);
+                        }
                         for (int i = 0; i < sys32Msc.Length; i++)
                         {
                             Console.WriteLine("Backup: " + sys32Msc[i]);
@@ -276,7 +318,11 @@ namespace Rectify11.Phase2
                             File.Copy(sys32Msc[i], Path.Combine(Variables.sys32Folder, Path.GetFileName(sys32Msc[i])), true);
                             File.Delete(sys32Msc[i]);
                         }
-                        var mscLang = Directory.GetDirectories(Path.Combine(backup, "msc"));
+                        var mscLang = new string[] { };
+                        if (Directory.Exists(Path.Combine(backup, "msc")))
+                        {
+                            mscLang = Directory.GetDirectories(Path.Combine(backup, "msc"));
+                        }
                         for (int i = 0; i < mscLang.Length; i++)
                         {
                             var files = Directory.GetFiles(mscLang[i], "*.msc", SearchOption.TopDirectoryOnly);
@@ -290,7 +336,41 @@ namespace Rectify11.Phase2
                         }
                     }
                 }
-
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+                {
+                    var dirs = Directory.GetDirectories(Path.Combine(Variables.r11Folder, "Backup"));
+                    for (int i = 0; i < dirs.Length; i++)
+                    {
+                        var dirsi = Directory.GetDirectories(dirs[i]);
+                        // msc
+                        if (dirsi.Length > 0)
+                        {
+                            for (int j = 0; j < dirsi.Length; j++)
+                            {
+                                Console.WriteLine("j=" + dirsi[j]);
+                                if (Directory.GetFiles(dirsi[j]).Length == 0)
+                                {
+                                    Directory.Delete(dirsi[j], true);
+                                }
+                            }
+                            if (Directory.GetDirectories(dirs[i]).Length == 0 && Directory.GetFiles(dirs[i]).Length == 0)
+                            {
+                                Directory.Delete(dirs[i], true);
+                            }
+                        }
+                        else
+                        {
+                            if (Directory.GetFiles(dirs[i]).Length == 0 && Directory.GetDirectories(dirs[i]).Length == 0)
+                            {
+                                Directory.Delete(dirs[i], true);
+                            }
+                        }
+                    }
+                    if (Directory.GetFiles(Path.Combine(Variables.r11Folder, "Backup")).Length == 0 && Directory.GetFiles(Path.Combine(Variables.r11Folder, "Backup")).Length == 0)
+                    {
+                        Directory.Delete(Path.Combine(Variables.r11Folder, "Backup"), true);
+                    }
+                }
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
                 Console.ReadKey(true);
@@ -363,7 +443,6 @@ namespace Rectify11.Phase2
         }
         private static void MoveFile(string newval, string file, MoveType type, string name)
         {
-            Console.WriteLine();
             Console.WriteLine(newval);
             Console.Write("Final path: ");
             string finalpath = string.Empty;
@@ -387,22 +466,35 @@ namespace Rectify11.Phase2
             }
             else if (File.Exists(finalpath))
             {
-                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Trash")))
+                bool wu = false;
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+                var b = key?.GetValue("WindowsUpdate");
+                var value = (int?)b;
+                if (value == 1) wu = true;
+                if (!wu)
                 {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Trash"));
+                    finalpath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                    Console.WriteLine(finalpath);
+                    MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                 }
-                finalpath = Path.Combine(Variables.r11Folder, "Trash", Path.GetFileName(finalpath));
-                Console.WriteLine(finalpath);
-                if (File.Exists(finalpath))
+                else
                 {
-                    try
+                    Console.WriteLine("WU: " + finalpath);
+                    if (File.Exists(finalpath))
                     {
-                        File.Delete(finalpath);
+                        try
+                        {
+                            File.Delete(finalpath);
+                        }
+                        catch
+                        {
+                            string fil = Path.GetTempFileName();
+                            File.Move(finalpath, Path.Combine(Path.GetTempPath(), fil));
+                            MoveFileEx(Path.Combine(Path.GetTempPath(), fil), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        }
                     }
-                    catch { }
                 }
                 File.Move(newval, finalpath);
-                MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
             }
             File.Copy(file, newval, true);
 
@@ -462,7 +554,6 @@ namespace Rectify11.Phase2
         }
         private static void InstallFonts()
         {
-            int winver = Environment.OSVersion.Version.Build;
             var MarlettDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf");
             var MarlettBackupDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf.backup");
             var marlett = Path.Combine(Variables.r11Files, "marlett.ttf");
@@ -484,7 +575,7 @@ namespace Rectify11.Phase2
             catch
             {
             }
-            if (winver < 21996)
+            if (Environment.OSVersion.Version.Build <= 21996)
             {
                 var SegoeIconsDest = Path.Combine(Variables.windir, "Fonts", "SegoeIcons.ttf");
                 var segoeicons = Path.Combine(Variables.r11Files, "SegoeIcons.ttf");

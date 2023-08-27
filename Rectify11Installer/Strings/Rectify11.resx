@@ -139,19 +139,19 @@
     <value>Rectify your current Windows installation.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
-    <value>Install Now</value>
+    <value>Install</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
     <value>Restores the original Windows look.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
-    <value>Uninstall Rectify11</value>
+    <value>Uninstall</value>
   </data>
   <data name="updateNote" xml:space="preserve">
     <value>Update your existing Rectify11 installation.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
-    <value>Update Now</value>
+    <value>Update</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version: </value>
@@ -282,5 +282,23 @@
   </data>
   <data name="installMicaAlt" xml:space="preserve">
     <value>Use Mica Alt instead of Mica</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Classic Context Menus</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Classic Menus with transparency</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Enhanced Fluent Menus (More Options)</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Enhanced Fluent Menus (All Items in root)</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Add features to your existing installation.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modify</value>
   </data>
 </root>

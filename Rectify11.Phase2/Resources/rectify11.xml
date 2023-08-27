@@ -32,12 +32,12 @@
 	<Patch Mui="dsuiext.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\dsuiext.dll.mun" />
 	<Patch Mui="easeofaccessdialog.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\easeofaccessdialog.exe.mun" />
 	<Patch Mui="edputil.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\edputil.dll.mun" />
-	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|BITMAP,|IMAGE,|CURSORGROUP,|UIFILE," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" />
+	<Patch Mui="explorerframe.dll.mun" mask="ICONGROUP,|BITMAP,|IMAGE,|CURSORGROUP,|UIFILE," HardlinkTarget="%sysresdir%\explorerframe.dll.mun" Ignore="|UIFILE," MinVersion="21996" />
 	<Patch Mui="filemgmt.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\filemgmt.dll.mun" />
 	<Patch Mui="firewallcontrolpanel.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\firewallcontrolpanel.dll.mun" />
 	<Patch Mui="gpedit.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\gpedit.dll.mun" />
 	<Patch Mui="icsigd.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\icsigd.dll.mun" />
-	<Patch Mui="ieframe.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\ieframe.dll.mun" />
+	<Patch Mui="ieframe.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\ieframe.dll.mun" />
 	<Patch Mui="imageres.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\imageres.dll.mun" />
 	<Patch Mui="imagesp1.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\imagesp1.dll.mun" />
 	<Patch Mui="inetcpl.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\inetcpl.cpl.mun" />
@@ -55,7 +55,7 @@
 	<Patch Mui="mmcbase.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\mmcbase.dll.mun" />
 	<Patch Mui="mmcndmgr.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\mmcndmgr.dll.mun" />
 	<Patch Mui="mmres.dll.mun" mask="ICONGROUP,|PNG," HardlinkTarget="%sysresdir%\mmres.dll.mun" />
-	<Patch Mui="mmsys.cpl.mun" mask="ICONGROUP,|PNG," HardlinkTarget="%sysresdir%\mmsys.cpl.mun" />
+	<Patch Mui="mmsys.cpl.mun" mask="ICONGROUP,|PNG,|BITMAP," HardlinkTarget="%sysresdir%\mmsys.cpl.mun" />
 	<Patch Mui="moricons.dll.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\moricons.dll.mun" />
 	<Patch Mui="msdt.exe.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\msdt.exe.mun" />
 	<Patch Mui="mshtml.dll.mun" mask="ICONGROUP,|CURSORGROUP," HardlinkTarget="%sysresdir%\mshtml.dll.mun" />
@@ -96,7 +96,8 @@
 	<Patch Mui="sysdm.cpl.mun" mask="ICONGROUP," HardlinkTarget="%sysresdir%\sysdm.cpl.mun" />
 	<Patch Mui="sysmon.ocx.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\sysmon.ocx.mun" />
 	<Patch Mui="tapiui.dll.mun" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sysresdir%\tapiui.dll.mun" />
-	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" />
+	<Patch Mui="taskmgr.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" Ignore="|UIFILE," MaxVersion="22557"/>
+	<!--<Patch Mui="taskmgr22h2.exe.mun" mask="ICONGROUP,|PNG,|BITMAP,|UIFILE," HardlinkTarget="%sysresdir%\taskmgr.exe.mun" /> -->
 	<Patch Mui="themecpl.dll.mun" mask="ICONGROUP,|IMAGE," HardlinkTarget="%sysresdir%\themecpl.dll.mun" />
 	<Patch Mui="themeui.dll.mun" mask="ICONGROUP,|IMAGE,|BITMAP," HardlinkTarget="%sysresdir%\themeui.dll.mun" />
 	<Patch Mui="timedate.cpl.mun" mask="ICONGROUP,|PNGFILE," HardlinkTarget="%sysresdir%\timedate.cpl.mun" />
@@ -121,6 +122,7 @@
 
 	<!--Dll and Exe files-->
 	<Patch Mui="AdmTmpl.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\AdmTmpl.dll" />
+	<Patch Mui="ApplicationFrame.dll" mask="IMAGE," HardlinkTarget="%sys32%\ApplicationFrame.dll" />
 	<Patch Mui="appmgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\appmgr.dll" />
 	<Patch Mui="ApproveChildRequest.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\ApproveChildRequest.exe" />
 	<Patch Mui="audiosrv.dll.mui" mask="ICONGROUP," HardlinkTarget="%en-US%\audiosrv.dll.mui" />
@@ -203,13 +205,12 @@
 	<Patch Mui="eapsimextdesktop.dll" mask="ICONGROUP,|UIFILE," HardlinkTarget="%sys32%\eapsimextdesktop.dll" />
 	<Patch Mui="easconsent.dll" mask="UIFILE," HardlinkTarget="%sys32%\easconsent.dll" />
 	<Patch Mui="efsadu.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\efsadu.dll" />
-	<Patch Mui="efsext.dll" mask="UIFILE," HardlinkTarget="%sys32%\efsext.dll" />
 	<Patch Mui="EhStorAuthn.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\EhStorAuthn.exe" />
 	<Patch Mui="EhStorPwdMgr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\EhStorPwdMgr.dll" />
 	<Patch Mui="eqossnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\eqossnap.dll" />
 	<Patch Mui="eventvwr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\eventvwr.exe" />
 	<Patch Mui="explorer.exe.mui" mask="ICONGROUP," HardlinkTarget="%windirLang%\explorer.exe.mui" />
-	<Patch Mui="Faultrep.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Faultrep.dll" />
+	<Patch Mui="Faultrep.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\Faultrep.dll.mui" />
 	<Patch Mui="fde.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\fde.dll" />
 	<Patch Mui="fhcpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\fhcpl.dll" />
 	<Patch Mui="fhmanagew.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\fhmanagew.exe" />
@@ -435,7 +436,7 @@
 	<Patch Mui="wlandlg.dll" mask="BITMAP,|UIFILE," HardlinkTarget="%sys32%\wlandlg.dll" />
 	<Patch Mui="wlanui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanui.dll" />
 	<Patch Mui="wlanpref.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanpref.dll" />
-	<Patch Mui="wlrmdr.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\wlrmdr.exe" />
+	<Patch Mui="wlrmdr.exe.mui" mask="ICONGROUP,|UIFILE" HardlinkTarget="%lang%\wlrmdr.exe.mui" />
 	<Patch Mui="wmp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wmp.dll" />
 	<Patch Mui="wmpconfig.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\wmpconfig.exe" />
 	<Patch Mui="WMPDMC.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WMPDMC.exe" />

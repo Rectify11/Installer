@@ -42,14 +42,87 @@ namespace Rectify11Installer.Pages
 				var ok = list.Items;
 				var basicNode = treeView1.Nodes[0].Nodes[0];
 				var advNode = treeView1.Nodes[0].Nodes[1];
-				UpdateListView(ok, basicNode, advNode);
+                var themeNode = treeView1.Nodes[1];
+                var extra = treeView1.Nodes[2];
+                var shell = treeView1.Nodes[2].Nodes[0];
+                var gad = treeView1.Nodes[2].Nodes[1];
+                var asdf = treeView1.Nodes[2].Nodes[2];
+                var wall = treeView1.Nodes[2].Nodes[3];
+                var av = treeView1.Nodes[2].Nodes[4];
+                UpdateListView(ok, basicNode, advNode);
 				if (basicNode.Nodes.Count == 0)
 					treeView1.Nodes.Remove(basicNode);
 				if (advNode.Nodes.Count == 0)
 					treeView1.Nodes.Remove(advNode);
 				if (treeNode1.Nodes.Count == 0)
 					treeView1.Nodes.Remove(treeNode1);
-				idleinit = true;
+				// ugh
+				bool skip = false;
+                try
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
+                    if (key != null)
+                    {
+                        var build = key.GetValue("Build");
+                        if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+                        {
+							// kinda disable the whole check
+							skip = true;
+                        }
+                    }
+                    key.Dispose();
+                }
+                catch { }
+                try
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);
+                    if (key != null)
+                    {
+                        var build = key.GetValue("OSVersion");
+                        Version ver = Version.Parse(build.ToString());
+                        if (build != null)
+                        {
+                            if (Environment.OSVersion.Version.Build > ver.Build || Win32.NativeMethods.GetUbr() > ver.Revision)
+                            {
+								skip = true;
+                            }
+                        }
+                    }
+                    key.Dispose();
+                }
+                catch { }
+                if (!skip)
+				{
+					if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
+					{
+						treeView1.Nodes.Remove(themeNode);
+					}
+					if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+					{
+						treeView1.Nodes.Remove(shell);
+					}
+					if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
+					{
+						treeView1.Nodes.Remove(asdf);
+					}
+					if (File.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", "img41.jpg")))
+					{
+						treeView1.Nodes.Remove(wall);
+					}
+					if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+					{
+						treeView1.Nodes.Remove(av);
+					}
+					if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
+					{
+						treeView1.Nodes.Remove(gad);
+					}
+					if (extra.Nodes.Count == 0)
+					{
+						treeView1.Nodes.Remove(extra);
+					}
+				}
+                idleinit = true;
 			}
 		}
 
@@ -72,6 +145,26 @@ namespace Rectify11Installer.Pages
 				}
 				key.Dispose();
 			}
+			catch { }
+			try
+			{
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);
+                if (key != null)
+                {
+                    var build = key.GetValue("OSVersion");
+					Version ver = Version.Parse(build.ToString());
+                    if (build != null)
+                    {
+						if (Environment.OSVersion.Version.Build > ver.Build || Win32.NativeMethods.GetUbr() > ver.Revision)
+						{
+                            // kinda disable the whole check
+                            path = Variables.r11Folder;
+                            Variables.WindowsUpdate = true;
+                        }
+                    }
+                }
+                key.Dispose();
+            }
 			catch { }
 			/*
 			key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false);

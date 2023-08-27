@@ -21,7 +21,25 @@ namespace Rectify11Installer
 			using var mutex = new Mutex(false, "Rectify11Setup");
 			bool isAnotherInstanceOpen = !mutex.WaitOne(TimeSpan.Zero);
 			if (isAnotherInstanceOpen) return;
-			if (Environment.OSVersion.Version.Build <= 21343)
+			if (Environment.OSVersion.Version.Build <= 18362)
+			{
+				if (args.Length != 0 && args[0].ToLower() == "--allow")
+				{ }
+				else
+				{
+					bool yes = false;
+					TaskDialog td = new();
+					td.Page.Text = "Windows 10 version 1903 or higher is required in order to install Rectify11.";
+					td.Page.Instruction = "Compatibility Error";
+					td.Page.Title = "Rectify11 Setup";
+					td.Page.StandardButtons = TaskDialogButtons.OK;
+					td.Page.Icon = TaskDialogStandardIcon.SecurityErrorRedBar;
+					td.Page.EnableHyperlinks = false;
+					td.Show();
+					if (!yes) return;
+				}
+			}
+			if ((Environment.OSVersion.Version.Build >= 18362) && (Environment.OSVersion.Version.Build < 21343))
 			{
 				if (args.Length != 0 && args[0].ToLower() == "--allow")
 				{ }
@@ -30,10 +48,10 @@ namespace Rectify11Installer
 					bool yes = false;
 					TaskDialog td = new();
 					td.Page.Text = "Windows 10 build 21343 or higher is recommended in order to install Rectify11.";
-					td.Page.Instruction = "Compatibility Error";
+					td.Page.Instruction = "Compatibility Warning";
 					td.Page.Title = "Rectify11 Setup";
 					td.Page.StandardButtons = TaskDialogButtons.OK;
-					td.Page.Icon = TaskDialogStandardIcon.SecurityErrorRedBar;
+					td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
 					td.Page.EnableHyperlinks = true;
 					TaskDialogExpander tde = new();
 					tde.Text = "<a href=\"link1\">Run anyway (not recommended)</a>";

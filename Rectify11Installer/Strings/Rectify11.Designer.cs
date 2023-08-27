@@ -106,6 +106,42 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Classic Context Menus.
+        /// </summary>
+        internal static string cmenuClassic {
+            get {
+                return ResourceManager.GetString("cmenuClassic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Classic Menus with transparency.
+        /// </summary>
+        internal static string cmenuClassicA {
+            get {
+                return ResourceManager.GetString("cmenuClassicA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhanced Fluent Menus (More Options).
+        /// </summary>
+        internal static string cmenuFluent1 {
+            get {
+                return ResourceManager.GetString("cmenuFluent1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhanced Fluent Menus (All Items in root).
+        /// </summary>
+        internal static string cmenuFluent2 {
+            get {
+                return ResourceManager.GetString("cmenuFluent2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Context menu style.
         /// </summary>
         internal static string CMenuPageHeader {
@@ -304,7 +340,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install Now.
+        ///   Looks up a localized string similar to Install.
         /// </summary>
         internal static string installTitle {
             get {
@@ -336,6 +372,24 @@ namespace Rectify11Installer.Strings {
         internal static string installWinver {
             get {
                 return ResourceManager.GetString("installWinver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add features to your existing installation..
+        /// </summary>
+        internal static string modifyNote {
+            get {
+                return ResourceManager.GetString("modifyNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        internal static string modifyTitle {
+            get {
+                return ResourceManager.GetString("modifyTitle", resourceCulture);
             }
         }
         
@@ -494,7 +548,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uninstall Rectify11.
+        ///   Looks up a localized string similar to Uninstall.
         /// </summary>
         internal static string uninstallTitle {
             get {
@@ -512,7 +566,7 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Now.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
         internal static string updateTitle {
             get {

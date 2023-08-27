@@ -36,7 +36,6 @@ namespace Rectify11Installer.Pages
 			this.Rad2 = new Rectify11Installer.Controls.DarkAwareRadioButton();
 			this.Rad3 = new Rectify11Installer.Controls.DarkAwareRadioButton();
 			this.Rad4 = new Rectify11Installer.Controls.DarkAwareRadioButton();
-			this.Rad5 = new Rectify11Installer.Controls.DarkAwareRadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.PrevImg)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -53,7 +52,6 @@ namespace Rectify11Installer.Pages
 			this.darkAwareLabel1.Text = resources.GetString("epTitle");
 
 
-			this.PrevImg.BackgroundImage = global::Rectify11Installer.Properties.Resources._5L;
 			this.PrevImg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.PrevImg.Location = new System.Drawing.Point(170, 53);
 			this.PrevImg.Name = "PrevImg";
@@ -61,7 +59,6 @@ namespace Rectify11Installer.Pages
 			this.PrevImg.TabIndex = 0;
 			this.PrevImg.TabStop = false;
 			this.PrevImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-		//	this.w11StartImg.Click += new System.EventHandler(this.w11StartImg_Click);
 			// 
 			// Rad1
 			// 
@@ -73,7 +70,7 @@ namespace Rectify11Installer.Pages
 			this.Rad1.TabIndex = 1;
 			this.Rad1.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad1.TabStop = true;
-			this.Rad1.Text = "Enhanced Fluent Menus (More Options)";
+			this.Rad1.Text = resources.GetString("cmenuFluent1");
 			this.Rad1.UseVisualStyleBackColor = true;
 			// 
 			// Rad2
@@ -86,7 +83,7 @@ namespace Rectify11Installer.Pages
 			this.Rad2.Size = new System.Drawing.Size(160, 35);
 			this.Rad2.TabIndex = 2;
 			this.Rad2.TabStop = true;
-			this.Rad2.Text = "Enhanced Fluent Menus (All Items in root)";
+			this.Rad2.Text = resources.GetString("cmenuFluent2"); ;
 			this.Rad2.UseVisualStyleBackColor = true;
 			// 
 			// Rad3
@@ -99,7 +96,7 @@ namespace Rectify11Installer.Pages
 			this.Rad3.TabIndex = 3;
 			this.Rad3.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad3.TabStop = true;
-			this.Rad3.Text = "Classic Context Menus";
+			this.Rad3.Text = resources.GetString("cmenuClassic");
 			this.Rad3.UseVisualStyleBackColor = true;
 			// 
 			// Rad4
@@ -112,26 +109,12 @@ namespace Rectify11Installer.Pages
 			this.Rad4.Size = new System.Drawing.Size(160, 35);
 			this.Rad4.TabIndex = 4;
 			this.Rad4.TabStop = true;
-			this.Rad4.Text = "Classic Menus with transparency";
-			this.Rad4.UseVisualStyleBackColor = true;
-			// 
-			// Rad5
-			// 
-			this.Rad5.ForeColor = System.Drawing.Color.Black;
-			this.Rad5.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.Rad5.Location = new System.Drawing.Point(0, 220);
-			this.Rad5.Name = "Rad5";
-			this.Rad5.Size = new System.Drawing.Size(160, 35);
-			this.Rad5.TabIndex = 5;
-			this.Rad5.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.Rad5.TabStop = true;
-			this.Rad5.Text = "Windows 11 Default";
-			this.Rad5.UseVisualStyleBackColor = true;
+			this.Rad4.Text = resources.GetString("cmenuClassicA");
+            this.Rad4.UseVisualStyleBackColor = true;
 			// 
 			// CMenuPage
 			// 
 			this.Controls.Add(this.PrevImg);
-			this.Controls.Add(this.Rad5);
 			this.Controls.Add(this.Rad4);
 			this.Controls.Add(this.Rad3);
 			this.Controls.Add(this.Rad2);
@@ -157,7 +140,6 @@ namespace Rectify11Installer.Pages
 
 		private Controls.DarkAwareLabel darkAwareLabel1;
 		private System.Windows.Forms.PictureBox PrevImg;
-		private Controls.DarkAwareRadioButton Rad5;
 		private Controls.DarkAwareRadioButton Rad4;
 		private Controls.DarkAwareRadioButton Rad3;
 		private Controls.DarkAwareRadioButton Rad1;
