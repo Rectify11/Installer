@@ -288,20 +288,20 @@ namespace Rectify11Installer.Win32
 			}
 			return -1;
 		}
-		public static bool CreateSystemRestorePoint()
+		public static bool CreateSystemRestorePoint(bool finish)
 		{
             RegistryKey SystemRestoreKey = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore", true);
             SystemRestoreKey.SetValue("SystemRestorePointCreationFrequency", 0, RegistryValueKind.DWord);
-            bool result = false;
             RESTOREPOINTINFO RPInfo = new();
             STATEMGRSTATUS RPStatus = new();
 
             RPInfo.dwEventType = 100;
+			if (finish) RPInfo.dwEventType = 101;
             RPInfo.dwRestorePtType = 0;
             RPInfo.llSequenceNumber = 0;
             RPInfo.szDescription = "Rectify11";
 
-            result = SRSetRestorePoint(ref RPInfo, ref RPStatus);
+            bool result = SRSetRestorePoint(ref RPInfo, ref RPStatus);
             SystemRestoreKey.DeleteValue("SystemRestorePointCreationFrequency");
             SystemRestoreKey.Dispose();
 			return true;

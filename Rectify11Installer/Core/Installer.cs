@@ -64,8 +64,8 @@ namespace Rectify11Installer.Core
                 Logger.WriteLine("Error while copying installer", ex);
             }
             // create restore point
-            frm.InstallerProgress = "Creating a restore point";
-            await Task.Run(() => NativeMethods.CreateSystemRestorePoint());
+            frm.InstallerProgress = "Begin creating a restore point";
+            await Task.Run(() => NativeMethods.CreateSystemRestorePoint(false));
 
             frm.InstallerProgress = "Installing runtimes";
             if (!await Task.Run(InstallRuntimes))
@@ -489,6 +489,10 @@ namespace Rectify11Installer.Core
             InstallStatus.IsRectify11Installed = true;
 
             Logger.WriteLine("══════════════════════════════════════════════");
+
+            // create restore point
+            frm.InstallerProgress = "End creating a restore point";
+            await Task.Run(() => CreateSystemRestorePoint(true));
 
             // cleanup
             frm.InstallerProgress = "Cleaning up...";
