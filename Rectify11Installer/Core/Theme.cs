@@ -36,8 +36,8 @@ namespace Rectify11Installer.Core
 
 		public static void LoadTheme()
 		{
-			DarkStyle.Load(Path.Combine(Variables.r11Folder, "Dark.msstyles"));
-			LightStyle.Load(Path.Combine(Variables.r11Folder, "light.msstyles"));
+			DarkStyle.Load(Path.Combine(Path.GetTempPath(), "Dark.msstyles"));
+			LightStyle.Load(Path.Combine(Path.GetTempPath(), "light.msstyles"));
 		}
 
 		public static StylePart GetNavArrowPart(VisualStyle v, NavigationButtonType type)

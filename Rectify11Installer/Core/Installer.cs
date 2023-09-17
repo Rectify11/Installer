@@ -33,6 +33,11 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("Preparing Installation");
             Logger.WriteLine("──────────────────────");
 
+            if (!Directory.Exists(Variables.r11Folder))
+            {
+                Directory.CreateDirectory(Variables.r11Folder);
+            }
+
             // goofy fix
             using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
             reg.DeleteValue("x86PendingFiles", false);
@@ -63,9 +68,16 @@ namespace Rectify11Installer.Core
             {
                 Logger.WriteLine("Error while copying installer", ex);
             }
-            // create restore point
-            frm.InstallerProgress = "Begin creating a restore point";
-            await Task.Run(() => NativeMethods.CreateSystemRestorePoint(false));
+            try
+            {
+                // create restore point
+                frm.InstallerProgress = "Begin creating a restore point";
+                await Task.Run(() => NativeMethods.CreateSystemRestorePoint(false));
+            }
+            catch
+            {
+                Logger.Warn("Error creating a restore point.");
+            }
 
             frm.InstallerProgress = "Installing runtimes";
             if (!await Task.Run(InstallRuntimes))
@@ -487,12 +499,18 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("AddToControlPanel() succeeded");
 
             InstallStatus.IsRectify11Installed = true;
-
             Logger.WriteLine("══════════════════════════════════════════════");
 
-            // create restore point
-            frm.InstallerProgress = "End creating a restore point";
-            await Task.Run(() => CreateSystemRestorePoint(true));
+            try
+            {
+                // create restore point
+                frm.InstallerProgress = "End creating a restore point";
+                await Task.Run(() => CreateSystemRestorePoint(true));
+            }
+            catch
+            {
+                //ignored
+            }
 
             // cleanup
             frm.InstallerProgress = "Cleaning up...";
