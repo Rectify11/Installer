@@ -119,7 +119,7 @@ namespace Rectify11Installer.Pages
 					NativeMethods.SetCloseButton(frmwiz, false);
 					Variables.isInstall = true;
 					Installer installer = new();
-					Logger.CommitLog();
+					//Logger.CommitLog();
 					if (!await installer.Install(frmwiz))
 					{
 						Installer.Cleanup();

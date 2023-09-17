@@ -1,9 +1,11 @@
 ﻿using KPreisser.UI;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Pages;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Text;
 
@@ -27,7 +29,28 @@ namespace Rectify11Installer.Core
 				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
 			return false;
 		}
-
+        public static bool SvExtract(string file, string path)
+        {
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                         " x -o" + Path.Combine(Variables.r11Folder, path) +
+                         " " + Path.Combine(Variables.r11Folder, file), AppWinStyle.Hide, true);
+            return true;
+        }
+        public static bool SvExtract(string file, string path, string folder)
+		{
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                        " x -y " + Path.Combine(Variables.r11Folder, file)
+                        + " -o\"" + Path.Combine(Variables.r11Folder, path) + "\""
+                        + " "+ folder, AppWinStyle.Hide, true);
+			return true;
+		}
+		public static bool SvExtract(bool isf, string file, string exe)
+		{
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                    " e -o" + Variables.r11Folder + " "
+                    + Path.Combine(Variables.r11Folder, file) + " "+exe, AppWinStyle.Hide, true);
+			return true;
+        }
 		public static StringBuilder FinalText()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
@@ -83,6 +106,7 @@ namespace Rectify11Installer.Core
 			}
 			return ok;
 		}
+
 		#endregion
 		#region Private Methods
 		private static bool RebootRequired()

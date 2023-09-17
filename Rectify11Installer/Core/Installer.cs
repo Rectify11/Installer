@@ -30,13 +30,14 @@ namespace Rectify11Installer.Core
         #region Public Methods
         public async Task<bool> Install(FrmWizard frm)
         {
-            Logger.WriteLine("Preparing Installation");
-            Logger.WriteLine("──────────────────────");
 
             if (!Directory.Exists(Variables.r11Folder))
             {
                 Directory.CreateDirectory(Variables.r11Folder);
             }
+
+            Logger.WriteLine("Preparing Installation");
+            Logger.WriteLine("──────────────────────");
 
             // goofy fix
             using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
@@ -135,9 +136,10 @@ namespace Rectify11Installer.Core
                         Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ", ex);
                     }
                 }
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -o" + Path.Combine(Variables.r11Folder, "themes") +
-                        " " + Path.Combine(Variables.r11Folder, "themes.7z"), AppWinStyle.Hide, true));
+
+                // extract the 7z
+                await Task.Run(() => Helper.SvExtract("themes.7z", "themes"));
+
                 Logger.WriteLine("Extracted themes.7z");
                 if (!await Task.Run(() => InstallThemes()))
                 {
@@ -213,33 +215,26 @@ namespace Rectify11Installer.Core
                     }
                 }
                 Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "extras"));
-                /*
-				await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-						" x -o" + Path.Combine(Variables.r11Folder, "extras") +
-						" " + Path.Combine(Variables.r11Folder, "extras.7z"), AppWinStyle.Hide, true));
-				*/
-
-                Logger.WriteLine("Extracted extras.7z");
 
                 if (InstallOptions.InstallWallpaper)
                 {
                     frm.InstallerProgress = "Installing extras: Wallpapers";
-
-                    if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "wallpapers")))
+                    string path = Path.Combine(Variables.r11Folder, "extras", "wallpapers");
+                    if (Directory.Exists(path))
                     {
-                        Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "wallpapers"), true);
+                        Directory.Delete(path, true);
                     }
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
-                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
-                        + " wallpapers", AppWinStyle.Hide, true));
+
+                    // extract the 7z
+                    await Task.Run(() => Helper.SvExtract("extras.7z", "extras", "wallpapers"));
+
                     if (!await Task.Run(() => InstallWallpapers()))
                     {
                         Logger.WriteLine("InstallWallpapers() failed.");
                         return false;
                     }
                     Logger.WriteLine("InstallWallpapers() succeeded.");
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "wallpapers"), true);
+                    Directory.Delete(path, true);
                 }
                 if (InstallOptions.InstallASDF)
                 {
@@ -249,26 +244,28 @@ namespace Rectify11Installer.Core
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide));
-                        if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk")))
+                        string path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk");
+                        if (File.Exists(path))
                         {
                             try
                             {
-                                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"));
+                                File.Delete(path);
                             }
                             catch
                             {
-                                File.Move(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"), Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
+                                File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
                             }
                         }
-                        if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk")))
+                        path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk");
+                        if (File.Exists(path))
                         {
                             try
                             {
-                                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"));
+                                File.Delete(path);
                             }
                             catch
                             {
-                                File.Move(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"), Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
+                                File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
                             }
                         }
                         try
@@ -287,10 +284,10 @@ namespace Rectify11Installer.Core
                             MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                         }
                     }
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
-                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
-                        + " AccentColorizer", AppWinStyle.Hide, true));
+
+                    // extract the 7z
+                    await Task.Run(() => Helper.SvExtract("extras.7z", "extras", "AccentColorizer"));
+
                     await Task.Run(() => Installasdf());
                     Logger.WriteLine("Installasdf() succeeded.");
                     if (!Variables.RestartRequired)
@@ -306,10 +303,10 @@ namespace Rectify11Installer.Core
                     {
                         Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
                     }
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
-                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
-                        + " GadgetPack", AppWinStyle.Hide, true));
+
+                    // extract the 7z
+                    await Task.Run(() => Helper.SvExtract("extras.7z", "extras", "GadgetPack"));
+
                     await Task.Run(() => InstallGadgets());
                     Logger.WriteLine("InstallGadgets() succeeded.");
                     Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
@@ -317,15 +314,11 @@ namespace Rectify11Installer.Core
                 if (InstallOptions.InstallShell)
                 {
                     frm.InstallerProgress = "Installing extras: Enhanced context menu";
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
-                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
-                        + " Nilesoft", AppWinStyle.Hide, true));
 
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
-                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
-                        + " NilesoftArm64", AppWinStyle.Hide, true));
+                    // extract the 7z
+                    await Task.Run(() => Helper.SvExtract("extras.7z", "extras", "Nilesoft"));
+                    await Task.Run(() => Helper.SvExtract("extras.7z", "extras", "NilesoftArm64"));
+
                     await Task.Run(InstallShell);
                     Logger.WriteLine("InstallShell() succeeded.");
                     try
@@ -346,10 +339,10 @@ namespace Rectify11Installer.Core
                     {
                         Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
                     }
-                    await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -y " + Path.Combine(Variables.r11Folder, "extras.7z")
-                        + " -o\"" + Path.Combine(Variables.r11Folder, "extras") + "\""
-                        + " userAV", AppWinStyle.Hide, true));
+
+                    // extract the 7z
+                    await Task.Run(() => Helper.SvExtract("extras.7z", "extras", "userAV"));
+
                     await Task.Run(() => InstallUserAvatars());
                     Logger.WriteLine("InstallUserAvatars() succeeded.");
                     Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
@@ -394,9 +387,9 @@ namespace Rectify11Installer.Core
                     LogFile("files.7z", true, ex);
                     return false;
                 }
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                        " x -o" + Path.Combine(Variables.r11Folder, "files") +
-                        " " + Path.Combine(Variables.r11Folder, "files.7z"), AppWinStyle.Hide, true));
+
+                // extract the 7z
+                await Task.Run(() => Helper.SvExtract("files.7z", "files"));
                 Logger.WriteLine("Extracted files.7z");
 
                 // Get all patches
@@ -752,13 +745,13 @@ namespace Rectify11Installer.Core
             shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe");
             shortcut.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
             shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-            shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk"));
+            shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer.lnk"));
 
             using ShellLink asdf11 = new();
             asdf11.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
             asdf11.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
             asdf11.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe");
-            asdf11.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk"));
+            asdf11.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer11.lnk"));
         }
 
         /// <summary>
@@ -1214,16 +1207,13 @@ namespace Rectify11Installer.Core
             if (!File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
             {
                 Logger.WriteLine("Extracting vcredist.exe from extras.7z");
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                    " e -o" + Variables.r11Folder + " "
-                    + Path.Combine(Variables.r11Folder, "extras.7z") + " vcredist.exe", AppWinStyle.Hide, true);
+                Helper.SvExtract(true, "extras.7z", "vcredist.exe");
             }
             if (!File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
             {
                 Logger.WriteLine("Extracting core31.exe from extras.7z");
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                  " e -o" + Variables.r11Folder + " " + Path.Combine(Variables.r11Folder, "extras.7z") +
-                  " core31.exe", AppWinStyle.Hide, true);
+                Helper.SvExtract(true, "extras.7z", "core31.exe");
+
             }
             Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
             ProcessStartInfo vcinfo = new()
