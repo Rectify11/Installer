@@ -138,7 +138,6 @@
     <Compile Include="Core\Backend\MMCHelper.cs" />
     <Compile Include="Core\Backend\Installer.cs" />
     <Compile Include="Core\Backend\Patches.cs" />
-    <Compile Include="Core\ResourceLoader.cs" />
     <Compile Include="Win32\ShellLink.cs" />
     <Compile Include="Win32\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />

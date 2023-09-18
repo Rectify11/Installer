@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			this.darkAwareLabel1 = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.w10StartImg = new System.Windows.Forms.PictureBox();
 			this.w11StartImg = new System.Windows.Forms.PictureBox();
@@ -52,7 +51,7 @@
 			this.darkAwareLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.darkAwareLabel1.Size = new System.Drawing.Size(361, 40);
 			this.darkAwareLabel1.TabIndex = 2;
-			this.darkAwareLabel1.Text = resources.GetString("epTitle");
+			this.darkAwareLabel1.Text = Rectify11Installer.Strings.Rectify11.epTitle;
 			//
 			// flowLayoutPanel
 			//
@@ -93,8 +92,8 @@
 			this.w10StartRad.TabIndex = 3;
 			this.w10StartRad.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.w10StartRad.TabStop = true;
-			this.w10StartRad.Text = resources.GetString("epW10Radio");
-			this.w10StartRad.UseVisualStyleBackColor = true;
+			this.w10StartRad.Text = Rectify11Installer.Strings.Rectify11.epW10Radio;
+            this.w10StartRad.UseVisualStyleBackColor = true;
 			// 
 			// w11StartRad
 			// 
@@ -106,8 +105,8 @@
 			this.w11StartRad.Size = new System.Drawing.Size(130, 35);
 			this.w11StartRad.TabIndex = 4;
 			this.w11StartRad.TabStop = true;
-			this.w11StartRad.Text = resources.GetString("epW11Radio");
-			this.w11StartRad.UseVisualStyleBackColor = true;
+			this.w11StartRad.Text = Rectify11Installer.Strings.Rectify11.epW11Radio;
+            this.w11StartRad.UseVisualStyleBackColor = true;
 			// 
 			// chkEnhancedRibbon
 			// 
@@ -116,8 +115,8 @@
 			this.chkEnhancedRibbon.Name = "chkEnhancedRibbon";
 			this.chkEnhancedRibbon.Size = new System.Drawing.Size(288, 19);
 			this.chkEnhancedRibbon.TabIndex = 5;
-			this.chkEnhancedRibbon.Text = resources.GetString("epEnhRibbon");
-			this.chkEnhancedRibbon.UseVisualStyleBackColor = true;
+			this.chkEnhancedRibbon.Text = Rectify11Installer.Strings.Rectify11.epEnhRibbon;
+            this.chkEnhancedRibbon.UseVisualStyleBackColor = true;
 			// 
 			// chkExtendMica
 			// 
@@ -126,8 +125,8 @@
 			this.chkExtendMica.Name = "chkExtendMica";
 			this.chkExtendMica.Size = new System.Drawing.Size(288, 19);
 			this.chkExtendMica.TabIndex = 6;
-			this.chkExtendMica.Text = resources.GetString("epExtMica");
-			this.chkExtendMica.UseVisualStyleBackColor = true;
+			this.chkExtendMica.Text = Rectify11Installer.Strings.Rectify11.epExtMica;
+            this.chkExtendMica.UseVisualStyleBackColor = true;
 			// 
 			// chkW10Taskbar
 			// 
@@ -136,8 +135,8 @@
 			this.chkW10Taskbar.Name = "chkW10Taskbar";
 			this.chkW10Taskbar.Size = new System.Drawing.Size(288, 19);
 			this.chkW10Taskbar.TabIndex = 7;
-			this.chkW10Taskbar.Text = resources.GetString("epW10Taskbar");
-			this.chkW10Taskbar.UseVisualStyleBackColor = true;
+			this.chkW10Taskbar.Text = Rectify11Installer.Strings.Rectify11.epW10Taskbar;
+            this.chkW10Taskbar.UseVisualStyleBackColor = true;
 			// 
 			// EPPage
 			// 
@@ -157,9 +156,9 @@
 			this.UpdateFrame = true;
 			this.NextButtonEnabled = true;
 			this.Page = Rectify11Installer.Core.TabPages.epPage;
-			this.NextButtonText = resources.GetString("buttonNext");
-			this.WizardHeader = resources.GetString("epHeader");
-			((System.ComponentModel.ISupportInitialize)(this.w10StartImg)).EndInit();
+			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
+			this.WizardHeader = Rectify11Installer.Strings.Rectify11.epHeader;
+            ((System.ComponentModel.ISupportInitialize)(this.w10StartImg)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.w11StartImg)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

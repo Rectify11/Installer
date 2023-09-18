@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			this.progressText = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.progressInfo = new Rectify11Installer.Controls.DarkAwareLabel();
 			//this.progressBar1 = new Rectify11Installer.Controls.CustomProgressBar();

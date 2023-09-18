@@ -1,5 +1,4 @@
-﻿
-namespace Rectify11Installer.Pages
+﻿namespace Rectify11Installer.Pages
 {
 	partial class Experimental
 	{
@@ -31,8 +30,6 @@ namespace Rectify11Installer.Pages
 		{
 			this.label1 = new Controls.DarkAwareLabel();
 			this.SuspendLayout();
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
-
 			// 
 			// label1
 			// 
@@ -56,8 +53,8 @@ namespace Rectify11Installer.Pages
 			this.UpdateFrame = true;
 			this.IsWelcomePage = false;
 			this.NextButtonEnabled = true;
-			this.NextButtonText = resources.GetString("buttonNext");
-			this.Page = Rectify11Installer.Core.TabPages.expPage;
+			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
+            this.Page = Rectify11Installer.Core.TabPages.expPage;
 			this.ResumeLayout(false);
 		}
 

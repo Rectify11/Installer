@@ -22,26 +22,23 @@ namespace Rectify11Installer.Pages
 		public WelcomePage()
 		{
 			InitializeComponent();
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
-
 			// update
 			try
 			{
 				if (InstallStatus.IsRectify11Installed)
 				{
-					cmbInstall.Text = resources.GetString("modifyTitle");
-					cmbInstall.Note = resources.GetString("modifyNote");
-				}
+					cmbInstall.Text = Strings.Rectify11.modifyTitle;
+					cmbInstall.Note = Strings.Rectify11.modifyNote;
+                }
 				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false);
 				if (key != null)
 				{
 					var build = key.GetValue("Build");
 					if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
 					{
-						cmbInstall.Text = resources.GetString("updateTitle");
-						cmbInstall.Note = resources.GetString("updateNote");
-
-					}
+						cmbInstall.Text = Strings.Rectify11.updateTitle;
+						cmbInstall.Note = Strings.Rectify11.updateNote;
+                    }
 				}
 				key.Dispose();
 			}
@@ -57,8 +54,8 @@ namespace Rectify11Installer.Pages
 					{
 						if (Environment.OSVersion.Version.Build > ver.Build || Win32.NativeMethods.GetUbr() > ver.Revision)
 						{
-                            cmbInstall.Text = resources.GetString("updateTitle");
-                            cmbInstall.Note = resources.GetString("updateNote");
+							cmbInstall.Text = Strings.Rectify11.updateTitle;
+							cmbInstall.Note = Strings.Rectify11.updateNote;
                         }
 					}
 				}

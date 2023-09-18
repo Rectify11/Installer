@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.headerText = new AeroWizard.ThemedLabel();
 			this.navBackButton = new Rectify11Installer.Controls.NavigationButton();
@@ -113,8 +112,8 @@
 			| System.Windows.Forms.AnchorStyles.Left)
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.nextButton.BackColor = System.Drawing.Color.Transparent;
-			this.nextButton.ButtonText = resources.GetString("buttonNext");
-			this.nextButton.ForeColor = System.Drawing.Color.Black;
+			this.nextButton.ButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
+            this.nextButton.ForeColor = System.Drawing.Color.Black;
 			this.nextButton.Location = new System.Drawing.Point(456, 9);
 			this.nextButton.Name = "nextButton";
 			this.nextButton.Size = new System.Drawing.Size(72, 27);
@@ -126,8 +125,8 @@
 			| System.Windows.Forms.AnchorStyles.Left)
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.BackColor = System.Drawing.Color.Transparent;
-			this.cancelButton.ButtonText = resources.GetString("buttonCancel");
-			this.cancelButton.ForeColor = System.Drawing.Color.Black;
+			this.cancelButton.ButtonText = Rectify11Installer.Strings.Rectify11.buttonCancel;
+            this.cancelButton.ForeColor = System.Drawing.Color.Black;
 			this.cancelButton.Location = new System.Drawing.Point(534, 9);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(72, 27);
@@ -338,8 +337,8 @@
 			this.versionLabel.Name = "versionLabel";
 			this.versionLabel.Size = new System.Drawing.Size(52, 15);
 			this.versionLabel.TabIndex = 3;
-			this.versionLabel.Text = resources.GetString("Version");
-			this.versionLabel.Click += VersionLabel_Click;
+			this.versionLabel.Text = Rectify11Installer.Strings.Rectify11.Version;
+            this.versionLabel.Click += VersionLabel_Click;
 			// 
 			// pictureBox1
 			// 
@@ -387,13 +386,14 @@
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("r11")));
-			this.MaximizeBox = false;
+			this.Icon = Rectify11Installer.Strings.Rectify11.r11;
+
+            this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "FrmWizard";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = resources.GetString("Title");
-			this.tableLayoutPanel1.ResumeLayout(false);
+			this.Text = Rectify11Installer.Strings.Rectify11.Title;
+            this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

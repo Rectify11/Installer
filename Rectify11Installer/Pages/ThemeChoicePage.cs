@@ -7,7 +7,6 @@ namespace Rectify11Installer.Pages
 		public ThemeChoicePage()
 		{
 			InitializeComponent();
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			if (Theme.IsUsingDarkMode)
 			{
 				themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;

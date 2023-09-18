@@ -10,7 +10,6 @@ namespace Rectify11Installer.Pages
 			get { return summaryItems.Text; }
 			set { summaryItems.Text = value; }
 		}
-		private readonly System.ComponentModel.ComponentResourceManager _resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 		public InstallConfirmation(FrmWizard frm)
 		{
 			InitializeComponent();
@@ -22,8 +21,8 @@ namespace Rectify11Installer.Pages
 		{
 			if ((WizardPage)sender == RectifyPages.InstallConfirmation)
 			{
-				RectifyPages.InstallConfirmation.Summary = _resources.GetString("summaryItems");
-				RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();
+				RectifyPages.InstallConfirmation.Summary = Rectify11Installer.Strings.Rectify11.summaryItems;
+                RectifyPages.InstallConfirmation.Summary += Helper.FinalText().ToString();
 				_frm._timerFrames = 72;
 				_frm._timerFramesTmp = 0;
 				_frm.timer.Start();

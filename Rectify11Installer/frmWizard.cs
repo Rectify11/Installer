@@ -1,5 +1,4 @@
 ﻿using KPreisser.UI;
-using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
@@ -24,9 +23,9 @@ namespace Rectify11Installer
             get => progressLabel.Text;
             set
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
-                    this.Invoke((MethodInvoker)delegate () { InstallerProgress = value; });
+                    Invoke((MethodInvoker)delegate () { InstallerProgress = value; });
                 }
                 else
                 {
@@ -47,7 +46,7 @@ namespace Rectify11Installer
                 nextButton.Visible = false;
                 progressLabel.Location = new Point(progressLabel.Location.X, progressLabel.Location.Y - 30);
                 pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - 30);
-                cancelButton.ButtonText = _resources.GetString("buttonReboot");
+                cancelButton.ButtonText = Strings.Rectify11.buttonReboot;
                 cancelButton.Click -= CancelButton_Click;
                 tableLayoutPanel2.Visible = value;
                 if (!Theme.IsUsingDarkMode)
@@ -60,7 +59,6 @@ namespace Rectify11Installer
         {
             set => cancelButton.Click += value;
         }
-        private readonly System.ComponentModel.ComponentResourceManager _resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
         #endregion
         #region Main
         public FrmWizard()
@@ -86,12 +84,13 @@ namespace Rectify11Installer
         private void Application_Idle(object sender, EventArgs e)
         {
             if (_idleInit) return;
-            // initialize InstallOptnsPage here because it needs 
-            // current instance to change button state.
+
+            // initialize here because it needs instance
             RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
             RectifyPages.InstallConfirmation = new InstallConfirmation(this);
             RectifyPages.UninstallPage = new(this);
             RectifyPages.ProgressPage = new ProgressPage(this);
+
             TabPages.expPage.Controls.Add(RectifyPages.ExperimentalPage);
             TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
             TabPages.installPage.Controls.Add(RectifyPages.InstallOptnsPage);
@@ -179,8 +178,8 @@ namespace Rectify11Installer
             if (Variables.IsUninstall) { }
             else if (!Variables.isInstall)
             {
-                if (TaskDialog.Show(text: _resources.GetString("exitText"),
-                    title: _resources.GetString("Title"),
+                if (TaskDialog.Show(text: Strings.Rectify11.exitText,
+                    title: Strings.Rectify11.Title,
                     buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
                     icon: TaskDialogStandardIcon.Information) == TaskDialogResult.No) e.Cancel = true;
             }
