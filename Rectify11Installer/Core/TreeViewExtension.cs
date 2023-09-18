@@ -6,11 +6,6 @@ namespace Rectify11Installer.Core
 {
 	public static class TreeViewExtension
 	{
-		public static List<TreeNode> Descendants(this TreeView tree)
-		{
-			var nodes = tree.Nodes.Cast<TreeNode>();
-			return nodes.SelectMany(x => x.Descendants()).Concat(nodes).ToList();
-		}
 		public static List<TreeNode> Descendants(this TreeNode node)
 		{
 			var nodes = node.Nodes.Cast<TreeNode>().ToList();
