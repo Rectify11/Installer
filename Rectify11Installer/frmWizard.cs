@@ -91,12 +91,10 @@ namespace Rectify11Installer
             RectifyPages.UninstallPage = new(this);
             RectifyPages.ProgressPage = new ProgressPage(this);
 
-            TabPages.expPage.Controls.Add(RectifyPages.ExperimentalPage);
             TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
             TabPages.installPage.Controls.Add(RectifyPages.InstallOptnsPage);
             TabPages.themePage.Controls.Add(RectifyPages.ThemeChoicePage);
             TabPages.cmenupage.Controls.Add(RectifyPages.CMenuPage);
-            TabPages.epPage.Controls.Add(RectifyPages.EPPage);
             TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
             TabPages.uninstPage.Controls.Add(RectifyPages.UninstallPage);
             TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
@@ -207,10 +205,6 @@ namespace Rectify11Installer
                 {
                     Navigate(RectifyPages.CMenuPage);
                 }
-                else if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
                 else
                 {
                     Navigate(RectifyPages.InstallConfirmation);
@@ -222,10 +216,6 @@ namespace Rectify11Installer
                 {
                     Navigate(RectifyPages.CMenuPage);
                 }
-                else if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
                 else
                 {
                     Navigate(RectifyPages.InstallConfirmation);
@@ -233,18 +223,7 @@ namespace Rectify11Installer
             }
             else if (navPane.SelectedTab == TabPages.cmenupage)
             {
-                if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
-                else
-                {
                     Navigate(RectifyPages.InstallConfirmation);
-                }
-            }
-            else if (navPane.SelectedTab == TabPages.epPage)
-            {
-                Navigate(RectifyPages.InstallConfirmation);
             }
             else if (navPane.SelectedTab == TabPages.summaryPage)
             {
@@ -286,28 +265,9 @@ namespace Rectify11Installer
                     Navigate(RectifyPages.InstallOptnsPage);
                 }
             }
-            else if (navPane.SelectedTab == TabPages.epPage)
-            {
-                if (InstallOptions.InstallShell)
-                {
-                    Navigate(RectifyPages.CMenuPage);
-                }
-                else if (InstallOptions.InstallThemes)
-                {
-                    Navigate(RectifyPages.ThemeChoicePage);
-                }
-                else
-                {
-                    Navigate(RectifyPages.InstallOptnsPage);
-                }
-            }
             else if (navPane.SelectedTab == TabPages.summaryPage)
             {
-                if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
-                else if (InstallOptions.InstallShell)
+                if (InstallOptions.InstallShell)
                 {
                     Navigate(RectifyPages.CMenuPage);
                 }

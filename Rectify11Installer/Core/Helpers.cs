@@ -122,10 +122,8 @@ namespace Rectify11Installer.Core
         public static InstallOptnsPage InstallOptnsPage;
         public static ThemeChoicePage ThemeChoicePage = new();
         public static CMenuPage CMenuPage = new();
-        public static EPPage EPPage = new();
         public static InstallConfirmation InstallConfirmation;
         public static ProgressPage ProgressPage;
-        public static Experimental ExperimentalPage = new();
         public static DebugPage DebugPage = new();
         public static UninstallPage UninstallPage;
     }
@@ -134,13 +132,11 @@ namespace Rectify11Installer.Core
         public static Controls.DarkAwareTabPage installPage;
         public static Controls.DarkAwareTabPage themePage;
         public static Controls.DarkAwareTabPage cmenupage;
-        public static Controls.DarkAwareTabPage epPage;
         public static Controls.DarkAwareTabPage summaryPage;
         public static Controls.DarkAwareTabPage progressPage;
         public static Controls.DarkAwareTabPage rebootPage;
         public static Controls.DarkAwareTabPage wlcmPage;
         public static Controls.DarkAwareTabPage eulPage;
-        public static Controls.DarkAwareTabPage expPage;
         public static Controls.DarkAwareTabPage debPage;
         public static Controls.DarkAwareTabPage uninstPage;
     }

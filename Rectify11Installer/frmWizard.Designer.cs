@@ -39,12 +39,10 @@
 			this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
 			Core.TabPages.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.expPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.debPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.cmenupage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.epPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
@@ -172,12 +170,10 @@
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.navPane.Controls.Add(Core.TabPages.wlcmPage);
 			this.navPane.Controls.Add(Core.TabPages.eulPage);
-			this.navPane.Controls.Add(Core.TabPages.expPage);
 			this.navPane.Controls.Add(Core.TabPages.debPage);
 			this.navPane.Controls.Add(Core.TabPages.installPage);
 			this.navPane.Controls.Add(Core.TabPages.themePage);
 			this.navPane.Controls.Add(Core.TabPages.cmenupage);
-			this.navPane.Controls.Add(Core.TabPages.epPage);
 			this.navPane.Controls.Add(Core.TabPages.summaryPage);
 			this.navPane.Controls.Add(Core.TabPages.progressPage);
 			this.navPane.Controls.Add(Core.TabPages.rebootPage);
@@ -228,16 +224,6 @@
 			Core.TabPages.eulPage.TabIndex = 9;
 			Core.TabPages.eulPage.Text = "Eula";
 			// 
-			// expPage
-			// 
-			Core.TabPages.expPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.expPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.expPage.Location = new System.Drawing.Point(0, 44);
-			Core.TabPages.expPage.Name = "expPage";
-			Core.TabPages.expPage.Size = new System.Drawing.Size(365, 284);
-			Core.TabPages.expPage.TabIndex = 9;
-			Core.TabPages.expPage.Text = "Experimental";
-			// 
 			// debPage
 			// 
 			Core.TabPages.debPage.BackColor = System.Drawing.Color.White;
@@ -277,16 +263,6 @@
 			Core.TabPages.cmenupage.Size = new System.Drawing.Size(333, 284);
 			Core.TabPages.cmenupage.TabIndex = 4;
 			Core.TabPages.cmenupage.Text = "CMenu";
-			// 
-			// epPage
-			// 
-			Core.TabPages.epPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.epPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.epPage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.epPage.Name = "epPage";
-			Core.TabPages.epPage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.epPage.TabIndex = 4;
-			Core.TabPages.epPage.Text = "Ep";
 			// 
 			// summaryPage
 			// 

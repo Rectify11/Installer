@@ -160,23 +160,11 @@
     <Compile Include="Pages\DebugPage.Designer.cs">
       <DependentUpon>DebugPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\EPPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\EPPage.Designer.cs">
-      <DependentUpon>EPPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\EulaPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\EulaPage.Designer.cs">
       <DependentUpon>EulaPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Experimental.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\Experimental.Designer.cs">
-      <DependentUpon>Experimental.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\InstallConfirmation.cs">
       <SubType>UserControl</SubType>
