@@ -234,9 +234,6 @@
   <data name="installWallpapers" xml:space="preserve">
     <value>Rectify11 Wallpapers</value>
   </data>
-  <data name="installEP" xml:space="preserve">
-    <value>Install ExplorerPatcher</value>
-  </data>
   <data name="installShell" xml:space="preserve">
     <value>Enhanced context menus</value>
   </data>
@@ -300,5 +297,11 @@
   </data>
   <data name="modifyTitle" xml:space="preserve">
     <value>Modify</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Install Themes</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
   </data>
 </root>

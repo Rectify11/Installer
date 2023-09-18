@@ -30,7 +30,6 @@ namespace Rectify11Installer.Core
         #region Public Methods
         public async Task<bool> Install(FrmWizard frm)
         {
-
             if (!Directory.Exists(Variables.r11Folder))
             {
                 Directory.CreateDirectory(Variables.r11Folder);
@@ -101,10 +100,10 @@ namespace Rectify11Installer.Core
                 RuntimeInstallError(".NET Core 3.1", ".NET Core 3.1 is used for MicaForEveryone.", "https://dotnet.microsoft.com/en-us/download/dotnet/3.1");
             }
             Logger.WriteLine("══════════════════════════════════════════════");
-            if (!Theme.IsUsingDarkMode)
-            {
-                DarkMode.UpdateFrame(frm, false);
-            }
+
+            // some random issue where the installer's frame gets extended
+            if (!Theme.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
+
             // theme
             if (InstallOptions.InstallThemes)
             {
@@ -380,11 +379,11 @@ namespace Rectify11Installer.Core
                 try
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
-                    LogFile("files.7z", false, null);
+                    Logger.LogFile("files.7z");
                 }
                 catch (Exception ex)
                 {
-                    LogFile("files.7z", true, ex);
+                    Logger.LogFile("files.7z", ex);
                     return false;
                 }
 
@@ -1014,25 +1013,6 @@ namespace Rectify11Installer.Core
 
         }
 
-        private void LogFile(string file, bool error, Exception ex)
-        {
-            if (error)
-            {
-                if (ex != null)
-                {
-                    Logger.WriteLine("Error while writing " + file + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
-                }
-                else
-                {
-                    Logger.WriteLine("Error while writing " + file + ". (No exception information)");
-                }
-            }
-            else
-            {
-                Logger.WriteLine("Wrote " + file);
-            }
-        }
-
         /// <summary>
         /// writes all the needed files
         /// </summary>
@@ -1047,22 +1027,22 @@ namespace Rectify11Installer.Core
                     try
                     {
                         File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
-                        LogFile("aRun.exe", false, null);
+                        Logger.LogFile("aRun.exe");
                     }
                     catch (Exception ex)
                     {
-                        LogFile("aRun.exe", true, ex);
+                        Logger.LogFile("aRun.exe", ex);
                         return false;
                     }
                 }
                 try
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
-                    LogFile("Rectify11.Phase2.exe", false, null);
+                    Logger.LogFile("Rectify11.Phase2.exe");
                 }
                 catch (Exception ex)
                 {
-                    LogFile("Rectify11.Phase2.exe", true, ex);
+                    Logger.LogFile("Rectify11.Phase2.exe", ex);
                     return false;
                 }
             }
@@ -1071,11 +1051,11 @@ namespace Rectify11Installer.Core
                 try
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes);
-                    LogFile("themes.7z", false, null);
+                    Logger.LogFile("themes.7z");
                 }
                 catch (Exception ex)
                 {
-                    LogFile("themes.7z", true, ex);
+                    Logger.LogFile("themes.7z", ex);
                     return false;
                 }
 
@@ -1090,11 +1070,11 @@ namespace Rectify11Installer.Core
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s);
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll);
-                    LogFile("SecureUXHelper.exe", false, null);
+                    Logger.LogFile("SecureUXHelper.exe");
                 }
                 catch (Exception ex)
                 {
-                    LogFile("SecureUXHelper.exe", true, ex);
+                    Logger.LogFile("SecureUXHelper.exe", ex);
                     return false;
                 }
             }
@@ -1105,32 +1085,32 @@ namespace Rectify11Installer.Core
                     try
                     {
                         File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
-                        LogFile("7za.exe", false, null);
+                        Logger.LogFile("7za.exe");
                     }
                     catch (Exception ex)
                     {
-                        LogFile("7za.exe", true, ex);
+                        Logger.LogFile("7za.exe", ex);
                         return false;
                     }
                 }
                 try
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
-                    LogFile("files.7z", false, null);
+                    Logger.LogFile("files.7z");
                 }
                 catch (Exception ex)
                 {
-                    LogFile("files.7z", true, ex);
+                    Logger.LogFile("files.7z", ex);
                     return false;
                 }
                 try
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
-                    LogFile("extras.7z", false, null);
+                    Logger.LogFile("extras.7z");
                 }
                 catch (Exception ex)
                 {
-                    LogFile("extras.7z", true, ex);
+                    Logger.LogFile("extras.7z", ex);
                     return false;
                 }
                 if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
@@ -1138,11 +1118,11 @@ namespace Rectify11Installer.Core
                     try
                     {
                         File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
-                        LogFile("ResourceHacker.exe", false, null);
+                        Logger.LogFile("ResourceHacker.exe");
                     }
                     catch (Exception ex)
                     {
-                        LogFile("ResourceHacker.exe", true, ex);
+                        Logger.LogFile("ResourceHacker.exe", ex);
                         return false;
                     }
                 }

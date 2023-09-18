@@ -137,15 +137,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\ExtrasOptions.cs" />
-    <Compile Include="Core\Helper.cs" />
-    <Compile Include="Core\MMCHelper.cs" />
-    <Compile Include="Core\Installer.cs" />
-    <Compile Include="Core\Patches.cs" />
+    <Compile Include="Core\Helpers.cs" />
+    <Compile Include="Core\Backend\MMCHelper.cs" />
+    <Compile Include="Core\Backend\Installer.cs" />
+    <Compile Include="Core\Backend\Patches.cs" />
     <Compile Include="Core\ResourceLoader.cs" />
-    <Compile Include="Core\ShellLink.cs" />
-    <Compile Include="Core\Theme.cs" />
+    <Compile Include="Win32\ShellLink.cs" />
+    <Compile Include="Win32\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />
-    <Compile Include="Core\Uninstaller.cs" />
+    <Compile Include="Core\Backend\Uninstaller.cs" />
     <Compile Include="Core\Variables.cs" />
     <Compile Include="frmWizard.cs">
       <SubType>Form</SubType>

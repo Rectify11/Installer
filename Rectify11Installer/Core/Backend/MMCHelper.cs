@@ -151,15 +151,6 @@ namespace Rectify11Installer.Core
 			}
 			return xmlDocument;
 		}
-
-		public static XDocument ToXDocument(this XmlDocument xmlDocument)
-		{
-			using (var nodeReader = new XmlNodeReader(xmlDocument))
-			{
-				nodeReader.MoveToContent();
-				return XDocument.Load(nodeReader);
-			}
-		}
 	}
 	#endregion
 }
