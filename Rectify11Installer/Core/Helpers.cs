@@ -110,7 +110,7 @@ namespace Rectify11Installer.Core
     public class NavigationHelper
     {
         public static event EventHandler OnNavigate;
-        public static void InvokeOnNavigate(object sender, EventArgs e) 
+        public static void InvokeOnNavigate(object sender, EventArgs e)
             => OnNavigate?.Invoke(sender, e);
     }
 
@@ -195,13 +195,13 @@ namespace Rectify11Installer.Core
             + "\n═════════════════════════════\n";
         #endregion
         #region Public Methods
-        public static void WriteLine(string s) 
+        public static void WriteLine(string s)
             => Text += s + "\n";
 
-        public static void WriteLine(string s, Exception ex) 
+        public static void WriteLine(string s, Exception ex)
             => Text += s + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + Environment.NewLine;
 
-        public static void CommitLog() 
+        public static void CommitLog()
             => File.WriteAllText(System.IO.Path.Combine(Variables.r11Folder, "installer.log"), Text);
 
         public static void Warn(string v)
