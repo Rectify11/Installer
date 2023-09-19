@@ -30,57 +30,45 @@ namespace Rectify11Installer.Core
         #region Public Methods
         public async Task<bool> Install(FrmWizard frm)
         {
-            if (!Directory.Exists(Variables.r11Folder))
-            {
-                Directory.CreateDirectory(Variables.r11Folder);
-            }
-
             Logger.WriteLine("Preparing Installation");
             Logger.WriteLine("──────────────────────");
 
-            // goofy fix
-            using var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)?.CreateSubKey("Rectify11", true);
-            reg.DeleteValue("x86PendingFiles", false);
-            reg.Dispose();
+            if (!Directory.Exists(Variables.r11Folder)) 
+                Directory.CreateDirectory(Variables.r11Folder);
 
-            if (!await Task.Run(() => WriteFiles(false, false)))
+            // goofy fix
+            Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)
+                ?.CreateSubKey("Rectify11", true)
+                ?.DeleteValue("x86PendingFiles", false); 
+
+            if (!Common.WriteFiles(false, false))
             {
                 Logger.WriteLine("WriteFiles() failed.");
                 return false;
             }
             Logger.WriteLine("WriteFiles() succeeded.");
 
-            if (!await Task.Run(() => CreateDirs()))
+            if (!Common.CreateDirs())
             {
                 Logger.WriteLine("CreateDirs() failed.");
                 return false;
             }
             Logger.WriteLine("CreateDirs() succeeded.");
 
-            // backup
-            try
-            {
-                frm.InstallerProgress = "Creating uninstaller";
-                await Task.Run(() => File.Copy(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), true));
-                Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLine("Error while copying installer", ex);
-            }
             try
             {
                 // create restore point
                 frm.InstallerProgress = "Begin creating a restore point";
-                await Task.Run(() => NativeMethods.CreateSystemRestorePoint(false));
+                CreateSystemRestorePoint(false);
             }
             catch
             {
                 Logger.Warn("Error creating a restore point.");
             }
 
+            // runtimes
             frm.InstallerProgress = "Installing runtimes";
-            if (!await Task.Run(InstallRuntimes))
+            if (!Common.InstallRuntimes())
             {
                 Logger.WriteLine("InstallRuntimes() failed.");
                 return false;
@@ -92,104 +80,24 @@ namespace Rectify11Installer.Core
             else if (!Variables.vcRedist)
             {
                 Logger.Warn("vcredist.exe installation failed.");
-                RuntimeInstallError("Visual C++ Runtime", "Visual C++ Runtime is used for MicaForEveryone and AccentColorizer.", "https://aka.ms/vs/17/release/vc_redist.x64.exe");
+                Common.RuntimeInstallError("Visual C++ Runtime", "Visual C++ Runtime is used for MicaForEveryone and AccentColorizer.", "https://aka.ms/vs/17/release/vc_redist.x64.exe");
             }
             else if (!Variables.core31)
             {
                 Logger.Warn("core31.exe installation failed.");
-                RuntimeInstallError(".NET Core 3.1", ".NET Core 3.1 is used for MicaForEveryone.", "https://dotnet.microsoft.com/en-us/download/dotnet/3.1");
+                Common.RuntimeInstallError(".NET Core 3.1", ".NET Core 3.1 is used for MicaForEveryone.", "https://dotnet.microsoft.com/en-us/download/dotnet/3.1");
             }
             Logger.WriteLine("══════════════════════════════════════════════");
 
             // some random issue where the installer's frame gets extended
             if (!Theme.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
 
+
             // theme
             if (InstallOptions.InstallThemes)
             {
                 frm.InstallerProgress = "Installing Themes";
-                Logger.WriteLine("Installing Themes");
-                Logger.WriteLine("─────────────────");
-                if (!await Task.Run(() => WriteFiles(false, true)))
-                {
-                    Logger.WriteLine("WriteFiles() failed.");
-                    return false;
-                }
-                Logger.WriteLine("WriteFiles() succeeded.");
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micaforeveryone.exe", AppWinStyle.Hide, true));
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micafix.exe", AppWinStyle.Hide, true));
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorerframe.exe", AppWinStyle.Hide, true));
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn mfe", AppWinStyle.Hide));
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn micafix", AppWinStyle.Hide));
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn mfe", AppWinStyle.Hide));
-                await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn micafix", AppWinStyle.Hide));
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
-                {
-                    try
-                    {
-                        Logger.WriteLine(Path.Combine(Variables.r11Folder, "themes") + " exists. Deleting it.");
-                        await Task.Run(() => Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true));
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ", ex);
-                    }
-                }
-
-                // extract the 7z
-                await Task.Run(() => Helper.SvExtract("themes.7z", "themes"));
-
-                Logger.WriteLine("Extracted themes.7z");
-                if (!await Task.Run(() => InstallThemes()))
-                {
-                    Logger.WriteLine("InstallThemes() failed.");
-                    return false;
-                }
-                try
-                {
-                    if (!InstallOptions.SkipMFE)
-                    {
-                        if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
-                        {
-                            try
-                            {
-                                await Task.Run(() => Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true));
-                            }
-                            catch
-                            {
-                                // tf you doing
-                                if (Directory.Exists(Path.Combine(Path.GetTempPath(), "MicaForEveryone")))
-                                {
-                                    try
-                                    {
-                                        Directory.Delete(Path.Combine(Path.GetTempPath(), "MicaForEveryone"), true);
-                                    }
-                                    catch { }
-                                }
-                                Directory.Move(Path.Combine(Variables.Windir, "MicaForEveryone"), Path.Combine(Path.GetTempPath(), "MicaForEveryone"));
-                            }
-                        }
-                        await Task.Run(() => Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone")));
-                        await Task.Run(() => InstallMfe());
-                        Logger.WriteLine("InstallMfe() succeeded.");
-                    }
-                }
-                catch
-                {
-                    Logger.WriteLine("InstallMfe() failed.");
-                }
-                try
-                {
-                    await Task.Run(() => Installr11cpl());
-                    Logger.WriteLine("Installr11cpl() succeeded.");
-                }
-                catch
-                {
-                    Logger.WriteLine("Installr11cpl() failed.");
-                }
-                Variables.RestartRequired = true;
-                Logger.WriteLine("InstallThemes() succeeded.");
-                Logger.WriteLine("══════════════════════════════════════════════");
+                if (!Themes.Install()) return false;
             }
 
             // extras
@@ -243,30 +151,35 @@ namespace Rectify11Installer.Core
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true));
                         await Task.Run(() => Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide));
+
                         string path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk");
                         if (File.Exists(path))
                         {
-                            try
-                            {
-                                File.Delete(path);
-                            }
-                            catch
-                            {
-                                File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
-                            }
+                            try { File.Delete(path); }
+                            catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
                         }
+
                         path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk");
                         if (File.Exists(path))
                         {
-                            try
-                            {
-                                File.Delete(path);
-                            }
-                            catch
-                            {
-                                File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName()));
-                            }
+                            try { File.Delete(path); }
+                            catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
                         }
+
+                        path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer.lnk");
+                        if (File.Exists(path))
+                        {
+                            try { File.Delete(path); }
+                            catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
+                        }
+
+                        path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer11.lnk");
+                        if (File.Exists(path))
+                        {
+                            try { File.Delete(path); }
+                            catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
+                        }
+
                         try
                         {
                             Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), true);
@@ -430,7 +343,7 @@ namespace Rectify11Installer.Core
                 }
                 Logger.WriteLine("WritePendingFiles() succeeded");
 
-                if (!await Task.Run(() => WriteFiles(true, false)))
+                if (!await Task.Run(() => Common.WriteFiles(true, false)))
                 {
                     Logger.WriteLine("WriteFiles() failed");
                     return false;
@@ -483,12 +396,13 @@ namespace Rectify11Installer.Core
                 Variables.RestartRequired = true;
             }
 
-            if (!await Task.Run(() => AddToControlPanel()))
+            frm.InstallerProgress = "Creating uninstaller";
+            if (!Common.CreateUninstall())
             {
-                Logger.WriteLine("AddToControlPanel() failed");
+                Logger.WriteLine("CreateUninstall() failed");
                 return false;
             }
-            Logger.WriteLine("AddToControlPanel() succeeded");
+            Logger.WriteLine("CreateUninstall() succeeded");
 
             InstallStatus.IsRectify11Installed = true;
             Logger.WriteLine("══════════════════════════════════════════════");
@@ -508,7 +422,7 @@ namespace Rectify11Installer.Core
             frm.InstallerProgress = "Cleaning up...";
             Logger.WriteLine("Cleaning up");
             Logger.WriteLine("───────────");
-            if (!await Task.Run(() => Cleanup()))
+            if (!await Task.Run(() => Common.Cleanup()))
             {
                 Logger.WriteLine("Cleanup() failed");
                 return false;
@@ -551,159 +465,6 @@ namespace Rectify11Installer.Core
             {
                 return false;
             }
-            return true;
-        }
-
-        /// <summary>
-        /// installs themes
-        /// </summary>
-        private bool InstallThemes()
-        {
-            DirectoryInfo cursors = new(Path.Combine(Variables.r11Folder, "themes", "cursors"));
-            var curdir = cursors.GetDirectories("*", SearchOption.TopDirectoryOnly);
-            DirectoryInfo themedir = new(Path.Combine(Variables.r11Folder, "themes", "themes"));
-            var msstyleDirList = themedir.GetDirectories("*", SearchOption.TopDirectoryOnly);
-            var themefiles = themedir.GetFiles("*.theme");
-
-            if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
-            {
-                try
-                {
-                    List<string> wallpapers = new List<string>
-                    {
-                        "cosmic.png",
-                        "img0.png",
-                        "img19.png",
-                        "metal.png"
-                    };
-                    var files = Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-                    for (int j = 0; j < files.Length; j++)
-                    {
-                        if (!wallpapers.Contains(Path.GetFileName(files[j])))
-                        {
-                            try
-                            {
-                                File.Delete(files[j]);
-                            }
-                            catch
-                            {
-                                // idk why it would fail to delete a fucking png
-                                if (File.Exists(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j]))))
-                                {
-                                    File.Delete(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
-                                }
-                                File.Move(files[j], Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
-                                MoveFileEx(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                            }
-                        }
-                    }
-                    Logger.WriteLine("Deleted old wallpapers");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error deleting old wallpapers" + ex.Message + NewLine + ex.StackTrace + NewLine);
-                }
-            }
-            if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
-            {
-                Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-            }
-            try
-            {
-                var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "themes", "wallpapers"));
-                for (int j = 0; j < files.Length; j++)
-                {
-                    File.Copy(files[j], Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", Path.GetFileName(files[j])), true);
-                }
-                Logger.WriteLine("Copied wallpapers to " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLine("Error copying wallpapers. " + ex.Message + NewLine + ex.StackTrace + NewLine);
-            }
-
-            // todo: remove r11cp
-            File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.Windir, "ThemeTool.exe"), true);
-            Logger.WriteLine("Copied Themetool.");
-            Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
-
-            for (var i = 0; i < curdir.Length; i++)
-            {
-                if (Directory.Exists(Path.Combine(Variables.Windir, "cursors", curdir[i].Name)))
-                {
-                    try
-                    {
-                        Directory.Delete(Path.Combine(Variables.Windir, "cursors", curdir[i].Name), true);
-                        Logger.WriteLine("Deleted existing cursor directory " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name));
-                    }
-                    catch
-                    {
-                        if (Directory.Exists(Path.Combine(Path.GetTempPath(), curdir[i].Name)))
-                        {
-                            Directory.Delete(Path.Combine(Path.GetTempPath(), curdir[i].Name), true);
-                        }
-                        Directory.Move(Path.Combine(Variables.Windir, "cursors", curdir[i].Name), Path.Combine(Path.GetTempPath(), curdir[i].Name));
-                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), curdir[i].Name));
-                        for (int j = 0; j < files.Length; j++)
-                        {
-                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                        Logger.WriteLine("Moved " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + " to " + Path.Combine(Path.GetTempPath(), curdir[i].Name));
-                    }
-                }
-                try
-                {
-                    Directory.Move(curdir[i].FullName, Path.Combine(Variables.Windir, "cursors", curdir[i].Name));
-                    Logger.WriteLine("Copied " + curdir[i].Name + " cursors");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
-                    return false;
-                }
-            }
-            for (var i = 0; i < themefiles.Length; i++)
-            {
-                // why would it fail
-                File.Copy(themefiles[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i].Name), true);
-            }
-            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun1.exe"), Properties.Resources.AdvancedRun);
-            for (var i = 0; i < msstyleDirList.Length; i++)
-            {
-                if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name)))
-                {
-                    try
-                    {
-                        string name = Path.GetRandomFileName();
-                        Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(Path.GetTempPath(), name));
-                        Directory.Delete(Path.Combine(Path.GetTempPath(), name, "Shell"), true);
-                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                        for (int j = 0; j < files.Length; j++)
-                        {
-                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + NewLine + ex.StackTrace + NewLine);
-                        return false;
-                    }
-                }
-                try
-                {
-                    Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name));
-                    Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
-                    return false;
-                }
-            }
-            File.Delete(Path.Combine(Variables.r11Folder, "aRun1.exe"));
             return true;
         }
 
@@ -909,364 +670,6 @@ namespace Rectify11Installer.Core
         }
 
         /// <summary>
-        /// installs sounds
-        /// </summary>
-        private void InstallSounds()
-        {
-            if (!File.Exists(Path.Combine(Variables.Windir, "Media", "ClassicSoundsService.exe")))
-            {
-                File.Move(Path.Combine(Variables.r11Folder, "extras", "ClassicSoundsService.exe"), Path.Combine(Variables.Windir, "media", "ClassicSoundsService.exe"));
-            }
-            if (!Directory.Exists(Path.Combine(Variables.Windir, "Media", "dm")))
-            {
-                Directory.CreateDirectory(Path.Combine(Variables.Windir, "Media", "dm"));
-            }
-            Interaction.Shell(Path.Combine(Variables.Windir, "Media", "ClassicSoundsService.exe") + " +", AppWinStyle.NormalFocus, true);
-            DirectoryInfo sndir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "Media"));
-            DirectoryInfo snDMdir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "Media", "dm"));
-            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun2.exe"), Properties.Resources.AdvancedRun);
-
-            Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun2.exe") + " /EXEFilename " + '"' +
-                Path.Combine(Variables.Windir, "Media", "ClassicSoundsService.exe") + '"' + " /CommandLine " + "\'" + " +" + "\'" + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
-            for (int i = 0; i < sndir.GetFiles().Length; i++)
-            {
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun2.exe")
-                        + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
-                        + " /CommandLine " + "\'" + "/c copy " + '"' + sndir.GetFiles()[i].FullName + '"' + " "
-                        + Path.Combine(Variables.Windir, "Media") + " /y" + "\'"
-                        + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
-            }
-            for (int i = 0; i < snDMdir.GetFiles().Length; i++)
-            {
-                Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun2.exe")
-                        + " /EXEFilename " + '"' + Path.Combine(Variables.sys32Folder, "cmd.exe") + '"'
-                        + " /CommandLine " + "\'" + "/c copy " + '"' + snDMdir.GetFiles()[i].FullName + '"' + " "
-                        + Path.Combine(Variables.Windir, "Media", "dm") + " /y" + "\'"
-                        + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
-            }
-            File.Delete(Path.Combine(Variables.r11Folder, "aRun2.exe"));
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "extras", "Sound.reg"), AppWinStyle.Hide);
-        }
-        /// <summary>
-		/// installs control center
-		/// </summary>
-		private void Installr11cpl()
-        {
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
-            {
-                try
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), true);
-                }
-                catch
-                {
-                    string name = Path.GetRandomFileName();
-                    Directory.Move(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), Path.Combine(Path.GetTempPath(), name));
-                    var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                    for (int j = 0; j < files.Length; j++)
-                    {
-                        MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                    MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                }
-            }
-            Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
-            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
-            using ShellLink shortcut = new();
-            shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
-            shortcut.WorkingDirectory = @"%windir%\Rectify11\Rectify11ControlCenter";
-            shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
-            shortcut.IconIndex = 0;
-            shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-            shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
-            shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
-            shortcut.Dispose();
-        }
-
-        /// <summary>
-        /// installs mfe
-        /// </summary>
-        private void InstallMfe()
-        {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
-            if (Directory.Exists(Path.Combine(GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone")))
-            {
-                Directory.Delete(Path.Combine(GetEnvironmentVariable("localappdata") ?? string.Empty, "Mica For Everyone"), true);
-            }
-            string t = "";
-            if (InstallOptions.TabbedNotMica) t = "T";
-            if (InstallOptions.ThemeLight)
-            {
-                File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "lightrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-            }
-            else if (InstallOptions.ThemeDark)
-            {
-                File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "darkrectified.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-            }
-            else
-            {
-                File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", t + "black.conf"), Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-                string amdorarm = "AMD";
-                if (NativeMethods.IsArm64()) amdorarm = "ARM";
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide);
-            }
-
-        }
-
-        /// <summary>
-        /// writes all the needed files
-        /// </summary>
-        /// <param name="icons">indicates whether icon only files are written</param>
-        /// <param name="themes">indicates whether theme only files are written</param>
-        private bool WriteFiles(bool icons, bool themes)
-        {
-            if (icons)
-            {
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "aRun.exe")))
-                {
-                    try
-                    {
-                        File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun);
-                        Logger.LogFile("aRun.exe");
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogFile("aRun.exe", ex);
-                        return false;
-                    }
-                }
-                try
-                {
-                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2);
-                    Logger.LogFile("Rectify11.Phase2.exe");
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFile("Rectify11.Phase2.exe", ex);
-                    return false;
-                }
-            }
-            if (themes)
-            {
-                try
-                {
-                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes);
-                    Logger.LogFile("themes.7z");
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFile("themes.7z", ex);
-                    return false;
-                }
-
-                var s = Properties.Resources.secureux_x64;
-                var dll = Properties.Resources.ThemeDll_x64;
-                if (NativeMethods.IsArm64())
-                {
-                    s = Properties.Resources.secureux_arm64;
-                    dll = Properties.Resources.ThemeDll_arm64;
-                }
-                try
-                {
-                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s);
-                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll);
-                    Logger.LogFile("SecureUXHelper.exe");
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFile("SecureUXHelper.exe", ex);
-                    return false;
-                }
-            }
-            if (!themes && !icons)
-            {
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
-                {
-                    try
-                    {
-                        File.WriteAllBytes(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za);
-                        Logger.LogFile("7za.exe");
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogFile("7za.exe", ex);
-                        return false;
-                    }
-                }
-                try
-                {
-                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
-                    Logger.LogFile("files.7z");
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFile("files.7z", ex);
-                    return false;
-                }
-                try
-                {
-                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras);
-                    Logger.LogFile("extras.7z");
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFile("extras.7z", ex);
-                    return false;
-                }
-                if (!File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
-                {
-                    try
-                    {
-                        File.WriteAllBytes(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker);
-                        Logger.LogFile("ResourceHacker.exe");
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogFile("ResourceHacker.exe", ex);
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// creates backup and temp folder
-        /// </summary>
-        private bool CreateDirs()
-        {
-            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
-            {
-                try
-                {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
-                    Logger.WriteLine("Created " + Path.Combine(Variables.r11Folder, "Backup"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Backup"), ex);
-                    return false;
-                }
-            }
-            else
-            {
-                Logger.WriteLine(Path.Combine(Variables.r11Folder, "Backup") + " already exists.");
-            }
-
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
-            {
-                Logger.WriteLine(Path.Combine(Variables.r11Folder, "Tmp") + " exists. Deleting it.");
-                try
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "Tmp"), ex);
-                    return false;
-                }
-            }
-            try
-            {
-                Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
-                Logger.WriteLine("Created " + Path.Combine(Variables.r11Folder, "Tmp"));
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Tmp"), ex);
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// installs runtimes and shows a warning message if the installation of runtimes fails.
-        /// </summary>
-        private bool InstallRuntimes()
-        {
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
-            {
-                Logger.WriteLine("Extracting vcredist.exe from extras.7z");
-                Helper.SvExtract(true, "extras.7z", "vcredist.exe");
-            }
-            if (!File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
-            {
-                Logger.WriteLine("Extracting core31.exe from extras.7z");
-                Helper.SvExtract(true, "extras.7z", "core31.exe");
-
-            }
-            Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
-            ProcessStartInfo vcinfo = new()
-            {
-                FileName = Path.Combine(Variables.r11Folder, "vcredist.exe"),
-                WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = " /install /quiet /norestart"
-            };
-            try
-            {
-                var vcproc = Process.Start(vcinfo);
-                if (vcproc == null) return false;
-                vcproc.WaitForExit();
-                if (!vcproc.HasExited) return false;
-                Logger.WriteLine("vcredist.exe exited with error code " + vcproc.ExitCode.ToString());
-                if (vcproc.ExitCode != 0 && vcproc.ExitCode != 1638 && vcproc.ExitCode != 3010)
-                {
-                    Variables.vcRedist = false;
-                }
-                else Variables.vcRedist = true;
-                if (vcproc.ExitCode == 0) Variables.RestartRequired = true;
-            }
-            catch
-            {
-                return false;
-            }
-            Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
-            ProcessStartInfo core3info = new()
-            {
-                FileName = Path.Combine(Variables.r11Folder, "core31.exe"),
-                WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = " /install /quiet /norestart"
-            };
-            try
-            {
-                var core3proc = Process.Start(core3info);
-                if (core3proc == null) return false;
-                core3proc.WaitForExit();
-                if (!core3proc.HasExited) return false;
-                Logger.WriteLine("core31.exe exited with error code " + core3proc.ExitCode.ToString());
-                if (core3proc.ExitCode != 0 && core3proc.ExitCode != 1638 && core3proc.ExitCode != 3010)
-                {
-                    Variables.core31 = false;
-                }
-                else Variables.core31 = true;
-                if (core3proc.ExitCode == 0) Variables.RestartRequired = true;
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private void RuntimeInstallError(string app, string info, string link)
-        {
-            TaskDialog td = new();
-            td.Page.Text = "Installation of " + app + " has failed. You need to install it manually.";
-            td.Page.Instruction = "Runtime installation error";
-            td.Page.Title = "Rectify11 Setup";
-            td.Page.StandardButtons = TaskDialogButtons.OK;
-            td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
-            td.Page.EnableHyperlinks = true;
-            TaskDialogExpander tde = new();
-            tde.Text = info + " \nDownload from <a href=\"" + link + "\">here</a>";
-            tde.Expanded = false;
-            tde.ExpandFooterArea = true;
-            tde.CollapsedButtonText = "More information";
-            tde.ExpandedButtonText = "Less information";
-            td.Page.Expander = tde;
-            td.Show();
-        }
-        /// <summary>
         /// sets required registry values for phase 2
         /// </summary>
         /// <param name="fileList">normal files list</param>
@@ -1342,36 +745,6 @@ namespace Rectify11Installer.Core
                 Logger.Warn("Error writing OSVersion", ex);
             }
             return true;
-        }
-
-        /// <summary>
-        /// Adds installer entry to control panel uninstall apps list
-        /// </summary>
-        /// <returns>true if writing to registry was successful, otherwise false</returns>
-        private bool AddToControlPanel()
-        {
-            using var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true);
-            if (key == null) return false;
-            var r11key = key.CreateSubKey("Rectify11", true);
-            if (r11key != null)
-            {
-                r11key.SetValue("DisplayName", "Rectify11", RegistryValueKind.String);
-                r11key.SetValue("DisplayVersion", Assembly.GetEntryAssembly()?.GetName().Version.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("DisplayIcon", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                r11key.SetValue("InstallLocation", Variables.r11Folder, RegistryValueKind.String);
-                r11key.SetValue("UninstallString", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                r11key.SetValue("ModifyPath", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
-                r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly()?.GetName().Version.Major.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly()?.GetName().Version.Minor.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("Build", Assembly.GetEntryAssembly()?.GetName().Version.Build.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
-                r11key.SetValue("URLInfoAbout", "https://rectify11.net/", RegistryValueKind.String);
-                key.Close();
-                return true;
-            }
-            key.Close();
-            return false;
         }
 
         /// <summary>
@@ -1602,178 +975,6 @@ namespace Rectify11Installer.Core
                         return false;
                     }
                 }
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// cleans up files
-        /// </summary>
-        public static bool Cleanup()
-        {
-            if (Directory.Exists(Variables.r11Files))
-            {
-                try
-                {
-                    Directory.Delete(Variables.r11Files, true);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Variables.r11Files, ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "files.7z")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "files.7z"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "files.7z"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "extras.7z")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "extras.7z"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras.7z"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "vcredist.exe")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "vcredist.exe"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "vcredist.exe"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "core31.exe")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "core31.exe"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "core31.exe"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "extras", "core31.exe")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "extras", "core31.exe"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras", "core31.exe"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "newfiles.txt")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "newfiles.txt"), ex);
-                }
-            }
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
-            {
-                try
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "themes"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "themes.7z")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "themes.7z"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "themes.7z"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "7za.exe")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "7za.exe"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "7za.exe"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "aRun.exe")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "aRun.exe"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "aRun.exe"), ex);
-                }
-            }
-            if (File.Exists(Path.Combine(Variables.r11Folder, "ResourceHacker.exe")))
-            {
-                try
-                {
-                    File.Delete(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "aRun.exe"), ex);
-                }
-            }
-            try
-            {
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
-                {
-                    if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
-                    {
-                        try
-                        {
-                            Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Warn("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
             }
             return true;
         }

@@ -120,9 +120,9 @@ namespace Rectify11Installer.Pages
 					Variables.isInstall = true;
 					Installer installer = new();
 					//Logger.CommitLog();
-					if (!await installer.Install(frmwiz))
+					if (!await Task.Run(() => installer.Install(frmwiz)))
 					{
-						Installer.Cleanup();
+						Common.Cleanup();
 						Logger.CommitLog();
                         TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
 							title: "Error",
