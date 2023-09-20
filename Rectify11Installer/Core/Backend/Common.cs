@@ -10,6 +10,7 @@ namespace Rectify11Installer.Core
 {
     internal class Common
     {
+        #region Public Methods
         /// <summary>
         /// writes all the needed files
         /// </summary>
@@ -121,8 +122,8 @@ namespace Rectify11Installer.Core
         public static bool CreateUninstall()
         {
             // backup
-            if (!SafeFileOperation(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), OperationType.Copy))
-                return false;
+            // fails anyways if you use uninstaller.exe
+            SafeFileOperation(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), OperationType.Copy);
             Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
 
             var r11key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true)?.CreateSubKey("Rectify11", true);
@@ -264,7 +265,9 @@ namespace Rectify11Installer.Core
             }
             return true;
         }
+        #endregion
 
+        #region Private Methods
         private enum OperationType
         {
             Write = 0,
@@ -377,5 +380,6 @@ namespace Rectify11Installer.Core
                 return false;
             }
         }
+        #endregion
     }
 }

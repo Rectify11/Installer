@@ -131,6 +131,7 @@
     </Compile>
     <Compile Include="Core\Backend\Common.cs" />
     <Compile Include="Core\Backend\Extras.cs" />
+    <Compile Include="Core\Backend\Icons.cs" />
     <Compile Include="Core\Backend\Themes.cs" />
     <Compile Include="Core\ExtrasOptions.cs" />
     <Compile Include="Core\Helpers.cs" />
