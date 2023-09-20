@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Pages;
+using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -81,6 +82,134 @@ namespace Rectify11Installer.Core
             return finalstr;
         }
 
+        public static bool CheckUBR()
+        {
+            return ((NativeMethods.GetUbr() != -1
+                    && NativeMethods.GetUbr() < 51
+                    && Environment.OSVersion.Version.Build == 22000)
+                    || Environment.OSVersion.Version.Build is < 22000 and >= 21996);
+        }
+
+        public static bool CheckIfUpdate()
+        {
+            try
+            {
+                // more priority
+                var build = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false)?.GetValue("Build");
+                if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+                    return true;
+
+                var r11 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false)?.GetValue("OSVersion");
+                Version ver = Version.Parse(r11.ToString());
+                if (Environment.OSVersion.Version.Build > ver.Build || NativeMethods.GetUbr() > ver.Revision)
+                {
+                    Variables.WindowsUpdate = true;
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static void UpdateSideImageOptns(string name, FrmWizard _frmWizard)
+        {
+            switch (name)
+            {
+                case "shellNode":
+                    _frmWizard.UpdateSideImage = Properties.Resources.menus;
+                    if (Theme.IsUsingDarkMode) _frmWizard.UpdateSideImage = Properties.Resources.menusD;
+                    break;
+                case "gadgetsNode":
+                    _frmWizard.UpdateSideImage = Properties.Resources.gadgets;
+                    break;
+                case "asdfNode":
+                    _frmWizard.UpdateSideImage = Properties.Resources.asdf;
+                    break;
+                case "wallpapersNode":
+                    _frmWizard.UpdateSideImage = Properties.Resources.wallpapers;
+                    break;
+                case "useravNode":
+                    _frmWizard.UpdateSideImage = Properties.Resources.avatars;
+                    break;
+                case "soundNode":
+                    _frmWizard.UpdateSideImage = Properties.Resources.sound; ;
+                    break;
+                // disabled until i will make them work
+                // case "sysiconsNode":
+                //     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.iconnewtree;
+                //     break;
+                // case "themesNode":
+                //     _frmWizard.UpdateSideImage = global::Rectify11Installer.Properties.Resources.theme;
+                //     break;
+                default:
+                    _frmWizard.UpdateSideImage = Properties.Resources.installoptns;
+                    break;
+            }
+        }
+
+        public static string FixString(string path, bool x86)
+        {
+            if (path.Contains("mun"))
+            {
+                return path.Replace(@"%sysresdir%", Variables.sysresdir);
+            }
+            else if (path.Contains("%sys32%"))
+            {
+                if (x86)
+                {
+                    return path.Replace(@"%sys32%", Variables.sysWOWFolder);
+                }
+                else
+                {
+                    return path.Replace(@"%sys32%", Variables.sys32Folder);
+                }
+            }
+            else if (path.Contains("%lang%"))
+            {
+                return path.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
+            }
+            else if (path.Contains("%en-US%"))
+            {
+                return path.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
+            }
+            else if (path.Contains("%windirLang%"))
+            {
+                return path.Replace(@"%windirLang%", Path.Combine(Variables.Windir, CultureInfo.CurrentUICulture.Name));
+            }
+            else if (path.Contains("%windirEn-US%"))
+            {
+                return path.Replace(@"%windirEn-US%", Path.Combine(Variables.Windir, "en-US"));
+            }
+            else if (path.Contains("%branding%"))
+            {
+                return path.Replace(@"%branding%", Variables.BrandingFolder);
+            }
+            else if (path.Contains("%prog%"))
+            {
+                if (x86)
+                {
+                    return path.Replace(@"%prog%", Variables.progfiles86);
+                }
+                else
+                {
+                    return path.Replace(@"%prog%", Variables.progfiles);
+                }
+            }
+            else if (path.Contains("%windir%"))
+            {
+                return path.Replace(@"%windir%", Variables.Windir);
+            }
+            else if (path.Contains("%diag%"))
+            {
+                return path.Replace("%diag%", Variables.diag);
+            }
+            return path;
+        }
+
+
         #endregion
         #region Private Methods
         private static bool RebootRequired()
@@ -129,16 +258,15 @@ namespace Rectify11Installer.Core
     }
     public class TabPages
     {
+        public static Controls.DarkAwareTabPage eulPage;
         public static Controls.DarkAwareTabPage installPage;
         public static Controls.DarkAwareTabPage themePage;
         public static Controls.DarkAwareTabPage cmenupage;
-        public static Controls.DarkAwareTabPage summaryPage;
-        public static Controls.DarkAwareTabPage progressPage;
-        public static Controls.DarkAwareTabPage rebootPage;
-        public static Controls.DarkAwareTabPage wlcmPage;
-        public static Controls.DarkAwareTabPage eulPage;
         public static Controls.DarkAwareTabPage debPage;
         public static Controls.DarkAwareTabPage uninstPage;
+        public static Controls.DarkAwareTabPage progressPage;
+        public static Controls.DarkAwareTabPage summaryPage;
+        public static Controls.DarkAwareTabPage wlcmPage;
     }
     public class InstallOptions
     {

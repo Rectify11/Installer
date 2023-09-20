@@ -45,7 +45,6 @@
 			Core.TabPages.cmenupage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.rebootPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.uninstPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.progressLabel = new Controls.DarkAwareLabel();
@@ -176,7 +175,6 @@
 			this.navPane.Controls.Add(Core.TabPages.cmenupage);
 			this.navPane.Controls.Add(Core.TabPages.summaryPage);
 			this.navPane.Controls.Add(Core.TabPages.progressPage);
-			this.navPane.Controls.Add(Core.TabPages.rebootPage);
 			this.navPane.Controls.Add(Core.TabPages.uninstPage);
 			this.navPane.ItemSize = new System.Drawing.Size(10, 20);
 			this.navPane.Location = new System.Drawing.Point(280, 0);
@@ -283,16 +281,6 @@
 			Core.TabPages.progressPage.Size = new System.Drawing.Size(333, 284);
 			Core.TabPages.progressPage.TabIndex = 6;
 			Core.TabPages.progressPage.Text = "Progress";
-			// 
-			// rebootPage
-			// 
-			Core.TabPages.rebootPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.rebootPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.rebootPage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.rebootPage.Name = "rebootPage";
-			Core.TabPages.rebootPage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.rebootPage.TabIndex = 7;
-			Core.TabPages.rebootPage.Text = "Reboot";
 			// 
 			// uninstPage
 			// 

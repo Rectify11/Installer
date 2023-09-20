@@ -63,7 +63,7 @@ namespace Rectify11Installer
         #region Main
         public FrmWizard()
         {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.CacheText, true);
             if (System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
             {
                 RightToLeftLayout = true;
@@ -71,10 +71,7 @@ namespace Rectify11Installer
             }
             InitializeComponent();
             DarkMode.RefreshTitleBarColor(Handle);
-            if (Theme.IsUsingDarkMode)
-            {
-                DarkMode.UpdateFrame(this, true);
-            }
+            if (Theme.IsUsingDarkMode) DarkMode.UpdateFrame(this, true);
             Shown += FrmWizard_Shown;
             FormClosing += FrmWizard_FormClosing;
             Application.Idle += Application_Idle;
@@ -99,6 +96,7 @@ namespace Rectify11Installer
             TabPages.uninstPage.Controls.Add(RectifyPages.UninstallPage);
             TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
             TabPages.summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
+
             RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
             RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
             nextButton.Click += NextButton_Click;
@@ -122,10 +120,7 @@ namespace Rectify11Installer
                 BackColor = Color.White;
                 ForeColor = Color.Black;
                 headerText.ForeColor = Color.Black;
-                if ((NativeMethods.GetUbr() != -1
-                    && NativeMethods.GetUbr() < 51
-                    && Environment.OSVersion.Version.Build == 22000)
-                    || Environment.OSVersion.Version.Build is < 22000 and >= 21996)
+                if (Helper.CheckUBR())
                 {
                     tableLayoutPanel1.BackColor = Color.White;
                     tableLayoutPanel2.BackColor = Color.White;
@@ -297,17 +292,7 @@ namespace Rectify11Installer
 
         private void UninstallButton_Click(object sender, EventArgs e)
         {
-            if (Helper.CheckIfUpdatesPending())
-            {
-                /*
-				TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can run sfc /scannow to revert icon changes.",
-				instruction: "Incomplete Software",
-				title: "Rectify11 Setup",
-				buttons: TaskDialogButtons.OK,
-				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-				*/
-                Navigate(RectifyPages.UninstallPage);
-            }
+            if (Helper.CheckIfUpdatesPending()) Navigate(RectifyPages.UninstallPage);
         }
 
         private void VersionLabel_Click(object sender, EventArgs e)
