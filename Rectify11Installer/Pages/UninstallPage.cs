@@ -99,7 +99,7 @@ namespace Rectify11Installer.Pages
                         var newpath = Helper.FixString(patch[i].HardlinkTarget, !string.IsNullOrWhiteSpace(patch[i].x86));
                         if (File.Exists(newpath))
                         {
-                            if (newpath.Contains("mun")) basicNode.Nodes.Add(patch[i].Mui);
+                            if (newpath.Contains(".mun")) basicNode.Nodes.Add(patch[i].Mui);
                             else advNode.Nodes.Add(patch[i].Mui);
                         }
                     }

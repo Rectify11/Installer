@@ -385,105 +385,24 @@ namespace Rectify11Installer.Core
         /// <param name="patch">Xml element containing all the info</param>
         private static bool MatchAndApplyRule(PatchesPatch patch)
         {
-            string newhardlink;
-            if (patch.HardlinkTarget.Contains("%sys32%"))
+            string newhardlink = Helper.FixString(patch.HardlinkTarget, false);
+            if (newhardlink.Contains(".mui"))
             {
-                newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sys32Folder);
-                if (!Patch(newhardlink, patch, PatchType.General))
-                {
-                    return false;
-                }
-            }
-            else if (patch.HardlinkTarget.Contains("%lang%"))
-            {
-                newhardlink = patch.HardlinkTarget.Replace(@"%lang%", Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name));
-                if (!Patch(newhardlink, patch, PatchType.Mui))
-                {
-                    return false;
-                }
-            }
-            else if (patch.HardlinkTarget.Contains("%en-US%"))
-            {
-                newhardlink = patch.HardlinkTarget.Replace(@"%en-US%", Path.Combine(Variables.sys32Folder, "en-US"));
-                if (!Patch(newhardlink, patch, PatchType.Mui))
-                {
-                    return false;
-                }
-            }
-            else if (patch.HardlinkTarget.Contains("%windirLang%"))
-            {
-                newhardlink = patch.HardlinkTarget.Replace(@"%windirLang%", Path.Combine(Variables.Windir, CultureInfo.CurrentUICulture.Name));
-                if (!Patch(newhardlink, patch, PatchType.Mui))
-                {
-                    return false;
-                }
-            }
-            else if (patch.HardlinkTarget.Contains("%windirEn-US%"))
-            {
-                newhardlink = patch.HardlinkTarget.Replace(@"%windirEn-US%", Path.Combine(Variables.Windir, "en-US"));
-                if (!Patch(newhardlink, patch, PatchType.Mui))
-                {
-                    return false;
-                }
-            }
-            else if (patch.HardlinkTarget.Contains("mun"))
-            {
-                newhardlink = patch.HardlinkTarget.Replace(@"%sysresdir%", Variables.sysresdir);
-                if (!Patch(newhardlink, patch, PatchType.General))
-                {
-                    return false;
-                }
-            }
-            else if (patch.HardlinkTarget.Contains("%branding%"))
-            {
-                newhardlink = patch.HardlinkTarget.Replace(@"%branding%", Variables.BrandingFolder);
-                if (!Patch(newhardlink, patch, PatchType.General))
-                {
-                    return false;
-                }
-            }
-            else if (patch.HardlinkTarget.Contains("%prog%"))
-            {
-                newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles);
-                if (!Patch(newhardlink, patch, PatchType.General))
-                {
-                    return false;
-                }
+                if (!Patch(newhardlink, patch, PatchType.Mui)) return false;
             }
             else if (patch.HardlinkTarget.Contains("%diag%"))
             {
-                newhardlink = patch.HardlinkTarget.Replace(@"%diag%", Variables.diag);
-                if (!Patch(newhardlink, patch, PatchType.Troubleshooter))
-                {
-                    return false;
-                }
+                if (!Patch(newhardlink, patch, PatchType.Troubleshooter)) return false;
             }
-            else if (patch.HardlinkTarget.Contains("%windir%"))
+            else
             {
-                newhardlink = patch.HardlinkTarget.Replace(@"%windir%", Variables.Windir);
-                if (!Patch(newhardlink, patch, PatchType.General))
-                {
-                    return false;
-                }
+                if (!Patch(newhardlink, patch, PatchType.General)) return false;
             }
+
             if (!string.IsNullOrWhiteSpace(patch.x86))
             {
-                if (patch.HardlinkTarget.Contains("%sys32%"))
-                {
-                    newhardlink = patch.HardlinkTarget.Replace(@"%sys32%", Variables.sysWOWFolder);
-                    if (!Patch(newhardlink, patch, PatchType.x86))
-                    {
-                        return false;
-                    }
-                }
-                else if (patch.HardlinkTarget.Contains("%prog%"))
-                {
-                    newhardlink = patch.HardlinkTarget.Replace(@"%prog%", Variables.progfiles86);
-                    if (!Patch(newhardlink, patch, PatchType.x86))
-                    {
-                        return false;
-                    }
-                }
+                newhardlink = Helper.FixString(patch.HardlinkTarget, true);
+                if (!Patch(newhardlink, patch, PatchType.x86)) return false;
             }
             return true;
         }

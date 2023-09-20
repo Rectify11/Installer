@@ -114,6 +114,7 @@ namespace Rectify11Installer.Core
                 return false;
             }
         }
+
         public static void UpdateSideImageOptns(string name, FrmWizard _frmWizard)
         {
             switch (name)
@@ -152,7 +153,7 @@ namespace Rectify11Installer.Core
 
         public static string FixString(string path, bool x86)
         {
-            if (path.Contains("mun"))
+            if (path.Contains(".mun"))
             {
                 return path.Replace(@"%sysresdir%", Variables.sysresdir);
             }
@@ -208,7 +209,6 @@ namespace Rectify11Installer.Core
             }
             return path;
         }
-
 
         #endregion
         #region Private Methods
