@@ -20,33 +20,33 @@ namespace Rectify11Installer.Core
         {
             if (icons)
             {
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, Helper.OperationType.Write))
                     return false;
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write))
                     return false;
             }
             if (themes)
             {
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes, Helper.OperationType.Write))
                     return false;
 
                 var s = NativeMethods.IsArm64() ? Properties.Resources.secureux_arm64 : Properties.Resources.secureux_x64;
                 var dll = NativeMethods.IsArm64() ? Properties.Resources.ThemeDll_arm64 : Properties.Resources.ThemeDll_x64;
 
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s, Helper.OperationType.Write))
                     return false;
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll, Helper.OperationType.Write))
                     return false;
             }
             if (!themes && !icons)
             {
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za, Helper.OperationType.Write))
                     return false;
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z, Helper.OperationType.Write))
                     return false;
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras, Helper.OperationType.Write))
                     return false;
-                if (!SafeFileOperation(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker, OperationType.Write))
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker, Helper.OperationType.Write))
                     return false;
             }
             return true;
@@ -84,7 +84,7 @@ namespace Rectify11Installer.Core
                 }
                 catch
                 {
-                    string name = Path.GetTempFileName();
+                    string name = Path.GetRandomFileName();
                     string tmpPath = Path.Combine(Path.GetTempPath(), name);
                     Directory.Move(Path.Combine(Variables.r11Folder, "Tmp"), tmpPath);
                     var files = Directory.GetFiles(tmpPath);
@@ -123,7 +123,7 @@ namespace Rectify11Installer.Core
         {
             // backup
             // fails anyways if you use uninstaller.exe
-            SafeFileOperation(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), OperationType.Copy);
+            Helper.SafeFileOperation(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), Helper.OperationType.Copy);
             Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
 
             var r11key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true)?.CreateSubKey("Rectify11", true);
@@ -151,11 +151,11 @@ namespace Rectify11Installer.Core
         /// </summary>
         public static bool InstallRuntimes()
         {
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
             Logger.WriteLine("Extracting vcredist.exe from extras.7z");
             Helper.SvExtract(true, "extras.7z", "vcredist.exe");
 
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
             Logger.WriteLine("Extracting core31.exe from extras.7z");
             Helper.SvExtract(true, "extras.7z", "core31.exe");
 
@@ -243,142 +243,27 @@ namespace Rectify11Installer.Core
         public static bool Cleanup()
         {
             // we dont care about returned value
-            SafeDirectoryDeletion(Variables.r11Files);
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "files.7z"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras.7z"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "core31.exe"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-            SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "themes"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "themes.7z"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "7za.exe"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
-            SafeFileDeletion(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"));
+            Helper.SafeDirectoryDeletion(Variables.r11Files, false);
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "files.7z"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras.7z"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "core31.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "themes"), false);
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "themes.7z"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "7za.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"));
             if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
             {
                 if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
                 {
-                    SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras"));
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras"), false);
                 }
             }
             return true;
-        }
-        #endregion
-
-        #region Private Methods
-        private enum OperationType
-        {
-            Write = 0,
-            Copy
-        }
-        private static bool SafeFileDeletion(string path)
-        {
-            try
-            {
-                if (File.Exists(path))
-                {
-                    try
-                    {
-                        File.Delete(path);
-                    }
-                    catch
-                    {
-                        string name = Path.GetTempFileName();
-                        string tmpPath = Path.Combine(Path.GetTempPath(), name);
-                        File.Move(path, tmpPath);
-                        NativeMethods.MoveFileEx(tmpPath, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                    return true;
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        private static bool SafeFileOperation(string path, object file, OperationType ot)
-        {
-            // whatever
-            try
-            {
-                if (ot == OperationType.Write)
-                {
-                    if (!SafeFileDeletion(path)) return false;
-                    File.WriteAllBytes(path, (byte[])file);
-                    Logger.LogFile(Path.GetFileName(path));
-                }
-                else if (ot == OperationType.Copy)
-                {
-                    if (!SafeFileDeletion((string)file)) return false;
-                    File.Copy(path, (string)file, true);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                if (ot == OperationType.Write)
-                    Logger.LogFile(Path.GetFileName(path), ex);
-                return false;
-            }
-        }
-        private static bool SafeDirectoryDeletion(string path)
-        {
-            // simply
-            try
-            {
-                if (Directory.Exists(path))
-                {
-                    try
-                    {
-                        Directory.Delete(path, true);
-                    }
-                    catch
-                    {
-                        string name = Path.GetTempFileName();
-                        string tmpPath = Path.Combine(Path.GetTempPath(), name);
-                        Directory.Move(path, tmpPath);
-                        var dirs = Directory.GetDirectories(tmpPath);
-                        for (int i = 0; i < dirs.Length; i++)
-                        {
-                            var chldFiles = Directory.GetFiles(dirs[i]);
-                            for (int j = 0; j < chldFiles.Length; j++)
-                            {
-                                try
-                                {
-                                    File.Delete(chldFiles[j]);
-                                }
-                                catch
-                                {
-                                    NativeMethods.MoveFileEx(chldFiles[j], null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                                }
-                            }
-                            NativeMethods.MoveFileEx(dirs[i], null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                        var files = Directory.GetFiles(tmpPath);
-                        for (int i = 0; i < files.Length; i++)
-                        {
-                            try
-                            {
-                                File.Delete(files[i]);
-                            }
-                            catch
-                            {
-                                NativeMethods.MoveFileEx(files[i], null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                            }
-                        }
-                        NativeMethods.MoveFileEx(tmpPath, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                    return true;
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
         }
         #endregion
     }

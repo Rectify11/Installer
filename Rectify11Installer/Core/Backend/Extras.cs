@@ -64,28 +64,28 @@ namespace Rectify11Installer.Core
                     if (File.Exists(path))
                     {
                         try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
+                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
                     }
 
                     path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk");
                     if (File.Exists(path))
                     {
                         try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
+                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
                     }
 
                     path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer.lnk");
                     if (File.Exists(path))
                     {
                         try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
+                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
                     }
 
                     path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer11.lnk");
                     if (File.Exists(path))
                     {
                         try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetTempFileName())); }
+                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
                     }
 
                     try

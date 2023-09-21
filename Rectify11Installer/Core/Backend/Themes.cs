@@ -19,23 +19,20 @@ namespace Rectify11Installer.Core
                 return false;
             }
             Logger.WriteLine("WriteFiles() succeeded.");
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micaforeveryone.exe", AppWinStyle.Hide, true);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im micafix.exe", AppWinStyle.Hide, true);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorerframe.exe", AppWinStyle.Hide, true);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn mfe", AppWinStyle.Hide);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn micafix", AppWinStyle.Hide);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn mfe", AppWinStyle.Hide);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn micafix", AppWinStyle.Hide);
+
+            Helper.KillProcess("micaforeveryone.exe");
+            Helper.KillProcess("micafix.exe");
+            Helper.KillProcess("explorerframe.exe");
+            Helper.DeleteTask("mfe");
+            Helper.DeleteTask("micafix");
+
             if (Directory.Exists(Path.Combine(Variables.r11Folder, "themes")))
             {
-                try
+                Logger.WriteLine(Path.Combine(Variables.r11Folder, "themes") + " exists. Deleting it.");
+                if (!Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "themes"), false))
                 {
-                    Logger.WriteLine(Path.Combine(Variables.r11Folder, "themes") + " exists. Deleting it.");
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "themes"), true);
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ", ex);
+                    Logger.WriteLine("Deleting " + Path.Combine(Variables.r11Folder, "themes") + " failed. ");
+                    return false;
                 }
             }
 
@@ -54,22 +51,10 @@ namespace Rectify11Installer.Core
                 {
                     if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
                     {
-                        try
+                        if (!Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "MicaForEveryone"), false))
                         {
-                            Directory.Delete(Path.Combine(Variables.Windir, "MicaForEveryone"), true);
-                        }
-                        catch
-                        {
-                            // tf you doing
-                            if (Directory.Exists(Path.Combine(Path.GetTempPath(), "MicaForEveryone")))
-                            {
-                                try
-                                {
-                                    Directory.Delete(Path.Combine(Path.GetTempPath(), "MicaForEveryone"), true);
-                                }
-                                catch { }
-                            }
-                            Directory.Move(Path.Combine(Variables.Windir, "MicaForEveryone"), Path.Combine(Path.GetTempPath(), "MicaForEveryone"));
+                            Logger.WriteLine("Deleting " + Path.Combine(Variables.Windir, "MicaForEveryone") + " failed. ");
+                            return false;
                         }
                     }
                     Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone"));

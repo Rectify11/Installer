@@ -210,6 +210,129 @@ namespace Rectify11Installer.Core
             return path;
         }
 
+        public static void KillProcess(string name)
+            => Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im " + name, AppWinStyle.Hide, true);
+
+        public static void DeleteTask(string name)
+        {
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn " + name, AppWinStyle.Hide);
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn " + name, AppWinStyle.Hide);
+        }
+
+        public enum OperationType
+        {
+            Write = 0,
+            Copy
+        }
+        public static bool SafeFileDeletion(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch
+                    {
+                        string name = Path.GetRandomFileName();
+                        string tmpPath = Path.Combine(Path.GetTempPath(), name);
+                        File.Move(path, tmpPath);
+                        NativeMethods.MoveFileEx(tmpPath, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    }
+                    return true;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool SafeFileOperation(string path, object file, OperationType ot)
+        {
+            // whatever
+            try
+            {
+                if (ot == OperationType.Write)
+                {
+                    if (!SafeFileDeletion(path)) return false;
+                    File.WriteAllBytes(path, (byte[])file);
+                    Logger.LogFile(Path.GetFileName(path));
+                }
+                else if (ot == OperationType.Copy)
+                {
+                    if (!SafeFileDeletion((string)file)) return false;
+                    File.Copy(path, (string)file, true);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (ot == OperationType.Write)
+                    Logger.LogFile(Path.GetFileName(path), ex);
+                return false;
+            }
+        }
+        public static bool SafeDirectoryDeletion(string path, bool ischild)
+        {
+            // simply
+            try
+            {
+                if (Directory.Exists(path))
+                {
+                    try
+                    {
+                        Directory.Delete(path, true);
+                    }
+                    catch
+                    {
+                        string name = Path.GetRandomFileName();
+                        string tmpPath = Path.Combine(Path.GetTempPath(), name);
+                        if (!ischild)
+                        {
+                            Directory.Move(path, tmpPath);
+                        }
+                        else
+                        {
+                            tmpPath = path;
+                        }
+                        var files = Directory.GetFiles(tmpPath);
+                        for (int i = 0; i < files.Length; i++)
+                        {
+                            try
+                            {
+                                File.Delete(files[i]);
+                            }
+                            catch
+                            {
+                                NativeMethods.MoveFileEx(files[i], null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                            }
+                        }
+                        var dirs = Directory.GetDirectories(tmpPath);
+                        for (int i = 0; i < dirs.Length; i++)
+                        {
+                            SafeDirectoryDeletion(dirs[i], true);
+                        }
+                        try
+                        {
+                            Directory.Delete(tmpPath, true);
+                        }
+                        catch
+                        {
+                            NativeMethods.MoveFileEx(tmpPath, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        }
+                    }
+                    return true;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
         #region Private Methods
         private static bool RebootRequired()
