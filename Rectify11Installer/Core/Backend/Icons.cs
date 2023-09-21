@@ -151,7 +151,7 @@ namespace Rectify11Installer.Core
         private static bool FixOdbc()
         {
             var filename = string.Empty;
-            var admintools = Path.Combine(Environment.GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Administrative Tools");
+            var admintools = Path.Combine(GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Administrative Tools");
             var files = Directory.GetFiles(admintools);
             for (var i = 0; i < files.Length; i++)
             {
@@ -177,6 +177,7 @@ namespace Rectify11Installer.Core
             return true;
         }
 
+
         /// <summary>
         /// sets required registry values for phase 2
         /// </summary>
@@ -188,69 +189,20 @@ namespace Rectify11Installer.Core
             if (reg == null) return false;
             try
             {
-                reg.SetValue("PendingFiles", fileList.ToArray());
-                Logger.WriteLine("Wrote filelist to PendingFiles");
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLine("Error writing filelist to PendingFiles", ex);
-                return false;
-            }
+                SafeWriteReg(reg, "PendingFiles", fileList.ToArray(), true);
+                if (x86List.Count != 0)
+                    SafeWriteReg(reg, "x86PendingFiles", x86List.ToArray(), true);
 
-            if (x86List.Count != 0)
-            {
-                try
-                {
-                    reg.SetValue("x86PendingFiles", x86List.ToArray());
-                    Logger.WriteLine("Wrote x86list to x86PendingFiles");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error writing x86list to x86PendingFiles", ex);
-                    return false;
-                }
-            }
-            try
-            {
-                reg.SetValue("Language", CultureInfo.CurrentUICulture.Name);
-                Logger.WriteLine("Wrote CurrentUICulture.Name to Language");
-            }
-            catch (Exception ex)
-            {
-                Logger.Warn("Error writing CurrentUICulture.Name to Language", ex);
-            }
-            try
-            {
-                reg.SetValue("Version", Assembly.GetEntryAssembly()?.GetName().Version);
-                Logger.WriteLine("Wrote ProductVersion to Version");
-            }
-            catch (Exception ex)
-            {
-                Logger.Warn("Error writing ProductVersion to Version", ex);
-            }
-
-
-            try
-            {
-                reg?.SetValue("WindowsUpdate", Variables.WindowsUpdate ? 1 : 0);
-                string sr = Variables.WindowsUpdate ? "1" : "0";
-                Logger.WriteLine("Wrote " + sr + "to WindowsUpdate");
-            }
-            catch (Exception ex)
-            {
-                Logger.Warn("Error writing to WindowsUpdate", ex);
-            }
-
-            try
-            {
-                // mane fuck this shit
+                SafeWriteReg(reg, "Language", CultureInfo.CurrentUICulture.Name, false);
+                SafeWriteReg(reg, "Version", Assembly.GetEntryAssembly()?.GetName().Version, false);
+                SafeWriteReg(reg, "WindowsUpdate", Variables.WindowsUpdate ? 1 : 0, false);
                 using var ubrReg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false);
-                reg.SetValue("OSVersion", OSVersion.Version.Major + "." + OSVersion.Version.Minor + "." + OSVersion.Version.Build + "." + ubrReg.GetValue("UBR").ToString());
-                Logger.WriteLine("Wrote OSVersion");
+                string build = OSVersion.Version.Major + "." + OSVersion.Version.Minor + "." + OSVersion.Version.Build + "." + ubrReg.GetValue("UBR").ToString();
+                SafeWriteReg(reg, "OSVersion", build, false);
             }
-            catch (Exception ex)
+            catch
             {
-                Logger.Warn("Error writing OSVersion", ex);
+                return false;
             }
             return true;
         }
@@ -263,120 +215,71 @@ namespace Rectify11Installer.Core
         /// <param name="type">The type of the file to be patched.</param>
         private static bool Patch(string file, PatchesPatch patch, PatchType type)
         {
-            if (File.Exists(file))
+            if (!File.Exists(file)) return false;
+            string name;
+            string backupfolder;
+            string tempfolder;
+            if (type == PatchType.Troubleshooter)
             {
-                string name;
-                string backupfolder;
-                string tempfolder;
-                if (type == PatchType.Troubleshooter)
-                {
-                    name = patch.Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
-                    backupfolder = Path.Combine(Variables.r11Folder, "backup", "Diag");
-                    tempfolder = Path.Combine(Variables.r11Folder, "Tmp", "Diag");
-                }
-                else if (type == PatchType.x86)
-                {
-                    var ext = Path.GetExtension(patch.Mui);
-                    name = Path.GetFileNameWithoutExtension(patch.Mui) + "86" + ext;
-                    backupfolder = Path.Combine(Variables.r11Folder, "backup");
-                    tempfolder = Path.Combine(Variables.r11Folder, "Tmp");
-                }
-                else
-                {
-                    name = patch.Mui;
-                    backupfolder = Path.Combine(Variables.r11Folder, "backup");
-                    tempfolder = Path.Combine(Variables.r11Folder, "Tmp");
-                }
-
-                if (string.IsNullOrWhiteSpace(name))
-                {
-                    return false;
-                }
-
-                if (type == PatchType.Troubleshooter)
-                {
-                    if (!Directory.Exists(backupfolder))
-                    {
-                        Directory.CreateDirectory(backupfolder);
-                    }
-                    if (!Directory.Exists(tempfolder))
-                    {
-                        Directory.CreateDirectory(tempfolder);
-                    }
-                }
-
-                //File.Copy(file, Path.Combine(backupfolder, name));
-                File.Copy(file, Path.Combine(tempfolder, name), true);
-
-                var filename = name + ".res";
-                var masks = patch.mask;
-                string filepath;
-                if (type == PatchType.Troubleshooter)
-                {
-                    filepath = Path.Combine(Variables.r11Files, "Diag");
-                }
-                else
-                {
-                    filepath = Variables.r11Files;
-                }
-
-                if (patch.mask.Contains("|"))
-                {
-                    if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
-                    {
-                        masks = masks.Replace(patch.Ignore, "");
-                    }
-                    var str = masks.Split('|');
-                    for (var i = 0; i < str.Length; i++)
-                    {
-                        if (type == PatchType.x86)
-                        {
-                            filename = Path.GetFileNameWithoutExtension(name).Remove(Path.GetFileNameWithoutExtension(name).Length - 2, 2) + Path.GetExtension(name) + ".res";
-                        }
-                        if (type != PatchType.Mui)
-                        {
-                            Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(tempfolder, name) +
-                            " -save " + Path.Combine(tempfolder, name) +
-                            " -action " + "delete" +
-                            " -mask " + str[i], AppWinStyle.Hide, true);
-                        }
-                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                        " -open " + Path.Combine(tempfolder, name) +
-                        " -save " + Path.Combine(tempfolder, name) +
-                        " -action " + "addskip" +
-                        " -resource " + Path.Combine(filepath, filename) +
-                        " -mask " + str[i], AppWinStyle.Hide, true);
-                    }
-                }
-                else
-                {
-                    if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= Int32.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= Int32.Parse(patch.MaxVersion))))
-                    {
-                        masks = masks.Replace(patch.Ignore, "");
-                    }
-                    if (type == PatchType.x86)
-                    {
-                        filename = Path.GetFileNameWithoutExtension(name).Remove(Path.GetFileNameWithoutExtension(name).Length - 2, 2) + Path.GetExtension(name) + ".res";
-                    }
-                    if (type != PatchType.Mui)
-                    {
-                        Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                             " -open " + Path.Combine(tempfolder, name) +
-                             " -save " + Path.Combine(tempfolder, name) +
-                             " -action " + "delete" +
-                             " -mask " + masks, AppWinStyle.Hide, true);
-                    }
-                    Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
-                            " -open " + Path.Combine(tempfolder, name) +
-                            " -save " + Path.Combine(tempfolder, name) +
-                            " -action " + "addskip" +
-                            " -resource " + Path.Combine(filepath, filename) +
-                            " -mask " + masks, AppWinStyle.Hide, true);
-                }
-                return true;
+                name = patch.Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
+                backupfolder = Path.Combine(Variables.r11Folder, "backup", "Diag");
+                tempfolder = Path.Combine(Variables.r11Folder, "Tmp", "Diag");
             }
-            return false;
+            else if (type == PatchType.x86)
+            {
+                var ext = Path.GetExtension(patch.Mui);
+                name = Path.GetFileNameWithoutExtension(patch.Mui) + "86" + ext;
+                backupfolder = Path.Combine(Variables.r11Folder, "backup");
+                tempfolder = Path.Combine(Variables.r11Folder, "Tmp");
+            }
+            else
+            {
+                name = patch.Mui;
+                backupfolder = Path.Combine(Variables.r11Folder, "backup");
+                tempfolder = Path.Combine(Variables.r11Folder, "Tmp");
+            }
+
+            if (string.IsNullOrWhiteSpace(name)) return false;
+
+            if (type == PatchType.Troubleshooter)
+            {
+                if (!Directory.Exists(backupfolder)) Directory.CreateDirectory(backupfolder);
+                if (!Directory.Exists(tempfolder)) Directory.CreateDirectory(tempfolder);
+            }
+
+            //File.Copy(file, Path.Combine(backupfolder, name));
+            File.Copy(file, Path.Combine(tempfolder, name), true);
+
+            var filename = name + ".res";
+            var masks = patch.mask;
+            string filepath;
+            if (type == PatchType.Troubleshooter)
+                filepath = Path.Combine(Variables.r11Files, "Diag");
+            else
+                filepath = Variables.r11Files;
+
+            if (patch.mask.Contains("|"))
+            {
+                if (!string.IsNullOrWhiteSpace(patch.Ignore) 
+                    && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= int.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= int.Parse(patch.MaxVersion))))
+                {
+                    masks = masks.Replace(patch.Ignore, "");
+                }
+                var str = masks.Split('|');
+                for (var i = 0; i < str.Length; i++)
+                {
+                    PatchCmd(type, filename, name, tempfolder, filepath, str[i]);
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(patch.Ignore) && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= int.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= int.Parse(patch.MaxVersion))))
+                {
+                    masks = masks.Replace(patch.Ignore, "");
+                }
+                PatchCmd(type, filename, name, tempfolder, filepath, masks);
+            }
+            return true;
         }
 
         /// <summary>
@@ -406,5 +309,52 @@ namespace Rectify11Installer.Core
             }
             return true;
         }
+
+        #region Internal functions
+        private static void PatchCmd(PatchType type, string filename, string name, string tempfolder, string filepath, string mask)
+        {
+            if (type == PatchType.x86)
+            {
+                filename = Path.GetFileNameWithoutExtension(name).Remove(Path.GetFileNameWithoutExtension(name).Length - 2, 2) + Path.GetExtension(name) + ".res";
+            }
+            if (type != PatchType.Mui)
+            {
+                Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+                " -open " + Path.Combine(tempfolder, name) +
+                " -save " + Path.Combine(tempfolder, name) +
+                " -action " + "delete" +
+                " -mask " + mask, AppWinStyle.Hide, true);
+            }
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "ResourceHacker.exe") +
+            " -open " + Path.Combine(tempfolder, name) +
+            " -save " + Path.Combine(tempfolder, name) +
+            " -action " + "addskip" +
+            " -resource " + Path.Combine(filepath, filename) +
+            " -mask " + mask, AppWinStyle.Hide, true);
+        }
+
+        private static bool SafeWriteReg(RegistryKey key, string name, object value, bool hardError)
+        {
+            try
+            {
+                key?.SetValue(name, value);
+                Logger.WriteLine("Wrote to " + name);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (hardError)
+                {
+                    Logger.WriteLine("Error writing to " + name, ex);
+                    throw new Exception("error");
+                }
+                else
+                {
+                    Logger.Warn("Error writing to " + name, ex);
+                    return true;
+                }
+            }
+        }
+        #endregion
     }
 }
