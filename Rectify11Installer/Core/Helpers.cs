@@ -333,6 +333,13 @@ namespace Rectify11Installer.Core
                 return false;
             }
         }
+        public static void RunAsTI(string file,string param)
+        {
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
+                    + " /EXEFilename " + '"' + file + '"'
+                    + " /CommandLine " + "\'" + param + "\'"
+                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
+        }
         #endregion
         #region Private Methods
         private static bool RebootRequired()

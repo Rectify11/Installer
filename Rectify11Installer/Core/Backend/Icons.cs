@@ -145,6 +145,30 @@ namespace Rectify11Installer.Core
             Variables.RestartRequired = true;
             return true;
         }
+
+        public static bool Uninstall()
+        {
+            Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write);
+            Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, Helper.OperationType.Write);
+            try
+            {
+                Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)
+                    ?.CreateSubKey("Rectify11", true)
+                    ?.SetValue("UninstallFiles", UninstallOptions.uninstIconsList.ToArray());
+
+                if (!Variables.Phase2Skip)
+                {
+                    Logger.WriteLine("Executed Rectify11.Phase2.exe");
+                    Helper.RunAsTI(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), "/uninstall");
+                }
+            }
+            catch { }
+
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
+            return true;
+        }
+
         /// <summary>
         /// fixes 32-bit odbc shortcut icon
         /// </summary>

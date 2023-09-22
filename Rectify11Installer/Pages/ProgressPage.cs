@@ -96,7 +96,7 @@ namespace Rectify11Installer.Pages
                     RectifyPages.ProgressPage.Start();
                     NativeMethods.SetCloseButton(frmwiz, false);
                     Uninstaller uninstaller = new();
-					await uninstaller.Uninstall(frmwiz);
+					await Task.Run(() => uninstaller.Uninstall(frmwiz));
 					if (Variables.RestartRequired)
 					{
                         NativeMethods.SetCloseButton(frmwiz, false);
