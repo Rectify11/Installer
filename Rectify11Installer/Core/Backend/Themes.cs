@@ -3,6 +3,7 @@ using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
@@ -80,74 +81,15 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("══════════════════════════════════════════════");
             return true;
         }
-
         /// <summary>
         /// installs themes
         /// </summary>
         private static bool InstallThemes()
         {
-            DirectoryInfo cursors = new(Path.Combine(Variables.r11Folder, "themes", "cursors"));
-            var curdir = cursors.GetDirectories("*", SearchOption.TopDirectoryOnly);
-            DirectoryInfo themedir = new(Path.Combine(Variables.r11Folder, "themes", "themes"));
-            var msstyleDirList = themedir.GetDirectories("*", SearchOption.TopDirectoryOnly);
-            var themefiles = themedir.GetFiles("*.theme");
+            var curdir = new DirectoryInfo(Path.Combine(Variables.r11Folder, "themes", "cursors"))
+                .GetDirectories("*", SearchOption.TopDirectoryOnly);
 
-            if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
-            {
-                try
-                {
-                    List<string> wallpapers = new List<string>
-                    {
-                        "cosmic.png",
-                        "img0.png",
-                        "img19.png",
-                        "metal.png"
-                    };
-                    var files = Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-                    for (int j = 0; j < files.Length; j++)
-                    {
-                        if (!wallpapers.Contains(Path.GetFileName(files[j])))
-                        {
-                            try
-                            {
-                                File.Delete(files[j]);
-                            }
-                            catch
-                            {
-                                // idk why it would fail to delete a fucking png
-                                if (File.Exists(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j]))))
-                                {
-                                    File.Delete(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
-                                }
-                                File.Move(files[j], Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])));
-                                MoveFileEx(Path.Combine(Path.GetTempPath(), Path.GetFileName(files[j])), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                            }
-                        }
-                    }
-                    Logger.WriteLine("Deleted old wallpapers");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error deleting old wallpapers" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
-                }
-            }
-            if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
-            {
-                Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-            }
-            try
-            {
-                var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "themes", "wallpapers"));
-                for (int j = 0; j < files.Length; j++)
-                {
-                    File.Copy(files[j], Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", Path.GetFileName(files[j])), true);
-                }
-                Logger.WriteLine("Copied wallpapers to " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLine("Error copying wallpapers. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
-            }
+            InstallThemeWallpapers();
 
             // todo: remove r11cp
             File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.Windir, "ThemeTool.exe"), true);
@@ -155,82 +97,8 @@ namespace Rectify11Installer.Core
             Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
 
-            for (var i = 0; i < curdir.Length; i++)
-            {
-                if (Directory.Exists(Path.Combine(Variables.Windir, "cursors", curdir[i].Name)))
-                {
-                    try
-                    {
-                        Directory.Delete(Path.Combine(Variables.Windir, "cursors", curdir[i].Name), true);
-                        Logger.WriteLine("Deleted existing cursor directory " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name));
-                    }
-                    catch
-                    {
-                        if (Directory.Exists(Path.Combine(Path.GetTempPath(), curdir[i].Name)))
-                        {
-                            Directory.Delete(Path.Combine(Path.GetTempPath(), curdir[i].Name), true);
-                        }
-                        Directory.Move(Path.Combine(Variables.Windir, "cursors", curdir[i].Name), Path.Combine(Path.GetTempPath(), curdir[i].Name));
-                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), curdir[i].Name));
-                        for (int j = 0; j < files.Length; j++)
-                        {
-                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                        Logger.WriteLine("Moved " + Path.Combine(Variables.Windir, "cursors", curdir[i].Name) + " to " + Path.Combine(Path.GetTempPath(), curdir[i].Name));
-                    }
-                }
-                try
-                {
-                    Directory.Move(curdir[i].FullName, Path.Combine(Variables.Windir, "cursors", curdir[i].Name));
-                    Logger.WriteLine("Copied " + curdir[i].Name + " cursors");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
-                    return false;
-                }
-            }
-            for (var i = 0; i < themefiles.Length; i++)
-            {
-                // why would it fail
-                File.Copy(themefiles[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i].Name), true);
-            }
-            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun1.exe"), Properties.Resources.AdvancedRun);
-            for (var i = 0; i < msstyleDirList.Length; i++)
-            {
-                if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name)))
-                {
-                    try
-                    {
-                        string name = Path.GetRandomFileName();
-                        Directory.Move(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name), Path.Combine(Path.GetTempPath(), name));
-                        Directory.Delete(Path.Combine(Path.GetTempPath(), name, "Shell"), true);
-                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                        for (int j = 0; j < files.Length; j++)
-                        {
-                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        Logger.WriteLine(Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + " exists. Deleting it.");
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name) + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
-                        return false;
-                    }
-                }
-                try
-                {
-                    Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name));
-                    Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
-                    return false;
-                }
-            }
-            File.Delete(Path.Combine(Variables.r11Folder, "aRun1.exe"));
+            InstallCursors(curdir);
+            InstallMsstyles();
             return true;
         }
 
@@ -301,5 +169,139 @@ namespace Rectify11Installer.Core
 
         }
 
+        #region Internal
+        private static bool InstallThemeWallpapers()
+        {
+            UninstallThemeWallpapers();
+            if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
+            {
+                Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+            }
+            try
+            {
+                var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "themes", "wallpapers"));
+                for (int j = 0; j < files.Length; j++)
+                {
+                    File.Copy(files[j], Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", Path.GetFileName(files[j])), true);
+                }
+                Logger.WriteLine("Copied wallpapers to " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("Error copying wallpapers. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+            }
+            return true;
+        }
+        private static bool UninstallThemeWallpapers()
+        {
+            if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
+            {
+                try
+                {
+                    List<string> wallpapers = new()
+                    {
+                        "cosmic.png",
+                        "img0.png",
+                        "img19.png",
+                        "metal.png"
+                    };
+                    var files = Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                    for (int j = 0; j < files.Length; j++)
+                    {
+                        if (!wallpapers.Contains(Path.GetFileName(files[j])))
+                            Helper.SafeFileDeletion(files[j]);
+                    }
+                    Logger.WriteLine("Deleted old wallpapers");
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLine("Error deleting old wallpapers" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                }
+            }
+            return true;
+        }
+        private static bool InstallCursors(DirectoryInfo[] curdir)
+        {
+            UninstallCursors();
+            for (var i = 0; i < curdir.Length; i++)
+            {
+                try
+                {
+                    Directory.Move(curdir[i].FullName, Path.Combine(Variables.Windir, "cursors", curdir[i].Name));
+                    Logger.WriteLine("Copied " + curdir[i].Name + " cursors");
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLine("Error copying " + curdir[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                    return false;
+                }
+            }
+            return true;
+        }
+        private static bool UninstallCursors()
+        {
+            var dirs = Directory.GetDirectories(Path.Combine(Variables.Windir, "cursors"), "WindowsRectified*");
+            for (int i = 0; i < dirs.Length; i++)
+            {
+                try
+                {
+                    Directory.Delete(dirs[i], true);
+                    Logger.WriteLine("Deleted existing cursor directory " + dirs[i]);
+                }
+                catch
+                {
+                    Helper.SafeDirectoryDeletion(dirs[i], false);
+                }
+            }
+            return true;
+        }
+        private static bool UninstallMsstyles()
+        {
+            if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
+            {
+                try
+                {
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified"), false);
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified") + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        private static bool InstallMsstyles()
+        {
+            UninstallMsstyles();
+            DirectoryInfo themedir = new(Path.Combine(Variables.r11Folder, "themes", "themes"));
+            var msstyleDirList = themedir.GetDirectories("*", SearchOption.TopDirectoryOnly);
+            var themefiles = themedir.GetFiles("*.theme");
+
+            for (var i = 0; i < themefiles.Length; i++)
+            {
+                // why would it fail
+                File.Copy(themefiles[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i].Name), true);
+            }
+
+            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun1.exe"), Properties.Resources.AdvancedRun);
+            for (var i = 0; i < msstyleDirList.Length; i++)
+            {
+                try
+                {
+                    Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name));
+                    Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLine("Error copying " + msstyleDirList[i].Name + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                    return false;
+                }
+            }
+            File.Delete(Path.Combine(Variables.r11Folder, "aRun1.exe"));
+            return true;
+        }
+        #endregion
     }
 }
