@@ -3,8 +3,6 @@ using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
 {
@@ -116,14 +114,7 @@ namespace Rectify11Installer.Core
                 }
                 catch
                 {
-                    string name = Path.GetRandomFileName();
-                    Directory.Move(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), Path.Combine(Path.GetTempPath(), name));
-                    var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                    for (int j = 0; j < files.Length; j++)
-                    {
-                        MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                    MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), false);
                 }
             }
             Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
@@ -245,12 +236,12 @@ namespace Rectify11Installer.Core
             {
                 try
                 {
-                    Directory.Delete(dirs[i], true);
+                    Helper.SafeDirectoryDeletion(dirs[i], false);
                     Logger.WriteLine("Deleted existing cursor directory " + dirs[i]);
                 }
                 catch
                 {
-                    Helper.SafeDirectoryDeletion(dirs[i], false);
+                    return false;
                 }
             }
             return true;

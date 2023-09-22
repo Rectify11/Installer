@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -14,102 +15,21 @@ namespace Rectify11Installer.Core
         {
             Logger.WriteLine("Installing Extras");
             Logger.WriteLine("─────────────────");
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
-            {
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true);
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true);
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AcrylicMenusLoader.exe", AppWinStyle.Hide, true);
-                try
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras"), true);
-                    Logger.WriteLine(Path.Combine(Variables.r11Folder, "extras") + " exists. Deleting it.");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "extras"), ex);
-                }
-            }
-            Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "extras"));
 
             if (InstallOptions.InstallWallpaper)
             {
                 frm.InstallerProgress = "Installing extras: Wallpapers";
-                string path = Path.Combine(Variables.r11Folder, "extras", "wallpapers");
-                if (Directory.Exists(path))
-                {
-                    Directory.Delete(path, true);
-                }
 
-                // extract the 7z
-                Helper.SvExtract("extras.7z", "extras", "wallpapers");
-
-                if (!InstallWallpapers())
-                {
-                    Logger.WriteLine("InstallWallpapers() failed.");
-                    return false;
-                }
-                Logger.WriteLine("InstallWallpapers() succeeded.");
-                Directory.Delete(path, true);
+                if (InstallWallpapers())
+                    Logger.WriteLine("InstallWallpapers() succeeded.");
             }
             if (InstallOptions.InstallASDF)
             {
                 frm.InstallerProgress = "Installing extras: AccentColorizer";
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
-                {
-                    Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizer.exe", AppWinStyle.Hide, true);
-                    Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AccentColorizerEleven.exe", AppWinStyle.Hide, true);
-                    Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn asdf", AppWinStyle.Hide);
 
-                    string path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf.lnk");
-                    if (File.Exists(path))
-                    {
-                        try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
-                    }
+                if (Installasdf())
+                    Logger.WriteLine("Installasdf() succeeded.");
 
-                    path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "asdf11.lnk");
-                    if (File.Exists(path))
-                    {
-                        try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
-                    }
-
-                    path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer.lnk");
-                    if (File.Exists(path))
-                    {
-                        try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
-                    }
-
-                    path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer11.lnk");
-                    if (File.Exists(path))
-                    {
-                        try { File.Delete(path); }
-                        catch { File.Move(path, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName())); }
-                    }
-
-                    try
-                    {
-                        Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), true);
-                    }
-                    catch
-                    {
-                        string name = Path.GetRandomFileName();
-                        Directory.Move(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), Path.Combine(Path.GetTempPath(), name));
-                        var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                        for (int j = 0; j < files.Length; j++)
-                        {
-                            MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                        MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                }
-
-                // extract the 7z
-                Helper.SvExtract("extras.7z", "extras", "AccentColorizer");
-
-                Installasdf();
-                Logger.WriteLine("Installasdf() succeeded.");
                 if (!Variables.RestartRequired)
                 {
                     Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe"), AppWinStyle.Hide);
@@ -119,13 +39,6 @@ namespace Rectify11Installer.Core
             if (InstallOptions.InstallGadgets)
             {
                 frm.InstallerProgress = "Installing extras: Gadgets";
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "GadgetPack")))
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
-                }
-
-                // extract the 7z
-                Helper.SvExtract("extras.7z", "extras", "GadgetPack");
 
                 InstallGadgets();
                 Logger.WriteLine("InstallGadgets() succeeded.");
@@ -135,12 +48,9 @@ namespace Rectify11Installer.Core
             {
                 frm.InstallerProgress = "Installing extras: Enhanced context menu";
 
-                // extract the 7z
-                Helper.SvExtract("extras.7z", "extras", "Nilesoft");
-                Helper.SvExtract("extras.7z", "extras", "NilesoftArm64");
+                if (InstallShell())
+                    Logger.WriteLine("InstallShell() succeeded.");
 
-                InstallShell();
-                Logger.WriteLine("InstallShell() succeeded.");
                 try
                 {
                     Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), true);
@@ -155,16 +65,9 @@ namespace Rectify11Installer.Core
             if (InstallOptions.userAvatars)
             {
                 frm.InstallerProgress = "Installing extras: User avatars";
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "userAV")))
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
-                }
-
-                // extract the 7z
-                Helper.SvExtract("extras.7z", "extras", "userAV");
-
-                InstallUserAvatars();
-                Logger.WriteLine("InstallUserAvatars() succeeded.");
+                
+                if (InstallUserAvatars())
+                    Logger.WriteLine("InstallUserAvatars() succeeded.");
                 Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
             }
             Logger.WriteLine("InstallExtras() succeeded.");
@@ -177,45 +80,74 @@ namespace Rectify11Installer.Core
         /// </summary>
         private static bool InstallWallpapers()
         {
-            DirectoryInfo walldir = new(Path.Combine(Variables.r11Folder, "extras", "wallpapers"));
-            if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
+            try
             {
-                try
+                UninstallWallpapers();
+
+                string path = Path.Combine(Variables.r11Folder, "extras", "wallpapers");
+                if (Directory.Exists(path))
+                    Directory.Delete(path, true);
+
+                // extract the 7z
+                Helper.SvExtract("extras.7z", "extras", "wallpapers");
+
+                DirectoryInfo walldir = new(Path.Combine(Variables.r11Folder, "extras", "wallpapers"));
+                if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
                 {
-                    Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-                    Logger.WriteLine("Created " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                    try
+                    {
+                        Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                        Logger.WriteLine("Created " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
+                        return false;
+                    }
                 }
-                catch (Exception ex)
+                var files = walldir.GetFiles("*.*");
+                for (var i = 0; i < files.Length; i++)
                 {
-                    Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
-                    return false;
+                    File.Copy(files[i].FullName, Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", files[i].Name), true);
                 }
+                Directory.Delete(path, true);
+                return true;
             }
-            var files = walldir.GetFiles("*.*");
-            for (var i = 0; i < files.Length; i++)
+            catch (Exception ex)
             {
-                File.Copy(files[i].FullName, Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", files[i].Name), true);
+                Logger.WriteLine("InstallWallpapers() failed", ex);
+                return false;
             }
-            return true;
         }
 
         /// <summary>
         /// installs asdf
         /// </summary>
-        private static void Installasdf()
+        private static bool Installasdf()
         {
-            //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn asdf /xml " + Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "asdf.xml"), AppWinStyle.Hide);
-            using ShellLink shortcut = new();
-            shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe");
-            shortcut.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
-            shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-            shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer.lnk"));
+            try
+            {
+                UninstallAsdf();
+                Helper.SvExtract("extras.7z", "extras", "AccentColorizer");
+                using ShellLink shortcut = new();
+                shortcut.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe");
+                shortcut.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
+                shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+                shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer.lnk"));
 
-            using ShellLink asdf11 = new();
-            asdf11.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-            asdf11.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
-            asdf11.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe");
-            asdf11.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer11.lnk"));
+                using ShellLink asdf11 = new();
+                asdf11.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+                asdf11.WorkingDirectory = @"%windir%\Rectify11\extras\AccentColorizer";
+                asdf11.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe");
+                asdf11.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer11.lnk"));
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("Installasdf() failed", ex);
+                return false;
+            }
         }
 
         /// <summary>
@@ -223,27 +155,30 @@ namespace Rectify11Installer.Core
         /// </summary>
         private static void InstallGadgets()
         {
-            // what????
-            //Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn gadgets /xml " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "gadget.xml"), AppWinStyle.Hide);
-            if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
+            try
             {
-                ProcessStartInfo uns = new()
+                UninstallGadgets();
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "GadgetPack")))
+                {
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
+                }
+
+                // extract the 7z
+                Helper.SvExtract("extras.7z", "extras", "GadgetPack");
+
+                ProcessStartInfo gad = new()
                 {
                     FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
                     WindowStyle = ProcessWindowStyle.Normal,
-                    Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33} /qn"
+                    Arguments = "/i " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "Install.msi") + " /quiet /passive"
                 };
-                var gaduns = Process.Start(uns);
-                gaduns.WaitForExit();
+                var vcproc = Process.Start(gad);
+                vcproc.WaitForExit();
             }
-            ProcessStartInfo gad = new()
+            catch (Exception ex)
             {
-                FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
-                WindowStyle = ProcessWindowStyle.Normal,
-                Arguments = "/i " + Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "Install.msi") + " /quiet /passive"
-            };
-            var vcproc = Process.Start(gad);
-            vcproc.WaitForExit();
+                Logger.WriteLine("InstallGadgets() failed", ex);
+            }
         }
 
         /// <summary>
@@ -251,125 +186,225 @@ namespace Rectify11Installer.Core
         /// </summary>
         private static bool InstallShell()
         {
-            string s = "";
-            if (IsArm64()) s = "Arm64";
-            if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+            try
             {
-                if (File.Exists(Path.Combine(Variables.Windir, "nilesoft", "shell.exe")))
-                {
-                    ProcessStartInfo shlinfo3 = new()
-                    {
-                        FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        Arguments = " -u"
-                    };
-                    try
-                    {
-                        var shlInstproc2 = Process.Start(shlinfo3);
-                        shlInstproc2.WaitForExit();
-                    }
-                    catch { }
-                }
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im AcrylicMenusLoader.exe", AppWinStyle.Hide, true);
-                if (File.Exists(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk")))
-                {
-                    File.Delete(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
-                }
+                UninstallShell();
+                // extract the 7z
+                Helper.SvExtract("extras.7z", "extras", "Nilesoft");
+                Helper.SvExtract("extras.7z", "extras", "NilesoftArm64");
 
-                // gonna give it a random folder name
-                string name = Path.GetRandomFileName();
-                Directory.Move(Path.Combine(Variables.Windir, "nilesoft"), Path.Combine(Path.GetTempPath(), name));
-                var files = Directory.GetFiles(Path.Combine(Path.GetTempPath(), name));
-                for (int j = 0; j < files.Length; j++)
+                string s = "";
+                if (IsArm64()) s = "Arm64";
+                Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft" + s), Path.Combine(Variables.Windir, "nilesoft"));
+                ProcessStartInfo shlinfo2 = new()
                 {
-                    try
-                    {
-                        File.Delete(files[j]);
-                    }
-                    catch
-                    {
-                        MoveFileEx(files[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
-                }
-                var dir = Directory.GetDirectories(Path.Combine(Path.GetTempPath(), name));
-                for (int j = 0; j < dir.Length; j++)
+                    FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    Arguments = " -r"
+                };
+                int num = InstallOptions.CMenuStyle;
+                string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
+                File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
+                if (num == 1 || num == 2)
                 {
-                    var fil = Directory.GetFiles(dir[j]);
-                    for (int k = 0; k < fil.Length; k++)
-                    {
-                        try
-                        {
-                            File.Delete(fil[k]);
-                        }
-                        catch
-                        {
-                            MoveFileEx(fil[k], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                    }
-                    try
-                    {
-                        Directory.Delete(dir[j], true);
-                    }
-                    catch
-                    {
-                        MoveFileEx(dir[j], null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    }
+                    var shlInstproc2 = Process.Start(shlinfo2);
+                    shlInstproc2.WaitForExit();
                 }
-                MoveFileEx(Path.Combine(Path.GetTempPath(), name), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                if (num == 3 || num == 4)
+                {
+                    Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " add \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32\" /f /ve");
+                }
+                if (num == 4)
+                {
+                    using ShellLink shortcut = new();
+                    shortcut.Target = Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
+                    shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
+                    shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
+                    shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
+                }
+                if (!Variables.RestartRequired)
+                {
+                    Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorer.exe", AppWinStyle.Hide, true);
+                    Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus);
+                    Thread.Sleep(3000);
+                    if (num == 4) Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
+                }
+                return true;
             }
-            Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft" + s), Path.Combine(Variables.Windir, "nilesoft"));
-            ProcessStartInfo shlinfo2 = new()
+            catch (Exception ex)
             {
-                FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
-                WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = " -r"
-            };
-            int num = InstallOptions.CMenuStyle;
-            string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
-            File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
-            if (num == 1 || num == 2)
-            {
-                var shlInstproc2 = Process.Start(shlinfo2);
-                shlInstproc2.WaitForExit();
+                Logger.WriteLine("InstallShell() failed", ex);
+                return false;
             }
-            if (num == 3 || num == 4)
-            {
-                Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " add \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32\" /f /ve");
-            }
-            if (num == 4)
-            {
-                using ShellLink shortcut = new();
-                shortcut.Target = Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
-                shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
-                shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-                shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
-            }
-            if (!Variables.RestartRequired)
-            {
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorer.exe", AppWinStyle.Hide, true);
-                Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus);
-                Thread.Sleep(3000);
-                if (num == 4) Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
-            }
-            return true;
         }
 
         /// <summary>
         /// installs User Avatars
         /// </summary>
-        private static void InstallUserAvatars()
+        private static bool InstallUserAvatars()
         {
-            if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+            try
             {
-                Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), true);
-            }
-            Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
+                UninstallUserAv();
 
-            DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
-            for (int i = 0; i < info.GetFiles().Length; i++)
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "userAV")))
+                {
+                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
+                }
+
+                // extract the 7z
+                Helper.SvExtract("extras.7z", "extras", "userAV");
+
+                Directory.CreateDirectory(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"));
+
+                DirectoryInfo info = new DirectoryInfo(Path.Combine(Variables.r11Folder, "extras", "UserAV"));
+                for (int i = 0; i < info.GetFiles().Length; i++)
+                {
+                    File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
+                              Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
+                }
+                return true;
+            }
+            catch (Exception ex)
             {
-                File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
-                          Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
+                Logger.WriteLine("InstallUserAvatars() failed", ex);
+                return false;
+            }
+        }
+
+
+        private static bool UninstallWallpapers()
+        {
+            try
+            {
+                if (Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
+                {
+                    List<string> wallpapers = new List<string>
+                {
+                    "cosmic.png",
+                    "img0.png",
+                    "img19.png",
+                    "metal.png"
+                };
+                    var files = Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                    for (int j = 0; j < files.Length; j++)
+                    {
+                        if (!wallpapers.Contains(Path.GetFileName(files[j])))
+                        {
+                            Helper.SafeFileDeletion(files[j]);
+                        }
+                    }
+                    if (Directory.GetFiles(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")).Length == 0)
+                    {
+                        Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), false);
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("UninstallWallpapers() failed", ex);
+                return false;
+            }
+        }
+        private static bool UninstallAsdf()
+        {
+            if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
+            {
+                Helper.KillProcess("AccentColorizer.exe");
+                Helper.KillProcess("AccentColorizerEleven.exe");
+                Helper.DeleteTask("asdf");
+
+                string[] fils = { "asdf.lnk", "asdf11.lnk", "Accentcolorizer.lnk", "Accentcolorizer11.lnk" };
+                for (int i = 0; i < fils.Length; i++)
+                {
+                    string path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", fils[i]);
+                    Helper.SafeFileDeletion(path);
+                }
+                try
+                {
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), false);
+                }
+                catch { return false; }
+                return true;
+            }
+            return true;
+        }
+        private static bool UninstallGadgets()
+        {
+            try
+            {
+                if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
+                {
+                    ProcessStartInfo uns = new()
+                    {
+                        FileName = Path.Combine(Variables.sys32Folder, "msiexec.exe"),
+                        WindowStyle = ProcessWindowStyle.Normal,
+                        Arguments = "/X{A84C39EA-54FE-4CED-B464-97DA9201EB33} /qn"
+                    };
+                    var gaduns = Process.Start(uns);
+                    gaduns.WaitForExit();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("UninstallGadgets() failed", ex);
+                return false;
+            }
+        }
+        private static bool UninstallShell()
+        {
+            try
+            {
+                if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+                {
+                    if (File.Exists(Path.Combine(Variables.Windir, "nilesoft", "shell.exe")))
+                    {
+                        ProcessStartInfo shlinfo3 = new()
+                        {
+                            FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                            Arguments = " -u"
+                        };
+                        try
+                        {
+                            var shlInstproc2 = Process.Start(shlinfo3);
+                            shlInstproc2.WaitForExit();
+                        }
+                        catch { }
+                    }
+                    Helper.KillProcess("AcrylicMenusLoader.exe");
+
+                    string path = Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk");
+                    if (!Helper.SafeFileDeletion(path))
+                        return false;
+
+                    if (!Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "nilesoft"), false))
+                        return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("UninstallShell() failed", ex);
+                return false;
+            }
+        }
+        private static bool UninstallUserAv()
+        {
+            try
+            {
+                if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+                {
+                    Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), true);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("UninstallUserAv() failed", ex);
+                return false;
             }
         }
     }
