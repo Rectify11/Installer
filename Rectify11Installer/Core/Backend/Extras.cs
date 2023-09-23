@@ -106,6 +106,7 @@ namespace Rectify11Installer.Core
             }
             return true;
         }
+
         /// <summary>
         /// installs wallpapers
         /// </summary>

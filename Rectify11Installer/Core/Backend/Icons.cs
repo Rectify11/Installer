@@ -26,18 +26,7 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("────────────────");
             // extract files, delete if folder exists
             frm.InstallerProgress = "Extracting files...";
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "files")))
-            {
-                try
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "files"), true);
-                    Logger.WriteLine(Path.Combine(Variables.r11Folder, "files") + " exists. Deleting it.");
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error deleting " + Path.Combine(Variables.r11Folder, "files"), ex);
-                }
-            }
+            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "files"), false);
             try
             {
                 File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
