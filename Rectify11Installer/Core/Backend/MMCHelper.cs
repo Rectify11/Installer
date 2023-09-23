@@ -24,7 +24,9 @@ namespace Rectify11Installer.Core
 			List<string> r11Msc = new(Directory.GetFiles(Path.Combine(Variables.r11Files, "mmc"), "*.msc", SearchOption.TopDirectoryOnly));
 			CopyFiles(langMsc, usaMsc, r11Msc);
 
+			// exit if current language is en-us
 			if (CultureInfo.CurrentUICulture.Name == "en-US") return true;
+
 			List<string> r11LangMsc = new(Directory.GetFiles(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
 			List<string> sysMsc = new(Directory.GetFiles(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), "*.msc", SearchOption.TopDirectoryOnly));
 			for (var i = 0; i < r11LangMsc.Count; i++)
@@ -37,7 +39,8 @@ namespace Rectify11Installer.Core
 					}
 				}
 			}
-			Directory.Delete(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), true);
+
+			Helper.SafeDirectoryDeletion(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), false);
 			var msc = Path.Combine(tempDir, "msc");
 			if (CultureInfo.CurrentUICulture.Name != "en-US")
 			{
@@ -76,32 +79,25 @@ namespace Rectify11Installer.Core
 		}
 		private static void CopyFiles(IReadOnlyList<string> langMsc, IList<string> usaMsc, IReadOnlyList<string> r11Msc)
 		{
-			if (Directory.Exists(Path.Combine(tempDir, "msc")))
-			{
-				Directory.Delete(Path.Combine(tempDir, "msc"));
-			}
+			string path = Path.Combine(tempDir, "msc");
+			Helper.SafeDirectoryDeletion(path, false);
+
 			Directory.CreateDirectory(Path.Combine(tempDir, "msc"));
 			if (CultureInfo.CurrentUICulture.Name != "en-US")
 			{
-				if (Directory.Exists(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name)))
-				{
-					Directory.Delete(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name));
-				}
-				Directory.CreateDirectory(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name));
+				path = Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name);
+				Helper.SafeDirectoryDeletion(path, false);
+				Directory.CreateDirectory(path);
 
-				if (Directory.Exists(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp")))
-				{
-					Directory.Delete(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"));
-				}
-				Directory.CreateDirectory(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"));
+				path = Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp");
+				Helper.SafeDirectoryDeletion(path, false);
+				Directory.CreateDirectory(path);
 			}
 			else
 			{
-				if (Directory.Exists(Path.Combine(tempDir, "msc", "en-US")))
-				{
-					Directory.Delete(Path.Combine(tempDir, "msc", "en-US"));
-				}
-				Directory.CreateDirectory(Path.Combine(tempDir, "msc", "en-US"));
+				path = Path.Combine(tempDir, "msc", "en-US");
+				Helper.SafeDirectoryDeletion(path, false);
+				Directory.CreateDirectory(path);
 			}
 			if (CultureInfo.CurrentUICulture.Name != "en-US")
 			{
@@ -122,7 +118,6 @@ namespace Rectify11Installer.Core
 				for (var i = 0; i < langMsc.Count; i++)
 				{
 					if (Path.GetFileName(langMsc[i]) != Path.GetFileName(r11Msc[j])) continue;
-					Debug.WriteLine(langMsc[i]);
 					if (File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name,
 							Path.GetFileName(r11Msc[j])))) continue;
 					if (Path.GetFileName(langMsc[i]) == "lusrmgr.msc"
