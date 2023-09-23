@@ -74,7 +74,38 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("══════════════════════════════════════════════");
             return true;
         }
-
+        public static bool Uninstall()
+        {
+            for (int i = 0; i < UninstallOptions.uninstExtrasList.Count; i++)
+            {
+                if (UninstallOptions.uninstExtrasList[i] == "wallpapersNode")
+                {
+                    UninstallWallpapers();
+                    Logger.WriteLine("Uninstalled wallpapers");
+                }
+                if (UninstallOptions.uninstExtrasList[i] == "asdfNode")
+                {
+                    UninstallAsdf();
+                    Logger.WriteLine("Uninstalled asdf");
+                }
+                if (UninstallOptions.uninstExtrasList[i] == "useravNode")
+                {
+                    UninstallUserAv();
+                    Logger.WriteLine("Uninstalled user avatars");
+                }
+                if (UninstallOptions.uninstExtrasList[i] == "shellNode")
+                {
+                    UninstallShell();
+                    Logger.WriteLine("Uninstalled shell");
+                }
+                if (UninstallOptions.uninstExtrasList[i] == "gadgetsNode")
+                {
+                    UninstallGadgets();
+                    Logger.WriteLine("Uninstalled gadgets");
+                }
+            }
+            return true;
+        }
         /// <summary>
         /// installs wallpapers
         /// </summary>
@@ -326,6 +357,13 @@ namespace Rectify11Installer.Core
                     Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer"), false);
                 }
                 catch { return false; }
+
+                string epath = Path.Combine(Variables.r11Folder, "extras");
+                if (Directory.GetDirectories(epath).Length == 0
+                    && Directory.GetFiles(epath).Length == 0)
+                {
+                    Helper.SafeDirectoryDeletion(epath, false);
+                }
                 return true;
             }
             return true;
@@ -380,8 +418,18 @@ namespace Rectify11Installer.Core
                     if (!Helper.SafeFileDeletion(path))
                         return false;
 
+                    // restore win11 menus
+                    Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " delete \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\" /f");
+
                     if (!Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "nilesoft"), false))
                         return false;
+
+                    if (!Variables.RestartRequired && Variables.IsUninstall)
+                    {
+                        Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorer.exe", AppWinStyle.Hide, true);
+                        Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus);
+                        Thread.Sleep(3000);
+                    }
                 }
                 return true;
             }
@@ -395,10 +443,7 @@ namespace Rectify11Installer.Core
         {
             try
             {
-                if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
-                {
-                    Directory.Delete(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), true);
-                }
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), false);
                 return true;
             }
             catch (Exception ex)

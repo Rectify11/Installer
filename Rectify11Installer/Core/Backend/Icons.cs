@@ -133,10 +133,7 @@ namespace Rectify11Installer.Core
                 }
             }
             // phase 2
-            Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
-                + " /EXEFilename " + '"' + Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe") + '"'
-                + " /CommandLine " + "\'" + "/install" + "\'"
-                + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
+            Helper.RunAsTI(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), "/install");
 
             // reg files for various file extensions
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide);
@@ -162,7 +159,10 @@ namespace Rectify11Installer.Core
                     Helper.RunAsTI(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), "/uninstall");
                 }
             }
-            catch { }
+            catch
+            {
+                return false;
+            }
 
             Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
             Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));

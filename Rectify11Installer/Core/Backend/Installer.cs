@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using Rectify11Installer.Win32;
 using System.IO;
-using System.Threading.Tasks;
 using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
@@ -9,7 +8,7 @@ namespace Rectify11Installer.Core
     public class Installer
     {
         #region Public Methods
-        public async Task<bool> Install(FrmWizard frm)
+        public bool Install(FrmWizard frm)
         {
             frm.InstallerProgress = "Preparing Installation";
             Logger.WriteLine("Preparing Installation");
@@ -110,7 +109,7 @@ namespace Rectify11Installer.Core
             {
                 // create restore point
                 frm.InstallerProgress = "End creating a restore point";
-                await Task.Run(() => CreateSystemRestorePoint(true));
+                CreateSystemRestorePoint(true);
             }
             catch
             {
@@ -121,7 +120,7 @@ namespace Rectify11Installer.Core
             frm.InstallerProgress = "Cleaning up...";
             Logger.WriteLine("Cleaning up");
             Logger.WriteLine("───────────");
-            if (!await Task.Run(() => Common.Cleanup()))
+            if (!Common.Cleanup())
             {
                 Logger.WriteLine("Cleanup() failed");
                 return false;
