@@ -223,8 +223,8 @@ namespace Rectify11Installer.Pages
 		{
 			if (Variables.IsUninstall)
             {
-                progressText.Text = ":(";
-                progressInfo.Text = "Rectify11 gone";
+                progressText.Text = "Thanks for using Rectify11";
+                progressInfo.Text = "Uninstallation will be done in a few moments.";
 
             }
             else

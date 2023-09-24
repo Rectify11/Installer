@@ -215,8 +215,8 @@ namespace Rectify11Installer.Core
 
         public static void DeleteTask(string name)
         {
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn " + name, AppWinStyle.Hide);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn " + name, AppWinStyle.Hide);
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn " + name, AppWinStyle.Hide, true);
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn " + name, AppWinStyle.Hide, true);
         }
 
         public enum OperationType

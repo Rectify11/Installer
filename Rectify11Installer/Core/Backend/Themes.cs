@@ -139,7 +139,7 @@ namespace Rectify11Installer.Core
             File.Copy(Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"), Path.Combine(Variables.Windir, "ThemeTool.exe"), true);
             Logger.WriteLine("Copied Themetool.");
             Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide);
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Folder, "themes", "Themes.reg"), AppWinStyle.Hide, true);
 
             InstallCursors();
             InstallMsstyles();
@@ -152,17 +152,7 @@ namespace Rectify11Installer.Core
         /// </summary>
         private static void Installr11cpl()
         {
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter")))
-            {
-                try
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), true);
-                }
-                catch
-                {
-                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), false);
-                }
-            }
+            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), false);
             Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
             File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
             using ShellLink shortcut = new();
@@ -183,25 +173,26 @@ namespace Rectify11Installer.Core
         {
             UninstallMfe();
             Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone"));
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide);
+            Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide, true);
 
             string path = Path.Combine(Environment.GetEnvironmentVariable("localappdata"), "Mica For Everyone");
-            if (Directory.Exists(path))
-            {
-                Helper.SafeDirectoryDeletion(path, false);
-            }
+            Helper.SafeDirectoryDeletion(path, false);
             string t = InstallOptions.TabbedNotMica ? "T" : "";
-            string val;
+            string val = "";
             if (InstallOptions.ThemeLight) val = t + "lightrectified.conf";
             else if (InstallOptions.ThemeDark) val = t + "darkrectified.conf";
-            else
+            else if (InstallOptions.ThemeBlack)
             {
                 val = t + "black.conf";
                 string amdorarm = NativeMethods.IsArm64() ? "ARM" : "AMD";
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide);
+                Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide, true);
             }
-            File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", val),
-                Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+
+            if (!string.IsNullOrWhiteSpace(val))
+            {
+                File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", val),
+                    Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
+            }
         }
 
         #region Internal
@@ -373,13 +364,10 @@ namespace Rectify11Installer.Core
                 Helper.KillProcess("explorerframe.exe");
                 Helper.DeleteTask("mfe");
                 Helper.DeleteTask("micafix");
-                if (Directory.Exists(Path.Combine(Variables.Windir, "MicaForEveryone")))
+                if (!Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "MicaForEveryone"), false))
                 {
-                    if (!Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "MicaForEveryone"), false))
-                    {
-                        Logger.WriteLine("Deleting " + Path.Combine(Variables.Windir, "MicaForEveryone") + " failed. ");
-                        return false;
-                    }
+                    Logger.WriteLine("Deleting " + Path.Combine(Variables.Windir, "MicaForEveryone") + " failed. ");
+                    return false;
                 }
                 return true;
             }
