@@ -1,6 +1,6 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Xml;
@@ -17,39 +17,49 @@ namespace Rectify11Installer.Core
 		#region Public Methods
 		public static bool PatchAll()
 		{
-			var langFolder = Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name);
-			var usaFolder = Path.Combine(Variables.sys32Folder, "en-US");
-			List<string> langMsc = new(Directory.GetFiles(langFolder, "*.msc", SearchOption.TopDirectoryOnly));
-			List<string> usaMsc = new(Directory.GetFiles(usaFolder, "*.msc", SearchOption.TopDirectoryOnly));
-			List<string> r11Msc = new(Directory.GetFiles(Path.Combine(Variables.r11Files, "mmc"), "*.msc", SearchOption.TopDirectoryOnly));
-			CopyFiles(langMsc, usaMsc, r11Msc);
-
-			// exit if current language is en-us
-			if (CultureInfo.CurrentUICulture.Name == "en-US") return true;
-
-			List<string> r11LangMsc = new(Directory.GetFiles(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
-			List<string> sysMsc = new(Directory.GetFiles(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), "*.msc", SearchOption.TopDirectoryOnly));
-			for (var i = 0; i < r11LangMsc.Count; i++)
+			try
 			{
-				for (var j = 0; j < sysMsc.Count; j++)
+				var langFolder = Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name);
+				var usaFolder = Path.Combine(Variables.sys32Folder, "en-US");
+				List<string> langMsc = new(Directory.GetFiles(langFolder, "*.msc", SearchOption.TopDirectoryOnly));
+				List<string> usaMsc = new(Directory.GetFiles(usaFolder, "*.msc", SearchOption.TopDirectoryOnly));
+				List<string> r11Msc = new(Directory.GetFiles(Path.Combine(Variables.r11Files, "mmc"), "*.msc", SearchOption.TopDirectoryOnly));
+				CopyFiles(langMsc, usaMsc, r11Msc);
+
+				// exit if current language is en-us
+				if (CultureInfo.CurrentUICulture.Name == "en-US") return true;
+
+				List<string> r11LangMsc = new(Directory.GetFiles(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
+				List<string> sysMsc = new(Directory.GetFiles(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), "*.msc", SearchOption.TopDirectoryOnly));
+				for (var i = 0; i < r11LangMsc.Count; i++)
 				{
-					if (Path.GetFileName(r11LangMsc[i]) == Path.GetFileName(sysMsc[j]))
+					for (var j = 0; j < sysMsc.Count; j++)
 					{
-						ReplaceString(r11LangMsc[i], sysMsc[j]);
+						if (Path.GetFileName(r11LangMsc[i]) == Path.GetFileName(sysMsc[j]))
+						{
+							ReplaceString(r11LangMsc[i], sysMsc[j]);
+						}
 					}
 				}
-			}
 
-			Helper.SafeDirectoryDeletion(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), false);
-			var msc = Path.Combine(tempDir, "msc");
-			if (CultureInfo.CurrentUICulture.Name != "en-US")
-			{
-				File.Copy(Path.Combine(msc, "lusrmgr.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "lusrmgr.msc"), true);
-				File.Copy(Path.Combine(msc, "taskschd.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "taskschd.msc"), true);
-				File.Copy(Path.Combine(msc, "WmiMgmt.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "WmiMgmt.msc"), true);
+				Helper.SafeDirectoryDeletion(Path.Combine(tempDir, "msc", CultureInfo.CurrentUICulture.Name, "temp"), false);
+				var msc = Path.Combine(tempDir, "msc");
+				if (CultureInfo.CurrentUICulture.Name != "en-US")
+				{
+					File.Copy(Path.Combine(msc, "lusrmgr.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "lusrmgr.msc"), true);
+					File.Copy(Path.Combine(msc, "taskschd.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "taskschd.msc"), true);
+					File.Copy(Path.Combine(msc, "WmiMgmt.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "WmiMgmt.msc"), true);
+				}
+
+                Logger.WriteLine("MmcHelper.PatchAll() succeeded");
+                return true;
 			}
-			return true;
-		}
+			catch (Exception ex)
+			{
+                Logger.WriteLine("MmcHelper.PatchAll() failed", ex);
+                return false;
+            }
+        }
 		#endregion
 		#region Private Methods
 		private static void ReplaceString(string file, string r11file)

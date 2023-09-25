@@ -13,98 +13,87 @@ namespace Rectify11Installer.Core
     {
         public static bool Install(FrmWizard frm)
         {
-            Logger.WriteLine("Installing Extras");
-            Logger.WriteLine("─────────────────");
-
-            if (InstallOptions.InstallWallpaper)
+            try
             {
-                frm.InstallerProgress = "Installing extras: Wallpapers";
+                Logger.WriteLine("Installing Extras");
+                Logger.WriteLine("─────────────────");
 
-                if (InstallWallpapers())
-                    Logger.WriteLine("InstallWallpapers() succeeded.");
-            }
-            if (InstallOptions.InstallASDF)
-            {
-                frm.InstallerProgress = "Installing extras: AccentColorizer";
-
-                if (Installasdf())
-                    Logger.WriteLine("Installasdf() succeeded.");
-
-                if (!Variables.RestartRequired)
+                if (InstallOptions.InstallWallpaper)
                 {
-                    Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe"), AppWinStyle.Hide);
-                    Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe"), AppWinStyle.Hide);
+                    frm.InstallerProgress = "Installing extras: Wallpapers";
+
+                    if (InstallWallpapers())
+                        Logger.WriteLine("InstallWallpapers() succeeded.");
                 }
-            }
-            if (InstallOptions.InstallGadgets)
-            {
-                frm.InstallerProgress = "Installing extras: Gadgets";
-
-                InstallGadgets();
-                Logger.WriteLine("InstallGadgets() succeeded.");
-                Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
-            }
-            if (InstallOptions.InstallShell)
-            {
-                frm.InstallerProgress = "Installing extras: Enhanced context menu";
-
-                if (InstallShell())
-                    Logger.WriteLine("InstallShell() succeeded.");
-
-                try
+                if (InstallOptions.InstallASDF)
                 {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), true);
+                    frm.InstallerProgress = "Installing extras: AccentColorizer";
+
+                    Installasdf();
+
+                    if (!Variables.RestartRequired)
+                    {
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizer.exe"), AppWinStyle.Hide);
+                        Interaction.Shell(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe"), AppWinStyle.Hide);
+                    }
                 }
-                catch { }
-                try
+                if (InstallOptions.InstallGadgets)
                 {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), true);
+                    frm.InstallerProgress = "Installing extras: Gadgets";
+
+                    InstallGadgets();
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), false);
                 }
-                catch { }
+                if (InstallOptions.InstallShell)
+                {
+                    frm.InstallerProgress = "Installing extras: Enhanced context menu";
+
+                    InstallShell();
+
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), false);
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), false);
+                }
+                if (InstallOptions.userAvatars)
+                {
+                    frm.InstallerProgress = "Installing extras: User avatars";
+
+                    InstallUserAvatars();
+                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "userAV"), false);
+                }
+                Logger.WriteLine("InstallExtras() succeeded.");
+                Logger.WriteLine("══════════════════════════════════════════════");
+                return true;
             }
-            if (InstallOptions.userAvatars)
+            catch (Exception ex)
             {
-                frm.InstallerProgress = "Installing extras: User avatars";
-                
-                if (InstallUserAvatars())
-                    Logger.WriteLine("InstallUserAvatars() succeeded.");
-                Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
+                Logger.WriteLine("Extras.Install() failed", ex);
+                return false;
             }
-            Logger.WriteLine("InstallExtras() succeeded.");
-            Logger.WriteLine("══════════════════════════════════════════════");
-            return true;
         }
         public static bool Uninstall()
         {
-            for (int i = 0; i < UninstallOptions.uninstExtrasList.Count; i++)
+            try
             {
-                if (UninstallOptions.uninstExtrasList[i] == "wallpapersNode")
+                for (int i = 0; i < UninstallOptions.uninstExtrasList.Count; i++)
                 {
-                    UninstallWallpapers();
-                    Logger.WriteLine("Uninstalled wallpapers");
+                    if (UninstallOptions.uninstExtrasList[i] == "wallpapersNode")
+                        UninstallWallpapers();
+                    if (UninstallOptions.uninstExtrasList[i] == "asdfNode")
+                        UninstallAsdf();
+                    if (UninstallOptions.uninstExtrasList[i] == "useravNode")
+                        UninstallUserAv();
+                    if (UninstallOptions.uninstExtrasList[i] == "shellNode")
+                        UninstallShell();
+                    if (UninstallOptions.uninstExtrasList[i] == "gadgetsNode")
+                        UninstallGadgets();
                 }
-                if (UninstallOptions.uninstExtrasList[i] == "asdfNode")
-                {
-                    UninstallAsdf();
-                    Logger.WriteLine("Uninstalled asdf");
-                }
-                if (UninstallOptions.uninstExtrasList[i] == "useravNode")
-                {
-                    UninstallUserAv();
-                    Logger.WriteLine("Uninstalled user avatars");
-                }
-                if (UninstallOptions.uninstExtrasList[i] == "shellNode")
-                {
-                    UninstallShell();
-                    Logger.WriteLine("Uninstalled shell");
-                }
-                if (UninstallOptions.uninstExtrasList[i] == "gadgetsNode")
-                {
-                    UninstallGadgets();
-                    Logger.WriteLine("Uninstalled gadgets");
-                }
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                Logger.WriteLine("Extras.Uninstall() failed", ex);
+                return false;
+            }
         }
 
         /// <summary>
@@ -117,8 +106,7 @@ namespace Rectify11Installer.Core
                 UninstallWallpapers();
 
                 string path = Path.Combine(Variables.r11Folder, "extras", "wallpapers");
-                if (Directory.Exists(path))
-                    Directory.Delete(path, true);
+                Helper.SafeDirectoryDeletion(path, false);
 
                 // extract the 7z
                 Helper.SvExtract("extras.7z", "extras", "wallpapers");
@@ -142,7 +130,9 @@ namespace Rectify11Installer.Core
                 {
                     File.Copy(files[i].FullName, Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", files[i].Name), true);
                 }
-                Directory.Delete(path, true);
+                Helper.SafeDirectoryDeletion(path, false);
+
+                Logger.WriteLine("InstallWallpapers() succeeded");
                 return true;
             }
             catch (Exception ex)
@@ -173,10 +163,12 @@ namespace Rectify11Installer.Core
                 asdf11.Target = Path.Combine(Variables.r11Folder, "extras", "AccentColorizer", "AccentColorizerEleven.exe");
                 asdf11.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "Accentcolorizer11.lnk"));
 
+                Logger.WriteLine("Installasdf() succeeded.");
                 return true;
             }
             catch (Exception ex)
             {
+                UninstallAsdf();
                 Logger.WriteLine("Installasdf() failed", ex);
                 return false;
             }
@@ -190,10 +182,7 @@ namespace Rectify11Installer.Core
             try
             {
                 UninstallGadgets();
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "GadgetPack")))
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), true);
-                }
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), false);
 
                 // extract the 7z
                 Helper.SvExtract("extras.7z", "extras", "GadgetPack");
@@ -206,9 +195,12 @@ namespace Rectify11Installer.Core
                 };
                 var vcproc = Process.Start(gad);
                 vcproc.WaitForExit();
+
+                Logger.WriteLine("InstallGadgets() succeeded.");
             }
             catch (Exception ex)
             {
+                UninstallGadgets();
                 Logger.WriteLine("InstallGadgets() failed", ex);
             }
         }
@@ -261,10 +253,13 @@ namespace Rectify11Installer.Core
                     Thread.Sleep(3000);
                     if (num == 4) Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
                 }
+
+                Logger.WriteLine("InstallShell() succeeded.");
                 return true;
             }
             catch (Exception ex)
             {
+                UninstallShell();
                 Logger.WriteLine("InstallShell() failed", ex);
                 return false;
             }
@@ -278,11 +273,7 @@ namespace Rectify11Installer.Core
             try
             {
                 UninstallUserAv();
-
-                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "userAV")))
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "extras", "userAV"), true);
-                }
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "userAV"), false);
 
                 // extract the 7z
                 Helper.SvExtract("extras.7z", "extras", "userAV");
@@ -295,15 +286,17 @@ namespace Rectify11Installer.Core
                     File.Copy(Path.Combine(Variables.r11Folder, "extras", "userAV", info.GetFiles("*.*")[i].Name),
                               Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures", info.GetFiles("*.*")[i].Name), true);
                 }
+
+                Logger.WriteLine("InstallUserAvatars() succeeded.");
                 return true;
             }
             catch (Exception ex)
             {
+                UninstallUserAv();
                 Logger.WriteLine("InstallUserAvatars() failed", ex);
                 return false;
             }
         }
-
 
         private static bool UninstallWallpapers()
         {
@@ -331,6 +324,8 @@ namespace Rectify11Installer.Core
                         Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), false);
                     }
                 }
+
+                Logger.WriteLine("UninstallWallpapers() succeeded");
                 return true;
             }
             catch (Exception ex)
@@ -365,6 +360,8 @@ namespace Rectify11Installer.Core
                 {
                     Helper.SafeDirectoryDeletion(epath, false);
                 }
+
+                Logger.WriteLine("UninstallAsdf() succeeded");
                 return true;
             }
             return true;
@@ -384,6 +381,8 @@ namespace Rectify11Installer.Core
                     var gaduns = Process.Start(uns);
                     gaduns.WaitForExit();
                 }
+
+                Logger.WriteLine("UninstallGadgets() succeeded");
                 return true;
             }
             catch (Exception ex)
@@ -432,6 +431,7 @@ namespace Rectify11Installer.Core
                         Thread.Sleep(3000);
                     }
                 }
+                Logger.WriteLine("UninstallShell() succeeded");
                 return true;
             }
             catch (Exception ex)
@@ -445,6 +445,7 @@ namespace Rectify11Installer.Core
             try
             {
                 Helper.SafeDirectoryDeletion(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), false);
+                Logger.WriteLine("UninstallUserAv() succeeded");
                 return true;
             }
             catch (Exception ex)

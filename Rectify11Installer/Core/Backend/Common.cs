@@ -18,38 +18,48 @@ namespace Rectify11Installer.Core
         /// <param name="themes">indicates whether theme only files are written</param>
         public static bool WriteFiles(bool icons, bool themes)
         {
-            if (icons)
+            try
             {
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, Helper.OperationType.Write))
-                    return false;
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write))
-                    return false;
-            }
-            if (themes)
-            {
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes, Helper.OperationType.Write))
-                    return false;
+                if (icons)
+                {
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, Helper.OperationType.Write))
+                        return false;
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write))
+                        return false;
+                }
+                if (themes)
+                {
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes, Helper.OperationType.Write))
+                        return false;
 
-                var s = NativeMethods.IsArm64() ? Properties.Resources.secureux_arm64 : Properties.Resources.secureux_x64;
-                var dll = NativeMethods.IsArm64() ? Properties.Resources.ThemeDll_arm64 : Properties.Resources.ThemeDll_x64;
+                    var s = NativeMethods.IsArm64() ? Properties.Resources.secureux_arm64 : Properties.Resources.secureux_x64;
+                    var dll = NativeMethods.IsArm64() ? Properties.Resources.ThemeDll_arm64 : Properties.Resources.ThemeDll_x64;
 
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s, Helper.OperationType.Write))
-                    return false;
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll, Helper.OperationType.Write))
-                    return false;
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s, Helper.OperationType.Write))
+                        return false;
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll, Helper.OperationType.Write))
+                        return false;
+                }
+                if (!themes && !icons)
+                {
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za, Helper.OperationType.Write))
+                        return false;
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z, Helper.OperationType.Write))
+                        return false;
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras, Helper.OperationType.Write))
+                        return false;
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker, Helper.OperationType.Write))
+                        return false;
+                }
+
+                Logger.WriteLine("WriteFiles() succeeded");
+                return true;
             }
-            if (!themes && !icons)
+            catch (Exception ex)
             {
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za, Helper.OperationType.Write))
-                    return false;
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z, Helper.OperationType.Write))
-                    return false;
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras, Helper.OperationType.Write))
-                    return false;
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker, Helper.OperationType.Write))
-                    return false;
+                Logger.WriteLine("WriteFiles() failed", ex);
+                return false;
             }
-            return true;
         }
 
         /// <summary>
@@ -57,63 +67,22 @@ namespace Rectify11Installer.Core
         /// </summary>
         public static bool CreateDirs()
         {
-            if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
-            {
-                try
-                {
-                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
-                    Logger.WriteLine("Created " + Path.Combine(Variables.r11Folder, "Backup"));
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Backup"), ex);
-                    return false;
-                }
-            }
-            else
-            {
-                Logger.WriteLine(Path.Combine(Variables.r11Folder, "Backup") + " already exists.");
-            }
-
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "Tmp")))
-            {
-                Logger.WriteLine(Path.Combine(Variables.r11Folder, "Tmp") + " exists. Deleting it.");
-                try
-                {
-                    Directory.Delete(Path.Combine(Variables.r11Folder, "Tmp"), true);
-                }
-                catch
-                {
-                    string name = Path.GetRandomFileName();
-                    string tmpPath = Path.Combine(Path.GetTempPath(), name);
-                    Directory.Move(Path.Combine(Variables.r11Folder, "Tmp"), tmpPath);
-                    var files = Directory.GetFiles(tmpPath);
-                    for (int i = 0; i < files.Length; i++)
-                    {
-                        try
-                        {
-                            File.Delete(files[i]);
-                        }
-                        catch
-                        {
-                            NativeMethods.MoveFileEx(files[i], null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
-                    }
-                    NativeMethods.MoveFileEx(tmpPath, null, NativeMethods.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                    return false;
-                }
-            }
             try
             {
+                if (!Directory.Exists(Path.Combine(Variables.r11Folder, "Backup")))
+                    Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Backup"));
+                else
+                    Logger.WriteLine(Path.Combine(Variables.r11Folder, "Backup") + " already exists.");
+
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Tmp"), false);
                 Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Tmp"));
-                Logger.WriteLine("Created " + Path.Combine(Variables.r11Folder, "Tmp"));
+                return true;
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("Error creating " + Path.Combine(Variables.r11Folder, "Tmp"), ex);
+                Logger.WriteLine("CreateDirs() failed", ex);
                 return false;
             }
-            return true;
         }
 
         /// <summary>
@@ -121,29 +90,38 @@ namespace Rectify11Installer.Core
         /// </summary>
         public static bool CreateUninstall()
         {
-            // backup
-            // fails anyways if you use uninstaller.exe
-            Helper.SafeFileOperation(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), Helper.OperationType.Copy);
-            Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
-
-            var r11key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true)?.CreateSubKey("Rectify11", true);
-            if (r11key != null)
+            try
             {
-                r11key.SetValue("DisplayName", "Rectify11", RegistryValueKind.String);
-                r11key.SetValue("DisplayVersion", Assembly.GetEntryAssembly()?.GetName().Version.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("DisplayIcon", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                r11key.SetValue("InstallLocation", Variables.r11Folder, RegistryValueKind.String);
-                r11key.SetValue("UninstallString", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                r11key.SetValue("ModifyPath", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
-                r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
-                r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly()?.GetName().Version.Major.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly()?.GetName().Version.Minor.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("Build", Assembly.GetEntryAssembly()?.GetName().Version.Build.ToString() ?? string.Empty, RegistryValueKind.String);
-                r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
-                r11key.SetValue("URLInfoAbout", "https://rectify11.net/", RegistryValueKind.String);
-                return true;
+
+                // backup
+                // fails anyways if you use uninstaller.exe
+                Helper.SafeFileOperation(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), Helper.OperationType.Copy);
+                Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
+
+                var r11key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true)?.CreateSubKey("Rectify11", true);
+                if (r11key != null)
+                {
+                    r11key.SetValue("DisplayName", "Rectify11", RegistryValueKind.String);
+                    r11key.SetValue("DisplayVersion", Assembly.GetEntryAssembly()?.GetName().Version.ToString() ?? string.Empty, RegistryValueKind.String);
+                    r11key.SetValue("DisplayIcon", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("InstallLocation", Variables.r11Folder, RegistryValueKind.String);
+                    r11key.SetValue("UninstallString", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("ModifyPath", Path.Combine(Variables.r11Folder, "Uninstall.exe"), RegistryValueKind.String);
+                    r11key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
+                    r11key.SetValue("VersionMajor", Assembly.GetEntryAssembly()?.GetName().Version.Major.ToString() ?? string.Empty, RegistryValueKind.String);
+                    r11key.SetValue("VersionMinor", Assembly.GetEntryAssembly()?.GetName().Version.Minor.ToString() ?? string.Empty, RegistryValueKind.String);
+                    r11key.SetValue("Build", Assembly.GetEntryAssembly()?.GetName().Version.Build.ToString() ?? string.Empty, RegistryValueKind.String);
+                    r11key.SetValue("Publisher", "The Rectify11 Team", RegistryValueKind.String);
+                    r11key.SetValue("URLInfoAbout", "https://rectify11.net/", RegistryValueKind.String);
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+                Logger.Warn("CreateUninstall() failed", ex);
+                return false;
+            }
         }
 
         /// <summary>
@@ -151,23 +129,24 @@ namespace Rectify11Installer.Core
         /// </summary>
         public static bool InstallRuntimes()
         {
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
-            Logger.WriteLine("Extracting vcredist.exe from extras.7z");
-            Helper.SvExtract(true, "extras.7z", "vcredist.exe");
-
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
-            Logger.WriteLine("Extracting core31.exe from extras.7z");
-            Helper.SvExtract(true, "extras.7z", "core31.exe");
-
-            Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
-            ProcessStartInfo vcinfo = new()
-            {
-                FileName = Path.Combine(Variables.r11Folder, "vcredist.exe"),
-                WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = " /install /quiet /norestart"
-            };
             try
             {
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
+                Logger.WriteLine("Extracting vcredist.exe from extras.7z");
+                Helper.SvExtract(true, "extras.7z", "vcredist.exe");
+
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
+                Logger.WriteLine("Extracting core31.exe from extras.7z");
+                Helper.SvExtract(true, "extras.7z", "core31.exe");
+
+                // vcredist
+                Logger.WriteLine("Executing vcredist.exe with arguments /install /quiet /norestart");
+                ProcessStartInfo vcinfo = new()
+                {
+                    FileName = Path.Combine(Variables.r11Folder, "vcredist.exe"),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    Arguments = " /install /quiet /norestart"
+                };
                 var vcproc = Process.Start(vcinfo);
                 if (vcproc == null) return false;
                 vcproc.WaitForExit();
@@ -179,20 +158,16 @@ namespace Rectify11Installer.Core
                 }
                 else Variables.vcRedist = true;
                 if (vcproc.ExitCode == 0) Variables.RestartRequired = true;
-            }
-            catch
-            {
-                return false;
-            }
-            Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
-            ProcessStartInfo core3info = new()
-            {
-                FileName = Path.Combine(Variables.r11Folder, "core31.exe"),
-                WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = " /install /quiet /norestart"
-            };
-            try
-            {
+
+                // .net core 
+                Logger.WriteLine("Executing core31.exe with arguments /install /quiet /norestart");
+                ProcessStartInfo core3info = new()
+                {
+                    FileName = Path.Combine(Variables.r11Folder, "core31.exe"),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    Arguments = " /install /quiet /norestart"
+                };
+
                 var core3proc = Process.Start(core3info);
                 if (core3proc == null) return false;
                 core3proc.WaitForExit();
@@ -204,12 +179,13 @@ namespace Rectify11Installer.Core
                 }
                 else Variables.core31 = true;
                 if (core3proc.ExitCode == 0) Variables.RestartRequired = true;
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.WriteLine("InstallRuntimes() failed", ex);
                 return false;
             }
-            return true;
         }
 
         /// <summary>
@@ -242,28 +218,37 @@ namespace Rectify11Installer.Core
         /// </summary>
         public static bool Cleanup()
         {
-            // we dont care about returned value
-            Helper.SafeDirectoryDeletion(Variables.r11Files, false);
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "files.7z"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras.7z"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "core31.exe"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "newfiles.txt"));
-            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "themes"), false);
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "themes.7z"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "7za.exe"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"));
-            if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
+            try
             {
-                if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
+                // we dont care about returned value
+                Helper.SafeDirectoryDeletion(Variables.r11Files, false);
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "files.7z"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras.7z"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "vcredist.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "vcredist.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "core31.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "extras", "core31.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "newfiles.txt"));
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "themes"), false);
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "themes.7z"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "7za.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"));
+                if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras")))
                 {
-                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras"), false);
+                    if (Directory.GetDirectories(Path.Combine(Variables.r11Folder, "extras")).Length == 0)
+                    {
+                        Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras"), false);
+                    }
                 }
+                Logger.WriteLine("Cleanup() succeeded");
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                Logger.WriteLine("Cleanup() failed", ex);
+                return false;
+            }
         }
         #endregion
     }

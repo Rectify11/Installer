@@ -20,124 +20,117 @@ namespace Rectify11Installer.Core
             x86
         }
         #endregion
+
+        /// <summary>
+        /// icon installation logic
+        /// </summary>
+        /// <param name="frm">FrmWizard instance</param>
+        /// <returns>true if succeeds, else returns false</returns>
         public static bool Install(FrmWizard frm)
         {
-            Logger.WriteLine("Installing icons");
-            Logger.WriteLine("────────────────");
-            // extract files, delete if folder exists
-            frm.InstallerProgress = "Extracting files...";
-            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "files"), false);
             try
             {
-                File.WriteAllBytes(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z);
-                Logger.LogFile("files.7z");
+                Logger.WriteLine("Installing icons");
+                Logger.WriteLine("────────────────");
+                // extract files, delete if folder exists
+                frm.InstallerProgress = "Extracting files...";
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "files"), false);
+                if (!Helper.SafeFileOperation(
+                    Path.Combine(Variables.r11Folder, "files.7z"),
+                    Properties.Resources.files7z,
+                    Helper.OperationType.Write))
+                    return false;
+
+                // extract the 7z
+                Helper.SvExtract("files.7z", "files");
+
+                // Get all patches
+                var patches = PatchesParser.GetAll();
+                var patch = patches.Items;
+                decimal progress = 0;
+                List<string> fileList = new();
+                List<string> x86List = new();
+                for (var i = 0; i < patch.Length; i++)
+                {
+                    for (var j = 0; j < InstallOptions.iconsList.Count; j++)
+                    {
+                        if (patch[i].Mui.Contains(InstallOptions.iconsList[j]))
+                        {
+                            var number = Math.Round((progress / InstallOptions.iconsList.Count) * 100m);
+                            frm.InstallerProgress = "Patching " + patch[i].Mui + " (" + number + "%)";
+                            if (!MatchAndApplyRule(patch[i]))
+                            {
+                                Logger.Warn("MatchAndApplyRule() on " + patch[i].Mui + " failed");
+                            }
+                            else
+                            {
+                                fileList.Add(patch[i].HardlinkTarget);
+                                if (!string.IsNullOrWhiteSpace(patch[i].x86))
+                                {
+                                    x86List.Add(patch[i].HardlinkTarget);
+                                }
+                            }
+                            progress++;
+                        }
+                    }
+                }
+                Logger.WriteLine("MatchAndApplyRule() succeeded");
+
+                if (!WritePendingFiles(fileList, x86List))
+                    return false;
+
+                if (!Common.WriteFiles(true, false))
+                    return false;
+
+                frm.InstallerProgress = "Replacing files";
+
+                // runs only if SSText3D.scr is selected
+                if (InstallOptions.iconsList.Contains("SSText3D.scr"))
+                {
+                    Helper.ImportReg(Path.Combine(Variables.r11Files, "screensaver.reg"));
+                }
+
+                // runs only if any one of mmcbase.dll.mun, mmc.exe.mui or mmcndmgr.dll.mun is selected
+                if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
+                    || InstallOptions.iconsList.Contains("mmc.exe.mui")
+                    || InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
+                {
+                    if (!MMCHelper.PatchAll())
+                        return false;
+                }
+
+                if (InstallOptions.iconsList.Contains("odbcad32.exe"))
+                    FixOdbc();
+
+                // phase 2
+                Helper.RunAsTI(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), "/install");
+
+                // reg files for various file extensions
+                Helper.ImportReg(Path.Combine(Variables.r11Files, "icons.reg"));
+
+                Variables.RestartRequired = true;
+                return true;
             }
             catch (Exception ex)
             {
-                Logger.LogFile("files.7z", ex);
+                // rollback
+                // ikr amazing
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Tmp"), false);
+                Logger.WriteLine("Icons.Install() failed", ex);
                 return false;
             }
-
-            // extract the 7z
-            Helper.SvExtract("files.7z", "files");
-            Logger.WriteLine("Extracted files.7z");
-
-            // Get all patches
-            var patches = PatchesParser.GetAll();
-            var patch = patches.Items;
-            decimal progress = 0;
-            List<string> fileList = new();
-            List<string> x86List = new();
-            for (var i = 0; i < patch.Length; i++)
-            {
-                for (var j = 0; j < InstallOptions.iconsList.Count; j++)
-                {
-                    if (patch[i].Mui.Contains(InstallOptions.iconsList[j]))
-                    {
-                        var number = Math.Round((progress / InstallOptions.iconsList.Count) * 100m);
-                        frm.InstallerProgress = "Patching " + patch[i].Mui + " (" + number + "%)";
-                        if (!MatchAndApplyRule(patch[i]))
-                        {
-                            Logger.Warn("MatchAndApplyRule() on " + patch[i].Mui + " failed");
-                        }
-                        else
-                        {
-                            fileList.Add(patch[i].HardlinkTarget);
-                            if (!string.IsNullOrWhiteSpace(patch[i].x86))
-                            {
-                                x86List.Add(patch[i].HardlinkTarget);
-                            }
-                        }
-                        progress++;
-                    }
-                }
-            }
-            Logger.WriteLine("MatchAndApplyRule() succeeded");
-
-            if (!WritePendingFiles(fileList, x86List))
-            {
-                Logger.WriteLine("WritePendingFiles() failed");
-                return false;
-            }
-            Logger.WriteLine("WritePendingFiles() succeeded");
-
-            if (!Common.WriteFiles(true, false))
-            {
-                Logger.WriteLine("WriteFiles() failed");
-                return false;
-            }
-            Logger.WriteLine("WriteFiles() succeeded");
-
-            frm.InstallerProgress = "Replacing files";
-
-            // runs only if SSText3D.scr is selected
-            if (InstallOptions.iconsList.Contains("SSText3D.scr"))
-            {
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "screensaver.reg"), AppWinStyle.Hide);
-                Logger.WriteLine("screensaver.reg succeeded");
-            }
-
-            // runs only if any one of mmcbase.dll.mun, mmc.exe.mui or mmcndmgr.dll.mun is selected
-            if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-                || InstallOptions.iconsList.Contains("mmc.exe.mui")
-                || InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
-            {
-                if (!MMCHelper.PatchAll())
-                {
-                    Logger.WriteLine("MmcHelper.PatchAll() failed");
-                    return false;
-                }
-                Logger.WriteLine("MmcHelper.PatchAll() succeeded");
-            }
-
-            if (InstallOptions.iconsList.Contains("odbcad32.exe"))
-            {
-                if (!FixOdbc())
-                {
-                    Logger.Warn("FixOdbc() failed");
-                }
-                else
-                {
-                    Logger.WriteLine("FixOdbc() succeeded");
-                }
-            }
-            // phase 2
-            Helper.RunAsTI(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), "/install");
-
-            // reg files for various file extensions
-            Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + Path.Combine(Variables.r11Files, "icons.reg"), AppWinStyle.Hide);
-            Logger.WriteLine("icons.reg succeeded");
-
-            Variables.RestartRequired = true;
-            return true;
         }
 
+        /// <summary>
+        /// icon uninstallation logic
+        /// </summary>
+        /// <returns>true if succeeds, else returns false</returns>
         public static bool Uninstall()
         {
-            Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write);
-            Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, Helper.OperationType.Write);
             try
             {
+                Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write);
+                Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, Helper.OperationType.Write);
                 Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)
                     ?.CreateSubKey("Rectify11", true)
                     ?.SetValue("UninstallFiles", UninstallOptions.uninstIconsList.ToArray());
@@ -147,15 +140,16 @@ namespace Rectify11Installer.Core
                     Logger.WriteLine("Executed Rectify11.Phase2.exe");
                     Helper.RunAsTI(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), "/uninstall");
                 }
+
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.WriteLine("Icons.Uninstall() failed", ex);
                 return false;
             }
-
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
-            Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
-            return true;
         }
 
         /// <summary>
@@ -163,18 +157,20 @@ namespace Rectify11Installer.Core
         /// </summary>
         private static bool FixOdbc()
         {
-            var filename = string.Empty;
-            var admintools = Path.Combine(GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Administrative Tools");
-            var files = Directory.GetFiles(admintools);
-            for (var i = 0; i < files.Length; i++)
-            {
-                if (!Path.GetFileName(files[i]).Contains("ODBC") ||
-                    !Path.GetFileName(files[i])!.Contains("32")) continue;
-                filename = Path.GetFileName(files[i]);
-                File.Delete(files[i]);
-            }
             try
             {
+                var filename = string.Empty;
+                var admintools = Path.Combine(GetFolderPath(SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Administrative Tools");
+                if (!Directory.Exists(admintools)) return false;
+
+                var files = Directory.GetFiles(admintools);
+                for (var i = 0; i < files.Length; i++)
+                {
+                    if (!Path.GetFileName(files[i]).Contains("ODBC") ||
+                        !Path.GetFileName(files[i])!.Contains("32")) continue;
+                    filename = Path.GetFileName(files[i]);
+                    File.Delete(files[i]);
+                }
                 using ShellLink shortcut = new();
                 shortcut.Target = Path.Combine(Variables.sysWOWFolder, "odbcad32.exe");
                 shortcut.WorkingDirectory = @"%windir%\system32";
@@ -182,12 +178,15 @@ namespace Rectify11Installer.Core
                 shortcut.IconIndex = 0;
                 shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
                 if (filename != null) shortcut.Save(Path.Combine(admintools, filename));
+
+                Logger.WriteLine("FixOdbc() succeeded");
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.Warn("FixOdbc() failed", ex);
                 return false;
             }
-            return true;
         }
 
 
@@ -212,12 +211,15 @@ namespace Rectify11Installer.Core
                 using var ubrReg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false);
                 string build = OSVersion.Version.Major + "." + OSVersion.Version.Minor + "." + OSVersion.Version.Build + "." + ubrReg.GetValue("UBR").ToString();
                 SafeWriteReg(reg, "OSVersion", build, false);
+
+                Logger.WriteLine("WritePendingFiles() succeeded.");
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.WriteLine("WritePendingFiles() failed", ex);
                 return false;
             }
-            return true;
         }
 
         /// <summary>
@@ -273,7 +275,7 @@ namespace Rectify11Installer.Core
 
             if (patch.mask.Contains("|"))
             {
-                if (!string.IsNullOrWhiteSpace(patch.Ignore) 
+                if (!string.IsNullOrWhiteSpace(patch.Ignore)
                     && ((!string.IsNullOrWhiteSpace(patch.MinVersion) && OSVersion.Version.Build <= int.Parse(patch.MinVersion)) || (!string.IsNullOrWhiteSpace(patch.MaxVersion) && OSVersion.Version.Build >= int.Parse(patch.MaxVersion))))
                 {
                     masks = masks.Replace(patch.Ignore, "");

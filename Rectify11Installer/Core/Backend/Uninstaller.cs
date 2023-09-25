@@ -13,7 +13,7 @@ namespace Rectify11Installer.Core
                 Logger.WriteLine("Uninstalling icons");
                 Logger.WriteLine("──────────────────");
                 frm.InstallerProgress = "Uninstalling icons";
-                Icons.Uninstall();
+                if (!Icons.Uninstall()) return false;
                 Variables.RestartRequired = true;
                 Console.WriteLine("══════════════════════════════════════════════");
             }
@@ -22,7 +22,7 @@ namespace Rectify11Installer.Core
                 Logger.WriteLine("Uninstalling themes");
                 Logger.WriteLine("───────────────────");
                 frm.InstallerProgress = "Uninstalling themes";
-                Themes.Uninstall();
+                if (!Themes.Uninstall()) return false;
                 Variables.RestartRequired = true;
                 Console.WriteLine("══════════════════════════════════════════════");
             }
@@ -31,7 +31,7 @@ namespace Rectify11Installer.Core
                 Logger.WriteLine("Uninstalling extras");
                 Logger.WriteLine("───────────────────");
                 frm.InstallerProgress = "Uninstalling Extras";
-                Extras.Uninstall();
+                if (!Extras.Uninstall()) return false;
                 Console.WriteLine("══════════════════════════════════════════════");
             }
             // cleanup

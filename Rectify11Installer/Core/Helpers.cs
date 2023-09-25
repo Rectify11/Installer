@@ -30,10 +30,19 @@ namespace Rectify11Installer.Core
         }
         public static bool SvExtract(string file, string path)
         {
-            Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
-                         " x -o" + Path.Combine(Variables.r11Folder, path) +
-                         " " + Path.Combine(Variables.r11Folder, file), AppWinStyle.Hide, true);
-            return true;
+            try
+            {
+                Interaction.Shell(Path.Combine(Variables.r11Folder, "7za.exe") +
+                             " x -o" + Path.Combine(Variables.r11Folder, path) +
+                             " " + Path.Combine(Variables.r11Folder, file), AppWinStyle.Hide, true);
+                Logger.WriteLine("Extracted files.7z");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("Error extracting files.7z", ex);
+                return false;
+            }
         }
 
         public static bool SvExtract(string file, string path, string folder)
@@ -218,6 +227,18 @@ namespace Rectify11Installer.Core
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /end /tn " + name, AppWinStyle.Hide, true);
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /delete /f /tn " + name, AppWinStyle.Hide, true);
         }
+        public static void ImportReg(string path)
+        {
+            try
+            {
+                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + path, AppWinStyle.Hide);
+                Logger.WriteLine(Path.GetFileName(path) + " succeeded.");
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(Path.GetFileName(path) + " failed.", ex);
+            }
+        }
 
         public enum OperationType
         {
@@ -328,8 +349,9 @@ namespace Rectify11Installer.Core
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.WriteLine("Deleting " + path + " failed", ex);
                 return false;
             }
         }

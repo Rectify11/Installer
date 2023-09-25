@@ -23,22 +23,13 @@ namespace Rectify11Installer.Core
                 ?.DeleteValue("x86PendingFiles", false);
 
             if (!Common.WriteFiles(false, false))
-            {
-                Logger.WriteLine("WriteFiles() failed.");
                 return false;
-            }
-            Logger.WriteLine("WriteFiles() succeeded.");
 
             if (!Common.CreateDirs())
-            {
-                Logger.WriteLine("CreateDirs() failed.");
                 return false;
-            }
-            Logger.WriteLine("CreateDirs() succeeded.");
 
             try
             {
-                // create restore point
                 frm.InstallerProgress = "Begin creating a restore point";
                 CreateSystemRestorePoint(false);
             }
@@ -49,11 +40,7 @@ namespace Rectify11Installer.Core
 
             // runtimes
             frm.InstallerProgress = "Installing runtimes";
-            if (!Common.InstallRuntimes())
-            {
-                Logger.WriteLine("InstallRuntimes() failed.");
-                return false;
-            }
+            Common.InstallRuntimes();
             if (Variables.vcRedist && Variables.core31)
             {
                 Logger.WriteLine("InstallRuntimes() succeeded.");
@@ -95,19 +82,13 @@ namespace Rectify11Installer.Core
             }
 
             frm.InstallerProgress = "Creating uninstaller";
-            if (!Common.CreateUninstall())
-            {
-                Logger.WriteLine("CreateUninstall() failed");
-                return false;
-            }
-            Logger.WriteLine("CreateUninstall() succeeded");
+            Common.CreateUninstall();
 
             InstallStatus.IsRectify11Installed = true;
             Logger.WriteLine("══════════════════════════════════════════════");
 
             try
             {
-                // create restore point
                 frm.InstallerProgress = "End creating a restore point";
                 CreateSystemRestorePoint(true);
             }
