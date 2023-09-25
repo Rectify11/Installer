@@ -56,7 +56,7 @@ namespace Rectify11Installer.Core
 
                 try
                 {
-                    Installr11cpl();
+                    InstallR11Cpl();
                     Logger.WriteLine("Installr11cpl() succeeded.");
                 }
                 catch (Exception ex)
@@ -92,7 +92,8 @@ namespace Rectify11Installer.Core
                     return false;
 
                 string mode = Theme.IsUsingDarkMode ? "dark.theme" : "aero.theme";
-                Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", mode));
+                if (File.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", mode)))
+                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", mode));
                 string theme = Theme.IsUsingDarkMode ? "Windows (dark)" : "Windows (light)";
                 Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + theme + '"', AppWinStyle.Hide, true);
 
@@ -130,10 +131,7 @@ namespace Rectify11Installer.Core
                 }
                 catch { }
 
-                // nuke r11cp
-                Helper.SafeFileDeletion(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk"));
-                Helper.SafeFileDeletion(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
-                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), false);
+                UninstallR11Cpl();
                 Logger.WriteLine("Deleted Rectify11 Control Center");
 
                 Logger.WriteLine("Uninstall() succeeded");
@@ -184,23 +182,79 @@ namespace Rectify11Installer.Core
         /// <summary>
         /// installs control center
         /// </summary>
-        private static void Installr11cpl()
+        private static void InstallR11Cpl()
         {
-            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), false);
-            Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
-            File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11ControlCenter);
+            string cplPath = Path.Combine(Variables.r11Folder, "Rectify11CPL", "Rectify11CPL.dll");
+
+            //create files
+            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11CPL"), false);
+            Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11CPL"));
+
+            File.WriteAllBytes(cplPath, Properties.Resources.Rectify11CPL);
+
+            // create shortcut
             using ShellLink shortcut = new();
-            shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
-            shortcut.WorkingDirectory = @"%windir%\Rectify11\Rectify11ControlCenter";
-            shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
+            shortcut.Target = "shell:::{542EEE1B-A254-46F7-B980-35BECF6076A4}";
+            shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11CPL", "Rectify11CPL.dll");
             shortcut.IconIndex = 0;
             shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk");
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-            shortcut.Save(path);
+
+            string startmenu = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk");
+            if (!Directory.Exists(startmenu))
+                Directory.CreateDirectory(startmenu);
+            try
+            {
+                shortcut.Save(startmenu);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine("Error while saving shortcut: " + ex);
+            }
             shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
+
             shortcut.Dispose();
+
+            // register CPL
+            var proc = new Process();
+            proc.StartInfo.FileName = "regsvr32.exe";
+            proc.StartInfo.Arguments = "/s \"" + cplPath + "\"";
+            proc.Start();
+            proc.WaitForExit();
+
+            if (proc.ExitCode != 0)
+            {
+                Logger.WriteLine("Error while registering CPL: " + proc.ExitCode);
+            }
+        }
+        /// <summary>
+        /// uninstalls control center
+        /// </summary>
+        private static void UninstallR11Cpl()
+        {
+            string cplPath = Path.Combine(Variables.r11Folder, "Rectify11CPL", "Rectify11CPL.dll");
+            string startmenuShortcut = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk");
+            string desktopShortcut = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk");
+
+            // delete shortcut
+            if (File.Exists(startmenuShortcut))
+                File.Delete(startmenuShortcut);
+            if (File.Exists(desktopShortcut))
+                File.Delete(desktopShortcut);
+
+            // unregister CPL
+            var proc = new Process();
+            proc.StartInfo.FileName = "regsvr32.exe";
+            proc.StartInfo.Arguments = "/s /u \"" + cplPath + "\"";
+            proc.Start();
+            proc.WaitForExit();
+
+            if (proc.ExitCode != 0)
+            {
+                Logger.WriteLine("Error while unregistering CPL: " + proc.ExitCode);
+            }
+
+            //delete folder
+            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11CPL"), false);
         }
 
         /// <summary>

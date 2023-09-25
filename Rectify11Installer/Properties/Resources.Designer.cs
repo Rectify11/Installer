@@ -683,9 +683,9 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Rectify11ControlCenter {
+        internal static byte[] Rectify11CPL {
             get {
-                object obj = ResourceManager.GetObject("Rectify11ControlCenter", resourceCulture);
+                object obj = ResourceManager.GetObject("Rectify11CPL", resourceCulture);
                 return ((byte[])(obj));
             }
         }

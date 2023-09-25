@@ -19,3 +19,4 @@ Rectify11.Phase2.exe
 *.pdb
 *.config
 *.exe
+x64/
