@@ -26,9 +26,6 @@ jobs:
     - name: Restore NuGet Packages
       run: |
         nuget restore Rectify11Installer.sln
-        nuget restore Rectify11ControlCenter\Rectify11ControlCenter.sln
-    - name: Build R11 Control Centre
-      run: msbuild Rectify11ControlCenter\Rectify11ControlCenter.sln /p:Configuration=Release
     - name: Build
       run: msbuild Rectify11Installer.sln /p:Configuration=Release /p:platform=x64
     - name: Create single exe
