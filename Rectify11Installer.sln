@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rectify11Installer", "Rectify11Installer\Rectify11Installer.csproj", "{F1F7B13F-9EF7-4B77-9500-B062CC9DB17D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0B7DE49A-33C6-41B1-A9CE-D353031F8454} = {0B7DE49A-33C6-41B1-A9CE-D353031F8454}
+		{50A4AEC2-9A0D-4F1C-8F38-EE7542BBE81A} = {50A4AEC2-9A0D-4F1C-8F38-EE7542BBE81A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rectify11.Phase2", "Rectify11.Phase2\Rectify11.Phase2.csproj", "{8D66B017-3A76-439B-847B-C7379191E109}"
 EndProject

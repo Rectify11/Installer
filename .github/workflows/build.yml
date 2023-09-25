@@ -23,8 +23,8 @@ jobs:
         lfs: true
     - name: Git Sumbodule Update
       run: |
-        git pull --recurse-submodules
-        git submodule update --remote --recursive
+        git submodule update --init --recursive
+        git submodule update --recursive --remote
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.1.3
     - name: Restore NuGet Packages
