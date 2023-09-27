@@ -231,7 +231,7 @@ namespace Rectify11Installer.Core
         {
             try
             {
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + path, AppWinStyle.Hide);
+                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + path, AppWinStyle.Hide, true);
                 Logger.WriteLine(Path.GetFileName(path) + " succeeded.");
             }
             catch (Exception ex)

@@ -32,7 +32,7 @@ namespace Rectify11.Phase2
                         string name = Path.GetRandomFileName();
                         string tmpPath = Path.Combine(Path.GetTempPath(), name);
                         File.Move(path, tmpPath);
-                        Program.MoveFileEx(tmpPath, null, Program.MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                        MoveFileEx(tmpPath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
                     return true;
                 }
@@ -57,11 +57,25 @@ namespace Rectify11.Phase2
                 return false;
             }
         }
+        public static bool SafeFileCopy(string src, string dest)
+        {
+            try
+            {
+                if (!SafeFileDeletion(dest)) return false;
+                File.Copy(src, dest, true);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static void ImportReg(string path)
         {
             try
             {
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + path, AppWinStyle.Hide);
+                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + path, AppWinStyle.Hide, true);
             }
             catch (Exception ex)
             {

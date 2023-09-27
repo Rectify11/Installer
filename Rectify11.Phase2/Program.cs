@@ -384,29 +384,37 @@ namespace Rectify11.Phase2
 
         private static void InstallFonts()
         {
-            // aaaaaaaaaaaa 
-            var MarlettDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf");
-            var MarlettBackupDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf.backup");
-            var marlett = Path.Combine(Variables.r11Files, "marlett.ttf");
-            File.Move(MarlettDest, MarlettBackupDest);
-            File.Copy(marlett, MarlettDest, true);
-
-            var BackIconsDest = Path.Combine(Variables.windir, "Fonts", "BackIcons.ttf");
-            var backicons = Path.Combine(Variables.r11Files, "BackIcons.ttf");
-            File.Copy(backicons, BackIconsDest, true);
-            Helper.ImportReg(Path.Combine(Variables.r11Files, "backicons.reg"));
-
-            if (Environment.OSVersion.Version.Build <= 21996)
+            try
             {
-                var SegoeIconsDest = Path.Combine(Variables.windir, "Fonts", "SegoeIcons.ttf");
-                var segoeicons = Path.Combine(Variables.r11Files, "SegoeIcons.ttf");
-                File.Copy(segoeicons, SegoeIconsDest, true);
-                Helper.ImportReg(Path.Combine(Variables.r11Files, "segoeicons.reg"));
+                // aaaaaaaaaaaa 
+                var MarlettDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf");
+                var MarlettBackupDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf.backup");
+                var marlett = Path.Combine(Variables.r11Files, "marlett.ttf");
 
-                var SegoeUIVarDest = Path.Combine(Variables.windir, "Fonts", "SegUIVar.ttf");
-                var segoeuivar = Path.Combine(Variables.r11Files, "SegUIVar.ttf");
-                File.Copy(segoeuivar, SegoeUIVarDest, true);
-                Helper.ImportReg(Path.Combine(Variables.r11Files, "segoeuivar.reg"));
+                if (!File.Exists(MarlettBackupDest)) File.Move(MarlettDest, MarlettBackupDest);
+                SafeFileCopy(marlett, MarlettDest);
+
+                var BackIconsDest = Path.Combine(Variables.windir, "Fonts", "BackIcons.ttf");
+                var backicons = Path.Combine(Variables.r11Files, "BackIcons.ttf");
+                SafeFileCopy(backicons, BackIconsDest);
+                ImportReg(Path.Combine(Variables.r11Files, "backicons.reg"));
+
+                if (Environment.OSVersion.Version.Build <= 21996)
+                {
+                    var SegoeIconsDest = Path.Combine(Variables.windir, "Fonts", "SegoeIcons.ttf");
+                    var segoeicons = Path.Combine(Variables.r11Files, "SegoeIcons.ttf");
+                    SafeFileCopy(segoeicons, SegoeIconsDest);
+                    ImportReg(Path.Combine(Variables.r11Files, "segoeicons.reg"));
+
+                    var SegoeUIVarDest = Path.Combine(Variables.windir, "Fonts", "SegUIVar.ttf");
+                    var segoeuivar = Path.Combine(Variables.r11Files, "SegUIVar.ttf");
+                    SafeFileCopy(segoeuivar, SegoeUIVarDest);
+                    ImportReg(Path.Combine(Variables.r11Files, "segoeuivar.reg"));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "\n"+ ex.StackTrace);
             }
         }
 
