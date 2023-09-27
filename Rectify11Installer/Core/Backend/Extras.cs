@@ -60,7 +60,7 @@ namespace Rectify11Installer.Core
                     InstallUserAvatars();
                     Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "userAV"), false);
                 }
-                Logger.WriteLine("InstallExtras() succeeded.");
+                Logger.WriteLine("Extras.Install() succeeded.");
                 Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
             }
@@ -70,6 +70,7 @@ namespace Rectify11Installer.Core
                 return false;
             }
         }
+
         public static bool Uninstall()
         {
             try
@@ -87,6 +88,8 @@ namespace Rectify11Installer.Core
                     if (UninstallOptions.uninstExtrasList[i] == "gadgetsNode")
                         UninstallGadgets();
                 }
+                Logger.WriteLine("Extras.Uninstall() succeeded.");
+                Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
             }
             catch (Exception ex)
@@ -325,7 +328,7 @@ namespace Rectify11Installer.Core
                     }
                 }
 
-                Logger.WriteLine("UninstallWallpapers() succeeded");
+                Logger.WriteLine("UninstallWallpapers() succeeded.");
                 return true;
             }
             catch (Exception ex)
@@ -361,7 +364,7 @@ namespace Rectify11Installer.Core
                     Helper.SafeDirectoryDeletion(epath, false);
                 }
 
-                Logger.WriteLine("UninstallAsdf() succeeded");
+                Logger.WriteLine("UninstallAsdf() succeeded.");
                 return true;
             }
             return true;
@@ -382,7 +385,7 @@ namespace Rectify11Installer.Core
                     gaduns.WaitForExit();
                 }
 
-                Logger.WriteLine("UninstallGadgets() succeeded");
+                Logger.WriteLine("UninstallGadgets() succeeded.");
                 return true;
             }
             catch (Exception ex)
@@ -431,12 +434,12 @@ namespace Rectify11Installer.Core
                         Thread.Sleep(3000);
                     }
                 }
-                Logger.WriteLine("UninstallShell() succeeded");
+                Logger.WriteLine("UninstallShell() succeeded.");
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("UninstallShell() failed", ex);
+                Logger.WriteLine("UninstallShell() failed.", ex);
                 return false;
             }
         }
@@ -445,7 +448,7 @@ namespace Rectify11Installer.Core
             try
             {
                 Helper.SafeDirectoryDeletion(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures"), false);
-                Logger.WriteLine("UninstallUserAv() succeeded");
+                Logger.WriteLine("UninstallUserAv() succeeded.");
                 return true;
             }
             catch (Exception ex)

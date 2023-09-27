@@ -51,7 +51,7 @@ namespace Rectify11Installer.Core
 					File.Copy(Path.Combine(msc, "WmiMgmt.msc"), Path.Combine(msc, CultureInfo.CurrentUICulture.Name, "WmiMgmt.msc"), true);
 				}
 
-                Logger.WriteLine("MmcHelper.PatchAll() succeeded");
+                Logger.WriteLine("MmcHelper.PatchAll() succeeded.");
                 return true;
 			}
 			catch (Exception ex)

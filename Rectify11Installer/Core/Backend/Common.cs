@@ -52,7 +52,7 @@ namespace Rectify11Installer.Core
                         return false;
                 }
 
-                Logger.WriteLine("WriteFiles() succeeded");
+                Logger.WriteLine("WriteFiles() succeeded.");
                 return true;
             }
             catch (Exception ex)
@@ -220,6 +220,9 @@ namespace Rectify11Installer.Core
         {
             try
             {
+                Logger.WriteLine("Cleaning up");
+                Logger.WriteLine("───────────");
+
                 // we dont care about returned value
                 Helper.SafeDirectoryDeletion(Variables.r11Files, false);
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "files.7z"));
@@ -241,12 +244,13 @@ namespace Rectify11Installer.Core
                         Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras"), false);
                     }
                 }
-                Logger.WriteLine("Cleanup() succeeded");
+                Logger.WriteLine("Cleanup() succeeded.");
+                Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("Cleanup() failed", ex);
+                Logger.Warn("Cleanup() failed", ex);
                 return false;
             }
         }

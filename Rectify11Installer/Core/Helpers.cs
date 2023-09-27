@@ -388,6 +388,7 @@ namespace Rectify11Installer.Core
         }
         #endregion
     }
+
     public class NavigationHelper
     {
         public static event EventHandler OnNavigate;

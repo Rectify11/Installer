@@ -99,15 +99,7 @@ namespace Rectify11Installer.Core
 
             // cleanup
             frm.InstallerProgress = "Cleaning up...";
-            Logger.WriteLine("Cleaning up");
-            Logger.WriteLine("───────────");
-            if (!Common.Cleanup())
-            {
-                Logger.WriteLine("Cleanup() failed");
-                return false;
-            }
-            Logger.WriteLine("Cleanup() succeeded");
-            Logger.WriteLine("══════════════════════════════════════════════");
+            Common.Cleanup();
             Logger.CommitLog();
             return true;
         }

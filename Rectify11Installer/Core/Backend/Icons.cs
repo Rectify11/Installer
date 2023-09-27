@@ -74,7 +74,7 @@ namespace Rectify11Installer.Core
                         }
                     }
                 }
-                Logger.WriteLine("MatchAndApplyRule() succeeded");
+                Logger.WriteLine("MatchAndApplyRule() succeeded.");
 
                 if (!WritePendingFiles(fileList, x86List))
                     return false;
@@ -109,6 +109,8 @@ namespace Rectify11Installer.Core
                 Helper.ImportReg(Path.Combine(Variables.r11Files, "icons.reg"));
 
                 Variables.RestartRequired = true;
+                Logger.WriteLine("Icons.Install() succeeded.");
+                Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
             }
             catch (Exception ex)
@@ -143,6 +145,9 @@ namespace Rectify11Installer.Core
 
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
+
+                Logger.WriteLine("Icons.Uninstall() succeeded.");
+                Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
             }
             catch (Exception ex)
@@ -179,7 +184,7 @@ namespace Rectify11Installer.Core
                 shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
                 if (filename != null) shortcut.Save(Path.Combine(admintools, filename));
 
-                Logger.WriteLine("FixOdbc() succeeded");
+                Logger.WriteLine("FixOdbc() succeeded.");
                 return true;
             }
             catch (Exception ex)

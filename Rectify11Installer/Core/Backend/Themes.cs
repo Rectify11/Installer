@@ -64,7 +64,7 @@ namespace Rectify11Installer.Core
                     Logger.Warn("Installr11cpl() failed", ex);
                 }
                 Variables.RestartRequired = true;
-                Logger.WriteLine("InstallThemes() succeeded.");
+                Logger.WriteLine("Themes.Install() succeeded.");
                 Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
             }
@@ -127,14 +127,15 @@ namespace Rectify11Installer.Core
                     key.SetValue("MenuHeight", "-285");
                     key.SetValue("MenuWidth", "-285");
                     key.Dispose();
-                    Logger.WriteLine("Remove registry entries");
+                    Logger.WriteLine("Removed registry entries.");
                 }
                 catch { }
 
                 UninstallR11Cpl();
-                Logger.WriteLine("Deleted Rectify11 Control Center");
+                Logger.WriteLine("Deleted Rectify11 Control Center.");
 
-                Logger.WriteLine("Uninstall() succeeded");
+                Logger.WriteLine("Themes.Uninstall() succeeded.");
+                Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
             }
             catch (Exception ex)
@@ -184,10 +185,10 @@ namespace Rectify11Installer.Core
         /// </summary>
         private static void InstallR11Cpl()
         {
+            UninstallR11Cpl();
             string cplPath = Path.Combine(Variables.r11Folder, "Rectify11CPL", "Rectify11CPL.dll");
 
             //create files
-            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11CPL"), false);
             Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11CPL"));
 
             File.WriteAllBytes(cplPath, Properties.Resources.Rectify11CPL);
@@ -208,7 +209,7 @@ namespace Rectify11Installer.Core
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("Error while saving shortcut: " + ex);
+                Logger.Warn("Error while saving shortcut: " + ex);
             }
             shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
 
@@ -236,10 +237,10 @@ namespace Rectify11Installer.Core
             string desktopShortcut = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk");
 
             // delete shortcut
-            if (File.Exists(startmenuShortcut))
-                File.Delete(startmenuShortcut);
-            if (File.Exists(desktopShortcut))
-                File.Delete(desktopShortcut);
+            Helper.SafeFileDeletion(startmenuShortcut);
+            Helper.SafeFileDeletion(desktopShortcut);
+
+            if (!File.Exists(cplPath)) return;
 
             // unregister CPL
             var proc = new Process();
@@ -250,7 +251,7 @@ namespace Rectify11Installer.Core
 
             if (proc.ExitCode != 0)
             {
-                Logger.WriteLine("Error while unregistering CPL: " + proc.ExitCode);
+                Logger.Warn("Error while unregistering CPL: " + proc.ExitCode);
             }
 
             //delete folder
@@ -305,7 +306,7 @@ namespace Rectify11Installer.Core
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("Error copying wallpapers. " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                Logger.WriteLine("Error copying wallpapers", ex);
             }
             return true;
         }
@@ -334,11 +335,11 @@ namespace Rectify11Installer.Core
                         Helper.SafeDirectoryDeletion(path, false);
                         Logger.WriteLine("Deleted " + path);
                     }
-                    Logger.WriteLine("Deleted old wallpapers");
+                    Logger.WriteLine("Deleted old wallpapers.");
                 }
                 catch (Exception ex)
                 {
-                    Logger.WriteLine("Error deleting old wallpapers" + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                    Logger.WriteLine("Error deleting old wallpapers", ex);
                 }
             }
             return true;
@@ -397,7 +398,7 @@ namespace Rectify11Installer.Core
                 {
                     Helper.SafeFileDeletion(Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i]));
                 }
-                Logger.WriteLine("Deleted themes");
+                Logger.WriteLine("Deleted themes.");
             }
             catch (Exception ex)
             {
@@ -411,7 +412,7 @@ namespace Rectify11Installer.Core
             }
             catch (Exception ex)
             {
-                Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified") + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine);
+                Logger.WriteLine("Error deleting " + Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified"), ex);
                 return false;
             }
             return true;
