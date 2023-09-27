@@ -20,3 +20,4 @@ Rectify11.Phase2.exe
 *.config
 *.exe
 x64/
+/Rectify11Installer/Resources/Rectify11CPL.dll
