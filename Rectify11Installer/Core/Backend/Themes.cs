@@ -195,7 +195,7 @@ namespace Rectify11Installer.Core
 
             // create shortcut
             using ShellLink shortcut = new();
-            shortcut.Target = "shell:::{542EEE1B-A254-46F7-B980-35BECF6076A4}";
+            shortcut.Target = "control.exe /name Rectify11.SettingsCPL";
             shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11CPL", "Rectify11CPL.dll");
             shortcut.IconIndex = 0;
             shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
