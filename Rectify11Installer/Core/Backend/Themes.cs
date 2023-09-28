@@ -201,8 +201,7 @@ namespace Rectify11Installer.Core
             shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
 
             string startmenu = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk");
-            if (!Directory.Exists(startmenu))
-                Directory.CreateDirectory(startmenu);
+            Directory.CreateDirectory(startmenu);
             try
             {
                 shortcut.Save(startmenu);
@@ -291,10 +290,7 @@ namespace Rectify11Installer.Core
         private static bool InstallThemeWallpapers()
         {
             UninstallThemeWallpapers();
-            if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
-            {
-                Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-            }
+            Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
             try
             {
                 var files = Directory.GetFiles(Path.Combine(Variables.r11Folder, "themes", "wallpapers"));

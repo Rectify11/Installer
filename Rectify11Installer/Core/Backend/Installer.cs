@@ -14,8 +14,7 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("Preparing Installation");
             Logger.WriteLine("──────────────────────");
 
-            if (!Directory.Exists(Variables.r11Folder))
-                Directory.CreateDirectory(Variables.r11Folder);
+            Directory.CreateDirectory(Variables.r11Folder);
 
             // goofy fix
             Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)

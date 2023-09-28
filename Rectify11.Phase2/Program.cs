@@ -26,21 +26,10 @@ namespace Rectify11.Phase2
                 var backupDir = Path.Combine(Variables.r11Folder, "Backup");
                 var backupDiagDir = Path.Combine(Variables.r11Folder, "Backup", "Diag");
                 var tempDiagDir = Path.Combine(Variables.r11Folder, "Tmp", "Diag");
-                if (!Directory.Exists(backupDir))
-                {
-                    Directory.CreateDirectory(backupDir);
-                }
 
-                if (!Directory.Exists(backupDiagDir))
-                {
-                    Directory.CreateDirectory(backupDiagDir);
-                }
-
-                // temp solution
-                if (!Directory.Exists(tempDiagDir))
-                {
-                    Directory.CreateDirectory(tempDiagDir);
-                }
+                Directory.CreateDirectory(backupDir);
+                Directory.CreateDirectory(backupDiagDir);
+                Directory.CreateDirectory(tempDiagDir);
 
                 var r11Dir = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp"));
                 var r11DiagDir = Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "Diag"));
@@ -64,129 +53,133 @@ namespace Rectify11.Phase2
                 InstallFonts();
 
                 r11Reg?.Close();
-                if (pendingFiles != null)
+                if (pendingFiles == null) return;
+
+                for (int i = 0; i < r11Dir.Length; i++)
                 {
-                    for (int i = 0; i < r11Dir.Length; i++)
+                    for (int j = 0; j < pendingFiles.Length; j++)
                     {
-                        for (int j = 0; j < pendingFiles.Length; j++)
+                        if (pendingFiles[j].Contains(Path.GetFileName(r11Dir[i])))
                         {
-                            if (pendingFiles[j].Contains(Path.GetFileName(r11Dir[i])))
-                            {
-                                MoveFile(FixString(pendingFiles[j], false), r11Dir[i], MoveType.General, null);
-                            }
+                            MoveFile(FixString(pendingFiles[j], false), r11Dir[i], MoveType.General, null);
                         }
-                        if (x86Files != null)
+                    }
+                    if (x86Files != null)
+                    {
+                        for (int j = 0; j < x86Files.Length; j++)
                         {
-                            for (int j = 0; j < x86Files.Length; j++)
+                            if (x86Files[j].Contains(Path.GetFileName(r11Dir[i])))
                             {
-                                if (x86Files[j].Contains(Path.GetFileName(r11Dir[i])))
-                                {
-                                    MoveFile(FixString(x86Files[j], true), r11Dir[i], MoveType.x86, null);
-                                }
+                                MoveFile(FixString(x86Files[j], true), r11Dir[i], MoveType.x86, null);
                             }
                         }
                     }
-                    for (int i = 0; i < r11DiagDir.Length; i++)
+                }
+                for (int i = 0; i < r11DiagDir.Length; i++)
+                {
+                    for (int j = 0; j < pendingFiles.Length; j++)
                     {
-                        for (int j = 0; j < pendingFiles.Length; j++)
+                        if (pendingFiles[j].Contains("%diag%"))
                         {
-                            if (pendingFiles[j].Contains("%diag%"))
+                            string name = pendingFiles[j].Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
+                            if (name.Contains(Path.GetFileNameWithoutExtension(r11DiagDir[i]).Replace("DiagPackage", "")))
                             {
-                                string name = pendingFiles[j].Replace("%diag%\\", "").Replace("\\DiagPackage.dll", "");
-                                if (name.Contains(Path.GetFileNameWithoutExtension(r11DiagDir[i]).Replace("DiagPackage", "")))
-                                {
-                                    MoveFile(FixString(pendingFiles[j], false), r11DiagDir[i], MoveType.Trouble, name);
-                                }
+                                MoveFile(FixString(pendingFiles[j], false), r11DiagDir[i], MoveType.Trouble, name);
                             }
                         }
                     }
-                    for (int k = 0; k < pendingFiles.Length; k++)
+                }
+
+                // help
+                for (int k = 0; k < pendingFiles.Length; k++)
+                {
+                    if (pendingFiles[k].Contains("mmcbase.dll.mun")
+                        || pendingFiles[k].Contains("mmcndmgr.dll.mun")
+                        || pendingFiles[k].Contains("mmc.exe"))
                     {
-                        if (pendingFiles[k].Contains("mmcbase.dll.mun")
-                            || pendingFiles[k].Contains("mmcndmgr.dll.mun")
-                            || pendingFiles[k].Contains("mmc.exe"))
+                        Directory.CreateDirectory(Path.Combine(backupDir, "msc"));
+                        if (CultureInfo.CurrentUICulture.Name != "en-US")
                         {
-                            if (!Directory.Exists(Path.Combine(backupDir, "msc")))
+                            Directory.CreateDirectory(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name));
+                        }
+                        Directory.CreateDirectory(Path.Combine(backupDir, "msc", "en-US"));
+                        var langFolder = Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name);
+                        var usaFolder = Path.Combine(Variables.sys32Folder, "en-US");
+                        List<string> langMsc = new List<string>(Directory.GetFiles(langFolder, "*.msc", SearchOption.TopDirectoryOnly));
+                        List<string> usaMsc = new List<string>(Directory.GetFiles(usaFolder, "*.msc", SearchOption.TopDirectoryOnly));
+                        List<string> sysMsc = new List<string>(Directory.GetFiles(Variables.sys32Folder, "*.msc", SearchOption.TopDirectoryOnly));
+                        List<string> r11Msc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc"), "*.msc", SearchOption.TopDirectoryOnly));
+                        if (CultureInfo.CurrentUICulture.Name != "en-US")
+                        {
+                            for (int i = 0; i < langMsc.Count; i++)
                             {
-                                Directory.CreateDirectory(Path.Combine(backupDir, "msc"));
-                                if (CultureInfo.CurrentUICulture.Name != "en-US")
+                                for (int j = 0; j < usaMsc.Count; j++)
                                 {
-                                    Directory.CreateDirectory(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name));
+                                    if (Path.GetFileName(langMsc[i]) == Path.GetFileName(usaMsc[j]))
+                                    {
+                                        usaMsc.RemoveAt(j);
+                                    }
                                 }
-                                Directory.CreateDirectory(Path.Combine(backupDir, "msc", "en-US"));
                             }
-                            var langFolder = Path.Combine(Variables.sys32Folder, CultureInfo.CurrentUICulture.Name);
-                            var usaFolder = Path.Combine(Variables.sys32Folder, "en-US");
-                            List<string> langMsc = new List<string>(Directory.GetFiles(langFolder, "*.msc", SearchOption.TopDirectoryOnly));
-                            List<string> usaMsc = new List<string>(Directory.GetFiles(usaFolder, "*.msc", SearchOption.TopDirectoryOnly));
-                            List<string> sysMsc = new List<string>(Directory.GetFiles(Variables.sys32Folder, "*.msc", SearchOption.TopDirectoryOnly));
-                            List<string> r11Msc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc"), "*.msc", SearchOption.TopDirectoryOnly));
+                        }
+                        for (int j = 0; j < r11Msc.Count; j++)
+                        {
+                            for (int i = 0; i < usaMsc.Count; i++)
+                            {
+                                if (Path.GetFileName(usaMsc[i]) == Path.GetFileName(r11Msc[j]))
+                                {
+                                    Console.WriteLine(usaMsc[i]);
+                                    if (!File.Exists(Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i]))))
+                                    {
+                                        File.Move(usaMsc[i], Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i])));
+                                    }
+                                    else SafeFileDeletion(usaMsc[i]);
+
+                                    File.Copy(r11Msc[j], usaMsc[i], true);
+                                }
+                            }
+                            for (int i = 0; i < sysMsc.Count; i++)
+                            {
+                                if (Path.GetFileName(sysMsc[i]) == Path.GetFileName(r11Msc[j]))
+                                {
+                                    Console.WriteLine(sysMsc[i]);
+                                    if (!File.Exists(Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i]))))
+                                    {
+                                        File.Move(sysMsc[i], Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i])));
+                                    }
+                                    else SafeFileDeletion(sysMsc[i]);
+
+                                    File.Copy(r11Msc[j], sysMsc[i], true);
+                                }
+                            }
+                        }
+                        try
+                        {
                             if (CultureInfo.CurrentUICulture.Name != "en-US")
                             {
-                                for (int i = 0; i < langMsc.Count; i++)
+                                List<string> r11LangMsc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
+                                for (int j = 0; j < r11LangMsc.Count; j++)
                                 {
-                                    for (int j = 0; j < usaMsc.Count; j++)
+                                    for (int i = 0; i < langMsc.Count; i++)
                                     {
-                                        if (Path.GetFileName(langMsc[i]) == Path.GetFileName(usaMsc[j]))
+                                        if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11LangMsc[j]))
                                         {
-                                            usaMsc.RemoveAt(j);
-                                        }
-                                    }
-                                }
-                            }
-                            for (int j = 0; j < r11Msc.Count; j++)
-                            {
-                                for (int i = 0; i < usaMsc.Count; i++)
-                                {
-                                    if (Path.GetFileName(usaMsc[i]) == Path.GetFileName(r11Msc[j]))
-                                    {
-                                        Console.WriteLine(usaMsc[i]);
-                                        if (!File.Exists(Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i]))))
-                                        {
-                                            File.Move(usaMsc[i], Path.Combine(backupDir, "msc", "en-US", Path.GetFileName(usaMsc[i])));
-                                        }
-                                        File.Copy(r11Msc[j], usaMsc[i], true);
-                                    }
-                                }
-                                for (int i = 0; i < sysMsc.Count; i++)
-                                {
-                                    if (Path.GetFileName(sysMsc[i]) == Path.GetFileName(r11Msc[j]))
-                                    {
-                                        Console.WriteLine(sysMsc[i]);
-                                        if (!File.Exists(Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i]))))
-                                        {
-                                            File.Move(sysMsc[i], Path.Combine(backupDir, "msc", Path.GetFileName(sysMsc[i])));
-                                        }
-                                        File.Copy(r11Msc[j], sysMsc[i], true);
-                                    }
-                                }
-                            }
-                            try
-                            {
-                                if (CultureInfo.CurrentUICulture.Name != "en-US")
-                                {
-                                    List<string> r11LangMsc = new List<string>(Directory.GetFiles(Path.Combine(Variables.r11Folder, "Tmp", "msc", CultureInfo.CurrentUICulture.Name), "*.msc", SearchOption.TopDirectoryOnly));
-                                    for (int j = 0; j < r11LangMsc.Count; j++)
-                                    {
-                                        for (int i = 0; i < langMsc.Count; i++)
-                                        {
-                                            if (Path.GetFileName(langMsc[i]) == Path.GetFileName(r11LangMsc[j]))
+                                            Console.WriteLine(langMsc[i]);
+                                            if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
                                             {
-                                                Console.WriteLine(langMsc[i]);
-                                                if (!File.Exists(Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i]))))
-                                                {
-                                                    File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
-                                                }
-                                                File.Copy(r11LangMsc[j], langMsc[i], true);
+                                                File.Move(langMsc[i], Path.Combine(backupDir, "msc", CultureInfo.CurrentUICulture.Name, Path.GetFileName(langMsc[i])));
                                             }
+                                            else SafeFileDeletion(langMsc[i]);
+
+                                            File.Copy(r11LangMsc[j], langMsc[i], true);
                                         }
                                     }
                                 }
                             }
-                            catch
-                            {
-                                Console.WriteLine("Error patching language related msc files");
-                            }
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Error patching language related msc files");
                         }
                     }
                 }
@@ -414,7 +407,7 @@ namespace Rectify11.Phase2
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + "\n"+ ex.StackTrace);
+                Console.WriteLine(ex.Message + "\n" + ex.StackTrace);
             }
         }
 

@@ -115,18 +115,15 @@ namespace Rectify11Installer.Core
                 Helper.SvExtract("extras.7z", "extras", "wallpapers");
 
                 DirectoryInfo walldir = new(Path.Combine(Variables.r11Folder, "extras", "wallpapers"));
-                if (!Directory.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified")))
+                try
                 {
-                    try
-                    {
-                        Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-                        Logger.WriteLine("Created " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified") + ". " + ex.Message + NewLine + ex.StackTrace + NewLine);
-                        return false;
-                    }
+                    Directory.CreateDirectory(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                    Logger.WriteLine("Created " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"));
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteLine("Error creating " + Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified"), ex);
+                    return false;
                 }
                 var files = walldir.GetFiles("*.*");
                 for (var i = 0; i < files.Length; i++)

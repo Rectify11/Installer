@@ -70,7 +70,6 @@ namespace Rectify11.Phase2
                 return false;
             }
         }
-
         public static void ImportReg(string path)
         {
             try
@@ -142,61 +141,53 @@ namespace Rectify11.Phase2
         }
         public static void MoveFile(string newval, string file, MoveType type, string name)
         {
-            Console.WriteLine(newval);
-            Console.Write("Final path: ");
-            string finalpath = string.Empty;
-            if (type == MoveType.General)
+            try
             {
-                finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval));
-            }
-            else if (type == MoveType.x86)
-            {
-                finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
-            }
-            else if (type == MoveType.Trouble)
-            {
-                finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
-            }
-            if (string.IsNullOrWhiteSpace(finalpath)) return;
-            if (!File.Exists(finalpath))
-            {
-                Console.WriteLine(finalpath);
-                File.Move(newval, finalpath);
-            }
-            else if (File.Exists(finalpath))
-            {
-                bool wu = false;
-                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
-                var b = key?.GetValue("WindowsUpdate");
-                var value = (int?)b;
-                if (value == 1) wu = true;
-                if (!wu)
+                Console.WriteLine(newval);
+                Console.Write("Final path: ");
+                string finalpath = string.Empty;
+                if (type == MoveType.General)
                 {
-                    finalpath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                    finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileName(newval));
+                }
+                else if (type == MoveType.x86)
+                {
+                    finalpath = Path.Combine(Variables.r11Folder, "Backup", Path.GetFileNameWithoutExtension(newval) + "86" + Path.GetExtension(newval));
+                }
+                else if (type == MoveType.Trouble)
+                {
+                    finalpath = Path.Combine(Variables.r11Folder, "Backup", "Diag", Path.GetFileNameWithoutExtension(newval) + name + Path.GetExtension(newval));
+                }
+                if (string.IsNullOrWhiteSpace(finalpath)) return;
+                if (!File.Exists(finalpath))
+                {
                     Console.WriteLine(finalpath);
-                    MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    File.Move(newval, finalpath);
                 }
-                else
+                else if (File.Exists(finalpath))
                 {
-                    Console.WriteLine("WU: " + finalpath);
-                    if (File.Exists(finalpath))
+                    bool wu = false;
+                    int? value = (int?)Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11")?.GetValue("WindowsUpdate");
+                    if (value == 1) wu = true;
+                    if (!wu)
                     {
-                        try
-                        {
-                            File.Delete(finalpath);
-                        }
-                        catch
-                        {
-                            string fil = Path.GetTempFileName();
-                            File.Move(finalpath, Path.Combine(Path.GetTempPath(), fil));
-                            MoveFileEx(Path.Combine(Path.GetTempPath(), fil), null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
-                        }
+                        finalpath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                        Console.WriteLine(finalpath);
+                        MoveFileEx(finalpath, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
                     }
+                    else
+                    {
+                        Console.WriteLine("WU: " + finalpath);
+                        SafeFileDeletion(finalpath);
+                    }
+                    File.Move(newval, finalpath);
                 }
-                File.Move(newval, finalpath);
+                File.Copy(file, newval, true);
             }
-            File.Copy(file, newval, true);
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(Path.GetFileName(newval) + " failed." + ex.Message + "\n" + ex.StackTrace);
+            }
         }
     }
 }

@@ -263,8 +263,8 @@ namespace Rectify11Installer.Core
 
             if (type == PatchType.Troubleshooter)
             {
-                if (!Directory.Exists(backupfolder)) Directory.CreateDirectory(backupfolder);
-                if (!Directory.Exists(tempfolder)) Directory.CreateDirectory(tempfolder);
+                Directory.CreateDirectory(backupfolder);
+                Directory.CreateDirectory(tempfolder);
             }
 
             //File.Copy(file, Path.Combine(backupfolder, name));
