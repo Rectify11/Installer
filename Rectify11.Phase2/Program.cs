@@ -220,21 +220,7 @@ namespace Rectify11.Phase2
                                     string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
-                                    string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(finalPath));
-                                    if (File.Exists(filename))
-                                    {
-                                        try
-                                        {
-                                            File.Delete(filename);
-                                        }
-                                        catch
-                                        {
-                                            filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                                        }
-                                    }
-                                    File.Move(finalPath, filename);
-                                    File.Move(backupPath, finalPath);
-                                    MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                    SafeFileCopy(backupPath, finalPath);
                                     lastfile = uninstallFiles[k];
                                 }
                             }
@@ -248,21 +234,7 @@ namespace Rectify11.Phase2
                                     string finalPath = FixString(patches.Items[j].HardlinkTarget, true);
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
-                                    string filename = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(patches.Items[j].Mui) + "86" + Path.GetExtension(patches.Items[j].Mui));
-                                    if (File.Exists(filename))
-                                    {
-                                        try
-                                        {
-                                            File.Delete(filename);
-                                        }
-                                        catch
-                                        {
-                                            filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                                        }
-                                    }
-                                    File.Move(finalPath, filename);
-                                    File.Move(backupPath, finalPath);
-                                    MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                    SafeFileCopy(backupPath, finalPath);
                                 }
                             }
                         }
@@ -274,21 +246,7 @@ namespace Rectify11.Phase2
                                 string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
                                 Console.WriteLine("Backup: " + backupDiagDir[i]);
                                 Console.WriteLine("Final: " + finalPath + "\n");
-                                string filename = Path.Combine(Path.GetTempPath(), Path.GetFileName(backupDiagDir[i]));
-                                if (File.Exists(filename))
-                                {
-                                    try
-                                    {
-                                        File.Delete(filename);
-                                    }
-                                    catch
-                                    {
-                                        filename = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                                    }
-                                }
-                                File.Move(finalPath, filename);
-                                File.Move(backupDiagDir[i], finalPath);
-                                MoveFileEx(filename, null, MoveFileFlags.MOVEFILE_DELAY_UNTIL_REBOOT);
+                                SafeFileCopy(backupDiagDir[i], finalPath);
                             }
                         }
                     }
