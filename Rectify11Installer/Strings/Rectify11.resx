@@ -304,4 +304,7 @@
   <data name="updatePending" xml:space="preserve">
     <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
   </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Create a restore point</value>
+  </data>
 </root>

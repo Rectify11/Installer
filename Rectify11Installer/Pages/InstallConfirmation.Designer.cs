@@ -31,6 +31,7 @@
 			this.summaryTitle = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.summaryItems = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.summaryFooter = new Rectify11Installer.Controls.DarkAwareLabel();
+			this.restoreCheckbox = new();
 			this.SuspendLayout();
 			// 
 			// summaryTitle
@@ -63,16 +64,29 @@
 			this.summaryFooter.ForeColor = System.Drawing.Color.Black;
 			this.summaryFooter.Location = new System.Drawing.Point(0, 220);
 			this.summaryFooter.Name = "summaryFooter";
-			this.summaryFooter.Size = new System.Drawing.Size(297, 54);
+			this.summaryFooter.Size = new System.Drawing.Size(297, 44);
 			this.summaryFooter.TabIndex = 2;
 			this.summaryFooter.Text = Rectify11Installer.Strings.Rectify11.summaryFooter;
+			//
+			// restoreCheckbox
+			//
+			this.restoreCheckbox.Checked = true;
+            this.restoreCheckbox.ForeColor = System.Drawing.Color.Black;
+            this.restoreCheckbox.Location = new System.Drawing.Point(4, 264);
+            this.restoreCheckbox.Name = "restoreCheckbox";
+            this.restoreCheckbox.Size = new System.Drawing.Size(288, 19);
+            this.restoreCheckbox.TabIndex = 5;
+            this.restoreCheckbox.Text = Rectify11Installer.Strings.Rectify11.createRestore;
+            this.restoreCheckbox.UseVisualStyleBackColor = true;
+			this.restoreCheckbox.CheckedChanged += RestoreCheckbox_CheckChanged;
             // 
             // InstallConfirmation
             // 
             this.Controls.Add(this.summaryFooter);
 			this.Controls.Add(this.summaryItems);
 			this.Controls.Add(this.summaryTitle);
-			this.Name = "InstallConfirmation";
+			this.Controls.Add(this.restoreCheckbox);
+            this.Name = "InstallConfirmation";
 			this.WizardHeader = Rectify11Installer.Strings.Rectify11.summaryHeader;
             this.SideImage = global::Rectify11Installer.Properties.Resources.installConfirm;
 			this.HeaderVisible = true;
@@ -90,5 +104,6 @@
 		private Controls.DarkAwareLabel summaryTitle;
 		private Controls.DarkAwareLabel summaryItems;
 		private Controls.DarkAwareLabel summaryFooter;
-	}
+        private Controls.DarkAwareCheckBox restoreCheckbox;
+    }
 }

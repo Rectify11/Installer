@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Rectify11Installer.Win32;
+using System;
 using System.IO;
 using static Rectify11Installer.Win32.NativeMethods;
 
@@ -27,14 +28,17 @@ namespace Rectify11Installer.Core
             if (!Common.CreateDirs())
                 return false;
 
-            try
+            if (Variables.CreateRestorePoint)
             {
-                frm.InstallerProgress = "Begin creating a restore point";
-                CreateSystemRestorePoint(false);
-            }
-            catch
-            {
-                Logger.Warn("Error creating a restore point.");
+                try
+                {
+                    frm.InstallerProgress = "Begin creating a restore point";
+                    CreateSystemRestorePoint(false);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn("Error creating a restore point", ex);
+                }
             }
 
             // runtimes
@@ -86,14 +90,17 @@ namespace Rectify11Installer.Core
             InstallStatus.IsRectify11Installed = true;
             Logger.WriteLine("══════════════════════════════════════════════");
 
-            try
+            if (Variables.CreateRestorePoint)
             {
-                frm.InstallerProgress = "End creating a restore point";
-                CreateSystemRestorePoint(true);
-            }
-            catch
-            {
-                //ignored
+                try
+                {
+                    frm.InstallerProgress = "End creating a restore point";
+                    CreateSystemRestorePoint(true);
+                }
+                catch
+                {
+                    //ignored
+                }
             }
 
             // cleanup

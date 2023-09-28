@@ -151,6 +151,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a restore point.
+        /// </summary>
+        internal static string createRestore {
+            get {
+                return ResourceManager.GetString("createRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Enhanced Ribbon.
         /// </summary>
         internal static string epEnhRibbon {
