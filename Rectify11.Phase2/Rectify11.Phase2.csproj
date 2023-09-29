@@ -38,6 +38,9 @@
   <PropertyGroup>
     <ApplicationIcon>r11.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -62,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="r11.ico" />
+    <None Include="app.manifest" />
     <None Include="Resources\rectify11.xml" />
   </ItemGroup>
   <ItemGroup>

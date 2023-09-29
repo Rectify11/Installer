@@ -342,8 +342,12 @@ namespace Rectify11.Phase2
                 var MarlettBackupDest = Path.Combine(Variables.windir, "Fonts", "marlett.ttf.backup");
                 var marlett = Path.Combine(Variables.r11Files, "marlett.ttf");
 
-                if (!File.Exists(MarlettBackupDest)) File.Move(MarlettDest, MarlettBackupDest);
-                SafeFileCopy(marlett, MarlettDest);
+                if (!File.Exists(MarlettBackupDest))
+                {
+                    File.Move(MarlettDest, MarlettBackupDest);
+                    File.Copy(marlett, MarlettDest);
+                }
+                else SafeFileCopy(marlett, MarlettDest);
 
                 var BackIconsDest = Path.Combine(Variables.windir, "Fonts", "BackIcons.ttf");
                 var backicons = Path.Combine(Variables.r11Files, "BackIcons.ttf");
