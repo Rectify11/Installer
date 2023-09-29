@@ -285,5 +285,11 @@
   <data name="modifyTitle" xml:space="preserve">
     <value>Modyfikuj</value>
   </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Nie można zainstalować Rectify11, ponieważ trwają aktualizacje systemu Windows. Proszę zrestartować system.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Utwórz punkt przywracania systemu.</value>
+  </data>
   </data>
  </root>
