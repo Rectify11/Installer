@@ -231,11 +231,8 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Thèmes</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Arrière-plans Rectify11</value>
-  </data>
-  <data name="installEP" xml:space="preserve">
-    <value>Installer ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
     <value>Installer Shell</value>
@@ -267,5 +264,50 @@
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>Moderniser les icônes</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Installer les icônes de profil d'utilisateur</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Style du menu contextuel</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Gadgets réctifié</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Icônes de profil d'utilisateur refait</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Choisiser ce qui va être restauré.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Passer l'installation de MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Utiliser Mica Alt au lieu de Mica</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Menu contextuel classique</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Menu contextuel classique avec transparence</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Menu contextuel Windows 11 amélioré (avec entrée "Plus d'options")</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Menu contextuel Windows 11 amélioré (sans entrée "Plus d'options")</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Ajouter des fonctionnalités a votre installation existante.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Vous ne pouvez pas installer Rectify11 alors que des mises a jours sont en attente. Veuiller redémarrer votre PC.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Créer un point de restauration</value>
   </data>
 </root>
