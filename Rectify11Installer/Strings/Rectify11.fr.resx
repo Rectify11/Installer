@@ -160,10 +160,10 @@
     <value>Bienvenue!</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>Cette installation passera par les differents étapes necessaires pour installer Rectify11 sur votre, pour une experience plus cohérente. Sélectionnez l'option souhaitée pour continuer.</value>
+    <value>Cette installation passera par les differents étapes necessaires pour installer Rectify11 sur votre ordinateur, pour une experience plus cohérente. Sélectionnez l'option souhaitée pour continuer.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Vous pouvez choisir qui ce qui sera rectifié.</value>
+    <value>Choisser ce qui sera rectifié.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Choisir ce qu'il faut fait installer.</value>
@@ -172,46 +172,46 @@
     <value>Choisir votre thème désiré.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personnalizer votre experiènce.</value>
+    <value>Personnalizer votre experience.</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Rectify11 Installer</value>
+    <value>Installation de Rectify11</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Foncé with Mica</value>
+    <value>Sombre avec Mica</value>
   </data>
   <data name="themeDark" xml:space="preserve">
-    <value>Foncé</value>
+    <value>Sombre</value>
   </data>
   <data name="themeLight" xml:space="preserve">
     <value>Clair</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Utiliser "Enhanced Ribbon"</value>
+    <value>Utiliser le ruban amélioré"</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
-    <value>Extend Mica to explorer navigation bar</value>
+    <value>Etendre Mica a la barre de navigation de Windows Explorer.</value>
   </data>
   <data name="epHeader" xml:space="preserve">
-    <value>Personnaliser votre Bureau</value>
+    <value>Personnaliser votre bureau</value>
   </data>
   <data name="epTitle" xml:space="preserve">
     <value>Sélectionnez votre experience de bureau souhaitée.</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
-    <value>Rondée Windows 10</value>
+    <value>Windows 10 (arrondi)</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
     <value>Barre des tâches Windows 10</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Default de Windows 11</value>
+    <value>Windows 11 (par défaut)</value>
   </data>
   <data name="progressText" xml:space="preserve">
     <value>Le saviez-vous?</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>SVP fermer tout et sauvegarder votre travail, en tant qu'un redémarrage est requis à la fin d'installation.</value>
+    <value>Fermer tout et sauvegarder votre travail, vu qu'un redémarrage sera requis à la fin de l'installation.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
     <value>Installer Rectify11 sur cette installation de Windows.</value>
@@ -231,20 +231,17 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Thèmes</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Arrière-plans Rectify11</value>
-  </data>
-  <data name="installEP" xml:space="preserve">
-    <value>Installer ExplorerPatcher</value>
   </data>
   <data name="installShell" xml:space="preserve">
     <value>Installer Shell</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>Installer Thèmes</value>
+    <value>Installer les thèmes</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
-    <value>Installer Wallpapers</value>
+    <value>Installer les arrières-plans</value>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>Installer Winver</value>
@@ -254,7 +251,7 @@
     <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
-    <value>Summaire</value>
+    <value>Résumé</value>
   </data>
   <data name="exitText" xml:space="preserve">
     <value>Êtes-vous sur que vous voulez annuler cette installation?</value>
@@ -266,6 +263,51 @@
     <value>Installer Accent Colorizer</value>
   </data>
   <data name="installIcons" xml:space="preserve">
-    <value>Correcter les icônes</value>
+    <value>Moderniser les icônes</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Installer les icônes de profil d'utilisateur</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Style du menu contextuel</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Gadgets réctifié</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Icônes de profil d'utilisateur refait</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Choisiser ce qui va être restauré.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Passer l'installation de MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Utiliser Mica Alt au lieu de Mica</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Menu contextuel classique</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Menu contextuel classique avec transparence</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Menu contextuel Windows 11 amélioré (avec entrée "Plus d'options")</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Menu contextuel Windows 11 amélioré (sans entrée "Plus d'options")</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Ajouter des fonctionnalités a votre installation existante.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Vous ne pouvez pas installer Rectify11 alors que des mises a jours sont en attente. Veuiller redémarrer votre PC.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Créer un point de restauration</value>
   </data>
 </root>
