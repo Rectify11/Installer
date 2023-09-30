@@ -200,11 +200,11 @@ namespace Rectify11Installer.Core
 			shortcut.IconIndex = 0;
 			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
 
-			string startmenu = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs", "Rectify11 Control Center.lnk");
+			string startmenu = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Microsoft", "Windows", "Start Menu", "Programs");
 			Directory.CreateDirectory(startmenu);
 			try
 			{
-				shortcut.Save(startmenu);
+				shortcut.Save(Path.Combine(startmenu, "Rectify11 Control Center.lnk"));
 			}
 			catch (Exception ex)
 			{
