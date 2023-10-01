@@ -216,11 +216,8 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Motywy</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Tapety Rectify11</value>
-  </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Instaluj Nilesoft Shell</value>
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>Instaluj ikony</value>
@@ -230,10 +227,6 @@
   </data>
   <data name="installWallpapers" xml:space="preserve">
     <value>Instaluj tapety Rectify11</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Podsumowanie</value>
@@ -267,6 +260,7 @@
   </data>
   <data name="installMicaAlt" xml:space="preserve">
     <value>Użyj Mica Alt zamiast Mica</value>
+  </data>
   <data name="cmenuClassic" xml:space="preserve">
     <value>Klasyczne menu kontekstowe</value>
   </data>
@@ -291,5 +285,8 @@
   <data name="createRestore" xml:space="preserve">
     <value>Utwórz punkt przywracania systemu.</value>
   </data>
+  
+  <data name="installShell" xml:space="preserve">
+    <value>Enhanced context menus</value>
   </data>
  </root>

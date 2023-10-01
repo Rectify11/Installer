@@ -187,7 +187,7 @@
     <value>Terang</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Gunakan Enhanced Ribbon</value>
+    <value>Gunakan Ribbon Lanjutan</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>Perluas Mica ke bar navigasi explorer</value>
@@ -231,32 +231,79 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Tema</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Wallpaper Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>Pasang ExplorerPatcher</value>
   </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Pasang Shell</value>
-  </data>
   <data name="installThemes" xml:space="preserve">
     <value>Pasang Tema</value>
   </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Pasang Wallpapers</value>
-  </data>
   <data name="installWinver" xml:space="preserve">
     <value>Pasang Winver</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Kesimpulan</value>
   </data>
   <data name="exitText" xml:space="preserve">
     <value>Apa anda yakin ingin membatalkan pemasangan ini?</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Menu konteks lanjutan</value>
+  </data>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Mulai ulang sekarang</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Pewarnaan Warna Aksen</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Tambal ikon</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Pasang avatar pengguna</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Macam menu konteks</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Rektifikasi Gadgets</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Reka-ulang avatar pengguna</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Anda bisa memilih apa yang ingin dipulihkan.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Lewati pemasangan MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Gunakan Mica Alt daripada Mica</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Menu Konteks Klasik</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Menu Konteks Klasik dengan transparansi</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Menu Fluent Lanjutan (Pilihan Lanjut)</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Menu Fluent Lanjutan (Semua pilihan di root)</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Tambah fitur di instalasi yang ada.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Ubah</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Anda tidak bisa memasang Rectify11 selama Windows Updates berjalan. Mulai ulang sistem anda.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Buat sebuah titik pulihan</value>
   </data>
 </root>

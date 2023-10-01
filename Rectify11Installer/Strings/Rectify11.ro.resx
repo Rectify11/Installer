@@ -130,7 +130,7 @@
     <value>Acord de licență</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}Acest software este furnizat „așa cum este”, fără nicio garanție expresă sau implicită. În NICI un caz autorul nu va fi tras la răspundere pentru orice daună rezultată din utilizarea acestui software.\par{\pntext\f0 2.\tab}Rectify11 este liber de utilizat de către oricine, dar nu îl puteți vinde. Nu puteți include acest produs ca parte a unui alt produs fără permisiunea scrisă a autorului.\par{\pntext\f0 3.\tab}Nu puteți revendica că ați realizat acest software.\par{\pntext\f0 4.\tab}Această notă nu poate fi îndepărtată sau modificată din nicio distribuție.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation și echipa Rectify11.\par{\pntext\f0\space}Noi NU suntem afiliați cu Microsoft Corporation în niciun fel. Acesta este un proiect realizat de o comunitate.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Înainte să instalezi Rectify11, trebuie să accepți acest acord de licență:</value>
@@ -148,7 +148,7 @@
     <value>Dezinstalează Rectify11</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Actualizați instalația Rectify11 existentă.</value>
+    <value>Actualizați instalarea existentă de Rectify11</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Actualizează acum</value>
@@ -231,32 +231,79 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Teme</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Imagini de fundal Rectify11</value>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>Instalează ExplorerPatcher</value>
   </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Instalează Shell</value>
-  </data>
   <data name="installThemes" xml:space="preserve">
     <value>Instalează Temele</value>
   </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Instalează imaginile de fundal</value>
-  </data>
   <data name="installWinver" xml:space="preserve">
     <value>Instalează Winver</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Rezumat</value>
   </data>
   <data name="exitText" xml:space="preserve">
     <value>Sunteți sigur că doriți să anulați instalarea?</value>
+  </data>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Repornește acum</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Colorarea culorii de accent</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Patch pictograme</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Instalează avataruri de utilizator</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Stilul meniului contextual</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Gadget-uri Rectificate</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Avataruri de utilizator reîmprospătate</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Puteți alege ce va fi restaurat.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Săriți instalarea MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Utilizați Mica Alt în loc de Mica</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Meniuri contextuale clasice</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Meniuri contextuale classice cu transparență</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Meniuri Fluent Îmbunătățite (Multe opțiuni)</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Meniuri Fluent Îmbunătățite (Toate itemele în root)</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Adaugă caracteristici la instalarea dvs. existentă.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modifică</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Nu puteți instala Rectify11, deoarece actualizările Windows sunt în așteptare. Vă rugăm reporniți sistemul.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Creați un punct de restaurare.</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Meniuri Fluent Îmbunătățite</value>
   </data>
 </root>
