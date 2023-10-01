@@ -207,9 +207,6 @@
   <data name="epW11Radio" xml:space="preserve">
     <value>Windows 11 Default</value>
   </data>
-  <data name="progressText" xml:space="preserve">
-    <value>TMI</value>
-  </data>
   <data name="summaryFooter" xml:space="preserve">
     <value>설치가 끝날 무렵 재부팅이 자동으로 이루어 질 예정이니 하던 일들은 다 저장해 주세요.</value>
   </data>
@@ -263,7 +260,7 @@
     <value>아이콘 패치</value>
   </data>
   <data name="userAvatars" xml:space="preserve">
-    <value>User Profile 설치</value>
+    <value>사용자 프로필 설치</value>
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>우클릭 메뉴 테마</value>
@@ -272,7 +269,7 @@
     <value>Gadgets 설치</value>
   </data>
   <data name="installUserAV" xml:space="preserve">
-    <value>리마스터된 User Profile</value>
+    <value>리마스터된 사용자 프로필</value>
   </data>
   <data name="uninstallChoiceDescription" xml:space="preserve">
     <value>다시 원래대로 복구할 항목을 선택해 주세요.</value>
@@ -300,5 +297,14 @@
   </data>
   <data name="modifyTitle" xml:space="preserve">
     <value>수정</value>
+  </data>
+  <data name="progressText" xml:space="preserve">
+    <value>Rectify11의 특징</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>윈도우 업데이트가 진행되는 동안 Rectify11를 설치할 수 없습니다. 업데이트를 완료한 후 컴퓨터를 재시작 해 주세요.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>복원 지점 생성 중</value>
   </data>
 </root>
