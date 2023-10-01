@@ -285,8 +285,7 @@
   <data name="createRestore" xml:space="preserve">
     <value>Utwórz punkt przywracania systemu.</value>
   </data>
-  
   <data name="installShell" xml:space="preserve">
-    <value>Enhanced context menus</value>
+    <value>Ulepszone menu kontekstowe</value>
   </data>
  </root>
