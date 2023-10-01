@@ -104,10 +104,12 @@ namespace Rectify11Installer.Pages
 			this.winUIButton1.Size = new System.Drawing.Size(64, 23);
 			this.winUIButton1.TabIndex = 5;
 			this.winUIButton1.Click += WinUIButton1_Click;
-			// 
-			// DebugPage
-			// 
-			this.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // DebugPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.winUIButton1);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.darkAwareLabel2);

@@ -79,6 +79,8 @@
             // 
             // WelcomePage
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Transparent;
 			this.Controls.Add(this.cmbUninstall);
 			this.Controls.Add(this.cmbInstall);

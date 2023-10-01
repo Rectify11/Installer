@@ -118,10 +118,12 @@
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeDark);
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeBlack);
 			this.themeSel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			// 
-			// ThemeChoicePage
-			// 
-			this.Controls.Add(this.themeTitle);
+            // 
+            // ThemeChoicePage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.themeTitle);
 			this.Controls.Add(this.themeSel);
 			this.Controls.Add(this.randomCheckbox1);
 			this.Controls.Add(this.randomCheckbox2);

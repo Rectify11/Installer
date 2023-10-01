@@ -87,10 +87,12 @@
 			this.treeView1.Size = new System.Drawing.Size(342, 270);
 			this.treeView1.TabIndex = 2;
 			this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
-			// 
-			// InstallOptnsPage
-			// 
-			this.Controls.Add(this.treeView1);
+            // 
+            // InstallOptnsPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "InstallOptnsPage";

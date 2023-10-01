@@ -18,7 +18,7 @@ namespace Rectify11Installer
 		[STAThread]
 		private static void Main(string[] args)
 		{
-			using var mutex = new Mutex(false, "Rectify11Setup");
+            using var mutex = new Mutex(false, "Rectify11Setup");
 			bool isAnotherInstanceOpen = !mutex.WaitOne(TimeSpan.Zero);
 			if (isAnotherInstanceOpen) return;
 			if (Environment.OSVersion.Version.Build <= 18362)
@@ -95,5 +95,5 @@ namespace Rectify11Installer
 			Application.Run(new FrmWizard());
 			mutex.ReleaseMutex();
 		}
-	}
+    }
 }

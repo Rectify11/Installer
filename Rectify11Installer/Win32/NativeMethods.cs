@@ -10,6 +10,8 @@ namespace Rectify11Installer.Win32
     public class NativeMethods
     {
         #region P/Invoke
+        [DllImport("user32.dll")]
+        internal static extern bool SetProcessDPIAware();
         [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool LookupPrivilegeValue(string? lpSystemName, string lpName, out LUID lpLuid);

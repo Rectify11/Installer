@@ -112,10 +112,12 @@ namespace Rectify11Installer.Pages
 			this.Rad4.TabStop = true;
 			this.Rad4.Text = Rectify11Installer.Strings.Rectify11.cmenuClassicA;
             this.Rad4.UseVisualStyleBackColor = true;
-			// 
-			// CMenuPage
-			// 
-			this.Controls.Add(this.PrevImg);
+            // 
+            // CMenuPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.PrevImg);
 			this.Controls.Add(this.Rad4);
 			this.Controls.Add(this.Rad3);
 			this.Controls.Add(this.Rad2);
