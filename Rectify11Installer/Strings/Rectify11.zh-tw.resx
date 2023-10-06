@@ -282,7 +282,7 @@
     <comment/>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>安裝 Winver</value>
+    <value>安裝 WinUI 版 Winver</value>
     <comment/>
   </data>
   <data name="summaryHeader" xml:space="preserve">
@@ -357,12 +357,12 @@
     <value>修改 Windows</value>
     <comment/>
   </data>
-
-  <!--translate-->
   <data name="updatePending" xml:space="preserve">
-    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+    <value>您無法在 Windows Updates 需要重新啟動的情形下安裝 Rectify11，請先重新啟動您的電腦。</value>
+    <comment/>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Create a restore point</value>
+    <value>建立還原點</value>
+    <comment/>
   </data>
 </root>
