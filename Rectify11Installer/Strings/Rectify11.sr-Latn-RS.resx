@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="buttonAgree" xml:space="preserve">
-    <value>Agree</value>
+    <value>Slažem se</value>
   </data>
   <data name="buttonCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Otkaži</value>
   </data>
   <data name="buttonNext" xml:space="preserve">
-    <value>Next</value>
+    <value>Dalje</value>
   </data>
   <data name="eulaPageHeader" xml:space="preserve">
-    <value>License Agreement</value>
+    <value>Ugovor o licenci</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}Ovaj softver je dostupan 'takav-kakav-je', bez ikakve garancije. Ni u kakvom slučaju je autor kriv za bilo kakva oštećenja nastala korišćenjem ovog softvera.\par{\pntext\f0 2.\tab}Rectify11 je besplatan za korišćenje svima, ali ne smete ga prodavati. Ne možete da naš projekat (ili delove) stavite kao deo vašeg projekta bez pisane dozvole autora.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}Ovo obaveštenje ne sme biti uklonjeno ili modifikovano od strane distributora.\par\pard\par{\pntext\f0\space}Kopirajt \'a9 Microsoft korporacija and the Rectify11 tim.\par{\pntext\f0\space}Nismo povezani sa Microsoft korporacijom NI NA KAKAV NAČIN! Ovo je projekat napravljen od strane korisnika.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Pre no što možete instalirati Rectify11, morate se složiti sa ovim ugovorom o licenci:</value>
@@ -163,16 +163,16 @@
     <value>Instalacioni program će proći kroz razne korake potrebne za instalaciju Rectify11 na vašem računaru za poboljšano iskustvo. Izaberite opciju da bi ste nastavili.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Možete izabrati šta će biti poboljšano.</value>
+    <value>Izaberite šta će biti poboljšano.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
-    <value>Izaberite stavke za instalaciju</value>
+    <value>Izaberite stavke za instalaciju.</value>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
     <value>Izaberite svoju temu.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personalizujte svoje iskustvo</value>
+    <value>Personalizujte svoje iskustvo.</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Rectify11 instalacioni program</value>
@@ -231,7 +231,7 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Teme</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Rectify11 pozadine</value>
   </data>
   <data name="installEP" xml:space="preserve">
@@ -243,20 +243,67 @@
   <data name="installThemes" xml:space="preserve">
     <value>Instaliraj teme</value>
   </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Instaliraj pozadine</value>
-  </data>
   <data name="installWinver" xml:space="preserve">
     <value>Instaliraj "Winver" program</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Da rezimiramo...</value>
   </data>
   <data name="exitText" xml:space="preserve">
     <value>Da li ste sigurni da želite da otkažete ovu instalaciju?</value>
+  </data>
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Restartuj sada</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Oboj elemente po izabranoj boji akcenta</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Poboljšaj ikone</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Installiraj korisničke ikone</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Stil menija desnog klika</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Poboljšani "gedžeti"</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Poboljšane korisničke ikone</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>Možete izabrati šta će biti uklonjeno.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Preskoči instalaciju MicaForEveryone</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Koristi Mica Alt umesto Mice</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Klasični meni desnog klika</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Klasični meni desnog klika sa providnošću</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Poboljšani fluent meniji (Sa opcijom više)</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Poboljšani fluent meniji (Sa svim stavkama na prvom delu)</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Dodaj stavke na svoju instalaciju.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modifikuj</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Ne možeš instalirati Rectify11 jer imaš Windows ažuriranja na čekanju, restartuj sistem pa probaj ponovo.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Napravi "Restore Point"</value>
   </data>
 </root>

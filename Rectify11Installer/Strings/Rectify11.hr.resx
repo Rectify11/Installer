@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -231,32 +231,81 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Teme</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Rectify11 Pozadine</value>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>Instairati ExplorerPatcher</value>
   </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Instalirati Shell</value>
-  </data>
   <data name="installThemes" xml:space="preserve">
     <value>Installirati Teme</value>
   </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Instalirati Pozadine</value>
-  </data>
   <data name="installWinver" xml:space="preserve">
     <value>Instalirati naš Winver</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Sažetak</value>
   </data>
   <data name="exitText" xml:space="preserve">
     <value>Jeste li sigurni da želite otkazati instalaciju?</value>
+  </data>
+
+  <!--translate-->
+  <data name="buttonReboot" xml:space="preserve">
+    <value>Restart now</value>
+  </data>
+  <data name="installASDF" xml:space="preserve">
+    <value>Accent Color Colorizing</value>
+  </data>
+  <data name="installIcons" xml:space="preserve">
+    <value>Patch Icons</value>
+  </data>
+  <data name="userAvatars" xml:space="preserve">
+    <value>Install User avatars</value>
+  </data>
+  <data name="CMenuPageHeader" xml:space="preserve">
+    <value>Context menu style</value>
+  </data>
+  <data name="installGadgets" xml:space="preserve">
+    <value>Rectified Gadgets</value>
+  </data>
+  <data name="installUserAV" xml:space="preserve">
+    <value>Remastered user avatars</value>
+  </data>
+  <data name="uninstallChoiceDescription" xml:space="preserve">
+    <value>You can choose what will be restored.</value>
+  </data>
+  <data name="installMFE" xml:space="preserve">
+    <value>Skip MicaForEveryone installation</value>
+  </data>
+  <data name="installMicaAlt" xml:space="preserve">
+    <value>Use Mica Alt instead of Mica</value>
+  </data>
+  <data name="cmenuClassic" xml:space="preserve">
+    <value>Classic Context Menus</value>
+  </data>
+  <data name="cmenuClassicA" xml:space="preserve">
+    <value>Classic Menus with transparency</value>
+  </data>
+  <data name="cmenuFluent1" xml:space="preserve">
+    <value>Enhanced Fluent Menus (More Options)</value>
+  </data>
+  <data name="cmenuFluent2" xml:space="preserve">
+    <value>Enhanced Fluent Menus (All Items in root)</value>
+  </data>
+  <data name="modifyNote" xml:space="preserve">
+    <value>Add features to your existing installation.</value>
+  </data>
+  <data name="modifyTitle" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Create a restore point</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Enhanced context menus</value>
   </data>
 </root>

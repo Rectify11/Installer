@@ -19,3 +19,5 @@ Rectify11.Phase2.exe
 *.pdb
 *.config
 *.exe
+x64/
+/Rectify11Installer/Resources/Rectify11CPL.dll

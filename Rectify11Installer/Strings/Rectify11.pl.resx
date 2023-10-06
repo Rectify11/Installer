@@ -204,21 +204,6 @@
   <data name="epExtMica" xml:space="preserve">
     <value>Rozszerz efekt Mica na pasek adresu</value>
   </data>
-  <data name="epHeader" xml:space="preserve">
-    <value>Dostosuj pulpit</value>
-  </data>
-  <data name="epTitle" xml:space="preserve">
-    <value>Wybierz wygląd pulpitu</value>
-  </data>
-  <data name="epW10Radio" xml:space="preserve">
-    <value>Windows 10 (zaokrąglone)</value>
-  </data>
-  <data name="epW10Taskbar" xml:space="preserve">
-    <value>Włącz pasek zadań Windows 10</value>
-  </data>
-  <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11</value>
-  </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>Instaluj</value>
   </data>
@@ -231,14 +216,8 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Motywy</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Tapety Rectify11</value>
-  </data>
-  <data name="installEP" xml:space="preserve">
-    <value>Instaluj ExplorerPatcher</value>
-  </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Instaluj Nilesoft Shell</value>
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>Instaluj ikony</value>
@@ -248,13 +227,6 @@
   </data>
   <data name="installWallpapers" xml:space="preserve">
     <value>Instaluj tapety Rectify11</value>
-  </data>
-  <data name="installWinver" xml:space="preserve">
-    <value>Instaluj Winver</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Podsumowanie</value>
@@ -288,6 +260,7 @@
   </data>
   <data name="installMicaAlt" xml:space="preserve">
     <value>Użyj Mica Alt zamiast Mica</value>
+  </data>
   <data name="cmenuClassic" xml:space="preserve">
     <value>Klasyczne menu kontekstowe</value>
   </data>
@@ -306,5 +279,13 @@
   <data name="modifyTitle" xml:space="preserve">
     <value>Modyfikuj</value>
   </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Nie można zainstalować Rectify11, ponieważ trwają aktualizacje systemu Windows. Proszę zrestartować system.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Utwórz punkt przywracania systemu.</value>
+  </data>
+  <data name="installShell" xml:space="preserve">
+    <value>Ulepszone menu kontekstowe</value>
   </data>
  </root>

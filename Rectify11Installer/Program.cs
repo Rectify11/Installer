@@ -18,7 +18,7 @@ namespace Rectify11Installer
 		[STAThread]
 		private static void Main(string[] args)
 		{
-			using var mutex = new Mutex(false, "Rectify11Setup");
+            using var mutex = new Mutex(false, "Rectify11Setup");
 			bool isAnotherInstanceOpen = !mutex.WaitOne(TimeSpan.Zero);
 			if (isAnotherInstanceOpen) return;
 			if (Environment.OSVersion.Version.Build <= 18362)
@@ -82,23 +82,18 @@ namespace Rectify11Installer
 					DarkMode.SetPreferredAppMode(DarkMode.PreferredAppMode.AllowDark);
 				}
 			}
-			if (!Directory.Exists(Variables.r11Folder))
-			{
-				Directory.CreateDirectory(Variables.r11Folder);
-			}
 
-			if ((!File.Exists(Path.Combine(Variables.r11Folder, "Dark.msstyles"))) && (!File.Exists(Path.Combine(Variables.r11Folder, "light.msstyles"))))
-			{
-				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Dark.msstyles"), Properties.Resources.Dark);
-				File.WriteAllBytes(Path.Combine(Variables.r11Folder, "light.msstyles"), Properties.Resources.light);
-			}
+			// overwrite
+			File.WriteAllBytes(Path.Combine(Path.GetTempPath(), "Dark.msstyles"), Properties.Resources.Dark);
+			File.WriteAllBytes(Path.Combine(Path.GetTempPath(), "light.msstyles"), Properties.Resources.light);
+
 			Theme.LoadTheme();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko");
+			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl");
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
 			Application.Run(new FrmWizard());
 			mutex.ReleaseMutex();
 		}
-	}
+    }
 }

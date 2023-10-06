@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.themePreview = new System.Windows.Forms.PictureBox();
 			this.themeTitle = new Rectify11Installer.Controls.DarkAwareLabel();
@@ -77,8 +76,8 @@
 			this.randomCheckbox2.Size = new System.Drawing.Size(288, 19);
 			this.randomCheckbox2.TabIndex = 5;
 			this.randomCheckbox2.Enabled = false;
-			this.randomCheckbox2.Text = resources.GetString("installMicaAlt");
-			this.randomCheckbox2.UseVisualStyleBackColor = true;
+			this.randomCheckbox2.Text = Rectify11Installer.Strings.Rectify11.installMicaAlt;
+            this.randomCheckbox2.UseVisualStyleBackColor = true;
 			//
 			// randomCheckbox1
 			//
@@ -87,8 +86,8 @@
 			this.randomCheckbox1.Name = "randomCheckbox1";
 			this.randomCheckbox1.Size = new System.Drawing.Size(288, 19);
 			this.randomCheckbox1.TabIndex = 5;
-			this.randomCheckbox1.Text = resources.GetString("installMFE");
-			this.randomCheckbox1.UseVisualStyleBackColor = true;
+			this.randomCheckbox1.Text = Rectify11Installer.Strings.Rectify11.installMFE;
+            this.randomCheckbox1.UseVisualStyleBackColor = true;
 			// 
 			// themeTitle
 			// 
@@ -107,22 +106,24 @@
 			this.themeSelection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.themeSelection.Size = new System.Drawing.Size(361, 20);
 			this.themeSelection.TabIndex = 5;
-			this.themeSelection.Text = resources.GetString("themeChoiceTitle");
-			//
-			// themeSel
-			//
-			this.themeSel.Name = "themeSel";
+			this.themeSelection.Text = Rectify11Installer.Strings.Rectify11.themeChoiceTitle;
+            //
+            // themeSel
+            //
+            this.themeSel.Name = "themeSel";
 			this.themeSel.Location = new System.Drawing.Point(200, 157);
 			this.themeSel.Size = new System.Drawing.Size(140, 40);
 			this.themeSel.TabIndex = 1;
-			this.themeSel.Items.Add(resources.GetString("themeLight"));
-			this.themeSel.Items.Add(resources.GetString("themeDark"));
-			this.themeSel.Items.Add(resources.GetString("themeBlack"));
+			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeLight);
+			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeDark);
+			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeBlack);
 			this.themeSel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			// 
-			// ThemeChoicePage
-			// 
-			this.Controls.Add(this.themeTitle);
+            // 
+            // ThemeChoicePage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.themeTitle);
 			this.Controls.Add(this.themeSel);
 			this.Controls.Add(this.randomCheckbox1);
 			this.Controls.Add(this.randomCheckbox2);
@@ -135,9 +136,9 @@
 			this.NextButtonEnabled = true;
 			this.UpdateFrame = true;
 			this.Page = Rectify11Installer.Core.TabPages.themePage;
-			this.WizardHeader = resources.GetString("themeHeader");
-			this.NextButtonText = resources.GetString("buttonNext");
-			((System.ComponentModel.ISupportInitialize)(this.themePreview)).EndInit();
+			this.WizardHeader = Rectify11Installer.Strings.Rectify11.themeHeader;
+			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
+            ((System.ComponentModel.ISupportInitialize)(this.themePreview)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();

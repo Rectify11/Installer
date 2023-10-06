@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -207,9 +207,6 @@
   <data name="epW11Radio" xml:space="preserve">
     <value>قائمة Start لـWindows 11</value>
   </data>
-  <data name="progressText" xml:space="preserve">
-    <value>يتم نسخ الملفات المطلوبة...</value>
-  </data>
   <data name="summaryFooter" xml:space="preserve">
     <value>أغلق كل البرامج حتى يقوم جهازك بإعادة التشغيل واستكمال التثبيت.</value>
   </data>
@@ -231,15 +228,6 @@
   <data name="optionThemes" xml:space="preserve">
     <value>النسق</value>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
-    <value>خلفيات Rectify11</value>
-  </data>
-  <data name="installEP" xml:space="preserve">
-    <value>تثبيت ExplorerPatcher</value>
-  </data>
-  <data name="installShell" xml:space="preserve">
-    <value>تثبيت Shell</value>
-  </data>
   <data name="installIcons" xml:space="preserve">
     <value>تثبيت  الأيقونات</value>
   </data>
@@ -247,14 +235,10 @@
     <value>تثبيت النسق</value>
   </data>
   <data name="installWallpapers" xml:space="preserve">
-    <value>تثبيت الخلفيات</value>
+    <value>خلفيات Rectify11</value>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>تثبيت Winver</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>تأكد من اختيارك</value>
@@ -306,5 +290,16 @@
   </data>
   <data name="modifyTitle" xml:space="preserve">
     <value>تحديث</value>
+  </data>
+
+  <!--translate-->
+  <data name="installShell" xml:space="preserve">
+    <value>Enhanced context menus</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Create a restore point</value>
+  </data>
+  <data name="progressText" xml:space="preserve">
+    <value>Did you know</value>
   </data>
 </root>

@@ -48,5 +48,6 @@ namespace Rectify11Installer.Core
 		public static bool RestartRequired { get; set; } = false;
 		public static bool WindowsUpdate { get; set; } = false;
 		public static bool CompleteUninstall { get; set;} = false;
+		public static bool CreateRestorePoint { get; set; } = true;
 	}
 }

@@ -151,6 +151,15 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a restore point.
+        /// </summary>
+        internal static string createRestore {
+            get {
+                return ResourceManager.GetString("createRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Enhanced Ribbon.
         /// </summary>
         internal static string epEnhRibbon {
@@ -277,15 +286,6 @@ namespace Rectify11Installer.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install ExplorerPatcher.
-        /// </summary>
-        internal static string installEP {
-            get {
-                return ResourceManager.GetString("installEP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rectified Gadgets.
         /// </summary>
         internal static string installGadgets {
@@ -336,6 +336,15 @@ namespace Rectify11Installer.Strings {
         internal static string installShell {
             get {
                 return ResourceManager.GetString("installShell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Themes.
+        /// </summary>
+        internal static string installThemes {
+            get {
+                return ResourceManager.GetString("installThemes", resourceCulture);
             }
         }
         
@@ -562,6 +571,15 @@ namespace Rectify11Installer.Strings {
         internal static string updateNote {
             get {
                 return ResourceManager.GetString("updateNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot install Rectify11 as Windows Updates are pending. Please reboot your system..
+        /// </summary>
+        internal static string updatePending {
+            get {
+                return ResourceManager.GetString("updatePending", resourceCulture);
             }
         }
         
