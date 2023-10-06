@@ -18,3 +18,5 @@
 Rectify11 improves the consistency of Windows 11 by modifying system files in a safe way, and by using various programs to improve the Windows 11 experience.
 
 <br/>
+
+![image](https://github.com/Rectify11/Installer/assets/70931017/6e3dd8ee-7dee-45c0-aee8-dd5e595680bf)
