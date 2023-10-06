@@ -70,7 +70,20 @@ namespace Rectify11.Phase2
                 return false;
             }
         }
-        public static void ImportReg(string path)
+		public static bool SafeFileMove(string src, string dest)
+		{
+			try
+			{
+				if (!SafeFileDeletion(dest)) return false;
+				File.Move(src, dest);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		public static void ImportReg(string path)
         {
             try
             {

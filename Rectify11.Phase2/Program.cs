@@ -220,7 +220,7 @@ namespace Rectify11.Phase2
                                     string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
-                                    SafeFileCopy(backupPath, finalPath);
+                                    SafeFileMove(backupPath, finalPath);
                                     lastfile = uninstallFiles[k];
                                 }
                             }
@@ -234,7 +234,7 @@ namespace Rectify11.Phase2
                                     string finalPath = FixString(patches.Items[j].HardlinkTarget, true);
                                     Console.WriteLine("Backup: " + backupPath);
                                     Console.WriteLine("Final: " + finalPath);
-                                    SafeFileCopy(backupPath, finalPath);
+                                    SafeFileMove(backupPath, finalPath);
                                 }
                             }
                         }
@@ -246,7 +246,7 @@ namespace Rectify11.Phase2
                                 string finalPath = FixString(patches.Items[j].HardlinkTarget, false);
                                 Console.WriteLine("Backup: " + backupDiagDir[i]);
                                 Console.WriteLine("Final: " + finalPath + "\n");
-                                SafeFileCopy(backupDiagDir[i], finalPath);
+                                SafeFileMove(backupDiagDir[i], finalPath);
                             }
                         }
                     }
