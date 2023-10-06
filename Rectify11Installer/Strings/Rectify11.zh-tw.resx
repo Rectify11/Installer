@@ -269,7 +269,7 @@
     <value>佈景主題</value>
     <comment/>
   </data>
-  <data name="optionWallpaper" xml:space="preserve">
+  <data name="installWallpapers" xml:space="preserve">
     <value>Rectify11 桌面背景</value>
     <comment/>
   </data>
@@ -283,10 +283,6 @@
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>安裝 Winver</value>
-    <comment/>
-  </data>
-  <data name="r11" xml:space="preserve">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment/>
   </data>
   <data name="summaryHeader" xml:space="preserve">
@@ -360,5 +356,13 @@
   <data name="modifyTitle" xml:space="preserve">
     <value>修改 Windows</value>
     <comment/>
+  </data>
+
+  <!--translate-->
+  <data name="updatePending" xml:space="preserve">
+    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Create a restore point</value>
   </data>
 </root>

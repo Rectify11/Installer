@@ -29,7 +29,6 @@ namespace Rectify11Installer.Pages
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new global::Rectify11Installer.Core.SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
 			this.darkAwareLabel1 = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.PrevImg = new System.Windows.Forms.PictureBox();
 			this.Rad1 = new Rectify11Installer.Controls.DarkAwareRadioButton();
@@ -49,7 +48,7 @@ namespace Rectify11Installer.Pages
 			this.darkAwareLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.darkAwareLabel1.Size = new System.Drawing.Size(361, 40);
 			this.darkAwareLabel1.TabIndex = 2;
-			this.darkAwareLabel1.Text = resources.GetString("epTitle");
+			this.darkAwareLabel1.Text = Rectify11Installer.Strings.Rectify11.epTitle;
 
 
 			this.PrevImg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -70,8 +69,8 @@ namespace Rectify11Installer.Pages
 			this.Rad1.TabIndex = 1;
 			this.Rad1.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad1.TabStop = true;
-			this.Rad1.Text = resources.GetString("cmenuFluent1");
-			this.Rad1.UseVisualStyleBackColor = true;
+			this.Rad1.Text = Rectify11Installer.Strings.Rectify11.cmenuFluent1;
+            this.Rad1.UseVisualStyleBackColor = true;
 			// 
 			// Rad2
 			// 
@@ -83,8 +82,9 @@ namespace Rectify11Installer.Pages
 			this.Rad2.Size = new System.Drawing.Size(160, 35);
 			this.Rad2.TabIndex = 2;
 			this.Rad2.TabStop = true;
-			this.Rad2.Text = resources.GetString("cmenuFluent2"); ;
-			this.Rad2.UseVisualStyleBackColor = true;
+			this.Rad2.Text = Rectify11Installer.Strings.Rectify11.cmenuFluent2;
+
+            this.Rad2.UseVisualStyleBackColor = true;
 			// 
 			// Rad3
 			// 
@@ -96,8 +96,9 @@ namespace Rectify11Installer.Pages
 			this.Rad3.TabIndex = 3;
 			this.Rad3.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.Rad3.TabStop = true;
-			this.Rad3.Text = resources.GetString("cmenuClassic");
-			this.Rad3.UseVisualStyleBackColor = true;
+			this.Rad3.Text = Rectify11Installer.Strings.Rectify11.cmenuClassic;
+
+            this.Rad3.UseVisualStyleBackColor = true;
 			// 
 			// Rad4
 			// 
@@ -109,12 +110,14 @@ namespace Rectify11Installer.Pages
 			this.Rad4.Size = new System.Drawing.Size(160, 35);
 			this.Rad4.TabIndex = 4;
 			this.Rad4.TabStop = true;
-			this.Rad4.Text = resources.GetString("cmenuClassicA");
+			this.Rad4.Text = Rectify11Installer.Strings.Rectify11.cmenuClassicA;
             this.Rad4.UseVisualStyleBackColor = true;
-			// 
-			// CMenuPage
-			// 
-			this.Controls.Add(this.PrevImg);
+            // 
+            // CMenuPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.PrevImg);
 			this.Controls.Add(this.Rad4);
 			this.Controls.Add(this.Rad3);
 			this.Controls.Add(this.Rad2);
@@ -128,9 +131,9 @@ namespace Rectify11Installer.Pages
 			this.UpdateFrame = true;
 			this.NextButtonEnabled = true;
 			this.Page = Rectify11Installer.Core.TabPages.cmenupage;
-			this.NextButtonText = resources.GetString("buttonNext");
-			this.WizardHeader = resources.GetString("CMenuPageHeader");
-			((System.ComponentModel.ISupportInitialize)(this.PrevImg)).EndInit();
+			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
+			this.WizardHeader = Rectify11Installer.Strings.Rectify11.CMenuPageHeader;
+            ((System.ComponentModel.ISupportInitialize)(this.PrevImg)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -1,5 +1,4 @@
 ﻿using KPreisser.UI;
-using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
@@ -24,9 +23,9 @@ namespace Rectify11Installer
             get => progressLabel.Text;
             set
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
-                    this.Invoke((MethodInvoker)delegate () { InstallerProgress = value; });
+                    Invoke((MethodInvoker)delegate () { InstallerProgress = value; });
                 }
                 else
                 {
@@ -47,7 +46,7 @@ namespace Rectify11Installer
                 nextButton.Visible = false;
                 progressLabel.Location = new Point(progressLabel.Location.X, progressLabel.Location.Y - 30);
                 pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - 30);
-                cancelButton.ButtonText = _resources.GetString("buttonReboot");
+                cancelButton.ButtonText = Strings.Rectify11.buttonReboot;
                 cancelButton.Click -= CancelButton_Click;
                 tableLayoutPanel2.Visible = value;
                 if (!Theme.IsUsingDarkMode)
@@ -60,12 +59,11 @@ namespace Rectify11Installer
         {
             set => cancelButton.Click += value;
         }
-        private readonly System.ComponentModel.ComponentResourceManager _resources = new SingleAssemblyComponentResourceManager(typeof(Strings.Rectify11));
         #endregion
         #region Main
         public FrmWizard()
         {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.CacheText, true);
             if (System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
             {
                 RightToLeftLayout = true;
@@ -73,10 +71,7 @@ namespace Rectify11Installer
             }
             InitializeComponent();
             DarkMode.RefreshTitleBarColor(Handle);
-            if (Theme.IsUsingDarkMode)
-            {
-                DarkMode.UpdateFrame(this, true);
-            }
+            if (Theme.IsUsingDarkMode) DarkMode.UpdateFrame(this, true);
             Shown += FrmWizard_Shown;
             FormClosing += FrmWizard_FormClosing;
             Application.Idle += Application_Idle;
@@ -86,22 +81,22 @@ namespace Rectify11Installer
         private void Application_Idle(object sender, EventArgs e)
         {
             if (_idleInit) return;
-            // initialize InstallOptnsPage here because it needs 
-            // current instance to change button state.
+
+            // initialize here because it needs instance
             RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
             RectifyPages.InstallConfirmation = new InstallConfirmation(this);
             RectifyPages.UninstallPage = new(this);
             RectifyPages.ProgressPage = new ProgressPage(this);
-            TabPages.expPage.Controls.Add(RectifyPages.ExperimentalPage);
+
             TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
             TabPages.installPage.Controls.Add(RectifyPages.InstallOptnsPage);
             TabPages.themePage.Controls.Add(RectifyPages.ThemeChoicePage);
             TabPages.cmenupage.Controls.Add(RectifyPages.CMenuPage);
-            TabPages.epPage.Controls.Add(RectifyPages.EPPage);
             TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
             TabPages.uninstPage.Controls.Add(RectifyPages.UninstallPage);
             TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
             TabPages.summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
+
             RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
             RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
             nextButton.Click += NextButton_Click;
@@ -125,10 +120,7 @@ namespace Rectify11Installer
                 BackColor = Color.White;
                 ForeColor = Color.Black;
                 headerText.ForeColor = Color.Black;
-                if ((NativeMethods.GetUbr() != -1
-                    && NativeMethods.GetUbr() < 51
-                    && Environment.OSVersion.Version.Build == 22000)
-                    || Environment.OSVersion.Version.Build is < 22000 and >= 21996)
+                if (Helper.CheckUBR())
                 {
                     tableLayoutPanel1.BackColor = Color.White;
                     tableLayoutPanel2.BackColor = Color.White;
@@ -179,8 +171,8 @@ namespace Rectify11Installer
             if (Variables.IsUninstall) { }
             else if (!Variables.isInstall)
             {
-                if (TaskDialog.Show(text: _resources.GetString("exitText"),
-                    title: _resources.GetString("Title"),
+                if (TaskDialog.Show(text: Strings.Rectify11.exitText,
+                    title: Strings.Rectify11.Title,
                     buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
                     icon: TaskDialogStandardIcon.Information) == TaskDialogResult.No) e.Cancel = true;
             }
@@ -208,10 +200,6 @@ namespace Rectify11Installer
                 {
                     Navigate(RectifyPages.CMenuPage);
                 }
-                else if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
                 else
                 {
                     Navigate(RectifyPages.InstallConfirmation);
@@ -223,10 +211,6 @@ namespace Rectify11Installer
                 {
                     Navigate(RectifyPages.CMenuPage);
                 }
-                else if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
                 else
                 {
                     Navigate(RectifyPages.InstallConfirmation);
@@ -234,18 +218,7 @@ namespace Rectify11Installer
             }
             else if (navPane.SelectedTab == TabPages.cmenupage)
             {
-                if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
-                else
-                {
                     Navigate(RectifyPages.InstallConfirmation);
-                }
-            }
-            else if (navPane.SelectedTab == TabPages.epPage)
-            {
-                Navigate(RectifyPages.InstallConfirmation);
             }
             else if (navPane.SelectedTab == TabPages.summaryPage)
             {
@@ -287,28 +260,9 @@ namespace Rectify11Installer
                     Navigate(RectifyPages.InstallOptnsPage);
                 }
             }
-            else if (navPane.SelectedTab == TabPages.epPage)
-            {
-                if (InstallOptions.InstallShell)
-                {
-                    Navigate(RectifyPages.CMenuPage);
-                }
-                else if (InstallOptions.InstallThemes)
-                {
-                    Navigate(RectifyPages.ThemeChoicePage);
-                }
-                else
-                {
-                    Navigate(RectifyPages.InstallOptnsPage);
-                }
-            }
             else if (navPane.SelectedTab == TabPages.summaryPage)
             {
-                if (InstallOptions.InstallEP)
-                {
-                    Navigate(RectifyPages.EPPage);
-                }
-                else if (InstallOptions.InstallShell)
+                if (InstallOptions.InstallShell)
                 {
                     Navigate(RectifyPages.CMenuPage);
                 }
@@ -338,17 +292,7 @@ namespace Rectify11Installer
 
         private void UninstallButton_Click(object sender, EventArgs e)
         {
-            if (Helper.CheckIfUpdatesPending())
-            {
-                /*
-				TaskDialog.Show(text: "Uninstalling Rectify11 is not yet supported. You can run sfc /scannow to revert icon changes.",
-				instruction: "Incomplete Software",
-				title: "Rectify11 Setup",
-				buttons: TaskDialogButtons.OK,
-				icon: TaskDialogStandardIcon.SecurityErrorRedBar);
-				*/
-                Navigate(RectifyPages.UninstallPage);
-            }
+            if (Helper.CheckIfUpdatesPending()) Navigate(RectifyPages.UninstallPage);
         }
 
         private void VersionLabel_Click(object sender, EventArgs e)

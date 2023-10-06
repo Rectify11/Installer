@@ -96,7 +96,17 @@ namespace Rectify11Installer.Pages
                     RectifyPages.ProgressPage.Start();
                     NativeMethods.SetCloseButton(frmwiz, false);
                     Uninstaller uninstaller = new();
-					await uninstaller.Uninstall(frmwiz);
+                    if (!await Task.Run(() => uninstaller.Uninstall(frmwiz)))
+                    {
+                        Common.Cleanup();
+                        Logger.CommitLog();
+                        TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+                            title: "Error",
+                            buttons: TaskDialogButtons.OK,
+                            icon: TaskDialogStandardIcon.Error);
+                        Application.Exit();
+                    }
+                    
 					if (Variables.RestartRequired)
 					{
                         NativeMethods.SetCloseButton(frmwiz, false);
@@ -119,10 +129,10 @@ namespace Rectify11Installer.Pages
 					NativeMethods.SetCloseButton(frmwiz, false);
 					Variables.isInstall = true;
 					Installer installer = new();
-					Logger.CommitLog();
-					if (!await installer.Install(frmwiz))
+					//Logger.CommitLog();
+					if (!await Task.Run(() => installer.Install(frmwiz)))
 					{
-						Installer.Cleanup();
+						Common.Cleanup();
 						Logger.CommitLog();
                         TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
 							title: "Error",
@@ -223,8 +233,8 @@ namespace Rectify11Installer.Pages
 		{
 			if (Variables.IsUninstall)
             {
-                progressText.Text = ":(";
-                progressInfo.Text = "Rectify11 gone";
+                progressText.Text = "Thanks for using Rectify11";
+                progressInfo.Text = "Uninstallation will be done in a few moments.";
 
             }
             else

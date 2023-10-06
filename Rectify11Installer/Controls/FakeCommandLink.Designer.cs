@@ -63,12 +63,12 @@
 			this.lblBody.Size = new System.Drawing.Size(300, 19);
 			this.lblBody.TabIndex = 2;
 			this.lblBody.Text = "lblBody";
-			// 
-			// FakeCommandLink
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-			this.AutoSize = true;
+            // 
+            // FakeCommandLink
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
 			this.Controls.Add(this.lblBody);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.lblTitle);

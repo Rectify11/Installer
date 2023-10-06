@@ -436,7 +436,7 @@
 	<Patch Mui="wlandlg.dll" mask="BITMAP,|UIFILE," HardlinkTarget="%sys32%\wlandlg.dll" />
 	<Patch Mui="wlanui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanui.dll" />
 	<Patch Mui="wlanpref.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wlanpref.dll" />
-	<Patch Mui="wlrmdr.exe.mui" mask="ICONGROUP,|UIFILE" HardlinkTarget="%lang%\wlrmdr.exe.mui" />
+	<Patch Mui="wlrmdr.exe.mui" mask="ICONGROUP,|UIFILE," HardlinkTarget="%lang%\wlrmdr.exe.mui" />
 	<Patch Mui="wmp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\wmp.dll" />
 	<Patch Mui="wmpconfig.exe" mask="ICONGROUP," x86="true" HardlinkTarget="%prog%\Windows Media Player\wmpconfig.exe" />
 	<Patch Mui="WMPDMC.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\WMPDMC.exe" />

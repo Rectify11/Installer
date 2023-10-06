@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -234,18 +234,11 @@
   <data name="installWallpapers" xml:space="preserve">
     <value>Rectify11 Hintergründe</value>
   </data>
-  <data name="installEP" xml:space="preserve">
-    <value>ExplorerPatcher installieren</value>
-  </data>
   <data name="installShell" xml:space="preserve">
     <value>Verbesserte Kontextmenüs</value>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>Winver installieren</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="r11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\r11.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Zusammenfassung</value>
@@ -300,5 +293,14 @@
   </data>
   <data name="modifyTitle" xml:space="preserve">
     <value>Modifizieren</value>
+  </data>
+  <data name="installThemes" xml:space="preserve">
+    <value>Designs installieren</value>
+  </data>
+  <data name="updatePending" xml:space="preserve">
+    <value>Sie können Rectify11 nicht installieren, da Windows-Updates anstehen. Bitte starten Sie Ihr System neu.</value>
+  </data>
+  <data name="createRestore" xml:space="preserve">
+    <value>Einen Wiederherstellungspunkt erstellen</value>
   </data>
 </root>

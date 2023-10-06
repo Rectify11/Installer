@@ -1,17 +1,20 @@
-![alt text](https://github.com/MishaTy/Rectify11Installer/blob/master/logo.png "Rectify11 Installer")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Rectify11/Installer/master/logo.png">
+</p>
 
+---
 
-Official Rectify11 Installer source code. Note: not completed. 
+<div align="center">
 
-Official Discord community: https://discord.gg/gsgu9GCtsk
+[![GitHub issues](https://img.shields.io/github/issues/Rectify11/Installer?style=flat-square)](https://github.com/Rectify11/Installer/issues)
+[![GitHub pr](https://img.shields.io/github/issues-pr/Rectify11/Installer?style=flat-square)](https://github.com/Rectify11/Installer/pulls)
+![GitHub](https://img.shields.io/github/license/Rectify11/Installer?style=flat-square)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/Rectify11/Installer?style=flat-square)
+![GitHub Repo stars](https://img.shields.io/github/stars/Rectify11/Installer?style=flat-square)
+[![Discord](https://img.shields.io/discord/1077324213142175744?style=flat-square)](https://discord.gg/gsgu9GCtsk)
 
-# Projects used
- - [Resource Hacker](http://www.angusj.com/resourcehacker/) for replacing resources in files
- - [Libmsstyle](https://github.com/nptr/msstyleEditor) for rendering controls from rectify msstyles.
- - [SecureUxTheme](https://github.com/namazso/SecureUxTheme) for uxtheme patching.
- - [MicaForEveryone](https://github.com/MicaForEveryone/MicaForEveryone) for applying mica backdrop to the UI.
- - [WinverUWP](https://github.com/dongle-the-gadget) for modern and consistent winver.
- - [RectifyPad](https://github.com/Lixkote/RectifyPad) for the uwp wordpad-like text editor to be included in the future releases of Rectify11.
- - [AccentColorizer](https://github.com/krlvm/AccentColorizer) for colorizing legacy win32 controls used in msstyles.
- - [7-zip](https://7-zip.org/) for efficient compression and decompression of the installed resouces.
- - [8GadgetPack](https://8gadgetpack.net/) for the Rectified Gadgets.
+</div>
+
+Rectify11 improves the consistency of Windows 11 by modifying system files in a safe way, and by using various programs to improve the Windows 11 experience.
+
+<br/>
