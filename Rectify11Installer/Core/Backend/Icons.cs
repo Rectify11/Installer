@@ -2,10 +2,12 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using static System.Environment;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Rectify11Installer.Core
 {
@@ -90,16 +92,23 @@ namespace Rectify11Installer.Core
                     Helper.ImportReg(Path.Combine(Variables.r11Files, "screensaver.reg"));
                 }
 
-                // runs only if any one of mmcbase.dll.mun, mmc.exe.mui or mmcndmgr.dll.mun is selected
-                if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-                    || InstallOptions.iconsList.Contains("mmc.exe.mui")
-                    || InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
+                // mmc dpi fix
+				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
+					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
+					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
                 {
-                    if (!MMCHelper.PatchAll())
-                        return false;
-                }
+					Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 1 /f");
+                    Helper.SafeFileOperation(Path.Combine(Variables.r11Files, "mmc.exe.manifest"), Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"), Helper.OperationType.Copy);
+				}
 
-                if (InstallOptions.iconsList.Contains("odbcad32.exe"))
+				// runs only if mmc.exe.mui is selected
+				if (InstallOptions.iconsList.Contains("mmc.exe.mui"))
+                {
+					if (!MMCHelper.PatchAll())
+                        return false;;
+				}
+
+				if (InstallOptions.iconsList.Contains("odbcad32.exe"))
                     FixOdbc();
 
                 // phase 2
