@@ -90,7 +90,7 @@ namespace Rectify11Installer
 			Theme.LoadTheme();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl");
+			//Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("zh-TW");
 			Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
 			Application.Run(new FrmWizard());
 			mutex.ReleaseMutex();

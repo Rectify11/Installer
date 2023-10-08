@@ -119,250 +119,188 @@
   </resheader>
   <data name="buttonAgree" xml:space="preserve">
     <value>同意</value>
-    <comment/>
   </data>
   <data name="buttonCancel" xml:space="preserve">
     <value>取消</value>
-    <comment/>
   </data>
   <data name="buttonNext" xml:space="preserve">
     <value>下一步</value>
-    <comment/>
   </data>
   <data name="eulaPageHeader" xml:space="preserve">
     <value>最終使用者授權書</value>
-    <comment/>
   </data>
   <data name="eulaR11" xml:space="preserve">
     <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}本軟體按「原狀」提供，沒有任何明示或暗示的保固。在任何情況下，作者均不對因使用本軟體而造成的任何損害承擔責任。\par{\pntext\f0 2.\tab}任何人都可以免費使用 Rectify11，但不能出售它。未經作者書面許可，您不能將此產品捆綁為其他產品的一部分。\par{\pntext\f0 3.\tab}您不能聲稱該軟體是您製作的。\par{\pntext\f0 4.\tab }本聲明不得從任何發布版本中刪除或更改。\par\pard\par{\pntext\f0\space}版權所有 \'a9 Microsoft Corporation 和 Rectify11 團隊。\par{\pntext\f0\space}我們是不以任何方式隸屬於微軟公司。這是一個由開源社群製作的項目。\par}</value>
-    <comment/>
   </data>
   <data name="eulaTitle" xml:space="preserve">
-    <value>在安裝 Rectify11 之前，您必須同意下列最終使用者授權書：</value>
-    <comment/>
+    <value>在安裝 Rectify11 之前，您必須同意下列最終使用者授權書：</value>    
   </data>
   <data name="installNote" xml:space="preserve">
     <value>套用至您目前的 Windows 安裝。</value>
-    <comment/>
   </data>
   <data name="installTitle" xml:space="preserve">
     <value>安裝</value>
-    <comment/>
   </data>
   <data name="uninstallNote" xml:space="preserve">
     <value>恢復預設的 Windows 外觀。</value>
-    <comment/>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>解除安裝</value>
-    <comment/>
   </data>
   <data name="updateNote" xml:space="preserve">
     <value>更新您現有的 Rectify11 安裝。</value>
-    <comment/>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>立即更新</value>
-    <comment/>
   </data>
   <data name="Version" xml:space="preserve">
     <value>版本：</value>
-    <comment/>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>歡迎</value>
-    <comment/>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
     <value>安裝程式將帶領您完成在此 PC 上安裝 Rectify11 所需的各個步驟，讓您獲得更一致的流暢設計體驗。建議您再開始之前，先關閉其他應用程式與防毒軟體。請選擇您希望的安裝方式以繼續。</value>
-    <comment/>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>您可以選擇要套用外觀變更的項目。</value>
-    <comment/>
+    <value>您可以選擇要套用外觀變更的項目。</value>    
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>選擇要安裝的內容</value>
-    <comment/>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
     <value>選擇您喜歡的佈景主題。</value>
-    <comment/>
   </data>
   <data name="themeHeader" xml:space="preserve">
     <value>個人化您的使用體驗</value>
-    <comment/>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Rectify11 安裝程式</value>
-    <comment/>
   </data>
   <data name="themeBlack" xml:space="preserve">
     <value>深色雲母 (Mica)</value>
-    <comment/>
   </data>
   <data name="themeDark" xml:space="preserve">
     <value>深色</value>
-    <comment/>
   </data>
   <data name="themeLight" xml:space="preserve">
     <value>淺色</value>
-    <comment/>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
     <value>檔案總管改為 Windows 10 Ribbon 功能表</value>
-    <comment/>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>將雲母效果 (Mica) 延伸至檔案總管導航列</value>
-    <comment/>
   </data>
   <data name="epHeader" xml:space="preserve">
     <value>自訂桌面</value>
-    <comment/>
   </data>
   <data name="epTitle" xml:space="preserve">
     <value>選擇您偏好的桌面體驗</value>
-    <comment/>
   </data>
   <data name="epW10Radio" xml:space="preserve">
     <value>Windows 10 單選鈕</value>
-    <comment/>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
     <value>Windows 10 工作列</value>
-    <comment/>
   </data>
   <data name="epW11Radio" xml:space="preserve">
     <value>Windows 11 預設值</value>
-    <comment/>
   </data>
   <data name="progressText" xml:space="preserve">
     <value>您知道嗎</value>
-    <comment/>
   </data>
   <data name="summaryFooter" xml:space="preserve">
     <value>請關閉所有應用程式並儲存您尚未完成的工作，安裝結束後需要重新啟動。</value>
-    <comment/>
   </data>
   <data name="summaryItems" xml:space="preserve">
     <value>在此 Windows 環境上安裝 Rectify11。</value>
-    <comment/>
   </data>
   <data name="summaryTitle" xml:space="preserve">
     <value>您將要執行以下操作：</value>
-    <comment/>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>立即安裝</value>
-    <comment/>
   </data>
   <data name="optionExtra" xml:space="preserve">
     <value>其他項目</value>
-    <comment/>
   </data>
   <data name="optionIcons" xml:space="preserve">
     <value>系統圖示</value>
-    <comment/>
   </data>
   <data name="optionThemes" xml:space="preserve">
     <value>佈景主題</value>
-    <comment/>
   </data>
   <data name="installWallpapers" xml:space="preserve">
     <value>Rectify11 桌面背景</value>
-    <comment/>
   </data>
   <data name="installEP" xml:space="preserve">
     <value>安裝 ExplorerPatcher</value>
-    <comment/>
   </data>
   <data name="installShell" xml:space="preserve">
     <value>強化右鍵選單</value>
-    <comment/>
   </data>
   <data name="installWinver" xml:space="preserve">
     <value>安裝 WinUI 版 Winver</value>
-    <comment/>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>概覽</value>
-    <comment/>
   </data>
   <data name="exitText" xml:space="preserve">
     <value>您確定要取消安裝嗎？</value>
-    <comment/>
   </data>
   <data name="buttonReboot" xml:space="preserve">
     <value>立即重新啟動</value>
-    <comment/>
   </data>
   <data name="installASDF" xml:space="preserve">
     <value>主題使用輔色</value>
-    <comment/>
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>修改圖示</value>
-    <comment/>
   </data>
   <data name="userAvatars" xml:space="preserve">
     <value>安裝使用者圖片</value>
-    <comment/>
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>右鍵選單樣式</value>
-    <comment/>
   </data>
   <data name="installGadgets" xml:space="preserve">
     <value>安裝 Windows 7 小工具</value>
-    <comment/>
   </data>
   <data name="installUserAV" xml:space="preserve">
     <value>安裝流暢設計系統的使用者圖片</value>
-    <comment/>
   </data>
   <data name="uninstallChoiceDescription" xml:space="preserve">
     <value>您可以決定要復原的項目。</value>
-    <comment/>
   </data>
   <data name="installMFE" xml:space="preserve">
     <value>不安裝 MicaForEveryone 程式</value>
-    <comment/>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
     <value>使用另一個雲母效果 (Mica Alt)</value>
-    <comment/>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
     <value>Windows 10 經典右鍵選單</value>
-    <comment/>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
     <value>包含透明效果的經典右鍵選單</value>
-    <comment/>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
     <value>增強版流暢設計選單 (更多選項)</value>
-    <comment/>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
     <value>增強版流暢設計選單 (所有項目提前至第一層)</value>
-    <comment/>
   </data>
   <data name="modifyNote" xml:space="preserve">
     <value>新增功能與特性至您目前的 Windows 安裝。</value>
-    <comment/>
   </data>
   <data name="modifyTitle" xml:space="preserve">
     <value>修改 Windows</value>
-    <comment/>
   </data>
   <data name="updatePending" xml:space="preserve">
     <value>您無法在 Windows Updates 需要重新啟動的情形下安裝 Rectify11，請先重新啟動您的電腦。</value>
-    <comment/>
   </data>
   <data name="createRestore" xml:space="preserve">
     <value>建立還原點</value>
-    <comment/>
   </data>
 </root>

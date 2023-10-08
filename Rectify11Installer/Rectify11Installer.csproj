@@ -283,6 +283,7 @@
     <EmbeddedResource Include="Strings\Rectify11.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\Rectify11.sr-Latn-RS.resx" />
     <EmbeddedResource Include="Strings\Rectify11.vi.resx">
@@ -304,6 +305,7 @@
     <EmbeddedResource Include="Strings\Rectify11.zh-TW.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.zh-TW.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
