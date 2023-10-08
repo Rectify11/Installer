@@ -227,11 +227,11 @@ namespace Rectify11Installer.Core
                     Arguments = " -r"
                 };
                 int num = InstallOptions.CMenuStyle;
-                string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
-                File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
                 if (num == 1 || num == 2)
                 {
-                    var shlInstproc2 = Process.Start(shlinfo2);
+					string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
+					File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
+					var shlInstproc2 = Process.Start(shlinfo2);
                     shlInstproc2.WaitForExit();
                 }
                 if (num == 3 || num == 4)

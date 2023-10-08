@@ -131,8 +131,7 @@ namespace Rectify11Installer.Core
         {
             try
             {
-                Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write);
-                Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "aRun.exe"), Properties.Resources.AdvancedRun, Helper.OperationType.Write);
+                Common.WriteFiles(true, false);
                 Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true)
                     ?.CreateSubKey("Rectify11", true)
                     ?.SetValue("UninstallFiles", UninstallOptions.uninstIconsList.ToArray());
@@ -144,7 +143,7 @@ namespace Rectify11Installer.Core
                 }
 
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
-                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "aRun.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "wsudo.exe"));
 
                 Logger.WriteLine("Icons.Uninstall() succeeded.");
                 Logger.WriteLine("══════════════════════════════════════════════");

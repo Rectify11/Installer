@@ -41,7 +41,6 @@ namespace Rectify11.Phase2
                     {
                         x86Files = (string[])r11Reg.GetValue("x86PendingFiles");
                     }
-
                 }
 
                 // copy necessary files
@@ -302,7 +301,6 @@ namespace Rectify11.Phase2
                         {
                             for (int j = 0; j < dirsi.Length; j++)
                             {
-                                Console.WriteLine("j=" + dirsi[j]);
                                 if (Directory.GetFiles(dirsi[j]).Length == 0)
                                 {
                                     Directory.Delete(dirsi[j], true);
@@ -345,9 +343,8 @@ namespace Rectify11.Phase2
                 if (!File.Exists(MarlettBackupDest))
                 {
                     File.Move(MarlettDest, MarlettBackupDest);
-                    File.Copy(marlett, MarlettDest);
                 }
-                else SafeFileCopy(marlett, MarlettDest);
+                SafeFileCopy(marlett, MarlettDest);
 
                 var BackIconsDest = Path.Combine(Variables.windir, "Fonts", "BackIcons.ttf");
                 var backicons = Path.Combine(Variables.r11Files, "BackIcons.ttf");

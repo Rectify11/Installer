@@ -171,16 +171,6 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] AdvancedRun {
-            get {
-                object obj = ResourceManager.GetObject("AdvancedRun", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap asdf {
@@ -303,150 +293,6 @@ namespace Rectify11Installer.Properties {
         internal static string config2 {
             get {
                 return ResourceManager.GetString("config2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to j
-        ///{
-        ///	var
-        ///	{
-        ///		isw11=sys.is11
-        ///	}
-        ///	
-        ///	set
-        ///	{
-        ///		theme
-        ///		{
-        ///			name=&quot;modern&quot;
-        ///			background
-        ///			{
-        ///				//opacity=85
-        ///				//effect=1
-        ///			}
-        ///			image.align = 2// 0 = checked, 1 = image, 2 = both
-        ///                  image.color = [color.default,color.accent_light1]
-        ///		}
-        ///
-        ///		tip
-        ///		{
-        ///			enabled=1
-        ///			opacity=100
-        ///			width=400
-        ///			radius=1
-        ///			time=1.25
-        ///			padding=[10,10]
-        ///		}
-        ///
-        ///		exclude.where = !process.is_explorer
-        ///		showdelay=100
-        ///	}
-        ///
-        ///	images import &apos;imports/images.nss&apos;
-        ///
-        ///	static
-        ///	{	
-        ///		import &apos;i [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string config3 {
-            get {
-                return ResourceManager.GetString("config3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to j
-        ///{
-        ///	var
-        ///	{
-        ///		isw11=sys.is11
-        ///	}
-        ///	
-        ///	set
-        ///	{
-        ///		theme
-        ///		{
-        ///			name=&quot;modern&quot;
-        ///			background
-        ///			{
-        ///				//opacity=85
-        ///				//effect=1
-        ///			}
-        ///			image.align = 2// 0 = checked, 1 = image, 2 = both
-        ///                  image.color = [color.default,color.accent_light1]
-        ///		}
-        ///
-        ///		tip
-        ///		{
-        ///			enabled=1
-        ///			opacity=100
-        ///			width=400
-        ///			radius=1
-        ///			time=1.25
-        ///			padding=[10,10]
-        ///		}
-        ///
-        ///		exclude.where = !process.is_explorer
-        ///		showdelay=100
-        ///	}
-        ///
-        ///	images import &apos;imports/images.nss&apos;
-        ///
-        ///	static
-        ///	{	
-        ///		import &apos;i [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string config4 {
-            get {
-                return ResourceManager.GetString("config4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to shell
-        ///{
-        ///	var
-        ///	{
-        ///		isw11=sys.is11
-        ///	}
-        ///	
-        ///	set
-        ///	{
-        ///		theme
-        ///		{
-        ///			name=&quot;modern&quot;
-        ///			background
-        ///			{
-        ///				//opacity=85
-        ///				//effect=1
-        ///			}
-        ///			image.align = 2// 0 = checked, 1 = image, 2 = both
-        ///                  image.color = [color.default,color.accent_light1]
-        ///		}
-        ///
-        ///		tip
-        ///		{
-        ///			enabled=1
-        ///			opacity=100
-        ///			width=400
-        ///			radius=1
-        ///			time=1.25
-        ///			padding=[10,10]
-        ///		}
-        ///
-        ///		exclude.where = !process.is_explorer
-        ///		showdelay=100
-        ///	}
-        ///
-        ///	images import &apos;imports/images.nss&apos;
-        ///
-        ///	static
-        ///	{	
-        ///		impor [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string config5 {
-            get {
-                return ResourceManager.GetString("config5", resourceCulture);
             }
         }
         
@@ -825,6 +671,16 @@ namespace Rectify11Installer.Properties {
             get {
                 object obj = ResourceManager.GetObject("wallpapers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] wsudo {
+            get {
+                object obj = ResourceManager.GetObject("wsudo", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

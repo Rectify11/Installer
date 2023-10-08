@@ -357,10 +357,9 @@ namespace Rectify11Installer.Core
         }
         public static void RunAsTI(string file,string param)
         {
-            Interaction.Shell(Path.Combine(Variables.r11Folder, "aRun.exe")
-                    + " /EXEFilename " + '"' + file + '"'
-                    + " /CommandLine " + "\'" + param + "\'"
-                    + " /WaitProcess 1 /RunAs 8 /Run", AppWinStyle.NormalFocus, true);
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "wsudo.exe")
+                    + " -T " + file
+                    + " " + param, AppWinStyle.NormalFocus, true);
         }
         #endregion
         #region Private Methods

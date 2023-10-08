@@ -424,7 +424,6 @@ namespace Rectify11Installer.Core
 				File.Copy(themefiles[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", themefiles[i].Name), true);
 			}
 
-			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "aRun1.exe"), Properties.Resources.AdvancedRun);
 			for (var i = 0; i < msstyleDirList.Length; i++)
 			{
 				try
@@ -438,7 +437,6 @@ namespace Rectify11Installer.Core
 					return false;
 				}
 			}
-			File.Delete(Path.Combine(Variables.r11Folder, "aRun1.exe"));
 			return true;
 		}
 		private static bool UninstallMfe()
