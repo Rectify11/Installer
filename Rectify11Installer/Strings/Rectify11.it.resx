@@ -282,27 +282,27 @@
 
   <!--translate-->
   <data name="cmenuClassic" xml:space="preserve">
-    <value>Classic Context Menus</value>
+    <value>Menu Contestuali Classici</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>Classic Menus with transparency</value>
+    <value>Menu Contestuali Classici con trasparenza</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
-    <value>Enhanced Fluent Menus (More Options)</value>
+    <value>Menu Fluent Migliorati (Altre opzioni)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>Enhanced Fluent Menus (All Items in root)</value>
+    <value>Menu Fluent Migliorati (Tutte le opzioni insieme)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
-    <value>Add features to your existing installation.</value>
+    <value>Aggiungi funzionalità alla tua installazione esistente.</value>
   </data>
   <data name="modifyTitle" xml:space="preserve">
-    <value>Modify</value>
+    <value>Modifica</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+    <value>Non puoi installare Rectify11 mentre ci sono degli aggiornamenti di Windows Update in attesa. Per favore riavvia il tuo computer.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Create a restore point</value>
+    <value>Crea un punto di ripristino</value>
   </data>
 </root>
