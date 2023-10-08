@@ -130,19 +130,14 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\Backend\Common.cs" />
-    <Compile Include="Core\Backend\Common.cs" />
     <Compile Include="Core\Backend\Extras.cs" />
-    <Compile Include="Core\Backend\Extras.cs" />
-    <Compile Include="Core\Backend\Icons.cs" />
     <Compile Include="Core\Backend\Icons.cs" />
     <Compile Include="Core\Backend\Patches.cs" />
-    <Compile Include="Core\Backend\Themes.cs" />
     <Compile Include="Core\Backend\Themes.cs" />
     <Compile Include="Core\ExtrasOptions.cs" />
     <Compile Include="Core\Helpers.cs" />
     <Compile Include="Core\Backend\MMCHelper.cs" />
     <Compile Include="Core\Backend\Installer.cs" />
-    <Compile Include="Core\Backend\Patches.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -368,14 +363,9 @@
     <None Include="Resources\secureux-x64.exe" />
     <None Include="Resources\secureux-arm64.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
-    <None Include="Resources\AdvancedRun.exe" />
     <None Include="Resources\Rectify11ControlCenter.exe" />
     <None Include="Resources\config1.txt" />
     <None Include="Resources\config2.txt" />
-    <None Include="Resources\config3.txt" />
-    <None Include="Resources\config4.txt" />
-    <None Include="Resources\config5.txt" />
-    <None Include="Resources\asdf.png" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />
