@@ -436,8 +436,17 @@ namespace Rectify11Installer.Core
 			{
 				try
 				{
-					Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name));
-					Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
+					if (Environment.OSVersion.Version.Build >= 22543 
+						&& !msstyleDirList[i].Name.Contains("Legacy"))
+					{
+						Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name));
+						Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
+					}
+					else if (Environment.OSVersion.Version.Build < 22543)
+					{
+						Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name.Replace("Legacy", "")));
+						Logger.WriteLine("Copied " + msstyleDirList[i].Name + " directory.");
+					}
 				}
 				catch (Exception ex)
 				{
