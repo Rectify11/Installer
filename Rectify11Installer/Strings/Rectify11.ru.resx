@@ -258,54 +258,52 @@
   <data name="installIcons" xml:space="preserve">
     <value>Пропатчить иконки</value>
   </data>
-  
-  <!--translate-->
   <data name="userAvatars" xml:space="preserve">
-    <value>Install User avatars</value>
+    <value>Установить пользовательские аватары</value>
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
-    <value>Context menu style</value>
+    <value>Стиль контекстного меню</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
-    <value>Rectified Gadgets</value>
+    <value>Rectify'ные гаджеты</value>
   </data>
   <data name="installUserAV" xml:space="preserve">
-    <value>Remastered user avatars</value>
+    <value>Обновлённые пользовательские аватары</value>
   </data>
   <data name="uninstallChoiceDescription" xml:space="preserve">
-    <value>You can choose what will be restored.</value>
+    <value>Вы можете выбрать, что будет восстановлено.</value>
   </data>
   <data name="installMFE" xml:space="preserve">
-    <value>Skip MicaForEveryone installation</value>
+    <value>Пропустить установку MicaForEveryone</value>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
-    <value>Use Mica Alt instead of Mica</value>
+    <value>Использовать Mica Alt вместо Mica</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
-    <value>Classic Context Menus</value>
+    <value>Классические контекстные меню</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>Classic Menus with transparency</value>
+    <value>Классическое меню с прозрачностью</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
-    <value>Enhanced Fluent Menus (More Options)</value>
+    <value>Улучшенные Fluent меню (больше опций)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>Enhanced Fluent Menus (All Items in root)</value>
+    <value>Улучшенные Fluent меню (все пункты видны сразу)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
-    <value>Add features to your existing installation.</value>
+    <value>Добавить функции в уже существующую установку.</value>
   </data>
   <data name="modifyTitle" xml:space="preserve">
-    <value>Modify</value>
+    <value>Модифицировать</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+    <value>Вы не можете установить Rectify11, так как обновления Windows в очереди, перезагрузите вашу систему.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Create a restore point</value>
+    <value>Создать точку восстановления</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Enhanced context menus</value>
+    <value>Улучшенные контекстные меню</value>
   </data>
 </root>
