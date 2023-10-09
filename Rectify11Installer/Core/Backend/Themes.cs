@@ -62,6 +62,11 @@ namespace Rectify11Installer.Core
 				{
 					Logger.Warn("Installr11cpl() failed", ex);
 				}
+
+				// mmc dpi fix
+				Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 1 /f");
+				Helper.SafeFileOperation(Path.Combine(Variables.r11Files, "mmc.exe.manifest"), Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"), Helper.OperationType.Copy);
+
 				Variables.RestartRequired = true;
 				Logger.WriteLine("Themes.Install() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
@@ -132,6 +137,9 @@ namespace Rectify11Installer.Core
 
 				UninstallR11Cpl();
 				Logger.WriteLine("Deleted Rectify11 Control Center.");
+
+				Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 0 /f");
+				Helper.SafeFileDeletion(Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"));
 
 				Logger.WriteLine("Themes.Uninstall() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");

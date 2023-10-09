@@ -92,15 +92,6 @@ namespace Rectify11Installer.Core
                     Helper.ImportReg(Path.Combine(Variables.r11Files, "screensaver.reg"));
                 }
 
-                // mmc dpi fix
-				if (InstallOptions.iconsList.Contains("mmcbase.dll.mun")
-					|| InstallOptions.iconsList.Contains("mmc.exe.mui")
-					|| InstallOptions.iconsList.Contains("mmcndmgr.dll.mun"))
-                {
-					Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 1 /f");
-                    Helper.SafeFileOperation(Path.Combine(Variables.r11Files, "mmc.exe.manifest"), Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"), Helper.OperationType.Copy);
-				}
-
 				// runs only if mmc.exe.mui is selected
 				if (InstallOptions.iconsList.Contains("mmc.exe.mui"))
                 {

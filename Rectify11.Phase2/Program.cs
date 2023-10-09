@@ -250,15 +250,6 @@ namespace Rectify11.Phase2
                 }
                 for (int k = 0; k < uninstallFiles.Length; k++)
                 {
-                    
-                    if (pendingFiles[k].Contains("mmcbase.dll.mun")
-                        || pendingFiles[k].Contains("mmcndmgr.dll.mun")
-                        || pendingFiles[k].Contains("mmc.exe"))
-                    {
-						Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 0 /f");
-						SafeFileDeletion(Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"));
-					}
-
 					if (uninstallFiles[k].Contains("mmc.exe"))
                     {
 						foreach (var process in Process.GetProcessesByName("mmc"))
