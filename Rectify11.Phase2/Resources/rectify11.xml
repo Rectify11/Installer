@@ -295,6 +295,7 @@
 	<Patch Mui="playtomenu.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\playtomenu.dll" />
 	<Patch Mui="pmcsnap.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\pmcsnap.dll" />
 	<Patch Mui="pnidui.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pnidui.dll" />
+	<Patch Mui="pnpclean.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\pnpclean.dll" />
 	<Patch Mui="ppcsnap.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\ppcsnap.dll" />
 	<Patch Mui="powercfg.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\powercfg.cpl" />
 	<Patch Mui="powrprof.dll.mui" mask="ICONGROUP," HardlinkTarget="%lang%\powrprof.dll.mui" />
