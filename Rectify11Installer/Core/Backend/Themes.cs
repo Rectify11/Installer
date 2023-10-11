@@ -65,7 +65,9 @@ namespace Rectify11Installer.Core
 
 				// mmc dpi fix
 				Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 1 /f");
-				Helper.SafeFileOperation(Path.Combine(Variables.r11Files, "mmc.exe.manifest"), Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"), Helper.OperationType.Copy);
+				Helper.SvExtract(true, "themes.7z", "mmc.exe.manifest");
+				Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "mmc.exe.manifest"), Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"), Helper.OperationType.Copy);
+				File.Delete(Path.Combine(Variables.r11Folder, "mmc.exe.manifest"));
 
 				Variables.RestartRequired = true;
 				Logger.WriteLine("Themes.Install() succeeded.");
