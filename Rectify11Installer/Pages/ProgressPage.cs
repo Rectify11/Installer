@@ -90,36 +90,95 @@ namespace Rectify11Installer.Pages
 			{
 				if (Variables.IsUninstall)
 				{
-                    frmwiz.versionLabel.Visible = false;
-                    frmwiz.pictureBox1.Visible = true;
-                    frmwiz.progressLabel.Visible = true;
-                    RectifyPages.ProgressPage.Start();
-                    NativeMethods.SetCloseButton(frmwiz, false);
-                    Uninstaller uninstaller = new();
-                    if (!await Task.Run(() => uninstaller.Uninstall(frmwiz)))
-                    {
-                        Common.Cleanup();
-                        Logger.CommitLog();
-                        TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
-                            title: "Error",
-                            buttons: TaskDialogButtons.OK,
-                            icon: TaskDialogStandardIcon.Error);
-                        Application.Exit();
-                    }
-                    
+					if (Directory.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", "Rectified")))
+						UninstallOptions.UninstallThemes = true;
+
+					if (Directory.Exists(Path.Combine(Variables.Windir, "nilesoft")))
+						UninstallOptions.uninstExtrasList.Add("shellNode");
+
+					if (Directory.Exists(Path.Combine(Variables.r11Folder, "extras", "AccentColorizer")))
+						UninstallOptions.uninstExtrasList.Add("asdfNode");
+
+					if (File.Exists(Path.Combine(Variables.Windir, "web", "wallpaper", "Rectified", "img41.jpg")))
+						UninstallOptions.uninstExtrasList.Add("wallpapersNode");
+
+					if (Directory.Exists(Path.Combine(Variables.progdata, "Microsoft", "User Account Pictures", "Default Pictures")))
+						UninstallOptions.uninstExtrasList.Add("useravNode");
+
+					if (File.Exists(Path.Combine(Variables.progfiles, "Windows Sidebar", "sidebar.exe")))
+						UninstallOptions.uninstExtrasList.Add("gadgetsNode");
+					var list = PatchesParser.GetAll();
+					var patch = list.Items;
+					string path = Path.Combine(Variables.r11Folder, "backup");
+					for (var i = 0; i < patch.Length; i++)
+					{
+						if (!patch[i].HardlinkTarget.Contains("%diag%"))
+						{
+							var newpath = Helper.FixString(patch[i].HardlinkTarget, !string.IsNullOrWhiteSpace(patch[i].x86));
+							if (File.Exists(newpath))
+							{
+								if (newpath.Contains(".mun"))
+								{
+									if (File.Exists(Path.Combine(path, patch[i].Mui)))
+									{
+										UninstallOptions.uninstIconsList.Add(patch[i].Mui);
+									}
+								}
+								else
+								{
+									if (File.Exists(Path.Combine(path, patch[i].Mui)))
+									{
+										UninstallOptions.uninstIconsList.Add(patch[i].Mui);
+									}
+								}
+							}
+
+						}
+						if (patch[i].HardlinkTarget.Contains("%diag%"))
+						{
+							var name = patch[i].Mui.Replace("Troubleshooter: ", "DiagPackage") + ".dll";
+							var newpath = Helper.FixString(patch[i].HardlinkTarget, false);
+							if (File.Exists(newpath))
+							{
+								if (File.Exists(Path.Combine(path, "Diag", name)))
+								{
+									UninstallOptions.uninstIconsList.Add(patch[i].Mui);
+								}
+							}
+						}
+					}
+					Variables.CompleteUninstall = true;
+					frmwiz.versionLabel.Visible = false;
+					ExtrasOptions.FinalizeIRectify11();
+					frmwiz.pictureBox1.Visible = true;
+					frmwiz.progressLabel.Visible = true;
+					RectifyPages.ProgressPage.Start();
+					NativeMethods.SetCloseButton(frmwiz, false);
+					Uninstaller uninstaller = new();
+					if (!await Task.Run(() => uninstaller.Uninstall(frmwiz)))
+					{
+						Common.Cleanup();
+						Logger.CommitLog();
+						TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+							title: "Error",
+							buttons: TaskDialogButtons.OK,
+							icon: TaskDialogStandardIcon.Error);
+						Application.Exit();
+					}
+					//Logger.CommitLog();
 					if (Variables.RestartRequired)
 					{
-                        NativeMethods.SetCloseButton(frmwiz, false);
-                        RectifyPages.ProgressPage.StartReset();
+						NativeMethods.SetCloseButton(frmwiz, false);
+						RectifyPages.ProgressPage.StartReset();
 					}
 					else
 					{
-                        timer1.Stop();
-                        NativeMethods.SetCloseButton(frmwiz, true);
-                        frmwiz.InstallerProgress = "Done, you can close this window";
-                    }
-                }
-                else
+						NativeMethods.SetCloseButton(frmwiz, true);
+						timer1.Stop();
+						frmwiz.InstallerProgress = "Done, you can close this window";
+					}
+				}
+				else
 				{
 					frmwiz.versionLabel.Visible = false;
 					ExtrasOptions.FinalizeIRectify11();
@@ -128,35 +187,50 @@ namespace Rectify11Installer.Pages
 					RectifyPages.ProgressPage.Start();
 					NativeMethods.SetCloseButton(frmwiz, false);
 					Variables.isInstall = true;
-					Installer installer = new();
-					//Logger.CommitLog();
-					if (!await Task.Run(() => installer.Install(frmwiz)))
+					if (Variables.RunUninstaller)
 					{
-						Common.Cleanup();
+						Uninstaller uninstaller = new();
+						if (!await Task.Run(() => uninstaller.Uninstall(frmwiz)))
+						{
+							Common.Cleanup();
+							Logger.CommitLog();
+							TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+								title: "Error",
+								buttons: TaskDialogButtons.OK,
+								icon: TaskDialogStandardIcon.Error);
+							Application.Exit();
+						}
 						Logger.CommitLog();
-                        TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
-							title: "Error",
-							buttons: TaskDialogButtons.OK,
-							icon: TaskDialogStandardIcon.Error);
-						Application.Exit();
+					}
+					if (Variables.RunInstaller)
+					{
+						Installer installer = new();
+						if (!await Task.Run(() => installer.Install(frmwiz)))
+						{
+							Common.Cleanup();
+							Logger.CommitLog();
+							TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+								title: "Error",
+								buttons: TaskDialogButtons.OK,
+								icon: TaskDialogStandardIcon.Error);
+							Application.Exit();
+						}
+						Logger.CommitLog();
+					}
+					if (Variables.RestartRequired)
+					{
+						NativeMethods.SetCloseButton(frmwiz, false);
+						RectifyPages.ProgressPage.StartReset();
 					}
 					else
 					{
-						Logger.CommitLog();
-						if (Variables.RestartRequired)
-						{
-							RectifyPages.ProgressPage.StartReset();
-						}
-						else
-						{
-							NativeMethods.SetCloseButton(frmwiz, true);
-							Variables.isInstall = false;
-							Variables.IsUninstall = true;
-							timer1.Stop();
-							frmwiz.InstallerProgress = "Done, you can close this window";
-						}
-                    }
-                }
+						NativeMethods.SetCloseButton(frmwiz, true);
+						Variables.isInstall = false;
+						Variables.IsUninstall = true;
+						timer1.Stop();
+						frmwiz.InstallerProgress = "Done, you can close this window";
+					}
+				}
 			}
 		}
 
@@ -232,12 +306,12 @@ namespace Rectify11Installer.Pages
 		private void NextText()
 		{
 			if (Variables.IsUninstall)
-            {
-                progressText.Text = "Thanks for using Rectify11";
-                progressInfo.Text = "Uninstallation will be done in a few moments.";
+			{
+				progressText.Text = "Thanks for using Rectify11";
+				progressInfo.Text = "Uninstallation will be done in a few moments.";
 
-            }
-            else
+			}
+			else
 			{
 				CurrentTextIndex++;
 				if (CurrentTextIndex >= Rectify11InstallerTexts.Length)
@@ -262,7 +336,7 @@ namespace Rectify11Installer.Pages
 			frmwiz.InstallerProgress = "Restarting...";
 			ApplyScheme();
 			ClearIconCache();
-			Win32.NativeMethods.Reboot();
+			NativeMethods.Reboot();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)

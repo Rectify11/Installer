@@ -45,7 +45,6 @@
 			Core.TabPages.cmenupage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.uninstPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.progressLabel = new Controls.DarkAwareLabel();
 			this.versionLabel = new Controls.DarkAwareLabel();
@@ -175,7 +174,6 @@
 			this.navPane.Controls.Add(Core.TabPages.cmenupage);
 			this.navPane.Controls.Add(Core.TabPages.summaryPage);
 			this.navPane.Controls.Add(Core.TabPages.progressPage);
-			this.navPane.Controls.Add(Core.TabPages.uninstPage);
 			this.navPane.ItemSize = new System.Drawing.Size(10, 20);
 			this.navPane.Location = new System.Drawing.Point(280, 0);
 			this.navPane.Multiline = true;
@@ -281,16 +279,6 @@
 			Core.TabPages.progressPage.Size = new System.Drawing.Size(333, 284);
 			Core.TabPages.progressPage.TabIndex = 6;
 			Core.TabPages.progressPage.Text = "Progress";
-			// 
-			// uninstPage
-			// 
-			Core.TabPages.uninstPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.uninstPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.uninstPage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.uninstPage.Name = "uninstPage";
-			Core.TabPages.uninstPage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.uninstPage.TabIndex = 7;
-			Core.TabPages.uninstPage.Text = "Uninstall";
 			// 
 			// versionLabel
 			// 

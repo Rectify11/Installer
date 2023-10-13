@@ -9,10 +9,9 @@ namespace Rectify11Installer.Win32
 {
     public class NativeMethods
     {
-        #region P/Invoke
-        [DllImport("user32.dll")]
-        internal static extern bool SetProcessDPIAware();
-        [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+		#region P/Invoke
+		#region advapi32.dll
+		[DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool LookupPrivilegeValue(string? lpSystemName, string lpName, out LUID lpLuid);
 
@@ -20,25 +19,38 @@ namespace Rectify11Installer.Win32
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool AdjustTokenPrivileges(IntPtr TokenHandle, [MarshalAs(UnmanagedType.Bool)] bool DisableAllPrivileges, ref TOKEN_PRIVILEGES NewState, UInt32 Zero, IntPtr Null1, IntPtr Null2);
 
-        [DllImport("kernel32.dll", SetLastError = true)]
+		[DllImport("advapi32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		private static extern bool OpenProcessToken(IntPtr ProcessHandle, UInt32 DesiredAccess, out IntPtr TokenHandle);
+		#endregion
+		#region kernel32.dll
+		[DllImport("kernel32.dll", SetLastError = true)]
+		private static extern bool IsWow64Process2(
+			IntPtr process,
+			out ushort processMachine,
+			out ushort nativeMachine
+		);
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+		public static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
+
+		[DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool CloseHandle(IntPtr hObject);
-
-        [DllImport("user32.dll", SetLastError = true)]
+		#endregion
+		#region user32.dll
+		[DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool ExitWindowsEx(ExitWindows uFlags, ShutdownReason dwReason);
-
-        [DllImport("advapi32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool OpenProcessToken(IntPtr ProcessHandle, UInt32 DesiredAccess, out IntPtr TokenHandle);
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool revert);
 
         [DllImport("user32.dll")]
         public static extern int EnableMenuItem(IntPtr hMenu, int IDEnableItem, int enable);
-
-        [DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)]
+		#endregion
+		#region gdi32.dll
+		[DllImport("gdi32.dll", ExactSpelling = true, SetLastError = true)]
         internal static extern IntPtr CreateCompatibleDC(IntPtr hDC);
         [DllImport("gdi32.dll")]
         internal static extern unsafe IntPtr CreateDIBSection(IntPtr hdc, BITMAPINFO pbmi, uint iUsage, out int* ppvBits, IntPtr hSection, uint dwOffset);
@@ -46,24 +58,14 @@ namespace Rectify11Installer.Win32
         [DllImport("gdi32.dll", EntryPoint = "SelectObject")]
         internal static extern IntPtr SelectObject([In] IntPtr hdc, [In] IntPtr hgdiobj);
 
-        [DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
+		[DllImport("gdi32.dll")]
+		internal static extern bool BitBlt(IntPtr hdc, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, uint dwRop);
+		#endregion
+		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
         internal static extern int DrawThemeTextEx(IntPtr hTheme, IntPtr hdc, int iPartId, int iStateId, string pszText, int iCharCount, uint flags, ref RECT rect, ref DTTOPTS poptions);
-
-        [DllImport("gdi32.dll")]
-        internal static extern bool BitBlt(IntPtr hdc, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, uint dwRop);
 
         [DllImport("dwmapi.dll")]
         public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref MARGINS margins);
-
-        [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern bool IsWow64Process2(
-            IntPtr process,
-            out ushort processMachine,
-            out ushort nativeMachine
-        );
-        [return: MarshalAs(UnmanagedType.Bool)]
-        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        public static extern bool MoveFileEx(string lpExistingFileName, string lpNewFileName, MoveFileFlags dwFlags);
 
         [DllImport("SrClient.dll")]
         public static extern bool SRSetRestorePoint(ref RESTOREPOINTINFO SRPInfo, ref STATEMGRSTATUS SRPStatus);

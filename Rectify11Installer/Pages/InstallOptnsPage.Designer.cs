@@ -1,4 +1,6 @@
-﻿namespace Rectify11Installer.Pages
+﻿using Rectify11Installer.Core;
+
+namespace Rectify11Installer.Pages
 {
 	partial class InstallOptnsPage
 	{
@@ -60,11 +62,14 @@
 			this.label1.Size = new System.Drawing.Size(361, 40);
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.label1.TabIndex = 1;
-			this.label1.Text = Rectify11Installer.Strings.Rectify11.installChoiceDescription;
-            // 
-            // treeView1
-            // 
-            this.treeView1.BackColor = System.Drawing.Color.White;
+			if (InstallStatus.IsRectify11Installed && !Helper.CheckIfUpdate())
+				this.label1.Text = Rectify11Installer.Strings.Rectify11.modifyNote;
+			else
+				this.label1.Text = Rectify11Installer.Strings.Rectify11.installChoiceDescription;
+			// 
+			// treeView1
+			// 
+			this.treeView1.BackColor = System.Drawing.Color.White;
 			this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.treeView1.CheckBoxes = true;
 			this.treeView1.ForeColor = System.Drawing.Color.Black;
@@ -97,8 +102,11 @@
 			this.Controls.Add(this.groupBox1);
 			this.Name = "InstallOptnsPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.installoptns;
-			this.WizardHeader = Rectify11Installer.Strings.Rectify11.installChoiceTitle;
-            this.HeaderVisible = true;
+			if (InstallStatus.IsRectify11Installed && !Helper.CheckIfUpdate())
+				this.WizardHeader = Rectify11Installer.Strings.Rectify11.modifyTitle;
+			else
+				this.WizardHeader = Rectify11Installer.Strings.Rectify11.installChoiceTitle;
+			this.HeaderVisible = true;
 			this.FooterVisible = true;
 			this.UpdateFrame = true;
 			this.Page = Rectify11Installer.Core.TabPages.installPage;

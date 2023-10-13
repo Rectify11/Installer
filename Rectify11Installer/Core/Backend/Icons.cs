@@ -96,7 +96,7 @@ namespace Rectify11Installer.Core
 				if (InstallOptions.iconsList.Contains("mmc.exe.mui"))
                 {
 					if (!MMCHelper.PatchAll())
-                        return false;;
+                        return false;
 				}
 
 				if (InstallOptions.iconsList.Contains("odbcad32.exe"))

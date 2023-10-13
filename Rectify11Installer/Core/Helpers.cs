@@ -68,27 +68,41 @@ namespace Rectify11Installer.Core
             finalstr.AppendLine();
             finalstr.AppendLine();
             if (Variables.InstallIcons)
-                finalstr.AppendLine(Strings.Rectify11.installIcons);
+                finalstr.AppendLine("+ " + Strings.Rectify11.installIcons);
+            else if (UninstallOptions.uninstIconsList.Count > 0)
+                finalstr.AppendLine("- " + Strings.Rectify11.installIcons);
 
             if (InstallOptions.iconsList.Contains("themeNode"))
-                finalstr.AppendLine(Strings.Rectify11.installThemes);
+                finalstr.AppendLine("+ " + Strings.Rectify11.installThemes);
+            else if (UninstallOptions.UninstallThemes)
+                finalstr.AppendLine("- " + Strings.Rectify11.installThemes);
 
             if (InstallOptions.iconsList.Contains("asdfNode"))
-                finalstr.AppendLine(Strings.Rectify11.installASDF);
+                finalstr.AppendLine("+ " + Strings.Rectify11.installASDF);
+            else if (UninstallOptions.uninstExtrasList.Contains("asdfNode"))
+                finalstr.AppendLine("- " + Strings.Rectify11.installASDF);
 
             if (InstallOptions.iconsList.Contains("shellNode"))
-                finalstr.AppendLine(Strings.Rectify11.installShell);
+                finalstr.AppendLine("+ " + Strings.Rectify11.installShell);
+            else if (UninstallOptions.uninstExtrasList.Contains("shellNode"))
+                finalstr.AppendLine("- " + Strings.Rectify11.installShell);
 
             if (InstallOptions.iconsList.Contains("gadgetsNode"))
-                finalstr.AppendLine(Strings.Rectify11.installGadgets);
+                finalstr.AppendLine("+ " + Strings.Rectify11.installGadgets);
+            else if (UninstallOptions.uninstExtrasList.Contains("gadgetsNode"))
+				finalstr.AppendLine("- " + Strings.Rectify11.installGadgets);
 
             if (InstallOptions.iconsList.Contains("wallpapersNode"))
-                finalstr.AppendLine(Strings.Rectify11.installWallpapers);
+                finalstr.AppendLine("+ " + Strings.Rectify11.installWallpapers);
+			else if (UninstallOptions.uninstExtrasList.Contains("wallpapersNode"))
+				finalstr.AppendLine("- " + Strings.Rectify11.installWallpapers);
 
             if (InstallOptions.iconsList.Contains("useravNode"))
-                finalstr.AppendLine(Strings.Rectify11.installUserAV);
+                finalstr.AppendLine("+ " + Strings.Rectify11.installUserAV);
+			else if (UninstallOptions.uninstExtrasList.Contains("useravNode"))
+				finalstr.AppendLine("- " + Strings.Rectify11.installUserAV);
 
-            return finalstr;
+			return finalstr;
         }
 
         public static bool CheckUBR()
@@ -406,7 +420,6 @@ namespace Rectify11Installer.Core
         public static InstallConfirmation InstallConfirmation;
         public static ProgressPage ProgressPage;
         public static DebugPage DebugPage = new();
-        public static UninstallPage UninstallPage;
     }
     public class TabPages
     {
@@ -415,7 +428,6 @@ namespace Rectify11Installer.Core
         public static Controls.DarkAwareTabPage themePage;
         public static Controls.DarkAwareTabPage cmenupage;
         public static Controls.DarkAwareTabPage debPage;
-        public static Controls.DarkAwareTabPage uninstPage;
         public static Controls.DarkAwareTabPage progressPage;
         public static Controls.DarkAwareTabPage summaryPage;
         public static Controls.DarkAwareTabPage wlcmPage;
@@ -438,7 +450,9 @@ namespace Rectify11Installer.Core
         public static bool userAvatars { get; set; }
         public static int CMenuStyle = 1;
         public static List<string> iconsList = new();
-        public static bool InstallExtras()
+        public static List<string> origList = new();
+
+		public static bool InstallExtras()
         {
             return InstallEP
                    || InstallASDF

@@ -49,5 +49,7 @@ namespace Rectify11Installer.Core
 		public static bool WindowsUpdate { get; set; } = false;
 		public static bool CompleteUninstall { get; set;} = false;
 		public static bool CreateRestorePoint { get; set; } = true;
+		public static bool RunInstaller { get; set; } = false;
+		public static bool RunUninstaller { get; set; } = false;
 	}
 }

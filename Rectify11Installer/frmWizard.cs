@@ -85,7 +85,6 @@ namespace Rectify11Installer
             // initialize here because it needs instance
             RectifyPages.InstallOptnsPage = new InstallOptnsPage(this);
             RectifyPages.InstallConfirmation = new InstallConfirmation(this);
-            RectifyPages.UninstallPage = new(this);
             RectifyPages.ProgressPage = new ProgressPage(this);
 
             TabPages.eulPage.Controls.Add(RectifyPages.EulaPage);
@@ -93,7 +92,6 @@ namespace Rectify11Installer
             TabPages.themePage.Controls.Add(RectifyPages.ThemeChoicePage);
             TabPages.cmenupage.Controls.Add(RectifyPages.CMenuPage);
             TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
-            TabPages.uninstPage.Controls.Add(RectifyPages.UninstallPage);
             TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
             TabPages.summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
 
@@ -224,11 +222,6 @@ namespace Rectify11Installer
             {
                 Navigate(RectifyPages.ProgressPage);
             }
-            else if (navPane.SelectedTab == TabPages.uninstPage)
-            {
-                Variables.IsUninstall = true;
-                Navigate(RectifyPages.ProgressPage);
-            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -275,10 +268,6 @@ namespace Rectify11Installer
                     Navigate(RectifyPages.InstallOptnsPage);
                 }
             }
-            else if (navPane.SelectedTab == TabPages.uninstPage)
-            {
-                Navigate(RectifyPages.WelcomePage);
-            }
         }
 
         private void InstallButton_Click(object sender, EventArgs e)
@@ -292,7 +281,18 @@ namespace Rectify11Installer
 
         private void UninstallButton_Click(object sender, EventArgs e)
         {
-            if (Helper.CheckIfUpdatesPending()) Navigate(RectifyPages.UninstallPage);
+            if (Helper.CheckIfUpdatesPending())
+            {
+				var res = TaskDialog.Show(text: "Are you sure you want to uninstall Rectify11?",
+								title: Strings.Rectify11.uninstallTitle,
+								buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
+								icon: TaskDialogStandardIcon.Information);
+                if (res == TaskDialogResult.Yes)
+                {
+                    Variables.IsUninstall = true;
+                    Navigate(RectifyPages.ProgressPage);
+                }
+			}
         }
 
         private void VersionLabel_Click(object sender, EventArgs e)
