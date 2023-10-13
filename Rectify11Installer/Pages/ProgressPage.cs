@@ -1,10 +1,7 @@
 using KPreisser.UI;
-using Microsoft.VisualBasic;
-using Microsoft.Win32;
 using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,8 +12,6 @@ namespace Rectify11Installer.Pages
 	{
 		#region Variables
 		private FrmWizard frmwiz;
-		private Timer timer2;
-		private int duration = 30;
 		private int CurrentTextIndex = -1;
 		private static readonly InstallerTexts[] Rectify11InstallerTexts =
 		{
@@ -49,11 +44,6 @@ namespace Rectify11Installer.Pages
 		public ProgressPage(FrmWizard frm)
 		{
 			InitializeComponent();
-			timer2 = new()
-			{
-				Interval = 1000
-			};
-			timer2.Tick += Timer2_Tick;
 			frmwiz = frm;
 			NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
 		}
@@ -64,15 +54,15 @@ namespace Rectify11Installer.Pages
 			progressText.Text = "Restarting your PC";
 			if (Variables.IsUninstall)
 			{
-				progressInfo.Text = "Rectify11 has finished uninstalling. Your device needs to restart in order to complete the uninstallation, it will automatically restart in " + duration.ToString() + " seconds";
+				progressInfo.Text = "Rectify11 has finished uninstalling. Your device needs to restart in order to complete the uninstallation";
 			}
 			else
 			{
-				progressInfo.Text = "Rectify11 has finished installing. Your device needs to restart in order to complete the installation, it will automatically restart in " + duration.ToString() + " seconds";
+				progressInfo.Text = "Rectify11 has finished installing. Your device needs to restart in order to complete the installation";
 			}
-			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
+			frmwiz.InstallerProgress = "";
 			frmwiz.UpdateSideImage = Properties.Resources.done;
-			timer2.Start();
+			r1.Visible = r2.Visible = true;
 			frmwiz.ShowRebootButton = true;
 			frmwiz.SetRebootHandler = rebootButton_Click;
 		}
@@ -234,71 +224,6 @@ namespace Rectify11Installer.Pages
 			}
 		}
 
-		/// <summary>
-		/// clears *.db cache files
-		/// </summary>
-		private async void ClearIconCache()
-		{
-			await Task.Run(() => Interaction.Shell("taskkill.exe /f /im explorer.exe", AppWinStyle.Hide, true));
-			try
-			{
-
-				DirectoryInfo di = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
-				var files = di.GetFiles("*.db");
-
-				for (var i = 0; i < files.Length; i++)
-				{
-					files[i].Attributes = FileAttributes.Normal;
-					if (File.Exists(files[i].FullName))
-					{
-						File.Delete(files[i].FullName);
-					}
-				}
-				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
-				key?.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
-				key.Close();
-			}
-			catch
-			{
-				TaskDialog.Show(text: "deleting icon cache failed",
-					title: "Rectify11 Setup",
-					buttons: TaskDialogButtons.OK,
-					icon: TaskDialogStandardIcon.Information);
-			}
-		}
-
-		/// <summary>
-		/// applies the theme just before restart to set the mouse cursor properly
-		/// </summary>
-		private async void ApplyScheme()
-		{
-			if (InstallOptions.InstallThemes)
-			{
-				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
-				string s = "e";
-				if (key != null)
-				{
-					if (InstallOptions.ThemeLight)
-					{
-						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme")));
-						s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"';
-					}
-					else if (InstallOptions.ThemeDark)
-					{
-						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme")));
-						s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"';
-					}
-					else
-					{
-						await Task.Run(() => Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme")));
-						s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark theme with Mica" + '"';
-					}
-				}
-				key.SetValue("ApplyTheme", s, RegistryValueKind.String);
-				key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(Environment.SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
-				key.Close();
-			}
-		}
 
 		/// <summary>
 		/// goes to the next text in the list to be shown
@@ -332,11 +257,16 @@ namespace Rectify11Installer.Pages
 		/// </summary>
 		private void RestartRoutine()
 		{
-			timer2.Stop();
-			frmwiz.InstallerProgress = "Restarting...";
-			ApplyScheme();
-			ClearIconCache();
-			NativeMethods.Reboot();
+			//ApplyScheme();
+			//ClearIconCache();
+			Variables.isInstall = false;
+			Variables.IsUninstall = true;
+			if (r1.Checked)
+			{
+				NativeMethods.Reboot();
+			}
+			else if (r2.Checked)
+				Application.Exit();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
@@ -349,15 +279,6 @@ namespace Rectify11Installer.Pages
 			await Task.Run(() => RestartRoutine());
 		}
 
-		private async void Timer2_Tick(object sender, EventArgs e)
-		{
-			duration -= 1;
-			frmwiz.InstallerProgress = "Restarting in " + duration.ToString() + " seconds";
-			if (duration == 0)
-			{
-				await Task.Run(() => RestartRoutine());
-			}
-		}
 		#endregion
 	}
 }

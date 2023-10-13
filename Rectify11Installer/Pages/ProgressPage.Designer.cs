@@ -30,6 +30,8 @@
 		{
 			this.progressText = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.progressInfo = new Rectify11Installer.Controls.DarkAwareLabel();
+			this.r1 = new Controls.DarkAwareRadioButton();
+			this.r2 = new Controls.DarkAwareRadioButton();
 			//this.progressBar1 = new Rectify11Installer.Controls.CustomProgressBar();
 			this.timer1 = new System.Windows.Forms.Timer();
 			this.SuspendLayout();
@@ -50,6 +52,31 @@
 			// 
 			this.timer1.Interval = 10000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			//
+			// r1
+			//
+			this.r1.BackColor = System.Drawing.Color.Transparent;
+			this.r1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.r1.ForeColor = System.Drawing.Color.Black;
+			this.r1.Location = new System.Drawing.Point(2, 120);
+			this.r1.Name = "r1";
+			this.r1.Size = new System.Drawing.Size(200, 20);
+			this.r1.Text = "Restart now";
+			this.r1.Visible = false;
+			this.r1.Checked = true;
+
+			//
+			// r2
+			//
+			this.r2.BackColor = System.Drawing.Color.Transparent;
+			this.r2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.r2.ForeColor = System.Drawing.Color.Black;
+			this.r2.Location = new System.Drawing.Point(2, 145);
+			this.r2.Name = "r2";
+			this.r2.Size = new System.Drawing.Size(200, 20);
+			this.r2.Text = "Restart later";
+			this.r2.Visible = false;
+
 			// 
 			// progressInfo
 			// 
@@ -67,7 +94,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             //this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.progressText);
+			this.Controls.Add(this.r1);
+			this.Controls.Add(this.r2);
+			this.Controls.Add(this.progressText);
 			this.Controls.Add(this.progressInfo);
 			this.Name = "ProgressPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.install;
@@ -83,6 +112,8 @@
 
 		private Controls.DarkAwareLabel progressText;
 		private Controls.DarkAwareLabel progressInfo;
+		private Controls.DarkAwareRadioButton r1;
+		private Controls.DarkAwareRadioButton r2;
 		private System.Windows.Forms.Timer timer1;
 	}
 }

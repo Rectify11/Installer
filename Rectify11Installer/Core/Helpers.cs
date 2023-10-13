@@ -443,7 +443,8 @@ namespace Rectify11Installer.Core
         public static bool ThemeDark { get; set; }
         public static bool ThemeBlack { get; set; }
         public static bool ThemeLight { get; set; }
-        public static bool InstallShell { get; set; }
+        public static bool ThemePDark { get; set; }
+		public static bool InstallShell { get; set; }
         public static bool InstallSounds { get; set; }
         public static bool SkipMFE { get; set; }
         public static bool TabbedNotMica { get; set; }

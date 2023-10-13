@@ -69,6 +69,16 @@ namespace Rectify11Installer.Core
 				Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "mmc.exe.manifest"), Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"), Helper.OperationType.Copy);
 				File.Delete(Path.Combine(Variables.r11Folder, "mmc.exe.manifest"));
 
+				try
+				{
+					ApplyScheme();
+					Logger.WriteLine("ApplyScheme() succeeded.");
+				}
+				catch (Exception ex)
+				{
+					Logger.Warn("ApplyScheme() failed", ex);
+				}
+
 				Variables.RestartRequired = true;
 				Logger.WriteLine("Themes.Install() succeeded.");
 				Logger.WriteLine("══════════════════════════════════════════════");
@@ -280,6 +290,7 @@ namespace Rectify11Installer.Core
 			string val = "";
 			if (InstallOptions.ThemeLight) val = t + "lightrectified.conf";
 			else if (InstallOptions.ThemeDark) val = t + "darkrectified.conf";
+			else if (InstallOptions.ThemePDark) val = t + "darkrectified.conf";
 			else if (InstallOptions.ThemeBlack)
 			{
 				val = t + "black.conf";
@@ -394,7 +405,8 @@ namespace Rectify11Installer.Core
 				"black.theme",
 				"darkcolorized.theme",
 				"darkrectified.theme",
-				"lightrectified.theme"
+				"lightrectified.theme",
+				"darkpartial.theme"
 			};
 			try
 			{
@@ -438,7 +450,7 @@ namespace Rectify11Installer.Core
 			{
 				try
 				{
-					if (Environment.OSVersion.Version.Build >= 22543 
+					if (Environment.OSVersion.Version.Build >= 22543
 						&& !msstyleDirList[i].Name.Contains("Legacy"))
 					{
 						Directory.Move(msstyleDirList[i].FullName, Path.Combine(Variables.Windir, "Resources", "Themes", msstyleDirList[i].Name));
@@ -475,6 +487,41 @@ namespace Rectify11Installer.Core
 				return true;
 			}
 			catch { return false; }
+		}
+
+		/// <summary>
+		/// applies the theme just before restart to set the mouse cursor properly
+		/// </summary>
+		private static void ApplyScheme()
+		{
+			var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+			string s = "e";
+			if (key != null)
+			{
+				if (InstallOptions.ThemeLight)
+				{
+					Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme"));
+					s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 light theme" + '"';
+				}
+				else if (InstallOptions.ThemeDark)
+				{
+					Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme"));
+					s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 dark theme" + '"';
+				}
+				else if (InstallOptions.ThemePDark)
+				{
+					Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkpartial.theme"));
+					s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 partial dark theme" + '"';
+				}
+				else
+				{
+					Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme"));
+					s = Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " apply " + '"' + "Rectify11 Dark theme with Mica" + '"';
+				}
+			}
+			key.SetValue("ApplyTheme", s, RegistryValueKind.String);
+			key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(Environment.SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
+			key.Close();
 		}
 		#endregion
 	}

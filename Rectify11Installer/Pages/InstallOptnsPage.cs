@@ -137,7 +137,6 @@ namespace Rectify11Installer.Pages
 							{
 								tree.Checked = true;
 								tree.Ancestors()[0].Checked = true;
-								tree.Ancestors()[0].Ancestors()[0].Checked = true;
 								InstallOptions.origList.Add(patch[i].Mui);
 							}
 						}

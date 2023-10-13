@@ -117,6 +117,7 @@
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeLight);
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeDark);
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeBlack);
+			this.themeSel.Items.Add("Partial dark");
 			this.themeSel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // ThemeChoicePage

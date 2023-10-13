@@ -82,6 +82,13 @@ namespace Rectify11Installer.Pages
 					InstallOptions.ThemeDark = false;
 					InstallOptions.ThemeBlack = true;
 					break;
+				case 3:
+					themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;
+					InstallOptions.ThemeLight = false;
+					InstallOptions.ThemeDark = false;
+					InstallOptions.ThemeBlack = false;
+					InstallOptions.ThemePDark = true;
+					break;
 				default:
 					themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
 					InstallOptions.ThemeLight = true;

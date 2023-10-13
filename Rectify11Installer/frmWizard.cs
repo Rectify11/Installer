@@ -46,7 +46,7 @@ namespace Rectify11Installer
                 nextButton.Visible = false;
                 progressLabel.Location = new Point(progressLabel.Location.X, progressLabel.Location.Y - 30);
                 pictureBox1.Location = new Point(pictureBox1.Location.X, pictureBox1.Location.Y - 30);
-                cancelButton.ButtonText = Strings.Rectify11.buttonReboot;
+                cancelButton.ButtonText = "Finish";
                 cancelButton.Click -= CancelButton_Click;
                 tableLayoutPanel2.Visible = value;
                 if (!Theme.IsUsingDarkMode)

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using KPreisser.UI;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -108,7 +109,9 @@ namespace Rectify11Installer.Core
                 // reg files for various file extensions
                 Helper.ImportReg(Path.Combine(Variables.r11Files, "icons.reg"));
 
-                Variables.RestartRequired = true;
+                ClearIconCache();
+
+				Variables.RestartRequired = true;
                 Logger.WriteLine("Icons.Install() succeeded.");
                 Logger.WriteLine("══════════════════════════════════════════════");
                 return true;
@@ -329,8 +332,35 @@ namespace Rectify11Installer.Core
             return true;
         }
 
-        #region Internal functions
-        private static void PatchCmd(PatchType type, string filename, string name, string tempfolder, string filepath, string mask)
+		/// <summary>
+		/// clears *.db cache files
+		/// </summary>
+		private static void ClearIconCache()
+		{
+			try
+			{
+				DirectoryInfo di = new(Path.Combine(GetFolderPath(SpecialFolder.LocalApplicationData), "microsoft", "windows", "explorer"));
+				var files = di.GetFiles("*.db");
+
+				for (var i = 0; i < files.Length; i++)
+				{
+					files[i].Attributes = FileAttributes.Normal;
+					if (File.Exists(files[i].FullName))
+					{
+						Helper.SafeFileDeletion(files[i].FullName);
+					}
+				}
+				var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
+				key?.SetValue("ResetIconCache", Path.Combine(Variables.sys32Folder, "ie4uinit.exe") + " -show", RegistryValueKind.String);
+				key.Close();
+			}
+			catch (Exception ex)
+			{
+                Logger.Warn("Clearing icon cache failed", ex);
+			}
+		}
+		#region Internal functions
+		private static void PatchCmd(PatchType type, string filename, string name, string tempfolder, string filepath, string mask)
         {
             if (type == PatchType.x86)
             {
