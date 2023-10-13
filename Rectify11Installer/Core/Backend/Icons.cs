@@ -146,7 +146,7 @@ namespace Rectify11Installer.Core
                 }
 
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));
-                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "wsudo.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "NSudoL.exe"));
 
                 Logger.WriteLine("Icons.Uninstall() succeeded.");
                 Logger.WriteLine("══════════════════════════════════════════════");

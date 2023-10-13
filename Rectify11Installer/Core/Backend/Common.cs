@@ -22,7 +22,7 @@ namespace Rectify11Installer.Core
             {
                 if (icons)
                 {
-                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "wsudo.exe"), Properties.Resources.wsudo, Helper.OperationType.Write))
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "NSudoL.exe"), Properties.Resources.NSudoL, Helper.OperationType.Write))
                         return false;
                     if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write))
                         return false;
@@ -235,7 +235,7 @@ namespace Rectify11Installer.Core
                 Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "themes"), false);
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "themes.7z"));
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "7za.exe"));
-                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "wsudo.exe"));
+                Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "NSudoL.exe"));
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"));
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "ResourceHacker.ini"));
                 Helper.SafeFileDeletion(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"));

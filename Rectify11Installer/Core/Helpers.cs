@@ -371,8 +371,8 @@ namespace Rectify11Installer.Core
         }
         public static void RunAsTI(string file,string param)
         {
-            Interaction.Shell(Path.Combine(Variables.r11Folder, "wsudo.exe")
-                    + " -T " + file
+            Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoL.exe")
+                    + " -U:T -P:E -Wait -UseCurrentConsole " + file
                     + " " + param, AppWinStyle.NormalFocus, true);
         }
         #endregion
@@ -493,7 +493,7 @@ namespace Rectify11Installer.Core
             => Text += s + ". " + ex.Message + Environment.NewLine + ex.StackTrace + Environment.NewLine + Environment.NewLine;
 
         public static void CommitLog()
-            => File.WriteAllText(System.IO.Path.Combine(Variables.r11Folder, "installer.log"), Text);
+            => File.WriteAllText(Path.Combine(Variables.r11Folder, "installer.log"), Text);
 
         public static void Warn(string v)
             => WriteLine("[WARNING] " + v);

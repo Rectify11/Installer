@@ -201,46 +201,35 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to shell
+        ///   Looks up a localized string similar to settings
         ///{
-        ///	var
+        ///	priority=1
+        ///	exclude.where = !process.is_explorer
+        ///	showdelay = 100
+        ///	// Options to allow modification of system items
+        ///	modify.remove.duplicate=1
+        ///	tip
         ///	{
-        ///		isw11=sys.is11
+        ///		enabled=1
+        ///		opacity=100
+        ///		width=400
+        ///		radius=1
+        ///		time=1.25
+        ///		padding=[10,10]
         ///	}
-        ///	
-        ///	set
-        ///	{
-        ///		theme
-        ///		{
-        ///			name=&quot;modern&quot;
-        ///			background
-        ///			{
-        ///				//opacity=85
-        ///				//effect=1
-        ///			}
-        ///			image.align = 2// 0 = checked, 1 = image, 2 = both
-        ///                  image.color = [color.default,color.accent_light1]
-        ///		}
+        ///}
+        ///theme
+        ///{
+        ///	name=&quot;modern&quot;
+        ///}
+        ///import &apos;imports/theme.nss&apos;
+        ///import &apos;imports/images.nss&apos;
         ///
-        ///		tip
-        ///		{
-        ///			enabled=1
-        ///			opacity=100
-        ///			width=400
-        ///			radius=1
-        ///			time=1.25
-        ///			padding=[10,10]
-        ///		}
+        ///import &apos;imports/modify.nss&apos;
+        ///modify(where=this.title.length &gt; 15 menu=title.more_options)
         ///
-        ///		exclude.where = !process.is_explorer
-        ///		showdelay=100
-        ///	}
-        ///
-        ///	images import &apos;imports/images.nss&apos;
-        ///
-        ///	static
-        ///	{	
-        ///		impor [rest of string was truncated]&quot;;.
+        ///menu(mode=&quot;multiple&quot; title=&quot;Pin/Unpin&quot; image=icon.pin) {}
+        ///menu(mod [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string config1 {
             get {
@@ -249,46 +238,34 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to shell
+        ///   Looks up a localized string similar to settings
         ///{
-        ///	var
+        ///	priority=1
+        ///	exclude.where = !process.is_explorer
+        ///	showdelay = 100
+        ///	// Options to allow modification of system items
+        ///	modify.remove.duplicate=1
+        ///	tip
         ///	{
-        ///		isw11=sys.is11
+        ///		enabled=1
+        ///		opacity=100
+        ///		width=400
+        ///		radius=1
+        ///		time=1.25
+        ///		padding=[10,10]
         ///	}
-        ///	
-        ///	set
-        ///	{
-        ///		theme
-        ///		{
-        ///			name=&quot;modern&quot;
-        ///			background
-        ///			{
-        ///				//opacity=85
-        ///				//effect=1
-        ///			}
-        ///			image.align = 2// 0 = checked, 1 = image, 2 = both
-        ///                  image.color = [color.default,color.accent_light1]
-        ///		}
+        ///}
+        ///theme
+        ///{
+        ///	name=&quot;modern&quot;
+        ///}
+        ///import &apos;imports/theme.nss&apos;
+        ///import &apos;imports/images.nss&apos;
         ///
-        ///		tip
-        ///		{
-        ///			enabled=1
-        ///			opacity=100
-        ///			width=400
-        ///			radius=1
-        ///			time=1.25
-        ///			padding=[10,10]
-        ///		}
+        ///import &apos;imports/modify.nss&apos;
         ///
-        ///		exclude.where = !process.is_explorer
-        ///		showdelay=100
-        ///	}
-        ///
-        ///	images import &apos;imports/images.nss&apos;
-        ///
-        ///	static
-        ///	{	
-        ///		impor [rest of string was truncated]&quot;;.
+        ///menu(mode=&quot;multiple&quot; title=&quot;Pin/Unpin&quot; image=icon.pin) {}
+        ///menu(mode=&quot;multiple&quot; title=title.more_options image=icon.more_options) [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string config2 {
             get {
@@ -517,6 +494,16 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] NSudoL {
+            get {
+                object obj = ResourceManager.GetObject("NSudoL", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap perf {
@@ -671,16 +658,6 @@ namespace Rectify11Installer.Properties {
             get {
                 object obj = ResourceManager.GetObject("wallpapers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] wsudo {
-            get {
-                object obj = ResourceManager.GetObject("wsudo", resourceCulture);
-                return ((byte[])(obj));
             }
         }
     }
