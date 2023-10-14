@@ -87,7 +87,7 @@ namespace Rectify11Installer.Core
             frm.InstallerProgress = "Creating uninstaller";
             Common.CreateUninstall();
 
-            InstallStatus.IsRectify11Installed = true;
+			InstallStatus.IsRectify11Installed = true;
             Logger.WriteLine("══════════════════════════════════════════════");
 
             // cleanup

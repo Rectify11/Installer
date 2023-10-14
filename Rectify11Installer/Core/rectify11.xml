@@ -360,9 +360,7 @@
 	<Patch Mui="SpeechUXWiz.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\Speech\SpeechUX\SpeechUXWiz.exe" />
 	<Patch Mui="splwow64.exe" mask="ICONGROUP," HardlinkTarget="%windir%\splwow64.exe" />
 	<Patch Mui="spoolsv.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\spoolsv.exe" />
-	<Patch Mui="srcore.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\srcore.dll" />
 	<Patch Mui="srm.dll" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\srm.dll" />
-	<Patch Mui="srrstr.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\srrstr.dll" />
 	<Patch Mui="SSText3D.scr" mask="ICONGROUP,|JPG," HardlinkTarget="%sys32%\SSText3D.scr" />
 	<Patch Mui="sti.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sti.dll" />
 	<Patch Mui="sti_ci.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sti_ci.dll" />
