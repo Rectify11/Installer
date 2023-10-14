@@ -308,147 +308,147 @@
   </data>
     <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
-    <value>Basic</value>
+    <value>Simplu</value>
   </data>
   <data name="optionAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Avansat</value>
   </data>
   <data name="restartNow" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Repornește acum</value>
   </data>
   <data name="restartLater" xml:space="preserve">
-    <value>Restart later</value>
+    <value>Repornește mai târziu</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
-    <value>Preview</value>
+    <value>Previzualizează</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Dark (partial)</value>
+    <value>Întunecat (parțial)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 version 1903 or higher is required in order to install Rectify11.</value>
+    <value>Pentru a instala Rectify11 este necesară versiunea 1903 sau o versiune mai recentă de Windows 10.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
-    <value>Compatibility Error</value>
+    <value>Erori de compatibilitate</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 build 21343 or higher is recommended in order to install Rectify11.</value>
+    <value>Pentru a instala Rectify11, se recomandă Windows 10 build 21343 sau o versiune mai recentă.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Avertisment privind compatibilitatea</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>More information</value>
+    <value>Multe informații</value>
   </data>
   <data name="lessInfo" xml:space="preserve">
-    <value>Less information</value>
+    <value>Puține informații</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Are you sure you want to uninstall Rectify11?</value>
+    <value>Sunteți sigur că doriți să dezinstalați Rectify11?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
-    <value>Installation of </value>
+    <value>Instalarea de </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> has failed. You'll need to install it manually.</value>
+    <value> a eșuat. Va trebui să îl instalați manual.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
-    <value>Runtime installation failed</value>
+    <value>Instalarea runtime-ului a eșuat</value>
   </data>
   <data name="preparingInstall" xml:space="preserve">
-    <value>Preparing installation</value>
+    <value>Pregătirea instalării</value>
   </data>
   <data name="creatingRestorePoint" xml:space="preserve">
-    <value>Creating a restore point</value>
+    <value>Crearea unui punct de restaurare</value>
   </data>
   <data name="installingRt" xml:space="preserve">
-    <value>Installing runtimes</value>
+    <value>Instalarea runtime-urilor</value>
   </data>
   <data name="installingThemes" xml:space="preserve">
-    <value>Installing themes</value>
+    <value>Instalarea temelor</value>
   </data>
   <data name="installingExtras" xml:space="preserve">
-    <value>Installing extras</value>
+    <value>Instalarea suplimentelor</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Creating uninstaller</value>
+    <value>Crearea dezinstalatorului</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
-    <value>Cleaning up</value>
+    <value>CCurățare</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>Uninstalling icons</value>
+    <value>Dezinstalarea pictogramelor</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>Uninstalling themes</value>
+    <value>Dezinstalarea temelor</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>Uninstalling extras</value>
+    <value>Dezinstalarea suplimentelor</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
-    <value>Done. You can close this window.</value>
+    <value>S-a făcut. Puteți închide această fereastră.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 has changed everything</value>
+    <value>Rectify11 a schimbat totul</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.</value>
+    <value>Am modernizat pictogramele în întregul sistem, ceea ce a dus la o experiență de utilizare mai coerentă și mai fluentă.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>Sțiați că?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 has better Win32 DPI support because we scale controls correctly.</value>
+    <value>Rectify11 are un suport mai bun pentru Win32 DPI, pentru că redimensionează corect controalele.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 has a more consistent theme</value>
+    <value>Rectify11 are o temă mai consistentă</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
+    <value>Ne-am străduit din răsputeri să reproducem controalele WinUI în temele noastre, iar tema întunecată este pur și simplu uimitoare.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 has better performance</value>
+    <value>Rectify11 are o performanță mai bună</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.</value>
+    <value>Apreciem foarte mult performanța. În versiunile viitoare, veți putea alege lucrurile pe care doriți să le eliminați din sistemul dumneavoastră.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Control Panel</value>
+    <value>Panou de control rectificat</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
+    <value>Am îmbunătățit multe detalii din panoul de control, cum ar fi modernizarea vechilor elemente vizuale și adăugarea înapoi a elementelor eliminate.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Need help or technical support?</value>
+    <value>Aveți nevoie de ajutor sau de asistență tehnică?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
+    <value>Ne puteți întreba orice pe serverul nostru oficial Discord. Linkul este pe pagina GitHub, de unde ați descărcat programul de instalare.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Thank you!</value>
+    <value>Vă mulțumim!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>Apreciem sprijinul dumneavoastră, vă mulțumim pentru instalarea Rectify11.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>Repornirea PC-ului</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 a terminat dezinstalarea. Vă rugăm să reporniți PC-ul pentru a finaliza modificările.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 a terminat de instalat. Vă rugăm să reporniți PC-ul pentru a finaliza modificările.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>Instalarea Rectify11 a eșuat. Vă rugăm să trimiteți </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> și deschideți o problemă pe GitHub sau trimiteți-o pe serverul Discord Rectify11 pentru ajutor.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Vă mulțumim că ați folosit Rectify11</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>Dezinstalarea se va face în câteva minute.</value>
   </data>
 </root>
