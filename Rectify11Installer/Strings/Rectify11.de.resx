@@ -303,7 +303,6 @@
   <data name="createRestore" xml:space="preserve">
     <value>Einen Wiederherstellungspunkt erstellen</value>
   </data>
-  <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
     <value>Einfach</value>
   </data>
@@ -323,13 +322,13 @@
     <value>Dunkel (teilweise)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 Version 1903 oder höher wird benötigt um Rectify11 zu installieren.</value>
+    <value>Windows 10 Version 1903 oder höher wird benötigt, um Rectify11 zu installieren.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
     <value>Kompatibilitätsfehler</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 Build 21343 oder höher wird benötigt um Rectify11 zu installieren.</value>
+    <value>Windows 10 Build 21343 oder höher wird empfohlen, um Rectify11 zu installieren.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
     <value>Kompalilitätswarnung</value>
@@ -350,7 +349,7 @@
     <value> schlug fehl. Sie müssen es manuell installieren.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
-    <value>Runtime-Instalationsfehler</value>
+    <value>Runtime-Installation fehlgeschlagen</value>
   </data>
   <data name="preparingInstall" xml:space="preserve">
     <value>Installation wird vorbereitet</value>
@@ -389,7 +388,7 @@
     <value>Rectify11 verändert alles</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>Wir modernisierten Symbole über das ganze System, dadurch erhält es ein konsitentere Benutzeroberfläche.</value>
+    <value>Wir haben Icons im gesamten System modernisiert, was zu einer konsistenteren und flüssigeren Benutzererfahrung führt.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
     <value>Wussten sie schon?</value>
@@ -425,10 +424,10 @@
     <value>Danke!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>Wir schätzen Ihre Unterstützung herzlich. Danke das Sie Rectify11 installieren.</value>
+    <value>Wir schätzen Ihre Unterstützung. Danke, dass Sie Rectify11 installieren.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Ihr Gerät neustarten</value>
+    <value>PC neu starten</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
     <value>Rectify11 wurde erfolgreich deinstallert. Bitte starten sie ihr Gerät neu um die Änderungen anzuwenden.</value>
@@ -437,10 +436,10 @@
     <value>Rectify11 wurde erfolgreich installiert. Bitte starten sie ihr Gerät neu um die Änderungen anzuwenden.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Bei der Installation von Rectify11 trat ein Fehler auf. Bitte senden sie </value>
+    <value>Die Installation von Rectify11 ist fehlgeschlagen. Bitte senden Sie </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value>und öffnen Sie ein Issue auf GitHub oder senden Sie an den Rectify11 Discord für Unterstützung.</value>
+    <value> und öffnen Sie ein Issue auf GitHub oder senden Sie es an den Rectify11 Discord Server für Unterstützung.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
     <value>Danke, das Sie Rectify11 verwendet haben.</value>
