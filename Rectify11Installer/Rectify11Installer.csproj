@@ -251,10 +251,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.fr.resx" />
     <EmbeddedResource Include="Strings\Rectify11.hr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.hu.resx" />
     <EmbeddedResource Include="Strings\Rectify11.id.resx" />
     <EmbeddedResource Include="Strings\Rectify11.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -273,6 +275,7 @@
       <LastGenOutput>Rectify11.pl.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Rectify11.pt-br.resx" />
     <EmbeddedResource Include="Strings\Rectify11.pt.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -282,6 +285,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\Rectify11.sr-Latn-RS.resx" />
+    <EmbeddedResource Include="Strings\Rectify11.tr.resx" />
     <EmbeddedResource Include="Strings\Rectify11.vi.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Rectify11.vi.Designer.cs</LastGenOutput>
