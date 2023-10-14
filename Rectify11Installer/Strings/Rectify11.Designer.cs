@@ -687,7 +687,7 @@ namespace Rectify11Installer.Strings {
         /// </summary>
         internal static string compatErrorText {
             get {
-                return ResourceManager.GetString("compatErrorTitle", resourceCulture);
+                return ResourceManager.GetString("compatErrorText", resourceCulture);
             }
         }
 		
@@ -705,7 +705,7 @@ namespace Rectify11Installer.Strings {
         /// </summary>
         internal static string compatWarnText {
             get {
-                return ResourceManager.GetString("compatWarnTitle", resourceCulture);
+                return ResourceManager.GetString("compatWarnText", resourceCulture);
             }
         }
 		
