@@ -290,49 +290,49 @@
   </data>
     <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
-    <value>Basic</value>
+    <value>Podstawowe</value>
   </data>
   <data name="optionAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Zaawansowane</value>
   </data>
   <data name="restartNow" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Zrestartuj teraz</value>
   </data>
   <data name="restartLater" xml:space="preserve">
-    <value>Restart later</value>
+    <value>Zrestartuj później</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
     <value>Preview</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Dark (partial)</value>
+    <value>Ciemny (częściowo)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 version 1903 or higher is required in order to install Rectify11.</value>
+    <value>Windows 10 wersja 1903 lub wyższa jest wymagana do instalacji Rectify11.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
-    <value>Compatibility Error</value>
+    <value>Błąd kompatybilności</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 build 21343 or higher is recommended in order to install Rectify11.</value>
+    <value>Windows 10 kompilacja 21343 lub wyższa jest wymagana do instalacji Rectify11.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Ostrzeżenie kompatybilności</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>More information</value>
+    <value>Więcejvalue>
   </data>
   <data name="lessInfo" xml:space="preserve">
-    <value>Less information</value>
+    <value>Mniej</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Are you sure you want to uninstall Rectify11?</value>
+    <value>Czy chcesz odinstalować Rectify11?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
-    <value>Installation of </value>
+    <value>Instalacja </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> has failed. You'll need to install it manually.</value>
+    <value> nie powiodła się. Będziesz musiał zainstalować go ręcznie.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
     <value>Runtime installation failed</value>
