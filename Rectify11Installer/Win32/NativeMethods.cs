@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Management;
 using System.Runtime.InteropServices;
 #nullable enable
 
@@ -278,23 +279,26 @@ namespace Rectify11Installer.Win32
             using var key = Registry.LocalMachine.OpenSubKey(@"software\microsoft\Windows NT\CurrentVersion");
             return Convert.ToInt32(key?.GetValue("UBR"));
         }
-        public static bool CreateSystemRestorePoint(bool finish)
+        public static void CreateSystemRestorePoint()
         {
-            RegistryKey SystemRestoreKey = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore", true);
-            SystemRestoreKey.SetValue("SystemRestorePointCreationFrequency", 0, RegistryValueKind.DWord);
-            RESTOREPOINTINFO RPInfo = new();
-            STATEMGRSTATUS RPStatus = new();
+			RegistryKey SystemRestoreKey = Registry.LocalMachine.OpenSubKey("Software\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore", true);
+			SystemRestoreKey.SetValue("SystemRestorePointCreationFrequency", 0, RegistryValueKind.DWord);
+			ManagementScope oScope = new ManagementScope("\\\\localhost\\root\\default");
+			ManagementPath oPath = new ManagementPath("SystemRestore");
+			ObjectGetOptions oGetOp = new ObjectGetOptions();
+			ManagementClass oProcess = new ManagementClass(oScope, oPath, oGetOp);
 
-            RPInfo.dwEventType = 100;
-            if (finish) RPInfo.dwEventType = 101;
-            RPInfo.dwRestorePtType = 0;
-            RPInfo.llSequenceNumber = 0;
-            RPInfo.szDescription = "Rectify11";
-            _ = SRSetRestorePoint(ref RPInfo, ref RPStatus);
-            SystemRestoreKey.DeleteValue("SystemRestorePointCreationFrequency");
-            SystemRestoreKey.Dispose();
-            return true;
-        }
+			ManagementBaseObject oInParams =
+				 oProcess.GetMethodParameters("CreateRestorePoint");
+			oInParams["Description"] = "Configured Rectify11";
+			oInParams["RestorePointType"] = 9;
+			oInParams["EventType"] = 100;
+
+			ManagementBaseObject oOutParams =
+				 oProcess.InvokeMethod("CreateRestorePoint", oInParams, null);
+			SystemRestoreKey.DeleteValue("SystemRestorePointCreationFrequency");
+			SystemRestoreKey.Dispose();
+		}
         #endregion
     }
 }

@@ -32,8 +32,8 @@ namespace Rectify11Installer.Core
             {
                 try
                 {
-                    frm.InstallerProgress = "Begin creating a restore point";
-                    CreateSystemRestorePoint(false);
+                    frm.InstallerProgress = "Creating a restore point";
+                    CreateSystemRestorePoint();
                 }
                 catch (Exception ex)
                 {
@@ -89,19 +89,6 @@ namespace Rectify11Installer.Core
 
             InstallStatus.IsRectify11Installed = true;
             Logger.WriteLine("══════════════════════════════════════════════");
-
-            if (Variables.CreateRestorePoint)
-            {
-                try
-                {
-                    frm.InstallerProgress = "End creating a restore point";
-                    CreateSystemRestorePoint(true);
-                }
-                catch
-                {
-                    //ignored
-                }
-            }
 
             // cleanup
             frm.InstallerProgress = "Cleaning up...";

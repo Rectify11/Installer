@@ -319,7 +319,7 @@
 	<Patch Mui="repair-bde.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\repair-bde.exe" />
 	<Patch Mui="resmon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\resmon.exe" />
 	<Patch Mui="Ribbons.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\Ribbons.scr" />
-	<Patch Mui="rstrui.exe.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\rstrui.exe.mui" />
+	<Patch Mui="rstrui.exe" mask="ICONGROUP,|BITMAP," HardlinkTarget="%sys32%\rstrui.exe" />
 	<Patch Mui="runonce.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\runonce.exe" />
 	<Patch Mui="sapi.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\Speech\SpeechUX\sapi.cpl" />
 	<Patch Mui="sberes.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\sberes.dll" />
