@@ -332,7 +332,7 @@
     <value>Instalacja </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> nie powiodła się. Będziesz musiał zainstalować go ręcznie.</value>
+    <value> nie powiodła się. Będziesz musiał zainstalować Rectify11 ręcznie.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
     <value>Instalacja środowisk uruchomieniowych zakończyła się niepowodzeniem</value>
@@ -374,16 +374,16 @@
     <value>Rectify11 has changed everything</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.</value>
+    <value>Zmodernizowaliśmy ikony w całym systemie, zapewniając bardziej spójne i płynne wrażenia z użytkowania.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>Czy wiedziałeś, że...</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 has better Win32 DPI support because we scale controls correctly.</value>
+    <value>Rectify11 ma lepszą obsługę skalowania DPI, ponieważ poprawnie skalujemy elementy motywu.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 has a more consistent theme</value>
+    <value>Rectify11 ma bardziej spójny motyw</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
     <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
@@ -401,16 +401,16 @@
     <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Need help or technical support?</value>
+    <value>Potrzebujesz pomocy lub wsparcia technicznego?</value>
   </data>
   <data name="supportText" xml:space="preserve">
     <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Thank you!</value>
+    <value>Dziękujemy!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>Doceniamy wasze wsparcie, dziękujemy za instalację Rectify11.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
     <value>Restarting your PC</value>
