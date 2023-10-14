@@ -204,19 +204,15 @@ namespace Rectify11Installer.Core
 		public static void InstallR11Cpl()
 		{
 			UninstallR11Cpl();
-			string cplPath = Path.Combine(Variables.r11Folder, "Rectify11CPL", "Rectify11CPL.dll");
-
-			//create files
-			Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11CPL"));
-
-			File.WriteAllBytes(cplPath, Properties.Resources.Rectify11CPL);
+			Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), false);
+			Directory.CreateDirectory(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"));
+			File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe"), Properties.Resources.Rectify11CPL);
 
 			// create shortcut
 			using ShellLink shortcut = new();
-			shortcut.Target = Path.Combine(Variables.sys32Folder, "control.exe");
-			shortcut.Arguments = "/name Rectify11.SettingsCPL";
-			shortcut.WorkingDirectory = @"%windir%\system32";
-			shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11CPL", "Rectify11CPL.dll");
+			shortcut.Target = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
+			shortcut.WorkingDirectory = @"%windir%\Rectify11\Rectify11ControlCenter";
+			shortcut.IconPath = Path.Combine(Variables.r11Folder, "Rectify11ControlCenter", "Rectify11ControlCenter.exe");
 			shortcut.IconIndex = 0;
 			shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
 
@@ -231,18 +227,7 @@ namespace Rectify11Installer.Core
 				Logger.Warn("Error while saving shortcut: " + ex);
 			}
 			shortcut.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Rectify11 Control Center.lnk"));
-
-			// register CPL
-			var proc = new Process();
-			proc.StartInfo.FileName = "regsvr32.exe";
-			proc.StartInfo.Arguments = "/s \"" + cplPath + "\"";
-			proc.Start();
-			proc.WaitForExit();
-
-			if (proc.ExitCode != 0)
-			{
-				Logger.WriteLine("Error while registering CPL: " + proc.ExitCode);
-			}
+			
 		}
 		/// <summary>
 		/// uninstalls control center
@@ -257,19 +242,22 @@ namespace Rectify11Installer.Core
 			Helper.SafeFileDeletion(startmenuShortcut);
 			Helper.SafeFileDeletion(desktopShortcut);
 
-			if (!File.Exists(cplPath)) return;
-
-			// unregister CPL
-			var proc = new Process();
-			proc.StartInfo.FileName = "regsvr32.exe";
-			proc.StartInfo.Arguments = "/s /u \"" + cplPath + "\"";
-			proc.Start();
-			proc.WaitForExit();
-
-			if (proc.ExitCode != 0)
+			if (File.Exists(cplPath))
 			{
-				Logger.Warn("Error while unregistering CPL: " + proc.ExitCode);
+				// unregister CPL
+				var proc = new Process();
+				proc.StartInfo.FileName = "regsvr32.exe";
+				proc.StartInfo.Arguments = "/s /u \"" + cplPath + "\"";
+				proc.Start();
+				proc.WaitForExit();
+
+				if (proc.ExitCode != 0)
+				{
+					Logger.Warn("Error while unregistering CPL: " + proc.ExitCode);
+				}
 			}
+			// nuke r11cp
+			Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11ControlCenter"), false);
 
 			//delete folder
 			Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "Rectify11CPL"), false);
