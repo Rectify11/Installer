@@ -320,7 +320,7 @@
     <value>Ostrzeżenie kompatybilności</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>Więcejvalue>
+    <value>Więcej</value>
   </data>
   <data name="lessInfo" xml:space="preserve">
     <value>Mniej</value>
@@ -380,57 +380,57 @@
     <value>Czy wiedziałeś, że...</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 ma lepszą obsługę skalowania DPI, ponieważ poprawnie skalujemy elementy motywu.</value>
+    <value>Rectify11 ma lepszą obsługę skalowania DPI, ponieważ poprawnie skalujemy elementy naszych motywów.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
     <value>Rectify11 ma bardziej spójny motyw</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
+    <value>Staraliśmy się jak najlepiej odwzorować wygląd WinUI w naszych motywach, a ciemny motyw jest po prostu niesamowity.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 has better performance</value>
+    <value>Rectify11 ma lepszą wydajność</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.</value>
+    <value>Bardzo cenimy wydajność. W przyszłych wydaniach będziesz mógł oczyścić swój system z niepotrzebnych rzeczy.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Control Panel</value>
+    <value>Odnowiony Panel Sterowania</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
+    <value>Poprawiliśmy wiele szczegółów w Panelu Sterowania. Zmodernizowaliśmy stary wygląd oraz dodaliśmy z powrotem usunięte elementy.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
     <value>Potrzebujesz pomocy lub wsparcia technicznego?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
+    <value>Możesz zapytać nas o wszystko na naszym oficjalnym serwerze Discord. Link znajdziesz na stronie GitHub, z której pobrałeś instalator.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
     <value>Dziękujemy!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>Doceniamy wasze wsparcie, dziękujemy za instalację Rectify11.</value>
+    <value>Doceniamy wasze wsparcie i dziękujemy za instalację Rectify11!</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>Restartowanie komputera</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 został odinstalowany. Uruchom ponownie komputer, aby zastosować te zmiany.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 został zainstalowany. Uruchom ponownie komputer, aby zastosować te zmiany.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>Instalacja Rectify11 nie powiodła się. Wyślij plik </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> i otwórz zgłoszenie na GitHub lub wyślij je na Discorda, aby uzyskać pomoc.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Dziękujemy za używanie Rectify11!</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>Odinstalowanie nastąpi w ciągu kilku minut.</value>
   </data>
  </root>
