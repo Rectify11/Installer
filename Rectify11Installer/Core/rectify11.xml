@@ -264,6 +264,7 @@
 	<Patch Mui="msftedit.dll" mask="CURSORGROUP," HardlinkTarget="%sys32%\msftedit.dll" />
 	<Patch Mui="msi.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\msi.dll" />
 	<Patch Mui="msieftp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\msieftp.dll" />
+	<Patch Mui="msihnd.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\msihnd.dll" />
 	<Patch Mui="msinfo32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\msinfo32.exe" />
 	<Patch Mui="mshta.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\mshta.exe" />
 	<Patch Mui="msra.exe.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\msra.exe.mui" />
