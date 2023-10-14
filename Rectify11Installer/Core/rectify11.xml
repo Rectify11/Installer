@@ -266,7 +266,7 @@
 	<Patch Mui="msieftp.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\msieftp.dll" />
 	<Patch Mui="msinfo32.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\msinfo32.exe" />
 	<Patch Mui="mshta.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\mshta.exe" />
-	<Patch Mui="msra.exe.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\msra.exe" />
+	<Patch Mui="msra.exe.mui" mask="ICONGROUP,|BITMAP," HardlinkTarget="%lang%\msra.exe.mui" />
 	<Patch Mui="MultiDigiMon.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\MultiDigiMon.exe" />
 	<Patch Mui="Mystify.scr" mask="ICONGROUP," HardlinkTarget="%sys32%\Mystify.scr" />
 	<Patch Mui="ncpa.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\ncpa.cpl" />
@@ -375,6 +375,7 @@
 	<Patch Mui="SystemPropertiesRemote.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\SystemPropertiesRemote.exe" />
 	<Patch Mui="tabcal.exe" mask="ICONGROUP," HardlinkTarget="%sys32%\tabcal.exe" />
 	<Patch Mui="TabletPC.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\TabletPC.cpl" />
+	<Patch Mui="Taskbar.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\Taskbar.dll" />
 	<Patch Mui="taskbarcpl.dll" mask="ICONGROUP," HardlinkTarget="%sys32%\taskbarcpl.dll" />
 	<Patch Mui="tcpmonui.dll" mask="BITMAP," HardlinkTarget="%sys32%\tcpmonui.dll" />
 	<Patch Mui="telephon.cpl" mask="ICONGROUP," HardlinkTarget="%sys32%\telephon.cpl" />
