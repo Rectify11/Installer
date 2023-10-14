@@ -627,5 +627,437 @@ namespace Rectify11Installer.Strings {
                 return ResourceManager.GetString("welcomeDescription", resourceCulture);
             }
         }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string optionBasic {
+            get {
+                return ResourceManager.GetString("optionBasic", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string optionAdvanced {
+            get {
+                return ResourceManager.GetString("optionAdvanced", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string restartNow {
+            get {
+                return ResourceManager.GetString("restartNow", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string restartLater {
+            get {
+                return ResourceManager.GetString("restartLater", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string previewTheme {
+            get {
+                return ResourceManager.GetString("previewTheme", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string themePartialDark {
+            get {
+                return ResourceManager.GetString("themePartialDark", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string compatErrorText {
+            get {
+                return ResourceManager.GetString("compatErrorTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string compatErrorInstruc {
+            get {
+                return ResourceManager.GetString("compatErrorInstruc", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string compatWarnText {
+            get {
+                return ResourceManager.GetString("compatWarnTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string compatWarnInstruc {
+            get {
+                return ResourceManager.GetString("compatWarnInstruc", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string moreInfo {
+            get {
+                return ResourceManager.GetString("moreInfo", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string lessInfo {
+            get {
+                return ResourceManager.GetString("lessInfo", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string uninstallConfirmText {
+            get {
+                return ResourceManager.GetString("uninstallConfirmText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string rtInstallFailPart1 {
+            get {
+                return ResourceManager.GetString("rtInstallFailPart1", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string rtInstallFailPart2 {
+            get {
+                return ResourceManager.GetString("rtInstallFailPart2", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string rtInstallFailInstruc {
+            get {
+                return ResourceManager.GetString("rtInstallFailInstruc", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string preparingInstall {
+            get {
+                return ResourceManager.GetString("preparingInstall", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string creatingRestorePoint {
+            get {
+                return ResourceManager.GetString("creatingRestorePoint", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string installingRt {
+            get {
+                return ResourceManager.GetString("installingRt", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string installingThemes {
+            get {
+                return ResourceManager.GetString("installingThemes", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string installingExtras {
+            get {
+                return ResourceManager.GetString("installingExtras", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string creatingUninstaller {
+            get {
+                return ResourceManager.GetString("creatingUninstaller", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string cleaningUp {
+            get {
+                return ResourceManager.GetString("cleaningUp", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string uninstallingIcons {
+            get {
+                return ResourceManager.GetString("uninstallingIcons", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string uninstallingThemes {
+            get {
+                return ResourceManager.GetString("uninstallingThemes", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string uninstallingExtras {
+            get {
+                return ResourceManager.GetString("uninstallingExtras", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string doneYouCanClose {
+            get {
+                return ResourceManager.GetString("doneYouCanClose", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string changedEverythingTitle {
+            get {
+                return ResourceManager.GetString("changedEverythingTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string changedEverythingText {
+            get {
+                return ResourceManager.GetString("changedEverythingText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterDpiTitle {
+            get {
+                return ResourceManager.GetString("betterDpiTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterDpiText {
+            get {
+                return ResourceManager.GetString("betterDpiText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterThemeTitle {
+            get {
+                return ResourceManager.GetString("betterThemeTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterThemeText {
+            get {
+                return ResourceManager.GetString("betterThemeText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterPerfTitle {
+            get {
+                return ResourceManager.GetString("betterPerfTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterPerfText {
+            get {
+                return ResourceManager.GetString("betterPerfText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterCplTitle {
+            get {
+                return ResourceManager.GetString("betterCplTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string betterCplText {
+            get {
+                return ResourceManager.GetString("betterCplText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string supportTitle {
+            get {
+                return ResourceManager.GetString("supportTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string supportText {
+            get {
+                return ResourceManager.GetString("supportText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string thankYouTitle {
+            get {
+                return ResourceManager.GetString("thankYouTitle", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string thankYouText {
+            get {
+                return ResourceManager.GetString("thankYouText", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string restartingYourPC {
+            get {
+                return ResourceManager.GetString("restartingYourPC", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string uninstallFinishedPrompt {
+            get {
+                return ResourceManager.GetString("uninstallFinishedPrompt", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string installFinishedPrompt {
+            get {
+                return ResourceManager.GetString("installFinishedPrompt", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string r11InstallErrorPart1 {
+            get {
+                return ResourceManager.GetString("r11InstallErrorPart1", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string r11InstallErrorPart2 {
+            get {
+                return ResourceManager.GetString("r11InstallErrorPart2", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string r11UninstallThanks {
+            get {
+                return ResourceManager.GetString("r11UninstallThanks", resourceCulture);
+            }
+        }
+		
+		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string r11UninstallSubTitle {
+            get {
+                return ResourceManager.GetString("r11UninstallSubTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -96,7 +96,7 @@
 			this.themeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.themeTitle.Size = new System.Drawing.Size(361, 40);
 			this.themeTitle.TabIndex = 3;
-			this.themeTitle.Text = "Preview";
+			this.themeTitle.Text = Rectify11Installer.Strings.Rectify11.previewTheme;
 			// 
 			// themeSelection
 			// 
@@ -117,7 +117,7 @@
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeLight);
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeDark);
 			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themeBlack);
-			this.themeSel.Items.Add("Partial dark");
+			this.themeSel.Items.Add(Rectify11Installer.Strings.Rectify11.themePartialDark);
 			this.themeSel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // ThemeChoicePage

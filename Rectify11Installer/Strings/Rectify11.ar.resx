@@ -291,15 +291,157 @@
   <data name="modifyTitle" xml:space="preserve">
     <value>تحديث</value>
   </data>
-
-  <!--translate-->
   <data name="installShell" xml:space="preserve">
-    <value>Enhanced context menus</value>
+    <value>قوائم الضغط اليمين المحسنة</value>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Create a restore point</value>
+    <value>إنشاء نقطة استعادة</value>
   </data>
   <data name="progressText" xml:space="preserve">
-    <value>Did you know</value>
+    <value>هل تعلم؟</value>
+  </data>
+    <data name="optionBasic" xml:space="preserve">
+    <value>أساسية</value>
+  </data>
+  <data name="optionAdvanced" xml:space="preserve">
+    <value>متقدمة</value>
+  </data>
+  <data name="restartNow" xml:space="preserve">
+    <value>إعادة التشغيل الآن</value>
+  </data>
+  <data name="restartLater" xml:space="preserve">
+    <value>إعلدة التشغيل لاحقاً</value>
+  </data>
+  <data name="previewTheme" xml:space="preserve">
+    <value>عرض مصغر</value>
+  </data>
+  <data name="themePartialDark" xml:space="preserve">
+    <value>داكن جزئياً</value>
+  </data>
+  <data name="compatErrorText" xml:space="preserve">
+    <value>Windows 10 1903 مطلوب للتحميل.</value>
+  </data>
+  <data name="compatErrorInstruc" xml:space="preserve">
+    <value>جهازك غير مدعوم</value>
+  </data>
+  <data name="compatWarnText" xml:space="preserve">
+    <value>ننصح باستخدام Windows 10 21343 أو أعلى </value>
+  </data>
+  <data name="compatWarnInstruc" xml:space="preserve">
+    <value>تحذير قبل التثبيت</value>
+  </data>
+  <data name="moreInfo" xml:space="preserve">
+    <value>المزيد</value>
+  </data>
+  <data name="lessInfo" xml:space="preserve">
+    <value>تصغير هذه النافذة</value>
+  </data>
+  <data name="uninstallConfirmText" xml:space="preserve">
+    <value>هل أنت متأكد من إزالة Rectify11؟</value>
+  </data>
+  <data name="rtInstallFailPart1" xml:space="preserve">
+    <value>فشل في تثبيت </value>
+  </data>
+  <data name="rtInstallFailPart2" xml:space="preserve">
+    <value>. يجب عليك تحميله بنفسك.</value>
+  </data>
+  <data name="rtInstallFailInstruc" xml:space="preserve">
+    <value>خطأ في التحميل</value>
+  </data>
+  <data name="preparingInstall" xml:space="preserve">
+    <value>يتم تجهيز التثبيت</value>
+  </data>
+  <data name="creatingRestorePoint" xml:space="preserve">
+    <value>يتم إنشاء نقطة استعادة</value>
+  </data>
+  <data name="installingRt" xml:space="preserve">
+    <value>يتم تحميل البرامج المطلوبة</value>
+  </data>
+  <data name="installingThemes" xml:space="preserve">
+    <value>يتم تحميل النسق</value>
+  </data>
+  <data name="installingExtras" xml:space="preserve">
+    <value>يتم تحميل الإضافات</value>
+  </data>
+  <data name="creatingUninstaller" xml:space="preserve">
+    <value>يتم إنشاء أداة الإزالة</value>
+  </data>
+  <data name="cleaningUp" xml:space="preserve">
+    <value>يتم التنظيف</value>
+  </data>
+  <data name="uninstallingIcons" xml:space="preserve">
+    <value>يتم إزالة الأيقونات</value>
+  </data>
+  <data name="uninstallingThemes" xml:space="preserve">
+    <value>يتم إزالة النسق</value>
+  </data>
+  <data name="uninstallingExtras" xml:space="preserve">
+    <value>يتم إزالة الإضافات</value>
+  </data>
+  <data name="doneYouCanClose" xml:space="preserve">
+    <value>تم كل شيء، يمكنك الإغلاق</value>
+  </data>
+  <data name="changedEverythingTitle" xml:space="preserve">
+    <value>Rectify11 غيَر أشياء كثيرة</value>
+  </data>
+  <data name="changedEverythingText" xml:space="preserve">
+    <value>حدثنا الأيقونات في النظام بالكامل لتحقيق التناسق فيه.</value>
+  </data>
+  <data name="betterDpiTitle" xml:space="preserve">
+    <value>هل تعلم؟</value>
+  </data>
+  <data name="betterDpiText" xml:space="preserve">
+    <value>يدعم Rectify11 الشاشات عالية الدقة بشكل أفضل.</value>
+  </data>
+  <data name="betterThemeTitle" xml:space="preserve">
+    <value>Rectify11 يحتوي على تصميم متناسق</value>
+  </data>
+  <data name="betterThemeText" xml:space="preserve">
+    <value>قمنا بإعادة تصميم عناصر الواجهة، ولدينا الوضع الداكن المبهر.</value>
+  </data>
+  <data name="betterPerfTitle" xml:space="preserve">
+    <value>Rectify11 فيه أداء أفضل</value>
+  </data>
+  <data name="betterPerfText" xml:space="preserve">
+    <value>في الإصدارات القادمة، يمكنك إزالة عناصر النظام التي لا تحتاجها.</value>
+  </data>
+  <data name="betterCplTitle" xml:space="preserve">
+    <value>لوحة التحكم بشكل حديث</value>
+  </data>
+  <data name="betterCplText" xml:space="preserve">
+    <value>قمنا بتحسين تصميم لوحة التحكم حتى تكون أسهل في الاستخدام.</value>
+  </data>
+  <data name="supportTitle" xml:space="preserve">
+    <value>تحتاج مساعدة؟</value>
+  </data>
+  <data name="supportText" xml:space="preserve">
+    <value>يمكنك التواصل معنا على Discord. ستجد الرابط في صفحتنا على GitHub.</value>
+  </data>
+  <data name="thankYouTitle" xml:space="preserve">
+    <value>شـكـراً</value>
+  </data>
+  <data name="thankYouText" xml:space="preserve">
+    <value>نشكرك على دعمك واستخدامك للبرنامج.</value>
+  </data>
+  <data name="restartingYourPC" xml:space="preserve">
+    <value>سيتم إعادة تشغيل جهازك</value>
+  </data>
+  <data name="uninstallFinishedPrompt" xml:space="preserve">
+    <value>تمت الإزالة. برجاء إعادة تشغيل جهازك.</value>
+  </data>
+  <data name="installFinishedPrompt" xml:space="preserve">
+    <value>تم التثبيت. برجاء إعادة تشغيل جهازك.</value>
+  </data>
+  <data name="r11InstallErrorPart1" xml:space="preserve">
+    <value>فشل التثبيت. برجاء إرسال </value>
+  </data>
+  <data name="r11InstallErrorPart2" xml:space="preserve">
+    <value> على GitHub أو Discord.</value>
+  </data>
+  <data name="r11UninstallThanks" xml:space="preserve">
+    <value>شكراً لاستخدامك لـ Rectify11</value>
+  </data>
+  <data name="r11UninstallSubTitle" xml:space="preserve">
+    <value>ستتم الإزالة في دقائق معدودة.</value>
   </data>
 </root>

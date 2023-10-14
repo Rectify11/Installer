@@ -11,7 +11,7 @@ namespace Rectify11Installer.Core
         #region Public Methods
         public bool Install(FrmWizard frm)
         {
-            frm.InstallerProgress = "Preparing Installation";
+            frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.preparingInstall;
             Logger.WriteLine("Preparing Installation");
             Logger.WriteLine("──────────────────────");
 
@@ -32,7 +32,7 @@ namespace Rectify11Installer.Core
             {
                 try
                 {
-                    frm.InstallerProgress = "Creating a restore point";
+                    frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.creatingRestorePoint;
                     CreateSystemRestorePoint();
                 }
                 catch (Exception ex)
@@ -42,7 +42,7 @@ namespace Rectify11Installer.Core
             }
 
             // runtimes
-            frm.InstallerProgress = "Installing runtimes";
+            frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.installingRt;
             Common.InstallRuntimes();
             if (Variables.vcRedist && Variables.core31)
             {
@@ -67,14 +67,14 @@ namespace Rectify11Installer.Core
             // theme
             if (InstallOptions.InstallThemes)
             {
-                frm.InstallerProgress = "Installing Themes";
+                frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.installingThemes;
                 if (!Themes.Install()) return false;
             }
 
             // extras
             if (InstallOptions.InstallExtras())
             {
-                frm.InstallerProgress = "Installing extras";
+                frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.installingExtras;
                 if (!Extras.Install(frm)) return false;
             }
 
@@ -84,14 +84,14 @@ namespace Rectify11Installer.Core
                 if (!Icons.Install(frm)) return false;
             }
 
-            frm.InstallerProgress = "Creating uninstaller";
+            frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.creatingUninstaller;
             Common.CreateUninstall();
 
 			InstallStatus.IsRectify11Installed = true;
             Logger.WriteLine("══════════════════════════════════════════════");
 
             // cleanup
-            frm.InstallerProgress = "Cleaning up...";
+            frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.cleaningUp;
             Common.Cleanup();
             Logger.CommitLog();
             return true;

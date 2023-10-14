@@ -29,9 +29,9 @@ namespace Rectify11Installer
 				{
 					bool yes = false;
 					TaskDialog td = new();
-					td.Page.Text = "Windows 10 version 1903 or higher is required in order to install Rectify11.";
-					td.Page.Instruction = "Compatibility Error";
-					td.Page.Title = "Rectify11 Setup";
+					td.Page.Text = Strings.Rectify11.compatErrorText;
+					td.Page.Instruction = Strings.Rectify11.compatErrorInstruc;
+					td.Page.Title = Strings.Rectify11.Title;
 					td.Page.StandardButtons = TaskDialogButtons.OK;
 					td.Page.Icon = TaskDialogStandardIcon.SecurityErrorRedBar;
 					td.Page.EnableHyperlinks = false;
@@ -47,17 +47,17 @@ namespace Rectify11Installer
 				{
 					bool yes = false;
 					TaskDialog td = new();
-					td.Page.Text = "Windows 10 build 21343 or higher is recommended in order to install Rectify11.";
-					td.Page.Instruction = "Compatibility Warning";
-					td.Page.Title = "Rectify11 Setup";
+					td.Page.Text = Strings.Rectify11.compatWarnText;
+					td.Page.Instruction = Strings.Rectify11.compatWarnInstruc;
+					td.Page.Title = Strings.Rectify11.Title;
 					td.Page.StandardButtons = TaskDialogButtons.OK;
 					td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
 					td.Page.EnableHyperlinks = true;
 					TaskDialogExpander tde = new();
 					tde.Text = "<a href=\"link1\">Run anyway (not recommended)</a>";
 					tde.Expanded = false;
-					tde.CollapsedButtonText = "More information";
-					tde.ExpandedButtonText = "Less information";
+					tde.CollapsedButtonText = Strings.Rectify11.moreInfo;
+					tde.ExpandedButtonText = Strings.Rectify11.lessInfo;
 					td.Page.HyperlinkClicked += (s, e) =>
 					{
 						yes = true;

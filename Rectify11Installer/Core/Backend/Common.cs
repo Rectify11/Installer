@@ -197,9 +197,9 @@ namespace Rectify11Installer.Core
         public static void RuntimeInstallError(string app, string info, string link)
         {
             TaskDialog td = new();
-            td.Page.Text = "Installation of " + app + " has failed. You need to install it manually.";
-            td.Page.Instruction = "Runtime installation error";
-            td.Page.Title = "Rectify11 Setup";
+            td.Page.Text = Rectify11Installer.Strings.Rectify11.rtInstallFailPart1 + app + Rectify11Installer.Strings.Rectify11.rtInstallFailPart2;
+            td.Page.Instruction = Rectify11Installer.Strings.Rectify11.rtInstallFailInstruc;
+            td.Page.Title = Rectify11Installer.Strings.Rectify11.Title;
             td.Page.StandardButtons = TaskDialogButtons.OK;
             td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
             td.Page.EnableHyperlinks = true;
@@ -207,8 +207,8 @@ namespace Rectify11Installer.Core
             tde.Text = info + " \nDownload from <a href=\"" + link + "\">here</a>";
             tde.Expanded = false;
             tde.ExpandFooterArea = true;
-            tde.CollapsedButtonText = "More information";
-            tde.ExpandedButtonText = "Less information";
+            tde.CollapsedButtonText = Rectify11Installer.Strings.Rectify11.moreInfo;
+            tde.ExpandedButtonText = Rectify11Installer.Strings.Rectify11.lessInfo;
             td.Page.Expander = tde;
             td.Show();
         }

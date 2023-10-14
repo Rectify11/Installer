@@ -61,7 +61,7 @@
 			this.r1.Location = new System.Drawing.Point(2, 120);
 			this.r1.Name = "r1";
 			this.r1.Size = new System.Drawing.Size(200, 20);
-			this.r1.Text = "Restart now";
+			this.r1.Text = Rectify11Installer.Strings.Rectify11.restartNow;
 			this.r1.Visible = false;
 			this.r1.Checked = true;
 
@@ -74,7 +74,7 @@
 			this.r2.Location = new System.Drawing.Point(2, 145);
 			this.r2.Name = "r2";
 			this.r2.Size = new System.Drawing.Size(200, 20);
-			this.r2.Text = "Restart later";
+			this.r2.Text = Rectify11Installer.Strings.Rectify11.restartLater;
 			this.r2.Visible = false;
 
 			// 

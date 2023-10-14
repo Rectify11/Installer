@@ -15,13 +15,13 @@ namespace Rectify11Installer.Pages
 		private int CurrentTextIndex = -1;
 		private static readonly InstallerTexts[] Rectify11InstallerTexts =
 		{
-			new("Rectify11 has changed everything", "We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.", Properties.Resources.iconnewtree),
-			new("Did you know?", "Rectify11 has better Win32 DPI support because we scale controls correctly.", Properties.Resources.dpi),
-			new("Rectify11 has a more consistent theme.", "We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.", Properties.Resources.themepage),
-			new("Rectify11 has better performance", "We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.", Properties.Resources.perf),
-			new("Rectified Control Panel", "We improved many details in the control panel, such as modernizing old visuals and adding back removed items", Properties.Resources.cp),
-			new("Need help or technical support?", "You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.", Properties.Resources.discord),
-			new("Thank you!", "We appreciate your support, thank you for installing Rectify11.", Properties.Resources.cool)
+			new(Rectify11Installer.Strings.Rectify11.changedEverythingTitle, Rectify11Installer.Strings.Rectify11.changedEverythingText, Properties.Resources.iconnewtree),
+			new(Rectify11Installer.Strings.Rectify11.betterDpiTitle, Rectify11Installer.Strings.Rectify11.betterDpiText, Properties.Resources.dpi),
+			new(Rectify11Installer.Strings.Rectify11.betterThemeTitle, Rectify11Installer.Strings.Rectify11.betterThemeText, Properties.Resources.themepage),
+			new(Rectify11Installer.Strings.Rectify11.betterPerfTitle, Rectify11Installer.Strings.Rectify11.betterPerfText, Properties.Resources.perf),
+			new(Rectify11Installer.Strings.Rectify11.betterCplTitle, Rectify11Installer.Strings.Rectify11.betterCplText, Properties.Resources.cp),
+			new(Rectify11Installer.Strings.Rectify11.supportTitle, Rectify11Installer.Strings.Rectify11.supportText, Properties.Resources.discord),
+			new(Rectify11Installer.Strings.Rectify11.thankYouTitle, Rectify11Installer.Strings.Rectify11.thankYouText, Properties.Resources.cool)
 		};
 		#endregion
 		#region Classes
@@ -51,14 +51,14 @@ namespace Rectify11Installer.Pages
 		public void StartReset()
 		{
 			timer1.Stop();
-			progressText.Text = "Restarting your PC";
+			progressText.Text = Rectify11Installer.Strings.Rectify11.restartingYourPC;
 			if (Variables.IsUninstall)
 			{
-				progressInfo.Text = "Rectify11 has finished uninstalling. Your device needs to restart in order to complete the uninstallation";
+				progressInfo.Text = Rectify11Installer.Strings.Rectify11.uninstallFinishedPrompt;
 			}
 			else
 			{
-				progressInfo.Text = "Rectify11 has finished installing. Your device needs to restart in order to complete the installation";
+				progressInfo.Text = Rectify11Installer.Strings.Rectify11.installFinishedPrompt;
 			}
 			frmwiz.InstallerProgress = "";
 			frmwiz.UpdateSideImage = Properties.Resources.done;
@@ -149,7 +149,7 @@ namespace Rectify11Installer.Pages
 					{
 						Common.Cleanup();
 						Logger.CommitLog();
-						TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+						TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
 							title: "Error",
 							buttons: TaskDialogButtons.OK,
 							icon: TaskDialogStandardIcon.Error);
@@ -165,7 +165,7 @@ namespace Rectify11Installer.Pages
 					{
 						NativeMethods.SetCloseButton(frmwiz, true);
 						timer1.Stop();
-						frmwiz.InstallerProgress = "Done, you can close this window";
+						frmwiz.InstallerProgress = Rectify11Installer.Strings.Rectify11.doneYouCanClose;
 					}
 				}
 				else
@@ -184,7 +184,7 @@ namespace Rectify11Installer.Pages
 						{
 							Common.Cleanup();
 							Logger.CommitLog();
-							TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+							TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
 								title: "Error",
 								buttons: TaskDialogButtons.OK,
 								icon: TaskDialogStandardIcon.Error);
@@ -199,7 +199,7 @@ namespace Rectify11Installer.Pages
 						{
 							Common.Cleanup();
 							Logger.CommitLog();
-							TaskDialog.Show(text: "Rectify11 setup encountered an error, for more information, see the log in " + Path.Combine(Variables.r11Folder, "installer.log") + ", and report it to rectify11 development server",
+							TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
 								title: "Error",
 								buttons: TaskDialogButtons.OK,
 								icon: TaskDialogStandardIcon.Error);
@@ -218,7 +218,7 @@ namespace Rectify11Installer.Pages
 						Variables.isInstall = false;
 						Variables.IsUninstall = true;
 						timer1.Stop();
-						frmwiz.InstallerProgress = "Done, you can close this window";
+						frmwiz.InstallerProgress = Rectify11Installer.Strings.Rectify11.doneYouCanClose;
 					}
 				}
 			}
@@ -232,8 +232,8 @@ namespace Rectify11Installer.Pages
 		{
 			if (Variables.IsUninstall)
 			{
-				progressText.Text = "Thanks for using Rectify11";
-				progressInfo.Text = "Uninstallation will be done in a few moments.";
+				progressText.Text = Rectify11Installer.Strings.Rectify11.r11UninstallThanks;
+				progressInfo.Text = Rectify11Installer.Strings.Rectify11.r11UninstallSubTitle;
 
 			}
 			else

@@ -283,7 +283,7 @@ namespace Rectify11Installer
         {
             if (Helper.CheckIfUpdatesPending())
             {
-				var res = TaskDialog.Show(text: "Are you sure you want to uninstall Rectify11?",
+				var res = TaskDialog.Show(text: Strings.Rectify11.uninstallConfirmText,
 								title: Strings.Rectify11.uninstallTitle,
 								buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
 								icon: TaskDialogStandardIcon.Information);

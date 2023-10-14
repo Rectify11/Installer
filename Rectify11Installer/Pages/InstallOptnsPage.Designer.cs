@@ -82,9 +82,9 @@ namespace Rectify11Installer.Pages
             treeNode4.Name = "themeNode";
 			treeNode4.Text = Rectify11Installer.Strings.Rectify11.optionThemes;
             treeNode2.Name = "basicNode";
-			treeNode2.Text = "Basic";
+			treeNode2.Text = Rectify11Installer.Strings.Rectify11.optionBasic;
 			treeNode3.Name = "advancedNode";
-			treeNode3.Text = "Advanced";
+			treeNode3.Text = Rectify11Installer.Strings.Rectify11.optionAdvanced;
 			this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
 			treeNode1,
 			treeNode4,
