@@ -187,7 +187,7 @@
     <value>Czy wiedziałeś, że...</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ komputer zostanie uruchomiony ponownie w celu zastosowania zmian.</value>
+    <value>Zapisz swoją pracę i zamknij wszystkie programy, ponieważ komputer zostanie uruchomiony ponownie.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
     <value>Instalacja Rectify11 na systemie Windows</value>
@@ -298,7 +298,7 @@
     <value>Zrestartuj później</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
-    <value>Preview</value>
+    <value>Podgląd</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
     <value>Ciemny (częściowo)</value>
@@ -349,7 +349,7 @@
     <value>Instalowanie dodatków</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Tworzenie deinstalatora</value>
+    <value>Uruchamianie deinstalatora</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
     <value>Czyszczenie</value>
