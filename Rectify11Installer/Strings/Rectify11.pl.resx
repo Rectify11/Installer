@@ -391,10 +391,10 @@
     <value>Bardzo cenimy wydajność. W przyszłych wydaniach będziesz mógł oczyścić swój system z niepotrzebnych rzeczy.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Odnowiony Panel Sterowania</value>
+    <value>Odnowiony panel sterowania</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>Poprawiliśmy wiele szczegółów w Panelu Sterowania. Zmodernizowaliśmy stary wygląd oraz dodaliśmy z powrotem usunięte elementy.</value>
+    <value>Poprawiliśmy wiele szczegółów w panelu sterowania. Zmodernizowaliśmy stary wygląd oraz dodaliśmy z powrotem usunięte elementy.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
     <value>Potrzebujesz pomocy lub wsparcia technicznego?</value>
@@ -412,16 +412,16 @@
     <value>Restartowanie komputera</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 został odinstalowany. Uruchom ponownie komputer, aby zastosować te zmiany.</value>
+    <value>Rectify11 został odinstalowany. Uruchom ponownie komputer, aby zastosować zmiany.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 został zainstalowany. Uruchom ponownie komputer, aby zastosować te zmiany.</value>
+    <value>Rectify11 został zainstalowany. Uruchom ponownie komputer, aby zastosować zmiany.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
     <value>Instalacja Rectify11 nie powiodła się. Wyślij plik </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> i otwórz zgłoszenie na GitHub lub wyślij je na Discorda, aby uzyskać pomoc.</value>
+    <value> i otwórz zgłoszenie na GitHub lub wyślij go na Discorda, aby uzyskać pomoc.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
     <value>Dziękujemy za używanie Rectify11!</value>
