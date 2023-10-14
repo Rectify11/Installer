@@ -315,141 +315,141 @@
     <value>Advanced</value>
   </data>
   <data name="restartNow" xml:space="preserve">
-    <value>Restart now</value>
+    <value>지금 재시작하기</value>
   </data>
   <data name="restartLater" xml:space="preserve">
-    <value>Restart later</value>
+    <value>나중에</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
-    <value>Preview</value>
+    <value>프리뷰</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Dark (partial)</value>
+    <value>다크 모드 (기존 윈도우 11 스타일)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 version 1903 or higher is required in order to install Rectify11.</value>
+    <value>설치를 진행하려면 윈도우 10 1903 버전 또는 그 이상의 버전이 필요합니다.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
-    <value>Compatibility Error</value>
+    <value>오류</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 build 21343 or higher is recommended in order to install Rectify11.</value>
+    <value>Rectify11을 설치하려면 윈도우 10 빌드 21343 부터 진행을 해주세요.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>경고</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>More information</value>
+    <value>펼치기</value>
   </data>
   <data name="lessInfo" xml:space="preserve">
-    <value>Less information</value>
+    <value>접기</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Are you sure you want to uninstall Rectify11?</value>
+    <value>Rectify11을 삭제하시겠습니까?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
-    <value>Installation of </value>
+    <value>설치 중 : </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> has failed. You'll need to install it manually.</value>
+    <value> 실패. 수동으로 설치해 주세요.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
-    <value>Runtime installation failed</value>
+    <value>Runtime 설치 실패</value>
   </data>
   <data name="preparingInstall" xml:space="preserve">
-    <value>Preparing installation</value>
+    <value>설치 준비 중. .</value>
   </data>
   <data name="creatingRestorePoint" xml:space="preserve">
-    <value>Creating a restore point</value>
+    <value>복구 지점 생성 중</value>
   </data>
   <data name="installingRt" xml:space="preserve">
-    <value>Installing runtimes</value>
+    <value>Runtimes 설치 중. .</value>
   </data>
   <data name="installingThemes" xml:space="preserve">
-    <value>Installing themes</value>
+    <value>테마 설치 중. .</value>
   </data>
   <data name="installingExtras" xml:space="preserve">
-    <value>Installing extras</value>
+    <value>추가 항목 설치 중. .</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Creating uninstaller</value>
+    <value>Uninstaller 설치 중. .</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
-    <value>Cleaning up</value>
+    <value>임시 파일 제거 중. .</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>Uninstalling icons</value>
+    <value>아이콘들 복구 중. .</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>Uninstalling themes</value>
+    <value>테마 제거 중. .</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>Uninstalling extras</value>
+    <value>추가 요소 삭제 중. .</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
-    <value>Done. You can close this window.</value>
+    <value>이제 이 창을 닫으셔도 됩니다.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 has changed everything</value>
+    <value>Rectify11는 모든 것을 바꾸었습니다.</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.</value>
+    <value>플루언트 시스템 디자인에 맞추어 시스템 내부에 있는 모든 아이콘을 일관성 있게 바꾸었습니다.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>알고 계셨나요?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 has better Win32 DPI support because we scale controls correctly.</value>
+    <value>Rectify11은 Win32의 더 나은 해상도 지원을 가지고 있습니다.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 has a more consistent theme</value>
+    <value>Rectify11은 반이 아닌 모든 곳에 다크 모드를 킬 수 있습니다.</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
+    <value>WinUI 모던 프로그램 스타일을 따라하려고 노력했습니다.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 has better performance</value>
+    <value>Rectify11는 더 나은 성능으로 작동합니다.</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.</value>
+    <value>Rectify11은 성능을 우선시 합니다. 곧 쓰이지 않는 프로그램들을 지울 수 있는 기능들을 추가 할 예정입니다.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Control Panel</value>
+    <value>새롭게 바뀐 제어판</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
+    <value>제어판을 일관성 있게 바꾸었고 지워진 항목들을 복구하는 등 제어판에 많은 공을 기울였습니다.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Need help or technical support?</value>
+    <value>도움이 필요하신가요?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
+    <value>저희 Rectify11 디스코드 서버에서 물어보실 수 있습니다. 이 프로그램을 받은 Github 페이지에서 찾을 수 있습니다!</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Thank you!</value>
+    <value>감사합니다!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>Recity11의 지원에 감사드립니다.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>PC 재시작중..</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 삭제에 성공했습니다. 완료하실려면 PC를 재시작해주세요.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 설치에 성공했습니다. 완료하실려면 PC를 재시작해주세요.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>Rectify11 설치에 실패했습니다. 로그 </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> 를 Github Issues 페이지에 올려주시거나 디스코드 서버에 물어봐주세요.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Rectify11을 사용해 주셔서 감사합니다.</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>몇 분 뒤 삭제가 끝납니다.</value>
   </data>
 </root>
