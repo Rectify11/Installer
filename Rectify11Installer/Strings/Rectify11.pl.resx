@@ -123,9 +123,6 @@
   <data name="buttonNext" xml:space="preserve">
     <value>Dalej</value>
   </data>
-  <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
-  </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Zapoznaj się z postaniowieniami licencyjnymi</value>
   </data>
@@ -142,7 +139,7 @@
     <value>Odinstaluj</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Zaaktualizuj Rectify11.</value>
+    <value>Zaaktualizuj Rectify11 do nowszej wersji.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Aktualizuj</value>
@@ -265,7 +262,7 @@
     <value>Klasyczne menu kontekstowe</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>Przeźroczyste klasyczne menu kontekstowe</value>
+    <value>Przezroczyste klasyczne menu kontekstowe</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
     <value>Ulepszone menu Fluent (więcej opcji)</value>
@@ -288,7 +285,6 @@
   <data name="installShell" xml:space="preserve">
     <value>Ulepszone menu kontekstowe</value>
   </data>
-    <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
     <value>Podstawowe</value>
   </data>
@@ -368,10 +364,10 @@
     <value>Odinstalowywanie dodatków</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
-    <value>Done. You can close this window.</value>
+    <value>Gotowe. Można zamknąć to okno.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 has changed everything</value>
+    <value>Rectify11 zmieniło wszystko</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
     <value>Zmodernizowaliśmy ikony w całym systemie, zapewniając bardziej spójne i płynne wrażenia z użytkowania.</value>
