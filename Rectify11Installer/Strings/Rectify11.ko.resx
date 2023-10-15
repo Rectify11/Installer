@@ -187,7 +187,7 @@
     <value>라이트 모드</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>리뉴얼된 리본</value>
+    <value>리뉴얼된 리본메뉴</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>Mica를 파일 탐색기 항목 바로 확장하기</value>
@@ -202,10 +202,10 @@
     <value>Windows 10 Rounded</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 Taskbar</value>
+    <value>Windows 10 작업표시줄</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 Default</value>
+    <value>Windows 11 기본</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
     <value>설치가 끝날 무렵 재부팅이 자동으로 이루어 질 예정이니 하던 일들은 다 저장해 주세요.</value>
@@ -214,7 +214,7 @@
     <value>이 PC에 Rectify11 설치</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>예정 작업:</value>
+    <value>예정된 작업:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>설치</value>
@@ -393,7 +393,7 @@
     <value>Rectify11는 모든 것을 바꾸었습니다.</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>플루언트 시스템 디자인에 맞추어 시스템 내부에 있는 모든 아이콘을 일관성 있게 바꾸었습니다.</value>
+    <value>Fluent 디자인에 맞추어 시스템 내부에 있는 모든 아이콘을 일관성 있게 바꾸었습니다.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
     <value>알고 계셨나요?</value>
