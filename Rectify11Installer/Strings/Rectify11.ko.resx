@@ -178,7 +178,7 @@
     <value>Rectify11 설치</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Mica(운모) 다크 모드</value>
+    <value>Mica 다크 모드</value>
   </data>
   <data name="themeDark" xml:space="preserve">
     <value>다크 모드</value>
@@ -187,10 +187,10 @@
     <value>라이트 모드</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>리뉴얼된 리본</value>
+    <value>리뉴얼된 리본메뉴</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
-    <value>Mica(운모)를 파일 탐색기 항목 바로 확장하기</value>
+    <value>Mica를 파일 탐색기 항목 바로 확장하기</value>
   </data>
   <data name="epHeader" xml:space="preserve">
     <value>Placeholder</value>
@@ -202,10 +202,10 @@
     <value>Windows 10 Rounded</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
-    <value>Windows 10 Taskbar</value>
+    <value>Windows 10 작업표시줄</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 Default</value>
+    <value>Windows 11 기본</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
     <value>설치가 끝날 무렵 재부팅이 자동으로 이루어 질 예정이니 하던 일들은 다 저장해 주세요.</value>
@@ -214,7 +214,7 @@
     <value>이 PC에 Rectify11 설치</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>예정 작업:</value>
+    <value>예정된 작업:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>설치</value>
@@ -278,7 +278,7 @@
     <value>MicaForEveryone 설치 건너뛰기</value>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
-    <value>Mica(운모) 대신 Mica Alt(운모 Alt) 설치</value>
+    <value>Mica 대신 Mica Alt 설치</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
     <value>구 우클릭 메뉴 설치</value>
@@ -287,10 +287,10 @@
     <value>(투명화)구 우클릭 메뉴</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
-    <value>플루언트 메뉴 (더 많은 옵션 포함)</value>
+    <value>Fluent 메뉴 (더 많은 옵션 포함)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>플루언트 메뉴 (모든 항목 표시)</value>
+    <value>Fluent 메뉴 (모든 항목 표시)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
     <value>현재 Rectify11에 추가 기능 설치.</value>
@@ -393,7 +393,7 @@
     <value>Rectify11는 모든 것을 바꾸었습니다.</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>플루언트 시스템 디자인에 맞추어 시스템 내부에 있는 모든 아이콘을 일관성 있게 바꾸었습니다.</value>
+    <value>Fluent 디자인에 맞추어 시스템 내부에 있는 모든 아이콘을 일관성 있게 바꾸었습니다.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
     <value>알고 계셨나요?</value>
@@ -402,7 +402,7 @@
     <value>Rectify11은 Win32의 더 나은 해상도 지원을 가지고 있습니다.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11은 반이 아닌 모든 곳에 다크 모드를 킬 수 있습니다.</value>
+    <value>Rectify11은 반쪽짜리 다크모드가 아닌 모든 곳에 다크 모드를 사용 할 수 있습니다.</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
     <value>WinUI 모던 프로그램 스타일을 따라하려고 노력했습니다.</value>
