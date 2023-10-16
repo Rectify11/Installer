@@ -307,147 +307,147 @@
   </data>
     <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
-    <value>Basic</value>
+    <value>Base</value>
   </data>
   <data name="optionAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Avanzata</value>
   </data>
   <data name="restartNow" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Riavvia adesso</value>
   </data>
   <data name="restartLater" xml:space="preserve">
-    <value>Restart later</value>
+    <value>Riavvia più tardi</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
-    <value>Preview</value>
+    <value>Anteprima</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Dark (partial)</value>
+    <value>Scuro (parziale)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 version 1903 or higher is required in order to install Rectify11.</value>
+    <value>Windows 10 versione 1903 o superiore è richiesto per poter installare Rectify11.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
-    <value>Compatibility Error</value>
+    <value>Errore di Compatibilità</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 build 21343 or higher is recommended in order to install Rectify11.</value>
+    <value>Windows 10 build 21343 o superiore è consigliato per poter installare Rectify11.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Avviso di Compatibilità</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>More information</value>
+    <value>Più informazioni</value>
   </data>
   <data name="lessInfo" xml:space="preserve">
-    <value>Less information</value>
+    <value>Meno informazioni</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Are you sure you want to uninstall Rectify11?</value>
+    <value>Sei sicuro di voler disinstallare Rectify11?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
-    <value>Installation of </value>
+    <value>L'installazione di </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> has failed. You'll need to install it manually.</value>
+    <value> è fallita. Dovrai installarlo manualmente.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
-    <value>Runtime installation failed</value>
+    <value>L'installazione della Runtime è fallita</value>
   </data>
   <data name="preparingInstall" xml:space="preserve">
-    <value>Preparing installation</value>
+    <value>Preparazione installazione</value>
   </data>
   <data name="creatingRestorePoint" xml:space="preserve">
-    <value>Creating a restore point</value>
+    <value>Creazione di un punto di ripristino</value>
   </data>
   <data name="installingRt" xml:space="preserve">
-    <value>Installing runtimes</value>
+    <value>Installazione runtime</value>
   </data>
   <data name="installingThemes" xml:space="preserve">
-    <value>Installing themes</value>
+    <value>Installazione temi</value>
   </data>
   <data name="installingExtras" xml:space="preserve">
-    <value>Installing extras</value>
+    <value>Installazione extra</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Creating uninstaller</value>
+    <value>Creazione uninstaller</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
-    <value>Cleaning up</value>
+    <value>Pulizia in corso</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>Uninstalling icons</value>
+    <value>Disinstallazione icone</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>Uninstalling themes</value>
+    <value>Disinstallazione temi</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>Uninstalling extras</value>
+    <value>Disinstallazione extra</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
-    <value>Done. You can close this window.</value>
+    <value>Fatto. Ora puoi chiudere questa finestra.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 has changed everything</value>
+    <value>Rectify11 ha cambiato tutto</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.</value>
+    <value>Abbiamo modernizzato le icone in tutto il sistema, ottenendo una esperienza utente più consistente.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>Lo sapevi?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 has better Win32 DPI support because we scale controls correctly.</value>
+    <value>Rectify11 ha un migliore supporto ai DPI per le app Win32 perchè scaliamo gli elementi correttamente.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 has a more consistent theme</value>
+    <value>Rectify11 ha un tema più consistente</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
+    <value>Abbiamo fatto del nostro meglio per replicare gli elementi WinUI nei nostri temi ed il tema scuro è semplicemente incredibile.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 has better performance</value>
+    <value>Rectify11 ha prestazioni migliori</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.</value>
+    <value>Diamo forte importanza alle prestazioni. Nelle prossime versioni, potrai scegliere che componenti vorrai vengano rimossi dal tuo sistema.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Control Panel</value>
+    <value>Pannello di Controllo Rettificato</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
+    <value>Abbiamo migliorato molti dettagli nel pannello di controllo, abbiamo modernizzato vecchie interfacce ed abilitato nuovamente menu rimossi.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Need help or technical support?</value>
+    <value>Hai bisogno di aiuto o di supporto tecnico?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
+    <value>Puoi chiederci qualsiasi cosa sul nostro server Discord ufficiale. Il link è sulla pagina di GitHub, dove hai scaricato l'installer.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Thank you!</value>
+    <value>Grazie!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>Apprezziamo il tuo supporto, grazie per aver installato Rectify11.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>Riavviando il tuo PC</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 ha terminato la disinstallazione. Per favore riavvia il tuo PC per completare i cambiamenti.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 ha terminato l'installazione. Per favore riavvia il tuo PC per completare i cambiamenti.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>L'installazione di Rectify11 è fallita. Per favore invia </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> ed apri una Issue su GitHub oppure invialo sul server Discord di Rectify11 per aiuto.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Grazie per aver usato Rectify11</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>La disinstallazione terminerà tra un paio di minuti.</value>
   </data>
 </root>
