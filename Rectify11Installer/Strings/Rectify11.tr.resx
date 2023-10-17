@@ -178,13 +178,13 @@
     <value>Rectify11 Kurucusu</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Mica ile Kara</value>
+    <value>Mica ile Karanlık</value>
   </data>
   <data name="themeDark" xml:space="preserve">
-    <value>Kara</value>
+    <value>Karanlık</value>
   </data>
   <data name="themeLight" xml:space="preserve">
-    <value>Açık</value>
+    <value>Aydınlık</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
     <value>Enhanced Ribbon'u Kullanın</value>
@@ -258,199 +258,196 @@
   <data name="installIcons" xml:space="preserve">
     <value>Simgeleri Yamala</value>
   </data>
-
-  <!--translate-->
   <data name="userAvatars" xml:space="preserve">
-    <value>Install User avatars</value>
+    <value>Kullanıcı avatarlarını yükle</value>
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
-    <value>Context menu style</value>
+    <value>Bağlam menüsü stili</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
     <value>Rectified Gadgets</value>
   </data>
   <data name="installUserAV" xml:space="preserve">
-    <value>Remastered user avatars</value>
+    <value>Yenilenmiş kullanıcı avatarları</value>
   </data>
   <data name="uninstallChoiceDescription" xml:space="preserve">
-    <value>You can choose what will be restored.</value>
+    <value>Neyin geri yükleneceğini seçebilirsiniz.</value>
   </data>
   <data name="installMFE" xml:space="preserve">
-    <value>Skip MicaForEveryone installation</value>
+    <value>MicaForEveryone kurulumunu atla</value>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
-    <value>Use Mica Alt instead of Mica</value>
+    <value>Mica yerine Mica Alt kullanın</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
-    <value>Classic Context Menus</value>
+    <value>Klasik Bağlam Menüleri</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>Classic Menus with transparency</value>
+    <value>Şeffaflığa sahip Klasik Menüler</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
-    <value>Enhanced Fluent Menus (More Options)</value>
+    <value>Gelişmiş Fluent Menüler (Daha Fazla Seçenek)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>Enhanced Fluent Menus (All Items in root)</value>
+    <value>Gelişmiş Fluent Menüler (Tüm Öğeler Kökte)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
-    <value>Add features to your existing installation.</value>
+    <value>Mevcut kurulumunuza özellikler ekleyin.</value>
   </data>
   <data name="modifyTitle" xml:space="preserve">
-    <value>Modify</value>
+    <value>Değiştir</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+    <value>Windows Güncelleştirmeleri beklemede olduğu için Rectify11'i yükleyemezsiniz. Lütfen sisteminizi yeniden başlatın.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Create a restore point</value>
+    <value>Geri yükleme noktası oluşturun</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Enhanced context menus</value>
+    <value>Gelişmiş bağlam menüleri</value>
   </data>
-    <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
-    <value>Basic</value>
+    <value>Temel</value>
   </data>
   <data name="optionAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Gelişmiş</value>
   </data>
   <data name="restartNow" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Şimdi yeniden başlat</value>
   </data>
   <data name="restartLater" xml:space="preserve">
-    <value>Restart later</value>
+    <value>Sonra yeniden başlat</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
-    <value>Preview</value>
+    <value>Önizleme</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Dark (partial)</value>
+    <value>Karanlık (kısmi)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 version 1903 or higher is required in order to install Rectify11.</value>
+    <value>Rectify11'i yüklemek için Windows 10 sürüm 1903 veya üzeri gereklidir.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
-    <value>Compatibility Error</value>
+    <value>Uyumluluk Hatası</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 build 21343 or higher is recommended in order to install Rectify11.</value>
+    <value>Rectify11'i yüklemek için Windows 10 yapı 21343 veya üzeri önerilir.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Uyumluluk Uyarısı</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>More information</value>
+    <value>Daha fazla bilgi</value>
   </data>
   <data name="lessInfo" xml:space="preserve">
-    <value>Less information</value>
+    <value>Daha az bilgi</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Are you sure you want to uninstall Rectify11?</value>
+    <value>Rectify11'i kaldırmak istediğinizden emin misiniz?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
-    <value>Installation of </value>
+    <value>Kurulum </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> has failed. You'll need to install it manually.</value>
+    <value> başarısız oldu. Manuel olarak yüklemeniz gerekecektir.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
-    <value>Runtime installation failed</value>
+    <value>Runtime yüklemesi başarısız oldu</value>
   </data>
   <data name="preparingInstall" xml:space="preserve">
-    <value>Preparing installation</value>
+    <value>Kurulum hazırlanıyor</value>
   </data>
   <data name="creatingRestorePoint" xml:space="preserve">
-    <value>Creating a restore point</value>
+    <value>Geri yükleme noktası oluşturma</value>
   </data>
   <data name="installingRt" xml:space="preserve">
-    <value>Installing runtimes</value>
+    <value>Runtime yükleniyor.</value>
   </data>
   <data name="installingThemes" xml:space="preserve">
-    <value>Installing themes</value>
+    <value>Temalar yükleniyor</value>
   </data>
   <data name="installingExtras" xml:space="preserve">
-    <value>Installing extras</value>
+    <value>Ekstralar yükleniyor</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Creating uninstaller</value>
+    <value>Kaldırıcı oluşturuluyor</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
-    <value>Cleaning up</value>
+    <value>Temizleniyor</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>Uninstalling icons</value>
+    <value>Simgeler kaldırılıyor</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>Uninstalling themes</value>
+    <value>Temalar kaldırılıyor</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>Uninstalling extras</value>
+    <value>Ekstralar kaldırılıyor</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
-    <value>Done. You can close this window.</value>
+    <value>Bitti. Bu pencereyi kapatabilirsiniz.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 has changed everything</value>
+    <value>Rectify11 her şeyi değiştirdi</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.</value>
+    <value>Tüm sistemdeki simgeleri modernize ederek daha tutarlı ve akıcı bir kullanıcı deneyimi elde ettik.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>Biliyor muydun?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 has better Win32 DPI support because we scale controls correctly.</value>
+    <value>Rectify11 daha iyi Win32 DPI desteğine sahiptir çünkü kontrolleri doğru şekilde ölçeklendiririz.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 has a more consistent theme</value>
+    <value>Rectify11 daha tutarlı bir temaya sahip</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
+    <value>Temalarımızda WinUI kontrollerini çoğaltmak için elimizden gelenin en iyisini yaptık ve karanlık tema tek kelimeyle harika.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 has better performance</value>
+    <value>Rectify11 daha iyi performansa sahiptir</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.</value>
+    <value>Performansa büyük önem veriyoruz. Gelecek sürümlerde, sisteminizde debloat etmek istediğiniz şeyleri seçebileceksiniz.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Control Panel</value>
+    <value>Rectified Kontrol Paneli</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
+    <value>Eski görselleri modernize etmek ve kaldırılan öğeleri geri eklemek gibi kontrol panelindeki birçok ayrıntıyı iyileştirdik</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Need help or technical support?</value>
+    <value>Yardıma veya teknik desteğe mi ihtiyacınız var?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
+    <value>Resmi Discord sunucumuzda bize her şeyi sorabilirsiniz. Bağlantı, yükleyiciyi indirdiğiniz GitHub sayfasındadır.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Thank you!</value>
+    <value>Teşekkür ederiz!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>Desteğiniz için minnettarız, Rectify11'i yüklediğiniz için teşekkür ederiz.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>Bilgisayarınız yeniden başlatılıyor</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>Rectify11'in kaldırılması tamamlandı. Değişiklikleri tamamlamak için lütfen bilgisayarınızı yeniden başlatın.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>Rectify11'in kurulumu tamamlandı. Değişiklikleri tamamlamak için lütfen bilgisayarınızı yeniden başlatın.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>Rectify11 kurulumu başarısız oldu. </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> Lütfen GitHub'da bir sorun gönderin ve açın veya yardım için Rectify11 Discord sunucusuna gönderin.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Rectify11'i kullandığınız için teşekkür ederiz</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>Kaldırma işlemi birkaç dakika içinde gerçekleştirilecektir.</value>
   </data>
 </root>
