@@ -178,13 +178,13 @@
     <value>Rectify11 Kurucusu</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Mica ile Kara</value>
+    <value>Mica ile Karanlık</value>
   </data>
   <data name="themeDark" xml:space="preserve">
-    <value>Kara</value>
+    <value>Karanlık</value>
   </data>
   <data name="themeLight" xml:space="preserve">
-    <value>Açık</value>
+    <value>Aydınlık</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
     <value>Enhanced Ribbon'u Kullanın</value>
