@@ -9,18 +9,20 @@ namespace Rectify11Installer.Pages
 			InitializeComponent();
 			if (Theme.IsUsingDarkMode)
 			{
-				themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;
+				themePreview.BackgroundImage = Properties.Resources.darkPreview;
 				InstallOptions.ThemeLight = false;
 				InstallOptions.ThemeDark = true;
 				InstallOptions.ThemeBlack = false;
+				InstallOptions.ThemePDark = false;
 				themeSel.SelectedIndex = 1;
 			}
 			else
 			{
-				themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
+				themePreview.BackgroundImage = Properties.Resources.lightPreview;
 				InstallOptions.ThemeLight = true;
 				InstallOptions.ThemeDark = false;
 				InstallOptions.ThemeBlack = false;
+				InstallOptions.ThemePDark = false;
 				themeSel.SelectedIndex = 0;
 			}
 
@@ -65,35 +67,39 @@ namespace Rectify11Installer.Pages
 			switch (val)
 			{
 				case 0:
-					themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
+					themePreview.BackgroundImage = Properties.Resources.lightPreview;
 					InstallOptions.ThemeLight = true;
 					InstallOptions.ThemeDark = false;
 					InstallOptions.ThemeBlack = false;
+					InstallOptions.ThemePDark = false;
 					break;
 				case 1:
-					themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;
+					themePreview.BackgroundImage = Properties.Resources.darkPreview;
 					InstallOptions.ThemeLight = false;
 					InstallOptions.ThemeDark = true;
 					InstallOptions.ThemeBlack = false;
+					InstallOptions.ThemePDark = false;
 					break;
 				case 2:
-					themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.blackPreview;
+					themePreview.BackgroundImage = Properties.Resources.blackPreview;
 					InstallOptions.ThemeLight = false;
 					InstallOptions.ThemeDark = false;
 					InstallOptions.ThemeBlack = true;
+					InstallOptions.ThemePDark = false;
 					break;
 				case 3:
-					themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.darkPreview;
+					themePreview.BackgroundImage = Properties.Resources.darkPreview;
 					InstallOptions.ThemeLight = false;
 					InstallOptions.ThemeDark = false;
 					InstallOptions.ThemeBlack = false;
 					InstallOptions.ThemePDark = true;
 					break;
 				default:
-					themePreview.BackgroundImage = global::Rectify11Installer.Properties.Resources.lightPreview;
+					themePreview.BackgroundImage = Properties.Resources.lightPreview;
 					InstallOptions.ThemeLight = true;
 					InstallOptions.ThemeDark = false;
 					InstallOptions.ThemeBlack = false;
+					InstallOptions.ThemePDark = false;
 					break;
 			}
 		}
