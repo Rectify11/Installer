@@ -178,19 +178,19 @@
     <value>Rectify11 Kurucusu</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
-    <value>Mica ile Karanlık</value>
+    <value>Mica ile Koyu Tema</value>
   </data>
   <data name="themeDark" xml:space="preserve">
-    <value>Karanlık</value>
+    <value>Koyu Tema</value>
   </data>
   <data name="themeLight" xml:space="preserve">
-    <value>Aydınlık</value>
+    <value>Açık Tema</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Enhanced Ribbon'u Kullanın</value>
+    <value>Enhanced Ribbon'u Kullan</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
-    <value>Mica'yı dosya gezgini navigasyon çubuğuna genişletin</value>
+    <value>Mica'yı dosya gezgini navigasyon çubuğuna genişlet</value>
   </data>
   <data name="epHeader" xml:space="preserve">
     <value>Masaüstünüzü kişiselleştirin</value>
@@ -223,10 +223,10 @@
     <value>Yükle</value>
   </data>
   <data name="optionExtra" xml:space="preserve">
-    <value>Ekstalar</value>
+    <value>Ekstralar</value>
   </data>
   <data name="optionIcons" xml:space="preserve">
-    <value>Sistem simgleri</value>
+    <value>Sistem simgeleri</value>
   </data>
   <data name="optionThemes" xml:space="preserve">
     <value>Temalar</value>
@@ -265,7 +265,7 @@
     <value>Bağlam menüsü stili</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
-    <value>Rectified Gadgets</value>
+    <value>Rectify'lanmış Aletler</value>
   </data>
   <data name="installUserAV" xml:space="preserve">
     <value>Yenilenmiş kullanıcı avatarları</value>
@@ -277,7 +277,7 @@
     <value>MicaForEveryone kurulumunu atla</value>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
-    <value>Mica yerine Mica Alt kullanın</value>
+    <value>Mica yerine Mica Alt kullan</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
     <value>Klasik Bağlam Menüleri</value>
@@ -301,7 +301,7 @@
     <value>Windows Güncelleştirmeleri beklemede olduğu için Rectify11'i yükleyemezsiniz. Lütfen sisteminizi yeniden başlatın.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Geri yükleme noktası oluşturun</value>
+    <value>Geri yükleme noktası oluştur</value>
   </data>
   <data name="installShell" xml:space="preserve">
     <value>Gelişmiş bağlam menüleri</value>
@@ -322,7 +322,7 @@
     <value>Önizleme</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Karanlık (kısmi)</value>
+    <value>Koyu (kısmi)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
     <value>Rectify11'i yüklemek için Windows 10 sürüm 1903 veya üzeri gereklidir.</value>
@@ -358,7 +358,7 @@
     <value>Kurulum hazırlanıyor</value>
   </data>
   <data name="creatingRestorePoint" xml:space="preserve">
-    <value>Geri yükleme noktası oluşturma</value>
+    <value>Geri yükleme noktası oluştur</value>
   </data>
   <data name="installingRt" xml:space="preserve">
     <value>Runtime yükleniyor.</value>
@@ -406,13 +406,13 @@
     <value>Temalarımızda WinUI kontrollerini çoğaltmak için elimizden gelenin en iyisini yaptık ve karanlık tema tek kelimeyle harika.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 daha iyi performansa sahiptir</value>
+    <value>Rectify11 daha iyi performansa sahiptir.</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
     <value>Performansa büyük önem veriyoruz. Gelecek sürümlerde, sisteminizde debloat etmek istediğiniz şeyleri seçebileceksiniz.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Kontrol Paneli</value>
+    <value>Rectify'lanmış Kontrol Paneli</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
     <value>Eski görselleri modernize etmek ve kaldırılan öğeleri geri eklemek gibi kontrol panelindeki birçok ayrıntıyı iyileştirdik</value>
