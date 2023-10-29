@@ -424,30 +424,30 @@
     <value>Puedes preguntarnos cualquier cosa en nuestro servidor oficial de discord, en el que esta en la pagina de GitHub, donde descargaste el instalador.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Gracias!!</value>
+    <value>Gracias!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>Apreciamos su soporte, gracias por instalar Rectify11.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>Reiniciando su PC</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 ha finalizado su desinstalación. Por favor reinicie su PC para completar los cambios.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 ha finalizado la instalación. Por favor reinicie su PC para completar los cambios.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>La instalación de Rectify11 ha fallado, por favor </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> Abra un issue en el GitHub o pregunte en el Discord por ayuda.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Gracias por usar Rectify11</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>La desinstalación estara lista en unos pocos minutos.</value>
   </data>
 </root>
