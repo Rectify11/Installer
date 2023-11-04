@@ -444,4 +444,7 @@
   <data name="r11UninstallSubTitle" xml:space="preserve">
     <value>ستتم الإزالة في دقائق معدودة.</value>
   </data>
+    <data name="tooNewBuild" xml:space="preserve">
+	<value>أنت تستخدم إصدار Windows جديد غير مدعوم بشكل كامل حالياً.</value>
+  </data>
 </root>

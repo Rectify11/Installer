@@ -447,4 +447,7 @@
   <data name="r11UninstallSubTitle" xml:space="preserve">
     <value>Deinstallation wird in einigen Minuten fertig sein.</value>
   </data>
+  <data name="tooNewBuild" xml:space="preserve">
+	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+  </data>
 </root>

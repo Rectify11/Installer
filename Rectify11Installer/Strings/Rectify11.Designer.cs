@@ -1059,5 +1059,14 @@ namespace Rectify11Installer.Strings {
                 return ResourceManager.GetString("r11UninstallSubTitle", resourceCulture);
             }
         }
+
+ 		/// <summary>
+        ///   Looks up a localized string.
+        /// </summary>
+        internal static string tooNewBuild {
+            get {
+                return ResourceManager.GetString("tooNewBuild", resourceCulture);
+            }
+        }
     }
 }
