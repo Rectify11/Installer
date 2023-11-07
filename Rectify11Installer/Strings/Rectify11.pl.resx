@@ -412,10 +412,10 @@
     <value>Restartowanie komputera</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 został odinstalowany. Uruchom ponownie komputer, aby zastosować zmiany.</value>
+    <value>Rectify11 został pomyślnie odinstalowany. Uruchom ponownie komputer, aby zastosować zmiany.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 został zainstalowany. Uruchom ponownie komputer, aby zastosować zmiany.</value>
+    <value>Rectify11 został pomyślnie zainstalowany. Uruchom ponownie komputer, aby zastosować zmiany.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
     <value>Instalacja Rectify11 nie powiodła się. Wyślij plik </value>
@@ -427,9 +427,9 @@
     <value>Dziękujemy za używanie Rectify11!</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Odinstalowanie nastąpi w ciągu kilku minut.</value>
+    <value>Program zostanie odinstalowany w ciągu kilku minut.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+	<value>Korzystasz z kompilacji systemu Windows, która jest zbyt nowa, aby była w pełni obsługiwana przez Rectify11.</value>
   </data>
  </root>
