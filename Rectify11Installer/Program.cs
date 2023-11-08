@@ -68,6 +68,35 @@ namespace Rectify11Installer
 					if (!yes) return;
 				}
 			}
+			if (Environment.OSVersion.Version.Build >= 25977)
+			{
+				if (args.Length != 0 && args[0].ToLower() == "--allow")
+				{ }
+				else
+				{
+					bool yes = false;
+					TaskDialog td = new();
+					td.Page.Text = Strings.Rectify11.tooNewBuild;
+					td.Page.Instruction = Strings.Rectify11.compatWarnInstruc;
+					td.Page.Title = Strings.Rectify11.Title;
+					td.Page.StandardButtons = TaskDialogButtons.OK;
+					td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
+					td.Page.EnableHyperlinks = true;
+					TaskDialogExpander tde = new();
+					tde.Text = "<a href=\"link1\">Run anyway (not recommended)</a>";
+					tde.Expanded = false;
+					tde.CollapsedButtonText = Strings.Rectify11.moreInfo;
+					tde.ExpandedButtonText = Strings.Rectify11.lessInfo;
+					td.Page.HyperlinkClicked += (s, e) =>
+					{
+						yes = true;
+						td.Close();
+					};
+					td.Page.Expander = tde;
+					td.Show();
+					if (!yes) return;
+				}
+			}
 			ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
 			ProfileOptimization.StartProfile("Startup.Profile");
 			if (Environment.OSVersion.Version.Build >= 10240)
