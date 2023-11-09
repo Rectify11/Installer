@@ -451,6 +451,6 @@
     <value>Kaldırma işlemi birkaç dakika içinde gerçekleştirilecektir.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+	<value>Rectify11 tarafından tam olarak desteklenemeyecek kadar yeni bir Windows sürümü çalıştırıyorsunuz.</value>
   </data>
 </root>
