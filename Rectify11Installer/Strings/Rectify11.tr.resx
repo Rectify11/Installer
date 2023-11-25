@@ -136,19 +136,19 @@
     <value>Rectify11'i yüklemeden önce, lisans anlaşmasını kabul etmeniz gerekiyor:</value>
   </data>
   <data name="installNote" xml:space="preserve">
-    <value>Şuanki Windows kurulumunuzu Rectify'layın.</value>
+    <value>Şuan ki Windows kurulumunuzu Rectify'layın.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
     <value>Şimdi Yükle</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>Orijinal Windows görünümünü geri getirir.</value>
+    <value>Orjinal Windows görünümünü geri getirir.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>Rectify11'i kaldır</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Şuanki yüklü olan Rectify11 kurulumunuzu güncelleyin.</value>
+    <value>Şuan ki yüklü olan Rectify11 kurulumunuzu güncelleyin.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Şimdi Güncelle</value>
@@ -163,7 +163,7 @@
     <value>Daha kararlı bir deneyim için, kurulum Rectify11'i yüklemek için gerekli olan bazı adımlardan geçecek. Devam etmek için istediğiniz seçeneği seçin.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Neylerin Rectify'lanacağını seçebilirsiniz.</value>
+    <value>Nelerin Rectify'lanacağını seçebilirsiniz.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Ne yükleyeceğinizi seçin</value>
@@ -175,7 +175,7 @@
     <value>Deneyiminizi kişiselleştirin</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Rectify11 Kurucusu</value>
+    <value>Rectify11 Kurulumu</value>
   </data>
   <data name="themeBlack" xml:space="preserve">
     <value>Mica ile Koyu Tema</value>
@@ -187,7 +187,7 @@
     <value>Açık Tema</value>
   </data>
   <data name="epEnhRibbon" xml:space="preserve">
-    <value>Enhanced Ribbon'u Kullan</value>
+    <value>İyileştirilmiş Ribbon'u Kullan</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
     <value>Mica'yı dosya gezgini navigasyon çubuğuna genişlet</value>
@@ -199,7 +199,7 @@
     <value>Arzu ettiğiniz masaüstü deneyimini seçin</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
-    <value>Windows 10 Yuvarlaştırılmış</value>
+    <value>Windows 10 Yuvarlaktırılmış</value>
   </data>
   <data name="epW10Taskbar" xml:space="preserve">
     <value>Windows 10 Görev Çubuğu</value>
@@ -298,7 +298,7 @@
     <value>Değiştir</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>Windows Güncelleştirmeleri beklemede olduğu için Rectify11'i yükleyemezsiniz. Lütfen sisteminizi yeniden başlatın.</value>
+    <value>Windows güncelleştirmeleri beklemede olduğu için Rectify11'i yükleyemezsiniz. Lütfen sisteminizi yeniden başlatın.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
     <value>Geri yükleme noktası oluştur</value>
@@ -388,7 +388,7 @@
     <value>Bitti. Bu pencereyi kapatabilirsiniz.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 her şeyi değiştirdi</value>
+    <value>Rectify11 Her Şeyi Değiştirdi</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
     <value>Tüm sistemdeki simgeleri modernize ederek daha tutarlı ve akıcı bir kullanıcı deneyimi elde ettik.</value>
@@ -400,13 +400,13 @@
     <value>Rectify11 daha iyi Win32 DPI desteğine sahiptir çünkü kontrolleri doğru şekilde ölçeklendiririz.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 daha tutarlı bir temaya sahip</value>
+    <value>Rectify11 Daha Tutarlı Bir Temaya Sahip</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
     <value>Temalarımızda WinUI kontrollerini çoğaltmak için elimizden gelenin en iyisini yaptık ve karanlık tema tek kelimeyle harika.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 daha iyi performansa sahiptir.</value>
+    <value>Rectify11 Daha İyi Bir Performansa Sahiptir</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
     <value>Performansa büyük önem veriyoruz. Gelecek sürümlerde, sisteminizde debloat etmek istediğiniz şeyleri seçebileceksiniz.</value>
@@ -418,13 +418,13 @@
     <value>Eski görselleri modernize etmek ve kaldırılan öğeleri geri eklemek gibi kontrol panelindeki birçok ayrıntıyı iyileştirdik</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Yardıma veya teknik desteğe mi ihtiyacınız var?</value>
+    <value>Yardıma Veya Teknik Desteğe Mi İhtiyacınız Var?</value>
   </data>
   <data name="supportText" xml:space="preserve">
     <value>Resmi Discord sunucumuzda bize her şeyi sorabilirsiniz. Bağlantı, yükleyiciyi indirdiğiniz GitHub sayfasındadır.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Teşekkür ederiz!</value>
+    <value>Teşekkür Ederiz!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
     <value>Desteğiniz için minnettarız, Rectify11'i yüklediğiniz için teşekkür ederiz.</value>
@@ -442,15 +442,15 @@
     <value>Rectify11 kurulumu başarısız oldu. </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> Lütfen GitHub'da bir sorun gönderin ve açın veya yardım için Rectify11 Discord sunucusuna gönderin.</value>
+    <value> Lütfen GitHub'da bir sorun açın veya yardım için Rectify11 Discord sunucusuna gönderin.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Rectify11'i kullandığınız için teşekkür ederiz</value>
+    <value>Rectify11'i kullandığınız için teşekkür ederiz.</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
     <value>Kaldırma işlemi birkaç dakika içinde gerçekleştirilecektir.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+	<value>Rectify11 tarafından tam olarak desteklenemeyecek kadar yeni bir Windows yapısı çalıştırıyorsunuz.</value>
   </data>
 </root>
