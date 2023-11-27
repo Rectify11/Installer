@@ -277,7 +277,7 @@
     <value>Modyfikuj</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>Nie można zainstalować Rectify11, ponieważ trwają aktualizacje systemu Windows. Proszę zrestartować system.</value>
+    <value>Nie można zainstalować Rectify11, ponieważ trwają aktualizacje systemu Windows. Proszę uruchomić ponownie system.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
     <value>Utwórz punkt przywracania systemu.</value>
@@ -349,7 +349,7 @@
     <value>Instalowanie dodatków</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Uruchamianie deinstalatora</value>
+    <value>Tworzenie deinstalatora</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
     <value>Czyszczenie</value>
