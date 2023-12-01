@@ -378,10 +378,10 @@
     <value>正在清理</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>还原图标</value>
+    <value>正在还原图标</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>卸载主题</value>
+    <value>正在卸载主题</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
     <value>正在卸载附加组件</value>
