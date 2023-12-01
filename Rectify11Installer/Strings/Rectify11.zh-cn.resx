@@ -378,13 +378,13 @@
     <value>正在清理</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>还原图标</value>
+    <value>正在还原图标</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>卸载主题</value>
+    <value>正在卸载主题</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>卸载附加组件</value>
+    <value>正在卸载附加组件</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
     <value>完成了。你可以关闭这个窗口了</value>
@@ -453,6 +453,6 @@
     <value>卸载将在几分钟内完成。</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+	<value>您正在运行的 Windows 版本太新 Rectify11 无法完全支持。</value>
   </data>
 </root>
