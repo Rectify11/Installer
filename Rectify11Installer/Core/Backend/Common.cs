@@ -20,6 +20,8 @@ namespace Rectify11Installer.Core
         {
             try
             {
+                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "RectifyStart.exe"), Properties.Resources.RectifyStart, Helper.OperationType.Write))
+                    return false;
                 if (icons)
                 {
                     if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "NSudoL.exe"), Properties.Resources.NSudoL, Helper.OperationType.Write))

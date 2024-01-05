@@ -101,6 +101,8 @@ namespace Rectify11Installer.Core
                 File.Copy(Path.Combine(Variables.r11Files, "duires.dll"), Path.Combine(Variables.sys32Folder, "duires.dll"), true);
             }
 
+            InstallChangelogApp();
+
             frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.creatingUninstaller;
             Common.CreateUninstall();
 
@@ -112,6 +114,14 @@ namespace Rectify11Installer.Core
             Common.Cleanup();
             Logger.CommitLog();
             return true;
+        }
+
+        private void InstallChangelogApp()
+        {
+            // Register RectifyStart.exe to run on startup
+            var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+            key?.SetValue("RectifyStart", Path.Combine(Variables.r11Files, "RectifyStart.exe"), RegistryValueKind.String);
+            key.Close();
         }
         #endregion
     }
