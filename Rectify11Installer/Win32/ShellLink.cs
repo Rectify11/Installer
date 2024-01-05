@@ -545,7 +545,7 @@ namespace Rectify11Installer.Core
             SLR_NOUPDATE = 0x8,
             /// <summary>
             /// Do not execute the search heuristics. 
-            /// </summary>																																																																																																																																																																																																														
+            /// </summary>																							\
             SLR_NOSEARCH = 0x10,
             /// <summary>
             /// Do not use distributed link tracking. 

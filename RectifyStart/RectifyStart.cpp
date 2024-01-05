@@ -52,7 +52,7 @@ void SetStartup(bool enable)
 				0,
 				REG_SZ,
 				(const BYTE*)czExePath,
-				wcslen(czExePath)*2);
+				wcslen(czExePath) * 2);
 		}
 		else
 		{
