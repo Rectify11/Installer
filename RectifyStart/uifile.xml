@@ -2,341 +2,186 @@
 	<stylesheets>
 		<!-- ressheet(ImmersiveStyles, library(dui70.dll), Dark) -->
 		<style resid="SXStyles">
-			<HWNDElement height="492rp" width="800rp" accessible="true" layoutpos="client" padding="rect(24rp,0rp,24rp,20rp)"/>
-			<if class="WizardPrimaryButton">
-				<PushButton accessible="true" padding="rect(0rp,0rp,0rp,0rp)" minsize="size(216rp,48rp)" margin="rect(8rp,0rp,0rp,0rp)" accrole="pushbutton" contentalign="middlecenter" font="resstr(312)" foreground="themeable(rgb(255, 255, 255), buttontext)" background="themeable(rgb( 0, 121, 214), dfc(4, 0x0010))"/>
-				<if keyfocused="true">
-					<PushButton contentalign="middlecenter | focusrect" foreground="themeable(rgb(255, 255, 255), buttontext)" background="themeable(rgb( 0, 150, 250), dfc(4, 0x0010 | 0x1000))" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="black"/>
-				</if>
-
-				<if selected="true">
-					<PushButton contentalign="middlecenter | focusrect" foreground="themeable(rgb(255, 255, 255), buttontext)" background="themeable(rgb( 0, 150, 250), dfc(4, 0x0010 | 0x1000))" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="black"/>
-				</if>
-				<if mousefocused="true">
-
-					<PushButton foreground="themeable(rgb(255, 255, 255), buttontext)" background="themeable(rgb( 0, 150, 250), dfc(4, 0x0010 | 0x1000))"/>
-
-				</if>
-
-
-				<if captured="true">
-
-					<PushButton foreground="themeable(rgb(255, 255, 255), buttontext)" background="themeable(rgb( 0, 150, 250), dfc(4, 0x0010 | 0x1000))"/>
-
-				</if>
-
-
-				<if pressed="true">
-
-					<PushButton foreground="themeable(rgb( 0, 121, 214), buttontext)" background="themeable(rgb(233, 233, 233), dfc(4, 0x0010 | 0x1000 | 0x0200))"/>
-
-				</if>
-
-
-				<if enabled="false">
-
-					<PushButton foreground="themeable(rgb(122, 122, 122), buttontext)" background="themeable(rgb( 0, 0, 0), dfc(4, 0x0010 | 0x0100))"/>
-
-				</if>
-
+			<HWNDElement height="512rp" width="840rp" accessible="true" layoutpos="client" background="themeable(gtc(DirectUI::ItemsView, 0, 0, 3802), window)"/>
+			<if id="atom(ElementContainer)">
+				<element padding="rect(24rp,0rp,24rp,72rp)"/>
 			</if>
-
-
-			<if class="WizardSecondaryButton">
-
-				<PushButton accessible="true" padding="rect(0rp,0rp,0rp,0rp)" minsize="size(216rp,48rp)" margin="rect(8rp,0rp,0rp,0rp)" accrole="pushbutton" contentalign="middlecenter" font="resstr(312)" foreground="themeable(rgb(0, 0, 0), buttontext)" background="themeable(rgb(200, 200, 200), dfc(4, 0x0010))"/>
-
-
-				<if keyfocused="true">
-
-					<PushButton contentalign="middlecenter | focusrect" foreground="themeable(rgb(0, 0, 0), buttontext)" background="themeable(rgb(233, 233, 233), dfc(4, 0x0010 | 0x1000))" borderthickness="rect(1rp,1rp,1rp,1rp)" bordercolor="rgb(0, 0, 0)"/>
-
-				</if>
-
-
-				<if selected="true">
-
-					<PushButton contentalign="middlecenter | focusrect" foreground="themeable(rgb(0, 0, 0), buttontext)" background="themeable(rgb(215, 215, 215), dfc(4, 0x0010 | 0x1000))"/>
-
-				</if>
-
-
-				<if mousefocused="true">
-
-					<PushButton foreground="themeable(rgb(0, 0, 0), buttontext)" background="themeable(rgb(233, 233, 233), dfc(4, 0x0010 | 0x1000))"/>
-
-				</if>
-
-
-				<if captured="true">
-
-					<PushButton foreground="themeable(rgb(0, 0, 0), buttontext)" background="themeable(rgb(233, 233, 233), dfc(4, 0x0010 | 0x1000))"/>
-
-				</if>
-
-
-				<if pressed="true">
-
-					<PushButton foreground="themeable(rgb( 0, 121, 214), buttontext)" background="themeable(rgb(155, 155, 155), dfc(4, 0x0010 | 0x1000 | 0x0200))"/>
-
-				</if>
-
-
-				<if enabled="false">
-
-					<PushButton foreground="themeable(rgb(122, 122, 122), buttontext)" background="themeable(rgb( 0, 0, 0), dfc(4, 0x0010 | 0x0100))"/>
-
-				</if>
-
-			</if>
-
-
 			<if class="WizardButtonBar">
-
-				<element padding="rect(0rp,26rp,0rp,0rp)" />
-
+				<element padding="rect(16rp,16rp,16rp,16rp)" background="themeable(dtb(DialogRoot::Button, 6, 4), threedface)" height="64rp"/>
 			</if>
-
-
-			<if class="WizardLogoBar">
-
-				<element padding="rect(0rp,12rp,0rp,0rp)"/>
-
-			</if>
-
-			<if class="WizardLogo"> </if>
-
-
-			<if class="WizardLink">
-
-				<button accessible="true" accrole="link" font="resstr(302)" foreground="themeable(rgb(102, 102, 102), gtc(TextStyle, 6, 1, 3803))" cursor="hand"/>
-
-
-				<if keyfocused="true">
-
-					<button contentalign="focusrect" foreground="gtc(TextStyle, 6, 2, 3803)" />
-
-				</if>
-
-				<if mousefocused="true">
-
-					<button contentalign="focusrect" foreground="gtc(TextStyle, 6, 2, 3803)" />
-
-				</if>
-
-
-				<if selected="true">
-
-					<button contentalign="focusrect"/>
-
-				</if>
-
-			</if>
-
-
 			<if class="WizardPageTitle">
-
-				<element accessible="true" padding="rect(0rp,23rp,0rp,0rp)" accrole="StaticText" contentalign="wrapleft" font="resstr(300)" fontsize="12pt" foreground="themeable(rgb( 0, 51, 153), windowtext)"/>
-
+				<element accessible="true" padding="rect(0rp,16rp,0rp,8rp)" accrole="StaticText" contentalign="wrapleft" font="themeable(gtf(AeroWizard, 2, 0), 'captionfont')" foreground="themeable(gtc(AeroWizard, 2, 0, 3803), windowtext)"/>
 			</if>
-
-
 			<if class="WizardPageSubTitle">
-
-				<element accessible="true" padding="rect(0rp,11rp,0rp,0rp)" accrole="StaticText" contentalign="wrapleft" font="resstr(301)" foreground="themeable(rgb( 0, 0, 0), windowtext)"/>
-
+				<element accessible="true" padding="rect(0rp,11rp,0rp,0rp)" accrole="StaticText" contentalign="wrapleft" font="themeable(gtf(AeroWizard, 3, 0), 'messagefont')" foreground="themeable(gtc(AeroWizard, 3, 0, 3803), windowtext)"/>
 			</if>
-
-
 			<if class="WizardPageContainer">
-
-				<element contentalign="wrapleft" font="resstr(303)" foreground="themeable(rgb(102, 102, 102), windowtext)"
-						 margin="rect(0rp, 6rp, 0rp, 0rp)" />
-
+				<element contentalign="wrapleft" font="resstr(303)" foreground="windowtext" margin="rect(0rp, 6rp, 0rp, 0rp)"/>
 			</if>
-
-
 			<if class="WizardPageContent">
-
-				<element contentalign="wrapleft" font="resstr(304)" foreground="themeable(rgb(102, 102, 102), windowtext)"/>
-
+				<element contentalign="wrapleft" font="resstr(304)" foreground="windowtext"/>
 			</if>
-
-
-			<if class="AdvertisePageTitle">
-
-				<element accessible="true" padding="rect(31rp,40rp,31rp,40rp)" accrole="StaticText" contentalign="wrapleft" font="resstr(305)" foreground="themeable(rgb(255, 255, 255), windowtext)" background="argb(0,0,0,0)"/>
-
-			</if>
-
-
-			<if class="AdvertisePageContent">
-
-				<element accessible="true" accrole="StaticText" contentalign="wrapleft" font="resstr(306)" foreground="themeable(rgb( 51, 51, 51), windowtext)"/>
-
-			</if>
-
-
-			<if class="AdvertisePage2Title">
-
-				<element accessible="true" padding="rect(0rp,20rp,0rp,0rp)" accrole="StaticText" contentalign="wrapleft" font="resstr(307)" foreground="themeable(rgb( 0, 120, 215), windowtext)" background="argb(0,0,0,0)"/>
-
-			</if>
-
-
-			<if class="AdvertisePage2Content">
-
-				<element accessible="true" accrole="StaticText" contentalign="wrapleft" font="resstr(308)" foreground="themeable(rgb( 51, 51, 51), windowtext)"/>
-
-			</if>
-
-
-			<if class="PageLink">
-
-				<button accessible="true" accrole="link" font="resstr(309)" foreground="gtc(TextStyle, 6, 1, 3803)" cursor="hand"/>
-
-
-				<if keyfocused="true">
-
-					<button contentalign="focusrect"/>
-
-				</if>
-
-
-				<if selected="true">
-
-					<button contentalign="focusrect"/>
-
-				</if>
-
-			</if>
-
-
-			<if class="EulaWarningText">
-
-				<element contentalign="wrapleft" font="resstr(310)" foreground="themeable(rgb(102, 102, 102), windowtext)"/>
-
-			</if>
-
-
-			<if class="EulaMoreInfoLink">
-
-				<button accessible="true" accrole="link" font="resstr(311)" foreground="gtc(TextStyle, 6, 1, 3803)" cursor="hand"/>
-
-
-				<if keyfocused="true">
-
-					<button contentalign="focusrect"/>
-
-				</if>
-
-
-				<if selected="true">
-
-					<button contentalign="focusrect"/>
-
-				</if>
-
-			</if>
-
 			<ScrollViewer padding="rect(0rp,0rp,0rp,0rp)"/>
-
-
 			<if class="ScrollViewer">
-
 				<CCHScrollBar accessible="true" layoutpos="ninebottom"/>
-
 				<CCVScrollBar accessible="true" layoutpos="nineright"/>
-
 				<viewer layoutpos="nineclient"/>
-
 			</if>
-
+			<if id="atom(Link)">
+				<richtext background="argb(0,0,0,0)"/>
+				<if mousewithin="true">
+					<richtext background="dtb(ItemsView::ListView,1,3)"/>
+				</if>
+			</if>
+			<if class="Card">
+				<TouchButton background="dtb(Explorer::ListView,1,3)"/>
+			</if>
+			<if id="atom(Card1)">
+				<TouchButton margin="rect(0,0,8rp,8rp)"/>
+			</if>
+			<if id="atom(Card2)">
+				<TouchButton margin="rect(8rp,0,0,8rp)"/>
+			</if>
+			<if id="atom(Card3)">
+				<TouchButton margin="rect(0,8rp,8rp,0)"/>
+			</if>
+			<if id="atom(Card4)">
+				<TouchButton margin="rect(8rp,8rp,0,0)"/>
+			</if>
+			<if class="CardTitle">
+				<RichText background="argb(0,0,0,0)" foreground="gtc(DirectUI::ItemsView,0,0,3803)" font="messagefont;133%"/>
+			</if>
 		</style>
-
-		<style resid="RefDui" base="ressheet(ImmersiveStyles, library(dui70.dll), Light)">
-
+		<style resid="RefDui" base="ressheet(ImmersiveStyles, library(dui70.dll), Dark)"/>
+		<style resid="CustomStyles" base="RefDui">
+			<Element background="20575"/>
+			<TouchButton handleenter="true" padding="rect(12rp,0rp,12rp,0rp)" borderthickness="rect(0rp,0rp,0rp,0rp)" contentalign="middlecenter|endellipsis" constrainlayout="NarrowClip" accessible="true" accrole="pushbutton" accdefaction="resstr(104, library(dui70.dll))"/>
+			<if keyfocused="true">
+				<TouchButton contentalign="middlecenter|endellipsis|focusrect"/>
+			</if>
+			<if class="commandrow">
+				<TouchButton height="47rp" minsize="size(0rp,0rp)" background="20575" borderthickness="rect(0,0,0,0)" foreground="20024" contentalign="middleleft|endellipsis" font="iconfont;115%;semibold"/>
+				<if keyfocused="true">
+					<TouchButton contentalign="middleleft|endellipsis|focusrect"/>
+				</if>
+				<if selected="true">
+					<TouchButton foreground="20234" bordercolor="20577"/>
+				</if>
+				<if mousewithin="true">
+					<TouchButton foreground="20025"/>
+				</if>
+				<if captured="true">
+					<TouchButton foreground="20024"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="20026"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton foreground="20027"/>
+				</if>
+			</if>
+			<unless class="commandrow">
+				<TouchButton height="32rp" minsize="size(90rp,0rp)" font="iconfont;115%"/>
+				<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 1), 20650)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 1, 3803), buttontext)" bordercolor="20654"/>
+				<if mousewithin="true">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 2), 20651)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 2, 3803), buttontext)" bordercolor="20655"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 5), 20650)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 5, 3803), buttontext)" bordercolor="20654"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 3), 20652)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 3, 3803))" bordercolor="20656"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 4), 20653)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 4, 3803))" bordercolor="20657"/>
+				</if>
+			</unless>
+			<if class="default">
+				<TouchButton background="themeable(dtb(DirectUI::Button, 1, 1), 20100)" foreground="themeable(gtc(DirectUI::Button, 1, 1, 3803), threedface)" bordercolor="20676"/>
+				<if mousewithin="true">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 2), 20101)" foreground="themeable(gtc(DirectUI::Button, 1, 2, 3803), threedface)" bordercolor="20677"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 5), 20100)" foreground="themeable(gtc(DirectUI::Button, 1, 5, 3803), threedface)" bordercolor="20676"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 3), 20674)" foreground="themeable(gtc(DirectUI::Button, 1, 3, 3803))" bordercolor="20678"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 4), 20675)" foreground="themeable(gtc(DirectUI::Button, 1, 4, 3803), threedhighlight)" bordercolor="20679"/>
+				</if>
+			</if>
+			<TouchCheckBox contentalign="endellipsis" background="20575" foreground="20626" accessible="true" accrole="checkbutton" font="iconfont;115%" minsize="size(100rp,50rp)" padding="rect(0rp,12rp,0rp,0rp)"/>
+			<if checkedstate="unchecked">
+				<TouchCheckBox accdefaction="resstr(105, library(dui70.dll))"/>
+			</if>
+			<if checkedstate="checked">
+				<TouchCheckBox accdefaction="resstr(106, library(dui70.dll))"/>
+			</if>
+			<if Enabled="false">
+				<TouchCheckBox foreground="20629"/>
+			</if>
+			<if id="atom(TCB_Glyph)">
+				<TouchCheckBoxGlyph contentalign="middlecenter" height="20rp" width="20rp" background="themeable(dtb(DirectUI::Button, 3, 1))" foreground="20630" borderthickness="rect(0rp,0rp,0rp,0rp)" bordercolor="20622" constrainlayout="NarrowClip" font="0pt;;;"/>
+				<if keyfocused="true">
+					<TouchCheckBoxGlyph contentalign="middlecenter|focusrect"/>
+				</if>
+				<if mousefocused="true">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 2))" foreground="20631" bordercolor="20623"/>
+				</if>
+				<if captured="true">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 1))" foreground="20630" bordercolor="20622"/>
+				</if>
+				<if Pressed="true">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 3))" foreground="20632" bordercolor="20624"/>
+				</if>
+				<if Enabled="false">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 4))" foreground="20633" bordercolor="20625"/>
+				</if>
+				<if checkedstate="checked">
+					<TouchCheckBoxGlyph contentalign="middlecenter" height="20rp" width="20rp" background="themeable(dtb(DirectUI::Button, 3, 5))" foreground="20630" borderthickness="rect(0rp,0rp,0rp,0rp)" bordercolor="20622" constrainlayout="NarrowClip" font="0pt;;;"/>
+					<if mousefocused="true">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 6))" foreground="20631" bordercolor="20623"/>
+					</if>
+					<if captured="true">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 5))" foreground="20630" bordercolor="20622"/>
+					</if>
+					<if Pressed="true">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 7))" foreground="20632" bordercolor="20624"/>
+					</if>
+					<if Enabled="false">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 8))" foreground="20633" bordercolor="20625"/>
+					</if>
+				</if>
+			</if>
+			<if id="atom(TCB_Label)">
+				<richtext contentalign="wrapleft|endellipsis" padding="rect(8rp,0,8rp,0)" background="20575" foreground="gtc(DirectUI::ItemsView, 0, 0, 3803)" constrainlayout="narrow"/>
+			</if>
 		</style>
-
 	</stylesheets>
-	<HWNDElement resid="WizardMain" layout="BorderLayout()" id="Atom(SXWizard)" sheet="SXStyles">
-
-		<element layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="Click the buttons to get started" />
-
-		<element layoutpos="top" class="WizardPageSubTitle" id="Atom(SXSubTitle)" content="This is subtitle, or instruction, or body text."/>
-
-
-		<element layoutpos="bottom" class="WizardLogoBar" layout="BorderLayout()" id="Atom(SXWizardLogoBar)">
-
-			<element layoutpos="left" class="WizardLogo" contentalign="bottomleft" id="Atom(SXWizardMicrosoftLogo)"
-					 margin="rect(0rp, 0rp, 6rp, 0rp)" content="icon(104,sysmetric(49),sysmetric(50),library(user32.dll))" />
-
-
-			<element layoutpos="left" layout="BorderLayout()">
-
-				<button class="WizardLink" id="Atom(SXWizardSupportLink)" content="Get support" />
-
+	<HWNDElement resid="WizardMain" layout="FillLayout()" id="Atom(SXWizard)" sheet="SXStyles">
+		<element layout="borderlayout()" id="atom(ElementContainer)">
+			<element layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="What's new in v3.2"/>
+			<!--element layoutpos="top" class="WizardPageSubTitle" id="Atom(SXSubTitle)" content="This is subtitle, or instruction, or body text."/-->
+			<element layoutpos="client" class="WizardPageContainer" layout="GridLayout(2,2)" id="Atom(SXWizardPageContainer)">
+				<TouchButton id="atom(Card1)" class="Card" layout="flowlayout(0,0,2,0)">
+					<RichText content="Placeholder title 1" class="CardTitle"/>
+				</TouchButton>
+				<TouchButton id="atom(Card2)" class="Card" layout="flowlayout(0,0,2,0)">
+					<RichText content="Placeholder title 2" class="CardTitle"/>
+				</TouchButton>
+				<TouchButton id="atom(Card3)" class="Card" layout="flowlayout(0,0,2,0)">
+					<RichText content="Placeholder title 3" class="CardTitle"/>
+				</TouchButton>
+				<TouchButton id="atom(Card4)" class="Card" layout="flowlayout(0,0,2,0)">
+					<RichText content="Placeholder title 4" class="CardTitle"/>
+				</TouchButton>
 			</element>
-
-			<element layoutpos="left" class="WizardLogo" contentalign="bottomright" id="Atom(SXWizardWindowsLogo)"
-					 margin="rect(12rp, 0rp, 6rp, 0rp)" content="icon(106,sysmetric(49),sysmetric(50),library(user32.dll))" />
-
-			<element layoutpos="left" layout="BorderLayout()">
-
-				<button class="WizardLink" id="Atom(SXWizardLegalLink)" content="Legal information" />
-
-			</element>
-
+			<RichText id="atom(Link)" foreground="20005" content="View full changelog" font="iconfont;115%" layoutpos="bottom" margin="rect(0,6rp,0,0)" width="160rp"/>
 		</element>
-
-		<!--<element layoutpos="client" layout="FillLayout()" background="rgb(23, 45, 67)" >
-      
-    </element>-->
-
 		<element layoutpos="bottom" class="WizardButtonBar" contentalign="middleright" layout="BorderLayout()" id="Atom(SXWizardButtonBar)">
-
-			<!--<PushButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)"
-                  class="WizardPrimaryButton"
-                  accrole="pushbutton"  id="Atom(SXWizardDefaultButton)" active="mouse | keyboard"
-                  content="Accept" />
-
-      <PushButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)"
-                  class="WizardSecondaryButton"
-                  accrole="pushbutton" id="Atom(SXWizardAlternateButton)" active="mouse | keyboard"
-                  content="Reject" />-->
-
-			<TouchButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)"
-						sheet="RefDui" class="default"
-						accrole="pushbutton"  id="Atom(SXWizardDefaultButton)" active="mouse | keyboard"
-						content="Accept" />
-
-			<TouchButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)"
-						sheet="RefDui"
-						accrole="pushbutton" id="Atom(SXWizardAlternateButton)" active="mouse | keyboard"
-						content="Reject" />
-
+			<TouchCheckBox accessible="true" layoutpos="left" sheet="CustomStyles" checkedstate="checked" padding="rect(0,6rp,0,0)" id="Atom(SXWizardCheckbox)" active="mouse | keyboard" content="Show this window when Windows starts."/>
+			<TouchButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" class="default" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="Close"/>
 		</element>
-
-		<element layoutpos="client" class="WizardPageContainer" layout="FillLayout()" id="Atom(SXWizardPageContainer)">
-			<scrollviewer xscrollable="false" yscrollable="true"
-						  borderthickness="rect(1rp, 1rp, 1rp, 1rp)"
-						  bordercolor="gray">
-				<element layout="BorderLayout()" contentalign="topcenter" padding="rect(6rp, 16rp, 6rp, 16rp)">
-					<modernprogressring layoutpos="top" minsize="size(50rp, 50rp)" id="Atom(SXWizardLoadingProgress)" />
-					<edit accessible="true" margin="rect(16rp,16rp,16rp,16rp)" layoutpos="top"
-							accrole="text"  id="Atom(SXWizardEditBox)" active="mouse | keyboard"
-							themedborder="true" />
-					<element layout="BorderLayout()" contentalign="wrapleft">
-						<richtext layoutpos="bottom" accessible="true" margin="rect(0rp,16rp,0rp,16rp)"
-							  accrole="text"  id="Atom(SXWizardContentBox)" active="mouse | keyboard"
-							  content="resstr(105)" />
-						<!--<edit accessible="true" margin="rect(0rp,16rp,0rp,16rp)"
-                  accrole="text"  id="Atom(SXWizardContentBox)" active="mouse | keyboard"
-                  multiline="true" themedborder="true" content="resstr(105)" />-->
-					</element>
-				</element>
-			</scrollviewer>
-		</element>
-
 	</HWNDElement>
 </duixml>

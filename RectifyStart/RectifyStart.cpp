@@ -13,6 +13,70 @@ using namespace DirectUI;
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+HWNDElement* hwnd_element = NULL;
+NativeHWNDHost* pwnd = NULL;
+struct EventListener : public IElementListener {
+
+	using handler_t = std::function<void(Element*, Event*)>;
+
+	handler_t f;
+
+	EventListener(handler_t f) : f(f) { }
+
+	void OnListenerAttach(Element* elem) override { }
+	void OnListenerDetach(Element* elem) override { }
+	bool OnPropertyChanging(Element* elem, const PropertyInfo* prop, int unk, Value* v1, Value* v2) override {
+		return true;
+	}
+	void OnListenedPropertyChanged(Element* elem, const PropertyInfo* prop, int type, Value* v1, Value* v2) override { }
+	void OnListenedEvent(Element* elem, struct Event* iev) override {
+		f(elem, iev);
+	}
+	void OnListenedInput(Element* elem, struct InputEvent* ev) override { }
+};
+void SetStartup(bool enable)
+{
+	HKEY hKey;
+	// TODO: Don't hardcode path
+	const WCHAR* czExePath = L"C:\\Windows\\Rectify11\\RectifyStart.exe";
+	LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,
+		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"),
+		0, KEY_WRITE,
+		&hKey);
+	if (ERROR_SUCCESS == lnRes)
+	{
+		if (enable)
+		{
+			lnRes = RegSetValueEx(hKey,
+				TEXT("RectifyStart"),
+				0,
+				REG_SZ,
+				(const BYTE*)czExePath,
+				wcslen(czExePath)*2);
+		}
+		else
+		{
+			lnRes = RegDeleteValue(hKey, TEXT("RectifyStart"));
+		}
+	}
+
+	RegCloseKey(hKey);
+}
+void HandleCloseButton(Element* elem, Event* iev)
+{
+	if (iev->type == TouchButton::Click)
+	{
+		pwnd->DestroyWindow();
+	}
+}
+void HandleStartCheckbox(Element* elem, Event* iev)
+{
+	TouchCheckBox* box = (TouchCheckBox*)elem;
+	if (iev->type == TouchButton::Click)
+	{
+		SetStartup(box->GetCheckedState() == CheckedStateFlags_CHECKED ? true : false);
+	}
+}
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -38,7 +102,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	RegisterAllControls();
 
 	// Create the main window
-	NativeHWNDHost* pwnd;
 	NativeHWNDHost::Create(
 		(UCString)L"Rectify11", NULL,
 		LoadIconW(hInstance, MAKEINTRESOURCE(IDI_RECTIFYSTART)),
@@ -60,7 +123,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	hr = pParser->SetXMLFromResource(IDR_UIFILE, hInstance, (HINSTANCE)hInstance);
 
 	unsigned long defer_key;
-	HWNDElement* hwnd_element;
+
 
 	HWNDElement::Create(pwnd->GetHWND(), true, 0, NULL, &defer_key, (Element**)&hwnd_element);
 
@@ -74,6 +137,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	pwnd->Host(pWizardMain);
 
 	pwnd->ShowWindow(SW_SHOW);
+
+
+	TouchCheckBox* startChk = (TouchCheckBox*)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardCheckbox"));
+	TouchButton* closeBtn = (TouchButton*)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardDefaultButton"));
+	startChk->SetToggleOnClick(true);
+	closeBtn->AddListener(new EventListener(HandleCloseButton));
+	startChk->AddListener(new EventListener(HandleStartCheckbox));
 
 	// Start message loop
 	StartMessagePump();
