@@ -23,3 +23,5 @@ x64/
 /Rectify11Installer/Resources/Rectify11CPL.dll
 Rectify11Installer/Resources/*.7z
 *.tmp
+
+!Rectify11Installer/Resources
