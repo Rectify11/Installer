@@ -25,3 +25,4 @@ Rectify11Installer/Resources/*.7z
 *.tmp
 
 !Resources
+Resources/DoNotBuild.txt
