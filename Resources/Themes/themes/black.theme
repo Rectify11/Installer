@@ -1,0 +1,68 @@
+; Copyright   Microsoft Corp.
+
+[Theme]
+; Windows - IDS_THEME_DISPLAYNAME_RECTIFIEDBLACK
+DisplayName=Rectify11 Dark theme with Mica 
+SetLogonBackground=0
+
+; Computer - SHIDI_SERVER
+[CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\DefaultIcon]
+DefaultValue=%SystemRoot%\System32\imageres.dll,-109
+
+; UsersFiles - SHIDI_USERFILES
+[CLSID\{59031A47-3F72-44A7-89C5-5595FE6B30EE}\DefaultIcon]
+DefaultValue=%SystemRoot%\System32\imageres.dll,-123
+
+; Network - SHIDI_MYNETWORK
+[CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\DefaultIcon]
+DefaultValue=%SystemRoot%\System32\imageres.dll,-25
+
+; Recycle Bin - SHIDI_RECYCLERFULL SHIDI_RECYCLER
+[CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon]
+Full=%SystemRoot%\System32\imageres.dll,-54
+Empty=%SystemRoot%\System32\imageres.dll,-55
+
+[Control Panel\Cursors]
+AppStarting=%SystemRoot%\cursors\WindowsRectifiedDark\working.ani
+Arrow=%SystemRoot%\cursors\WindowsRectifiedDark\arrow.cur
+Crosshair=%SystemRoot%\cursors\WindowsRectifiedDark\cross.cur
+Hand=%SystemRoot%\cursors\WindowsRectifiedDark\link.cur
+Help=%SystemRoot%\cursors\WindowsRectifiedDark\helpsel.cur
+IBeam=%SystemRoot%\cursors\WindowsRectifiedDark\ibeam.cur
+No=%SystemRoot%\cursors\WindowsRectifiedDark\unavail.cur
+NWPen=%SystemRoot%\cursors\WindowsRectifiedDark\pen.cur
+SizeAll=%SystemRoot%\cursors\WindowsRectifiedDark\move.cur
+SizeNESW=%SystemRoot%\cursors\WindowsRectifiedDark\nesw.cur
+SizeNS=%SystemRoot%\cursors\WindowsRectifiedDark\ns.cur
+SizeNWSE=%SystemRoot%\cursors\WindowsRectifiedDark\nwse.cur
+SizeWE=%SystemRoot%\cursors\WindowsRectifiedDark\ew.cur
+UpArrow=%SystemRoot%\cursors\WindowsRectifiedDark\up.cur
+Wait=%SystemRoot%\cursors\WindowsRectifiedDark\busy.ani
+DefaultValue=Windows Rectified Dark
+
+[Control Panel\Desktop]
+Wallpaper=%windir%\Web\Wallpaper\Rectified\img19.png
+TileWallpaper=0
+WallpaperStyle=10
+Pattern=
+
+[VisualStyles]
+Path=%ResourceDir%\Themes\Rectified\Black.msstyles
+ColorStyle=NormalColor
+Size=NormalSize
+AutoColorization=0
+ColorizationColor=0XC40078D4
+SystemMode=Dark
+AppMode=Dark
+Mica=True
+
+[boot]
+SCRNSAVE.EXE=
+
+[MasterThemeSelector]
+MTSM=RJSPBS
+
+[Sounds]
+; IDS_SCHEME_DEFAULT
+SchemeName=Rectified
+

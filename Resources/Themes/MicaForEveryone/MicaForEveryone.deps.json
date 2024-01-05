@@ -1,0 +1,1070 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MicaForEveryone/1.0.0": {
+        "dependencies": {
+          "CommunityToolkit.Mvvm": "8.0.0",
+          "MicaForEveryone.Shared": "1.0.0",
+          "MicaForEveryone.UI": "1.0.0",
+          "MicaForEveryone.Win32": "1.0.0",
+          "Microsoft.Bcl.AsyncInterfaces": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Microsoft.Toolkit.UI.XamlHost": "6.1.2",
+          "Microsoft.VCRTForwarders.140": "1.0.7",
+          "Microsoft.Win32.Registry": "5.0.0",
+          "TaskScheduler": "2.10.1",
+          "XclParser": "1.0.7",
+          "Microsoft.Toolkit.Win32.UI.XamlHost": "255.255.255.255"
+        },
+        "runtime": {
+          "MicaForEveryone.dll": {}
+        }
+      },
+      "CommunityToolkit.Mvvm/8.0.0": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "5.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/CommunityToolkit.Mvvm.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.0.1"
+          }
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+        "dependencies": {
+          "runtime.win10-arm.Microsoft.Net.Native.Compiler": "2.2.12-rel-31116-00",
+          "runtime.win10-arm64.Microsoft.Net.Native.Compiler": "2.2.12-rel-31116-00",
+          "runtime.win10-x64.Microsoft.Net.Native.Compiler": "2.2.12-rel-31116-00",
+          "runtime.win10-x86.Microsoft.Net.Native.Compiler": "2.2.12-rel-31116-00"
+        }
+      },
+      "Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {
+        "dependencies": {
+          "runtime.win10-arm.Microsoft.Net.UWPCoreRuntimeSdk": "2.2.14",
+          "runtime.win10-x64.Microsoft.Net.UWPCoreRuntimeSdk": "2.2.14",
+          "runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk": "2.2.14"
+        }
+      },
+      "Microsoft.NETCore.Platforms/5.0.0": {},
+      "Microsoft.NETCore.UniversalWindowsPlatform/6.2.14": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0",
+          "Microsoft.Net.Native.Compiler": "2.2.12-rel-31116-00",
+          "Microsoft.Net.UWPCoreRuntimeSdk": "2.2.14",
+          "NETStandard.Library": "2.0.3"
+        }
+      },
+      "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
+        "dependencies": {
+          "Microsoft.Toolkit.Win32.UI.SDK": "6.1.2",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.3",
+          "Microsoft.Windows.SDK.Contracts": "10.0.18362.2005"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll": {
+            "assemblyVersion": "6.1.0.0",
+            "fileVersion": "6.1.2.13"
+          }
+        }
+      },
+      "Microsoft.Toolkit.Win32.UI.SDK/6.1.2": {},
+      "Microsoft.Toolkit.Win32.UI.XamlApplication/6.1.3": {
+        "runtimeTargets": {
+          "runtimes/win10-arm/native/Microsoft.Toolkit.Win32.UI.XamlHost.dll": {
+            "rid": "win10-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm/native/Microsoft.Toolkit.Win32.UI.XamlHost.pri": {
+            "rid": "win10-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/Microsoft.Toolkit.Win32.UI.XamlHost.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/Microsoft.Toolkit.Win32.UI.XamlHost.pri": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/Microsoft.Toolkit.Win32.UI.XamlHost.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/Microsoft.Toolkit.Win32.UI.XamlHost.pri": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/Microsoft.Toolkit.Win32.UI.XamlHost.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/Microsoft.Toolkit.Win32.UI.XamlHost.pri": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.UI.Xaml/2.8.2-prerelease.220830001": {
+        "dependencies": {
+          "Microsoft.Web.WebView2": "1.0.1264.42"
+        },
+        "runtimeTargets": {
+          "runtimes/win10-arm/native/Microsoft.UI.Xaml.dll": {
+            "rid": "win10-arm",
+            "assetType": "native",
+            "fileVersion": "2.8.2208.30001"
+          },
+          "runtimes/win10-arm/native/Microsoft.UI.Xaml.pri": {
+            "rid": "win10-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm/native/Microsoft.UI.Xaml/Assets/NoiseAsset_256x256_PNG.png": {
+            "rid": "win10-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/Microsoft.UI.Xaml.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "2.8.2208.30001"
+          },
+          "runtimes/win10-arm64/native/Microsoft.UI.Xaml.pri": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/Microsoft.UI.Xaml/Assets/NoiseAsset_256x256_PNG.png": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/Microsoft.UI.Xaml.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "2.8.2208.30001"
+          },
+          "runtimes/win10-x64/native/Microsoft.UI.Xaml.pri": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/Microsoft.UI.Xaml/Assets/NoiseAsset_256x256_PNG.png": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/Microsoft.UI.Xaml.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "2.8.2208.30001"
+          },
+          "runtimes/win10-x86/native/Microsoft.UI.Xaml.pri": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/Microsoft.UI.Xaml/Assets/NoiseAsset_256x256_PNG.png": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.VCRTForwarders.140/1.0.7": {
+        "runtimeTargets": {
+          "runtimes/win10-arm64/native/debug/concrt140d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/debug/msvcp140_1d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/debug/msvcp140_2d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/debug/msvcp140d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/debug/vcamp140d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/debug/vccorlib140d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/debug/vcomp140d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/debug/vcruntime140d_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/concrt140_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/msvcp140_1_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/msvcp140_2_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/msvcp140_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/vcamp140_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/vccorlib140_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/vcomp140_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-arm64/native/release/vcruntime140_app.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/concrt140d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/msvcp140_1d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/msvcp140_2d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/msvcp140d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/vcamp140d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/vccorlib140d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/vcomp140d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/vcruntime140_1d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/debug/vcruntime140d_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/concrt140_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/msvcp140_1_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/msvcp140_2_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/msvcp140_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/vcamp140_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/vccorlib140_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/vcomp140_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/vcruntime140_1_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x64/native/release/vcruntime140_app.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/concrt140d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/msvcp140_1d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/msvcp140_2d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/msvcp140d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/vcamp140d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/vccorlib140d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/vcomp140d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/debug/vcruntime140d_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/concrt140_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/msvcp140_1_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/msvcp140_2_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/msvcp140_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/vcamp140_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/vccorlib140_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/vcomp140_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win10-x86/native/release/vcruntime140_app.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2/1.0.1264.42": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
+            "assemblyVersion": "1.0.1264.42",
+            "fileVersion": "1.0.1264.42"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
+            "assemblyVersion": "1.0.1264.42",
+            "fileVersion": "1.0.1264.42"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
+            "assemblyVersion": "1.0.1264.42",
+            "fileVersion": "1.0.1264.42"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.1264.42"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.1264.42"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.1264.42"
+          }
+        }
+      },
+      "Microsoft.Win32.Registry/5.0.0": {
+        "dependencies": {
+          "System.Security.AccessControl": "5.0.0",
+          "System.Security.Principal.Windows": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
+        "dependencies": {
+          "System.Runtime.WindowsRuntime": "4.6.0",
+          "System.Runtime.WindowsRuntime.UI.Xaml": "4.6.0"
+        }
+      },
+      "NETStandard.Library/2.0.3": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+        "dependencies": {
+          "runtime.win10-arm.Microsoft.Net.Native.SharedLibrary": "2.2.8-rel-31116-00"
+        }
+      },
+      "runtime.win10-arm.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {},
+      "runtime.win10-arm.Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {},
+      "runtime.win10-arm64.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+        "dependencies": {
+          "runtime.win10-arm64.Microsoft.Net.Native.SharedLibrary": "2.2.8-rel-31116-00"
+        }
+      },
+      "runtime.win10-arm64.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {},
+      "runtime.win10-x64.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+        "dependencies": {
+          "runtime.win10-x64.Microsoft.Net.Native.SharedLibrary": "2.2.8-rel-31116-00"
+        }
+      },
+      "runtime.win10-x64.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {},
+      "runtime.win10-x64.Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {},
+      "runtime.win10-x86.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+        "dependencies": {
+          "runtime.win10-x86.Microsoft.Net.Native.SharedLibrary": "2.2.8-rel-31116-00"
+        }
+      },
+      "runtime.win10-x86.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {},
+      "runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {},
+      "System.ComponentModel.Annotations/5.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Diagnostics.EventLog/5.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0",
+          "Microsoft.Win32.Registry": "5.0.0",
+          "System.Security.Principal.Windows": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "System.Runtime.WindowsRuntime/4.6.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "System.Runtime.WindowsRuntime.UI.Xaml/4.6.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0",
+          "System.Runtime.WindowsRuntime": "4.6.0"
+        }
+      },
+      "System.Security.AccessControl/5.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0",
+          "System.Security.Principal.Windows": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.AccessControl.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Security.Principal.Windows/5.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.1/System.Security.Principal.Windows.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          },
+          "runtimes/win/lib/netcoreapp2.1/System.Security.Principal.Windows.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "TaskScheduler/2.10.1": {
+        "dependencies": {
+          "Microsoft.Win32.Registry": "5.0.0",
+          "System.Diagnostics.EventLog": "5.0.0",
+          "System.Security.AccessControl": "5.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Win32.TaskScheduler.dll": {
+            "assemblyVersion": "2.10.1.0",
+            "fileVersion": "2.10.1.0"
+          }
+        },
+        "resources": {
+          "lib/netcoreapp3.1/de/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netcoreapp3.1/es/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netcoreapp3.1/fr/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netcoreapp3.1/it/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netcoreapp3.1/pl/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netcoreapp3.1/ru/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netcoreapp3.1/zh-CN/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "zh-CN"
+          },
+          "lib/netcoreapp3.1/zh-Hant/Microsoft.Win32.TaskScheduler.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Win2D.uwp/1.26.0": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Graphics.Canvas.winmd": {
+            "assemblyVersion": "255.255.255.255",
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {
+            "rid": "win10-arm",
+            "assetType": "native",
+            "fileVersion": "1.26.0.0"
+          },
+          "runtimes/win10-arm64/native/Microsoft.Graphics.Canvas.dll": {
+            "rid": "win10-arm64",
+            "assetType": "native",
+            "fileVersion": "1.26.0.0"
+          },
+          "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll": {
+            "rid": "win10-x64",
+            "assetType": "native",
+            "fileVersion": "1.26.0.0"
+          },
+          "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll": {
+            "rid": "win10-x86",
+            "assetType": "native",
+            "fileVersion": "1.26.0.0"
+          }
+        }
+      },
+      "XclParser/1.0.7": {
+        "runtime": {
+          "lib/netstandard2.0/XclParser.dll": {
+            "assemblyVersion": "1.0.7.1",
+            "fileVersion": "1.0.7.1"
+          }
+        }
+      },
+      "MicaForEveryone.Shared/1.0.0": {
+        "runtime": {
+          "MicaForEveryone.Shared.dll": {}
+        }
+      },
+      "MicaForEveryone.UI/1.0.0": {
+        "dependencies": {
+          "CommunityToolkit.Mvvm": "8.0.0",
+          "MicaForEveryone.Shared": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.14",
+          "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.3",
+          "Microsoft.UI.Xaml": "2.8.2-prerelease.220830001",
+          "Win2D.uwp": "1.26.0"
+        },
+        "runtime": {
+          "MicaForEveryone.UI.exe": {}
+        }
+      },
+      "MicaForEveryone.Win32/1.0.0": {
+        "dependencies": {
+          "MicaForEveryone.Shared": "1.0.0"
+        },
+        "runtime": {
+          "MicaForEveryone.Win32.dll": {}
+        }
+      },
+      "Microsoft.Toolkit.Win32.UI.XamlHost/255.255.255.255": {
+        "runtime": {
+          "Microsoft.Toolkit.Win32.UI.XamlHost.winmd": {
+            "assemblyVersion": "255.255.255.255",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.UI.Xaml.Reference/255.255.255.255": {
+        "runtime": {
+          "Microsoft.UI.Xaml.winmd": {
+            "assemblyVersion": "255.255.255.255",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MicaForEveryone/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CommunityToolkit.Mvvm/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Jiu2g5WUdXRwzhJkHB+B4JBKP5A5+fp8xKiW/ZQo5PI+DruI7MbPEcK9K/Aw0YzTiWRuG6CBluzYIWN5Eo7BkQ==",
+      "path": "communitytoolkit.mvvm/8.0.0",
+      "hashPath": "communitytoolkit.mvvm.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3aeMZ1N0lJoSyzqiP03hqemtb1BijhsJADdobn/4nsMJ8V1H+CrpuduUe4hlRdx+ikBQju1VGjMD1GJ3Sk05Eg==",
+      "path": "microsoft.bcl.asyncinterfaces/7.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-elNeOmkeX3eDVG6pYVeV82p29hr+UKDaBhrZyWvWLw/EVZSYEkZlQdkp0V39k/Xehs2Qa0mvoCvkVj3eQxNQ1Q==",
+      "path": "microsoft.extensions.dependencyinjection/7.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h3j/QfmFN4S0w4C2A6X7arXij/M/OVw3uQHSOFxnND4DyAzO1F9eMX7Eti7lU/OkSthEE0WzRsfT/Dmx86jzCw==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/7.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DuANSYEBO7qcIeqzI1mShJMweuQVBycbCRUW6mIb1QxorSiWLSWEJZNv/X7TdW3dcjfZdZFVsEWDCnJUolIPrQ==",
+      "path": "microsoft.net.native.compiler/2.2.12-rel-31116-00",
+      "hashPath": "microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512"
+    },
+    "Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-THMsLyB29wqd9ZI9c05hoMb788QQ5ClsXwLjpt7omTk/OvtUERWgwD6q85s5aSMdze50uhPZDRF/+uju8Lqhgw==",
+      "path": "microsoft.net.uwpcoreruntimesdk/2.2.14",
+      "hashPath": "microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+      "path": "microsoft.netcore.platforms/5.0.0",
+      "hashPath": "microsoft.netcore.platforms.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.UniversalWindowsPlatform/6.2.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7Mi4cS8JQ7gqm+W+SRCq13c2Rr0yZTuczC9EbV6gRigE2ZhQalnLHyat0ZshT5HDMSkFDxTyjwZymUgFuv3+eg==",
+      "path": "microsoft.netcore.universalwindowsplatform/6.2.14",
+      "hashPath": "microsoft.netcore.universalwindowsplatform.6.2.14.nupkg.sha512"
+    },
+    "Microsoft.Toolkit.UI.XamlHost/6.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/cMQUJPxl+pASVOO47T8zml9YuHLyejP5ct0OUN7OVshrJ2n/QRMDVktPxbMSla8Rl3Jnpn2n3qyHjVkNBt0Og==",
+      "path": "microsoft.toolkit.ui.xamlhost/6.1.2",
+      "hashPath": "microsoft.toolkit.ui.xamlhost.6.1.2.nupkg.sha512"
+    },
+    "Microsoft.Toolkit.Win32.UI.SDK/6.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pqfhHMfbP7ZzGHoN3yvutUmjSZNtXlQ2YompmdEiY1w9FuaanWorM8az2DHmzrwlTzfDDJ4MSxvFwa54tCKgjg==",
+      "path": "microsoft.toolkit.win32.ui.sdk/6.1.2",
+      "hashPath": "microsoft.toolkit.win32.ui.sdk.6.1.2.nupkg.sha512"
+    },
+    "Microsoft.Toolkit.Win32.UI.XamlApplication/6.1.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0YtzPNOzfxe+S+fOHw+CsD/RaHIl3FNIBFPh9uzNaORGguopUws/cU7uXoG6ykaJ221k3Vr0nq50iyb+kR/ERg==",
+      "path": "microsoft.toolkit.win32.ui.xamlapplication/6.1.3",
+      "hashPath": "microsoft.toolkit.win32.ui.xamlapplication.6.1.3.nupkg.sha512"
+    },
+    "Microsoft.UI.Xaml/2.8.2-prerelease.220830001": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C85Rpf86nD/WBqY2dLNDT6fmASgPooJXqQXAfpE441L5UpP1gzCfmscnFZRGwmmKGp2QlKFwRggpL+hk5NpOyw==",
+      "path": "microsoft.ui.xaml/2.8.2-prerelease.220830001",
+      "hashPath": "microsoft.ui.xaml.2.8.2-prerelease.220830001.nupkg.sha512"
+    },
+    "Microsoft.VCRTForwarders.140/1.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ihE2cKWZuQjkSrJOVw7p4ppKGLVr2+HEgbS+a79G0YPKvAD3n61Mqitg3DL+X2/kuKD5C3edfP//HyToz+M11A==",
+      "path": "microsoft.vcrtforwarders.140/1.0.7",
+      "hashPath": "microsoft.vcrtforwarders.140.1.0.7.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2/1.0.1264.42": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7OBUTkzQ5VI/3gb0ufi5U4zjuCowAJwQg2li0zXXzqkM+S1kmOlivTy1R4jAW+gY5Vyg510M+qMAESCQUjrfgA==",
+      "path": "microsoft.web.webview2/1.0.1264.42",
+      "hashPath": "microsoft.web.webview2.1.0.1264.42.nupkg.sha512"
+    },
+    "Microsoft.Win32.Registry/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==",
+      "path": "microsoft.win32.registry/5.0.0",
+      "hashPath": "microsoft.win32.registry.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.Windows.SDK.Contracts/10.0.18362.2005": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3R3uDDGRSdeRdHpor1SyN3qg/VmseKjcKFIAQJ0iRnzoCPvnlCcnSGaNsjqVSzHQHbBSBtSKVBxBS2GyEw8qhw==",
+      "path": "microsoft.windows.sdk.contracts/10.0.18362.2005",
+      "hashPath": "microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JAieAWjpAsAKq2OLgJpKHafrk1gxHTq0nSie1sEKAYjnlBhVIx17ypAX1NLhjMJZ3TkqhktOGm/2r0qTXBAqWg==",
+      "path": "runtime.win10-arm.microsoft.net.native.compiler/2.2.12-rel-31116-00",
+      "hashPath": "runtime.win10-arm.microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-arm.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bdNrkqMK7TUyqJjMJj9sXFpTtJg5+cKmGTPERymWldQ7/OxzoA1VGV4nFFRS4ciycxIqoA9amP0sr5SdTaSjDg==",
+      "path": "runtime.win10-arm.microsoft.net.native.sharedlibrary/2.2.8-rel-31116-00",
+      "hashPath": "runtime.win10-arm.microsoft.net.native.sharedlibrary.2.2.8-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-arm.Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eEtdvL57LKF3/AKuSqk9bJeUaPm0rPMCs36halkQwyTsaykEwzaV634jxpsg9Oneru4DvFW1vlRISdiW2929jA==",
+      "path": "runtime.win10-arm.microsoft.net.uwpcoreruntimesdk/2.2.14",
+      "hashPath": "runtime.win10-arm.microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512"
+    },
+    "runtime.win10-arm64.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rs9fywhVdnJTqegZnSXJ2v0w7oX3xyZ5P1+v9wNlm7mkSb+dEcxgXwrkqTJe9shmLUOOFz8Dm37LbtIPHNzR1A==",
+      "path": "runtime.win10-arm64.microsoft.net.native.compiler/2.2.12-rel-31116-00",
+      "hashPath": "runtime.win10-arm64.microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-arm64.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mNZPhhxOKUQSgYuBDezHPYFMwP9LYDmVEEHl7bTVAPbfcnxPHdSv6WwJglYlwQRQh+3NSgYRW4WcTxpETkD0AA==",
+      "path": "runtime.win10-arm64.microsoft.net.native.sharedlibrary/2.2.8-rel-31116-00",
+      "hashPath": "runtime.win10-arm64.microsoft.net.native.sharedlibrary.2.2.8-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-x64.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dAJj40m9Tm6AQ/P7iQxuEN8sVvj6v9TDyulcP7ayvp+FkpR8VyGZWJMSxaMEjr1qVeMRuMCv1JV5DLMCWZvisg==",
+      "path": "runtime.win10-x64.microsoft.net.native.compiler/2.2.12-rel-31116-00",
+      "hashPath": "runtime.win10-x64.microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-x64.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kXqhwE+XmgRn9Z1QWkGfIcDKg/pCLJcbRL5w8NWT6jliAx81sjHzquDut3ljPwOC856AUI2WMnBopu0Bf/m4BQ==",
+      "path": "runtime.win10-x64.microsoft.net.native.sharedlibrary/2.2.8-rel-31116-00",
+      "hashPath": "runtime.win10-x64.microsoft.net.native.sharedlibrary.2.2.8-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-x64.Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a/ONxs2DxZcBnlDo7LDtH4t6imrEuSbf9KxWWBUCP+yCquVFyqtWAt2Z4hiT++yOIz2OMZT9Hmv1VzrgecpQkQ==",
+      "path": "runtime.win10-x64.microsoft.net.uwpcoreruntimesdk/2.2.14",
+      "hashPath": "runtime.win10-x64.microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512"
+    },
+    "runtime.win10-x86.Microsoft.Net.Native.Compiler/2.2.12-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9T8n/l5Ny4rOlL4yGs81wy4AzypMhUgrrtPBqlv46QbKWhHf44EpFKfI6JU+MkJbSh7mZYywBEfmivT0v6gnNA==",
+      "path": "runtime.win10-x86.microsoft.net.native.compiler/2.2.12-rel-31116-00",
+      "hashPath": "runtime.win10-x86.microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-x86.Microsoft.Net.Native.SharedLibrary/2.2.8-rel-31116-00": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5RGA27cl3z0lf9zsctLBjW2GQoGYeBrg8pesqWLQnb1Ch8q8IZ6pyOwWFUsnXGuYW59OyCfoQGzHFq5Q/73EiQ==",
+      "path": "runtime.win10-x86.microsoft.net.native.sharedlibrary/2.2.8-rel-31116-00",
+      "hashPath": "runtime.win10-x86.microsoft.net.native.sharedlibrary.2.2.8-rel-31116-00.nupkg.sha512"
+    },
+    "runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk/2.2.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-V/hZioMMAwoKZFmfq/SuMA/mfoNFu4+Aedwdld/tpL8ZheehFab0RlAR3pgsPgOWOU+GjyePNIgyUXM5J/Y3Ig==",
+      "path": "runtime.win10-x86.microsoft.net.uwpcoreruntimesdk/2.2.14",
+      "hashPath": "runtime.win10-x86.microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dMkqfy2el8A8/I76n2Hi1oBFEbG1SfxD2l5nhwXV3XjlnOmwxJlQbYpJH4W51odnU9sARCSAgv7S3CyAFMkpYg==",
+      "path": "system.componentmodel.annotations/5.0.0",
+      "hashPath": "system.componentmodel.annotations.5.0.0.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FHkCwUfsTs+/5tsK+c0egLfacUgbhvcwi3wUFWSEEArSXao343mYqcpOVVFMlcCkdNtjU4YwAWaKYwal6f02og==",
+      "path": "system.diagnostics.eventlog/5.0.0",
+      "hashPath": "system.diagnostics.eventlog.5.0.0.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "System.Runtime.WindowsRuntime/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IWrs1TmbxP65ZZjIglNyvDkFNoV5q2Pofg5WO7I8RKQOpLdFprQSh3xesOoClBqR4JHr4nEB1Xk1MqLPW1jPuQ==",
+      "path": "system.runtime.windowsruntime/4.6.0",
+      "hashPath": "system.runtime.windowsruntime.4.6.0.nupkg.sha512"
+    },
+    "System.Runtime.WindowsRuntime.UI.Xaml/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-r4tNw5v5kqRJ9HikWpcyNf3suGw7DjX93svj9iBjtdeLqL8jt9Z+7f+s4wrKZJr84u8IMsrIjt8K6jYvkRqMSg==",
+      "path": "system.runtime.windowsruntime.ui.xaml/4.6.0",
+      "hashPath": "system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
+    },
+    "System.Security.AccessControl/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dagJ1mHZO3Ani8GH0PHpPEe/oYO+rVdbQjvjJkBRNQkX4t0r1iaeGn8+/ybkSLEan3/slM0t59SVdHzuHf2jmw==",
+      "path": "system.security.accesscontrol/5.0.0",
+      "hashPath": "system.security.accesscontrol.5.0.0.nupkg.sha512"
+    },
+    "System.Security.Principal.Windows/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t0MGLukB5WAVU9bO3MGzvlGnyJPgUlcwerXn1kzBRjwLKixT96XV0Uza41W49gVd8zEMFu9vQEFlv0IOrytICA==",
+      "path": "system.security.principal.windows/5.0.0",
+      "hashPath": "system.security.principal.windows.5.0.0.nupkg.sha512"
+    },
+    "TaskScheduler/2.10.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-12b19oq9SOGbBq8745jQVQ08jAjgnsGXidQfclaZ94UZCtJRPkNfM8pz0D7pj04RHcQJQdZZnAUuC93reALqNg==",
+      "path": "taskscheduler/2.10.1",
+      "hashPath": "taskscheduler.2.10.1.nupkg.sha512"
+    },
+    "Win2D.uwp/1.26.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-smA/NJWM3ruhWeKPHmCyW8PX8w1ckD9SN7qWEOePe/iuFKvLyC8govCHq/F40hQCRs8zBqHWaWBpekTnQuXx6w==",
+      "path": "win2d.uwp/1.26.0",
+      "hashPath": "win2d.uwp.1.26.0.nupkg.sha512"
+    },
+    "XclParser/1.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6Ioxo1Cb2s6bpl8urPBv1cEeTJp1NKG4R0F5DBGVfseIz3gFeCmnIJNWdZUM+e1YNehFe0Nd1gHbQg82npJ9ew==",
+      "path": "xclparser/1.0.7",
+      "hashPath": "xclparser.1.0.7.nupkg.sha512"
+    },
+    "MicaForEveryone.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MicaForEveryone.UI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MicaForEveryone.Win32/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Toolkit.Win32.UI.XamlHost/255.255.255.255": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.UI.Xaml.Reference/255.255.255.255": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

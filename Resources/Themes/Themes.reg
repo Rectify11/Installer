@@ -1,0 +1,31 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\CLSID\{959E11F4-0A48-49cf-8416-FF9BC49D9656}]
+@="Change Themes"
+"InfoTip"="Change themes using ThemeTool"
+"System.ControlPanel.Category"=dword:00000001
+
+[HKEY_CLASSES_ROOT\CLSID\{959E11F4-0A48-49cf-8416-FF9BC49D9656}\DefaultIcon]
+@="%systemroot%\\system32\\themecpl.dll,-1"
+
+[HKEY_CLASSES_ROOT\CLSID\{959E11F4-0A48-49cf-8416-FF9BC49D9656}\Shell]
+
+[HKEY_CLASSES_ROOT\CLSID\{959E11F4-0A48-49cf-8416-FF9BC49D9656}\Shell\Open]
+
+[HKEY_CLASSES_ROOT\CLSID\{959E11F4-0A48-49cf-8416-FF9BC49D9656}\Shell\Open\Command]
+@="ThemeTool.exe"
+
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\{959E11F4-0A48-49cf-8416-FF9BC49D9656}]
+
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"MS Shell Dlg 2"="Segoe UI"
+"MS Shell Dlg"="Segoe UI"
+
+[HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics]
+"MenuHeight"="-480"
+"MenuWidth"="-480"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]
+"C:\\System32\\mmc.exe"="~ HIGHDPIAWARE"

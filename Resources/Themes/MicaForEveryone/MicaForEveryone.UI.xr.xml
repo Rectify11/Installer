@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roots >
+  <Roots.Interfaces>
+    <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
+  </Roots.Interfaces>
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="TitlebarColor" />
+    <RootPropertyPathName Name="SelectedPane" />
+    <RootPropertyPathName Name="TemplateSettings" />
+    <RootPropertyPathName Name="KnobOffToOnOffset" />
+    <RootPropertyPathName Name="KnobOnToOffOffset" />
+    <RootPropertyPathName Name="KnobCurrentToOffOffset" />
+    <RootPropertyPathName Name="KnobCurrentToOnOffset" />
+  </Roots.PropertyPathNames>
+  <Roots.RootTypes>
+    <RootType FullName="Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication">
+      <RootProperty Name="Resources" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.ResourceDictionary">
+      <RootProperty Name="MergedDictionaries" />
+      <RootProperty Name="Source" />
+      <RootProperty Name="ThemeDictionaries" />
+    </RootType>
+    <RootType FullName="Microsoft.UI.Xaml.Controls.XamlControlsResources">
+      <RootProperty Name="ControlsResourcesVersion" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.FontFamily" />
+    <RootType FullName="System.Double" />
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Inlines" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="FontWeight" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Command" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="TabIndex" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="CommandParameter" />
+      <RootProperty Name="Visibility" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="Template" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="UseSystemFocusVisuals" />
+      <RootMethod Name="GetIsTemplateFocusTarget" />
+      <RootMethod Name="SetIsTemplateFocusTarget" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="FocusVisualMargin" />
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension">
+      <RootProperty Name="ResourceKey" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
+      <RootProperty Name="Target" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="MicaForEveryone.UI.Controls.Setting">
+      <RootProperty Name="ActionContent" />
+      <RootProperty Name="Icon" />
+      <RootProperty Name="Description" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="IsEnabled" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ControlTemplate">
+      <RootProperty Name="TargetType" />
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="TabFocusNavigation" />
+      <RootProperty Name="XYFocusKeyboardNavigation" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="RenderTransform" />
+      <RootMethod Name="GetColumn" />
+      <RootMethod Name="SetColumn" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
+      <RootMethod Name="GetRowSpan" />
+      <RootMethod Name="SetRowSpan" />
+      <RootMethod Name="GetColumnSpan" />
+      <RootMethod Name="SetColumnSpan" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.VisualStateManager">
+      <RootMethod Name="GetVisualStateGroups" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.TemplateBindingExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
+      <RootProperty Name="Width" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="MaxWidth" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
+      <RootProperty Name="MaxWidth" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="IsTextScaleFactorEnabled" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Resources" />
+      <RootProperty Name="ContentTemplate" />
+      <RootProperty Name="IsHitTestVisible" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Opacity" />
+      <RootProperty Name="ContentTransitions" />
+      <RootProperty Name="MaxLines" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Automation.AutomationProperties">
+      <RootMethod Name="GetAccessibilityView" />
+      <RootMethod Name="SetAccessibilityView" />
+      <RootMethod Name="GetHeadingLevel" />
+      <RootMethod Name="SetHeadingLevel" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Spacing" />
+      <RootProperty Name="XYFocusKeyboardNavigation" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.HyperlinkButton">
+      <RootProperty Name="NavigateUri" />
+      <RootProperty Name="TabIndex" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.VisualStateGroup">
+      <RootProperty Name="States" />
+      <RootProperty Name="Transitions" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.VisualState">
+      <RootProperty Name="Setters" />
+      <RootProperty Name="StateTriggers" />
+      <RootProperty Name="Storyboard" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.Controls.SettingsGroup">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsControl">
+      <RootProperty Name="ItemsPanel" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemTemplate" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsPresenter">
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsPanelTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="Resources" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="ContextFlyout" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="Converter" />
+      <RootProperty Name="UpdateSourceTrigger" />
+      <RootProperty Name="ConverterParameter" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.Converters.VisibleIfFalse" />
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ToggleSwitch">
+      <RootProperty Name="IsOn" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="SelectedItem" />
+      <RootProperty Name="ItemTemplateSelector" />
+      <RootProperty Name="ItemTemplate" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.Selectors.CornerPreferenceSelector">
+      <RootProperty Name="Default" />
+      <RootProperty Name="Square" />
+      <RootProperty Name="Rounded" />
+      <RootProperty Name="RoundedSmall" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentControl">
+      <RootProperty Name="Content" />
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="ContentTemplateSelector" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="TabIndex" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="FontWeight" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Documents.Run">
+      <RootProperty Name="Text" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.Selectors.BackdropTypeSelector">
+      <RootProperty Name="Default" />
+      <RootProperty Name="None" />
+      <RootProperty Name="Mica" />
+      <RootProperty Name="Acrylic" />
+      <RootProperty Name="Tabbed" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.Selectors.TitlebarColorSelector">
+      <RootProperty Name="Default" />
+      <RootProperty Name="System" />
+      <RootProperty Name="Light" />
+      <RootProperty Name="Dark" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="RelativeSource" />
+      <RootProperty Name="Path" />
+    </RootType>
+    <RootType FullName="Microsoft.UI.Xaml.Controls.Expander">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="IsExpanded" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.FontIcon">
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Glyph" />
+      <RootProperty Name="FontSize" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Text" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.SplitView">
+      <RootProperty Name="PaneBackground" />
+      <RootProperty Name="Pane" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="SelectedItem" />
+      <RootProperty Name="TabIndex" />
+      <RootProperty Name="XYFocusKeyboardNavigation" />
+      <RootProperty Name="ItemTemplateSelector" />
+      <RootEvent Name="Loaded" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.CommandBar">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="DefaultLabelPosition" />
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="OverflowButtonVisibility" />
+      <RootProperty Name="TabIndex" />
+      <RootProperty Name="XYFocusKeyboardNavigation" />
+      <RootProperty Name="PrimaryCommands" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Icon" />
+      <RootProperty Name="Flyout" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="LabelPosition" />
+      <RootEvent Name="Click" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutItem">
+      <RootProperty Name="Command" />
+      <RootProperty Name="Icon" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.Selectors.PaneItemTypeSelector">
+      <RootProperty Name="General" />
+      <RootProperty Name="Global" />
+      <RootProperty Name="Process" />
+      <RootProperty Name="Class" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="Padding" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalScrollBarVisibility" />
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="VerticalScrollBarVisibility" />
+      <RootProperty Name="ZoomMode" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Documents.Hyperlink">
+      <RootProperty Name="NavigateUri" />
+      <RootProperty Name="Inlines" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Documents.LineBreak" />
+    <RootType FullName="MicaForEveryone.UI.Triggers.RulePaneTrigger">
+      <RootProperty Name="PaneItem" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.Triggers.GeneralPaneTrigger">
+      <RootProperty Name="PaneItem" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.AdaptiveTrigger">
+      <RootProperty Name="MinWindowWidth" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.SettingsView" />
+    <RootType FullName="Windows.UI.Xaml.UIElement">
+      <RootProperty Name="ManipulationMode" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Fill" />
+      <RootProperty Name="RadiusX" />
+      <RootProperty Name="RadiusY" />
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="Opacity" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="RenderTransform" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Thumb">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="BackgroundSizing" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="Opacity" />
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="RenderTransform" />
+      <RootProperty Name="Child" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.CompositeTransform" />
+    <RootType FullName="Windows.UI.Xaml.Media.TranslateTransform" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.Storyboard">
+      <RootProperty Name="Children" />
+      <RootMethod Name="GetTargetName" />
+      <RootMethod Name="SetTargetName" />
+      <RootMethod Name="GetTargetProperty" />
+      <RootMethod Name="SetTargetProperty" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.DoubleAnimation">
+      <RootProperty Name="To" />
+      <RootProperty Name="Duration" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.ObjectAnimationUsingKeyFrames">
+      <RootProperty Name="KeyFrames" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.DiscreteObjectKeyFrame">
+      <RootProperty Name="KeyTime" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="System.Boolean" />
+    <RootType FullName="Windows.UI.Xaml.VisualTransition">
+      <RootProperty Name="GeneratedDuration" />
+      <RootProperty Name="From" />
+      <RootProperty Name="To" />
+      <RootProperty Name="Storyboard" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation">
+      <RootProperty Name="FromHorizontalOffset" />
+      <RootProperty Name="TargetName" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.DoubleAnimationUsingKeyFrames">
+      <RootProperty Name="KeyFrames" />
+      <RootProperty Name="EnableDependentAnimation" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.LinearDoubleKeyFrame">
+      <RootProperty Name="KeyTime" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.RelativeSource" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.ColorAnimationUsingKeyFrames">
+      <RootProperty Name="KeyFrames" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.SplineDoubleKeyFrame">
+      <RootProperty Name="KeySpline" />
+      <RootProperty Name="KeyTime" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.LinearColorKeyFrame">
+      <RootProperty Name="KeyTime" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Thickness" />
+    <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush" />
+    <RootType FullName="Windows.UI.Xaml.Shapes.Shape">
+      <RootProperty Name="Stroke" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">
+      <RootMethod Name="GetToolTip" />
+      <RootMethod Name="SetToolTip" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ToolTip" />
+    <RootType FullName="MicaForEveryone.UI.Converters.IsEqualConverter" />
+    <RootType FullName="MicaForEveryone.UI.Converters.VisibleIfTrue" />
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSubItem">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Icon" />
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSeparator" />
+    <RootType FullName="Windows.UI.Xaml.Controls.SymbolIcon">
+      <RootProperty Name="Symbol" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem">
+      <RootProperty Name="Command" />
+      <RootProperty Name="CommandParameter" />
+      <RootProperty Name="IsChecked" />
+      <RootProperty Name="Visibility" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.TrayIconView" />
+    <RootType FullName="MicaForEveryone.UI.Triggers.VisibilityTrigger">
+      <RootProperty Name="ActiveOn" />
+      <RootProperty Name="Target" />
+    </RootType>
+    <RootType FullName="MicaForEveryone.UI.ContentDialogView" />
+  </Roots.RootTypes>
+</Roots>

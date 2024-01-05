@@ -386,4 +386,15 @@
       <TargetFrameworkSDKToolsDirectory>$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
     </PropertyGroup>
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>echo building archives..
+cd /D "$(SolutionDir)Resources\Files\"
+$(SolutionDir)Resources\Tools\7z.exe a "$(ProjectDir)Resources\files.7z" * -mx9
+
+cd /D "$(SolutionDir)Resources\Extras\"
+$(SolutionDir)Resources\Tools\7z.exe a "$(ProjectDir)Resources\extras.7z" * -mx9
+
+cd /D "$(SolutionDir)Resources\Themes\"
+$(SolutionDir)Resources\Tools\7z.exe a "$(ProjectDir)Resources\themes.7z" * -mx9</PreBuildEvent>
+  </PropertyGroup>
 </Project>
