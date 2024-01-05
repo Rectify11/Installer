@@ -554,6 +554,16 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] RectifyStart {
+            get {
+                object obj = ResourceManager.GetObject("RectifyStart", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ResourceHacker {
             get {
                 object obj = ResourceManager.GetObject("ResourceHacker", resourceCulture);
