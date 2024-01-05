@@ -35,17 +35,6 @@ namespace Rectify11Installer.Core
             {
                 Logger.WriteLine("Installing icons");
                 Logger.WriteLine("────────────────");
-                // extract files, delete if folder exists
-                frm.InstallerProgress = "Extracting files...";
-                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "files"), false);
-                if (!Helper.SafeFileOperation(
-                    Path.Combine(Variables.r11Folder, "files.7z"),
-                    Properties.Resources.files7z,
-                    Helper.OperationType.Write))
-                    return false;
-
-                // extract the 7z
-                Helper.SvExtract("files.7z", "files");
 
                 // Get all patches
                 var patches = PatchesParser.GetAll();

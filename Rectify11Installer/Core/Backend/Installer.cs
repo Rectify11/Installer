@@ -63,6 +63,17 @@ namespace Rectify11Installer.Core
             // some random issue where the installer's frame gets extended
             if (!Theme.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
 
+            // extract files, delete if folder exists
+            frm.InstallerProgress = "Extracting files...";
+            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "files"), false);
+            if (!Helper.SafeFileOperation(
+                Path.Combine(Variables.r11Folder, "files.7z"),
+                Properties.Resources.files7z,
+                Helper.OperationType.Write))
+                return false;
+
+            // extract the 7z
+            Helper.SvExtract("files.7z", "files");
 
             // theme
             if (InstallOptions.InstallThemes)
