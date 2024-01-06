@@ -20,8 +20,8 @@ namespace Rectify11Installer.Core
         {
             try
             {
-                if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "RectifyStart.exe"), Properties.Resources.RectifyStart, Helper.OperationType.Write))
-                    return false;
+                // if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "RectifyStart.exe"), Properties.Resources.RectifyStart, Helper.OperationType.Write))
+                //     return false;
                 if (icons)
                 {
                     if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "NSudoL.exe"), Properties.Resources.NSudoL, Helper.OperationType.Write))
@@ -31,8 +31,8 @@ namespace Rectify11Installer.Core
                 }
                 if (themes)
                 {
-                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes, Helper.OperationType.Write))
-                        return false;
+                    //if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes, Helper.OperationType.Write))
+                      //  return false;
 
                     var s = NativeMethods.IsArm64() ? Properties.Resources.secureux_arm64 : Properties.Resources.secureux_x64;
                     var dll = NativeMethods.IsArm64() ? Properties.Resources.ThemeDll_arm64 : Properties.Resources.ThemeDll_x64;
@@ -46,10 +46,10 @@ namespace Rectify11Installer.Core
                 {
                     if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "7za.exe"), Properties.Resources._7za, Helper.OperationType.Write))
                         return false;
-                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z, Helper.OperationType.Write))
-                        return false;
-                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras, Helper.OperationType.Write))
-                        return false;
+                    // if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "files.7z"), Properties.Resources.files7z, Helper.OperationType.Write))
+                    //     return false;
+                    // if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "extras.7z"), Properties.Resources.extras, Helper.OperationType.Write))
+                    //     return false;
                     if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ResourceHacker.exe"), Properties.Resources.ResourceHacker, Helper.OperationType.Write))
                         return false;
                 }
