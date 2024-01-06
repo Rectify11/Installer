@@ -120,7 +120,7 @@ namespace Rectify11Installer.Core
         {
             // Register RectifyStart.exe to run on startup
             var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            key?.SetValue("RectifyStart", Path.Combine(Variables.r11Files, "RectifyStart.exe"), RegistryValueKind.String);
+            key?.SetValue("RectifyStart", Path.Combine(Variables.r11Folder, "RectifyStart.exe"), RegistryValueKind.String);
             key.Close();
         }
         #endregion
