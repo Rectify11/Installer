@@ -317,6 +317,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\extras.7z" />
+    <None Include="Resources\themes.7z" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -348,19 +350,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dark.msstyles" />
+    <None Include="Resources\files.7z" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core\rectify11.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\wsudo.exe" />
     <None Include="Resources\ThemeDll-x64.dll" />
     <None Include="Resources\ThemeDll-arm64.dll" />
     <None Include="Resources\secureux-x64.exe" />
     <None Include="Resources\secureux-arm64.exe" />
     <None Include="Resources\Rectify11.Phase2.exe" />
+    <None Include="Resources\Rectify11ControlCenter.exe" />
     <None Include="Resources\config1.txt" />
     <None Include="Resources\config2.txt" />
     <None Include="Resources\NSudoL.exe" />
+    <None Include="Resources\RectifyStart.exe" />
     <Content Include="Resources\ResourceHacker.exe" />
     <None Include="Resources\light.msstyles" />
     <Content Include="r11.ico" />
