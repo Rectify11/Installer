@@ -137,7 +137,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		(UCString)L"Rectify11", NULL,
 		LoadIconW(hInstance, MAKEINTRESOURCE(IDI_RECTIFYSTART)),
 		CW_USEDEFAULT, CW_USEDEFAULT, 880, 720,
-		0, WS_EX_TOOLWINDOW | WS_VISIBLE, 0, &pwnd);
+		0, WS_EX_TOOLWINDOW | WS_VISIBLE | WS_SYSMENU, 0, &pwnd);
 
 	static HWND hwnd = pwnd->GetHWND();
 	// Center the window on the screen

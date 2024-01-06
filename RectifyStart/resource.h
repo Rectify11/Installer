@@ -19,9 +19,7 @@
 #define IDS_CARDDESC                    113
 #define IDS_STARTUP                     114
 #define IDS_CLOSE                       115
-#define IDR_MAINFRAME                   128
-#define IDR_UIFILE1                     129
-#define IDR_UIFILE                      130
+#define IDR_UIFILE                      999
 #define IDB_BLANK                       1000
 #define IDB_CPL                         1001
 #define IDB_THEMESWITCH                 1002
