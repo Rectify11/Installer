@@ -37,8 +37,8 @@ struct EventListener : public IElementListener {
 void SetStartup(bool enable)
 {
 	HKEY hKey;
-	// TODO: Don't hardcode path
-	const WCHAR* czExePath = L"C:\\Windows\\Rectify11\\RectifyStart.exe";
+	WCHAR path[MAX_PATH];
+	GetModuleFileName(GetModuleHandleW(NULL), path, MAX_PATH);
 	LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,
 		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"),
 		0, KEY_WRITE,
@@ -51,8 +51,8 @@ void SetStartup(bool enable)
 				TEXT("RectifyStart"),
 				0,
 				REG_SZ,
-				(const BYTE*)czExePath,
-				wcslen(czExePath) * 2);
+				(const BYTE*)path,
+				(DWORD)wcslen(path) * 2);
 		}
 		else
 		{
@@ -66,8 +66,6 @@ void SetStartup(bool enable)
 bool GetStartup()
 {
 	HKEY hKey;
-	// TODO: Don't hardcode path
-	const WCHAR* czExePath = L"C:\\Windows\\Rectify11\\RectifyStart.exe";
 	LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,
 		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"),
 		0, KEY_READ,
@@ -122,7 +120,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	// Initialize global strings
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadStringW(hInstance, IDC_RECTIFYSTART, szWindowClass, MAX_LOADSTRING);
 
 	HRESULT hr = CoInitializeEx(NULL, 0);
 	if (FAILED(hr) && hr != ERROR_ALREADY_INITIALIZED)
