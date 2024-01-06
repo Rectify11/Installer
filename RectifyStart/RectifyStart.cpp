@@ -145,8 +145,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	GetWindowRect(hwnd, &rc);
 
-	int xPos = (GetSystemMetrics(SM_CXSCREEN) - rc.right) / 2;
-	int yPos = (GetSystemMetrics(SM_CYSCREEN) - rc.bottom) / 2;
+	int xPos = (GetSystemMetrics(SM_CXSCREEN) - (rc.right - rc.left)) / 2;
+	int yPos = (GetSystemMetrics(SM_CYSCREEN) - (rc.bottom - rc.top)) / 2;
 
 	SetWindowPos(hwnd, 0, xPos, yPos, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 
