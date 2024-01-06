@@ -15,3 +15,4 @@
 #include <tchar.h>
 #include <format>
 #include <functional>
+#include <shellapi.h>

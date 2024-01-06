@@ -78,6 +78,15 @@ void HandleStartCheckbox(Element* elem, Event* iev)
 	}
 }
 
+void HandleOpenCpl(Element* elem, Event* iev)
+{
+	TouchCheckBox* box = (TouchCheckBox*)elem;
+	if (iev->type == TouchButton::Click)
+	{
+		ShellExecute(hwnd_element->GetHWND(), NULL, _T("control.exe"), _T("/name Rectify11.SettingsCPL"), NULL, SW_SHOW);
+	}
+}
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPWSTR    lpCmdLine,
@@ -105,24 +114,23 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	NativeHWNDHost::Create(
 		(UCString)L"Rectify11", NULL,
 		LoadIconW(hInstance, MAKEINTRESOURCE(IDI_RECTIFYSTART)),
-		600, 400, 800, 600,
-		WS_EX_WINDOWEDGE, WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, &pwnd);
+		600, 400, 880, 720,
+		WS_EX_WINDOWEDGE, WS_EX_TOOLWINDOW | WS_VISIBLE, 0, &pwnd);
 
 	// Create DirectUI Parser
-	DUIXmlParser* pParser;
+	DUIXmlParser* pParser = NULL;
 
 	DUIXmlParser::Create(&pParser, NULL, NULL, NULL, NULL);
-
+	static HWND hwnd = pwnd->GetHWND();
 	pParser->SetParseErrorCallback(
 		[](UCString err1, UCString err2, int unk, void* ctx) {
-			MessageBox(NULL, std::format(L"err: {}; {}; {}\n", (LPCWSTR)err1, (LPCWSTR)err2, unk).c_str(),
+			MessageBox(hwnd, std::format(L"err: {}; {}; {}\n", (LPCWSTR)err1, (LPCWSTR)err2, unk).c_str(),
 			L"Error while parsing DirectUI", S_OK);
-	DebugBreak();
 		}, NULL);
 
 	hr = pParser->SetXMLFromResource(IDR_UIFILE, hInstance, (HINSTANCE)hInstance);
 
-	unsigned long defer_key;
+	unsigned long defer_key = 0;
 
 
 	HWNDElement::Create(pwnd->GetHWND(), true, 0, NULL, &defer_key, (Element**)&hwnd_element);
@@ -141,9 +149,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	TouchCheckBox* startChk = (TouchCheckBox*)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardCheckbox"));
 	TouchButton* closeBtn = (TouchButton*)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardDefaultButton"));
+	TouchButton* BtnOpenCpl = (TouchButton*)pWizardMain->FindDescendent(StrToID((UCString)L"BtnOpenCpl"));
 	startChk->SetToggleOnClick(true);
 	closeBtn->AddListener(new EventListener(HandleCloseButton));
 	startChk->AddListener(new EventListener(HandleStartCheckbox));
+	BtnOpenCpl->AddListener(new EventListener(HandleOpenCpl));
 
 	// Start message loop
 	StartMessagePump();

@@ -45,6 +45,18 @@
     <Image Include="RectifyStart.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="blank.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="cpl.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="themeswitch.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="animations.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="uifile.xml">

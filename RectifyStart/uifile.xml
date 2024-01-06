@@ -2,9 +2,9 @@
 	<stylesheets>
 		<!-- ressheet(ImmersiveStyles, library(dui70.dll), Dark) -->
 		<style resid="SXStyles">
-			<HWNDElement height="512rp" width="840rp" accessible="true" layoutpos="client" background="themeable(gtc(DirectUI::ItemsView, 0, 0, 3802), window)"/>
+			<HWNDElement width="880rp" accessible="true" layoutpos="client" background="themeable(gtc(DirectUI::ItemsView, 0, 0, 3802), window)"/>
 			<if id="atom(ElementContainer)">
-				<element padding="rect(24rp,0rp,24rp,72rp)"/>
+				<element padding="rect(24rp,0rp,24rp,24rp)"/>
 			</if>
 			<if class="WizardButtonBar">
 				<element padding="rect(16rp,16rp,16rp,16rp)" background="themeable(dtb(DialogRoot::Button, 6, 4), threedface)" height="64rp"/>
@@ -34,22 +34,31 @@
 				</if>
 			</if>
 			<if class="Card">
-				<TouchButton background="dtb(Explorer::ListView,1,3)"/>
+				<TouchButton background="argb(0,0,0,0)"/>
 			</if>
 			<if id="atom(Card1)">
-				<TouchButton margin="rect(0,0,8rp,8rp)"/>
+				<TouchButton margin="rect(0,0,0rp,0rp)"/>
 			</if>
 			<if id="atom(Card2)">
-				<TouchButton margin="rect(8rp,0,0,8rp)"/>
+				<TouchButton margin="rect(0rp,0,0,0rp)"/>
 			</if>
 			<if id="atom(Card3)">
-				<TouchButton margin="rect(0,8rp,8rp,0)"/>
+				<TouchButton margin="rect(0,0rp,0rp,0)"/>
 			</if>
 			<if id="atom(Card4)">
-				<TouchButton margin="rect(8rp,8rp,0,0)"/>
+				<TouchButton margin="rect(0rp,0rp,0,0)"/>
 			</if>
 			<if class="CardTitle">
-				<RichText background="argb(0,0,0,0)" foreground="gtc(DirectUI::ItemsView,0,0,3803)" font="messagefont;133%"/>
+				<RichText background="argb(0,0,0,0)" foreground="gtc(DirectUI::ItemsView,0,0,3803)" font="messagefont;133%" margin="rect(0,0,0,4rp)"/>
+			</if>
+			<if class="CardSubtitle">
+				<RichText background="argb(0,0,0,0)" foreground="gtc(ControlPanelStyle,8,0,3803)" font="messagefont" width="288rp" contentalign="wrapleft" margin="rect(0,0,0,12rp)"/>
+			</if>
+			<if class="ImageHolder">
+				<Element width="294rp" height="184rp" background="sgraphic(1000,7,-1,0,0,1,1)" padding="rect(21rp,16rp,21rp,26rp)"/>
+			</if>
+			<if class="Image">
+				<Element width="252rp" height="142rp"/>
 			</if>
 		</style>
 		<style resid="RefDui" base="ressheet(ImmersiveStyles, library(dui70.dll), Dark)"/>
@@ -161,27 +170,61 @@
 	</stylesheets>
 	<HWNDElement resid="WizardMain" layout="FillLayout()" id="Atom(SXWizard)" sheet="SXStyles">
 		<element layout="borderlayout()" id="atom(ElementContainer)">
-			<element layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="What's new in v3.2"/>
+			<RichText layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="What's new in v3.2" font="messagefont;192%;semibold" foreground="themeable(gtc(DirectUI::ItemsView, 0, 0, 3803), windowtext)" padding="rect(0rp,16rp,0rp,0rp)"/>
 			<!--element layoutpos="top" class="WizardPageSubTitle" id="Atom(SXSubTitle)" content="This is subtitle, or instruction, or body text."/-->
 			<element layoutpos="client" class="WizardPageContainer" layout="GridLayout(2,2)" id="Atom(SXWizardPageContainer)">
 				<TouchButton id="atom(Card1)" class="Card" layout="flowlayout(0,0,2,0)">
-					<RichText content="Placeholder title 1" class="CardTitle"/>
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout()">
+							<Element class="Image" id="atom(Image1)" background="sgraphic(1001,7,-1,0,0,1,1)"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="The new Rectify11 Settings" class="CardTitle"/>
+							<RichText content="Rectify11 Settings is a convenient place to change and tweak everything about Rectify11." class="CardSubtitle"/>
+							<TouchButton content="Check it out" class="default" sheet="CustomStyles" id="Atom(BtnOpenCpl)"/>
+						</Element>
+					</Element>
 				</TouchButton>
 				<TouchButton id="atom(Card2)" class="Card" layout="flowlayout(0,0,2,0)">
-					<RichText content="Placeholder title 2" class="CardTitle"/>
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout()">
+							<Element class="Image" id="atom(Image2)" background="sgraphic(1002,7,-1,0,0,1,1)"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="Easy theme switching" class="CardTitle"/>
+							<RichText content="With the new Rectify11 tray icon, you can switch themes right from your taskbar." class="CardSubtitle"/>
+							<TouchButton content="Turn on" class="default" sheet="CustomStyles" id="Atom(BtnEnableTray)"/>
+						</Element>
+					</Element>
 				</TouchButton>
 				<TouchButton id="atom(Card3)" class="Card" layout="flowlayout(0,0,2,0)">
-					<RichText content="Placeholder title 3" class="CardTitle"/>
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout()">
+							<Element class="Image" id="atom(Image3)" background="sgraphic(1003,7,-1,0,0,1,1)"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="Smoother UI" class="CardTitle"/>
+							<RichText content="Rectify11 v3.2 adds smooth animations to more Windows UI components, as well as making existing UI animations smoother." class="CardSubtitle"/>
+						</Element>
+					</Element>
 				</TouchButton>
 				<TouchButton id="atom(Card4)" class="Card" layout="flowlayout(0,0,2,0)">
-					<RichText content="Placeholder title 4" class="CardTitle"/>
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout(0,2,2,0)">
+							<RichText class="CardTitle" content="Image TBD"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="Title TBD" class="CardTitle"/>
+							<RichText content="Description TBD" class="CardSubtitle"/>
+						</Element>
+					</Element>
 				</TouchButton>
 			</element>
-			<RichText id="atom(Link)" foreground="20005" content="View full changelog" font="iconfont;115%" layoutpos="bottom" margin="rect(0,6rp,0,0)" width="160rp"/>
+			<RichText id="atom(Link)" foreground="20005" content="View full changelog" font="iconfont;115%" layoutpos="bottom" margin="rect(0,0rp,0,0)" width="160rp" visible="false"/>
 		</element>
 		<element layoutpos="bottom" class="WizardButtonBar" contentalign="middleright" layout="BorderLayout()" id="Atom(SXWizardButtonBar)">
 			<TouchCheckBox accessible="true" layoutpos="left" sheet="CustomStyles" checkedstate="checked" padding="rect(0,6rp,0,0)" id="Atom(SXWizardCheckbox)" active="mouse | keyboard" content="Show this window when Windows starts."/>
-			<TouchButton accessible="true" layoutpos="right" minsize="size(144rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" class="default" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="Close"/>
+			<TouchButton accessible="true" layoutpos="right" minsize="size(96rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="Close"/>
 		</element>
 	</HWNDElement>
 </duixml>

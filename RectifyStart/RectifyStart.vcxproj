@@ -147,11 +147,12 @@
     <ResourceCompile Include="RectifyStart.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="animations.png" />
+    <Image Include="blank.png" />
+    <Image Include="cpl.png" />
     <Image Include="RectifyStart.ico" />
     <Image Include="small.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="uifile.xml" />
+    <Image Include="themeswitch.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RectifyControlPanel2\dui70\DirectUI\DirectUI.vcxproj">
