@@ -114,14 +114,24 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	NativeHWNDHost::Create(
 		(UCString)L"Rectify11", NULL,
 		LoadIconW(hInstance, MAKEINTRESOURCE(IDI_RECTIFYSTART)),
-		600, 400, 880, 720,
-		WS_EX_WINDOWEDGE, WS_EX_TOOLWINDOW | WS_VISIBLE, 0, &pwnd);
+		CW_USEDEFAULT, CW_USEDEFAULT, 880, 720,
+		0, WS_EX_TOOLWINDOW | WS_VISIBLE, 0, &pwnd);
+
+	static HWND hwnd = pwnd->GetHWND();
+	// Center the window on the screen
+	RECT rc;
+
+	GetWindowRect(hwnd, &rc);
+
+	int xPos = (GetSystemMetrics(SM_CXSCREEN) - rc.right) / 2;
+	int yPos = (GetSystemMetrics(SM_CYSCREEN) - rc.bottom) / 2;
+
+	SetWindowPos(hwnd, 0, xPos, yPos, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 
 	// Create DirectUI Parser
 	DUIXmlParser* pParser = NULL;
 
 	DUIXmlParser::Create(&pParser, NULL, NULL, NULL, NULL);
-	static HWND hwnd = pwnd->GetHWND();
 	pParser->SetParseErrorCallback(
 		[](UCString err1, UCString err2, int unk, void* ctx) {
 			MessageBox(hwnd, std::format(L"err: {}; {}; {}\n", (LPCWSTR)err1, (LPCWSTR)err2, unk).c_str(),
