@@ -62,6 +62,31 @@ void SetStartup(bool enable)
 
 	RegCloseKey(hKey);
 }
+
+bool GetStartup()
+{
+	HKEY hKey;
+	// TODO: Don't hardcode path
+	const WCHAR* czExePath = L"C:\\Windows\\Rectify11\\RectifyStart.exe";
+	LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,
+		TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"),
+		0, KEY_READ,
+		&hKey);
+	wchar_t buf[255] = { 0 };
+	DWORD dwBufSize = sizeof(buf);
+	DWORD dwType = REG_SZ;
+	if (ERROR_SUCCESS == lnRes)
+	{
+		wchar_t buf[255] = { 0 };
+
+		lnRes = RegQueryValueEx(hKey, TEXT("RectifyStart"), 0, NULL, reinterpret_cast<LPBYTE>(&buf), &dwBufSize);
+		return lnRes == ERROR_SUCCESS ? true : false;
+	}
+
+	RegCloseKey(hKey);
+	return false;
+}
+
 void HandleCloseButton(Element* elem, Event* iev)
 {
 	if (iev->type == TouchButton::Click)
@@ -141,22 +166,19 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	hr = pParser->SetXMLFromResource(IDR_UIFILE, hInstance, (HINSTANCE)hInstance);
 
 	unsigned long defer_key = 0;
-
-
 	HWNDElement::Create(pwnd->GetHWND(), true, 0, NULL, &defer_key, (Element**)&hwnd_element);
 
+	// Create the root element
 	Element* pWizardMain;
 	hr = pParser->CreateElement((UCString)L"WizardMain", hwnd_element, NULL, NULL, (Element**)&pWizardMain);
 
-
-
+	// Host the window with the element
 	pWizardMain->SetVisible(true);
 	pWizardMain->EndDefer(defer_key);
 	pwnd->Host(pWizardMain);
-
 	pwnd->ShowWindow(SW_SHOW);
 
-
+	// Add listeners. TODO: use custom control
 	TouchCheckBox* startChk = (TouchCheckBox*)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardCheckbox"));
 	TouchButton* closeBtn = (TouchButton*)pWizardMain->FindDescendent(StrToID((UCString)L"SXWizardDefaultButton"));
 	TouchButton* BtnOpenCpl = (TouchButton*)pWizardMain->FindDescendent(StrToID((UCString)L"BtnOpenCpl"));
@@ -164,6 +186,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	closeBtn->AddListener(new EventListener(HandleCloseButton));
 	startChk->AddListener(new EventListener(HandleStartCheckbox));
 	BtnOpenCpl->AddListener(new EventListener(HandleOpenCpl));
+
+	// Setup startchk
+	startChk->SetCheckedState(GetStartup() ? CheckedStateFlags_CHECKED : CheckedStateFlags_NONE);
 
 	// Start message loop
 	StartMessagePump();
