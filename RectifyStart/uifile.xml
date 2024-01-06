@@ -170,7 +170,7 @@
 	</stylesheets>
 	<HWNDElement resid="WizardMain" layout="FillLayout()" id="Atom(SXWizard)" sheet="SXStyles">
 		<element layout="borderlayout()" id="atom(ElementContainer)">
-			<RichText layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="resstr(106)" font="messagefont;192%;semibold" foreground="themeable(gtc(DirectUI::ItemsView, 0, 0, 3803), windowtext)" padding="rect(0rp,16rp,0rp,0rp)"/>
+			<RichText layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="resstr(102)" font="messagefont;192%;semibold" foreground="themeable(gtc(DirectUI::ItemsView, 0, 0, 3803), windowtext)" padding="rect(0rp,16rp,0rp,0rp)"/>
 			<!--element layoutpos="top" class="WizardPageSubTitle" id="Atom(SXSubTitle)" content="This is subtitle, or instruction, or body text."/-->
 			<element layoutpos="client" class="WizardPageContainer" layout="GridLayout(2,2)" id="Atom(SXWizardPageContainer)">
 				<TouchButton id="atom(Card1)" class="Card" layout="flowlayout(0,0,2,0)">
@@ -179,9 +179,9 @@
 							<Element class="Image" id="atom(Image1)" background="sgraphic(1001,7,-1,0,0,1,1)"/>
 						</Element>
 						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(107)" class="CardTitle"/>
-							<RichText content="resstr(108)" class="CardSubtitle"/>
-							<TouchButton content="resstr(109)" class="default" sheet="CustomStyles" id="atom(BtnOpenCpl)"/>
+							<RichText content="resstr(103)" class="CardTitle"/>
+							<RichText content="resstr(104)" class="CardSubtitle"/>
+							<TouchButton content="resstr(105)" class="default" sheet="CustomStyles" id="atom(BtnOpenCpl)"/>
 						</Element>
 					</Element>
 				</TouchButton>
@@ -191,9 +191,9 @@
 							<Element class="Image" id="atom(Image2)" background="sgraphic(1002,7,-1,0,0,1,1)"/>
 						</Element>
 						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(110)" class="CardTitle"/>
-							<RichText content="resstr(111)" class="CardSubtitle"/>
-							<TouchButton content="resstr(112)" class="default" sheet="CustomStyles"/>
+							<RichText content="resstr(106)" class="CardTitle"/>
+							<RichText content="resstr(107)" class="CardSubtitle"/>
+							<TouchButton content="resstr(108)" class="default" sheet="CustomStyles"/>
 						</Element>
 					</Element>
 				</TouchButton>
@@ -203,8 +203,8 @@
 							<Element class="Image" id="atom(Image3)" background="sgraphic(1003,7,-1,0,0,1,1)"/>
 						</Element>
 						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(114)" class="CardTitle"/>
-							<RichText content="resstr(115)" class="CardSubtitle"/>
+							<RichText content="resstr(110)" class="CardTitle"/>
+							<RichText content="resstr(111)" class="CardSubtitle"/>
 						</Element>
 					</Element>
 				</TouchButton>
@@ -214,8 +214,8 @@
 							<RichText class="CardTitle" content="Image TBD"/>
 						</Element>
 						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(116)" class="CardTitle"/>
-							<RichText content="resstr(117)" class="CardSubtitle"/>
+							<RichText content="resstr(112)" class="CardTitle"/>
+							<RichText content="resstr(113)" class="CardSubtitle"/>
 						</Element>
 					</Element>
 				</TouchButton>
@@ -223,8 +223,8 @@
 			<RichText id="atom(Link)" foreground="20005" content="View full changelog" font="iconfont;115%" layoutpos="bottom" margin="rect(0,0rp,0,0)" width="160rp" visible="false"/>
 		</element>
 		<element layoutpos="bottom" class="WizardButtonBar" contentalign="middleright" layout="BorderLayout()" id="Atom(SXWizardButtonBar)">
-			<TouchCheckBox accessible="true" layoutpos="left" sheet="CustomStyles" checkedstate="checked" padding="rect(0,6rp,0,0)" id="Atom(SXWizardCheckbox)" active="mouse | keyboard" content="resstr(118)"/>
-			<TouchButton accessible="true" layoutpos="right" minsize="size(96rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="resstr(119)"/>
+			<TouchCheckBox accessible="true" layoutpos="left" sheet="CustomStyles" checkedstate="checked" padding="rect(0,6rp,0,0)" id="Atom(SXWizardCheckbox)" active="mouse | keyboard" content="resstr(114)"/>
+			<TouchButton accessible="true" layoutpos="right" minsize="size(96rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="resstr(115)"/>
 		</element>
 	</HWNDElement>
 </duixml>
