@@ -139,6 +139,11 @@
     <Compile Include="Core\Helpers.cs" />
     <Compile Include="Core\Backend\MMCHelper.cs" />
     <Compile Include="Core\Backend\Installer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Win32\ShellLink.cs" />
     <Compile Include="Win32\Theme.cs" />
     <Compile Include="Core\TreeViewExtension.cs" />
@@ -226,6 +231,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\Rectify11.ar.resx">
       <Generator>ResXFileCodeGenerator</Generator>
