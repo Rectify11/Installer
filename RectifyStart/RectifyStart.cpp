@@ -140,14 +140,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		0, WS_EX_TOOLWINDOW | WS_VISIBLE | WS_SYSMENU, 0, &pwnd);
 
 	static HWND hwnd = pwnd->GetHWND();
+
 	// Center the window on the screen
 	RECT rc;
-
 	GetWindowRect(hwnd, &rc);
 
 	int xPos = (GetSystemMetrics(SM_CXSCREEN) - (rc.right - rc.left)) / 2;
 	int yPos = (GetSystemMetrics(SM_CYSCREEN) - (rc.bottom - rc.top)) / 2;
-
 	SetWindowPos(hwnd, 0, xPos, yPos, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 
 	// Create DirectUI Parser
