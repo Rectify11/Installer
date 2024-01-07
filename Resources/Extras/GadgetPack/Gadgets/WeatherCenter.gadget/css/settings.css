@@ -1,0 +1,27 @@
+﻿body
+{ 
+ width:300px;
+ height:330px;
+ font-family:'Segoe UI', Tahoma, Sans-Serif;
+ margin:0px;
+}
+
+span
+ {font-family:'Segoe UI', Tahoma, Sans-Serif;}
+
+div
+ {font-family:'Segoe UI', Tahoma, Sans-Serif;}
+.content div
+ {padding:8px;border:1px solid black;color:black;}
+.name div
+ {float:left;padding:2px 10px 2px 10px;margin-right:2px;font-size:12px;}
+.hide
+ {display:none;}
+.show
+ {display:block;}
+.nonactive
+ {background-color:#CCCCCC;cursor:pointer;color:black;}
+.active
+ {background-color:#888888;cursor:default;color:white;font-weight:bold;font-size:14px;}
+
+

@@ -1,0 +1,343 @@
+﻿body {
+	background-color: transparent;
+	font-family: Microsoft Yahei, Microsoft JhengHei, Meiryo UI, Malgun Gothic, Arial, Helvetica, sans-serif, Simsun, Verana, Segoe UI;
+	color: #fff;
+	margin: 0px;
+}
+img {
+	border-width: 0px;	
+}
+
+#main,#number{
+	position: absolute;
+}
+#rollerType,#rollerA,#rollerB{
+	position: absolute;
+	top:0px;
+	overflow:hidden;
+	background-repeat:no-repeat;
+	cursor:url('images/drag_up_down_roll.cur');
+}
+.item{
+	position:absolute;
+	text-align: center;
+	white-space:nowrap;
+	color:#e0e0e0;
+	overflow:hidden;
+	vertical-align: middle;
+}
+.itemname, .shortName{
+	width:100%;
+	vertical-align:middle;
+}
+#div_update, #tooltip{
+	position: absolute;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: center;
+	z-index: 30;
+	color: #727272;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+
+}
+#tooltip{
+	display: none;
+	color: #e0e0e0;
+}
+#div_update a{
+	color:#FFB100;
+	padding: 0px 1px 1px 1px;
+	font-weight: bold;
+}
+#div_update a:hover{
+	background-color:#FFB100;
+	color: #000;
+}
+#valueA, #valueB{
+	text-align:center;
+}
+#weblink{
+	text-decoration:none;
+	display:block;
+	hide-focus: expression(this.hideFocus=true); /* for ie 5+ */
+}
+
+/*停靠*/
+body.docked{
+	width:130px;
+	height:122px;
+	font-size: 11px;
+}
+body.docked #main{
+	top:3px;
+	left:2px;
+	width:128px;
+	height:79px;
+}
+body.docked .item {
+	height:17px;
+	line-height:18px;
+}
+
+body.docked #rollerType{
+	left:0px;	
+	width:23px;
+	height:79px;
+	/*background-image:url('images/dock_unit_roller_type.png');*/
+}
+body.docked #rollerType .item{
+	width:19px;
+}
+
+body.docked #rollerType img{
+	width:17px;height:17px;
+	position:absolute;
+	top:0px;
+	left:1px;
+}
+body.docked #rollerType .selected{
+	background-image:url('images/roller_item.png');
+	color:#000;
+}
+body.docked #rollerA{
+	left:21px;
+	width:53px;
+	height:79px;
+	/*background-image:url('images/dock_unit_roller.png');*/
+}
+body.docked #rollerB{
+	left:72px;
+	width:53px;
+	height:79px;
+	/*background-image:url('images/dock_unit_roller.png');	*/
+}
+body.docked #rollerA .item,body.docked #rollerB .item{
+	width:49px;
+}
+body.docked #rollerA .selected,body.docked #rollerB .selected{
+	background-image:url('images/rollerAB_item.png');
+	color:#000;
+}
+
+body.docked #rollerA .itemname,body.docked #rollerB .itemname{
+	display:none;
+}
+body.docked #rollerA .shortName,body.docked #rollerB .shortName{
+	display:block;
+	height:100%;
+}
+
+
+body.docked #number{
+	top:85px;
+	left:4px;
+	width:126px;
+}
+body.docked #valueA, body.docked #valueB{
+	position:absolute;
+	width:61px;
+	font-size:10px;
+		color: #fff;
+	border-width:0px;
+	background:transparent url('images/input.png') no-repeat scroll 0 0;
+	height:16px;
+}
+body.docked #valueB{
+	left:62px;
+	color: #fff;
+}
+body.docked #valueA:focus, body.docked #valueB:focus,body.docked #valueA:hover, body.docked #valueB:hover{
+	background-position:0px -19px;
+	color: #fff;
+}
+body.docked #div_update,body.docked #tooltip{
+	font-size:11px;
+	top:102px;
+	height:16px;
+	line-height: 16px;
+	width:109px;
+	left:3px;
+}
+body.docked #div_update{
+	width:93px;
+}
+body.docked #button{
+	position:absolute;
+	top:103px;
+	right:3px;
+	
+}
+body.docked #weblink{
+	position:absolute;
+	width:16px;
+	height:16px;
+	right:0px;
+	background: transparent url('images/buttons.png') no-repeat scroll 0px 0px;
+}
+body.docked #weblink:hover{
+	background-position:0px -16px;
+}
+body.docked #button_info{
+	position:absolute;
+	width:16px;
+	height:16px;
+	right:16px;
+	cursor:pointer;
+	background: transparent url('images/buttons.png') no-repeat scroll -16px 0px;	
+}
+body.docked #button_info:hover{
+	background-position:-16px -16px;
+}
+
+/*非停靠 大模式*/
+body.undocked{
+	width:335px;
+	height:203px;
+	font-size: 11px;
+}
+body.undocked #main{
+	top:4px;
+	left:3px;
+	width:327px;
+	height:133px;
+
+}
+body.undocked .item {
+	height:34px;
+	line-height:17px;
+}
+
+body.undocked #rollerType{
+	left:1px;	
+	width:34px;
+	height:133px;
+}
+body.undocked #rollerType .item{
+	width:23px;
+}
+
+body.undocked #rollerType img{
+	width:17px;height:17px;
+	position:absolute;
+	top:8px;
+	left:3px;
+}
+body.undocked #rollerType .selected{
+	background-image:url('images/roller_item_undock.png');
+	color:#000;
+}
+body.undocked #rollerA{
+	left:27px;
+	width:153px;
+	height:133px;
+}
+body.undocked #rollerB{
+	left:172px;
+	width:153px;
+	height:133px;
+}
+body.undocked #rollerA .item,body.undocked #rollerB .item{
+	width:141px;
+}
+body.undocked #rollerA .selected,body.undocked #rollerB .selected{
+	background-image:url('images/rollerAB_item_undock.png');
+	color:#000;
+}
+
+body.undocked #rollerA .itemname,body.undocked #rollerB .itemname{
+	font-size:11px;
+	line-height:34px;
+	height:34px;
+	display:block;
+}
+
+body.undocked #rollerA .selected .itemname,body.undocked #rollerB .selected .itemname{
+	font-size:10px;
+	line-height:14px;
+	height:13px;
+	color:#333;
+	display:block;
+}
+
+body.undocked #rollerA .shortName,body.undocked #rollerB .shortName{
+	display:none;
+	font-size:15px;
+	line-height:21px;
+	height:21px;
+}
+body.undocked #rollerA .selected .shortName,body.undocked #rollerB .selected .shortName{
+	font-size:14px;
+	font-weight: bold;
+	display:block;
+}
+
+
+body.undocked #number{
+	top:142px;
+	left:14px;
+	width:314px;
+
+}
+body.undocked #valueA, body.undocked #valueB{
+	background-position: 0 0;
+	position: absolute;
+	width: 153px;
+	font-size: 18px;
+		color: #fff;
+	border-width: 0px;
+	
+	background: transparent url('images/input_undock.png') repeat-x scroll 0
+0;
+	height: 26px;
+	vertical-align: middle;
+	line-height: 24px;
+	font-weight: bold;
+}
+body.undocked #valueB{
+	left:158px;
+	color: #fff;
+}
+body.undocked #valueA:focus, body.undocked #valueB:focus,body.undocked #valueA:hover, body.undocked #valueB:hover{
+	background-position:0px -30px;
+	color: #fff;
+}
+body.undocked #div_update,body.undocked #tooltip{
+	font-size:13px;
+	top:175px;
+	height:18px;
+	line-height: 16px;
+	width:295px;
+	left:13px;
+}
+body.undocked #div_update{
+	width:275px;
+}
+body.undocked #button{
+	position:absolute;
+	top:176px;
+	right:8px;
+	
+}
+body.undocked #weblink{
+	position:absolute;
+	width:16px;
+	height:16px;
+	right:0px;
+	background: transparent url('images/buttons.png') no-repeat scroll 0px 0px;
+}
+body.undocked #weblink:hover{
+	background-position:0px -16px;
+}
+body.undocked #button_info{
+	position:absolute;
+	width:16px;
+	height:16px;
+	right:20px;
+	cursor:pointer;
+	background: transparent url('images/buttons.png') no-repeat scroll -16px 0px;	
+}
+body.undocked #button_info:hover{
+	background-position:-16px -16px;
+}
+

@@ -1,0 +1,254 @@
+html{
+  overflow:hidden;
+}
+
+body{
+	width:300px;
+	height:360px;
+	margin:0;
+	padding:0;
+  font-family: Tahoma, Helvetica, sans-serif;
+	font-size:10px;
+}
+
+td{
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+}
+
+.spanFld{
+  width:100px;
+  overflow:hidden;
+  font-size:0.9em;
+  white-space:nowrap;
+  padding-left:3px;
+}
+
+.argFld{
+  overflow:visible;
+  font-size:0.9em;
+  white-space:nowrap;
+  text-align:left;
+}
+
+.linkArrows{
+  white-space:nowrap;
+}
+
+.btn{
+  padding:2px;
+  margin:0 4px;
+  width:65px;
+}
+
+.inputFld{
+   border:1px inset #505050; 
+   width:250px;
+}
+
+#iViewList{
+  border:1px groove #505050;
+  width:295px;
+  height:230px;
+  overflow-y:scroll;
+}
+
+#idNoShortcutList{
+  border:1px groove #505050;
+  width:295px;
+  height:200px;
+  text-align:center;
+  padding-top:30px;
+  overflow:none;
+}
+
+#iItemTbl{
+  background-color:#f0f0f0;
+  width:277px;
+  padding-right:5px;
+  padding-left:3px;
+}
+
+#dragDrpTxt{
+  position:absolute;
+  top:195px;
+  width:299px;
+  z-index:-100;
+  font-size:1.2em;
+  font-weight:bold;
+  text-align:center;
+}
+
+#menu1, #menu2, #menu3, #menu4, #menu5{
+	border-top: 1px solid #505050;
+	border-right: 1px solid #505050;
+}
+
+#menu1{
+	border-left: 1px solid #505050;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+#menu2, #menu3, #menu4, #menu5{
+	border-bottom: 1px solid #505050;
+}
+
+ul.menu{
+  margin:0;
+	white-space: nowrap;
+}
+
+ul.menu li{
+  display:block;
+  float:left;
+	height:15px;
+	padding:2px 6px;
+}
+
+.fill{
+  position:absolute;
+  left:240px;
+  top:19px;
+	width:57px;
+	background:url(/images/mfill.png) repeat-x;
+	z-index:-5;
+}
+
+#defaults, #reorder, #style, #save, #misc{
+	position: absolute;
+	top: 25px;
+	left: 0;
+	width: 299px;
+	height:355px;
+}
+
+#drag{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height:355px;
+	width:300px;
+  background-color:#f0f0f0;
+  margin:0px;
+  padding:0;
+  overflow:hidden;
+}
+
+.special, .special td{
+	padding: 0 10px 0 0;
+	margin: 0;
+	border: 0;
+	height: 20px;
+}
+
+#idDragAdd{
+	border:2px groove #505050;
+	color: #252525;
+	text-align: center;
+	background-color: #f0f0f0;
+	margin: 0 0 0 0;
+	padding-top: 3px;
+	width: 299px;
+	height: 38px;
+	overflow: auto;
+}
+
+#warning{
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+#rbIcons{
+  height:40px;
+}
+
+#bgPreview{
+  width:130px;
+  height:100px;
+  margin-top:5px;
+  margin-left:0px;
+  background-color:#252525;
+  background-image:url(/images/backgrounds/bg1.jpg);
+  background-repeat: repeat;
+  border:1px solid #000000;
+  float:left;
+  z-index:999;
+}
+
+#bgArrows{
+  width:40px;
+  height:100px;
+  margin-top:5px;
+  padding-top:10px;
+  float:left;
+}
+
+#bgInfo{
+  margin-left:5px;
+  float:left;
+}
+
+.arrow{
+  border:none;
+}
+
+#commands{
+  position:absolute;
+  top:235px;
+  width:298px;
+  height:150px;
+  padding-top:2px;
+  background-color:#f0f0f0;
+  z-index:9;
+}
+
+.noWrap{
+  white-space:nowrap;
+}
+
+hr{
+  margin:0px;
+  width:90%;
+}
+
+#infoText{
+  position:absolute;
+  top:225px;
+  left:80px;
+  color:white;
+  text-align:center;
+}
+
+#colorChooser{
+  width:110px;
+  height:60px;
+  cursor:hand;
+}
+
+#profiles{
+  position:absolute;
+  top:235px;
+  width:298px;
+  height:150px;
+  padding-top:2px;
+  background-color:#f0f0f0;
+  z-index:99;
+}
+
+ul.dragBox{
+  margin:0;
+  padding:0;
+}
+
+.draggable{
+  position:relative;
+  left:0px;
+  top:0px;
+  padding-left:25px;
+  height:20px;
+  background:url(images/fill.png) no-repeat;
+  list-style-type:none;
+  margin:0;
+}
+

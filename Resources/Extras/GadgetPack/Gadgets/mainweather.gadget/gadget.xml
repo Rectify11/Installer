@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>My Weather</name>
+    <namespace>My Weather</namespace>
+    <version>3.9</version>
+  <author name="Pat Possible">
+    <info url="http://patpossible.de" text="patpossible.de" />
+    <logo src="img/logo.png" />
+  </author>
+    <copyright>&#0169; 2011</copyright>
+    <description>Let you view the current weather at your area or the weather of a city of your choice.</description>
+  <icons>
+    <icon width="64" height="64" src="img/logo.png" />
+  </icons>    
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="index.html" />
+      <permissions>full</permissions>
+	  			<defaultImage src="drag.png" />
+      <platform minPlatformVersion="0.3" />
+			<autoUpdate url="http://gallery.live.com" siteUrl="" />
+		</host>
+  </hosts>
+</gadget>

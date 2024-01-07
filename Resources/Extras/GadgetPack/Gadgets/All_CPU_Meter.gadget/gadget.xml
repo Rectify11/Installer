@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>All CPU Meter</name>
+	<namespace>AddGadgets.com</namespace>
+	<version>4.7.3</version>
+	<author name="AddGadgets">
+		<info url="http://addgadgets.com" />
+		<logo src="icon.png" />
+	</author>
+	<copyright>© 2013 by AddGadgets.com</copyright>
+	<description>The All Cpu Meter will show you all core cpu usage(32 Core, 24 Core, 16 Core, 12 Core, 8 Core, 6 Core, 4 Core, 3 Core, 2 Core, 1 Core),Temperatures, RAM usage and many. It also displayes all core usage history.</description>
+	<icons>
+		<icon height="100" width="100" src="icon.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0.0" src="gadget.html" />
+			<permissions>Full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="drag.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+	</hosts>
+</gadget>

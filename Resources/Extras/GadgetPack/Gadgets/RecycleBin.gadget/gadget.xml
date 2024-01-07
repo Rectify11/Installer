@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>Recycle Bin</name>
+	<namespace>WastePaperBasket</namespace>
+	<version>1.0.1.7</version>
+	<author name="Eiskalter Engel">
+		<logo src="icon.png" />
+	</author>
+	<copyright>© 2022</copyright>
+
+	<description>Adds the recycle bin within the gadgets. You can directly view or delete the content of the basket. Drop any items you want to delete onto the basket.</description>
+	<icons>
+		<icon height="64" width="64" src="images/icon.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0" src="wastepaperbasket.html" />
+			<permissions>full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="dragndrop.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+	</hosts>
+</gadget>

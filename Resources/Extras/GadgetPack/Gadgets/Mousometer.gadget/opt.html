@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>Mousometer</title>
+    <style type="text/css">
+        body {
+            background: white;
+            width: 300px;
+            height: 340px;
+            margin: 10px;
+        }
+
+        body, td, div {
+            color: #666;
+            font-size: 13px;
+            font-family: Calibri, segoe UI;
+            line-height: 1.4em;
+        }
+
+    </style>
+</head>
+<body id="content">
+<div style="font-size:20px">mousometer.de</div>
+<form name="form1" method="post" action="" style="margin:0; padding:0;">
+    <table width="100%" border="0" style="margin-top:8px;">
+        <tr>
+            <td>User</td>
+            <td>&nbsp;</td>
+            <td><input type="text" name="user" id="user"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>&nbsp;</td>
+            <td><input type="password" name="pw" id="pw"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="padding:10px 2px 10px 2px">The registration on <b>mousometer.de </b> offers you online highscores,
+                a custom design upload and distance counters for your blog or homepage!
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">Don't have an account?</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="font-size:16px"><b><a href="https://www.mousometer.de/anmeldung/">Join now &raquo;</a></b></td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        document.getElementById("user").value = System.Gadget.Settings.readString('user');
+        document.getElementById("pw").value = System.Gadget.Settings.readString('pw');
+    </script>
+    <hr>
+    <div style="float:right;margin-top:4px;">
+        <input onClick="System.Gadget.Settings.writeString('user', document.getElementById('user').value);System.Gadget.Settings.writeString('pw', document.getElementById('pw').value); System.Gadget.Flyout.show = false;  webupdate = 1199;"
+               type="button" name="button" value="OK" style="width:90px; font-size:12px;height:25px;">&nbsp;&nbsp;
+        <input onClick="System.Gadget.Flyout.show = false;" type="button" name="button" value="Cancel"
+               style=" width:90px; font-size:12px; height:25px;">
+    </div>
+    <br><br>
+</form>
+</body>
+</html>

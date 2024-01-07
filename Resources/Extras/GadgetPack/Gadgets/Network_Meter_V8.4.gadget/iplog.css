@@ -1,0 +1,3 @@
+﻿#table-style{font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;font-size:12px;width:480px;text-align:left;border-collapse:collapse;margin:20px;}
+#table-style th{font-size:13px;font-weight:normal;background:#b9c9fe url("thead.png") repeat-x;border-top:2px solid #d3ddff;border-bottom:1px solid #fff;color:#039;padding:8px;}
+#table-style td{border-bottom:1px solid #fff;color:#669;border-top:1px solid #fff;background:#e8edff url("tback.png") repeat-x;padding:8px;}

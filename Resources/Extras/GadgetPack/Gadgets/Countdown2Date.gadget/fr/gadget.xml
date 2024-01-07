@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Compte à rebours</name>
+  <namespace>blurg.Countdown</namespace>
+  <version>1.2.0</version>
+  <author name="Alexander Burton">
+    <info url="http://www.blurg.net/gadgets" text="Plus d'information et d'aide"/>
+  </author>
+  <copyright>© 2008</copyright>
+  <description>Fournit un compte à rebours à une date</description>
+  <icons>
+    <icon height="150" width="43" src="images/countdown_icon.png"/>
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="gadget.htm"/>
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="0.3"/>
+      <defaultImage src="images/countdown_icon.png"/>
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>
+

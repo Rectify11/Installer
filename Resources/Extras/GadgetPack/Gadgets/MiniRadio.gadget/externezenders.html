@@ -1,0 +1,507 @@
+<html>
+  <head>
+    <style type="text/css">
+       body  {width:800px;height:350px; font-family:Arial}
+	   img {cursor:hand}
+	   input {font-size:13px}
+	   select {font-size:13px}
+	  .knop1  {border:2px solid black; background-color:lightgreen;cursor:hand}
+	  .knop2  {color:white; background-color:black;font-family:verdana;border:1px solid silver; cursor:hand}
+	</style>
+    <script>
+	  function doNothing(){return true}
+      window.onerror =doNothing
+	
+	  	
+	  var mapNaam = System.Gadget.path;
+	  var nr = mapNaam.lastIndexOf("\\");
+	  mapNaam = mapNaam.substr(0,nr);
+	
+	
+      var alleZenders = '';
+	  var verandering = false;
+	  var wilWeg = false;
+	  
+	  function wordtWaar(){
+	    verandering = true;
+	  }
+				  
+		  
+	  function init(){
+	    autoSort = System.Gadget.Settings.read("sorteer");
+	    if (autoSort =='1'){
+	      document.getElementById('cbSort').checked = true;	  
+        }
+       }
+	  
+	  
+	  function schrijfSort(){
+	    if (document.getElementById('cbSort').checked == true){
+		  System.Gadget.Settings.write("sorteer", "1");
+		} 
+		if (document.getElementById('cbSort').checked == false){
+		  System.Gadget.Settings.write("sorteer", "0");
+		} 
+	  }
+		  
+		  
+	  function inlezen(){
+	    window.scroll(0,0);
+	    var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+		//var exportBestandsnaam = 'C:\\Users\\Ron\\AppData\\Local\\Microsoft\\Windows Sidebar\\Gadgets' + '\\ZenderData.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+		var geenfile = true;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+		  geenfile = false;
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  
+		  document.getElementById('externeSelector').options.length=0;  // wis de complete lijst
+	      if (alleZenders != ""){
+            var zenderLijst = alleZenders.split("#", alleZenders.length);
+	        for (var i=1 ; i < zenderLijst.length; i++){   //???
+		      zenderRegel = zenderLijst[i].split("*", zenderLijst[i].length);
+		      zenderNaam = zenderRegel[0];
+		      zenderAdres = zenderRegel[1];
+			  zenderTotaal = zenderNaam + '  =  ' + zenderAdres;
+              document.getElementById('externeSelector').options[document.getElementById('externeSelector').options.length]=new Option(zenderTotaal, zenderAdres,false,false);
+	        }
+          }
+		  
+		  //Dit is de verborgen selector met de namen en waarden gescheiden
+		  document.getElementById('externeSelector2').options.length=0;  // wis de complete lijst
+	      if (alleZenders != ""){
+            var zenderLijst = alleZenders.split("#", alleZenders.length);
+	        for (var i=1 ; i < zenderLijst.length; i++){   //???
+		      zenderRegel = zenderLijst[i].split("*", zenderLijst[i].length);
+		      zenderNaam = zenderRegel[0];
+		      zenderAdres = zenderRegel[1];
+              document.getElementById('externeSelector2').options[document.getElementById('externeSelector2').options.length]=new Option(zenderNaam, zenderAdres,false,false);
+	        }
+          }
+		  
+		  
+		  
+		  f.Close();
+		} else {if (geenfile==false){document.getElementById('innerTextOpslaan').innerText = 'Importeren niet mogelijk. Geen bestand met gegevens gevonden.'}}
+	  }
+	  
+	  
+	
+	  function exporteren(){
+	    alleZenders = System.Gadget.Settings.read("alleZenders");
+		if (alleZenders ==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'Er zijn nog geen extra zenders toegevoegd. Exporteren niet mogelijk';
+		  return false;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+	    a.WriteLine(alleZenders);
+        a.Close();
+		document.getElementById('innerTextOpslaan').innerText = 'Alle ingevoerde zenders zijn opgeslagen.';
+      }
+
+	  
+	  function importeren(){
+	  	var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  System.Gadget.Settings.write("alleZenders",alleZenders);
+		  document.getElementById('innerTextOpslaan').innerText = 'Alle ingevoerde zenders zijn geimporteerd en zullen toegevoegd worden.';
+		  f.Close();
+		  wordtWaar();
+		} else {document.getElementById('innerTextOpslaan').innerText = 'Importeren niet mogelijk. Geen bestand met gegevens gevonden.'}
+	  }
+	  
+	  function toonMeerInfo(){
+	    document.getElementById('innerTextOpslaan').innerText = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value;
+		welkePlayer();
+		//document.getElementById('proefPlayer').url = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value;
+	  }
+	  
+	  
+	  function welkePlayer(){
+	    var urlstream = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value;
+	    urlstream = urlstream.toLowerCase();
+		var rps = 0;
+		var geldigeExtensies = " .ra .rm .ram .rpm .rv .pls ";
+		var extensie = " " + urlstream.substring(urlstream.lastIndexOf(".")).toLowerCase() + " ";
+		if (urlstream.indexOf(".pls?")>0){rps=1;}
+        if (geldigeExtensies.indexOf(extensie) > -1) {
+          rps = 1;
+        }
+		if (rps==1){  //RealPlayer
+		  document.getElementById('proefPlayer').controls.stop();
+		  try {
+		    document.getElementById('proefRealPlayer').style.visibility='visible';
+		    document.getElementById('proefRealPlayer').SetSource(document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value);
+		  } catch(err){dummy=1;}
+		}
+	   if (rps==0){  //WMP
+	      document.getElementById('proefPlayer').url = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value;
+		  try{
+		    document.getElementById('proefRealPlayer').DoStop();
+		    document.getElementById('proefRealPlayer').style.visibility='hidden';
+		  } catch(err){dummy=1;}
+	    }
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  function goUp(){
+        if (document.getElementById('externeSelector').selectedIndex == -1){document.getElementById('innerTextOpslaan').innerText = 'Selecteer eerst een zender.'; return false;}
+	    if (document.getElementById('externeSelector').selectedIndex <= 0){return false;}
+	  
+	    huidigeIndex = document.getElementById('externeSelector').selectedIndex;
+	    tekst = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text;
+		waarde = document.getElementById('externeSelector').value;
+		
+		document.getElementById('externeSelector').selectedIndex = document.getElementById('externeSelector').selectedIndex - 1;
+		tekstTemp = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text;
+		waardeTemp = document.getElementById('externeSelector').value;
+		
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text = tekst;
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value = waarde;
+		
+		document.getElementById('externeSelector').selectedIndex = document.getElementById('externeSelector').selectedIndex + 1;
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text = tekstTemp;
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value = waardeTemp;
+		
+		document.getElementById('externeSelector').selectedIndex = document.getElementById('externeSelector').selectedIndex - 1;
+		wordtWaar();
+	  }
+	  
+	  function goDown(){
+	    if (document.getElementById('externeSelector').selectedIndex == -1){document.getElementById('innerTextOpslaan').innerText = 'Selecteer eerst een zender.'; return false;}
+	    if (document.getElementById('externeSelector').selectedIndex == document.getElementById('externeSelector').length-1){return false;}
+				
+	    huidigeIndex = document.getElementById('externeSelector').selectedIndex;
+	    tekst = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text;
+		waarde = document.getElementById('externeSelector').value;
+		
+		document.getElementById('externeSelector').selectedIndex = document.getElementById('externeSelector').selectedIndex + 1;
+		tekstTemp = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text;
+		waardeTemp = document.getElementById('externeSelector').value;
+		
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text = tekst;
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value = waarde;
+				
+		document.getElementById('externeSelector').selectedIndex = document.getElementById('externeSelector').selectedIndex - 1;
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text = tekstTemp;
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value = waardeTemp;
+		
+		document.getElementById('externeSelector').selectedIndex = document.getElementById('externeSelector').selectedIndex + 1;
+		wordtWaar();
+	  }
+	  
+
+
+      function opslaan(){
+	    completeGekozenRegel1 = '';
+	    for (var i=0 ; i < document.getElementById('externeSelector').options.length; i++){
+		  zenderNaam = document.getElementById('externeSelector').options[i].text;
+		  tothier = zenderNaam.indexOf('  =  ');
+		  zenderNaam = zenderNaam.substring(0,tothier);
+		  zenderAdres = document.getElementById('externeSelector').options[i].value;
+		  completeGekozenRegel1 = completeGekozenRegel1 + '#' + zenderNaam + '*' + zenderAdres;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+		//var exportBestandsnaam = 'C:\\Users\\Ron\\AppData\\Local\\Microsoft\\Windows Sidebar\\Gadgets' + '\\ZenderData.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+		if (completeGekozenRegel1 !=''){
+          a.WriteLine(completeGekozenRegel1);
+          a.Close();
+		  //document.getElementById('info').innerText = 'De gekozen zenders zijn opgeslagen...';
+		}
+		verandering = false;
+	    if (wilWeg == true){
+	      System.Gadget.Flyout.show = false;
+	    }
+	  }	  
+
+	  
+	  
+      function sorteer(){
+	    var sorteerArray = new Array();
+		var huidigeSorteerRegel;
+	    for (var i=0;i<document.getElementById('externeSelector').options.length;i++){
+		  sorteerArray[i] = document.getElementById('externeSelector').options[i].text + '***' + document.getElementById('externeSelector').options[i].value;
+		}
+	    sorteerArray = sorteerArray.sort();
+		document.getElementById('externeSelector').options.length = 0;
+		for (var j=0;j<sorteerArray.length;j++){
+		  huidigeSorteerRegel = sorteerArray[j].split("***", sorteerArray[j].length);
+		  document.getElementById('externeSelector').options[j] = new Option(huidigeSorteerRegel[0],false,false);
+		  //document.getElementById('externeSelector').options[j].text = huidigeSorteerRegel[0];
+		  document.getElementById('externeSelector').options[j].value = huidigeSorteerRegel[1];
+		}
+		wordtWaar();
+	  }
+	  
+	  
+	  function voegToe(){
+	    var nieuweZenderNaam = document.getElementById('naam1').value;
+	    var nieuweZenderAdres = document.getElementById('adres1').value;
+		
+		if (nieuweZenderNaam==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'You did not give the new station a name...';
+		  return false;
+		}
+		if (nieuweZenderAdres==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'You did not give a web address for the new station...';
+		  return false;
+		}
+		if (nieuweZenderAdres.indexOf('.html')>0){
+		  document.getElementById('innerTextOpslaan').innerText = 'This is no webSTREAM, but a webSITE address. Unfortunately that does not work.';
+		  return false;
+		}
+        nieuweZenderTotaal = nieuweZenderNaam + '  =  ' + nieuweZenderAdres;
+        document.getElementById('externeSelector').options[document.getElementById('externeSelector').options.length]=new Option(nieuweZenderTotaal, nieuweZenderAdres,false,false);
+	    document.getElementById('innerTextOpslaan').innerText = nieuweZenderNaam + ' is added. Do not forget to save.';
+		document.getElementById('naam1').value = '';
+		document.getElementById('adres1').value = '';
+		wordtWaar();
+	  }
+	  
+	  
+	  function wisZender(){
+	    if (document.getElementById('externeSelector').selectedIndex == -1){
+		  document.getElementById('innerTextOpslaan').innerText = 'First select a station.';
+		  return false;
+		}
+		var onthoudZenderIndex = document.getElementById('externeSelector').selectedIndex;
+		document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex] = null;
+	    document.getElementById('innerTextOpslaan').innerText = 'The station is removed. Do not forget to save.';
+		if (onthoudZenderIndex < document.getElementById('externeSelector').options.length){
+		  document.getElementById('externeSelector').selectedIndex = onthoudZenderIndex;
+		} else {document.getElementById('externeSelector').selectedIndex = document.getElementById('externeSelector').options.length}
+		wordtWaar();
+	  }
+	  
+	  
+	  function importeerZenders(){
+  	    oShellItem = System.Shell.chooseFile(true,".dat files:*.dat:text-files:*.txt::",'',''); 
+		var pad = oShellItem.path;
+		var legenOfNiet = document.getElementById('cbWis').checked;
+		//var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+		var exportBestandsnaam = pad;
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+		  if (legenOfNiet==false){document.getElementById('externeSelector').options.length=0;}  // wis de complete lijst
+		  r = 'dummy';
+		  do{
+		    r =  f.ReadLine();
+			zenderRegel = r.split("*");
+            zenderNaam = zenderRegel[0];
+		    zenderAdres = zenderRegel[1];
+		    zenderTotaal = zenderNaam + '  =  ' + zenderAdres;
+            document.getElementById('externeSelector').options[document.getElementById('externeSelector').options.length]=new Option(zenderTotaal, zenderAdres,false,false);
+		  } while (r !='');
+		  f.Close();
+		  wordtWaar();
+		} else {document.getElementById('innerTextOpslaan').innerText = 'Impossible to import data. No data-file found.'}
+	  }
+	  
+	  
+	  function klaar(){
+	    if (verandering == false){ System.Gadget.Flyout.show = false; return;}
+	    if (verandering == true){
+	      document.getElementById('vraag').style.visibility= 'visible';
+	    }
+	  }
+	  
+	  
+	  
+	  
+	  function maakBackup(){
+		oShellItem = System.Shell.saveFileDialog('',"tekstbestanden\0*.txt\0\0");
+		if (oShellItem==''){return false;}
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (oShellItem.indexOf('.txt')==-1){oShellItem = oShellItem + '.txt';}
+		var a = fso.CreateTextFile(oShellItem, true);
+	    for (var i=0 ; i < document.getElementById('externeSelector').options.length; i++){
+		  zenderNaam = document.getElementById('externeSelector').options[i].text;
+		  tothier = zenderNaam.indexOf('  =  ');
+		  zenderNaam = zenderNaam.substring(0,tothier);
+		  zenderAdres = document.getElementById('externeSelector').options[i].value;
+		  a.WriteLine(zenderNaam + '*' + zenderAdres);
+		}
+		a.Close();
+        document.getElementById('innerTextOpslaan').innerText = 'The backup-file is created.';
+	  }
+	  
+	  
+	   function toonHernoemScherm(){
+	     if (document.getElementById('externeSelector').selectedIndex < 0){document.getElementById('innerTextOpslaan').innerText = 'First select a station.'; return false;}
+	     document.getElementById('hernoem').style.visibility='visible';
+	     huidigeIndex = document.getElementById('externeSelector').selectedIndex;
+	     var zenderOud = document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text;
+		 tothier = zenderOud.indexOf('  =  ');
+		 zenderOud = zenderOud.substring(0,tothier);
+		 var streamOud = document.getElementById('externeSelector').value;
+		 document.getElementById('hernoemZendernaam').value = zenderOud;
+		 document.getElementById('hernoemStreamnaam').value = streamOud;
+		 document.getElementById('hernoemZendernaam').focus();
+	   }
+	  
+	  
+	  
+       function hernoemZender(){
+	     var zenderNieuw = document.getElementById('hernoemZendernaam').value;
+		 var streamNieuw = document.getElementById('hernoemStreamnaam').value;
+		 zenderNieuw = zenderNieuw + '  =  ' + streamNieuw;
+		 document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].text = zenderNieuw;
+		 document.getElementById('externeSelector').options[document.getElementById('externeSelector').selectedIndex].value = streamNieuw;
+		 document.getElementById('hernoem').style.visibility='hidden';
+		 wordtWaar();
+	   }
+	  
+	  
+	   function laadAanvulling(){
+	     if (document.getElementById('externeSelector').options.length > 0){
+		   document.getElementById('innerTextOpslaan').innerText = 'This data can only be read, when the amount of extra stations is zero.';
+		   return;
+		 }
+	     var exportBestandsnaam = System.Gadget.path + '\\extra.txt';
+         var fso, f, r;
+         var ForReading = 1, ForWriting = 2;
+         fso = new ActiveXObject("Scripting.FileSystemObject");
+		 if (fso.FileExists(exportBestandsnaam)){
+           f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+		   document.getElementById('externeSelector').options.length=0;  // wis de complete lijst
+		   r = 'dummy';
+		   do{
+		     r =  f.ReadLine();
+		     zenderRegel = r.split("*");
+             zenderNaam = zenderRegel[0];
+		     zenderAdres = zenderRegel[1];
+		     zenderTotaal = zenderNaam + '  =  ' + zenderAdres;
+             document.getElementById('externeSelector').options[document.getElementById('externeSelector').options.length]=new Option(zenderTotaal, zenderAdres,false,false);
+		   } while (r !='');
+		   f.Close();
+		 } else {document.getElementById('innerTextOpslaan').innerText = 'Importing stations not possible. File with data NOT found.'}
+	   }
+	  
+	  
+	  
+	</script>
+  </head>
+  <body onload="init();inlezen();" style="background-color:black">
+
+    <select id="externeSelector" style="width:300px; position:absolute; top:150px; left:5px; color:black;background-color:black;color:white; border:1px" size="8" onclick="javascript:toonMeerInfo();">
+	</select>
+	
+	<div style="position:absolute; left:340px; top:150px">
+	  <img src="icons\sort.png" style="margin-right:5px" onclick="sorteer()"><input type="button" value="ABC" class="knop2" style="width:110px" onclick="sorteer()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='All stations will be sorted alphabeticaly.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"><br>
+	  <img src="icons\up.png" style="margin-right:5px" onclick="goUp()"><input type="button" value="up" class="knop2" style="width:110px" onclick="goUp()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='You can change the order of the stations yourself. With this button you move the selected station one place up.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"><br>
+      <img src="icons\down.png" style="margin-right:5px" onclick="goDown()"><input type="button" value="down" class="knop2" style="width:110px" onclick="goDown()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='You can change the order of the stations yourself. With this button you move the selected station one place down.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"><br>
+	  <img src="icons\rename.png" style="margin-right:5px" onclick="toonHernoemScherm()"><input type="button" value="rename" class="knop2" style="width:110px" onclick="toonHernoemScherm()"  onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='You can edit the name of a selected station or change the address of the url.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"><br>
+	  <img src="icons\delete.png" style="margin-right:5px" onclick="wisZender()"><input type="button" value="remove" class="knop2" style="width:110px" onclick="wisZender()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='Remove a selected station from the list.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"><br>
+	  <img src="icons\export.png" style="margin-right:5px" onclick="maakBackup()"><input type="button" value="make backup" class="knop2" style="width:110px" onclick="maakBackup()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='Make an extra copy of the stations in the list and store it in a new text-file.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"><br>
+	  <img src="icons\import.png" style="margin-right:5px" onclick="importeerZenders()"><input type="button" value="import stations" class="knop2" style="width:110px" onclick="importeerZenders()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='You can load here a textfile, which contains multiple lines. Each lines has the following construction: StationName*WEBSTREAM URL'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''">
+	</div>
+  
+    <div style="position:absolute;top:150px;left:500px; width:200px;font-size:12px;font-family:tahoma; border: 1px solid grey; padding:2px; text-align:justify;color:lightyellow;background-color:black">
+	  <input type="checkbox" id="cbWis" checked>
+	  When importing stations, append them to the rest
+	</div>
+	
+	<div style="position:absolute;top:220px;left:500px; width:200px; font-size:12px;font-family:tahoma; border: 1px solid grey; padding:2px; text-align:justify;color:lightyellow;background-color:black">
+	  <input type="checkbox" id="cbSort" onclick="schrijfSort()">
+	  Sort Internal stations and External stations  on alphabet in one list.
+	</div>
+  
+    <img src="icons\close.png" style="position:absolute;top:5px;left:760px" onclick="klaar()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='When you want to leave this screen (without saving), click this button.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''">
+	
+	<input type="button" value="SAVE"  class="knop2" style="position:absolute;top:290px;left:215px;" onclick="opslaan()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='All stations in the list will be saved.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"> <br><br>
+  
+  <OBJECT id="proefPlayer" width="140" height="45"  style="position:absolute; left:5px;top:290px"	  CLASSID="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"	  type="application/x-oleobject" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='With this mini-player you can test if a station works fine. First select an added station in the list. If you are able to play RealPlayer streams, the player automatically switches to the RealPlayer modus, when you have added such streams in the list.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''">
+    <PARAM NAME="URL" VALUE="">
+	<PARAM NAME="SendPlayStateChangeEvents" VALUE="True">
+	<PARAM NAME="AutoStart" VALUE="false">
+	<PARAM NAME="showControls" VALUE="true">
+	<PARAM name="Volume" value="50">  
+  </OBJECT>
+  
+  <object id="proefRealPlayer"  classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" width="140" height="45" style="visibility:hidden; position:absolute; left:5px;top:290px">
+	  <param name="AUTOSTART" value="false">
+      <param name="SHUFFLE" value="false">
+      <param name="PREFETCH" value="0">
+      <param name="NOLABELS" value="-1">
+      <param name="SRC" value="">
+	  <param name="NOJAVA" value="true">
+      <param name="CONTROLS" value="ControlPanel">
+      <param name="CONSOLE" value="clip1">
+      <param name="LOOP" value="0">
+      <param name="NUMLOOP" value="0">
+      <param name="CENTER" value="0">
+      <param name="MAINTAINASPECT" value="0">
+      <param name="BACKGROUNDCOLOR" value="#000000">
+    </object>
+  
+  <div id="handmatig" style="position:absolute;top:5px;left:5px; font-family:Arial;font-size:12; border:1px solid white;padding:2px;width:750px;color:white">
+    At this site you can add new stations and manage them.
+    <br>
+	 <table>
+	   <tr><td style="color:white">Stationname : </td><td>  <input name="naam1" id="naam1" type="text" size="40" value=""> </td><td><i style="font-size:10; color:gray">e.g. SkyRadio</i><input type="button" class="knop2" value="Add station"  onclick="javascript:voegToe()" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='A station added manually will be put on the list down under. Do not forget to save, else it does not show up in MiniRadio.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"><input type="button" value="help"  class="knop2" style="width:110px" onclick="javascript:System.Shell.execute('http://home.planet.nl/~roder090/shoutcast/shoutcast.html')" onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='A new window will be opened with an explanation about how to add stations.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''"></td></tr></td></tr>
+	   <tr><td style="color:white">Web address :   </td><td>  <input name="adres1" id="adres1" type="text" size="40" value=""> </td><td><i style="font-size:10;color:gray">g.g. http://www.garnierstreamingmedia.com/asx/skyradio.asp</i></td></tr>
+	 </table>
+	 <br>
+   </div>
+   
+   
+   
+   <div id="hernoem" style="position:absolute; top:150px;left:100px; width:300px; font-size:10; padding:10px; border: 1px solid red; visibility:hidden; background-color:yellow">
+     <input type="text" id="hernoemZendernaam" size="40"> <br>
+	 <input type="text" id="hernoemStreamnaam" size="40"> <br><br>
+	 <input type="button" value="Update" onclick="hernoemZender()">
+	 <input type="button" value="Cancel" onclick="javascript:document.getElementById('hernoem').style.visibility='hidden'">
+   </div>
+   
+   
+   <div id="vraag" style="position:absolute; top:5px;left:610px; width:190px; visibility:hidden; z-index:2; border:5px solid red; padding:10px; background-color:white; font-weight:bold"> 
+	  Save changes ? <br><br>
+	  <input type="button" value="YES" onclick="wilWeg=true;opslaan();" style="width:75px">
+	  <input type="button" value="NO" onclick="System.Gadget.Flyout.show = false;" style="width:75px">
+	</div>
+      
+   
+   <div id="meerZenders" style="visibility:hidden; position:absolute;top:50px;left:100px; width:500px;font-size:14px; font-weight:normal; color:white; background-color:black;border:20px solid yellow;padding:2px">
+     Need more stations ? Look at <a href="http://www.miniradio.nl/gebruikers/miniradio/en/zenders.php" target="_blank"> MiniRadio-stations </a>
+	 <br><br>
+	 Only if <a href="http://uk.real.com/player/win/" target="_blank"> RealPlayer </a> is installed, you can look at <a href="http://www.shoutcast.com" target="_blank"> Shoutcast.com </a>
+	 <span style="font-family:arial; color:darkgreen;margin-left:20px"> I prefer <a href="http://www.free-codecs.com/download/real_Alternative.htm" target="_blank"><b>Real Alternative</b></a> more than Real Player</span>
+	 <br>
+	 <span style="color:green; font-size:12px; font-weight:normal">By the way: shoutcast-streams played via Realplayer/RealAlternative show song-titels at the top of the screen!</span>
+	 <br>
+	 <span style="font-weight:normal; font-size:12px">When no additional stations are added, you can click  <span onclick="laadAanvulling()" style="color:lightyellow; text-decoration:underline; font-weight:bold; cursor:pointer">here</span> to load many example stations at once </span>
+	 <br><br>
+	 <a href="javascript:document.getElementById('meerZenders').style.visibility='hidden'"> close this info-window </a>
+   </div>
+  
+   
+   <div id="innerTextOpslaan" style="position:absolute;top:103px;left:10px; color:darkblue;background-color:yellow; padding:5px;font-family:tahoma; font-size:12px; font-weight:bold">Move your mouse over the buttons and you can read important information here.</div>	
+   
+   <img src="icons/info.png" style="position:absolute;top:295px;left:155px" onclick="javascript:document.getElementById('meerZenders').style.visibility='visible'"onmouseover="javascript:document.getElementById('innerTextOpslaan').innerText='Show information where to find more stations.'" onmouseout="javascript:document.getElementById('innerTextOpslaan').innerText=''">
+   
+   <a href="http://www.miniradio.nl/gebruikers/miniradio/en/zenders.php" style="position:absolute;top:315px;left:665px">More stations</a>
+   
+  </body>
+</html>

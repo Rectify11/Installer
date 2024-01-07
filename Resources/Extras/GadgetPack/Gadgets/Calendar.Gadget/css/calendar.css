@@ -1,0 +1,281 @@
+﻿/*
+//---------------------------------------------
+//  THIS CODE IS NOT APPROVED FOR USE IN/ON ANY OTHER UI ELEMENT OR PRODUCT COMPONENT.  
+//  Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+// ----------------------------------------------
+*/
+
+body        
+{
+    font:10px Segoe UI;
+    color:black;
+    margin:0;
+	-webkit-font-smoothing: antialiased;
+    border:none;
+    cursor:default;
+}
+body,
+*           
+{
+    overflow:hidden
+}
+
+TABLE
+{
+    border-collapse:collapse;
+}
+#ellipsisMiddle
+{
+    line-height:60px;
+    font-size:75px;
+    padding-bottom:10px;
+}
+#ellipsisHeadingTop
+{
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width:90px;
+    font-size:13px;
+    padding-bottom:5px;
+}
+#ellipsisHeadingBottom
+{
+    padding-left:5px;
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width:115px;
+    font-size:13px;
+    padding-bottom:10px;
+}
+#tID
+{
+    position:relative;
+    top:1px;
+    overflow:hidden;
+    padding-bottom:4px;
+}
+#divBgImageDocked
+{
+    position:absolute;
+    left:-4;
+    top:-12;
+    width:125;
+    height:136;
+    z-index:-5;
+    overflow:hidden;
+}
+
+#divBgImageUnDocked
+{
+    position:absolute;
+    left:-1;
+    top:-1;
+    width:123;
+    height:127;
+    z-index:-5;
+    overflow:hidden;
+}
+
+#divFilterDocked 
+{
+    position:absolute;
+    z-index:10;
+    left:4;
+    top:11;
+    width:121;
+    height:127;
+    overflow:hidden;
+    filter:progid:DXImageTransform.Microsoft.Iris(Duration=0,irisStyle='SQUARE'),
+    progid:DXImageTransform.Microsoft.Fade(Duration=0,overlap=1.0);
+}
+
+div.year_docked        
+{
+    position:absolute;
+    left:-1;
+    top:1;
+    width:120;
+    height:120;
+    overflow:hidden;
+}
+div.year_unDocked    
+{
+    position:absolute;
+    left:-1;
+    top:-3;
+    width:120;
+    height:120;
+    overflow:hidden;
+}
+
+div.day_docked        
+{
+    position:absolute;
+    left:0px;
+    top:5px;
+    width:120px;
+    
+    overflow:hidden;
+}
+div.day_unDocked    
+{
+    position:absolute;
+    left:1;
+    top:6;
+    width:120;
+    overflow:hidden;
+}
+                
+div.month_docked    
+{
+    position:absolute;
+    left:-2;
+    top:6;
+    width:120;
+    height:120;
+    overflow:hidden;
+}
+div.month_unDocked    
+{
+    position:absolute;
+    left:-2;
+    top:-3;
+    width:120;
+    height:120;
+    overflow:hidden;
+}
+
+div.cal     
+{
+    position:absolute;
+    left:2;
+    top:0;
+    width:120;
+    height:117;
+    overflow:hidden;
+    filter:progid:DXImageTransform.Microsoft.Strips;
+}
+
+div.month_docked span
+{
+    position:absolute;
+    top:-6;
+    left:0;
+    width:120;
+    height:122;
+    overflow:hidden;
+}
+
+div.prevnext
+{
+    visibility:hidden;
+    position:absolute;
+    z-index:50;
+    top:10;
+    width:123;
+    height:28;
+    padding:10 0 0 2;
+    text-align:center;
+}
+div.prevnext_unDocked
+{
+    position:absolute;
+    z-index:50;
+    top:5;
+    width:123;
+    height:28;
+    padding:4 0 0 2;
+    text-align:center;    
+    visibility:hidden;
+}
+#dowId
+{
+    border-collapse:collapse;
+    position:relative;
+    top:3;
+    z-index:10;
+}
+
+q.day       {width:15;height:13;margin-left:2;padding:0 2 1 0;text-align:right}
+q.today 	{ background: #005FB8; color: white; -ms-border-radius: 10px; /* IE9+ / border-radius: 10px; / Other browsers */ }
+q.dow       {font:bold;color:#005FB8;}
+q.name      {font:bold;color:gray;}
+q.dim       {color:silver}
+q.hot       {color:#005FB8}
+q.sel       {color:white;background:black}
+q.lb        {border-left:1 solid #dedfde}
+
+
+img.curlDocked
+{
+    visibility:hidden;z-index:-5;position:absolute;left:0;bottom:2;
+}
+img.curlUnDocked
+{
+    visibility:hidden;z-index:-5;position:absolute;left:-2;bottom:-2;
+}
+#divFilterBottomUndocked 
+{
+    position:absolute;
+    z-index:10;
+    left:4;
+    top:134;
+    width:121;
+    height:125;
+    filter:progid:DXImageTransform.Microsoft.Slide(Duration=0,slideStyle="SWAP",bands=1),
+    progid:DXImageTransform.Microsoft.Fade(Duration=0,overlap=1.0);
+} 
+
+#dockedHitRegion
+{
+    visibility:hidden;
+    position:absolute;
+    width:27px;
+    height:27px;
+    z-index:15;
+    position:absolute;
+    left:0;
+    bottom:0;    
+}
+
+#unDockedHitRegion
+{
+    visibility:hidden;
+    position:absolute;
+    width:27px;
+    height:27px;
+    z-index:15;
+    position:absolute;
+    left:-2;
+    bottom:-2;
+}
+
+#U2
+{
+    position:absolute;left:4;top:5;width:120;height:117;
+}
+
+.divMonthView_docked
+{
+    position:absolute;
+    top:27px;
+    left:0px;
+    z-index:-5;
+    overflow:hidden;
+}
+
+.divMonthView_unDocked
+{
+    position:absolute;
+    top:6px;
+    left:0px;
+    z-index:-5;
+    overflow:hidden;
+}
+
+label       {font:bold 120%;}
+label.hot   {color:#005FB8}

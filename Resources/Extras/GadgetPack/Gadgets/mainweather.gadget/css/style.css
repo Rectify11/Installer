@@ -1,0 +1,104 @@
+                 #bg {
+                         width: 130px;
+                         height: 67px;
+                         background-color: transparent;
+                 }
+                 #wet {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                 }
+                 #f {
+                    position: absolute;
+                    top:  8px;
+                    left: 8px;
+                    z-index: 1000;
+                    cursor: pointer;
+                    display: block;
+                 }
+body {
+    margin: 0px;
+    font-family: calibri;
+    font-size: 11px;
+    width:130px;
+    height: 66px;
+}
+#content {
+   width: 119px;
+   height: 56px;
+   margin-top: 5px;
+   margin-left: 5px;
+   color: #000000;
+   z-index: 99;
+}
+.day_sun {
+   background-color: #3F9EDB;
+}        
+.day_dark {
+   background-color: #3B444B;
+}
+.night_sun {
+   background-color: #001A28;
+}
+.night_dark {
+   background-color: #001A28;
+}
+.unknown {
+   background-color: #3B444B;
+   color: #ffffff;
+}
+.black {
+   background-color: #000000;
+   color: #ffffff;
+}
+
+
+
+#bild {
+   position: absolute;
+   margin-top:  0px;
+   margin-left: 0px;
+   z-index: 100;
+}
+#temp {
+   position: absolute;
+   width:119px;
+   margin-top:  0px;
+   margin-left: 0px;
+   text-align: right;
+   padding-right: 5px;
+   z-index: 110;
+   font-family: Segoe UI;
+   font-size: 18px;
+   color: #FFFFFF;
+}
+#ticker {
+   border: 0px solid black;
+   position: relative;
+   overflow: hidden;
+   z-index: 101;
+}
+#ticker div {
+   position: absolute;
+   white-space: nowrap;
+   margin-top: 37px;
+   background-color:transparent;
+   z-index: 101;
+}
+#flowing {
+    color: #ffffff;
+    font-family: Segoe UI;
+    font-size: 12px;
+    padding-left: 3px;
+    z-index: 101;
+}
+#over {
+    position: absolute;
+    width: 119px;
+    height: 56px;
+    top:  5px;
+    left: 4px;
+    background-color: transparent;
+    z-index: 1000;
+    cursor: pointer;
+}

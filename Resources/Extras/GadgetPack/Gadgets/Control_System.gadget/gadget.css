@@ -1,0 +1,11 @@
+﻿body{
+	font-family: Segoe UI;
+	font-size:10px;
+	width:130px;
+	height:74px;
+	margin:0px;
+	padding:0px;
+	border:none;
+}
+a:link {color:#87CEFA;}
+a:visited {color:#87CEFA;}

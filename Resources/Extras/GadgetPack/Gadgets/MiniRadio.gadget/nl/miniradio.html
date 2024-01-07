@@ -1,0 +1,283 @@
+<html>
+  <head>
+    <style type="text/css">
+	  body  {background-color: black ; font-family: arial,tahoma; font-size:12;width:130px;height:50px}
+	  .button1  {font-size:10; width:100px}
+	</style>
+	<script src="miniradio.js" language="jscript"></script>
+  </head>
+  <body onload="inlezenZenders();inlezenInstellingen();" onunload="stopRadio()">
+    <g:background id="myBg" style="position:absolute;width:0px;height:0px;z-index:-1" />
+    <img id="zwart" src="black.png" style="position:absolute;left:0px;top:0px;width:130px;height:28px;z-index:-1">
+  
+    <span id="evt"></span>
+	<img src="frontje1.png" id="frontje" style="position:absolute;top:0px;left:0px;z-index:34;width:130px;height:50px;visibility:hidden; border:0px" usemap="#frontMap" onclick="kijkGrootte();">
+    <div id="totaal" ondragenter="javascript:event.returnValue = false" ondragover="javascript:event.returnValue = false" ondrop="fileDragDropped();" style="position:absolute;top:0px;left:0px">
+
+
+    <object id="RealPlayer" classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" width="130" height="28" style="visibility:hidden; z-index:32">
+	  <param name="AUTOSTART" value="false">
+      <param name="SHUFFLE" value="false">
+      <param name="PREFETCH" value="0">
+      <param name="NOLABELS" value="-1">
+      <param name="SRC" value="">
+	  <param name="NOJAVA" value="true">
+      <param name="CONTROLS" value="ControlPanel">
+      <param name="CONSOLE" value="clip1">
+      <param name="LOOP" value="0">
+      <param name="NUMLOOP" value="0">
+      <param name="CENTER" value="0">
+      <param name="MAINTAINASPECT" value="0">
+      <param name="BACKGROUNDCOLOR" value="#000000">
+    </object>
+
+	
+    <OBJECT id="mediaPlayer" width="60" height="25" 
+      style="position:absolute; left:1px;top:2px;z-index:31"
+	  CLASSID="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"
+	  type="application/x-oleobject"  onmousewheel="muisVolume();">
+	
+	  <PARAM NAME="URL" VALUE="">
+	  <PARAM NAME="SendPlayStateChangeEvents" VALUE="True">
+	  <PARAM NAME="AutoStart" VALUE="True">
+	  <PARAM NAME="showControls" VALUE="true">
+	  <PARAM name="uiMode" value="none">
+	  <PARAM name="Volume" value="50">
+    </OBJECT>
+
+	<img src="play.png" id="play1" style="cursor:hand;position:absolute; top:1px; left:62px; z-index:31" onclick="javascript:afspelen();"  onmousewheel="muisVolume();">
+	<img src="stop.png" id="stop1" style="cursor:hand;position:absolute; top:1px; left:87px;z-index:31" onclick="javascript:stoppen();" onmousewheel="muisVolume();">
+    <img  src="up.png" title="harder" style="cursor:hand;position:absolute; top:1px; left:114px;color:white;z-index:31" onmousedown="javascript:harder();" onmouseover="javascript:plusOver();" onmouseout="javascript:plusOut();" onmousewheel="muisVolume();">
+	<img  src="down.png" title="zachter" style="cursor:hand;position:absolute; top:16px; left:114px;color:white;z-index:31" onmousedown="javascript:zachter();" onmouseover="javascript:minOver();" onmouseout="javascript:minOut();" onmousewheel="muisVolume();">
+    <div id="plus" style="position:absolute; top:1px; left:113px;width:17px;height:7px; border:1px solid white;z-index:31;visibility:hidden"></div>
+	<div id="min" style="position:absolute; top:17px; left:113px;width:17px;height:7px; border:1px solid white;z-index:31;visibility:hidden"></div>
+    <br>
+
+   <div id="welkeStaat" style="position:absolute; top:10px;left:3px; color:yellow; font-size:10; font-family:arial; font-weight:bold; z-index:32"></div>
+   <div id="VolStandTekst" style="z-index:32; position:absolute;top:1px;left:65px;font-size:26;font-weight:bold;color:yellow; background-color:black"  onmousewheel="muisVolume();"></div>
+  
+   <img id="smooth" src="smooth.png" style="position:absolute; top:28px;left:0px; z-index:34" title="klik op het pijltje rechts om van zender te wisselen." onclick="opnieuwRPtitel()">
+   <img id="realLogo" src="real.bmp" style="position:absolute; top:1px;left:7px; z-index:34;visibility:hidden">
+   
+   
+   <select style="position:absolute;left:0px; top:29px; width:130px;font:10; color:white;background-color:black; border:1px solid white; z-index:33" id="selector" onchange="bepaalZender()"  onmouseover="checkTitle()">
+     
+     <option value="999"> - Willekeurige Zender -
+	 <option value="http://www.1.fm/TuneIn/WM/christmas128k/Listen.aspx">1.FM : Always-Christmas
+     <option value="http://www.1.fm/TuneIn/WM/energy60s_70s128k/Listen.aspx">1.FM : 50's and 60's
+     <option value="http://www.1.fm/TuneIn/WM/70s128k/Listen.aspx">1.FM : 70's
+     <option value="http://www.1.fm/TuneIn/WM/energy80s128k/Listen.aspx">1.FM : 80's EURO
+	 <option value="http://www.1.fm/TuneIn/WM/back280s128k/Listen.aspx">1.FM : 80's US
+	 <option value="http://www.1.fm/TuneIn/WM/energy90s128k/Listen.aspx">1.FM : 90's US
+	 <option value="http://www.1.fm/TuneIn/WM/acpl128k/Listen.aspx">1.FM : Acappella
+	 <option value="http://www.1.fm/TuneIn/WM/energyblues128k/Listen.aspx">1.FM : Blues
+     <option value="http://www.1.fm/TuneIn/WM/energytcl128k/Listen.aspx">1.FM : Chillout Lounge
+     <option value="http://www.1.fm/TuneIn/WM/energydance128k/Listen.aspx">1.FM : Dance
+	 <option value="http://www.1.fm/TuneIn/WM/energydisco128k/Listen.aspx">1.FM : Disco Ball
+     <option value="http://www.1.fm/TuneIn/WM/energyfa128k/Listen.aspx">1.FM : Flashback Alternatives
+     <option value="http://www.1.fm/TuneIn/WM/energyhv128k/Listen.aspx">1.FM : High Voltage
+	 <option value="http://www.1.fm/TuneIn/WM/energytop40128k/Listen.aspx">1.FM : Top 40
+	 <option value="http://www.1.fm/TuneIn/WM/energytrance128k/Listen.aspx">1.FM : Trance
+	  
+	  
+	 <option value="http://www.citymusic.be/stream/city.asx"> BE: City Music
+	 <option value="http://stream.citygold.be:8004"> BE: CityGold
+     <option value="http://streaming.rtbf.be:8000/2128xrtbf"> BE: Classic 21
+     <option value="http://www.coolfmantwerpen.be/livestream/coolfm.asx"> BE: Cool FM
+     <option value="http://86.39.158.40:8000"> BE: Crooze FM
+	 <option value="http://www.exqifm.be/exqifm/webstream/listen.asx"> BE: EXQI FM
+	 <option value="http://www.gigantfm.nl/listen/listen.asx"> BE: Gigant fm
+	 <option value="http://listen.radionomy.com/radiogo4it"> BE: Go4it
+	 <option value="http://www.goldenflash.org/servers/media128.asx"> BE: Golden Flash
+     <option value="http://www.hitfm.be/radio/stream/HITfm.asx"> BE: HitFM
+     <option value="http://www.humorzender.be/streams/stream.php?id=wmp"> BE: Humorzender
+	 <option value="http://apps.joe.be/asx/joe_hi.asx"> BE: JOE fm
+	 <option value="http://www.jouwradio.be/stream/jouwradio.asx"> BE: Jouwradio
+	 <option value="http://stream.jumpstation.fm/"> BE: JumpStation.fm
+     <option value="http://mp3.streampower.be/ketnetradio-high.mp3"> BE: Ketnet Radio
+	 <option value="http://mp3.streampower.be/klara-high"> BE: Klara
+	 <option value="http://mp3.streampower.be/klaracontinuo-high"> BE: Klara continuo
+     <option value="http://mp3.streampower.be/mnm-high"> BE: MNM
+	 <option value="http://mp3.streampower.be/mnm_hits-high.mp3"> BE: MNM Hits
+     <option value="http://www.nostalgie.eu/streaming/windowsmediaplayer.wax"> BE: Nostalgie
+     <option value="http://www.oradio.be/stream/livestream.asx"> BE: O Radio
+	 <option value="http://streaming.rtbf.be:8000/pure128xrtbf"> BE: Pure FM
+	 <option value="http://www.radio-minerva.be/stream.php?ext=wax"> BE: Radio Minerva
+	 <option value="http://listen.radionomy.com/rolradio.m3u"> BE: Rolradio
+     <option value="http://apps.q-music.be/q_high.asx "> BE: Q-musiq
+     <option value="http://streaming2.intronic.nl/rgrfm"> BE: RGR fm
+	 <option value="http://army.wavestreamer.com:4947/"> BE: Roots radio
+	 <option value="http://mp3.streampower.be/rvi-high"> BE: RVI
+	 <option value="http://www.slowradio.be/stream.php?id=wmp"> BE: Slowradio
+	 <option value="http://breedband.starlightradio.be:8290"> BE: Starlight Radio
+     <option value="http://mp3.streampower.be/stubru-high"> BE: Studio Brussel
+     <option value="http://ns25042.ovh.net/streams/topgen_128mp3.asx"> BE: Topradio Topgeneration
+     <option value="http://ns24907.ovh.net/streams/topradio_128mp3.asx"> BE: TOPradio
+     <option value="http://www.trendyfm.be/stream/trendystream.asx"> BE: Trendy FM
+	 <option value="http://62.112.157.113:8000/stream"> BE: VBRO
+	 <option value="http://director.fluoline.net/app/audio/wc0012/wmp/mp3"> BE: Viva FM
+     <option value="http://mp3.streampower.be/radio1-high"> BE: VRT Radio 1
+     <option value="http://mp3.streampower.be/ra2wvl-high"> BE: VRT Radio 2 West Vlaanderen
+     <option value="http://mp3.streampower.be/sporza-high"> BE: VRT Sporza
+	 <option value="http://ns25042.ovh.net/streams/zenfm_128.asx"> BE: ZenFM
+	 
+     <option value="http://www.di.fm/wma/ambient.asx">D.I. Ambient
+     <option value="http://www.di.fm/wma/breaks.asx">D.I. Breaks
+     <option value="http://www.di.fm/wma/chillout.asx">D.I. Chillout
+	 <option value="http://www.di.fm/wma/classictechno.asx">D.I. Classic Techno
+	 <option value="http://www.di.fm/wma/djmixes.asx">D.I. DJ Mixes
+	 <option value="http://www.di.fm/wma/drumandbass.asx">D.I. Drum and Bass
+	 <option value="http://www.di.fm/wma/electro.asx">D.I. Electro
+	 <option value="http://www.di.fm/wma/eurodance.asx">D.I. Eurodance
+	 <option value="http://www.di.fm/wma/funkyhouse.asx">D.I. Funky House
+	 <option value="http://www.di.fm/wma/futuresynthpop.asx">D.I. Future Synthpop
+	 <option value="http://www.di.fm/wma/gabber.asx">D.I. Gabber
+	 <option value="http://www.di.fm/wma/goapsy.asx">D.I. Goa Psy
+	 <option value="http://www.di.fm/wma/hardcore.asx">D.I. Hardcore
+	 <option value="http://www.di.fm/wma/harddance.asx">D.I. Harddance
+	 <option value="http://www.di.fm/wma/hardstyle.asx">D.I. Hardstyle
+	 <option value="http://www.di.fm/wma/house.asx">D.I. House
+	 <option value="http://www.di.fm/wma/lounge.asx"> D.I. Lounge
+	 <option value="http://www.di.fm/wma/minimal.asx">D.I. Minimal
+	 <option value="http://www.di.fm/wma/progressive.asx">D.I. Progressive
+	 <option value="http://www.di.fm/wma/soulfulhouse.asx">D.I. SoulFulhouse
+	 <option value="http://www.di.fm/wma/techno.asx">D.I. Techno
+	 <option value="http://www.di.fm/wma/trance.asx">D.I. Trance
+	 <option value="http://www.di.fm/wma/vocaltrance.asx"> D.I. Vocal Trance
+	 
+     <option value="http://player.100p.nl/livestream.asx">NL: 100%NL
+	 <option value="http://icecast.omroep.nl/3fm-bb-mp3"> NL: 3FM
+ 	 <option value="http://icecast.omroep.nl/3fm-alternative-mp3"> NL: 3FM Alternative
+	 <option value="http://icecast.omroep.nl/3fm-live-mp3"> NL: 3FM Live
+	 <!--<option value="http://livestreams.omroep.nl/npo/3fm_megatop50"> NL: 3FM Mega Top 50-->
+	 <option value="http://icecast.omroep.nl/3fm-serioustalent-mp3"> NL: 3FM Serious Talent
+	 <option value="http://livestreams.omroep.nl/eo/xnoizzradio"> NL: 3FM Xnoizz
+	 <option value="http://shoutcast.omroep.nl:8006">NL: 3VOOR12 Central
+     <option value="http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=205">NL: Arrow Rock
+	 <option value="http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=204">NL: Arrow Jazz FM
+	 <option value="http://shoutcast.omroep.nl:8068/">NL: Avro: klassiek 1
+	 <option value="http://shoutcast.omroep.nl:8072/">NL: Avro: klassiek 2
+	 <option value="http://wmplayer.bnn.fm">NL: BNN FM
+	 <option value="http://www.bright.fm/radiostream/stream.asx">NL: Bright FM
+	 <option value="http://ice1.streamzilla.jet-stream.nl:8000/ilsemedia=ice7"> NL: Candle Light
+	 <option value="http://www.garnierstreamingmedia.com/asx/caz_audio_01.asp">NL: Caz!
+	 <option value="http://stream.nxs.nl/asx/cityfm/CITYFM">NL: City FM Classic Rock
+	 <option value="http://www.classicfm.nl/player/classicfm.asx">NL: Classic FM
+	 <option value="http://streams.greenhost.nl:8080/live">NL: Concertzender
+	 <option value="http://www.danceradio1.nl/wmp.asx">NL: Dance Radio 1
+	 <option value="http://www.dbsradio.net/dbslive.asx">NL: DBS Radio
+	 <option value="http://fresh.fm/media/audio/FreshFM.asx">NL: Fresh FM
+	 <option value="http://icecast.omroep.nl/funx-bb-mp3">NL: Funx
+	 <option value="http://www.gigantfm.nl/listen/listen.asx">NL: GiantFm
+	 <option value="http://www.hardcoreradio.nl/hr.asx">NL: Hardcore radio
+	 <option value="http://www.hottracksfm.nl/playlist.asx">NL: HottracksFM
+	 <option value="http://stream.kinderradio.fm/kinderradio">NL: Kinderradio.FM
+	 <option value="http://www.garnierstreamingmedia.com/asx/aardschok.asp">NL: Kink Aardschok
+	 <option value="http://www.garnierstreamingmedia.com/asx/kink_classx.asp">NL: KINK-ClassX
+	 <option value="http://www.garnierstreamingmedia.com/asx/kinkfm.asp">NL: Kink FM
+	 <option value="http://media.kxradio.nl/livestream1">NL: KXradio
+	 <option value="http://kxradio.nl/substreams/kx_classikx.m3u">NL: KX Classikx
+     <option value="http://kxradio.nl/substreams/kx_redhot.m3u">NL: KX Red Hot
+     <option value="http://kxradio.nl/substreams/kx_world.m3u">NL: KX World
+	 <option value="http://www.laserradio.nl/stream/laserradio.m3u">NL: Laser Radio
+	 <option value="http://megastadfm.rentachannel.nl:8002/">NL: Megastad FM
+	 <option value="http://streamserver6.telconet.nl:5502">NL: Nashville FM
+	 <option value="http://www.novaclassicrock.nl/streams/nova_classic_rock_player.asx">NL: Nova Classic Rock
+	 <option value="http://www.pro-fm.net/modules/streams/listen.asx">NL: Pro FM  (80's en 90's)
+	 <!-- <option value="http://www.q-music.nl/asx/q-music.asx">NL: Q-music -->
+	 <option value="http://vip2.str.reasonnet.com/qmusic.mp3.96">NL: Q-music
+	 <option value="http://icecast.omroep.nl/radio1-bb-mp3"> NL: Radio 1
+	 <option value="http://icecast.omroep.nl/radio2-bb-mp3"> NL: Radio 2
+	 <option value="http://icecast.omroep.nl/radio2-inconcert-mp3"> NL: Radio 2 In Concert
+	 <option value="http://icecast.omroep.nl/radio2-liedkunst-mp3"> NL: Radio 2 Liedkunst
+	 <option value="http://icecast.omroep.nl/radio2-sterrennl-mp3"> NL: Radio 2 Sterren.nl
+	 <option value="http://icecast.omroep.nl/radio2-top2000-mp3"> NL: Radio 2 Top 2000
+	 <option value="http://icecast.omroep.nl/radio4-bb-mp3"> NL: Radio 4
+	 <option value="http://icecast.omroep.nl/radio4-eigentijds-mp3"> NL: Radio 4 Eigentijds
+	 <option value="http://icecast.omroep.nl/radio4-jongklassiek-mp3"> NL: Radio 4 Jong Klassiek
+	 <option value="http://icecast.omroep.nl/radio4-musicareligiosa-mp3"> NL: Radio 4 Musica Religiosa
+	 <option value="http://icecast.omroep.nl/radio5-bb-mp3"> NL: Radio 5
+	 <option value="http://icecast.omroep.nl/radio5-nostalgia-mp3"> NL: Radio 5 Nostalgia
+	 <option value="http://icecast.omroep.nl/radio6-bb-mp3"> NL: Radio 6
+	 <option value="http://icecast.omroep.nl/radio6-jazz-mp3"> NL: Radio 6 Jazz
+	 <option value="http://icecast.omroep.nl/radio6-jazzjong-mp3"> NL:Radio 6 Jazz Jong
+	 <option value="http://livestreams.omroep.nl/nps/radio6_web01"> NL: Radio 6 Outer Limits
+	 <option value="http://livestreams.omroep.nl/nps/world"> NL: Radio 6 World 
+	 <option value="http://icecast.omroep.nl/nieuws24-bb-mp3">NL: Radio1 nieuws
+	 <option value="http://82.201.100.9:8000/Radio10Gold">NL: Radio 10 Gold
+	 <option value="http://82.201.100.10:8000/RD09_Radio10Gold_60s70s.m3u">NL: Radio 10 Gold 60/70's
+	 <option value="http://82.201.100.10:8000/RD05_R10_80s.m3u">NL: Radio 10 Gold 80's
+	 <option value="http://82.201.100.10:8000/RD10_Radio10Gold_90s_Hits.m3u">NL: Radio 10 Gold 90's
+	 <option value="http://82.201.100.10:8000/WEB20_HQ">NL: R10 Gold Disco Classics
+	 <option value="http://82.201.100.10:8000/WEB03.m3u">NL: R10 Gold Top 4000
+	 <option value="http://www.radio227.nl/radio227.asx">NL: Radio 227
+	 <option value="http://82.201.100.9:8000/radio538">NL: Radio 538
+	 <option value="http://82.201.100.9:8000/WEB01mobiel">NL: Radio 538 Dance Department
+	 <option value="http://82.201.100.10:8000/WEB11.m3u">NL: Radio 538 Hitzone
+	 <option value="http://talpa-asx.streaming.is.nl/streaming.asp?P=20004&Q=JUIZE_HIGH">NL: Radio 538 Juize
+	 <option value="http://82.201.100.10:8000/RD02_NonStop40">NL: Radio 538 NON Stop 40
+	 <option value="http://82.201.100.10:8000/WEB16.m3u">NL: Radio 538 Party
+	 <option value="http://82.201.100.10:8000/WEB21.m3u">NL: Radio 53L8
+	 <option value="http://82.201.100.10:8000/WEB13mobiel.m3u">NL: Radio 53Z8
+	 <option value="http://83.98.170.75/live/decibel.asx">NL: Radio Decibel
+	 <option value="http://www.radionl.fm/stream/listen.asx">NL: Radio NL
+	 <option value="http://www.radioveronica.nl/radioveronicaplayer/radioveronica.asx">NL: Radio Veronica (80's and 90's hits)
+	 <option value="http://www.royal-radio.com/royal-radio.asx">NL: Royal Radio (24/7 hiphop and RnB)
+	 <option value="http://82.201.100.10:8000/WEB04_RTL_ROCK.m3u">NL: RTL Power FM
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=Skyradio&type=live&service=windowsmedia&protocol=http&port=&output=asx">NL: SkyRadio	 
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=SkyNL&type=live&service=windowsmedia&protocol=http&port=&output=asx">NL: SkyRadio NL
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=Seasonal&type=live&service=windowsmedia&protocol=mms&port=&output=asx"> NL: Sky Radio LoveSongs
+	 <option value="http://82.201.100.10:8000/SLAMFM_MP3_HQ">NL: SLAM!FM
+	 <option value="http://www.smashfm.nl/stream/smashfm.php?file=wax">NL: Smash FM
+	 <option value="http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=296"> NL: Traffic Radio
+	 <option value="http://5663.live.streamtheworld.com/HIT_RADIOAACCMP3"> NL: Veronica Hitradio
+	 <option value="http://5703.live.streamtheworld.com:443/VERONICA_ROCKAACCMP3"> NL: Veronica Rockradio
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=Top1000&type=live&service=windowsmedia&protocol=mms&port=&output=asx"> NL: Veronica Top 1000 A.T.
+	 <option value="http://ice1.streamzilla.jet-stream.nl:8000/ilsemedia=ice7">NL: Vrouwonline Radio
+	 <option value="http://www.waterstadfm.nl/site/stream/listen.asx">NL: Waterstad FM
+	 <option value="http://www.xfmhitradio.nl/live/live.asx">NL: XFM Hitradio
+	 
+     <option value="http://www.sky.fm/wma/altrock.asx"> SFM: Alternative Rock
+	 <option value="http://www.sky.fm/wma/hit70s.asx"> SFM: All Hit 70's
+	 <option value="http://www.sky.fm/wma/the80s.asx"> SFM: Best of the 80s
+	 <option value="http://www.sky.fm/wma/guitar.asx"> SFM: Classical Guitar
+	 <option value="http://www.sky.fm/wma/classicrap.asx"> SFM: Classical Rap
+	 <option value="http://www.sky.fm/wma/classicrock.asx"> SFM: Classic Rock
+	 <option value="http://www.sky.fm/wma/country.asx"> SFM: Country
+	 <option value="http://www.sky.fm/wma/datempolounge.asx"> SFM: DaTempo Lounge
+	 <option value="http://www.sky.fm/wma/indierock.asx"> SFM: Indie Rock
+	 <option value="http://www.sky.fm/wma/jazz.asx"> SFM: Modern Jazz
+	 <option value="http://www.sky.fm/wma/classical.asx"> SFM: Mostly Classical
+	 <option value="http://www.sky.fm/wma/newage.asx"> SFM: New Age
+	 <option value="http://www.sky.fm/wma/oldies.asx"> SFM: Oldies
+	 <option value="http://www.sky.fm/wma/rootsreggae.asx"> SFM: Roots Reggae
+	 <option value="http://www.sky.fm/wma/salsa.asx"> SFM: Salsa
+	 <option value="http://www.sky.fm/wma/smoothjazz.asx"> SFM: Smooth Jazz
+	 <option value="http://www.sky.fm/wma/tophits.asx"> SFM: Top Hits
+	 <option value="http://www.sky.fm/wma/uptemposmoothjazz.asx"> SFM: Untempo Smooth Jazz
+	 <option value="http://www.sky.fm/wma/urbanjamz.asx"> SFM: Urban Jamz
+	 <option value="http://www.sky.fm/wma/world.asx"> SFM: World Music
+	 
+	 <option value="http://www.bbc.co.uk/radio/listen/live/r1.asx"> UK: BBC 1
+	 <option value="http://www.bbc.co.uk/radio/listen/live/r2.asx"> UK: BBC 2
+	 <option value="http://www.rockradio1.com/192kwma.asx">UK: RockRadio1
+	 <option value="http://wazee.org/128.asx">US: Radio wazee
+	 <option value="http://www.977music.com/tunein/web/80s.asx">US: .977 The 80s channel
+	 <option value="http://www.977music.com/tunein/web/rock.asx">US: .977 The Alternative Channel
+	 
+    </select>   
+	<script>  showSelector();</script>
+    </div>
+    <map name="frontMap">
+      <area shape="rect" coords="0,0,60,27" href="javascript:showSelector();this.blur()">
+	  <area shape="rect" coords="66,5,85,25" href="javascript:document.getElementById('mediaPlayer').controls.play();this.blur()" alt="afspelen">
+	  <area shape="rect" coords="88,5,109,25" href="javascript:document.getElementById('mediaPlayer').controls.stop();this.blur()" alt="stop">
+	  <area shape="rect" coords="113,0,129,17" href="javascript:harder();this.blur()" alt="harder">
+	  <area shape="rect" coords="112,18,129,30" href="javascript:zachter();this.blur()" alt="zachter">
+	  <area shape="rect" coords="0,30,129,49" href="javascript:showSelector();this.blur()" alt="kies zender">
+	  <!--<area shape="rect" coords="5,34,111,43" href="javascript:;"> //zendernaam-->
+	</map>
+  </body>
+</html>  
+  
+  

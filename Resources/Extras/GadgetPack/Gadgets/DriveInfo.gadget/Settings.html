@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <style>
+      body { width: 250px; height: 500px; padding: 0px; margin: 0px; font-family: Tahoma; }
+      body,p,div,span,td { font-size: 9pt; }
+      label { font-weight: bold; }
+      input,select { font: Arial; font-size: 9pt; }
+      table { width: 100%; }
+    </style>
+    <script>
+      var background, maxBackgrounds = 3;
+
+      function updateBackground()
+      {
+        var x = 84, y = 47, m;
+        canvas.removeObjects();
+       
+        canvas.addImageObject('images/backgrounds/background' + background + '.png', x, y); 
+        m = canvas.addImageObject('images/meterblue.png', x + 24, y + 34);   
+        m.width = (0.25 * 128);
+        m.left = x + 24 - ((128 - m.width) / 2);
+        
+        canvas.addImageObject('images/drives/drive3.png', x, y);
+        canvas.addTextObject('Vista (C:)', 'Segoe UI', 11, 'white', x + 58, y + 5);
+        canvas.addTextObject('40GB / 75%', 'Segoe UI', 10, 'white', x + 58, y + 17);
+
+        y += 48;
+
+        canvas.addImageObject('images/backgrounds/background' + background + '.png', x, y); 
+        m = canvas.addImageObject('images/meterorange.png', x + 24, y + 34);  
+        m.width = (0.937 * 128);
+        m.left = x + 24 - ((128 - m.width) / 2);
+
+        canvas.addImageObject('images/drives/drive3.png', x, y);
+        canvas.addTextObject('Apps (D:)', 'Segoe UI', 11, 'white', x + 58, y + 5);
+        canvas.addTextObject('10GB / 6.3%', 'Segoe UI', 10, 'white', x + 58, y + 17);
+      }
+
+      function onBackground()
+      {
+        var e = window.event, o = e.srcElement, b = o.getAttribute('base');
+
+        o.src = 'images/settings/' + b + (e.type == 'mouseover' || e.type == 'mouseup' ? 'hover': (e.type == 'mousedown' ? 'pressed': '')) + '.png';
+
+        if (e.type == 'mouseup') 
+        {
+          if (b == 'next') background++; else background--;
+          if (background < 1) background = maxBackgrounds;
+          if (background > maxBackgrounds) background = 1;
+
+          updateBackground();        
+        }
+      }
+
+      function onClose(event)
+      {
+        if (event.closeAction == event.Action.commit) 
+        {
+          var d = '';
+
+          for(var i = 0; i < drives.options.length; i++)
+          {
+            var o = drives.options[i];
+            if (o.selected) d += o.value;
+          }
+
+          System.Gadget.Settings.write("drives", d);
+          System.Gadget.Settings.write("background", background);
+	}
+		
+        event.cancel = false;
+      }
+
+      function onLoad() 
+      {
+        System.Gadget.onSettingsClosing = onClose;
+
+        background = parseInt('0' + System.Gadget.Settings.read("background"));
+        if (background == 0) background = 1;
+
+	var d = System.Gadget.Settings.read("drives");
+        if (d.length == 0) d = 'C';
+
+        for(var i = 0, j = 0; i < 26; i++)
+        {
+          var l = String.fromCharCode(65 + i), o = document.createElement('OPTION');
+          o.value = l;
+          o.text = l + ':';
+         
+          if (j < d.length)
+          {
+            if (d.charAt(j) == l) { o.selected = true; j++; }
+          }
+ 
+          drives.options.add(o);
+        }
+
+        updateBackground();
+      }
+    </script>
+  </head>
+  <body onload="onLoad()">
+    <g:background id="canvas" src="images/settings/desktop.png" style="position: absolute; left: 1; top: 1; z-index: -999;" />
+    <div style="position: absolute; left: 0; top: 195px;">
+      <table cellspacing="0" cellpadding="0">
+        <tr>
+          <td style="width: 33%; padding-right: 10px;" align="right"><img src="images/settings/previous.png" base="previous" style="cursor: hand;" onmouseover="onBackground();" onmouseout="onBackground();" onmousedown="onBackground();" onmouseup="onBackground();" /></td>
+          <td style="width: 33%;" align="center"><label>Backgrounds</label></td>
+          <td style="width: 33%; padding-left: 10px;" align="left"><img src="images/settings/next.png" base="next" style="cursor: hand;" onmouseover="onBackground();" onmouseout="onBackground();" onmousedown="onBackground();" onmouseup="onBackground();" /></td>
+        </tr>
+      </table>
+      <table cellspacing="0" cellpadding="0" style="margin-top: 5px;">
+        <tr><td>
+          <label for="drives">Drives</label><br>
+          <select id="drives" name="drives" size="10" multiple style="width: 100%;"></select>
+          <div style="font-size: 6pt;">Hold CTRL to select multiple drives</div>
+        </td></tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+
+body {
+	font-family: 'Segoe UI', Tahoma, san-serif;
+	width: 75px;
+	height: 60px;
+	text-align: center;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+	line-height: 8px;
+}
+
+div {
+	border: solid 1px #cccccc;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	font-size: 4px;
+	border: solid 1px #cccccc;
+	display: inline-block;
+	background-color: #000000;
+	width: 8px;
+	height: 4px;
+}

@@ -1,0 +1,23 @@
+﻿
+div#dateError
+{
+	color:Red; 
+    top: 24px;
+    font-weight: bold;
+    direction: ltr;
+}
+div#versionMessage
+{
+	color:Black;
+	top: 48px;
+	font-weight: bold;
+    direction: ltr;
+	
+}
+
+a:link, a:visited {text-decoration:underline; color:black;}
+
+div#donateButton
+{
+	text-decoration:none;
+	}

@@ -1,0 +1,363 @@
+
+<html> 
+<head> 
+
+
+<!-- by clockets.blogspot.com  2010 -->
+
+
+
+
+
+
+<title>Clock (Digital)</title> 
+
+<style type="text/css">
+   body { width: 130px; height: 130px; font-weight: 600 700; font-size: 12px; margin: 0; font-family: Segoe UI Variable Display; color: #FFFFFF; } 
+
+
+    </style> 
+
+
+
+<script language="JavaScript" type="text/javascript">
+
+var Farbe ='white';
+var Sg1=48;
+var Sg2=12;
+var Sa1="Segoe UI";
+var Sa2="Segoe UI";
+var breite = 130;
+var datumsfeld="j";
+var schatten="black";
+var uhrformat=1;
+var alteminuten=-1;
+
+var titel="";
+var sekanz=0;
+var zzohne="0";
+var schattentyp=0;
+
+
+function load(){
+	System.Gadget.settingsUI = "settings.html";
+	System.Gadget.onSettingsClosed = settingsClosed;
+
+
+
+	if (System.Gadget.Settings.read("Farbe")) {
+	Farbe = System.Gadget.Settings.read("Farbe");}
+	else{
+	System.Gadget.Settings.write("Farbe", Farbe);}
+
+	if (System.Gadget.Settings.read("Sg1")){ 
+	Sg1 = System.Gadget.Settings.read("Sg1");}
+	else{
+	System.Gadget.Settings.write("Sg1", Sg1);}
+
+	if (System.Gadget.Settings.read("Sg2")) {
+	Sg2 = System.Gadget.Settings.read("Sg2");}
+	else{
+	System.Gadget.Settings.write("Sg2", Sg2);}
+
+	if (System.Gadget.Settings.read("Sa1")) {
+	Sa1 = System.Gadget.Settings.read("Sa1");}
+	else{
+	System.Gadget.Settings.write("Sa1", Sa1);}
+
+	if (System.Gadget.Settings.read("Sa2")) {
+	Sa2 = System.Gadget.Settings.read("Sa2");}
+	else{
+	System.Gadget.Settings.write("Sa2", Sa2);}
+
+	if (System.Gadget.Settings.read("breite")) {
+	breite = System.Gadget.Settings.read("breite");}
+	else{
+	System.Gadget.Settings.write("breite", breite);}
+
+	if (System.Gadget.Settings.read("datumsfeld")) {
+	datumsfeld = System.Gadget.Settings.read("datumsfeld");}
+	else{
+	System.Gadget.Settings.write("datumsfeld", datumsfeld);}
+
+	if (System.Gadget.Settings.read("schatten")) {
+	schatten = System.Gadget.Settings.read("schatten");}
+	else{
+	System.Gadget.Settings.write("schatten", schatten);}
+
+  if (System.Gadget.Settings.read("uhrformat")) {
+	uhrformat = System.Gadget.Settings.read("uhrformat");}
+	else{
+	System.Gadget.Settings.write("uhrformat", uhrformat);}
+
+  if (System.Gadget.Settings.read("sekanz")) {
+	sekanz = System.Gadget.Settings.read("sekanz");}
+	else{
+	System.Gadget.Settings.write("sekanz", sekanz);}
+	
+  if (System.Gadget.Settings.read("zzohne")) {
+	zzohne = System.Gadget.Settings.read("zzohne");}
+	else{
+	System.Gadget.Settings.write("zzohne", zzohne);}
+	
+  if (System.Gadget.Settings.read("titel")) {
+	titel = System.Gadget.Settings.read("titel");}
+	else{
+	System.Gadget.Settings.write("titel", titel);}
+	
+  if (System.Gadget.Settings.read("schattentyp")) {
+	schattentyp = System.Gadget.Settings.read("schattentyp");}
+	else{
+	System.Gadget.Settings.write("schattentyp", schattentyp);}
+
+
+ Farbe = System.Gadget.Settings.read("Farbe");
+Sa1 = System.Gadget.Settings.read("Sa1");
+Sa2 = System.Gadget.Settings.read("Sa2");
+Sg1 = System.Gadget.Settings.read("Sg1");
+Sg2 = System.Gadget.Settings.read("Sg2");
+breite = System.Gadget.Settings.read("breite");
+schatten = System.Gadget.Settings.read("schatten");
+datumsfeld= System.Gadget.Settings.read("datumsfeld"); 
+uhrformat = System.Gadget.Settings.read("uhrformat");   
+titel = System.Gadget.Settings.read("titel");
+zzohne = System.Gadget.Settings.read("zzohne");
+schattentyp = System.Gadget.Settings.read("schattentyp");
+sekanz = System.Gadget.Settings.read("sekanz");
+
+    System.Gadget.beginTransition();
+    document.body.style.width=breite+"px";
+    document.body.style.height=Sg1+1.2*Sg2+6+"px";
+    System.Gadget.endTransition(0,0);
+
+
+
+	
+
+}
+
+
+
+function clock(){
+
+
+
+
+
+    date = new Date(System.Time.getLocalTime(System.Time.currentTimeZone));
+var AbsolutJetzt = date.getTime();
+var AbsolutDann = AbsolutJetzt + (zzohne* 60 * 60 * 1000);
+   date.setTime(AbsolutDann);
+
+    with (date)
+    {
+        day = getDate();
+	month=getMonth();
+	wochentag=getDay();
+	year=getYear();
+        hours = getHours();
+        minutes = getMinutes();
+        seconds = getSeconds();
+
+
+    }
+
+    if(minutes!=alteminuten ||sekanz==1)
+  {
+  alteminuten=minutes;
+
+
+Monatsbezeichnung = new Array ('January ','February ','March ','April ','May ','June ',
+'July ','August ','Septemper ','October ','November ',
+'Dezember');
+Wochentagsbezeichnung = new Array ('Sunday','Monday','Tuesday','Wednesday',
+'Thursday','Friday','Saturday');  
+ Wochentagsbezeichnungkurz = new Array ('SUN','MON','TUE','WED',
+'THU','FRI','SAT'); 
+monatkurz=month+1;
+
+ if(datumsfeld=="j") {
+datum = titel+" "+Wochentagsbezeichnung[wochentag]+", "+Monatsbezeichnung[month]+day;
+ }else if (datumsfeld=="j2") {
+ datum = titel+" "+Wochentagsbezeichnung[wochentag]+", "+Monatsbezeichnung[month]+day+" "+year;
+ }else if (datumsfeld=="j3") {
+   datum= titel+" "+Wochentagsbezeichnungkurz[wochentag]+", "+Monatsbezeichnung[month]+day;
+ } else if(datumsfeld=="j4"){
+    datum= titel+" "+Wochentagsbezeichnungkurz[wochentag]+", "+monatkurz+"/"+day+"/"+year;
+ } else if(datumsfeld=="n"){
+    datum= titel;
+ }
+
+
+
+
+minutenzehner=Math.floor(minutes/10);
+minuteneiner=minutes-minutenzehner*10;
+minuten=minutenzehner+""+minuteneiner;
+
+if(sekanz=="1"){
+sekundenzehner=Math.floor(seconds/10);
+sekundeneiner=seconds-sekundenzehner*10;
+sekunden=":"+sekundenzehner+""+sekundeneiner;
+}else{
+sekunden="";}
+
+
+
+abstand=Sg1+2;
+
+
+
+if(uhrformat=="1"){
+
+stundenzehner=Math.floor(hours/10);
+stundeneiner=hours-stundenzehner*10;
+stunden=stundenzehner+""+stundeneiner;
+
+anzeige=stunden+":"+minuten+sekunden; }
+
+
+ else if(uhrformat=="2"| uhrformat=="4"){
+
+
+if(hours==0){
+zstunden=12;}
+if(hours>0){
+zstunden=hours;}
+if(hours>12){
+zstunden=hours-12; }
+
+stundenzehner=Math.floor(zstunden/10);
+stundeneiner=zstunden-stundenzehner*10;
+
+
+if(uhrformat=="4" & zstunden<10){
+stunden=stundeneiner;
+}else{
+stunden=stundenzehner+""+stundeneiner; 
+}
+ 
+                          
+anzeige=stunden+":"+minuten+sekunden; }
+
+
+else if(uhrformat=="3" | uhrformat=="5" ){
+
+if(hours==0){
+zstunden=12;}
+if(hours>0){
+zstunden=hours;}
+if(hours>12){
+zstunden=hours-12; }
+
+
+if(hours<12){
+periode=" am";}
+else{
+periode=" pm";}
+
+stundenzehner=Math.floor(zstunden/10);
+stundeneiner=zstunden-stundenzehner*10;
+if(uhrformat=="5" & zstunden<10){
+stunden=stundeneiner;
+}else{
+stunden=stundenzehner+""+stundeneiner; 
+}
+
+anzeige=stunden+":"+minuten+""+sekunden+""+periode; }
+
+
+
+document.getElementById("background").removeObjects();
+
+
+
+ if(schattentyp==1){
+ document.getElementById("background").addTextObject(anzeige, Sa1, Sg1, schatten, -0.1*Sg1+3, -0.1*Sg1+3);
+}
+
+ var schreiben = document.getElementById("background").addTextObject(anzeige, Sa1, Sg1, Farbe, -0.1*Sg1, -0.1*Sg1);
+ 
+ if(schattentyp==2){
+ schreiben.addGlow(schatten,5,50)          ;
+ }
+  
+                 
+
+
+
+ if(schattentyp==1){
+ document.getElementById("background").addTextObject(datum, Sa2, Sg2, schatten, 5+1, abstand+1);
+}
+
+var schreibendat= document.getElementById("background").addTextObject(datum, Sa2, Sg2, Farbe, 5, abstand);
+
+
+
+
+ if(schattentyp==2){
+  schreibendat.addGlow(schatten,5,50) ;
+ }
+
+
+
+                    
+ 
+
+
+
+ }
+ window.setTimeout("clock()", 1000);
+}
+
+
+
+
+function settingsClosed()
+{
+ alteminuten=-1;   
+Farbe = System.Gadget.Settings.read("Farbe");
+Sa1 = System.Gadget.Settings.read("Sa1");
+Sa2 = System.Gadget.Settings.read("Sa2");
+Sg1 = System.Gadget.Settings.read("Sg1");
+Sg2 = System.Gadget.Settings.read("Sg2");
+breite = System.Gadget.Settings.read("breite");
+schatten = System.Gadget.Settings.read("schatten");
+datumsfeld = System.Gadget.Settings.read("datumsfeld");   
+titel = System.Gadget.Settings.read("titel");   
+uhrformat = System.Gadget.Settings.read("uhrformat");
+sekanz = System.Gadget.Settings.read("sekanz");
+zzohne = System.Gadget.Settings.read("zzohne");
+schattentyp = System.Gadget.Settings.read("schattentyp");
+
+
+
+    System.Gadget.beginTransition();
+    document.body.style.width=breite+"px";
+    document.body.style.height=Sg1+1.5*Sg2+6+"px";
+    System.Gadget.endTransition(0,0);
+
+
+
+	
+	}
+</script>
+
+
+  </head> 
+   <body onload="load(); clock()"> 
+
+
+    <g:background id="background" src="layout/zbl4.png" style="width:100%;height:100%;z-index: -1; position: absolute; top: 0; left: 0;" opacity="50"></g:background> 
+
+     <script language="javascript" type="text/javascript">
+
+
+
+
+</script> 
+
+   </body> 
+
+  </html>
+

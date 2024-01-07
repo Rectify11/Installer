@@ -183,6 +183,7 @@ namespace Rectify11Installer.Core
             {
                 UninstallGadgets();
                 Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), false);
+                string gadgetsnewfolder = Path.Combine(Variables.r11Folder, "extras", "GadgetPack", "Gadgets");
 
                 // extract the 7z
                 Helper.SvExtract("extras.7z", "extras", "GadgetPack");
@@ -195,6 +196,21 @@ namespace Rectify11Installer.Core
                 };
                 var vcproc = Process.Start(gad);
                 vcproc.WaitForExit();
+
+                // Copy contents to %localappdata%\Microsoft\Windows Sidebar\Gadgets
+                string localAppDataGadgetsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "Windows Sidebar", "Gadgets");
+                if (!Directory.Exists(localAppDataGadgetsFolder))
+                {
+                    Directory.CreateDirectory(localAppDataGadgetsFolder);
+                }
+
+                // Copy contents
+                string[] gadgetFiles = Directory.GetFiles(gadgetsnewfolder);
+                foreach (string gadgetFile in gadgetFiles)
+                {
+                    string destinationFile = Path.Combine(localAppDataGadgetsFolder, Path.GetFileName(gadgetFile));
+                    File.Copy(gadgetFile, destinationFile, true);
+                }
 
                 Logger.WriteLine("InstallGadgets() succeeded.");
             }

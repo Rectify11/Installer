@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RemoveDrive Safely</title>  
+<style>
+body {
+    font-family: 'Segoe UI';
+    font-size:11px;
+    margin:0px;
+    padding:0px;
+	width:170px;
+	height:270px;
+}
+</style>
+<script type="text/javascript" src="scripts.js"></script>
+<script>
+function init()
+{
+	shell = new ActiveXObject("WScript.Shell");
+	System.Gadget.onSettingsClosed = Closed;
+	initDrives(1);
+	
+	drc.innerHTML		= '';
+	var askConfirm 		= variable("rds_askConfirm", "yes");
+	var hideNotReady 	= variable("rds_hideNotReady", "yes");
+	var hideDrives 		= variable("rds_hideDrives", "").split(",");
+	var discovery 		= variable("rds_autoDiscovery", 1);
+	
+	sForm['askConfirm_'+askConfirm].checked = true;
+	sForm['hideNotReady_'+hideNotReady].checked = true;
+
+	if(drives.length > 0)
+	{
+		for(var i = 0; i < drives.length; i++)
+		{
+			var d = drives[i];
+			var c = (inArray(d.letter, hideDrives) ? ' checked' : '');
+			drc.innerHTML += '<input type="checkbox" name="hd[]" value="'+d.letter+'" id="id_'+d.letter+'"'+c+' /><label for="id_'+d.letter+'">'+d.volume+' ('+d.letter+':)</label><br />';
+		}
+	}
+	else{
+		drc.innerHTML = 'No Drives found!';
+	}
+	
+	if(discovery == 1){
+		sForm.autoDiscovery.checked = true;
+	}
+	else{
+		sForm.autoDiscovery.checked = false;
+	}
+}
+
+function Closed(event)
+{
+	if (event.closeAction == event.Action.commit)
+	{
+		var dList = new Array();
+		var aConf = 'yes';
+		var hnReady = 'yes';
+		
+		// Confirm
+		for(var a=0; a<sForm['askConfirm'].length; a++)
+		{
+			var m = sForm['askConfirm'][a];
+			if(m.checked == true){
+				aConf = m.value;	
+			}
+		}
+		// Hide
+		for(var h=0; h<sForm['hideNotReady'].length; h++)
+		{
+			var o = sForm['hideNotReady'][h];
+			if(o.checked == true){
+				hnReady = o.value;	
+			}
+		}
+		
+		// Drives
+		for(var i=0; i<sForm['hd[]'].length; i++)
+		{
+			var e = sForm['hd[]'][i];
+			if(e.checked == true){
+				dList.push(e.value);
+			}
+		}
+		
+		System.Gadget.Settings.write('rds_askConfirm', aConf);
+		System.Gadget.Settings.write('rds_hideNotReady', hnReady);
+		System.Gadget.Settings.write('rds_hideDrives', dList.join(","));
+		System.Gadget.Settings.write('rds_autoDiscovery', (sForm.autoDiscovery.checked ? 1 : 2));
+		
+		System.Gadget.document.parentWindow.initDrives();
+	}
+	event.cancel = false;
+}
+
+</script>
+<body onload="init();">
+<form name="sForm" id="sForm" method="post" action="">
+<table border="0" cellspacing="0" style="width:170px;" cellpadding="0">
+  <tr>
+    <td colspan="5" height="24">Ask for confirmation:</td>
+  </tr>
+  <tr>
+    <td colspan="5"><table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><input name="askConfirm" type="radio" id="askConfirm_yes" value="yes" /></td>
+        <td><label for="askConfirm_yes">Yes</label></td>
+        <td>&nbsp;</td>
+        <td><input name="askConfirm" type="radio" id="askConfirm_no" value="no" /></td>
+        <td><label for="askConfirm_no">No</label></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="5"><hr /></td>
+  </tr>
+  <tr>
+    <td colspan="5" height="24">Hide Not Ready drives:</td>
+  </tr>
+  <tr>
+    <td colspan="5"><table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><input name="hideNotReady" type="radio" id="hideNotReady_yes" value="yes" /></td>
+        <td><label for="hideNotReady_yes">Yes</label></td>
+        <td>&nbsp;</td>
+        <td><input name="hideNotReady" type="radio" id="hideNotReady_no" value="no" /></td>
+        <td><label for="hideNotReady_no">No</label></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="5"><hr /></td>
+  </tr>
+  <tr>
+    <td colspan="5" height="24">Hide following drives:</td>
+  </tr>
+  <tr>
+    <td colspan="5"><div id="drc" style="overflow:auto; background-color:#FFFFFF; height:100px; border:1px inset #999999; padding:2px;">&nbsp;</div></td>
+  </tr>
+  <!--<tr>
+    <td colspan="5" height="24">Auto Discovery: <input type="checkbox" value="1" name="autoDiscovery" /></td>
+  </tr>-->
+</table>
+</form>
+</body>
+</html>

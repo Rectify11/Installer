@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>Mousometer 1.5</title>
+<style>
+		body { 
+			width:250px;
+			height:398px;
+			margin-top:0;
+			margin-left:0;
+			font-size: 12px;
+		}
+		table {
+			font-size: 12px;
+		}
+        input {
+            font-size: 12px;
+			margin:1px;
+        } 
+        select {
+            font-size: 12px;
+			margin:2px;
+            width:180px;
+        }       
+		div {
+		    margin:2px;
+        	margin-left:4px;
+		}            
+				   
+</style>
+
+<script language="JavaScript">
+System.Gadget.onSettingsClosing = SettingsClosing; 
+
+
+function startup() {
+  themesel.options.selectedIndex   = System.Gadget.Settings.read("themenum");
+  document.getElementById('design').src=layout2();
+  unitssel.options.selectedIndex   = System.Gadget.Settings.read("unitsnum");
+  monitorsel.options.selectedIndex = System.Gadget.Settings.read("monitornum");
+  z1sel.options.selectedIndex      = System.Gadget.Settings.read("z1num");
+  z2sel.options.selectedIndex      = System.Gadget.Settings.read("z2num");
+  z3sel.options.selectedIndex      = System.Gadget.Settings.read("z3num");
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+function SettingsClosing(event) {
+/////////////////////////////////////////////////////////////////////////////////
+
+         if (event.closeAction == event.Action.commit) {
+
+
+  	     System.Gadget.Settings.write("theme", themesel.options[themesel.options.selectedIndex].value );
+		 System.Gadget.Settings.write("themenum", themesel.options.selectedIndex );
+         theme    = System.Gadget.Settings.read("theme");
+         themenum = System.Gadget.Settings.read("themenum");
+		 
+		 System.Gadget.Settings.write("monitor", monitorsel.options[monitorsel.options.selectedIndex].value );
+		 System.Gadget.Settings.write("monitornum", monitorsel.options.selectedIndex );
+         monitor    = System.Gadget.Settings.read("monitor");
+         monitornum = System.Gadget.Settings.read("monitornum");
+
+         System.Gadget.Settings.write("units", unitssel.options[unitssel.options.selectedIndex].value );
+         System.Gadget.Settings.write("unitsnum", unitssel.options.selectedIndex );
+         units    = System.Gadget.Settings.read("units");
+         unitsnum = System.Gadget.Settings.read("unitsnum");
+
+   	     System.Gadget.Settings.write("z1", z1sel.options[z1sel.options.selectedIndex].value );
+		 System.Gadget.Settings.write("z1num", z1sel.options.selectedIndex );
+         z1    = System.Gadget.Settings.read("z1");
+         z1num = System.Gadget.Settings.read("z1num");
+
+   	     System.Gadget.Settings.write("z2", z2sel.options[z2sel.options.selectedIndex].value );
+		 System.Gadget.Settings.write("z2num", z2sel.options.selectedIndex );
+         z2    = System.Gadget.Settings.read("z2");
+         z2num = System.Gadget.Settings.read("z2num");
+
+   	     System.Gadget.Settings.write("z3", z3sel.options[z3sel.options.selectedIndex].value );
+		 System.Gadget.Settings.write("z3num", z3sel.options.selectedIndex );
+         z3    = System.Gadget.Settings.read("z3");
+         z3num = System.Gadget.Settings.read("z3num");
+ 
+//		 System.Gadget.Settings.write("reset1", reset1.checked);
+//		 System.Gadget.Settings.write("reset2", reset2.checked);
+		 
+
+}
+		 event.cancel = false;
+}
+
+function layout() {
+if (themesel.value==99) return 'https://www.mousometer.de/photos/_'+System.Gadget.Settings.readString('user')+'.png?zufall='+Math.random();
+else return 'back_'+themesel.value+'.png';
+}
+
+function layout2() {
+  if (System.Gadget.Settings.read("theme")==99) return 'https://www.mousometer.de/photos/_'+System.Gadget.Settings.readString('user')+'.png?zufall='+Math.random();
+  else return 'back_'+(System.Gadget.Settings.read("themenum")+1)+'.png'
+  
+}
+
+</script>
+
+</head>
+<body onLoad="startup()">
+<div style="font-weight:bold;margin-bottom:2px;margin-bottom:7px;">Color:</div>
+<img src="back_1.png" width="132" height="99" alt="Design" id="design">
+<select name="themesel" id="themesel" style="width:233px" onChange="document.getElementById('design').src=layout();">
+  <option value="1">Default</option>
+  <option value="2">Silver</option>
+  <option value="3">Gray</option>
+  <option value="4">Black</option>
+  <option value="5">Green</option>
+  <option value="6">Violett</option>
+  <option value="7">Blue</option>
+  <option value="8">Yellow</option>
+  <option value="9">Orange</option>
+  <option value="10">Red</option>
+  <script language="javascript">
+    if (System.Gadget.Settings.readString('user')!='')   document.writeln('<option value="99">Custom Design (mousometer.de)</option>');
+  </script>
+</select>
+<div style="padding-top:3px; clear:both; font-size:11px; ">Visit <a href="https://www.mousometer.de/">mousometer.de</a>, to upload your custom design.</div>
+<br>
+
+
+
+<div style="font-weight:bold;margin-bottom:2px;margin-bottom:7px;">Units:</div>
+<select name="unitssel" id="unitssel" style="width:233px">
+    <option value="1">Kilometers</option>
+    <option value="2">Miles</option>
+</select>
+
+
+<div style="font-weight:bold;margin-bottom:3px;margin-top:7px;">Screen:</div>
+<select name="monitorsel" id="monitorsel" style="width:233px">
+  <option value="8.9">8,9" (Netbook)</option>
+  <option value="10.2">10,2" (Netbook)</option>
+  <option value="12.1">12,1" (Netbook)</option>
+  <option value="13.0">13" (ca. 14" CRT)</option>
+  <option value="14.0">14" (ca. 15" CRT)</option>
+  <option value="15.0">15" (ca. 17" CRT)</option>
+  <option value="15.4">15,4" (Notebook)</option>
+  <option value="17.0">17" (ca. 19" CRT)</option>
+  <option value="19.0">19" (ca. 21" CRT)</option>
+  <option value="20.0">20" (ca. 22" CRT)</option>
+  <option value="21.0">21"</option>
+  <option value="21.3">21,3"</option>
+  <option value="22.0">22"</option>
+  <option value="22.2">22,2"</option>
+  <option value="23.0">23"</option>
+  <option value="24.0">24"</option>
+  <option value="26.0">26"</option>
+  <option value="27.0">27"</option>
+  <option value="28.0">28"</option>
+  <option value="30.0">30" TV</option>
+  <option value="32.0">32" TV</option>
+  <option value="40.0">40" TV</option>
+  <option value="46.0">46" TV</option>
+  <option value="52.0">52" TV</option>
+  <option value="55.0">55" TV</option>
+  <option value="60.0">60" TV</option>
+  <option value="65.0">65" TV</option>
+</select>
+<br>
+<div style="font-weight:bold;margin-bottom:3px;margin-top:7px;">Values:</div>
+<div style="float:left;padding-top:2px">1. row: </div>
+<div>
+<select name="z1sel" id="z1sel"> 
+        <option value="1">Distance</option>
+        <option value="2">Distance Today</option>
+        <option value="3">Speed</option>
+        <option value="4">Top Speed</option>
+        <option value="5">Earth Orbits</option>
+</select></div>
+<div style="float:left;padding-top:2px">2. row: </div>
+<div>
+<select name="z2sel" id="z2sel">
+        <option value="1">Distance</option>
+        <option value="2">Distance Today</option>
+        <option value="3">Speed</option>
+        <option value="4">Top Speed</option>
+        <option value="5">Earth Orbits</option>
+</select>
+</div>
+<div style="float:left;padding-top:2px">3. row: </div>
+<div>
+<select name="z3sel" id="z3sel">
+        <option value="1">Distance</option>
+        <option value="2">Distance Today</option>
+        <option value="3">Speed</option>
+        <option value="4">Top Speed</option>
+        <option value="5">Earth Orbits</option>
+</select>
+</div>
+<!--
+<div style="font-weight:bold;margin-bottom:3px;margin-top:7px;">Zurücksetzen:</div>
+<div style="float:left"><input type="checkbox" name="reset1" id="reset1"></div>
+<div style="cursor:hand;padding-top:3px; width:50px; float:left;" onClick="if (reset1.checked==false) reset1.checked = true; else  reset1.checked = false;">Strecke</div>
+<div style="float:left"><input type="checkbox" name="reset2" id="reset2"></div>
+<div style="cursor:hand;padding-top:3px; float:left;" onClick="if (reset2.checked==false) reset2.checked = true; else  reset2.checked = false;">Höchstgeschwindigkeit</div>
+-->
+</body>
+</html>

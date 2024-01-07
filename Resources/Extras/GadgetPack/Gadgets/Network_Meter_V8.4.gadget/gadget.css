@@ -1,0 +1,18 @@
+﻿body{
+	font-family: Segoe UI;
+	font-size:10;
+	width:130px;
+	height:161px;
+	margin:0px;
+	padding:0px;
+}
+
+A:link {TEXT-DECORATION: none}
+A:visited {TEXT-DECORATION: none}
+A:hover {TEXT-DECORATION: underline}
+
+#hr1
+{
+	border-bottom: 1px solid #457081;
+	margin-bottom: 5px;
+}

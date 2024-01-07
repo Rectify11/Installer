@@ -1,0 +1,930 @@
+<html>
+  <head>
+    <style type="text/css">
+	  body  {width:800px;height:550px; font-family:Arial}
+	</style>
+    <script>
+	
+	  function doNothing(){return true}
+      window.onerror =doNothing
+	
+	  var alleZenders = '';
+	  var alleZendersNaamNaamAdres = '';
+	  zenderNaamNaamAdresArray = new Array;
+	  var completeGekozenRegel = '';
+      var completeGekozenRegel1 = '';
+	  var mapNaam;
+      var hernoemIndex;	  
+	  var verandering = false;
+	  var wilWeg = false;
+	  
+	  function wordtWaar(){
+	    verandering = true;
+	  }
+
+      function init(){
+	    pakMapNaam();
+		evtKolommenOpslaan();
+	    inlezenKolom1();
+		inlezenKolom2();
+	  }
+
+	  
+	  function pakMapNaam(){
+	    mapNaam = System.Gadget.path;
+		var nr = mapNaam.lastIndexOf("\\");
+		mapNaam = mapNaam.substr(0,nr);
+	  }
+	  
+	  
+	  function doe1(){
+	    if (document.getElementById('selector1').selectedIndex == -1){return false}
+		document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex].text, document.getElementById('selector1').value,false,false);
+		document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex] = null;
+	  }
+	  
+	  function doe2(){
+	    if (document.getElementById('selector2').selectedIndex == -1){return false}
+		document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option(document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text, document.getElementById('selector2').value,false,false);
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex] = null;
+	  }
+	  
+	  function maakString(){
+	    var zenderNaam, zenderAdres;
+		alleZenders = '';
+	    for (var i=0 ; i < document.getElementById('selector2').options.length; i++){
+		  zenderNaam = document.getElementById('selector2').options[i].text;
+		  zenderAdres = document.getElementById('selector2').options[i].value;
+		  alleZenders = alleZenders + '#' + zenderNaam + '**' + zenderAdres + '\n';
+		  alleZendersNaamNaamAdres = alleZendersNaamNaamAdres + '#' + zenderNaam + '!!' + zenderNaam + '**' + zenderAdres;
+		}
+		alert(alleZenders);
+	  }
+	  
+	  function sorteer(){
+	    var sorteerArray = new Array();
+		var huidigeSorteerRegel;
+	    for (var i=0;i<document.getElementById('selector2').options.length;i++){
+		  sorteerArray[i] = document.getElementById('selector2').options[i].text + '***' + document.getElementById('selector2').options[i].value;
+		}
+	    sorteerArray = sorteerArray.sort();
+		document.getElementById('selector2').options.length = 0;
+		for (var j=0;j<sorteerArray.length;j++){
+		  huidigeSorteerRegel = sorteerArray[j].split("***", sorteerArray[j].length);
+		  document.getElementById('selector2').options[j] = new Option(huidigeSorteerRegel[0],false,false);
+		  //document.getElementById('selector2').options[j].text = huidigeSorteerRegel[0];
+		  document.getElementById('selector2').options[j].value = huidigeSorteerRegel[1];
+		}
+		wordtWaar();
+	  }
+
+
+	  
+	  function goUp(){
+	    if (document.getElementById('selector2').selectedIndex == 0){return false;}
+	  
+	    huidigeIndex = document.getElementById('selector2').selectedIndex;
+	    tekst = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waarde = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex - 1;
+		tekstTemp = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waardeTemp = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekst;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waarde;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex + 1;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekstTemp;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waardeTemp;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex - 1;
+		wordtWaar();
+	  }
+	  
+	  function goDown(){
+	    if (document.getElementById('selector2').selectedIndex == document.getElementById('selector2').length-1){return false;}
+		
+	    huidigeIndex = document.getElementById('selector2').selectedIndex;
+	    tekst = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waarde = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex + 1;
+		tekstTemp = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waardeTemp = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekst;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waarde;
+				
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex - 1;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekstTemp;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waardeTemp;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex + 1;
+		wordtWaar();
+	  }
+	  
+	  function opslaan(){
+	    completeGekozenRegel = '';
+	    for (var i=0 ; i < document.getElementById('selector2').options.length; i++){
+		  zenderNaam = document.getElementById('selector2').options[i].text;
+		  zenderAdres = document.getElementById('selector2').options[i].value;
+		  completeGekozenRegel = completeGekozenRegel + '#' + zenderNaam + '*' + zenderAdres;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData2.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+		if (completeGekozenRegel !=''){
+          a.WriteLine(completeGekozenRegel);
+          a.Close();
+		  document.getElementById('info').innerText = 'De gekozen zenders zijn opgeslagen...';
+		}
+		opslaanKolom1();
+		verandering = false;
+	    if (wilWeg == true){
+	      System.Gadget.Flyout.show = false;
+	    }
+	  }
+	  
+	  function opslaanKolom1(){
+	    completeGekozenRegel1 = '';
+	    for (var i=0 ; i < document.getElementById('selector1').options.length; i++){
+		  zenderNaam = document.getElementById('selector1').options[i].text;
+		  zenderAdres = document.getElementById('selector1').options[i].value;
+		  completeGekozenRegel1 = completeGekozenRegel1 + '#' + zenderNaam + '*' + zenderAdres;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData1.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+		if (completeGekozenRegel1 !=''){
+          a.WriteLine(completeGekozenRegel1);
+          a.Close();
+		  //document.getElementById('info').innerText = 'De gekozen zenders zijn opgeslagen...';
+		}
+	  }
+
+	  
+	  function inlezenKolom1(){
+	    var exportBestandsnaam = mapNaam + '\\ZenderData1.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+		if (getFileSize(exportBestandsnaam)==0){document.getElementById('selector1').options.length=0;}
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  document.getElementById('selector1').options.length=0;  // wis de complete lijst
+	      if (alleZenders != ""){
+            var zenderLijst = alleZenders.split("#", alleZenders.length);
+	        for (var i=1 ; i < zenderLijst.length; i++){   //???
+		      zenderRegel = zenderLijst[i].split("*", zenderLijst[i].length);
+		      zenderNaam = zenderRegel[0];
+		      zenderAdres = zenderRegel[1];
+              document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option(zenderNaam, zenderAdres,false,false);
+	        }
+          }
+		  f.Close();
+		}
+	  }
+	  
+	  
+	  
+	  function getFileSize(bestand){
+	    var fso, f, s;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+        f = fso.GetFile(bestand);
+        s = f.Size;
+		return s;
+	  }
+	  
+	    
+	  
+	  function inlezenKolom2(){
+	    var exportBestandsnaam = mapNaam + '\\ZenderData2.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+		if (getFileSize(exportBestandsnaam)==0){document.getElementById('selector2').options.length=0;}
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  document.getElementById('selector2').options.length=0;  // wis de complete lijst
+	      if (alleZenders != ""){
+            var zenderLijst = alleZenders.split("#", alleZenders.length);
+	        for (var i=1 ; i < zenderLijst.length; i++){   //???
+		      zenderRegel = zenderLijst[i].split("*", zenderLijst[i].length);
+		      zenderNaam = zenderRegel[0];
+		      zenderAdres = zenderRegel[1];
+              document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(zenderNaam, zenderAdres,false,false);
+	        }
+          }
+		  f.Close();
+		}
+	  }
+	  
+	  
+      function klaar(){
+	    if (verandering == false){ System.Gadget.Flyout.show = false; return;}
+	    if (verandering == true){
+	      document.getElementById('vraag').style.visibility= 'visible';
+	    }
+	  }
+	  
+	  
+	  //
+	  
+	  function opslaanEigen(){
+	    var nieuweZenderNaam = document.getElementById('naam1').value;
+	    var nieuweZenderAdres = document.getElementById('adres1').value;
+		
+		if (nieuweZenderNaam==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'U heeft geen naam aan de nieuwe zender gegeven...';
+		  return false;
+		}
+		if (nieuweZenderAdres==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'U heeft geen web adres voor de nieuwe zender opgegeven...';
+		  return false;
+		}
+	    var nieuweZender = '#' + nieuweZenderNaam + '*' + nieuweZenderAdres;
+		alleZenders = System.Gadget.Settings.read("alleZenders");
+		alleZenders = alleZenders + nieuweZender;
+	    System.Gadget.Settings.write("alleZenders",alleZenders);
+		document.getElementById('innerTextOpslaan').innerText = nieuweZenderNaam + ' is opgeslagen.';
+		//document.getElementById('temp').innerText = alleZenders;
+	  }
+	  
+	  function resetZenders(){
+	    System.Gadget.Settings.write("alleZenders",'');
+		document.getElementById('innerTextOpslaan').innerText = 'Alle ingevoerde zenders zijn gewist !';
+	  }
+	  
+     
+	  
+	  function exporteren(){
+	    alleZenders = System.Gadget.Settings.read("alleZenders");
+		if (alleZenders ==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'Er zijn nog geen extra zenders toegevoegd. Exporteren niet mogelijk';
+		  return false;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+	    a.WriteLine(alleZenders);
+        a.Close();
+		document.getElementById('innerTextOpslaan').innerText = 'Alle ingevoerde zenders zijn opgeslagen.';
+      }
+
+	  
+	  function importeren(){
+	  	var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  System.Gadget.Settings.write("alleZenders",alleZenders);
+		  document.getElementById('innerTextOpslaan').innerText = 'Alle ingevoerde zenders zijn geimporteerd en zullen toegevoegd worden.';
+		  f.Close();
+		  wordtWaar();
+		} else {document.getElementById('innerTextOpslaan').innerText = 'Importeren niet mogelijk. Geen bestand met gegevens gevonden.'}
+	  }
+
+	  
+	  	  
+      function maakZichtbaar(){
+	    document.getElementById('resetDiv').style.visibility='visible';
+	  }
+	  
+	  function wisBackup(){
+        var fso;
+		var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          fso.DeleteFile(exportBestandsnaam);
+		  document.getElementById('innerTextOpslaan').innerText = 'Het backup-bestand is gewist.';
+		} else {document.getElementById('innerTextOpslaan').innerText = 'Niks verwijderd. Er bestaat nog geen backup-bestand.';}
+		document.getElementById('resetDiv').style.visibility='hidden';
+	  }
+	  
+	  
+	  function bewerken(){
+	    var fso;
+	    var deBestandsnaam = mapNaam + '\\ZenderData.txt';
+		fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(deBestandsnaam)){
+	      System.Shell.execute(deBestandsnaam);
+		}else {document.getElementById('innerTextOpslaan').innerText = 'Het bestand bestaat nog niet. U kunt het dus nog niet bewerken.';}
+	  }
+	  
+	  function toonHandmatig(){
+	    document.getElementById('handmatig').style.visibility = 'visible';
+		document.getElementById('mededeling1').style.visibility = 'hidden';
+	  }
+
+	  
+	  function laatstKolom1Veranderd(){
+        var fso, f, s;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		var zenders1 = mapNaam + '\\ZenderData1.txt';
+        f = fso.GetFile(zenders1);
+		s = f.DateLastModified; 
+        return(s);
+      }
+
+	  
+	  function toonCompleteNaam1(){
+	    var naam = document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex].text;
+	    document.getElementById('helenaam').innerText = 'Laatst aangeklikte zender-naam : ' + naam;
+	  }
+	  
+	  function toonCompleteNaam2(){
+	    var naam = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+	    document.getElementById('helenaam').innerText = 'Laatst aangeklikte zender-naam : ' + naam;
+	  }
+	  
+	  
+	  function myPopup(){
+	    document.getElementById('selector1').selectedIndex = -1;
+	    hernoemIndex = document.getElementById('selector2').selectedIndex;
+		if (hernoemIndex==-1){
+		  document.getElementById('info').innerText = 'Selecteer eerst een zender in de tweede kolom.';
+		  return false;
+		}
+	    document.getElementById('popupMelding').innerText = '';
+		document.getElementById('popupTekst').value = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		document.getElementById('popupValue').value = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value;
+	    document.getElementById('myPopup').style.visibility='visible';
+		document.getElementById('myPopup').style.zIndex = 2;
+	  }
+	  
+	  function clearPopup(){
+	    document.getElementById('popupTekst').value='';
+	    document.getElementById('myPopup').style.visibility='hidden';
+		document.getElementById('myPopup').style.zIndex = -1;
+	  }
+	  
+	  
+	  function hernoemStream(){
+	    if (document.getElementById('popupValue').value != ''){
+		  document.getElementById('selector2').options[hernoemIndex].value = document.getElementById('popupValue').value;
+		  document.getElementById('popupMelding').innerText = 'De url van de de zender-stream is gewijzigd.';
+		  return false;
+		}
+		
+	  }
+	  
+	  
+	  function hernoemZender(){
+	     hernoemIndex = document.getElementById('selector2').selectedIndex;
+	     if (hernoemIndex==-1){
+		  document.getElementById('popupMelding').innerText = 'Selecteer eerst een zender in de tweede kolom.';
+		  return false;
+		}
+	    		
+				
+		if (document.getElementById('popupTekst').value == ''){
+		  document.getElementById('popupMelding').innerText = 'Geef een nieuwe zender-naam op... Of kies Annuleren.';
+		  return false;
+		}
+				
+		document.getElementById('selector2').options[hernoemIndex].text = document.getElementById('popupTekst').value;
+		document.getElementById('popupMelding').innerText = 'De naam van de zender is gewijzigd.';
+	  }
+	
+
+      function reset(){
+	    maakCode();
+		document.getElementById('code').innerText = reeks;
+	    document.getElementById('myPopup2').style.visibility='visible';
+		document.getElementById('myPopup2').style.zIndex = 2;
+	  }
+	  
+	  function annuleerReset(){
+	    document.getElementById('myPopup2').style.visibility='hidden';
+		document.getElementById('myPopup2').style.zIndex = -1;
+	  }
+
+	  var reeks = '';
+	  function maakCode(){
+	    reeks= '';
+	    var getal, getal2;
+	    var letters = 'abcdefghijklmnopqrstuvwxyz';
+		for (var i=0; i<8;i++){
+		  getal = Math.floor(Math.random()*26 + 1);
+		  getal2 = letters.substr(getal-1,1);
+		  reeks = reeks + getal2;
+		}
+		return reeks
+	  }
+	  
+	  function controleerCode(){
+	    var bestaat = 0;
+	    var code1 = document.getElementById('codeStr').value;
+		if (code1==reeks){
+		  // indien bestandsgroottte nul, da probleem. waarom?
+		  var fso;
+		  var teWissenBestandsnaam = mapNaam + '\\ZenderData1.txt';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+		    document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option('dummy','dummy',false,false);
+		    opslaan();
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  teWissenBestandsnaam = mapNaam + '\\ZenderData2.txt';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  
+		  teWissenBestandsnaam = mapNaam + '\\ZenderData1.bak';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  teWissenBestandsnaam = mapNaam + '\\ZenderData2.bak';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  if (bestaat==1){
+		    document.getElementById('opm').innerText = 'Juiste code...Bestanden gewist';
+			System.Gadget.Flyout.show = true;
+	      }
+		  if (bestaat==0){document.getElementById('opm').innerText = 'Te wissen bestanden zijn niet gevonden...';}
+		} else{
+		  document.getElementById('opm').innerText = 'Onjuiste code...';
+		}
+	  }
+	  
+	  
+	  
+
+	  
+	  function keuzeInfo(){
+	    if (document.getElementById('selector3').value=='0'){
+		  document.getElementById('info').innerText = 'Maak een keuze... Zolang u niet op \'Opslaan\' drukt, kunt u gerust het een en ander uitproberen.';
+		}
+		if (document.getElementById('selector3').value=='1'){
+		  document.getElementById('info').innerText = 'Wanneer u op \'OK\' drukt, worden alle inactieve zenders verplaatst naar de kolom actieve zenders.';
+		}
+		if (document.getElementById('selector3').value=='2'){
+		  document.getElementById('info').innerText = 'Wanneer u op \'OK\' drukt, worden alle actieve zenders verplaatst naar de kolom inactieve zenders.';
+		}
+		if (document.getElementById('selector3').value=='3'){
+		  document.getElementById('info').innerText = 'Wanneer u op \'OK\' drukt, wordt een lege zender geplaatst onderaan de lijst van actieve zenders. Het is wellicht beter om zenders toe te voegen in \'Externe Zenders\'.';
+		}
+		if (document.getElementById('selector3').value=='4'){
+		  document.getElementById('info').innerText = 'Wanneer u op \'OK\' drukt, wordt een geselecteerde zender gewist uit de lijst inactieve zenders.';
+		}
+		if (document.getElementById('selector3').value=='5'){
+		  document.getElementById('info').innerText = 'Wanneer u op \'OK\' drukt, kunt u alle actieve zenders opslaan in een tekstbestand.';
+		}
+		if (document.getElementById('selector3').value=='6'){
+		  document.getElementById('info').innerText = 'Wanneer u op \'OK\' drukt, kunt u een eerder gemaakte backup van actieve zenders laden.';
+		}
+	  }
+	  
+	  
+	  
+      function specialeKeuze(){
+        if (document.getElementById('selector3').value=='0'){
+		  document.getElementById('info').innerText = 'Maak een keuze... Zolang u niet op \'Opslaan\' drukt, kunt u gerust het een en ander uitproberen.';
+		}
+		
+		if (document.getElementById('selector3').value=='1'){
+		  for (var i=0;i<document.getElementById('selector1').options.length;i++){
+		    document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(document.getElementById('selector1').options[i].text, document.getElementById('selector1').options[i].value,false,false);
+		  }
+		  document.getElementById('selector1').options.length= 0;
+		}
+		
+		if (document.getElementById('selector3').value=='2'){
+		  for (var i=0;i<document.getElementById('selector2').options.length;i++){
+		    document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option(document.getElementById('selector2').options[i].text, document.getElementById('selector2').options[i].value,false,false);
+		  }
+		  document.getElementById('selector2').options.length= 0;
+		}
+
+        if (document.getElementById('selector3').value=='3'){
+		  document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option('Nieuwe zender','leeg',false,false);
+		  document.getElementById('info').innerText = 'Een \'Lege zender\' is onderaan de lijst Actieve Zenders toegevoegd. U kunt deze zender hernoemen en van de juiste stream-url voorzien.';
+		}
+		
+		if (document.getElementById('selector3').value=='4'){ //wis inactieve zender
+		  if (document.getElementById('selector1').selectedIndex == -1){
+		    document.getElementById('info').innerText = 'Selecteer eerst een inactieve zender';
+		    return false;
+		  }
+		  document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex] = null;
+		  document.getElementById('info').innerText = 'De geselecteerde inactieve zender is uit de lijst verwijderd.';
+		}
+		
+		if (document.getElementById('selector3').value=='5'){
+		  maakBackup();
+		  document.getElementById('info').innerText = 'Het backup-bestand is aangemaakt.';
+		}
+		
+		if (document.getElementById('selector3').value=='6'){
+		  importeerZenders();
+		  document.getElementById('info').innerText = 'De zenders zijn geimporteerd';
+		}
+		
+		
+		document.getElementById('selector3').selectedIndex=0;
+		document.getElementById('selector3').blur()
+		
+
+      }	  
+	  
+	  
+	  
+	  function evtKolommenOpslaan(){ //Wanneer Interne Zenders voor het eerst wordt geopend, worden de kolommen opgeslagen, zodat Externe zenders ook direct ingelezen gaan worden.
+	    var fso;
+		var bestandA = mapNaam + '\\ZenderData2.txt';
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(bestandA)==false){
+		  opslaan();
+		}
+	  }
+	  
+	  
+	  function maakBackup(){
+		oShellItem = System.Shell.saveFileDialog('',"tekstbestanden\0*.txt\0\0");
+		if (oShellItem==''){return false;}
+		var zenderNaamA, zenderAdresA;
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (oShellItem.indexOf('.txt')==-1){oShellItem = oShellItem + '.txt';}
+		var a = fso.CreateTextFile(oShellItem, true);
+	    for (var i=0 ; i < document.getElementById('selector2').options.length; i++){
+		  zenderNaamA = document.getElementById('selector2').options[i].text;
+		  zenderAdresA = document.getElementById('selector2').options[i].value;
+		  a.WriteLine(zenderNaamA + '*' + zenderAdresA);
+		}
+		a.Close();
+	  }
+	  
+	  
+
+      function importeerZenders(){
+  	    oShellItem = System.Shell.chooseFile(true,".dat bestanden:*.dat:tekst-bestanden:*.txt::",'',''); 
+		var pad = oShellItem.path;
+		var exportBestandsnaam = pad;
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+		  document.getElementById('selector2').options.length=0;  // wis de complete lijst
+		  r = 'dummy';
+		  do{
+		    r =  f.ReadLine();
+			zenderRegel = r.split("*");
+            zenderNaam = zenderRegel[0];
+		    zenderAdres = zenderRegel[1];
+            document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(zenderNaam, zenderAdres,false,false);
+		  } while (r !='');
+		  f.Close();
+		  wordtWaar();
+		} else {document.getElementById('info').innerText = 'Importeren niet mogelijk. Geen bestand met gegevens gevonden.'}
+	  }
+
+      function toonLandcodes(){
+        window.open(System.Gadget.path + '\\landcodes.html','landcodes','width=650,height=550,status=0,toolbar=0,location=0');
+      }	  
+	  
+	</script>
+  </head>
+  <body onload="init();" style="background-color:black;color:white">
+    <div style="position:absolute;top:0px;left:0px">
+	
+	<div id="myPopup" style="position:absolute;top:20px;left:120px;height:400px;width:600px;visibility:hidden;z-index:-1; background-color:black; color:white; border:6px solid silver; padding:10px">
+	  <span><b>Typ de gewenste naam in voor de geselecteerde zender : </b></span>	  <br><br>
+	  <input id="popupTekst" type="text" size="50" style="background-color:lightyellow">
+	  <input type="button" value="Naam aanpassen"  style="width:150px" onclick="hernoemZender()"> <br><br><br>
+	  <br><br><br>
+	  <span>Wanneer de URL van de stream veranderd is (verkeerde url = geen muziek), typ deze dan hier : </span>	  <br><br>
+	  <input id="popupValue" type="text" size="50" style="background-color:lightyellow">
+	  <input type="button" value="Url aanpassen" style="width:150px" onclick="hernoemStream()"> <br><br>
+	  <br><br>
+	  <center>
+	  <span id="popupMelding" style="color:yellow"></span>
+	  <br><br><br><br>
+	  <input type="button" value="Verlaat dit scherm" style="background-color:lightgreen" onclick="clearPopup()">
+	  </center>
+	</div>
+	<div id="myPopup2" style="position:absolute;top:100px;left:250px;height:200px;width:250px;visibility:hidden;z-index:-1; background-color:black; color:white; border:6px solid red; padding:10px">
+		<b>Zender-bestanden wissen</b>  <br><br>
+		Typ de volgende code in en druk vervolgens op OK. <br><br>
+		<span id="code" style="color:darkblue; background-color:white;font-family:tahoma; padding:3px;"></span><br><br>
+		<input type="text" size="9" id="codeStr">
+		<input type="button" value="ok" onclick="controleerCode()" style="width:100px"><br>
+		Wanneer je niet weet wat dit betekent, klik dan op annuleren.<br><br>
+		<input type="button" value="annuleren" onclick="javascript:annuleerReset()" style="width:100px"> <br><br>
+		<span id="opm"></span>
+	</div>
+  
+	<div id="info" style="position:absolute;top:420px;left:100px;width:600px; height:100px; font-size:12px; font-family: tahoma;text-align:justify;">Beweeg met de muis-aanwijzer over de verschillende knoppen en lees hier wat voor functie deze knoppen hebben.</div>
+    <div id="innerTextOpslaan" style="position:absolute;top:490px;left:100px; color:red;font-family:tahoma"></div>	
+
+	<div style="position:absolute;top:3px;left:25px;width:300px; font-family:tahoma; font-weight:bold; font-size:16px"> Inactieve Zenders :</div>
+    <select id="selector1" style="width:300px; position:absolute; top:30px; left:10px; background-color:red" size="20" ondblclick="doe1()" onclick="toonCompleteNaam1()">
+	  <option value="mms://webradio.l1.nl/l1radio"> Regio: Limburg L1ve
+	  <option value="http://streams.kpnwebcast.nl/cgi-bin/reflector.cgi?title=Omroep+Brabant:+Live+Radio&stream=omroepbrabant_128k"> Regio: Omroep Brabant
+	  <option value="mms://drenthestreams.nl/rtvradio"> Regio: Omroep Drenthe
+      <option value="http://streams.omroepflevoland.nl:8000/flevoland64k.m3u"> Regio: Omroep Flevoland
+	  <option value="http://stream-mp3-01.omropfryslan.nl:8000/omrop.mp3"> Regio: Omroep Friesland
+	  <option value="http://www.garnierstreamingmedia.com/asx/radiogelderland.asp"> Regio: Omroep Gelderland
+	  <option value="mms://audio.omroepzeeland.nl:8080/"> Regio: Omroep Zeeland
+	  <option value="http://www.radio8fm.nl/player.php?editie=no&player=wax"> Regio: Radio 8FM (Brabant)
+	  <option value="mms://wmstream.rtvnh.nl/RNH"> Regio: RTV N-H
+	  <option value="http://www.rtvnoord.nl/stream/radio.asx"> Regio: RTV Noord
+	  <option value="mms://media.rtvoost.nl/radio"> Regio: RTV Oost
+	  <option value="mms://wm1.ams.cdn.surf.net/surfnetvdox=omroepwest=radio"> Regio: RTV West
+	  <option value="http://icecast.rtvutrecht.nl/radiomutrecht_hi"> Regio: RTV Utrecht
+	  <option value="http://www.simone.nl/simonefm.wax"> Regio: Simone FM (noorden)
+	  <option value="http://www.rtvdordrecht.nl/radio/DrechtstadFMwma.asx"> Regio: Drechtstad FM
+	  <option value="mms://vogelzang.nijmegen.internl.net/radiorijnmond"> Regio: Radio Rijnmond
+
+	  <option value="http://redir.proxitv.speednet.at:8080/public/mtt_getLiveWMSVideo.asp?proxy_url=mms://gcssrv.pkf.speednet.at/WSX/oe3_live"> AT: OE3 Hitradio
+	  <option value="mms://62.26.161.89/radioffh$livestream2.wma"> DE: FFH
+	  <option value="http://www.rockantenne.de/webradio/rockantenne.wmx"> DE: Rock Antenne
+	  <option value="http://mediaplayer.rtvutrecht.nl/live/bingofm_hi"> NL: Bingo FM
+	  <option value="http://luister.deep.fm/deepfm.asx"> NL: Deep FM
+	  <option value="http://shoutcast3.hardcoreradio.nl/;stream.nsv"> NL: MOH Radio (Hardcore)
+	  <option value="http://www.radioseven.se/r7_kabel.asx"> SE: RadioSeven (Trance)
+	  <option value="http://www.bbc.co.uk/radio/listen/live/r3.asx"> UK: BBC 3
+	  <option value="http://www.bbc.co.uk/radio/listen/live/r4.asx"> UK: BBC 4
+      <option value="http://www.bbc.co.uk/fivelive/live/live_int.asx"> UK: BBC five live
+      <option value="http://www.bbc.co.uk/6music/ram/6music.asx"> UK: BBC 6 music
+      <option value="http://www.bbc.co.uk/worldservice/meta/tx/nb/live_news_au_nb.asx"> UK: BBC World Service
+	  <option value="http://icy-e-03.sharp-stream.com:80/kerrang.mp3"> UK: Kerrang! radio
+	  <option value="http://ministry-http.contentbowl.co.uk/mosradiowma.asx"> UK: Ministry of Sound
+	  <option value="http://tx.sharp-stream.com/tune.php?c=planetrock&.wax="> UK: Planet Rock
+      <option value="http://player.absoluteradio.co.uk/core/audio/wmp/live.asx?service=vrbb"> UK: Absolute Radio
+	  <option value="http://www.hardradio.com/streaming/hardradio.asx"> USA: Hardradio (metal)
+	  
+    </select>
+
+  <br><br>
+
+  <div style="position:absolute;top:3px;left:465px;width:300px; font-family:tahoma; font-weight:bold; font-size:16px"> Actieve Zenders :</div>
+  <select id="selector2" style="width:300px; position:absolute; top:30px; left:450px; background-color:lightgreen" size="20" ondblclick="doe2()" onclick="toonCompleteNaam2()">
+    
+     <option value="999"> - Willekeurige Zender -
+	 <option value="http://www.1.fm/TuneIn/WM/christmas128k/Listen.aspx">1.FM : Always-Christmas
+     <option value="http://www.1.fm/TuneIn/WM/energy60s_70s128k/Listen.aspx">1.FM : 50's and 60's
+     <option value="http://www.1.fm/TuneIn/WM/70s128k/Listen.aspx">1.FM : 70's
+     <option value="http://www.1.fm/TuneIn/WM/energy80s128k/Listen.aspx">1.FM : 80's EURO
+	 <option value="http://www.1.fm/TuneIn/WM/back280s128k/Listen.aspx">1.FM : 80's US
+	 <option value="http://www.1.fm/TuneIn/WM/energy90s128k/Listen.aspx">1.FM : 90's US
+	 <option value="http://www.1.fm/TuneIn/WM/acpl128k/Listen.aspx">1.FM : Acappella
+	 <option value="http://www.1.fm/TuneIn/WM/energyblues128k/Listen.aspx">1.FM : Blues
+     <option value="http://www.1.fm/TuneIn/WM/energytcl128k/Listen.aspx">1.FM : Chillout Lounge
+     <option value="http://www.1.fm/TuneIn/WM/energydance128k/Listen.aspx">1.FM : Dance
+	 <option value="http://www.1.fm/TuneIn/WM/energydisco128k/Listen.aspx">1.FM : Disco Ball
+     <option value="http://www.1.fm/TuneIn/WM/energyfa128k/Listen.aspx">1.FM : Flashback Alternatives
+     <option value="http://www.1.fm/TuneIn/WM/energyhv128k/Listen.aspx">1.FM : High Voltage
+	 <option value="http://www.1.fm/TuneIn/WM/energytop40128k/Listen.aspx">1.FM : Top 40
+	 <option value="http://www.1.fm/TuneIn/WM/energytrance128k/Listen.aspx">1.FM : Trance
+	  
+	  
+	 <option value="http://www.citymusic.be/stream/city.asx"> BE: City Music
+	 <option value="http://stream.citygold.be:8004"> BE: CityGold
+     <option value="http://streaming.rtbf.be:8000/2128xrtbf"> BE: Classic 21
+     <option value="http://www.coolfmantwerpen.be/livestream/coolfm.asx"> BE: Cool FM
+     <option value="http://86.39.158.40:8000"> BE: Crooze FM
+	 <option value="http://www.exqifm.be/exqifm/webstream/listen.asx"> BE: EXQI FM
+	 <option value="http://www.gigantfm.nl/listen/listen.asx"> BE: Gigant fm
+	 <option value="http://listen.radionomy.com/radiogo4it"> BE: Go4it
+	 <option value="http://www.goldenflash.org/servers/media128.asx"> BE: Golden Flash
+     <option value="http://www.hitfm.be/radio/stream/HITfm.asx"> BE: HitFM
+     <option value="http://www.humorzender.be/streams/stream.php?id=wmp"> BE: Humorzender
+	 <option value="http://apps.joe.be/asx/joe_hi.asx"> BE: JOE fm
+	 <option value="http://www.jouwradio.be/stream/jouwradio.asx"> BE: Jouwradio
+	 <option value="http://stream.jumpstation.fm/"> BE: JumpStation.fm
+     <option value="http://mp3.streampower.be/ketnetradio-high.mp3"> BE: Ketnet Radio
+	 <option value="http://mp3.streampower.be/klara-high"> BE: Klara
+	 <option value="http://mp3.streampower.be/klaracontinuo-high"> BE: Klara continuo
+     <option value="http://mp3.streampower.be/mnm-high"> BE: MNM
+	 <option value="http://mp3.streampower.be/mnm_hits-high.mp3"> BE: MNM Hits
+     <option value="http://www.nostalgie.eu/streaming/windowsmediaplayer.wax"> BE: Nostalgie
+     <option value="http://www.oradio.be/stream/livestream.asx"> BE: O Radio
+	 <option value="http://streaming.rtbf.be:8000/pure128xrtbf"> BE: Pure FM
+	 <option value="http://www.radio-minerva.be/stream.php?ext=wax"> BE: Radio Minerva
+	 <option value="http://listen.radionomy.com/rolradio.m3u"> BE: Rolradio
+     <option value="http://apps.q-music.be/q_high.asx "> BE: Q-musiq
+     <option value="http://streaming2.intronic.nl/rgrfm"> BE: RGR fm
+	 <option value="http://army.wavestreamer.com:4947/"> BE: Roots radio
+	 <option value="http://mp3.streampower.be/rvi-high"> BE: RVI
+	 <option value="http://www.slowradio.be/stream.php?id=wmp"> BE: Slowradio
+	 <option value="http://breedband.starlightradio.be:8290"> BE: Starlight Radio
+     <option value="http://mp3.streampower.be/stubru-high"> BE: Studio Brussel
+     <option value="http://ns25042.ovh.net/streams/topgen_128mp3.asx"> BE: Topradio Topgeneration
+     <option value="http://ns24907.ovh.net/streams/topradio_128mp3.asx"> BE: TOPradio
+     <option value="http://www.trendyfm.be/stream/trendystream.asx"> BE: Trendy FM
+	 <option value="http://62.112.157.113:8000/stream"> BE: VBRO
+	 <option value="http://director.fluoline.net/app/audio/wc0012/wmp/mp3"> BE: Viva FM
+     <option value="http://mp3.streampower.be/radio1-high"> BE: VRT Radio 1
+     <option value="http://mp3.streampower.be/ra2wvl-high"> BE: VRT Radio 2 West Vlaanderen
+     <option value="http://mp3.streampower.be/sporza-high"> BE: VRT Sporza
+	 <option value="http://ns25042.ovh.net/streams/zenfm_128.asx"> BE: ZenFM
+	 
+     <option value="http://www.di.fm/wma/ambient.asx">D.I. Ambient
+     <option value="http://www.di.fm/wma/breaks.asx">D.I. Breaks
+     <option value="http://www.di.fm/wma/chillout.asx">D.I. Chillout
+	 <option value="http://www.di.fm/wma/classictechno.asx">D.I. Classic Techno
+	 <option value="http://www.di.fm/wma/djmixes.asx">D.I. DJ Mixes
+	 <option value="http://www.di.fm/wma/drumandbass.asx">D.I. Drum and Bass
+	 <option value="http://www.di.fm/wma/electro.asx">D.I. Electro
+	 <option value="http://www.di.fm/wma/eurodance.asx">D.I. Eurodance
+	 <option value="http://www.di.fm/wma/funkyhouse.asx">D.I. Funky House
+	 <option value="http://www.di.fm/wma/futuresynthpop.asx">D.I. Future Synthpop
+	 <option value="http://www.di.fm/wma/gabber.asx">D.I. Gabber
+	 <option value="http://www.di.fm/wma/goapsy.asx">D.I. Goa Psy
+	 <option value="http://www.di.fm/wma/hardcore.asx">D.I. Hardcore
+	 <option value="http://www.di.fm/wma/harddance.asx">D.I. Harddance
+	 <option value="http://www.di.fm/wma/hardstyle.asx">D.I. Hardstyle
+	 <option value="http://www.di.fm/wma/house.asx">D.I. House
+	 <option value="http://www.di.fm/wma/lounge.asx"> D.I. Lounge
+	 <option value="http://www.di.fm/wma/minimal.asx">D.I. Minimal
+	 <option value="http://www.di.fm/wma/progressive.asx">D.I. Progressive
+	 <option value="http://www.di.fm/wma/soulfulhouse.asx">D.I. SoulFulhouse
+	 <option value="http://www.di.fm/wma/techno.asx">D.I. Techno
+	 <option value="http://www.di.fm/wma/trance.asx">D.I. Trance
+	 <option value="http://www.di.fm/wma/vocaltrance.asx"> D.I. Vocal Trance
+	 
+     <option value="http://player.100p.nl/livestream.asx">NL: 100%NL
+	 <option value="http://icecast.omroep.nl/3fm-bb-mp3"> NL: 3FM
+ 	 <option value="http://icecast.omroep.nl/3fm-alternative-mp3"> NL: 3FM Alternative
+	 <option value="http://icecast.omroep.nl/3fm-live-mp3"> NL: 3FM Live
+	 <option value="http://livestreams.omroep.nl/npo/3fm_megatop50"> NL: 3FM Mega Top 50
+	 <option value="http://icecast.omroep.nl/3fm-serioustalent-mp3"> NL: 3FM Serious Talent
+	 <option value="http://livestreams.omroep.nl/eo/xnoizzradio"> NL: 3FM Xnoizz
+	 <option value="http://shoutcast.omroep.nl:8006">NL: 3VOOR12 Central
+     <option value="http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=205">NL: Arrow Rock
+	 <option value="http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=204">NL: Arrow Jazz FM
+	 <option value="http://shoutcast.omroep.nl:8068/">NL: Avro: klassiek 1
+	 <option value="http://shoutcast.omroep.nl:8072/">NL: Avro: klassiek 2
+	 <option value="http://wmplayer.bnn.fm">NL: BNN FM
+	 <option value="http://www.bright.fm/radiostream/stream.asx">NL: Bright FM
+	 <option value="http://ice1.streamzilla.jet-stream.nl:8000/ilsemedia=ice7"> NL: Candle Light
+	 <option value="http://www.garnierstreamingmedia.com/asx/caz_audio_01.asp">NL: Caz!
+	 <option value="http://stream.nxs.nl/asx/cityfm/CITYFM">NL: City FM Classic Rock
+	 <option value="http://www.classicfm.nl/player/classicfm.asx">NL: Classic FM
+	 <option value="http://streams.greenhost.nl:8080/live">NL: Concertzender
+	 <option value="http://www.danceradio1.nl/wmp.asx">NL: Dance Radio 1
+	 <option value="http://www.dbsradio.net/dbslive.asx">NL: DBS Radio
+	 <option value="http://fresh.fm/media/audio/FreshFM.asx">NL: Fresh FM
+	 <option value="http://icecast.omroep.nl/funx-bb-mp3">NL: Funx
+	 <option value="http://www.gigantfm.nl/listen/listen.asx">NL: GiantFm
+	 <option value="http://www.hardcoreradio.nl/hr.asx">NL: Hardcore radio
+	 <option value="http://www.hottracksfm.nl/playlist.asx">NL: HottracksFM
+	 <option value="http://stream.kinderradio.fm/kinderradio">NL: Kinderradio.FM
+	 <option value="http://www.garnierstreamingmedia.com/asx/aardschok.asp">NL: Kink Aardschok
+	 <option value="http://www.garnierstreamingmedia.com/asx/kink_classx.asp">NL: KINK-ClassX
+	 <option value="http://www.garnierstreamingmedia.com/asx/kinkfm.asp">NL: Kink FM
+	 <option value="http://media.kxradio.nl/livestream1">NL: KXradio
+	 <option value="http://kxradio.nl/substreams/kx_classikx.m3u">NL: KX Classikx
+     <option value="http://kxradio.nl/substreams/kx_redhot.m3u">NL: KX Red Hot
+     <option value="http://kxradio.nl/substreams/kx_world.m3u">NL: KX World
+	 <option value="http://www.laserradio.nl/stream/laserradio.m3u">NL: Laser Radio
+	 <option value="http://megastadfm.rentachannel.nl:8002/">NL: Megastad FM
+	 <option value="http://streamserver6.telconet.nl:5502">NL: Nashville FM
+	 <option value="http://www.novaclassicrock.nl/streams/nova_classic_rock_player.asx">NL: Nova Classic Rock
+	 <option value="http://www.pro-fm.net/modules/streams/listen.asx">NL: Pro FM  (80's en 90's)
+	 <!--<option value="http://www.q-music.nl/asx/q-music.asx">NL: Q-music -->
+	 <option value="http://vip2.str.reasonnet.com/qmusic.mp3.96">NL: Q-music
+	 <option value="http://icecast.omroep.nl/radio1-bb-mp3"> NL: Radio 1
+	 <option value="http://icecast.omroep.nl/radio2-bb-mp3"> NL: Radio 2
+	 <option value="http://icecast.omroep.nl/radio2-inconcert-mp3"> NL: Radio 2 In Concert
+	 <option value="http://icecast.omroep.nl/radio2-liedkunst-mp3"> NL: Radio 2 Liedkunst
+	 <option value="http://icecast.omroep.nl/radio2-sterrennl-mp3"> NL: Radio 2 Sterren.nl
+	 <option value="http://icecast.omroep.nl/radio2-top2000-mp3"> NL: Radio 2 Top 2000
+	 <option value="http://icecast.omroep.nl/radio4-bb-mp3"> NL: Radio 4
+	 <option value="http://icecast.omroep.nl/radio4-eigentijds-mp3"> NL: Radio 4 Eigentijds
+	 <option value="http://icecast.omroep.nl/radio4-jongklassiek-mp3"> NL: Radio 4 Jong Klassiek
+	 <option value="http://icecast.omroep.nl/radio4-musicareligiosa-mp3"> NL: Radio 4 Musica Religiosa
+	 <option value="http://icecast.omroep.nl/radio5-bb-mp3"> NL: Radio 5
+	 <option value="http://icecast.omroep.nl/radio5-nostalgia-mp3"> NL: Radio 5 Nostalgia
+	 <option value="http://icecast.omroep.nl/radio6-bb-mp3"> NL: Radio 6
+	 <option value="http://icecast.omroep.nl/radio6-jazz-mp3"> NL: Radio 6 Jazz
+	 <option value="http://icecast.omroep.nl/radio6-jazzjong-mp3"> NL:Radio 6 Jazz Jong
+	 <option value="http://livestreams.omroep.nl/nps/radio6_web01"> NL: Radio 6 Outer Limits
+	 <option value="http://livestreams.omroep.nl/nps/world"> NL: Radio 6 World 
+	 <option value="http://icecast.omroep.nl/nieuws24-bb-mp3">NL: Radio1 nieuws
+	 <option value="http://82.201.100.9:8000/Radio10Gold">NL: Radio 10 Gold
+	 <option value="http://82.201.100.10:8000/RD09_Radio10Gold_60s70s.m3u">NL: Radio 10 Gold 60/70's
+	 <option value="http://82.201.100.10:8000/RD05_R10_80s.m3u">NL: Radio 10 Gold 80's
+	 <option value="http://82.201.100.10:8000/RD10_Radio10Gold_90s_Hits.m3u">NL: Radio 10 Gold 90's
+	 <option value="http://82.201.100.10:8000/WEB20_HQ">NL: R10 Gold Disco Classics
+	 <option value="http://82.201.100.10:8000/WEB03.m3u">NL: R10 Gold Top 4000
+	 <option value="http://www.radio227.nl/radio227.asx">NL: Radio 227
+	 <option value="http://82.201.100.9:8000/radio538">NL: Radio 538
+	 <option value="http://82.201.100.9:8000/WEB01mobiel">NL: Radio 538 Dance Department
+	 <option value="http://82.201.100.10:8000/WEB11.m3u">NL: Radio 538 Hitzone
+	 <option value="http://talpa-asx.streaming.is.nl/streaming.asp?P=20004&Q=JUIZE_HIGH">NL: Radio 538 Juize
+	 <option value="http://82.201.100.10:8000/RD02_NonStop40">NL: Radio 538 NON Stop 40
+	 <option value="http://82.201.100.10:8000/WEB16.m3u">NL: Radio 538 Party
+	 <option value="http://82.201.100.10:8000/WEB21.m3u">NL: Radio 53L8
+	 <option value="http://82.201.100.10:8000/WEB13mobiel.m3u">NL: Radio 53Z8
+	 <option value="http://83.98.170.75/live/decibel.asx">NL: Radio Decibel
+	 <option value="http://www.radionl.fm/stream/listen.asx">NL: Radio NL
+	 <option value="http://www.radioveronica.nl/radioveronicaplayer/radioveronica.asx">NL: Radio Veronica (80's and 90's hits)
+	 <option value="http://www.royal-radio.com/royal-radio.asx">NL: Royal Radio (24/7 hiphop and RnB)
+	 <option value="http://82.201.100.10:8000/WEB04_RTL_ROCK.m3u">NL: RTL Power FM
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=Skyradio&type=live&service=windowsmedia&protocol=http&port=&output=asx">NL: SkyRadio	 
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=SkyNL&type=live&service=windowsmedia&protocol=http&port=&output=asx">NL: SkyRadio NL
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=Seasonal&type=live&service=windowsmedia&protocol=mms&port=&output=asx"> NL: Sky Radio LoveSongs
+	 <option value="http://82.201.100.10:8000/SLAMFM_MP3_HQ">NL: SLAM!FM
+	 <option value="http://www.smashfm.nl/stream/smashfm.php?file=wax">NL: Smash FM
+	 <option value="http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=296"> NL: Traffic Radio
+	 <option value="http://5663.live.streamtheworld.com/HIT_RADIOAACCMP3"> NL: Veronica Hitradio
+	 <option value="http://5703.live.streamtheworld.com:443/VERONICA_ROCKAACCMP3"> NL: Veronica Rockradio
+	 <option value="http://reflector.kpnstreaming.nl/?user=SkyRadioLive&file=Top1000&type=live&service=windowsmedia&protocol=mms&port=&output=asx"> NL: Veronica Top 1000 A.T.
+	 <option value="http://ice1.streamzilla.jet-stream.nl:8000/ilsemedia=ice7">NL: Vrouwonline Radio
+	 <option value="http://www.waterstadfm.nl/site/stream/listen.asx">NL: Waterstad FM
+	 <option value="http://www.xfmhitradio.nl/live/live.asx">NL: XFM Hitradio
+	 
+     <option value="http://www.sky.fm/wma/altrock.asx"> SFM: Alternative Rock
+	 <option value="http://www.sky.fm/wma/hit70s.asx"> SFM: All Hit 70's
+	 <option value="http://www.sky.fm/wma/the80s.asx"> SFM: Best of the 80s
+	 <option value="http://www.sky.fm/wma/guitar.asx"> SFM: Classical Guitar
+	 <option value="http://www.sky.fm/wma/classicrap.asx"> SFM: Classical Rap
+	 <option value="http://www.sky.fm/wma/classicrock.asx"> SFM: Classic Rock
+	 <option value="http://www.sky.fm/wma/country.asx"> SFM: Country
+	 <option value="http://www.sky.fm/wma/datempolounge.asx"> SFM: DaTempo Lounge
+	 <option value="http://www.sky.fm/wma/indierock.asx"> SFM: Indie Rock
+	 <option value="http://www.sky.fm/wma/jazz.asx"> SFM: Modern Jazz
+	 <option value="http://www.sky.fm/wma/classical.asx"> SFM: Mostly Classical
+	 <option value="http://www.sky.fm/wma/newage.asx"> SFM: New Age
+	 <option value="http://www.sky.fm/wma/oldies.asx"> SFM: Oldies
+	 <option value="http://www.sky.fm/wma/rootsreggae.asx"> SFM: Roots Reggae
+	 <option value="http://www.sky.fm/wma/salsa.asx"> SFM: Salsa
+	 <option value="http://www.sky.fm/wma/smoothjazz.asx"> SFM: Smooth Jazz
+	 <option value="http://www.sky.fm/wma/tophits.asx"> SFM: Top Hits
+	 <option value="http://www.sky.fm/wma/uptemposmoothjazz.asx"> SFM: Untempo Smooth Jazz
+	 <option value="http://www.sky.fm/wma/urbanjamz.asx"> SFM: Urban Jamz
+	 <option value="http://www.sky.fm/wma/world.asx"> SFM: World Music
+	 
+	 <option value="http://www.bbc.co.uk/radio/listen/live/r1.asx"> UK: BBC 1
+	 <option value="http://www.bbc.co.uk/radio/listen/live/r2.asx"> UK: BBC 2
+	 <option value="http://www.rockradio1.com/192kwma.asx">UK: RockRadio1
+	 <option value="http://wazee.org/128.asx">US: Radio wazee
+	 <option value="http://www.977music.com/tunein/web/80s.asx">US: .977 The 80s channel
+	 <option value="http://www.977music.com/tunein/web/rock.asx">US: .977 The Alternative Channel
+	 
+  </select>
+  
+
+    
+  <br><br>
+  <input type="button" value="verplaats -->" id="knop1" style="position:absolute; top:60px; left:330px; width:100px; cursor:hand" onclick="doe1()" onmouseover="javascript:document.getElementById('info').innerText='Verplaats een geselecteerde zender vanuit de linker kolom naar de rechter kolom, zodat deze zender ook actief wordt en beluisterd kan worden. Je kunt ook dubbel-klikken op de gewenste zender om deze van de ene naar de andere kolom te verplaatsen.'" onmouseout="javascript:document.getElementById('info').innerText=''"> 
+  <input type="button" value="<-- verplaats" id="knop2" style="position:absolute; top:100px; left:330px;width:100px; cursor:hand" onclick="doe2()" onmouseover="javascript:document.getElementById('info').innerText='Verplaats een geselecteerde zender vanuit de rechter kolom naar de linker kolom; doe dit met radio-zenders die je nooit beluisterd. Je kunt ook dubbel-klikken op de gewenste zender om deze van de ene naar de andere kolom te verplaatsen.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+
+  <input type="button" value="omhoog" id="omhoog" style="position:absolute; top:150px; left:330px;width:100px; cursor:hand" onclick="goUp()" onmouseover="javascript:document.getElementById('info').innerText='Geselecteerde zenders in de rechter-kolom worden een positie hoger in de lijst geplaatst. U kunt zo uw eigen volgorde van zenders bepalen.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value="omlaag" id="omlaag" style="position:absolute; top:180px; left:330px;width:100px; cursor:hand" onclick="goDown()" onmouseover="javascript:document.getElementById('info').innerText='Geselecteerde zenders in de rechter-kolom worden een positie lager in de lijst geplaatst. U kunt zo uw eigen volgorde van zenders bepalen.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value="hernoem" id="hernoem" style="position:absolute; top:210px; left:330px;width:100px; cursor:hand" onclick="myPopup()" onmouseover="javascript:document.getElementById('info').innerText='Je kunt een zender selecteren in de tweede kolom en deze een andere naam geven.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value="ABC" id="abc" style="position:absolute; top:240px; left:330px;width:100px; cursor:hand" onclick="sorteer()" onmouseover="javascript:document.getElementById('info').innerText='Alle zenders in de rechter-kolom worden gesorteerd op alfabetische volgorde.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value="landcodes" id="landcodes" style="position:absolute; top:270px; left:330px;width:100px; cursor:hand" onclick="javascript:System.Shell.execute('http://www.miniradio.nl/gebruikers/miniradio/nl/countrycodes2.html')" onmouseover="javascript:document.getElementById('info').innerText='Een nieuw venster wordt geopend met informatie over de gebruikte landcodes.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <!--<input type="button" value="landcodes" id="landcodes" style="position:absolute; top:270px; left:330px;width:100px; cursor:hand" onclick="toonLandcodes()" onmouseover="javascript:document.getElementById('info').innerText='Een nieuw venster wordt geopend met informatie over de gebruikte landcodes.'" onmouseout="javascript:document.getElementById('info').innerText=''">-->
+    
+  <input type="button" value="opslaan" id="opslaan" onclick="opslaan()" style="width:100px; border:3px solid black; position:absolute; top:330px; left:330px; cursor:hand; background-color:yellow; color:blue" onmouseover="javascript:document.getElementById('info').innerText='De zenders in de linker kolom en in de rechter kolom worden opgeslagen. Vanaf nu kunt u alleen de radio-zenders beluisteren die zichtbaar zijn in de rechter kolom.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value=" Klaar " id="ok"  onclick="klaar()" style="position:absolute; top:500px; left:650px; width:100px; cursor:hand" onmouseover="javascript:document.getElementById('info').innerText='U verlaat dit scherm, zonder dat er nog iets wordt opgeslagen.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  
+  
+  
+  <!--<span id="helenaam" style="position:absolute;top:375px;left:200px; width:500px"></span>-->
+  <span id="helenaam" style="position:absolute;top:500px;left:30px; width:700px"></span>
+  <span style="position:absolute; top:1px;left:720px; color:black; background-color:silver;border:1px solid black;padding:2px; font-family:tahoma; font-size:10px; cursor:hand" onclick="javascript:reset()"  onmouseover="javascript:document.getElementById('info').innerText='Reset. Deze functie is onomkeerbaar. Aangemaakte tekstbestanden met zenders zullen gewist worden. Alle standaard zenders zullen weer aanwezig zijn en hun oorspronkelijke naam hebben. Alleen gebruiken indien de zenders niet meer correct werken.'" onmouseout="javascript:document.getElementById('info').innerText=''"> reset </span>
+  <img src="icons/close.png" style="position:absolute; top:1px;left:767px;cursor:hand" onclick="javascript:System.Gadget.Flyout.show = false;"  onmouseover="javascript:document.getElementById('info').innerText='Leave this screen.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+
+  
+  <span style="position:absolute; top:375px;left:450px; font-weight:bold">Extra : </span>
+  <select id="selector3" style="width:170px; position:absolute; top:370px; left:500px; background-color:black;color:white" size="1" onchange="keuzeInfo();document.getElementById('selector3').blur()"  onmouseover="javascript:document.getElementById('info').innerText='Hier kunt u aanvullende opties vinden. Wanneer u een optie aanklikt ziet u op deze positie meer informatie staan. Pas wanneer u op \'OK\' drukt wordt de betreffende optie uitgevoerd.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+    <option value="0"> Maak uw keuze...
+    <option value="1"> Alle zenders actief
+	<option value="2"> Alle zenders inactief
+	<option value="3"> Lege zender toevoegen
+	<option value="4"> Wis inactieve zender
+	<option value="5"> Backup Actieve zenders
+	<option value="6"> Importeer Actieve zenders
+  </select>
+  <input type="button" value="OK" style="position:absolute;top:370px;left:690px; color:white;background-color:black;border:1px solid white;width:30px;cursor:hand" onclick="specialeKeuze()"  onmouseover="javascript:document.getElementById('info').innerText='Pas wanneer u op deze \'OK\' knop drukt, wordt de betreffende aktie in het menu links van deze knop uitgevoerd.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  
+	
+  <div id="vraag" style="position:absolute; top:460px;left:600px; width:190px; visibility:hidden; z-index:2; border:5px solid red; padding:10px; background-color:white; color:black;font-weight:bold"> 
+	Wijzigingen opslaan ? <br><br>
+	<input type="button" value="JA" onclick="wilWeg=true;opslaan();" style="width:75px">
+	<input type="button" value="NEE" onclick="System.Gadget.Flyout.show = false;" style="width:75px">
+  </div>
+   </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>DriveInfo</name>
+  <namespace>KST.Gadgets</namespace>
+  <version>1.0.0</version>
+  <author name="Kris Thompson">
+    <logo src="icon.png" />
+  </author>
+  <copyright>Copyright © 2006</copyright>
+  <description>This gadget allows you to monitor one or more of your PC's drives. If you like it, let me know at thomp132@gmail.com.</description>
+  <icons>
+    <icon height="48" width="48" src="icon.png" />
+  </icons>    
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="DriveInfo.html" />
+      <permissions>full</permissions>
+	  			<defaultImage src="drag.png"/>
+      <platform minPlatformVersion="0.3" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

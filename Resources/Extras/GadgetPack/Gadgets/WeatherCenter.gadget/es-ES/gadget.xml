@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Weather Center</name>
+  <namespace>WeatherCenter</namespace>
+  <version>2.6.1</version>
+  <author name="hadj">
+    <info url="weathercenter.narod2.ru" text="Weather Center Team" />
+    <logo src="images/logo.png" />
+  </author>
+  <copyright>
+    <!--_locComment_text="{Locked}"-->&#169; 2009
+  </copyright>
+  <description>Comprueba las condiciones meteorológicas actuales y pronóstico en cualquier parte del mundo. Actualización de los datos proporcionados por "The Weather Channel", "AccuWeather", "Weather Underground", "MSN", "The Weather Network", "Weather Bug" y "NOAA".</description>
+  <icons>
+    <icon height="80" width="62" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="Weather.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="0.3" /> <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

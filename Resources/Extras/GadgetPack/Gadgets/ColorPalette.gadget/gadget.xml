@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<gadget>
+	<name>Color Palette</name>
+	<namespace>wonders</namespace>
+	<version>1.2.0.0</version>
+	<author name='Plain Wonders'>
+		<info url='www.plainwonders.net/software/?widget' />
+		<logo src='' />
+	</author>
+	<copyright>&#169; 2010</copyright>
+	<description>Pick and manage colors.</description>
+	<icons>
+		<icon height='130' width='60' src='res/palette.png' />
+	</icons>
+	<hosts>
+		<host name='sidebar'>
+			<base type='HTML' apiVersion='1.0.0' src='palette.html' />
+			<permissions>Full</permissions>
+			<platform minPlatformVersion='1.0' />
+			<defaultImage src='drag.png' />
+		</host>
+	</hosts>
+</gadget>

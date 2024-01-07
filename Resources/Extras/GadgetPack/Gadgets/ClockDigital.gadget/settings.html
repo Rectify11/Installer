@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<style>
+body { width: 300px; height: 280px; font-weight: 600 700; font-size:11px;font-family:"Segoe UI Variable Display"; margin:0}
+</style>
+<title>Text Color</title>
+<script language="JavaScript" type="text/javascript">
+var currSa1 = "Segoe UI";
+var currSa2 = "Segoe UI";
+var currSg1 = 48;
+var currSg2 = 11;
+var currFarbe = "white"
+var currBreite = 130;
+var currDatum = "j";
+var currSchatten = "black";
+var currFormat= 1;
+var currTitel ="";
+var currSek ="0";
+var currZohne ="+0";
+var currSchattentyp ="0";
+
+System.Gadget.onSettingsClosing = settingsClosing;
+								
+function loadSettings() 
+{
+
+
+
+	var Sa1 = System.Gadget.Settings.read("Sa1");
+	if (Sa1 != ""){
+    currSa1 = Sa1;  }
+    
+	var Sa2 = System.Gadget.Settings.read("Sa2");
+	if (Sa2 != ""){    
+    currSa2 = Sa2;  }
+    
+	var Sg1 = System.Gadget.Settings.read("Sg1");
+	if (Sg1 != ""){
+    currSg1 = Sg1;  }
+    
+    
+	var Sg2 = System.Gadget.Settings.read("Sg2");
+	if (Sg2 != ""){
+    currSg2 = Sg2; }
+     
+    var Farbe = System.Gadget.Settings.read("Farbe");
+    if (Farbe != ""){
+    currFarbe = Farbe; } 
+    
+    var breite = System.Gadget.Settings.read("breite");
+    if (breite != ""){
+    currBreite = breite; } 
+
+    var datumsfeld = System.Gadget.Settings.read("datumsfeld");
+    if (datumsfeld != ""){
+    currDatum = datumsfeld; }
+    
+    var schatten = System.Gadget.Settings.read("schatten");
+    if (schatten != ""){
+    currSchatten = schatten; } 
+ 
+    var uhrformat = System.Gadget.Settings.read("uhrformat");
+    if (uhrformat != ""){
+    currFormat = uhrformat; } 
+    
+    
+    
+       var schattentyp = System.Gadget.Settings.read("schattentyp");
+    if (schattentyp != ""){
+    currSchattentyp=schattentyp; } 
+
+   var zzohne = System.Gadget.Settings.read("zzohne");
+    if (zzohne != ""){
+    currZohne = zzohne; } 
+
+   var sekanz = System.Gadget.Settings.read("sekanz");
+    if (sekanz != ""){
+    currSek=sekanz; } 
+
+    var titel = System.Gadget.Settings.read("titel");
+    if (titel != ""){
+    currTitel = titel; } 
+
+    document.getElementById("schattentypfeld").value = currSchattentyp;
+    document.getElementById("sekfeld").value = currSek;
+    document.getElementById("titelfeld").value = currTitel;
+    document.getElementById("zohnenfeld").value = currZohne;
+    document.getElementById("farbe").value = currFarbe;
+    document.getElementById("schriftart1").value = currSa1;
+    document.getElementById("schriftart2").value = currSa2;
+    document.getElementById("schriftgroe1").value = currSg1;
+    document.getElementById("schriftgroe2").value = currSg2;
+    document.getElementById("gadgetbreite").value = currBreite;
+    document.getElementById("datfeld").value = currDatum;
+    document.getElementById("schattenfeld").value = currSchatten;
+    document.getElementById("uhrform").value = currFormat;
+
+ 
+ 
+   
+    System.Gadget.onSettingsClosing = SettingsClosing;   
+    
+}
+
+
+
+function settingsClosing(event)
+{
+
+
+
+				if (event.closeAction == event.Action.commit)
+				{
+    Farbe =document.getElementById("farbe").value;
+    Sa1=document.getElementById("schriftart1").value;
+    Sa2=document.getElementById("schriftart2").value;
+    Sg1=document.getElementById("schriftgroe1").value;
+    Sg2=document.getElementById("schriftgroe2").value;
+    breite=document.getElementById("gadgetbreite").value;
+    datumsfeld=document.getElementById("datfeld").value;
+    schatten=document.getElementById("schattenfeld").value;
+    uhrformat=document.getElementById("uhrform").value;
+    schattentyp=document.getElementById("schattentypfeld").value;
+    sekanz=document.getElementById("sekfeld").value;
+    titel=document.getElementById("titelfeld").value; 
+    zzohne=document.getElementById("zohnenfeld").value;
+
+    
+
+
+
+				System.Gadget.Settings.write("Farbe", Farbe);
+                System.Gadget.Settings.write("Sa1", Sa1);
+                System.Gadget.Settings.write("Sa2", Sa2);
+                System.Gadget.Settings.write("Sg1", Sg1);
+                System.Gadget.Settings.write("Sg2", Sg2);
+                System.Gadget.Settings.write("breite", breite);
+                System.Gadget.Settings.write("datumsfeld", datumsfeld);
+                System.Gadget.Settings.write("schatten", schatten);
+                System.Gadget.Settings.write("uhrformat", uhrformat);
+                System.Gadget.Settings.write("titel", titel);
+                System.Gadget.Settings.write("sekanz", sekanz);
+                System.Gadget.Settings.write("zzohne", zzohne);
+                System.Gadget.Settings.write("schattentyp", schattentyp);
+
+              
+
+				} }
+
+
+</script>
+
+</head>
+<body onload="loadSettings()">
+
+<form method="post" style="width: 300px" id="einstellungen">
+
+<br />
+	<table style="width: 100%">
+		<tr>
+			<td style="width: 126px">Title<br />
+	<input id="titelfeld" type="text"  /> 
+
+
+</td>
+			<td>Gadget width<br />
+
+	<input id="gadgetbreite" type="text" style="width: 50px" />&nbsp; px</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="width: 126px">Schriftfarbe<br />
+
+	<input id="farbe" type="text" /> 
+
+</td>
+			<td>Shadow typ and color<br />
+
+			<select id="schattentypfeld" style="width: 60px" >
+	<option value="0">without</option>
+	<option value="1">hard</option>
+	<option value="2">glow</option>
+	</select><input id="schattenfeld" type="text" style="width: 65px" /></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="width: 126px">Font face Time
+
+	<br />
+
+	<input id="schriftart1" type="text" /> 
+
+</td>
+			<td>Font size<br />
+
+	<input id="schriftgroe1" type="text" style="width: 50px" />&nbsp; px</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td >Clock format&nbsp; / Seconds<br />
+			<select id="uhrform" style="width: 95px">
+			<optgroup label="leading zero"/>  
+	<option value="1">24 h</option>
+	<option value="2">12 h</option>
+	<option value="3">12 h am/pm</option>
+
+	<optgroup label="no leading 0"/>  
+		<option value="4">12 h</option>
+		<option value="5">12 h am/pm</option>
+		
+	</select> <select id="sekfeld" style="width: 50px" name="D4">
+	<option value="0">-</option>
+	<option value="1">sec</option>
+
+	</select></td>
+			<td>Time zone / Date<br />
+	
+	
+	<input id="zohnenfeld" type="text" style="width: 30px" /><select id="datfeld" style="width: 100px" >
+	<option value="j">Standard</option>
+	<option value="j2">Standard + Year</option>
+	<option value="j3">Short</option>
+    <option value="j4">Short + Year</option>
+	<option value="n">without</option>
+	</select></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="width: 126px">Font face date<br />
+	<input id="schriftart2" type="text" /> 
+
+
+</td>
+			<td>Font size<br />
+
+	<input id="schriftgroe2" type="text" style="width: 50px" />&nbsp; px</td>
+			<td>
+			&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="width: 126px">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+<br />
+	<br />
+	<br />
+
+<br />
+
+
+<br />
+	<br />
+	</form>
+</body>
+
+</html>

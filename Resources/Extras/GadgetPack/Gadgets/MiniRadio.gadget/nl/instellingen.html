@@ -1,0 +1,449 @@
+<html>
+  <head>
+	<style>
+	  //body  {width:250px; font-family:tahoma; font-size:12}
+	  img  {border:none}
+	</style>
+	<script>
+	
+	function doNothing(){return true}
+    window.onerror =doNothing
+	
+	var logoSetting = 'leeg';
+	var frontje = 0;
+	var frontBestandsnaam;
+	var mapNaam;
+	pakMapNaam();
+	
+	function init() {
+	  var logoSetting = System.Gadget.Settings.read("logo");
+	  if (logoSetting != ""){
+	    if (logoSetting == 'radioGroot'){logoForm.logo.checked = true;}
+		if (logoSetting == 'radioKlein'){logoForm.logoKlein.checked = true;}
+	  }
+	  inlezenFrontjes(); //toegevoegd op 26-11-09. Blijft het laatst gekozen frontje nu intact na herstart gadget en open config scherm ?
+	}
+
+	System.Gadget.onSettingsClosing = SettingsClosing;
+	function SettingsClosing(event)	{
+ 	  if (event.closeAction == event.Action.commit) {
+	    var dummy = 0;
+		if(logoForm.logo.checked){ logoSetting='radioGroot'; dummy=1;}
+		if(logoForm.logoKlein.checked){ logoSetting='radioKlein'; dummy=1;}
+		if (dummy == 0){logoSetting = 'leeg';}
+		System.Gadget.Settings.write("logo", logoSetting);
+		System.Gadget.Settings.write("frontje", frontje);
+		System.Gadget.Settings.write("frontBestandsnaam", frontBestandsnaam);
+	  }
+	  event.cancel = false;
+	}
+
+	
+		  
+	  function pakMapNaam(){
+	    mapNaam = System.Gadget.path;
+		var nr = mapNaam.lastIndexOf("\\");
+		mapNaam = mapNaam.substr(0,nr);
+	  }
+	
+
+	function stelGeluidIn(){
+	  document.getElementById('mediaPlayer').settings.volume=vol;
+	}
+	
+	function flyOut(){
+	  System.Gadget.Flyout.file = "zenderbeheer.html";
+      System.Gadget.Flyout.show = true;
+	}
+	
+	
+	function flyOut2(){
+	  System.Gadget.Flyout.file = "externezenders.html";
+      System.Gadget.Flyout.show = true;
+	}
+	
+	
+	function tabblad1(){
+	  document.getElementById('tabblad1').style.visibility='visible';
+	  document.getElementById('tabblad2').style.visibility='hidden';
+	  document.getElementById('tabblad3').style.visibility='hidden';
+	  document.getElementById('tab1').style.backgroundColor='white';
+	  document.getElementById('tab2').style.backgroundColor='silver';
+	  document.getElementById('tab3').style.backgroundColor='silver';
+	  document.getElementById('tab1').style.borderBottomStyle='none';
+	  document.getElementById('tab2').style.borderBottomStyle='solid';
+	  document.getElementById('tab3').style.borderBottomStyle='solid';
+	}
+	
+	
+	function tabblad2(){
+	  document.getElementById('tabblad2').style.visibility='visible';
+	  document.getElementById('tabblad1').style.visibility='hidden';
+	  document.getElementById('tabblad3').style.visibility='hidden';
+	  document.getElementById('tab1').style.backgroundColor='silver';
+	  document.getElementById('tab2').style.backgroundColor='white';
+	  document.getElementById('tab3').style.backgroundColor='silver';
+	  document.getElementById('tab1').style.borderBottomStyle='solid';
+	  document.getElementById('tab2').style.borderBottomStyle='none';
+	  document.getElementById('tab3').style.borderBottomStyle='solid';
+	}
+	
+	function tabblad3(){
+	  document.getElementById('tabblad3').style.visibility='visible';
+	  document.getElementById('tabblad1').style.visibility='hidden';
+	  document.getElementById('tabblad2').style.visibility='hidden';
+	  document.getElementById('tab1').style.backgroundColor='silver';
+	  document.getElementById('tab2').style.backgroundColor='silver';
+	  document.getElementById('tab3').style.backgroundColor='white';
+	  document.getElementById('tab1').style.borderBottomStyle='solid';
+	  document.getElementById('tab2').style.borderBottomStyle='solid';
+	  document.getElementById('tab3').style.borderBottomStyle='none';
+	}
+	
+	function kiesFrontje(){
+	  document.getElementById('frontjes').style.zIndex=-1;
+	  frontje = document.getElementById('frontSelector').selectedIndex;
+	}
+	
+	function changeFront(){
+	  var indexNr = document.getElementById('frontSelector').selectedIndex;
+	  var extensie = document.getElementById('frontSelector').options[document.getElementById('frontSelector').selectedIndex].value;
+	  if (indexNr > 14){
+	    document.getElementById('frontIMG').src= mapNaam + '\\FrontjesMiniRadio\\frontje' + indexNr + extensie;
+	  } else
+	  document.getElementById('frontIMG').src="frontje" + indexNr + '.png';
+	  frontBestandsnaam = "frontje" + indexNr + extensie;
+	  if (indexNr > 14){
+	    document.getElementById('ditFrontjeWissen').innerHTML = 'Dit frontje wissen';
+	  } else {document.getElementById('ditFrontjeWissen').innerHTML = '';}
+	  var creditNamen = new Array('','Ron','Ron','Ron','skees','Nik','Jeffrey Lankamp','','','Wouter Alberts','','','skees','skees','Go - Go v1.2');
+	  if (creditNamen[indexNr]!=''){
+	    document.getElementById('credits').innerText = 'Credits : ' + creditNamen[indexNr];
+	  } else document.getElementById('credits').innerText = '';
+	}
+	
+	
+	function droppedFront(){
+	  var  sFile;
+      for (var i=0; System.Shell.itemFromFileDrop(event.dataTransfer, i) != null; i++){
+        sFile = System.Shell.itemFromFileDrop(event.dataTransfer, i).path;
+		document.getElementById('frontIMG').src=sFile;
+	  }	
+	  
+      var fso2 = new ActiveXObject("Scripting.FileSystemObject");
+      if (fso2.FolderExists(mapNaam+ '\\FrontjesMiniRadio') == false){
+        var fso1 = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso1.CreateFolder(mapNaam + '\\FrontjesMiniRadio');
+	  }
+  
+	  var fso = new ActiveXObject("Scripting.FileSystemObject");
+	  var aantalFrontjes = document.getElementById('frontSelector').options.length;
+	  var extPos = sFile.lastIndexOf(".");
+	  var extensie = sFile.substr(extPos,4);
+	  fso.CopyFile (sFile, mapNaam + '\\FrontjesMiniRadio\\frontje' + aantalFrontjes + extensie);
+	  inlezenFrontjes();
+	  document.getElementById('frontSelector').selectedIndex = document.getElementById('frontSelector').options.length-1;
+	  changeFront();
+	}
+	
+	function inlezenFrontjes(){
+	  var frontNr;
+	  var fso = new ActiveXObject("Scripting.FileSystemObject");
+	  for (var i=4; i<99;i++){
+	    frontNr = 'frontje' + i;
+	    if (fso.FileExists(mapNaam+ '\\FrontjesMiniRadio\\' + frontNr + '.png')){  
+	      document.getElementById('frontSelector').options[i] = new Option (frontNr,'.png',false,false);
+	    } 
+		if (fso.FileExists(mapNaam+ '\\FrontjesMiniRadio\\' + frontNr + '.gif')){  
+	      document.getElementById('frontSelector').options[i] = new Option (frontNr,'.gif',false,false);
+	    } //else return false;
+	  }
+	  frontje= System.Gadget.Settings.read("frontje");
+	  document.getElementById('frontSelector').selectedIndex = frontje;
+	  changeFront();
+	}
+	
+	
+	
+	function wisFrontje(){
+	  var ditFrontje = document.getElementById('frontSelector').selectedIndex;
+	  if (ditFrontje < 14){return false;}
+	  var ditFrontjesNaam = 'frontje' + ditFrontje + document.getElementById('frontSelector').options[ditFrontje].value;
+	  var laatsteFrontje = document.getElementById('frontSelector').options.length-1;
+	  var laatsteFrontjesNaam = 'frontje' + laatsteFrontje + document.getElementById('frontSelector').options[laatsteFrontje].value;
+	  var nieuweNaamFrontje = 'frontje' + ditFrontje + document.getElementById('frontSelector').options[laatsteFrontje].value;
+	  document.getElementById('frontSelector').options[ditFrontje].value = document.getElementById('frontSelector').options[laatsteFrontje].value;
+	  document.getElementById('frontSelector').options[laatsteFrontje] = null;
+	  var fso;
+	  var teWissenFrontje = mapNaam  + '\\FrontjesMiniRadio\\' + ditFrontjesNaam;
+	  var teVerplaatsenFrontje = mapNaam  + '\\FrontjesMiniRadio\\' + laatsteFrontjesNaam;
+	  var nieuwTeWordenFrontje = mapNaam  + '\\FrontjesMiniRadio\\' + nieuweNaamFrontje;
+	  fso = new ActiveXObject("Scripting.FileSystemObject");
+	  if (fso.FileExists(teWissenFrontje)){
+	    fso.DeleteFile(teWissenFrontje);
+		var fso2 = new ActiveXObject("Scripting.FileSystemObject");
+		fso2.MoveFile(teVerplaatsenFrontje,nieuwTeWordenFrontje);  //zelfde fso ??
+	  }
+	  document.getElementById('ditFrontjeWissen').style.visibility = 'hidden';
+	  document.getElementById('frontSelector').selectedIndex = ditFrontje - 1;
+	  changeFront()
+	}
+	
+	function vraagWissen(){
+	  document.getElementById('ditFrontjeWissen').innerHTML = '<span onclick="wisFrontje()" style="color:red"> WIS </span>  <span onclick="javascript:document.getElementById(\'ditFrontjeWissen\').innerHTML = \'Dit frontje wissen\';" style="color:green"> &nbsp;&nbsp;&nbsp;&nbsp; Annuleren </span>';
+	}
+	
+	
+	function laadMeerInst(){
+	  document.getElementById('meerOpt').style.visibility = 'visible';
+	  document.getElementById('meerOpt').style.zIndex = 8;
+	}
+	
+
+	  
+	  function opslaanExtraInst(){		
+	    var akzendernamen = document.getElementById('akzendernamen').value;
+		var vkzendernamen = document.getElementById('vkzendernamen').value;
+		var ltzendernamen = document.getElementById('ltzendernamen').value;
+		var lgzendernamen = document.getElementById('lgzendernamen').value;
+		var vetteLetters = document.getElementById('bold').checked;
+		var omhulsel = document.getElementById('omhulsel').checked;
+		var autoplay = document.getElementById('autoplay').checked;
+		System.Gadget.Settings.write("akZendernamen",akzendernamen);
+		System.Gadget.Settings.write("vkZendernamen",vkzendernamen);
+		System.Gadget.Settings.write("ltZendernamen",ltzendernamen);
+		System.Gadget.Settings.write("lgZendernamen",lgzendernamen);
+		System.Gadget.Settings.write("vetteLetters",vetteLetters);
+		System.Gadget.Settings.write("omhulsel",omhulsel);
+		System.Gadget.Settings.write("autoplay",autoplay);
+		System.Gadget.Settings.write("extraInstellingenAan","1");
+	  }
+	  	  
+		  
+	  function inlezenExtraInst(){		
+	    var extraInstellingenAan = System.Gadget.Settings.read("extraInstellingenAan");
+		if (extraInstellingenAan==''){return false;}
+		var akzendernamen = System.Gadget.Settings.read("akZendernamen");
+		  document.getElementById('akzendernamen').value = akzendernamen;
+		var vkzendernamen = System.Gadget.Settings.read("vkZendernamen");
+		  document.getElementById('vkzendernamen').value = vkzendernamen;
+		var ltzendernamen = System.Gadget.Settings.read("ltZendernamen");
+		  document.getElementById('ltzendernamen').value = ltzendernamen;
+		var lgzendernamen = System.Gadget.Settings.read("lgZendernamen");
+		  document.getElementById('lgzendernamen').value = lgzendernamen
+		var vetteLetters = System.Gadget.Settings.read("vetteLetters");
+		  document.getElementById('bold').checked = vetteLetters;
+		var omhulsel = System.Gadget.Settings.read("omhulsel");
+		  document.getElementById('omhulsel').checked = omhulsel;
+		var autoplay = System.Gadget.Settings.read("autoplay");
+		  document.getElementById('autoplay').checked = autoplay;
+	  }  
+	  
+	  
+	  function test(){
+	    document.getElementById('testveld').style.backgroundColor = document.getElementById('akzendernamen').value;
+	    document.getElementById('testveld').style.color = document.getElementById('vkzendernamen').value;
+	    document.getElementById('testveld').style.fontFamily = document.getElementById('ltzendernamen').value;
+		document.getElementById('testveld').style.fontSize = document.getElementById('lgzendernamen').value;
+		if (document.getElementById('bold').checked){document.getElementById('testveld').style.fontWeight = 'bold';} else {document.getElementById('testveld').style.fontWeight = 'normal';}
+	  }
+	  
+	  function standaard(){
+	    document.getElementById('autoplay').checked = false;
+	    document.getElementById('akzendernamen').value = 'black';
+	    document.getElementById('vkzendernamen').value = 'white';
+	    document.getElementById('ltzendernamen').value = '"sans serif"'
+		document.getElementById('lgzendernamen').value = '10';
+		document.getElementById('bold').checked = false;
+		document.getElementById('omhulsel').checked = true;
+		test();
+	  }
+	 
+	  function startNa(){
+	    var startNa = document.getElementById('startx').value;
+		//if (startNa == ''){return false;}
+		
+		var dubpunt = startNa.indexOf(":");
+		if (dubpunt > 0){
+		  var getal1 = startNa.substr(0,2);
+		  getal1=parseInt(getal1);
+		  var getal2 = startNa.substr(3,2);
+		  getal2=parseInt(getal2);
+		  var minuten = getal1 * 60 + getal2;
+		  
+		  var tijdnu = new Date()
+          var nugetal1 = tijdnu.getHours();
+          var nugetal2 = tijdnu.getMinutes();
+		  if (getal1 < nugetal1){minuten = minuten + 1440;}
+          var nugetal1a = nugetal1.toString();
+          var nugetal2a = nugetal2.toString();
+          if (nugetal1a.length==1){nugetal1a = '0' + nugetal1a;}
+          if (nugetal2a.length==1){nugetal2a = '0' + nugetal2a;}
+          var startNa2 = nugetal1a + ':' + nugetal2a;
+          var dubpunt = startNa2.indexOf(":");
+          var minuten2 = nugetal1 * 60 + nugetal2;
+	      verschil = minuten - minuten2;
+		  startNa = verschil.toString();
+		  document.getElementById('startx').value = startNa;
+		}
+		
+		startNa = parseInt(startNa) * 60000;
+		document.getElementById('spanStart').innerText = '  ingesteld';
+		if (isNaN(startNa)){document.getElementById('spanStart').innerText = '  fout!!'; return false;}
+	    System.Gadget.Settings.write("startNa",startNa);
+	  }
+	  function stopNa(){
+	    var stopNa = document.getElementById('stopx').value;
+		//if (stopNa == ''){return false;}
+		
+		var dubpunt = stopNa.indexOf(":");
+		if (dubpunt > 0){
+		  var getal1 = stopNa.substr(0,2);
+		  getal1=parseInt(getal1);
+		  var getal2 = stopNa.substr(3,2);
+		  getal2=parseInt(getal2);
+		  var minuten = getal1 * 60 + getal2;
+		  
+		  var tijdnu = new Date()
+          var nugetal1 = tijdnu.getHours();
+          var nugetal2 = tijdnu.getMinutes();
+		  if (getal1 < nugetal1){minuten = minuten + 1440;}
+          var nugetal1a = nugetal1.toString();
+          var nugetal2a = nugetal2.toString();
+          if (nugetal1a.length==1){nugetal1a = '0' + nugetal1a;}
+          if (nugetal2a.length==1){nugetal2a = '0' + nugetal2a;}
+          var stopNa2 = nugetal1a + ':' + nugetal2a;
+          var dubpunt = stopNa2.indexOf(":");
+          var minuten2 = nugetal1 * 60 + nugetal2;
+	      verschil = minuten - minuten2;
+		  stopNa = verschil.toString();
+		  document.getElementById('stopx').value = stopNa;
+		}
+		
+        stopNa = parseInt(stopNa) * 60000;
+		document.getElementById('spanStop').innerText = '  ingesteld';
+		if (isNaN(stopNa)){document.getElementById('spanStop').innerText = '  fout!!';return false;}
+	    System.Gadget.Settings.write("stopNa",stopNa);
+	  }
+	  
+	</script>
+  </head>
+  <body onload="init()" style="background-color:white;width:350px;height:580px; font-family:tahoma;font-size:10">
+    <span onclick="javascript:laadMeerInst(); inlezenExtraInst(); test()" style="position:absolute;top:380px;left:240px; color:white; z-index:4; cursor:pointer"> config + </span>
+	
+	<div style="position:absolute;top:30px;left:0px;width:300px;height:400px; border:1px solid black; border-top-style:none"></div>
+	<div id="tab1" onclick="tabblad1()" style="position:absolute;top:0px;left:0px; width:100px;height:30px;border:1px solid black; border-bottom-style:none; font-weight:bold; cursor:pointer"> <br><center> instellingen </center></div>
+	<div id="tab2" onclick="tabblad2()" style="position:absolute;top:0px;left:99px; width:100px;height:30px;border:1px solid black; background-color:silver; font-weight:bold; cursor:pointer"> <br><center> zenders </center> </div>
+	<div id="tab3" onclick="tabblad3()" style="position:absolute;top:0px;left:198px; width:102px;height:30px;border:1px solid black; background-color:silver; font-weight:bold; cursor:pointer" onclick="over()"> <br><center > over </center></over></div>
+
+	
+	<div id="tabblad1" style="font-size:12; font-weight:bold; width:278px; position:absolute;top:50px;left:10px">
+	  <div id="frontjes" style="position:absolute; top:49px; left:0px;width:280px; height:325px; z-index:-1; background-color:white">
+	    <div id="dropFront" style="position:absolute;top:5px; left:200px; width:60px;height:60px; border:1px solid silver; font-size:10;font-family:arial; color:silver; padding:2px" ondragenter="javascript:event.returnValue = false" ondragover="javascript:event.returnValue = false" ondrop="droppedFront();" onclick="javascript:window.open('http://www.miniradio.nl/gebruikers/miniradio/nl/frontjes/frontjes.php','','')">   Sleep hier nieuwe frontjes naar toe...	</div>
+	    <div style="position:absolute;top:100px;left:140px;cursor:pointer" id="ditFrontjeWissen" onclick="vraagWissen()"> Dit frontje wissen </div>
+       <br><br><br>
+	    <select id="frontSelector" onchange="changeFront()">
+	      <option value="0"> Geen frontje
+	      <option value="1"> Frontje 1
+		  <option value="2"> Frontje 2
+		  <option value="3"> Frontje 3
+		  <option value="4"> Frontje 4
+		  <option value="5"> Frontje 5
+		  <option value="6"> Frontje 6
+		  <option value="7"> Frontje 7
+		  <option value="8"> Frontje 8
+		  <option value="9"> Frontje 9
+		  <option value="10"> Frontje 10
+		  <option value="11"> Frontje 11
+		  <option value="12"> Frontje 12
+		  <option value="13"> Frontje 13
+		  <option value="14"> Frontje 14
+	    </select>
+	    <br><br>
+	    <img id="frontIMG" src="optie1.gif">
+	    <br><br>
+		
+		<span id="credits"></span>
+		<br><br><br>
+	    <a href="http://www.miniradio.nl/gebruikers/miniradio/nl/frontjes/frontjes.php" target="_blank"> Klik hier voor frontjes voor en door gebruikers van MiniRadio </a>
+        <br><br><br><br>
+	    <input type="button" value="Annuleren" style="width:100px;margin-left:15px" onclick="javascript:document.getElementById('frontjes').style.zIndex=-1;">
+        <input type="button" value="Ok" style="width:100px;margin-left:15px" onclick="kiesFrontje()">
+	  </div>
+	  <br>
+	  Kies een <span onclick="javascript:document.getElementById('frontjes').style.zIndex=-1;" style="color:darkblue;text-decoration:underline;cursor:pointer"> uiterlijk </span> of kies een <span onclick="javascript:document.getElementById('frontjes').style.zIndex=3;inlezenFrontjes();" style="color:darkblue;text-decoration:underline;cursor:pointer">frontje</span> :
+	  <br>
+	  
+	  
+	  <form name="logoForm" style="width:278px">
+	  <table style="color:white; background-color:black;position:absolute;top:50px;left:0px;width:100%; font-size:12px">
+	    <tr style="height:100px"><td> <input id="standaard" name="keus" type="radio" checked style="margin-top:15px"> </td><td><label for="standaard" style="cursor:pointer">Standaard (met micro - visualisatiescherm)</label><br> <img src="optie1.gif" style="margin-left:30px"></td></tr>
+		<tr style="height:100px"><td> <input type="radio" name="keus" id="logo" style="margin-top:15px"> </td><td> <label for="logo" style="cursor:pointer"> Toon deze afbeelding in plaats van het hoofdscherm.</label><br><img src="optie2.gif" style="margin-left:30px"></td></tr>
+		<tr style="height:100px"><td> <input type="radio" name="keus" id="logoKlein" style="margin-top:15px"> </td><td> <label for="logoKlein" style="cursor:pointer"> Toon een kleine afbeelding in plaats van het micro - visualisatiescherm.</label><br><img src="optie3.gif" style="margin-left:30px"></td></tr>
+	  </table>
+	  </form>
+  
+
+	</div>
+	
+	<div id="tabblad2" style="position:absolute; top:50px;left:10px;width:270px;font-size:12; visibility:hidden;">
+	  <br><br>
+	  <div style="text-align:justify">
+	  In het zenderbeheer kunt u bepalen welke zenders wel en welke zenders niet zichtbaar zijn
+	  in de speler. Tevens kunt u handmatig zenders toevoegen, die opgeslagen worden.
+	  </div>
+	  <br><br><br><br><br>
+	  <center> <input type="button" value="Meegeleverde zenders" style="width:210px;border:2px solid black;background-color:white;cursor:hand" onclick="javascript:flyOut()"> </center>
+	  <br><br><br>
+	  <center> <input type="button" value="Externe zenders" style="width:210px;border:2px solid black;background-color:white;cursor:hand" onclick="javascript:flyOut2()"> </center>
+	</div>
+	
+	<div id="tabblad3" style="position:absolute; top:50px;left:10px;width:260px;font-size:12; visibility:hidden; color:blue">
+	  <div style="position:absolute;top:2px;left:10px;height:187px;width:250px;background-image:url(ronenmickey250.jpg)">
+	  </div>
+	  <div style="position:absolute;top:160px;left:18px">  <!--30-->
+	  <div style="color:yellow">
+	    <a href="http://www.miniradio.nl/" target="_blank" style="color:yellow; text-decoration:none"> MiniRadio versie 0.9.9.8 is gemaakt door<br> Ronnie uit Emmeloord. </a>
+	  </div>
+      <br>
+	  <br>
+	  <div style="font-family:Verdana;font-weight:bold;font-size:16px">
+	    MiniRadio is met plezier gemaakt en hopelijk
+		beleef jij er ook plezier aan...
+	  </div>
+	  <br>
+	  <div style="font-family:Verdana;font-size:12px">
+	   <center><a href="http://miniradio.hyves.nl" target="_blank" style="color:green"> http://miniradio.hyves.nl </a></center>
+	   <br>
+	   <center><a href="https://www.facebook.com/pages/MiniRadio/345578785453922?sk=wall" target="_blank" style="font-size:12px;color:darkblue"> Nieuw: MiniRadio op Facebook </a></center>
+	  </div>
+	  
+	  </div>
+	</div>
+	
+	<div id="meerOpt" style="visibility:hidden; z-index:-3; position:absolute;top:0px;left:0px;width:300px; height:600px; font-family:arial; font-size:10; background-color:white">
+	  <br>
+	  <input type="checkbox" id="autoplay"> Begin direct met AFSPELEN na het opstarten van Windows (vergeet niet om op te slaan: zie de gele knop) <br><br>
+	  <input type="text" id="testveld" value="Test Veld">
+	  <input type="button" value="Voorbeeld" onclick="javascript:test()"> <br><br>
+	  <input type="text" size="7" id="akzendernamen" value="black"> Achtergrondkleur van de zender-namen <br>
+	  <input type="text" size="7" id="vkzendernamen" value="white"> Kleur lettertype van de zender-namen <br>
+	  <input type="text" size="7" id="ltzendernamen" value="'sans serif'"> Lettertype van de zender-namen <br>
+	  <input type="text" size="7" id="lgzendernamen" value="10"> LetterGrootte van de zender-namen <br>
+	  <input type="checkbox" id="bold"> Vette letters <br>
+	  <input type="checkbox" id="omhulsel" checked> Toon omhulsel voor zender-namen
+	  <br><br>
+	
+	  <input type="button" value="Default" style="background-color:black; color:white;border:1px solid white" onclick="javascript:standaard()">
+	  <input type="button" value="Bovenstaande Opslaan" style="background-color:yellow; color:darkblue;border:1px solid blue" onclick="javascript:opslaanExtraInst();">
+	  <br>
+	  Start met afspelen na <input type="text" id="startx" size="3"> minuten. <a href="javascript:startNa()"> Go ! </a> <span id="spanStart" style="color:green; font-weight:bold"></span><br>
+	  Stop met afspelen na <input type="text" id="stopx" size="3"> minuten. <a href="javascript:stopNa()"> Go ! </a> <span id="spanStop" style="color:green; font-weight:bold"></span><br>
+	  <br>
+	  Typ hierboven het aantal minuten in (bijvoorbeeld 30) of gebruik het gewenste tijdstip  (bijvoorbeeld 22:15 of 03:30)
+	  en druk daarna op 'Go !'.
+	  <br><br>
+	  <span style="font-size:12px;font-weight:bold; color:blue; text-decoration:underline; cursor:hand" onclick="javascript:document.getElementById('meerOpt').style.visibility='hidden'"> Vorige... </span>
+	</div>
+  </body>
+</html>

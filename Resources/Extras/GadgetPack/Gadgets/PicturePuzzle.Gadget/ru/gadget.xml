@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>Головоломка</name>
+  <namespace><!--_locComment_text="{Locked}"-->microsoft.windows</namespace>
+  <version><!--_locComment_text="{Locked}"-->1.0.0.0</version>
+  <author name="Microsoft Corporation">
+    <info url="http://go.microsoft.com/fwlink/?LinkId=124093" text="www.gallery.microsoft.com"/>
+    <logo src="logo.png"/>
+  </author>
+  <copyright><!--_locComment_text="{Locked}"-->© 2009</copyright>
+  <description>Сложите кусочки мозаики в правильном порядке.</description>
+  <icons>
+    <icon height="48" width="48" src="icon.png"/>
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <autoscaleDPI><!--_locComment_text="{Locked}"-->true</autoscaleDPI>
+      <base type="HTML" apiVersion="1.0.0" src="picturePuzzle.html"/>
+      <permissions><!--_locComment_text="{Locked}"-->Full</permissions>
+      <platform minPlatformVersion="1.0"/>
+      <defaultImage src="drag.png"/>
+    </host>
+  </hosts>
+</gadget>

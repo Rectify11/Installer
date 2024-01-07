@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>7 පැතියෙදුම‬</name>
+  <namespace>7 පැතියෙදුම</namespace>
+  <version>2.90</version>
+  <author name="හෂාන් අතුරුගිරිය">
+      <logo src="Images/Icon.png" />
+      <info url="http://tiny.cc/7sidebar2" text="8GadgetPack.net"/>
+  </author>
+  <copyright>© 2023</copyright>
+  <description>7 පැතියෙදුම ඔබගේ ගැජට් නියමාකාරයෙන් කළමණාකරණය කිරීමට හා ගැජට් නිතරම දෘශ්‍ය ලෙස පවත්වා ගැනීමට උදව් වේ.
+  </description>
+  <icons>
+    <icon src="Images/Icon.png"/>
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="0.2.0" src="MainSidebar.html"/>
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="0.2"/>
+      <defaultImage src="drag.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

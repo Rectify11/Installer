@@ -1,0 +1,497 @@
+﻿<!--Copyright 2009 Unique Windows Gadgets-->
+
+<HTML>
+<HEAD>
+    <TITLE>searchALL</TITLE>
+    <link href="css/font.css" rel="stylesheet" type="text/css" />
+
+</HEAD>
+
+	<script language="javascript" type="text/javascript">    
+    
+        var shell = new ActiveXObject('WScript.Shell');	
+        var openInFlyout = false;
+        var currentSearchID = 1;
+		
+        
+        function openSearch() 
+        {
+			var searchString = document.getElementById("searchBox").value;
+			
+			var searchOption = System.Gadget.Settings.read("search"+parseInt(currentSearchID))
+			
+			if (openInFlyout)
+			{
+				System.Gadget.Flyout.file = "search.html";
+                System.Gadget.Flyout.show = !System.Gadget.Flyout.show;
+                System.Gadget.Flyout.document.parentWindow.searchString = searchString;
+			}
+			
+            switch(searchOption)
+            {
+                case 1:
+                    searchGoogle(searchString);
+                    break;
+                    
+                case 2:
+                    searchWikipedia(searchString);
+                    break;
+                    
+                case 3:
+                    searchYoutube(searchString);
+                    break;
+                    
+                case 4:
+                    searchAmazon(searchString);
+                    break;
+                    
+                case 5:
+                    searchEbay(searchString);
+                    break;
+                
+				case 6:
+					searchIMDB(searchString);
+					break;
+					
+				case 7:
+					searchYahoo(searchString);
+					break;
+					
+				case 8:
+					searchBing(searchString);
+					break;
+					
+				case 9:
+					searchEbayAu(searchString)
+					break;
+					
+				case 10:
+					searchDictionary(searchString)
+					break;
+					
+				case 11:
+					searchMetacritic(searchString)
+					break;
+					
+				case 12:
+					searchNewzleech(searchString)
+					break;	
+						
+					
+                default:
+                    searchGoogle(searchString);
+                    break;
+            }
+        }
+        
+        
+        function searchGoogle(searchString)
+        {
+            var searchType = radio1;	
+                        
+            for( i = 0; i < searchType.length; i++ )
+            {
+                if( searchType[i].checked == true )
+                var val = searchType[i].value;
+            }
+            
+            //open search results in gadget flyout
+            if (openInFlyout)
+            {
+                
+            
+                switch(val)
+                {
+                    case 'web':
+                        System.Gadget.Flyout.document.parentWindow.searchURL = "https://www.google.com/search"
+                        break;
+                        
+                    case 'image':
+                        
+                        System.Gadget.Flyout.document.parentWindow.searchURL = "http://images.google.com/images?hl=en&um=1&sa=1&aq=f&oq=&q="
+                        break;
+                        
+                    case 'maps':
+                        System.Gadget.Flyout.document.parentWindow.searchURL = "http://maps.google.com/maps?hl=en&um=1&ie=UTF-8&sa=N&tab=il&q="
+                        break;
+                        
+                    default:
+                        System.Gadget.Flyout.document.parentWindow.searchURL = "https://www.google.com/search?q="
+                }
+            }
+            //open search results in browser
+            else
+            {
+                switch(val)
+                {
+                    case 'web':
+                        shell.Run("https://www.google.com/search?q=" + escape(searchString)); return false; 
+                        break;
+                        
+                    case 'image':
+                        shell.Run("http://images.google.com/images?hl=en&um=1&sa=1&aq=f&oq=&q=" + escape(searchString)); return false; 
+                        break;
+                        
+                    case 'maps':
+                        shell.Run("http://maps.google.com/maps?hl=en&um=1&ie=UTF-8&sa=N&tab=il&q=" + escape(searchString)); return false; 
+                        break;
+                        
+                    default:
+                        shell.Run("https://www.google.com/search?q=" + escape(searchString)); return false; 
+                }
+            }
+        }
+        
+        
+        function searchWikipedia(searchString)
+        {
+            if (openInFlyout)
+            {
+                System.Gadget.Flyout.document.parentWindow.searchURL = "http://en.wikipedia.org/wiki/Special:Search?go=Go&search=";
+            }
+            else
+            {
+                shell.Run("http://en.wikipedia.org/wiki/Special:Search?search="+escape(searchString)+"&go=Go"); return false; 
+            }
+        }
+        
+        
+        function searchYoutube(searchString)
+        {
+        	
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.youtube.com/results?search_type=&aq=f&search_query=";
+            }
+            else
+            {
+                shell.Run("http://www.youtube.com/results?search_type=&search_query="+escape(searchString)+"&aq=f"); return false; 
+            }
+        }
+        
+        
+        function searchAmazon(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.amazon.com/gp/search?ie=UTF8&tag=e0bf-20&index=blended&linkCode=ur2&camp=1789&keywords=";
+            }
+            else
+            {
+                shell.Run("http://www.amazon.com/gp/search?ie=UTF8&tag=e0bf-20&index=blended&linkCode=ur2&camp=1789&keywords="+escape(searchString)); return false; 
+            }
+        }
+        
+        
+        function searchEbay(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.ebay.com/sch/i.html?_from=R40&_npmv=3&_trksid=p3910.m570.l1313&_sacat=See-All-Categories&_nkw=";
+            }
+            else
+            {
+                shell.Run("http://www.ebay.com/sch/i.html?_from=R40&_npmv=3&_trksid=p3910.m570.l1313&_nkw="+escape(searchString)+"&_sacat=See-All-Categories"); return false; 
+            }
+        }
+        
+		
+		function searchEbayAu(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.ebay.com/sch/i.html?_from=R40&_npmv=3&_trksid=p3910.m570.l1313&_sacat=See-All-Categories&_nkw=";
+            }
+            else
+            {
+                shell.Run("http://www.ebay.com/sch/i.html?_from=R40&_npmv=3&_trksid=p3910.m570.l1313&_nkw="+escape(searchString)+"&_sacat=See-All-Categories"); return false; 
+            }
+        }
+		
+		
+		function searchIMDB(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.imdb.com/find?s=all&q=";
+            }
+            else
+            {
+                shell.Run("http://www.imdb.com/find?s=all&q="+escape(searchString)); return false; 
+            }
+        }
+		
+		
+		function searchYahoo(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://search.yahoo.com/search?vc=&fr=yfp-t-501&toggle=1&cop=mss&ei=UTF-8&fp_ip=AU&p=";
+            }
+            else
+            {
+                shell.Run("http://search.yahoo.com/search?vc=&fr=yfp-t-501&toggle=1&cop=mss&ei=UTF-8&fp_ip=AU&p="+escape(searchString)); return false; 
+            }
+        }
+		
+		
+		function searchBing(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.bing.com/search?form=QBLH&filt=all&q=";
+            }
+            else
+            {
+                shell.Run("http://www.bing.com/search?form=QBLH&filt=all&q="+escape(searchString)); return false; 
+            }
+        }
+		
+
+		
+		
+		function searchDictionary(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://dictionary.reference.com/browse/";
+            }
+            else
+            {
+                shell.Run("http://dictionary.reference.com/browse/"+escape(searchString)); return false; 
+            }
+        }
+		
+		function searchMetacritic(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.metacritic.com/search/process?sort=relevance&termType=all&ty=0&ts=";
+            }
+            else
+            {
+                shell.Run("http://www.metacritic.com/search/process?sort=relevance&termType=all&ty=0&ts="+escape(searchString)); return false; 
+            }
+        }
+		
+		
+        function searchNewzleech(searchString)
+        {
+			if (openInFlyout)
+            {
+            	System.Gadget.Flyout.document.parentWindow.searchURL = "http://www.newzleech.com/?group=&minage=&age=&min=min&max=max&m=search&adv=&q=";
+            }
+            else
+            {
+                shell.Run("http://www.newzleech.com/?group=&minage=&age=&min=min&max=max&m=search&adv=&q="+escape(searchString)); return false; 
+            }
+        }
+		
+		
+        function init()
+        {
+            System.Gadget.settingsUI = "settings.html";
+            System.Gadget.onSettingsClosed = settingsClosed;
+            
+            openInFlyout = System.Gadget.Settings.read("flyout");
+			
+			if (System.Gadget.Settings.read("search1") == "")
+			{
+				System.Gadget.Settings.write ("search1", 1);
+			}
+			if (System.Gadget.Settings.read("search2") == "")
+			{
+				System.Gadget.Settings.write ("search2", 2);
+			}
+			if (System.Gadget.Settings.read("search3") == "")
+			{
+				System.Gadget.Settings.write ("search3", 3);
+			}
+			if (System.Gadget.Settings.read("search4") == "")
+			{
+				System.Gadget.Settings.write ("search4", 4);
+			}
+			if (System.Gadget.Settings.read("search5") == "")
+			{
+				System.Gadget.Settings.write ("search5", 5);
+			}
+
+			document.getElementById("search1").src = "img/search"+System.Gadget.Settings.read("search1")+"_over.png";
+			document.getElementById("search2").src = "img/search"+System.Gadget.Settings.read("search2")+".png";
+			document.getElementById("search3").src = "img/search"+System.Gadget.Settings.read("search3")+".png";
+			document.getElementById("search4").src = "img/search"+System.Gadget.Settings.read("search4")+".png";
+			document.getElementById("search5").src = "img/search"+System.Gadget.Settings.read("search5")+".png";
+			document.getElementById("logo").src = "img/logo"+System.Gadget.Settings.read("search1")+".png";
+			
+			document.getElementById("search1").title = searchTitle(1);
+			document.getElementById("search2").title = searchTitle(2);
+			document.getElementById("search3").title = searchTitle(3);
+			document.getElementById("search4").title = searchTitle(4);
+			document.getElementById("search5").title = searchTitle(5);
+		}
+        
+        
+        function settingsClosed()
+        {
+            openInFlyout = System.Gadget.Settings.read("flyout");
+			
+			document.getElementById("search1").src = "img/search"+System.Gadget.Settings.read("search1")+(currentSearchID == 1 ? '_over' : '')+".png";
+			document.getElementById("search2").src = "img/search"+System.Gadget.Settings.read("search2")+(currentSearchID == 2 ? '_over' : '')+".png";
+			document.getElementById("search3").src = "img/search"+System.Gadget.Settings.read("search3")+(currentSearchID == 3 ? '_over' : '')+".png";
+			document.getElementById("search4").src = "img/search"+System.Gadget.Settings.read("search4")+(currentSearchID == 4 ? '_over' : '')+".png";
+			document.getElementById("search5").src = "img/search"+System.Gadget.Settings.read("search5")+(currentSearchID == 5 ? '_over' : '')+".png";
+			
+			document.getElementById("search1").title = searchTitle(1);
+			document.getElementById("search2").title = searchTitle(2);
+			document.getElementById("search3").title = searchTitle(3);
+			document.getElementById("search4").title = searchTitle(4);
+			document.getElementById("search5").title = searchTitle(5);
+			
+			document.getElementById("logo").src = "img/logo"+System.Gadget.Settings.read("search"+parseInt(currentSearchID))+".png";
+			
+			if (System.Gadget.Settings.read("search"+parseInt(currentSearchID)) == 1)
+			{
+                document.getElementById("googleoptions").style.visibility = "visible";
+            }
+            else
+            {
+                document.getElementById("googleoptions").style.visibility = "hidden";
+            }
+        }
+        
+        
+        function setSearch(searchID)
+        {
+            if (searchID != currentSearchID)
+            {
+                var searchField = "search"+parseInt(searchID);
+                var currentSearchField = "search"+parseInt(currentSearchID);
+				
+				var searchImage = System.Gadget.Settings.read(searchField);
+				var currentSearchImage = System.Gadget.Settings.read(currentSearchField);
+                
+                document.getElementById(searchField).src = "img/search"+searchImage+"_over.png";
+                document.getElementById(currentSearchField).src = "img/search"+currentSearchImage+".png";
+                
+                document.getElementById("logo").src = "img/logo"+searchImage+".png";
+                
+				currentSearchID = searchID;
+            
+				if (searchImage == 1)
+				{
+					document.getElementById("googleoptions").style.visibility = "visible";
+				}
+				else
+				{
+					document.getElementById("googleoptions").style.visibility = "hidden";
+				}
+			}
+        }
+		
+		
+		function searchTitle(searchID)
+		{
+			var searchField = "search"+parseInt(searchID);
+			var searchNumber = System.Gadget.Settings.read(searchField);
+			
+			 switch(searchNumber)
+            {
+                case 1:
+                    return "Google";
+                    break;
+                    
+                case 2:
+                    return "Wikipedia";
+                    break;
+                    
+                case 3:
+                    return "Youtube";
+                    break;
+                    
+                case 4:
+                    return "Amazon";
+                    break;
+                    
+                case 5:
+                    return "Ebay";
+                    break;
+                
+				case 6:
+                    return "Imdb";
+					break;
+					
+				case 7:
+                    return "Yahoo";
+					break;
+					
+				case 8:
+                    return "Bing";
+					break;
+					
+				case 9:
+                    return "Ebay (Au)";
+					break;
+					
+				case 10:
+                    return "Dictionary";
+					break;
+					
+				case 11:
+                    return "Metacritic";
+					break;	
+				
+				case 12:
+                    return "Newzleech";
+					break;
+					
+                default:
+                    return "Google"
+                    break;
+            }
+		}
+		
+    </script>
+
+
+    <BODY onLoad="init()">
+    
+        <g:background 
+            id="background" 
+            src="img/background.png"
+            style="position:absolute;top:0;left:0;z-index:-999;no=repeat;" />
+    
+        <table width=130 height=100 cellpadding=0 cellspacing=0 border=0>
+            <tr height="35">
+                <td colspan="2" align="center" valign="top"><img id="logo" src="img/logo1.png" style="position:relative; top:2px"></td>
+            </tr>
+            <tr height="23">
+                <td valign="top"><div style="background: url(img/searchbox.png) 0 0 no-repeat; margin-left:3px"><input id="searchBox" type="text" style="width:100px;height:18px; background-color:Transparent;border:0;margin-left:3px;margin-top:0px"></div></td><td valign="top"><input type="image" src="img/searchbutton.png" onMouseOver="this.src='img/searchbutton_over.png'" onMouseOut="this.src='img/searchbutton.png'" style="position: relative; left:-4px;cursor:pointer" onClick="openSearch()"></td>
+            </tr>
+            <tr height="15">
+                <td colspan="2" align="center" valign="top" >
+                    <div id="googleoptions">
+                    <table width="100%" cellpadding=0 cellspacing=0 border=0 height="100%" style="position:relative;top:-2px">
+                        <tr class="fontgrey">
+                            <td align="right"><input type="radio" name="radio1" value="web" style="width:12px; height:12px" checked><label for="radio1" style="position:relative;top:2px">Web</label></td>
+                            <td align="center"><input type="radio" name="radio1" value="image" style="width:12px; height:12px"><label for="radio1" style="position:relative;top:2px">Image</label></td>
+                            <td align="left"><input type="radio" name="radio1" value="maps" style="width:12px; height:12px"><label for="radio1" style="position:relative;top:2px">Maps</label></td>
+                        </tr>
+                    </table>   
+                    </div>
+            </tr>     
+            <tr height="100%">
+                <td colspan=2 valign="bottom">
+                    <table width="130" height="26" align="center" cellpadding=0 cellspacing=0 border=0 style="position:relative;top:-1px">
+                        <tr>
+                            <td><img id="search1" src="img/search1_over.png" style="cursor:pointer" title="" onClick="setSearch(1)"></td>
+                            <td><img id="search2" src="img/search2.png" style="cursor:pointer" title="" onClick="setSearch(2)"></td>
+                            <td><img id="search3" src="img/search3.png" style="cursor:pointer" title="" onClick="setSearch(3)"></td>
+                            <td><img id="search4" src="img/search4.png" style="cursor:pointer" title="" onClick="setSearch(4)"></td>
+                            <td><div style="float:right;z-index:2;position:absolute; left:129px;"><img src="img/search_end.png"></div><div style="z-index:1; position:relative"><img id="search5" src="img/search5.png" style="cursor:pointer" title="" onClick="setSearch(5)"></div></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr> 
+        </table>
+    </BODY>
+</HTML>

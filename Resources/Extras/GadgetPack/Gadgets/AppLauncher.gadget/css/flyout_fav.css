@@ -1,0 +1,156 @@
+html{
+  overflow:hidden;
+}
+
+body{
+	width: 370px;
+	height:440px;
+	color: #000000;
+	background: #ffffff;
+	margin-top:5px;
+  font-family: Tahoma, Helvetica, sans-serif;
+}
+
+.favListArea{
+	width: 338px;
+	height: 370px; 
+	overflow: scroll; 
+	border: 1px solid #000000;
+	background: #ffffff;
+	padding: 5px;
+	padding-bottom:20px;
+}
+
+.headerArea{
+	width: 350px;
+	height: 20px; 
+	overflow: hidden; 
+	border: none;
+	padding: 2px 0;
+	text-align:center;
+	font-size:1.2em;
+	font-weight:bold;
+	margin:0 0 5px 0;
+	color: white;
+	background:black;
+  white-space: nowrap;
+}
+
+.openArea{
+  position:absolute;
+  bottom:27px;
+  background:white;
+  width:330px;
+  margin-left:2px;
+  height:18px;
+  text-align:center;
+}
+
+
+.skin1{
+  cursor:default;
+  position:absolute;
+  text-align:left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  width:150px;
+  background-color:menu;
+  visibility:hidden;
+  border:2px outset buttonhighlight;
+  padding-bottom:3px;
+}
+
+.menuitems{
+  padding-left:5px;
+}
+
+.menuDiv{
+  margin:1px;
+  margin-left:15px;
+}
+
+#delConfirm{
+  position:absolute;
+  top:150px;
+  left:90px;
+  display:none;
+  width:180px;
+  height:60px;
+  background:#f0f0f0;
+  border:2px outset buttonhighlight;
+  text-align:center;
+  padding:5px;
+}
+
+.btn{
+  padding:2px;
+  margin:0 4px;
+  width:65px;
+  margin-bottom:5px;
+}
+
+.centre{
+  text-align:center;
+}
+
+.folderHeader{
+  display:block;
+  white-space:nowrap;
+  color:black;
+  font-weight:bold;
+  font-style:italic;
+}
+
+.favIcon{
+  margin-bottom:2px;
+  margin-right:3px;
+  width:16px;
+  height:16px;
+}
+
+.folderIcon{
+  margin-bottom:2px;
+  margin-right:3px;
+  width:16px;
+  height:16px;
+  cursor:help;
+}
+
+.folderLink{
+  white-space:nowrap;
+  color:black;
+  cursor:pointer;
+}
+
+#renameFile{
+  position:absolute;
+  top:150px;
+  left:40px;
+  display:none;
+  width:275px;
+  height:80px;
+  background:#f0f0f0;
+  border:2px outset buttonhighlight;
+  text-align:center;
+  padding:5px;
+}
+
+.inputFld{
+  border:1px inset buttonhighlight; 
+  width:250px;
+  margin-bottom:5px;
+}
+
+#errDisplay{
+  position:absolute;
+  top:150px;
+  left:80px;
+  display:none;
+  width:200px;
+  height:60px;
+  background:#f0f0f0;
+  border:2px outset buttonhighlight;
+  text-align:center;
+  padding:5px;
+}
+

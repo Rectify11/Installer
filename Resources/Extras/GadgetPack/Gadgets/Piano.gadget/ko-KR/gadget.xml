@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>피아노</name>
+  <namespace>microsoft.windows</namespace>
+  <version>1.0.0.3</version>
+  <author name="Photo-Bon.com">
+    <info url="www.photo-bon.com/en"  text="Photo-Bon.com"/>
+    <logo src="images/logo.png" />
+  </author>
+  <copyright>&#169; 2010</copyright>
+  <description>당신은 컴퓨터 키보드를 통해 피아노를 재생할 수있습니다. 
+사랑은 음악과 피아노를 언제든지 재생. 
+행복한 휴식을 귀하의 근무 시간이다.</description>
+  <icons>
+    <icon height="64" width="64" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="default.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="images/drop.png" />
+    </host>
+  </hosts>
+</gadget>

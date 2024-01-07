@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<link type='text/css' rel='stylesheet' href='res/palette.css' />
+<script type='text/javascript' src='lib/main.js'></script>
+<script type='text/javascript' src='lib/colorx.js'></script>
+<script type='text/javascript' src='lib/settings.js'></script>
+</head>
+<body onload='palette_load()' onunload='palette_unload()'>
+	<g:background id='bg' src='res/bg.png'>
+		<!--<g:text id='clrval' blur='20'>#abcdef</g:text>-->
+	</g:background>
+	<a id='clr0' name='clrn' class='gfx'></a>
+	<a id='clr1' name='clrn' class='gfx'></a>
+	<a id='clr2' name='clrn' class='gfx'></a>
+	<a id='clr3' name='clrn' class='gfx'></a>
+	<a id='clr4' name='clrn' class='gfx'></a>
+	<img id='fg' src='res/fg.png' onmousemove='palette_over(event)' onmouseup='palette_click(event)' />
+	<input id='copy' type='hidden' />
+	<g:text id='clrval' blur='20'>#abcdef</g:text>
+</body>
+</html>

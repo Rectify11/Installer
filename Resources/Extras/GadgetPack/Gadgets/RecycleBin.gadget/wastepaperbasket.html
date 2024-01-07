@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>Eiskalter Engel</title>
+	<link href="paperbasket.css" rel="stylesheet" type="text/css" />
+	<script language="javascript" src="langvars.js" type="text/javascript"></script>
+	<script language="javascript" src="paperbasket.js" type="text/javascript"></script>
+</head>
+<body>
+    <div>
+        <g:background id="background" src="images/docked.png" style="position:absolute; z-index:-999" /></g:background>
+        <img id="background_" src="images/docked_.png" style="position:absolute;top:0px; left:0px;-ms-interpolation-mode: nearest-neighbor; z-index:-1;" />
+
+        <img id="basketImage" src="images/000.png" OnClick="ShowBin()" OnDblClick="ShowBin()" style="position:absolute;" />
+        <div id="basketSize" style="position:absolute;">....</div>
+        <div id="folderCountx" style="position:absolute;">folderCount</div>
+        <div id="fileCountx" style="position:absolute;">fileCount</div>
+        <img id="emptyAll" src="images/emptybin.png" OnClick="EmptyPaperBasket()" style="position:absolute;">
+        <img id="settings" src="images/settings.png" OnClick="ShowBinSettings()" style="position:absolute;">
+        <img id="sync" src="images/sync.png" OnClick="SyncBin()" style="position:absolute;">
+    </div>
+</body>
+</html>

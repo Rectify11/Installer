@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="MSThemeCompatible" CONTENT="yes" />
+<meta http-equiv="Content-Type" content="text/html; charset=Unicode" />
+ <title>My Settings</title>
+ <style>
+ body
+ { 
+width: 150px;
+ height: 150px; <!--Put Text here because the program doesnt read it-->
+ font-family: Tahoma;
+ font-size: 10px;
+ }
+ </style>
+ <script>
+ System.Gadget.onSettingsClosing = settingsClosing;
+ function loadSettings()
+ {
+ var currentSetting = System.Gadget.Settings.read("variableName");
+ if (currentSetting = text)
+ {
+ envVar.innerText = currentSetting;
+ }
+ }
+
+ function settingsClosing(event)
+ {
+ if (event.closeAction == event.Action.commit)
+ {
+ variableName = envVar.variable;
+ System.Gadget.Settings.write("variableName", variableName);
+ }
+ }
+ </script>
+</head>
+
+<body onload="loadSettings()">
+
+ Choose a Size:
+<div id="size" style="height: 100px;">
+<input type="radio" value="10" name="gadget_size"
+id="radio 10"> Small </br>
+<input type="radio" value="20" name="gadget_size"
+id="radio 20"> Medium </br>
+<input type="radio" value="30" name="gadget_size"
+id="radio 30"> Large </br>
+</div>
+ <INPUT type="Submit" VALUE="Submit Size">
+
+</body>
+</html>

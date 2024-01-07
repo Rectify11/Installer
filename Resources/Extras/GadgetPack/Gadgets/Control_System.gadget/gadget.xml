@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>Control System</name>
+	<namespace>AddGadgets</namespace>
+	<version>2.0</version>
+	<author name="AddGadgets">
+		<info url="http://addgadgets.com" />
+		<logo src="icon.png" />
+	</author>
+	<copyright>© 2013 AddGadgets.com</copyright>
+	<description>With this Control System you can simply control standby, shutdown, restart, logoff or hibernate from your Windows Sidebar.</description>
+	<icons>
+		<icon height="100" width="100" src="icon.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0.0" src="gadget.html" />
+			<permissions>Full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="drag.png" />
+			<autoscaleDPI>true</autoscaleDPI>
+		</host>
+	</hosts>
+</gadget>

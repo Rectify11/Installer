@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript">
+var accion=""; var segundos; var timer;
+function Concretar(){
+	document.getElementById("visor").innerHTML = accion;
+	var ws = new ActiveXObject("WScript.Shell");
+	if(accion == "Turn Off"){
+		ws.Run("shutdown.exe -s -t 0", 0);
+	}
+	else if(accion == "Reboot"){
+		ws.Run("shutdown.exe -r -t 0", 0);
+	}		  
+	else if(accion == "Lock"){
+		ws.Run("rundll32.exe user32.dll,LockWorkStation", 0);
+	}		 
+}
+function Cronometro(){
+	if(segundos == 0){
+		Concretar();
+		Cancelar();
+	}
+	else{
+		if(document.getElementById("tiempo").value == "0" || document.getElementById("tiempo").value == ""){
+			segundos = 0;
+		}
+		else{
+			segundos--;
+			document.getElementById("visor").innerHTML = Math.floor(segundos / 60) + ":" + segundos % 60;
+		}
+		timer = setTimeout(Cronometro, 1000);
+	}
+}
+function CambiarSegundos(){
+	if (isNaN(document.getElementById('tiempo').value)){
+		document.getElementById("mensaje").style.visibility = "visible";
+		document.getElementById("imgs").style.visibility = "hidden";
+	}
+	else{
+		document.getElementById("mensaje").style.visibility = "hidden";
+		document.getElementById("imgs").style.visibility = "visible";
+		if (document.getElementById('tiempo').value>0){
+			segundos=document.getElementById('tiempo').value * 60;
+		}
+		else{
+			if(document.getElementById('tiempo').value<0){
+				segundos=document.getElementById('tiempo').value * 60*-1;
+			}
+		}
+	}	
+}
+	
+function Ocultar(action){
+	accion=action;
+	document.getElementById("imgs").style.visibility = "hidden";
+	document.getElementById("entrada").style.visibility = "hidden";
+	document.getElementById("visor").style.visibility = "visible";
+	document.getElementById("cancelar").style.visibility = "visible";
+	Cronometro();
+}
+
+function Cancelar(){
+	document.getElementById("imgs").style.visibility = "visible";
+	document.getElementById("entrada").style.visibility = "visible";
+	document.getElementById("visor").style.visibility = "hidden";
+	document.getElementById("cancelar").style.visibility = "hidden";
+	clearTimeout(timer);
+	segundos=document.getElementById("tiempo").value*60;
+}
+</script>
+<title>ShutdownPC</title>
+<link href="css/cssgg.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="contenedor">
+	<div id="visor">
+    	00:00
+	</div>
+    <div id="cancelar">
+    <a href="javascript:void(0);" onclick="Cancelar()" title="Cancel">
+    	<img src="imgs/cancel.png" border="0" />
+    </a>
+    </div>
+	<div id="entrada">
+      Time in Minutes<br />
+       <input type="text" id="tiempo" name="tiempo" class="texto" value="0"  onkeyup="CambiarSegundos()" />
+	</div>
+    <div id="mensaje">valor inválido...</div>
+	<div id="imgs">
+       <a href="javascript:void(0);" onclick="Ocultar('Turn Off')" title="Turn Off"><img src="imgs/shutdown.png" border="0" /></a>
+       <a href="javascript:void(0);" onclick="Ocultar('Reboot')" title="Reboot"><img src="imgs/restart.png" border="0" /></a>
+       <a href="javascript:void(0);" onclick="Ocultar('Lock')" title="Lock"><img src="imgs/lock.png" border="0" /></a>
+	</div>
+	<div id="firma"><a href="http://www.carlospc.net/" title="Author's Site">Author</a></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <title>Countdown:Settings</title>
+        <script type="text/javascript" src="strings.js"></script>
+        <script type="text/javascript" src="versionupdate.js"></script>
+        <script type="text/javascript" src="settings.js"></script>
+        <script type="text/javascript" src="datepicker.js"></script>
+        <script type="text/javascript" src="datefunctions.js"></script>
+
+        <link href="css/datepicker.css" rel="Stylesheet" type="text/css" />
+        <link href="css/settings.css" rel="Stylesheet" type="text/css" />
+        
+	</head>
+	<body onload="loadSettings()" style="width:215px; height:330px; font-size:12px; font-family: 'Segoe UI', Tahoma, Sans-Serif;
+    margin: 0px;">
+    <table dir="ltr" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td style="width:4px;height:4px;background:url(images/sett_cnr_top_l.png)" nowrap></td>
+            <td style="width:100%;background:url(images/sett_box_top.png)"></td>
+            <td style="width:4px;height:4px;background:url(images/sett_cnr_top_r.png)" nowrap></td>
+        </tr>
+        <tr style="background-color:#ffffff">
+            <td style="width:4px;background:url(images/sett_box_l.png) repeat-y" nowrap></td>
+            <td align="center" style="padding:5px"><img id="imgSkinPreview"/></td>
+            <td style="width:4px;background:url(images/sett_box_r.png) repeat-y" nowrap></td>
+        </tr>
+        <tr style="background-color:#f4f4f4">
+            <td style="width:4px;height:3px;background:url(images/sett_div_l.png)" nowrap></td>
+            <td style="width:100%;background:url(images/sett_div.png)"></td>
+            <td style="width:4px;height:3px;background:url(images/sett_div_r.png)" nowrap></td>
+        </tr>
+        <tr style="background-color:#f4f4f4">
+            <td style="width:4px;background:url(images/sett_box_div_l.png) repeat-y" nowrap></td>
+            <td align="center" style="padding:5px 0px 5px 0px">
+                <table id="settingsButtonTable" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td id="settingsButtonLeftCell"> <a href="javascript:void(0)" onkeypress="skinLeft()" style="cursor:default"><img id="settingsImageLeft" src="images/sett_l.png" onmousedown="skinLeft(true)" style="width:19px;height:19px;border:none;margin-right:11px" /></a></td>
+                        <td id="currentIndex"></td>
+                        <td id="of"></td>
+                        <td id="maxIndex"></td>
+                        <td id="settingsButtonRightCell"> <a href="javascript:void(0)" onkeypress="skinRight()" style="cursor:default"><img id="settingsImageRight" src="images/sett_r.png" onmousedown="skinRight(true)" style="width:19px;height:19px;border:none;margin-left:11px" /></a></td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width:4px;background:url(images/sett_box_div_r.png) repeat-y" nowrap></td>
+        </tr>
+        <tr style="background-color:#f4f4f4">
+            <td style="width:4px;height:4px;background:url(images/sett_cnr_bottom_l.png)" nowrap></td>
+            <td style="width:100%;background:url(images/sett_box_bottom.png)"></td>
+            <td style="width:4px;height:4px;background:url(images/sett_cnr_bottom_r.png)" nowrap></td>
+        </tr>
+    </table>        
+    <div style="padding-top:11px"></div>
+    <table cellspacing="0" cellpadding="0" style="width:100%;font-size:12px">
+        <tr>
+            <td rowspan="6" style="width:2px" nowrap></td>
+            <td id="eventDate"></td>
+            <td rowspan="6" style="width:2px" nowrap></td>
+        </tr>
+        <tr>
+            <td style="width:100%; padding-top:3px"><input id="txtDate" name="dateField" maxlength="10"><input type="button" value="..." onclick="displayDatePicker('dateField', false, 'dmy', '/');" /></td>
+        </tr>
+        <tr>
+            <td style="padding-top:7px" id="eventTitle"></td>
+        </tr>
+        <tr>
+            <td style="width:100%; padding-top:3px"><input id="txtTitle" type="text" style="font-size:10px;width:150px;" maxlength="17" /></td>
+        </tr>
+        <tr>
+            <td style="padding-top:7px" id="eventLink"></td>
+        </tr>
+        <tr>
+            <td style="width:100%; padding-top:3px"><input id="txtLink" type="text" style="font-size:10px;width:150px;" maxlength="50" /></td>
+        </tr>
+    </table> 
+    <br /> 
+    <div id="dateError"></div> 
+    <div id="versionMessage"></div>  
+    <br />
+    <div id="links">
+         <a href="http://www.blurg.net/gadgets/" id="moreInfo"></a>&nbsp; &nbsp;<a href="http://www.blurg.net/gadgets/countdown-overview/" id="help"></a>
+    </div>
+	</body>
+</html>

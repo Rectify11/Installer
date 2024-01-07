@@ -1,0 +1,180 @@
+﻿<!--//
+////////////////////////////////////////////////////////////////////////////////
+//
+//  THIS CODE IS NOT APPROVED FOR USE IN/ON ANY OTHER UI ELEMENT OR PRODUCT COMPONENT.  
+//  Copyright (c) 2006 Microsoft Corporation.  All rights reserved.
+//
+////////////////////////////////////////////////////////////////////////////////
+//-->
+
+<html dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Weather</title>
+    <link href="css/weather.css" rel="stylesheet" type="text/css"/>
+    <script src="js/localizedStrings.js" type="text/javascript" language="javascript"></script>
+    <script src="js/library.js" type="text/javascript" language="javascript"></script>
+    <script src="js/weather.js" type="text/javascript" language="javascript"></script>
+  	<script src="js/persistentSettings.js" type="text/javascript" language="javascript"></script>
+  </head>
+  <body id="WeatherGadget" onload="setup();" scroll="no" UNSELECTABLE="on">
+    <g:background id="background" style="position:absolute;top:0px; left:0px;"/>
+    <img id="background_" style="position:absolute;top:0px; left:0px;-ms-interpolation-mode: nearest-neighbor;" />
+
+    <div id="DockedModeDisplayArea" onClick="showFlyout()">
+      <div id="DockedModeCurrentConditionsText">
+        <div id="TemperatureCurrent"></div>
+        <div id="PlaceDockedMode">
+           <a href="#" id="PlaceHrefDockedMode" target="_blank"></a>
+        </div>
+      </div>
+      <div id="DockedModeCurrentConditionsVisual">
+        <img id="OrbStateDockedMode"  alt="" src="images/1px.gif" border="0" />
+        <img id="WeatherStateDockedMode" src="images/1px.gif" alt=""/> 
+      </div>
+      <div id="HighlightsDockedMode">
+        <img id="DockedModeHighlight1"  alt="" src="images/1px.gif" border="0" width="125" height="62" />
+        <img id="DockedModeHighlight2"  alt="" src="images/1px.gif" border="0" width="125" height="62" />
+      </div>
+    </div>
+    <div id="UnDockedModeDisplayArea"> 
+      <div id="UnDockedModeCurrentConditionsText"> <!--z-index:4-->
+        <div id="PlaceUnDockedMode">
+          <a href=# id="PlaceHrefUnDockedMode" target="_blank"></a>
+        </div>
+        <div id="TemperatureCurrentUnDockedMode"></div>
+      </div>
+      <div id="UnDockedModeCurrentConditionsVisual"> <!--z-index:-2-->
+        <img id="OrbStateUnDockedMode"  alt="" src="images/1px.gif" width="264" height="194" border="0" />
+        <img id="WeatherStateUnDockedMode"  alt="" src="images/1px.gif" width="264" height="194" border="0" />
+      </div>
+        <img  alt="" src="overlay.png" width="264" height="194" border="0" />
+      <div id="UnDockedModeForecasts"> <!--z-index:6-->
+        <table id="Forecasts" cellpadding="0" cellspacing="0" summary="Weather Forecast">
+          <colgroup>
+            <col width="44" align="center"/>
+          </colgroup>
+          <colgroup width="0*"></colgroup>
+          <colgroup>
+            <col width="44" align="center"/>
+          </colgroup>
+          <colgroup width="0*"></colgroup>
+          <colgroup>
+            <col width="44" align="center"/>
+          </colgroup>
+          <colgroup width="0*"></colgroup>
+          <colgroup>
+            <col width="44" align="center"/>
+          </colgroup>
+          <colgroup width="0*"></colgroup>
+          <colgroup>
+            <col width="44" align="center"/>
+          </colgroup>
+          <thead valign="baseline">
+            <tr id="ForecastDayHeader">
+              <th id="Forecast1" class="ForecastDay" rowspan="2" scope="colgroup">
+                <a href="#" id="DayOfWeek0" class="DayOfWeek" target="_blank"></a>
+              </th>
+              <th class="ForecastSeparatorHeaderSection" abbr="" scope="col"><div></div></th>
+              <th id="Forecast2" class="ForecastDay" rowspan="2" scope="colgroup">
+                <a href="#" id="DayOfWeek1" class="DayOfWeek" target="_blank"></a>
+              </th>
+              <th class="ForecastSeparatorHeaderSection" abbr="" scope="col"><div></div></th>
+              <th id="Forecast3" class="ForecastDay" rowspan="2" scope="colgroup">
+                <a href="#" id="DayOfWeek2" class="DayOfWeek" target="_blank"></a>
+              </th>
+              <th class="ForecastSeparatorHeaderSection" abbr="" scope="col"><div></div></th>
+              <th id="Forecast4" class="ForecastDay" rowspan="2" scope="colgroup">
+                <a href="#" id="DayOfWeek3" class="DayOfWeek" target="_blank"></a>
+              </th>
+              <th class="ForecastSeparatorHeaderSection" abbr="" scope="col"><div></div></th>
+              <th id="Forecast5" class="ForecastDay" rowspan="2" scope="colgroup">
+                <a href="#" id="DayOfWeek4" class="DayOfWeek" target="_blank"></a>
+              </th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td id="Separator" colspan="8"><div></div></td>
+            </tr>
+            <tr>
+              <td id="Attribution" colspan="8"></td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr>
+              <td class="TemperatureRange" headers="Forecast1">
+                <label id="TemperatureHigh0" class="TemperatureHigh"></label>
+                <img id="SkyCodeImage0" alt="" src="images/1px.gif" width="42" height="34" />
+                <label id="TemperatureLow0" class="TemperatureLow"></label>
+              </td>
+              <td class="ForecastSeparator"></td>
+              <td class="TemperatureRange" headers="Forecast2">
+                <label id="TemperatureHigh1" class="TemperatureHigh"></label>
+                <img id="SkyCodeImage1" alt="" src="images/1px.gif" width="42" height="34" />
+                <label id="TemperatureLow1" class="TemperatureLow"></label>
+              </td>
+              <td class="ForecastSeparator"></td>
+              <td class="TemperatureRange" headers="Forecast3">
+                <label id="TemperatureHigh2" class="TemperatureHigh"></label>
+                <img id="SkyCodeImage2" alt="" src="images/1px.gif" width="42" height="34" />
+                <label id="TemperatureLow2" class="TemperatureLow"></label>
+              </td>
+              <td class="ForecastSeparator"></td>
+              <td class="TemperatureRange" headers="Forecast4">
+                <label id="TemperatureHigh3" class="TemperatureHigh"></label>
+                <img id="SkyCodeImage3" alt="" src="images/1px.gif" width="42" height="34" />
+                <label id="TemperatureLow3" class="TemperatureLow"></label>
+              </td>
+              <td class="ForecastSeparator"></td>
+              <td class="TemperatureRange" headers="Forecast5">
+                <label id="TemperatureHigh4" class="TemperatureHigh"></label>
+                <img id="SkyCodeImage4" alt="" src="images/1px.gif" width="42" height="34" />
+                <label id="TemperatureLow4" class="TemperatureLow"></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="HighlightsUnDockedMode"> <!--z-index:0-->
+        <img id="UnDockedModeHighlight1" alt="" src="images/1px.gif" width="230" height="160" border="0" />
+        <img id="UnDockedModeHighlight2" alt="" src="images/1px.gif" width="230" height="160" border="0" />
+      </div>
+      <img id="UnDockedModeAccessibilityInformation" alt="" src="images/1px.gif" border="0" 
+           onmouseover="show('UnDockedModeCurrentConditionDetailLink')" 
+           onmouseleave="hide('UnDockedModeCurrentConditionDetailLink')"/> <!--z-index:3-->
+      <span id="UnDockedModeCurrentConditionDetailLink" 
+      	    onmousedown="show('UnDockedModeCurrentConditionDetail')" 
+      	    onmouseover="show('UnDockedModeCurrentConditionDetailLink')" 
+      	    onmouseenter="highlight('UnDockedModeCurrentConditionDetailLink', 'help')" 
+      	    onmouseleave="hide('UnDockedModeCurrentConditionDetailLink')">
+      </span> <!--z-index:4-->
+      <div id="UnDockedModeCurrentConditionDetail">
+      	<img id="UnDockedModeCurrentConditionDetailBase" alt="" src="images/1px.gif" border="0"/>
+      	<div id="UnDockedModeCurrentConditionDetailText"
+      		   onmouseover="show('UnDockedModeCurrentConditionDetailCloser')"
+      		   onmouseleave="hide('UnDockedModeCurrentConditionDetailCloser')">
+      	</div>
+	      <span id="UnDockedModeCurrentConditionDetailCloser" 
+  	    	    onmousedown="hide('UnDockedModeCurrentConditionDetail'); hide('UnDockedModeCurrentConditionDetailCloser')" 
+    	  	    onmouseover="show('UnDockedModeCurrentConditionDetailCloser')" 
+      		    onmouseenter="highlight('UnDockedModeCurrentConditionDetailCloser', 'hand')" 
+      		    onmouseleave="hide('UnDockedModeCurrentConditionDetailCloser')">
+      	</span>
+      </div>
+    </div>
+    <div id="WeatherMessage">
+      <table cellpadding="3" cellspacing="0">
+        <tr>
+          <td>
+              <div id='PleaseWaitLoadingSpinner'></div>
+              <div id='WeatherMessageIcon'>
+                  <img alt="" src="images/info.png" style="width:16px;height:16px;" />
+              </div>
+              <span id="message"></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

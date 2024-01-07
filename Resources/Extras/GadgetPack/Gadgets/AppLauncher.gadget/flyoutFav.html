@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns=”http://www.w3.org/1999/xhtml”>
+<head>
+	<title>Favorite Flyout</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<link href="css/flyout_fav.css" rel="stylesheet" type="text/css" />
+	<script src="js/flyout_fav.js" type="text/javascript"></script>
+</head>
+<body>
+<g:background id="flyoutBackground" src="images/fill.png" style="position:absolute; z-index:-999" />
+
+<div class="headerArea" id="titleArea"></div>
+<div class="favListArea" id="favListArea"></div>
+<div class="openArea" id="openArea" style="display:none;"></div>
+<div id="contxtMenu" class="skin1" onMouseover="highLight()" onMouseout="lowLight()"></div>
+<div id="delConfirm" style="display:none;"></div>
+<div id="renameFile" style="display:none;">
+  <h5 style="margin-bottom:5px;">Rename this file</h5>
+  <input type="text" class="inputFld" value="" id="nameInput" />
+  <button class="btn" onClick="renameThis();return false;" onFocus="blur();" style="margin-right:10px;">Rename</button>
+  <button class="btn" onClick="cancelDel();return false;" onFocus="blur();">Cancel</button>
+</div>
+<div id="errDisplay" style="display:none;">
+  <h5 style="margin-bottom:5px;">An error occured!</h5>
+  <span id="errorHere"></span><br />
+  <button class="btn" onClick="javascript:errDisplay.style.display='none';return false;" onFocus="blur();" style="margin-top:5px;">OK</button>
+</div>
+
+</body>
+</html>

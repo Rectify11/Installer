@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Shutdown and Restart</title>
+<style type="text/css">
+body {
+	margin: 0;
+	margin-bottom: 0;
+      width: 130px;
+	height: 38px;
+}
+</style>
+<script language="JavaScript" type="text/javascript">
+button1= new Image();
+button1.src = "src/shutdown-off.png"
+button2= new Image();
+button2.src = "src/shutdown-on.png"
+button3= new Image();
+button3.src = "src/reboot-off.png"
+button4= new Image();
+button4.src = "src/reboot-on.png"
+</script> 
+</head>
+<body>
+ 	<g:background id='bg' src='src/background.png'>
+	</g:background>
+<div name="shut"style="position: absolute; left: 12px; top: 16px;"
+onmouseover="shut.src='src/shutdown-on.png';" 
+onmouseout="shut.src='src/shutdown-off.png';"
+onClick="System.Shell.execute('shutdown', '-p');" class="shutdown">
+ <img src="src/shutdown-off.png" name="shut"/></div>
+
+<div style="position: absolute; left: 66px; top: 16px;"
+onmouseover="rest.src='src/reboot-on.png';" 
+onmouseout="rest.src='src/reboot-off.png';"
+onClick="System.Shell.execute('shutdown', '-r -f -t 01');" class="restart">
+ <img src="src/reboot-off.png" name="rest" /></div>
+</body>
+</html>

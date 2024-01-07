@@ -1,0 +1,13 @@
+﻿body
+{
+	font-family: Segoe UI;
+	width: 300px;
+	height: 300px;
+	font-size: 9px;
+	background: #000000;
+	color: #F00;
+	overflow: auto;
+	margin-top:3px;
+	margin-left:4px;
+	margin-bottom:0px;
+}

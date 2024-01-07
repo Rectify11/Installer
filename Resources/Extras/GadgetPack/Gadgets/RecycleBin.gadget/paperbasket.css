@@ -1,0 +1,56 @@
+body{
+	font-family: Segoe UI, Tahoma, Sans-Serif;
+	width:130px;
+	height:67px;
+	margin:0px;
+	padding:0px;
+}
+#basketImage
+{
+	top:5px;
+	left:1px;
+	cursor:hand;
+}
+#basketSize
+{
+	top:4px;
+	left:52px;
+	color:#FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+}
+#folderCountx
+{
+	top:17px;
+	left:52px;
+	color:#FFFFFF;
+	font-size: 12px;
+}
+#fileCountx
+{
+	top:30px;
+	left:52px;
+	color:#FFFFFF;
+	font-size: 12px;
+	visibility: hidden;
+}
+#emptyAll
+{
+	top:43px;
+	left:104px;
+	cursor:hand;
+}
+#settings
+{
+	top:43px;
+	left:85px;
+	cursor:hand;
+}
+#sync
+{
+	top:42px;
+	left:68px;
+	cursor:hand;
+}
+
+

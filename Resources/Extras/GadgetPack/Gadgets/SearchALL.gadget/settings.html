@@ -1,0 +1,251 @@
+<!--Copyright 2009 Unique Windows Gadgets-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+    <head>
+        <style type="text/css">
+            body {
+                font-family: Segoe UI;
+                width:300px;
+                height:400px;
+            }
+			
+			.font
+			{
+				font-size: 10px;
+				font-weight: normal;
+				color: black;
+				font-family: Arial, Verdana, "SF Sans Serif";
+			}
+			
+			a.special:link { color:#10b410; text-decoration:none}
+			a.special:visited { color:#10b410; text-decoration:none}
+			a.special:hover { color:#10b410; text-decoration:none; cursor:hand}
+			a.special:active { color:#10b410; text-decoration:none}
+        </style>
+        
+		<script language="javascript">
+		
+			System.Gadget.onSettingsClosing = settingsClosing;
+			
+			function loadSettings() 
+			{
+				document.getElementById("flyout").checked = System.Gadget.Settings.read("flyout");
+
+				
+				Select_Value_Set("search1", System.Gadget.Settings.read("search1"));
+				Select_Value_Set("search2", System.Gadget.Settings.read("search2"));
+				Select_Value_Set("search3", System.Gadget.Settings.read("search3"));
+				Select_Value_Set("search4", System.Gadget.Settings.read("search4"));
+				Select_Value_Set("search5", System.Gadget.Settings.read("search5"));
+				
+				showUpdate();
+				showTopGadgets();
+			}
+			
+			function settingsClosing(event)
+			{
+				if (event.closeAction == event.Action.commit)
+				{
+					System.Gadget.Settings.write ("flyout", flyout.checked);
+					System.Gadget.Settings.write ("search1", search1.value);
+					System.Gadget.Settings.write ("search2", search2.value);
+					System.Gadget.Settings.write ("search3", search3.value);
+					System.Gadget.Settings.write ("search4", search4.value);
+					System.Gadget.Settings.write ("search5", search5.value);
+				}
+			}
+			
+			function Select_Value_Set(SelectName, Value) 
+			{
+				eval("SelectObject = document.getElementById('" + SelectName + "')");
+				for(index = 0; index < SelectObject.length; index++) 
+				{
+					if(SelectObject[index].value == Value)
+						SelectObject.selectedIndex = index;
+				}
+			}
+			
+			function getURL(a)
+			{
+				try
+				{
+					var xmlReq=new ActiveXObject("Microsoft.XMLHTTP");
+					xmlReq.open("GET",a,false);
+					xmlReq.setRequestHeader("If-Modified-Since", "Sat, 1 Jan 2000 00:00:00 GMT");
+					xmlReq.send();
+					
+					if(xmlReq.status==200)
+					{
+						return xmlReq.responseText;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				catch(urlData)
+				{
+					return false;
+				}
+			}
+			
+			function updateAvailable()
+			{
+				var urlData=getURL("http://www.uniquewg.com/Versions/searchallversion.htm");
+				
+				if(urlData===false)
+				{
+					return false;
+				}
+				
+				var version="1.0";
+				var a=parseFloat(version);
+				var b=parseFloat(urlData);
+				return b>a;
+			}
+			
+			function showUpdate()
+			{
+				if(updateAvailable())
+				{
+					document.getElementById("update").style.display="block";
+					document.getElementById("noUpdate").style.display="none";
+					
+					document.getElementById("updateBox").style.backgroundColor = '#ffb2b2';
+					document.getElementById("updateBox").style.border = "1px solid #cc0000";
+				}
+				else
+				{
+					document.getElementById("noUpdate").style.display="block";
+					document.getElementById("update").style.display="none";
+					
+					document.getElementById("updateBox").style.backgroundColor = '#bfffb2';
+					document.getElementById("updateBox").style.border = "1px solid #158000";
+				}
+			}
+			
+			function showTopGadgets()
+			{
+				var urlData=getURL("http://windowslivegadgets.com");
+				
+				if(urlData===false)
+				{
+					return false;
+				}
+				
+				document.getElementById("topGadgets").innerHTML = urlData;
+			
+			}
+		</script>
+
+    </head>
+    
+    <body onLoad="loadSettings()">
+         <table width="100%" cellpadding=0 cellspacing=0 border=0>
+            <tr height="100%" >
+                <td class="font" height="100%" valign="top">
+                    <fieldset>
+                        <legend><b>Settings</b></legend>
+                        <br>
+                        <input type="checkbox" id="flyout" /><label for="flyout">Open results in flyout</label><br><br>
+                        Search Options:<br><table width="100%" cellpadding=2 cellspacing=0 border=0>
+                    	<tr>
+                        	<td class="font">
+                                1&nbsp;&nbsp;<select id="search1" style="width:100px">
+                                    <option value="4">Amazon</option>
+                                    <option value="8">Bing</option>
+                                    <option value="10">Dictionary</option>
+                                   	<option value="5">Ebay</option>
+                                    <option value="9">Ebay (Au)</option>
+                                    <option value="1">Google</option>
+                                    <option value="6">Imdb</option>
+                                    <option value="11">Metacritic</option>
+                                    <option value="12">Newzleech</option>
+                                    <option value="2">Wikipedia</option>
+                                    <option value="7">Yahoo</option>
+                                    <option value="3">Youtube</option>
+                                </select>
+                            </td>
+                        	<td class="font">
+                                2&nbsp;&nbsp;<select id="search2" style="width:100px">
+                                    <option value="4">Amazon</option>
+                                    <option value="8">Bing</option>
+                                    <option value="10">Dictionary</option>
+                                   	<option value="5">Ebay</option>
+                                    <option value="9">Ebay (Au)</option>
+                                    <option value="1">Google</option>
+                                    <option value="6">Imdb</option>
+                                    <option value="11">Metacritic</option>
+                                    <option value="12">Newzleech</option>
+                                    <option value="2">Wikipedia</option>
+                                    <option value="7">Yahoo</option>
+                                    <option value="3">Youtube</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td class="font">
+                                3&nbsp;&nbsp;<select id="search3" style="width:100px">
+                                    <option value="4">Amazon</option>
+                                    <option value="8">Bing</option>
+                                    <option value="10">Dictionary</option>
+                                   	<option value="5">Ebay</option>
+                                    <option value="9">Ebay (Au)</option>
+                                    <option value="1">Google</option>
+                                    <option value="6">Imdb</option>
+                                    <option value="11">Metacritic</option>
+                                    <option value="12">Newzleech</option>
+                                    <option value="2">Wikipedia</option>
+                                    <option value="7">Yahoo</option>
+                                    <option value="3">Youtube</option>
+                                </select>
+                            </td>
+                        	<td class="font">
+                                4&nbsp;&nbsp;<select id="search4" style="width:100px">
+                                    <option value="4">Amazon</option>
+                                    <option value="8">Bing</option>
+                                    <option value="10">Dictionary</option>
+                                   	<option value="5">Ebay</option>
+                                    <option value="9">Ebay (Au)</option>
+                                    <option value="1">Google</option>
+                                    <option value="6">Imdb</option>
+                                    <option value="11">Metacritic</option>
+                                    <option value="12">Newzleech</option>
+                                    <option value="2">Wikipedia</option>
+                                    <option value="7">Yahoo</option>
+                                    <option value="3">Youtube</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td class="font">
+                                5&nbsp;&nbsp;<select id="search5" style="width:100px">
+                                    <option value="4">Amazon</option>
+                                    <option value="8">Bing</option>
+                                    <option value="10">Dictionary</option>
+                                   	<option value="5">Ebay</option>
+                                    <option value="9">Ebay (Au)</option>
+                                    <option value="1">Google</option>
+                                    <option value="6">Imdb</option>
+                                    <option value="11">Metacritic</option>
+                                    <option value="12">Newzleech</option>
+                                    <option value="2">Wikipedia</option>
+                                    <option value="7">Yahoo</option>
+                                    <option value="3">Youtube</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    </fieldset>
+                </td>
+            </tr> 
+         </table>
+        
+        <br>
+<hr>
+         <a href="http://windowslivegadgets.com/" target="_blank">Windows Live Gadgets</a>
+
+    </body>
+    
+</html>

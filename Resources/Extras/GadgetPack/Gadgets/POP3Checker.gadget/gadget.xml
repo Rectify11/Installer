@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>POP3 Mail Checker</name>
+	<namespace>POP3Checker</namespace>
+	<version>1.0.0</version>
+	<author name="Thomas Pleasance">
+		<info url="www.cener.co.uk" text="Cener.co.uk" />
+		<logo src="logo.png" />
+	</author>
+	<copyright>© 2006</copyright>
+	<description>POP3 Checker</description>
+	<icons>
+		<icon height="48" width="48" src="icon.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0" src="gadget.html" />
+			<permissions>full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="drag.png" />
+		  <autoscaleDPI>true</autoscaleDPI>
+		</host>
+	</hosts>
+</gadget>

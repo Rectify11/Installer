@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>Power Status</name>
+  <namespace>battery</namespace>
+  <version>1.1</version>
+  <author name="Orbmu2k">
+    <info url="http://blog.orbmu2k.de" text="Orbmu2k Blog" />
+    <logo src="bat48.png" />
+  </author>
+  <copyright>© 2009 by Orbmu2k</copyright>
+  <description>Shows current Battery and Power Status.</description>
+  <icons>
+    <icon height="48" width="48" src="bat_scr.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0.0" src="powerstatus.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="drag.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

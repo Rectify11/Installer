@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>Control Panel</name>
+    <namespace></namespace>
+    <version>2.2</version>
+   <author name="Legiones">
+     <info url="" />
+     <logo src="logo.png" />
+   </author>
+    <copyright>&#169; 2009</copyright>
+    <description>Includes direct access to: Registry Editor, System Configuration, Disk Management, Device Manager, Services, Administrative Tools, System Restore, Network Connections, Programs and Features, Windows Features, Backup and Restore, Devices and Printers, Performance Monitor, System Information, Control Panel, CMD Prompt, Run,  Computer Management, ODBC Data Source Administrator, Windows Firewall with Advanced Security, Power Shell, Power Shell ISE
+.</description>
+    	<icons>
+		<icon src="src/icon.png" />
+	</icons>
+    <hosts>
+        <host name="sidebar">
+            <base type="HTML" apiVersion="1.0.0" src="index.html" />
+            <permissions>full</permissions>
+									<defaultImage src='drag.png' />
+            <platform minPlatformVersion="0.3" />
+        </host>
+    </hosts>
+</gadget>

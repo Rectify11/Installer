@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns=”http://www.w3.org/1999/xhtml”>
+<head>
+  <title>App Launcher</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <link href="css/launcher.css" rel="stylesheet" type="text/css" />
+  <script src="js/shared.js" type="text/javascript"></script>
+  <script src="js/launcher.js" type="text/javascript"></script>
+</head>
+<body ondragenter="event.returnValue = false" ondragover="addTipOver();" ondragleave="addTipOut();" ondrop="fileDropAdd();">
+
+  <div id="launcherDiv"></div>
+  <div id="appInfo" onmouseover="showTabs();"></div>
+  <div id="tabDiv" style="display:none;" onmouseout="this.style.display='none';return false;">
+    <ul class="tabs">
+      <li onclick="tab1.style.display='';tab2.style.display='none';tab3.style.display='none';tab4.style.display='none';return false;">1</li>
+      <li onclick="tab1.style.display='none';tab2.style.display='';tab3.style.display='none';tab4.style.display='none';return false;">2</li>
+      <li onclick="tab1.style.display='none';tab2.style.display='none';tab3.style.display='';tab4.style.display='none';return false;">3</li>
+      <li onclick="tab1.style.display='none';tab2.style.display='none';tab3.style.display='none';tab4.style.display='';return false;">4</li>
+    </ul>
+  </div>
+  <div id="border" onmouseover="tabDiv.style.display='none'"></div>
+
+</body>
+</html>

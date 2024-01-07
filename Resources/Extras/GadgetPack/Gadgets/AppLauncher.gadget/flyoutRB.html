@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns=”http://www.w3.org/1999/xhtml”>
+<head>
+	<title>Recycle Bin</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<link href="css/flyout_rb.css" rel="stylesheet" type="text/css" />
+	<script src="js/flyout_rb.js" type="text/javascript"></script>
+</head>
+<body>
+<g:background id="flyoutBackground" src="images/fill.png" style="position:absolute; z-index:-999" />
+<div id="flyout">
+	<div id="flyoutContents">
+		<h3>Recycle Bin</h3>
+		<img src="images/rbEmpty.png" id="binIcon" />
+		<span id="binContents"></span><br />
+		<table class="rblink" cellspacing="0" cellpadding="0"><tr><td>
+		<span onclick="emptyIT();return false;" id="empty" onfocus="this.blur();">Empty</span>
+		</td><td style="border-left:1px solid white;border-right:1px solid white;">
+		<span onclick="openRB();return false;" id="folder" onfocus="this.blur();">Open</span>
+		</td><td>
+		<span onclick="openProp();return false;" id="set" onfocus="this.blur();">Config</span>
+		</td></tr></table>
+	</div>
+</div>
+</body>
+</html>

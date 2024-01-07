@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>Clock (Digital)</name>
+    <namespace>clocket6</namespace>
+    <version>0.9.1</version>
+    <author name="s.blank">
+        <info url="clockets.blogspot.com" />
+        <logo src="logo.png" />
+    </author>
+    <copyright>2010</copyright>
+    <description>Digital clock with different settings</description>
+	<icons>
+		<icon src="icon.png" />
+	</icons>
+    <hosts>
+        <host name="sidebar">
+            <autoscaleDPI>true</autoscaleDPI>
+            <base type="HTML" apiVersion="1.0.0" src="gadget.html" />
+            <permissions>full</permissions>
+						<defaultImage src='drag.png' />
+            <platform minPlatformVersion="0.3" />
+        </host>
+    </hosts>
+</gadget>
+
+
