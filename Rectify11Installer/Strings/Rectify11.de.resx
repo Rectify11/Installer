@@ -205,7 +205,7 @@
     <value>Windows 10 Taskleiste</value>
   </data>
   <data name="epW11Radio" xml:space="preserve">
-    <value>Windows 11 standard</value>
+    <value>Windows 11 standart</value>
   </data>
   <data name="progressText" xml:space="preserve">
     <value>Wussten Sie schon</value>
@@ -394,10 +394,10 @@
     <value>Wussten sie schon?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 hat bessere Win32 DPI Unterstützung da wir Controls besser skalieren.</value>
+    <value>Rectify11 hat bessere Win32 DPI Unterstützung, da wir Controls besser skalieren.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 ist mehr konsistent</value>
+    <value>Rectify11 ist konsistenter</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
     <value>Wir haben unser Bestes gegeben um WinUI Controls in unseren Designs zu replizieren.</value>
@@ -406,19 +406,19 @@
     <value>Rectify11 verbessert Performance</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>Wir setzen Geschwindigkeit an die erste Stelle. In späteren Releases können sie Sachen auswählen, um ihr System zu debloaten.</value>
+    <value>Wir setzen Geschwindigkeit an die erste Stelle. In späteren Releases können sie Funktionen auswählen, um ihr System zu debloaten.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
     <value>Verbesserte Systemsteuerung</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>Wir verbesserten viele Details in der Systemsteuerung, so wie alte Grafiken zu modernisieren und entfernte Elemente zu wiederherstellen.</value>
+    <value>Wir verbessern viele Details in der Systemsteuerung. So modernisieren wir alte Grafiken und stellen entfernte Elemente wieder her.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
     <value>Benötigen sie Hilfe?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>Sie können uns auf unserem offiziellen Discord server fragen. Der link befindet sich auf der GitHub Seite, von wo Sie den Installer heruntergeladen haben.</value>
+    <value>Sie können uns auf unserem offiziellen Discord-Server fragen. Der Link befindet sich auf der GitHub Seite, von wo Sie den Installer heruntergeladen haben.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
     <value>Danke!</value>
@@ -430,16 +430,16 @@
     <value>PC neu starten</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 wurde erfolgreich deinstallert. Bitte starten sie ihr Gerät neu um die Änderungen anzuwenden.</value>
+    <value>Rectify11 wurde erfolgreich deinstallert. Bitte starten Sie Ihr Gerät neu, um die Änderungen anzuwenden.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 wurde erfolgreich installiert. Bitte starten sie ihr Gerät neu um die Änderungen anzuwenden.</value>
+    <value>Rectify11 wurde erfolgreich installiert. Bitte starten Sie Ihr Gerät neu, um die Änderungen anzuwenden.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
     <value>Die Installation von Rectify11 ist fehlgeschlagen. Bitte senden Sie </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> und öffnen Sie ein Issue auf GitHub oder senden Sie es an den Rectify11 Discord Server für Unterstützung.</value>
+    <value> und öffnen Sie ein Issue auf GitHub oder senden Sie es in den Rectify11 Discord Server, um Unterstützung zu erhalten.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
     <value>Danke, das Sie Rectify11 verwendet haben.</value>
@@ -448,6 +448,6 @@
     <value>Deinstallation wird in einigen Minuten fertig sein.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+	<value>Sie verwenden eine Windows-Version, welche so neu ist, das Rectify11 sie noch nicht vollständig unterstützt.</value>
   </data>
 </root>
