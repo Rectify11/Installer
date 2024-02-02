@@ -130,25 +130,25 @@
     <value>Licentieovereenkomst</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}Deze software wordt geleverd 'as-is', zonder enige expliciete of impliciete garantie. In GEEN geval zal de auteur aansprakelijk worden gesteld voor eventuele schade die voortvloeit uit het gebruik van deze software.\par{\pntext\f0 2.\tab}Rectify11 is gratis te gebruiken door iedereen, maar je mag het niet verkopen. Je mag dit product niet bundelen als onderdeel van een ander product zonder schriftelijke toestemming van de auteur.\par{\pntext\f0 3.\tab}Je mag niet beweren dat je de software hebt gemaakt.\par{\pntext\f0 4.\tab}Dit bericht mag niet worden verwijderd of gewijzigd bij enige distributie.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation en het Rectify11-team.\par{\pntext\f0\space}Wij zijn op GEEN ENKELE manier verbonden met Microsoft Corporation. Dit is een door de community gemaakt project.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
-    <value>Voordat u Rectify11 kunt installeren, moet u akkoord gaan met deze licentieovereenkomst:</value>
+    <value>Voordat je Rectify11 kan installeren, moet je akkoord gaan met deze licentieovereenkomst:</value>
   </data>
   <data name="installNote" xml:space="preserve">
-    <value>Rectificeer uw huidige Windows-installatie.</value>
+    <value>Rectificeer je huidige Windows-installatie.</value>
   </data>
   <data name="installTitle" xml:space="preserve">
-    <value>Nu installeer nu</value>
+    <value>Installeer</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
     <value>Herstelt het oorspronkelijke Windows-uiterlijk.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
-    <value>Verwijder Rectify11</value>
+    <value>Verwijder</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Update uw bestaande Rectify11-installatie.</value>
+    <value>Update je bestaande Rectify11-installatie.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Nu bijwerken</value>
@@ -160,19 +160,19 @@
     <value>Welkom</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>De setup zal de verschillende stappen doorlopen die nodig zijn om Rectify11 op uw PC te installeren, voor een meer consistente ervaring. Selecteer de gewenste optie om verder te gaan.</value>
+    <value>De setup zal de verschillende nodige stappen doorlopen om Rectify11 op je PC te installeren, voor een meer consistente ervaring. Selecteer je gewenste optie om verder te gaan.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>U kunt kiezen wat gerectificeerd zal worden.</value>
+    <value>Je kan kiezen wat gerectificeerd zal worden.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
-    <value>Kies wat u wilt installeren</value>
+    <value>Kies wat je wil installeren</value>
   </data>
   <data name="themeChoiceTitle" xml:space="preserve">
-    <value>Selecteer uw gewenste thema.</value>
+    <value>Selecteer je gewenste thema.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personaliseer uw ervaring</value>
+    <value>Personaliseer je ervaring</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Rectify11-Installatie</value>
@@ -193,10 +193,10 @@
     <value>Mica uitbreiden naar de navigatiebalk van de verkenner</value>
   </data>
   <data name="epHeader" xml:space="preserve">
-    <value>Uw bureaublad aanpassen</value>
+    <value>Je bureaublad aanpassen</value>
   </data>
   <data name="epTitle" xml:space="preserve">
-    <value>Selecteer uw gewenste bureaubladervaring</value>
+    <value>Selecteer je gewenste bureaubladervaring</value>
   </data>
   <data name="epW10Radio" xml:space="preserve">
     <value>Windows 10-Afgerond</value>
@@ -211,13 +211,13 @@
     <value>Wist je dat</value>
   </data>
   <data name="summaryFooter" xml:space="preserve">
-    <value>Sluit alstublieft al uw geopende programma's en sla uw werk op, want uw systeem wordt opnieuw opgestart op het einde van de installatie.</value>
+    <value>Sluit alstublieft alles en sla je werk op aangezien je systeem opnieuw zal moeten opstarten aan het einde van de installatie.</value>
   </data>
   <data name="summaryItems" xml:space="preserve">
     <value>Installeer Rectify11 op deze Windows-installatie.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>U staat op het punt om het volgende te doen:</value>
+    <value>Je zal het volgende doen:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>Installeer</value>
@@ -235,13 +235,13 @@
     <value>Rectify11-achtergronden</value>
   </data>
   <data name="installEP" xml:space="preserve">
-    <value>Installeer ExplorerPatcher</value>
+    <value>ExplorerPatcher</value>
   </data>
   <data name="installThemes" xml:space="preserve">
-    <value>Installeer thema's</value>
+    <value>Thema's</value>
   </data>
   <data name="installWinver" xml:space="preserve">
-    <value>Installeer Winver</value>
+    <value>Winver</value>
   </data>
   <data name="summaryHeader" xml:space="preserve">
     <value>Samenvatting</value>
@@ -253,207 +253,204 @@
     <value>Nu opnieuw opstarten</value>
   </data>
   <data name="installASDF" xml:space="preserve">
-    <value>Installeer Accent Colorizer</value>
+    <value>Accentkleur-kleuring</value>
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>Vervang icoontjes</value>
   </data>
   <data name="userAvatars" xml:space="preserve">
-    <value>Installeer profielfoto's</value>
+    <value>Accountafbeeldingen</value>
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
     <value>rechtermuisknopmenu-stijl</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
-    <value>Installeer Gadgets</value>
+    <value>Gadgets</value>
   </data>
-
-  <!--translate-->
   <data name="installUserAV" xml:space="preserve">
-    <value>Remastered user avatars</value>
+    <value>Verbeterde accountafbeeldingen</value>
   </data>
   <data name="uninstallChoiceDescription" xml:space="preserve">
-    <value>You can choose what will be restored.</value>
+    <value>Je kan kiezen wat hersteld zal worden.</value>
   </data>
   <data name="installMFE" xml:space="preserve">
-    <value>Skip MicaForEveryone installation</value>
+    <value>Sla MicaForEveryone-installatie over</value>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
-    <value>Use Mica Alt instead of Mica</value>
+    <value>gebruik Mica Alt in plaats van Mica</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
-    <value>Classic Context Menus</value>
+    <value>klassieke rechtermuisknopmenu's</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>Classic Menus with transparency</value>
+    <value>klassieke rechtermuisknopmenu's met doorzichtigheid</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
-    <value>Enhanced Fluent Menus (More Options)</value>
+    <value>Verbeterde Fluent menu's (Meer opties)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>Enhanced Fluent Menus (All Items in root)</value>
+    <value>Verbeterde Fluent menu's (Alle items in hoofdmap)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
-    <value>Add features to your existing installation.</value>
+    <value>Voeg functies toe aan je bestaande installatie.</value>
   </data>
   <data name="modifyTitle" xml:space="preserve">
-    <value>Modify</value>
+    <value>Bewerk</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+    <value>Je kan Rectify11 niet installeren omdat er Windows-updates zijn die moeten worden geïnstalleerd. Herstart je systeem alstublieft.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Create a restore point</value>
+    <value>Maak een herstelpunt</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Enhanced context menus</value>
+    <value>Verbeterde rechtermuisknopmenu's</value>
   </data>
-    <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
-    <value>Basic</value>
+    <value>Basis</value>
   </data>
   <data name="optionAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Geavanceerd</value>
   </data>
   <data name="restartNow" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Herstart nu</value>
   </data>
   <data name="restartLater" xml:space="preserve">
-    <value>Restart later</value>
+    <value>Herstart later</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
-    <value>Preview</value>
+    <value>Voorbeeld</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Dark (partial)</value>
+    <value>Donker (deels)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 version 1903 or higher is required in order to install Rectify11.</value>
+    <value>Windows 10 versie 1903 of hoger is vereist om Rectify11 te installeren.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
-    <value>Compatibility Error</value>
+    <value>Compatibiliteitsfout</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 build 21343 or higher is recommended in order to install Rectify11.</value>
+    <value>Windows 10 build 21343 of hoger wordt aanbevolen om Rectify11 te installeren.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Compatibiliteitswaarschuwing</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>More information</value>
+    <value>Meer informatie</value>
   </data>
   <data name="lessInfo" xml:space="preserve">
-    <value>Less information</value>
+    <value>Minder informatie</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Are you sure you want to uninstall Rectify11?</value>
+    <value>ben je zeker dat je Rectify11 wil verwijderen?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
-    <value>Installation of </value>
+    <value>De installatie </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> has failed. You'll need to install it manually.</value>
+    <value> is mislukt. Je zal het manueel moeten installeren.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
-    <value>Runtime installation failed</value>
+    <value>Runtime-installatie mislukt</value>
   </data>
   <data name="preparingInstall" xml:space="preserve">
-    <value>Preparing installation</value>
+    <value>Installatie voorbereiden</value>
   </data>
   <data name="creatingRestorePoint" xml:space="preserve">
-    <value>Creating a restore point</value>
+    <value>Een herstelpunt maken</value>
   </data>
   <data name="installingRt" xml:space="preserve">
-    <value>Installing runtimes</value>
+    <value>Runtimes installeren</value>
   </data>
   <data name="installingThemes" xml:space="preserve">
-    <value>Installing themes</value>
+    <value>Thema's installeren</value>
   </data>
   <data name="installingExtras" xml:space="preserve">
-    <value>Installing extras</value>
+    <value>Extra's installeren</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Creating uninstaller</value>
+    <value>de-installatieprogramma maken</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
-    <value>Cleaning up</value>
+    <value>Opschonen</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>Uninstalling icons</value>
+    <value>Icoontjes verwijderen</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>Uninstalling themes</value>
+    <value>Thema's verwijderen</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>Uninstalling extras</value>
+    <value>Extra's verwijderen</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
-    <value>Done. You can close this window.</value>
+    <value>Klaar. Je kan dit venster sluiten.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 has changed everything</value>
+    <value>Rectify11 heeft alles veranderd</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.</value>
+    <value>We hebben de pictogrammen in het hele systeem gemoderniseerd, wat resulteert in een consistentere en vloeiendere gebruikerservaring.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>Wist de dat?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 has better Win32 DPI support because we scale controls correctly.</value>
+    <value>Rectify11 heeft betere Win32 DPI-ondersteuning, omdat we besturingselementen correct schalen.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 has a more consistent theme</value>
+    <value>Rectify11 heeft een meer consistent thema</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
+    <value>We hebben ons best gedaan om WinUI-besturingselementen te repliceren in onze thema's en het donkere thema is gewoon geweldig.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 has better performance</value>
+    <value>Rectify11 heeft betere prestaties</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.</value>
+    <value>We hecten veel waarde aan prestaties. In toekomstige versies zul je dingen kunnen kiezen die je wilt verwijderen uit je systeem.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Control Panel</value>
+    <value>Gerectificeerd bedieningspaneel</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
+    <value>We hebben veel details in het bedieningspaneel verbeterd, zoals het moderniseren van oude icoontjes en het toevoegen van verwijderde items</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Need help or technical support?</value>
+    <value>Hulp of technische ondersteuning nodig?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
+    <value>Je kunt ons alles vragen op onze officiële Discord server. De link staat op de GitHub-pagina, waar je het Rectify11 hebt gedownload.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Thank you!</value>
+    <value>Bedankt!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>We waarderen je ondersteuning, bedankt voor het installeren van Rectify11.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>Je PC herstarten</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 is verwijderd. Herstart je PC om de wijzigingen te voltooien.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>Rectify11 is geïnstalleerd. Herstart je PC om de wijzigingen te voltooien.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>Installatie van Rectify11 is mislukt. Stuur </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> en open een issue op GitHub of stuur het in de Rectify11 Discord server voor hulp.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Bedankt om rectify11 te gebruiken</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>De installatie zal binnen een paar minuten voltdooien.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+	<value>Je gebruikt een build van Windows die te nieuw is om volledig te worden ondersteund door Rectify11.</value>
   </data>
 </root>
