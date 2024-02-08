@@ -303,7 +303,6 @@
   <data name="createRestore" xml:space="preserve">
     <value>建立還原點</value>
   </data>
-
   <data name="optionBasic" xml:space="preserve">
     <value>基礎</value>
   </data>
