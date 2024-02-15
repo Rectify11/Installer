@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="content-style-type" content="text/css"/>
+		<meta http-equiv="content-script-type" content="text/javascript"/>
+		<style type="text/css"><!--
+			body {
+				width: 250px;
+				height: 240px;
+				font-family: Segoe UI, Tahoma, Sans-Serif;
+				font-size: 12px;
+			}
+		--></style>
+		<script src="local.js" type="text/javascript"></script>
+		<script src="gadget.js" type="text/javascript"></script>
+	</head>
+
+	<body onLoad="loadSettings();">
+		<p>
+			<label for="queryTypeSelect">Abfrage Typ:&nbsp;</label>
+			<select id="queryTypeSelect" style="vertical-align: middle;">
+				<option>Logisch</option>
+				<option>Physikalisch</option>
+			</select>
+		</p>
+		<p>
+			<label for="historyTypeSelect">Grafik Typ:&nbsp;</label>
+			<select id="historyTypeSelect" style="vertical-align: middle;">
+				<option>Polygon</option>
+				<option>Linien</option>
+			</select>
+		</p>
+		<p>
+			<label for="driveSelect" style="float: left;">Laufwerke:&nbsp;</label>
+			<select id="driveSelect" size="6" multiple="multiple" style="float: left;"></select>
+			<span style="color: #888;">Tipp: Mit Strg können mehrere Laufwerke ausgewählt werden.</span>
+			<span style="clear: both;"></span>
+		</p>
+		<p style="text-align: center;">
+			<a href="http://sascha.katzner.de/driveactivity.html">Drive Activity Webseite</a>
+		</p>
+	</body>
+
+</html>

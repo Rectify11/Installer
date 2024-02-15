@@ -1,0 +1,95 @@
+@charset "utf-8";
+body,html {
+	width:130px;
+	height:130px;
+	margin:0px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+font-weight:bold;
+color:#ccc;
+}
+img{
+	margin-left:1px;
+}
+a:link, a:active, a:visited{
+	color: #333;
+	text-decoration:none;
+}
+a:hover {
+	color: #ccc;
+}
+p{
+	height:14px;
+	margin:0px;
+	text-indent:5px;
+}
+#contenedor{	
+	width:130px;
+	height:130px;
+	background-image:url(../imgs/back.png);
+    background-color: Transparent;
+}
+#imgs{
+	position:absolute;
+	top:85px;
+	width:130px;
+	text-align:center;
+	height:25px;
+	visibility:visible;
+}
+#firma{
+	position:absolute;
+	top:112px;
+	width:126px;
+	margin-right:4px;
+	height:16px;
+	text-align:right;
+	color:#999;
+}
+#entrada{
+	position:absolute;
+	width:100px;
+	left:15px;
+	top:15px;
+	text-align:center;
+}
+.texto{
+	font-family:Verdana, Geneva, sans-serif;
+	margin-top:2px;
+	font-size:14px;
+	color:#fff;
+	font-weight:bold;
+	background-color:#333;
+	border:2px groove #aaa;
+	width:80px;
+	text-align:center;
+	border-radius:4px;
+}
+#visor{
+	position:absolute;
+	width:130px;
+	font-size:25px;
+	font-family:Arial, Helvetica, sans-serif;
+	top:30px;
+	color:white;
+	text-align:center;
+	visibility:hidden;
+}
+#cancelar{
+	position:absolute;
+	width:130px;
+	top:60px;
+	text-align:center;
+	visibility:hidden;
+}
+#mensaje{
+	visibility:hidden;
+	position:absolute;
+	top:80px;
+	width:130px;
+	text-align:center;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#F00;
+	font-size:12px;
+	font-weight:bold;
+}

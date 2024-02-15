@@ -1,0 +1,62 @@
+
+body
+{
+	margin: 0;
+	width: 130px;
+	height: 120px;
+}
+
+	
+.font
+{
+	font-size: 9px;
+	font-weight: normal;
+	color: black;
+	font-family: Arial, Verdana, "SF Sans Serif";
+}
+
+.fontgrey
+{
+	font-size: 8px;
+	font-weight: normal;
+	color: #333333;
+	font-family: Arial, Verdana, "SF Sans Serif";
+}
+	
+.font8
+{
+	font-size: 8px;
+	font-weight: normal;
+	color: black;
+	font-family: Arial, Verdana, "SF Sans Serif";
+}
+		
+.fontHeading
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: black;
+	font-family: Arial, Verdana, "SF Sans Serif";
+}
+
+.fontred
+{
+	font-size: 10px;
+	font-weight: normal;
+	color: red;
+	font-family: Arial, Verdana, "SF Sans Serif";
+}
+
+
+.searchbox 
+{
+	overflow:hidden;
+	font-size: 10px;
+	background-color:Transparent;
+	width:95px;
+	height:18px;
+	margin: 5 0 0 2px;
+	padding: 0 0 0 2px;
+	border:0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}

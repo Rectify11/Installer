@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Unit Converter</name>
+  <namespace>microsoft.windows</namespace>
+  <version>1.0.0.4</version>
+  <author name="GadgetWE">
+    <info url="http://gadgetwe.com"  text="GadgetWE.com"/>
+    <logo src="images/logo.png" />
+  </author>
+  <copyright>&#169; 2010</copyright>
+  <description>Can convert any unit:
+Length, Area, Volume, Mass (Weight), Angle, Time, Speed, Velocity, Pressure,Energy, Work, amount of heat,Power or heat flow rate,Data  Storage,Temperature...
+Very useful tool with fashion interface.</description>
+  <icons>
+    <icon height="64" width="64" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="default.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="images/drop.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

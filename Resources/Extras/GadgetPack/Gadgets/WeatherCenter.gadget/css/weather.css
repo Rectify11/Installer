@@ -1,0 +1,330 @@
+#WeatherCenter{
+	position: absolute;
+	height: 192px; 
+	width: 129px; 
+    	padding:0px;
+	margin: 0px; 
+	margin-left: 0px;
+	font-family: Segoe UI, Tahoma;
+}
+
+.bg{
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	top: 0px;
+	left: 0px;
+}
+
+.statusholder{
+	position: absolute;
+	top: 0px;
+	left: 8px;
+	width: 116px;
+	height: 174px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#currentImg{
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	margin: 0px;
+	margin-left: 0px;
+	width: 127px;
+	height: 75px;
+}
+
+#currentImgMoon{
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	margin: 0px;
+	margin-left: 0px;
+	width: 127px;
+	height: 75px;
+}
+
+
+.lasttime_update{
+	position: absolute;
+	color: #c9c9ff;
+	font-family: helvetica, impact, sans-serif;
+	font-size: 8px;
+	width: 125px;
+	top: 2px;
+}
+
+.NoInetConnectionLine{
+	position: absolute;
+	color: #CC0000;
+	font-family: helvetica, impact, sans-serif;
+	font-size: 9px;
+	width: 125px;
+	top: 1px;
+}
+
+.NoInetConnection{
+	position: absolute;
+	color: white; 
+	font-size: 10pt;
+	text-wrap: none;
+	word-wrap: normal;
+	width: 126px; 
+	top: 80px;
+}
+
+.current_temperature{
+	position: absolute;
+	color: white;
+	font-size: 22px;
+	top: 26px;
+	width: 115px;
+}
+
+.city{
+	position: absolute;
+	color: white; 
+	font-size: 18px;
+	text-wrap: none;
+	word-wrap: normal;
+	left: 8px;
+}
+
+.condition{
+	position: absolute;
+	color: #E6F1FF; 
+	font-size: 12px;
+	left: 8px;
+	top: 74px;
+}
+
+
+.cur_param1_capt{
+	position: absolute;
+	width: 114px;
+	top: 92px;
+	left: 8px;
+	color: #E4E4E4; 
+	font-size: 10px;
+}
+
+.cur_param1_span{
+	position: absolute;
+	width: 114px;
+	top: 93px;
+	left: 76px;
+	color: white; 
+	font-size: 11px;
+}
+
+.cur_param2_capt{
+	position: absolute;
+	width: 114px;
+	top: 104px;
+	left: 8px;
+	color: #E4E4E4; 
+	font-size: 10px;
+}
+
+.cur_param2_span{
+	position: absolute;
+	width: 114px;
+	top: 104px;
+	left: 76px;
+	color: white; 
+	font-size: 11px;
+}
+
+.cur_param3_capt{
+	position: absolute;
+	width: 114px;
+	top: 116px;
+	left: 8px;
+	color: #E4E4E4; 
+	font-size: 10px;
+}
+
+.cur_param3_span{
+	position: absolute;
+	width: 114px;
+	top: 116px;
+	left: 76px;
+	color: white; 
+	font-size: 11px;
+}
+
+.cur_param4_capt{
+	position: absolute;
+	width: 114px;
+	top: 128px;
+	left: 8px;
+	color: #E4E4E4; 
+	font-size: 10px;
+}
+
+.cur_param4_span{
+	position: absolute;
+	width: 114px;
+	top: 128px;
+	left: 76px;
+	color: white; 
+	font-size: 11px;
+}
+
+
+
+
+
+
+.forecastholder{
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	width:132px;
+	height: 144px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.forecastday{
+	position: absolute;
+	left: 0px;
+	height: 51px;
+	width: 129px;
+	display: none;
+}
+
+.forecast_image{
+	position:absolute;
+	height: 48px; 
+	width: 48px; 
+	left: 76px;
+	top: 0px;
+}
+
+.forecast_footer{
+	position:absolute;
+	left: 0px;
+	top: 48px;
+	width: 129px;
+	height: 3px;
+}
+
+.dayname{
+	position:absolute;
+	color: #EEEE73;
+	font-size: 12px;
+	text-wrap: none;
+	word-wrap: normal;
+	top: 4px;
+	left: 8px;
+}
+
+.date{
+	position:absolute;
+	color: #E6E6E6;
+	font-size: 10px;
+	text-wrap: none;
+	word-wrap: normal;
+	font-style: oblique;
+	top: 17px;
+	left: 9px;
+}
+
+.hightemp{
+	position:absolute;
+	color: #F9CBCA;
+	font-size: 11px;
+	top: 30px;
+	left: 9px;
+}
+
+.lowtemp{
+	position:absolute;
+	color: #C9E1FC;
+	font-size: 11px;
+	margin: 0px;
+	top: 30px;
+	left: 38px;
+}
+
+.separator{
+	position:absolute;
+	color: #E6E6E6;
+	font-size: 10px;
+	margin: 0px;
+	top: 30px;
+	left: 28px;
+}
+
+#buttonRefresh
+{
+    position:absolute;
+    top: 2px;
+    left:10px;
+}
+#buttonLeft
+{
+    position:absolute;
+    top: 2px;
+    left: 86px;
+	_z-index: 2;
+}
+#buttonRight
+{
+    position:absolute;
+    top: 2px;
+    left: 86px;
+	_z-index: 1;
+}
+#buttonDown
+{
+    position:absolute;
+    top: 2px;
+    left:60px;
+}
+#buttonUp
+{
+    position:absolute;
+    top: 3px;
+    left:45px;
+}
+
+.bar
+{
+	position: absolute;
+	width: 113;
+	height: 22;
+	top: 55;
+	left: 8;
+	z-index: 2;
+    _padding: 3 4;
+    filter: alpha(opacity=0);
+    _overflow: hidden; 
+    _direction: ltr;
+    background-image: url('../images/bg_sidebar.png');
+
+}
+
+.u_bar
+{
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	vertical-align: top;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	width: 113;
+	height: 22;
+	top: 55;
+	left: 8;
+	z-index: 3;
+    filter: alpha(opacity=75);
+    _overflow: hidden; 
+	_direction: ltr;
+    background-image: url('../images/bg_updatebar.png');
+}

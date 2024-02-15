@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Piano</name>
+  <namespace>microsoft.windows</namespace>
+  <version>1.0.0.3</version>
+  <author name="Photo-Bon.com">
+    <info url="www.photo-bon.com/en"  text="Photo-Bon.com"/>
+    <logo src="images/logo.png" />
+  </author>
+  <copyright>&#169; 2010</copyright>
+<description>Du kan spille piano via datamaskinen tastatur. 
+Likhet med musikk og spille piano når som helst.
+En lykkelig avslapning i arbeidstiden.</description>
+  <icons>
+    <icon height="64" width="64" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="default.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="images/drop.png" />
+    </host>
+  </hosts>
+</gadget>

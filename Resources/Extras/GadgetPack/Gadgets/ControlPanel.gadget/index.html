@@ -1,0 +1,88 @@
+<head>
+<title>Control Panel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<head>
+<script type="text/javascript">function msconfig(){System.Shell.execute("\msconfig.exe ");}</script>
+<script type="text/javascript">function snapshot(){System.Shell.execute("c:\\windows\\system32\\rstrui.exe ");}</script>
+<script type="text/javascript">function diskmngr(){System.Shell.execute("\diskmgmt.msc ");}</script>
+<script type="text/javascript">function devmngr(){System.Shell.execute("\devmgmt.msc ");}</script>
+<script type="text/javascript">function services(){System.Shell.execute("\services.msc ");}</script>
+<script type="text/javascript">function applic(){System.Shell.execute("\appwiz.cpl ");}</script>
+<script type="text/javascript">function network(){System.Shell.execute("c:\\windows\\system32\\control.exe ", "netconnections");}</script>
+<script type="text/javascript">function admin(){System.Shell.execute("\control.exe ", "admintools ");}</script>
+<script type="text/javascript">function printer(){System.Shell.execute("\control.exe ", "printers");}</script>
+<script type="text/javascript">function winoptfeatures(){System.Shell.execute("\optionalfeatures.exe ");}</script>
+<script type="text/javascript">function net(){System.Shell.execute("\ncpa.cpl ");}</script>
+<script type="text/javascript">function MdSched(){System.Shell.execute("c:\\windows\\system32\\MdSched.exe ");}</script>
+<script type="text/javascript">function msinfo32(){System.Shell.execute("c:\\windows\\system32\\msinfo32.exe ");}</script>
+<script type="text/javascript">function perfmon(){System.Shell.execute("c:\\windows\\system32\\perfmon.exe ");}</script>
+<script type="text/javascript">function RegEdit(){System.Shell.execute("c:\\windows\\system32\\regedt32.exe ");}</script>
+<script type="text/javascript">function backup(){System.Shell.execute("c:\\windows\\system32\\sdclt.exe ");}</script>
+<script type="text/javascript">function control(){System.Shell.execute("c:\\windows\\system32\\control.exe ");}</script>
+<script type="text/javascript">function cmd(){System.Shell.execute("c:\\windows\\system32\\cmd.exe ");}</script>
+<script type="text/javascript">function run(){System.Shell.execute(System.Gadget.path + "/acd/Run.lnk");}</script>
+<script type="text/javascript">function compmgmt(){System.Shell.execute("\compmgmt.msc ");}</script>
+<script type="text/javascript">function odbcad32(){System.Shell.execute("\odbcad32.exe ");}</script>
+<script type="text/javascript">function WF(){System.Shell.execute("\WF.msc ");}</script>
+<script type="text/javascript">function powershell(){System.Shell.execute("\powershell.exe ");}</script>
+<script type="text/javascript">function powershell_ise(){System.Shell.execute("\powershell_ise.exe ");}</script>
+
+<style>
+body {
+	width:160px;
+	height:263px;
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	font-size:small;
+	color: #000;
+	font-family: 'Calibri';
+	background-image: url(src/Fondo.png);
+	background-repeat: repeat;
+}
+.style1 {
+	font-size: 5px;
+}
+.style2 {
+	font-size: xx-small;
+}
+.style4 {
+	font-size: 12px;
+}
+.style5 {
+	color: #06F;
+}
+</style>
+
+
+</head>
+<body>
+<form id="form1" runat="server">
+  <h3>
+    <span class="style3"> 
+    <input type="button" title="Registry Editor" value="Reg Edit" name="B1" onclick="RegEdit()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="System Configuration Utility" value="SysConfig" name="B1" onclick="msconfig()" style="width: 75px; font-size: xx-small;"/>
+    </span><br />
+    <input type="button" title="Disk Manager" value="DiskMngr" name="B2" onclick="diskmngr()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Device Manager" value="DevMngr" name="B2" onclick="devmngr()" style="width: 75px; font-size: xx-small;"/><br />
+    <input type="button" title="Services" value="Services" name="B3" onclick="services()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Administrative Tools" value="AdminTool" name="B3" onclick="admin()" style="width: 75px; font-size: xx-small;"/><br />
+    <input type="button" title="System Restore" value="SysRestore" name="B4" onclick="snapshot()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Network Connections" value="Network" name="B4" onclick="network()" style="width: 75px; font-size: xx-small;"/><br />
+    <input type="button" title="Add or Remove programs & Features" value="Software" name="B5" onclick="applic()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Windows Features" value="WinFeature" name="B5" onclick="winoptfeatures()" style="width: 75px; font-size: xx-small;"/>
+    <br />
+    <input type="button" title="Backup Status & Configuration" value="Win Backup" name="B6" onclick="backup()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Printers & Faxes" value="Print & Fax" name="B6" onclick="printer()" style="width: 75px; font-size: xx-small;"/><br />
+    <input type="button" title="Reliability and Performance Monitor" value="Perf Mon" name="B7" onclick="perfmon()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Microsoft System Information" value="MS info" name="B7" onclick="msinfo32()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Control Panel" value="C.Panel" name="B8" onclick="control()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Command Prompt" value="CMD Prompt" name="B8" onclick="cmd()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Run" value="Run" name="B9" onclick="run()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Computer Management" value="CompManag" name="B10" onclick="compmgmt()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Data Sources (ODBC)" value="DatSouODBC" name="B10" onclick="odbcad32()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Windows Firewall with Advanced Security" value="FirewallAdv" name="B11" onclick="WF()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Windows PowerShell Modules" value="Powershell" name="B11" onclick="powershell()" style="width: 75px; font-size: xx-small;"/>
+    <input type="button" title="Windows PowerShell ISE" value="PowershellISE" name="B12" onclick="powershell_ise()" style="width: 75px; font-size: xx-small;"/>
+    <br />
+  </h3>

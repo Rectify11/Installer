@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <title>Drive Info</title>
+    <style>
+      body { margin: 0; padding: 0; width: 156px; height: 56px; font-family: 'Segoe UI'; }
+      #targets { position: absolute; top: 0; left: 0; width:56px; height:1000px; }
+      .target { position: absolute; width: 56px; height: 48px; left: 0; cursor: hand; }
+    </style>
+    <script type="text/javascript">
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Two small functions to make gadgets high-dpi compatible by the author of 8GadgetPack  (Version 1)
+        //Include this if you use addTextObject or addImageObject.
+        //You also have to wrap fixDpiObject around every call to one of those functions.
+        //For example replace "g.addTextObject(...)" with "fixDpiObject(g.addTextObject(...))"
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        function getDpiScaling() {
+            var wshShell = new ActiveXObject("WScript.Shell");
+            var DPI = 96;
+            try {
+                try {
+                    //You can set custom DPI in 8GadgetPack
+                    DPI = wshShell.RegRead("HKCU\\Software\\8GadgetPack\\ForceDPI");
+                }
+                catch (e) {
+                    //In case no custom DPI is set or 8GadgetPack isn't installed
+                    DPI = wshShell.RegRead("HKCU\\Control Panel\\Desktop\\LogPixels");
+                }
+                wshShell.RegRead("HKCU\\Software\\8GadgetPack\\NoGadgetScalingFix"); //In case I'll be able to fix this in sidebar.exe I will set this registry entry
+                DPI = 96;
+            }
+            catch (e) { }
+            return parseInt((DPI / 96) * 100) / 100;
+        }
+        var dpiScaling = getDpiScaling();
+        function fixDpiObject(obj) {
+            if ("fontsize" in obj) {
+                obj.left = obj.left * dpiScaling;
+                obj.top = obj.top * dpiScaling;
+            }
+            else {
+                obj.left = obj.left * dpiScaling + (obj.width * dpiScaling - obj.width) / 2;
+                obj.top = obj.top * dpiScaling + (obj.height * dpiScaling - obj.height) / 2;
+            }
+            obj.width = obj.width * dpiScaling;
+            obj.height = obj.height * dpiScaling;
+            return obj;
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        var drives, background;
+
+      function convertBytes(b)
+      {
+        var i = 0, u = Array(' MB', ' GB', ' TB');
+
+        while (b >= 1024 && (b / 1024) >= 1)
+        {
+          b /= 1024;
+          i++;
+        }
+
+        return (Math.round(b * 100) / 100) + u[i];
+      }
+
+      function openDrive(d)
+      {
+	    //var d = window.event.srcElement.getAttribute('drive');
+	    System.Shell.execute(d + ':\\');
+      }
+
+      function showDrives()
+      {        var y = 0;
+        canvas.removeObjects();
+        targets.innerHtml = '';
+
+        for(var i = 0; i < drives.length; i++)
+        {
+          var d = drives[i];
+          if (d)
+          {
+              fixDpiObject(canvas.addImageObject('images/backgrounds/background' + background + '.png', 0, y));           
+
+            if (d.isReady) 
+            {
+              var f = Math.round(d.freeSpace / d.totalSize * 100);
+
+              var  u = (100 - f);
+
+              var m = fixDpiObject(canvas.addImageObject('images/meter' + (u < 90 ? 'blue': (u < 98 ? 'orange': 'red')) + '.png', 24, y + 34));   
+              m.width = Math.floor((u * 128 / 100))*dpiScaling;
+              m.left = 24 * dpiScaling + (128 / 2) * (dpiScaling - 1) - Math.floor(((128 * dpiScaling - m.width) / 2));
+
+
+              fixDpiObject(canvas.addImageObject('images/drives/drive' + d.driveType + '.png', 0, y));
+              fixDpiObject(canvas.addTextObject(d.volumeLabel + ' (' + d.driveLetter + ':)', 'Segoe UI', 11, 'white', 58, y + 5));
+              fixDpiObject(canvas.addTextObject(convertBytes(d.freeSpace) + ' / ' + f + '%', 'Segoe UI', 10, 'white', 58, y + 17));
+
+              /*var o = document.createElement('DIV');
+              o.className = 'target';
+              o.style.posTop = y;
+              o.setAttribute('drive', d.driveLetter);
+              o.ondblclick = openDrive;
+              targets.appendChild(o);*/
+            }
+            else
+            {            
+              fixDpiObject(canvas.addImageObject('images/drives/drive' + d.driveType + '.png', 0, y));
+              fixDpiObject(canvas.addImageObject('images/notready.png', 5, y + 29));
+              fixDpiObject(canvas.addTextObject('(' + d.driveLetter + ':)', 'Segoe UI', 11, 'white', 60, y + 5));
+            }
+
+            y += 48;
+          }
+        }
+
+        if (y < 57) y = 57;
+        canvas.style.height = y;
+        document.body.style.posHeight = y;
+
+        window.setTimeout(showDrives, 5000);
+      }
+
+      function initDrives()
+      {
+    	var d = System.Gadget.Settings.read("drives");
+        if (d.length == 0) d = 'C';
+
+        drives = new Array(d.length);
+        for(var i = 0; i < drives.length; i++)
+        {
+          drives[i] = System.Shell.drive(d.charAt(i));
+        }
+
+        background = parseInt('0' + System.Gadget.Settings.read("background"));
+        if (background == 0) background = 1;
+
+        showDrives();
+      }
+
+      function onLoad()
+      {
+        System.Gadget.settingsUI = "Settings.html";
+        System.Gadget.onSettingsClosed = initDrives;
+
+        initDrives();
+      }
+
+
+      function onBodyClick(event) {
+
+          var y = 0;
+          for (var i = 0; i < drives.length; i++) {
+              var d = drives[i];
+              if (d) {
+                  if (d.isReady) {
+                    if (event.clientX >= 0 && event.clientX < 56 && event.clientY >= y && event.clientY < y + 46)
+                        openDrive(d.driveLetter);
+                  }
+
+                  y += 48;
+              }
+          }
+      }
+    </script>
+  </head>
+  <body onload="onLoad()">
+    <!--<div id="targets"></div>-->
+	<div id="targets" ondblclick="onBodyClick(event);" ></div>
+    <g:background id="canvas" src="images/canvas.png" style="position: absolute; top: 0; left: 0; z-index: -999" opacity="0" />
+  </body>
+</html>

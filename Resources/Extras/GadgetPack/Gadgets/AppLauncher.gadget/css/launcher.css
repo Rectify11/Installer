@@ -1,0 +1,87 @@
+html{
+overflow:hidden;
+}
+
+body{
+background: #4c4c4c url(/images/backgrounds/bg1.jpg) repeat;
+margin: 0px;
+margin-left:1px;
+padding: 0;
+width: 129px;
+height: 100px;
+color: white;
+overflow: hidden;
+}
+    
+.launcherTable{
+width:120px;
+margin:0;
+margin-left:2px;
+padding:0;
+}
+
+.launcherRow{
+margin:0;
+padding:0;
+border:0;
+width:100%;
+}
+
+.cell{ 
+margin:0;
+padding: 0;
+text-align: center;
+border:none;
+overflow:hidden;
+}
+
+.divider{
+padding:0;
+height:2px;
+padding-left:2px;
+}
+
+#outputDiv{
+height:30px;
+margin:0;
+padding:0;
+}
+
+#appInfo, #tabDiv{
+position:absolute;
+bottom:2px;
+width:126px;
+height:14px;
+border:0;
+color:white;
+overflow:hidden;
+font-family: Tahoma, Helvetica, sans-serif;
+font-size:0.7em;
+text-align:center;
+padding:0;
+margin:0;
+white-space: nowrap;
+}
+
+#appInfo{
+padding-left:2px;
+}
+
+#tab1, #tab2, #tab3, #tab4{
+position:absolute;
+top:0;
+left:0;
+}
+
+ul.tabs{
+margin:0;
+}
+
+ul.tabs li{
+float:left;
+display:block;
+text-align:center;
+width:30px;
+cursor:hand;
+}
+

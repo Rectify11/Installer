@@ -376,9 +376,9 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] files7z {
+        internal static byte[] files {
             get {
-                object obj = ResourceManager.GetObject("files7z", resourceCulture);
+                object obj = ResourceManager.GetObject("files", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -506,6 +506,16 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Ok_ {
+            get {
+                object obj = ResourceManager.GetObject("Ok.", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap perf {
             get {
                 object obj = ResourceManager.GetObject("perf", resourceCulture);
@@ -548,6 +558,16 @@ namespace Rectify11Installer.Properties {
         internal static string rectify11xml {
             get {
                 return ResourceManager.GetString("rectify11xml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] RectifyStart {
+            get {
+                object obj = ResourceManager.GetObject("RectifyStart", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -638,16 +658,6 @@ namespace Rectify11Installer.Properties {
             get {
                 object obj = ResourceManager.GetObject("themes", resourceCulture);
                 return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap U {
-            get {
-                object obj = ResourceManager.GetObject("U", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

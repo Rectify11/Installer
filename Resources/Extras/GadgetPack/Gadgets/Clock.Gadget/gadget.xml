@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>Clock (Analog)</name>
+  <namespace><!--_locComment_text="{Locked}"-->microsoft.windows</namespace>
+  <version><!--_locComment_text="{Locked}"-->1.0.0.0</version>
+  <author name="Microsoft Corporation">
+    		<logo src="logo.png" />
+  </author>
+  <copyright><!--_locComment_text="{Locked}"-->© 2023</copyright>
+  <description>Watch the clock in your own time zone or any city in the world. Analog.</description>
+    <icons>
+      <icon height="48" width="48" src="icon.png"/>
+    </icons>
+  <hosts>
+    <host name="sidebar">
+      <autoscaleDPI><!--_locComment_text="{Locked}"-->true</autoscaleDPI>
+      <base type="html" apiVersion="1.0.0" src="clock.html"/>
+      <permissions><!--_locComment_text="{Locked}"-->full</permissions>
+      <platform minPlatformVersion="1.0"/>
+      <defaultImage src="drag.png"/>
+    </host>
+  </hosts>
+</gadget>

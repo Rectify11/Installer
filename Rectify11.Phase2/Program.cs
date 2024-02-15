@@ -320,6 +320,12 @@ namespace Rectify11.Phase2
                         Directory.Delete(Path.Combine(Variables.r11Folder, "Backup"), true);
                     }
                 }
+
+                SafeFileDeletion(Path.Combine(Variables.sys32Folder,"iconres.dll"));
+                SafeFileDeletion(Path.Combine(Variables.sys32Folder, "duires.dll"));
+                SafeFileDeletion(Path.Combine(Variables.sys32Folder, "ImmersiveFontHandler.dll"));
+                SafeFileDeletion(Path.Combine(Variables.sys32Folder, "twinuifonts.dll"));
+
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
                 Console.ReadKey(true);

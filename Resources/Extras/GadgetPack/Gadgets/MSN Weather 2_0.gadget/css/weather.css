@@ -1,0 +1,805 @@
+﻿/*//////////////////////////////////////////////////////////////////////////////
+//
+//  THIS CODE IS NOT APPROVED FOR USE IN/ON ANY OTHER UI ELEMENT OR PRODUCT COMPONENT.  
+//  Copyright (c) 2006 Microsoft Corporation.  All rights reserved.
+//
+//////////////////////////////////////////////////////////////////////////////*/
+
+#WeatherGadget 
+{
+  position:absolute;
+  font-family:Segoe UI, Tahoma;
+  table-layout:fixed; 
+  scroll:no;
+  padding:0;
+  margin:0;
+  width: 130px;
+  height: 67px;
+  background-repeat:no-repeat;
+  background-position:top left;
+}
+
+div 
+{ 
+  position:absolute; 
+}
+
+table
+{ 
+  padding:0; 
+  margin:0; 
+  visibility:inherit;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+//
+// Gadget DOCKED
+//
+//////////////////////////////////////////////////////////////////////////////*/
+
+#DockedModeDisplayArea,
+#DockedModeCurrentConditionsVisual,
+#DockedModeHighlight2,
+#DockedModeCurrentConditionsText, #DropShadowDockedMode,
+#WeatherStateDockedMode, #HighlightsDockedMode, #OrbStateDockedMode 
+{
+  width:130px;
+  height:67px;
+  top:0;
+  left:0;
+  margin:0;
+  padding:0;
+  visibility: inherit;  
+  position:absolute;
+}
+
+#DockedModeHighlight1, #DockedModeHighlight2 
+{
+  width:123px;
+  height:60px;
+  position:absolute;
+  left:3px;
+  top:3px;
+}
+
+#DockedModeDisplayArea 
+{
+  display:block;
+  visibility:visible;
+}
+
+#HighlightsDockedMode 
+{
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:6;
+}
+
+#DockedModeCurrentConditionsVisual 
+{ 
+  z-index:2; 
+}
+
+#DockedModeHighlight2 
+{ 
+  z-index:5;
+}
+
+#DockedModeCurrentConditionsText 
+{ 
+  z-index:99;  
+}
+
+#DockedModeHighlight1 
+{ 
+  z-index:3; 
+}
+
+#PlaceDockedMode, #PlaceDockedModeDropShadow 
+{
+  position:absolute;
+  top:37px;
+  width:116px;
+  left:6px;
+  font-size:12px;
+  text-align:right;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis; 
+  z-index:7;
+}
+
+#PlaceDockedModeDropShadow 
+{
+  top:38px;
+  left:7px;
+}
+
+#PlaceDockedMode a, PlaceDockedMode visited
+{
+	text-decoration: none;
+}
+
+#PlaceHrefDockedMode:hover 
+{
+  text-decoration:underline;
+}
+
+#TemperatureCurrent, #TemperatureCurrentDropShadow 
+{
+  position:absolute;
+  top:-3px;
+  height:10px;
+  width:70px;
+  text-align:right;
+  margin:0;
+  padding:0;
+  margin-left:54px;
+  font-size:30px; 
+  z-index:1;
+}
+
+#TemperatureCurrentDropShadow 
+{
+  top:-1px;
+  margin-left:54px;
+}
+
+#PlaceDockedModeDropShadow, #TemperatureCurrentDropShadow  
+{
+  color:Black;
+  z-index:-1;
+}  
+
+#OrbStateDockedMode 
+{	
+  z-index:-1;
+  position:absolute;
+}
+
+.BIDI .dockedWeatherMessage, .BIDI .dockedWeatherMessage img 
+{
+  float:right;
+} 
+
+.BIDI #TemperatureCurrent 
+{
+  margin-right:8px;
+}
+
+.GRAYDocked #TemperatureCurrent, .GRAYDocked #PlaceHrefDockedMode
+{
+  color:White;
+}
+
+.BLUEDocked #TemperatureCurrent, .BLUEDocked #PlaceHrefDockedMode
+{
+  color:White;
+}
+
+.BLACKDocked #TemperatureCurrent, .BLACKDocked #PlaceHrefDockedMode
+{
+  color:White;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////
+//
+// Gadget UNDOCKED
+//
+//////////////////////////////////////////////////////////////////////////////*/
+#UnDockedModeCurrentConditionsVisual,
+#UnDockedModeCurrentConditionsText,
+#UnWeatherStateDockedMode, #UnDockedModeDisplayArea, #WeatherStateUnDockedMode
+{
+  width:264px;
+  height:194px;
+  top:0;
+  left:0;
+  margin:0;
+  padding:0;
+  visibility: inherit;  
+  position:absolute;
+}
+
+#UnDockedModeHighlight1, #UnDockedModeHighlight2 
+{
+  position:absolute;
+  margin:0;
+  padding:0;
+  top:1;
+  left:1;
+  width:230px;
+  height:160px; 
+}
+
+#UnDockedModeDisplayArea 
+{
+  visibility:hidden;
+  display:none;
+  float:right;
+}
+
+#HighlightsUnDockedMode 
+{
+  position:absolute;
+  left:12;
+  top:12;
+  padding:0;
+  margin:0;
+}
+
+#UnDockedModeAccessibilityInformation
+{ 
+  position:absolute;
+  top:12px;
+  left:14px;
+  width:160px;
+  height:80px;
+  z-index:3;
+}
+
+#UnDockedModeCurrentConditionDetailLink
+{ 
+  position:absolute;
+  top:16px;
+  left:18px;
+  width:160px;
+  height:20px;
+  font-size:12px;
+  z-index:4;
+  visibility:hidden;
+}
+
+#UnDockedModeCurrentConditionDetailCloser
+{
+  position:absolute;
+  top:4px;
+  left:6px;
+  white-space: nowrap;
+  font-size:11px;
+  z-index:2;
+  visibility:hidden;
+}
+
+#UnDockedModeForecasts 
+{ 
+  z-index:6; 
+}
+  
+#UnDockedModeCurrentConditionsVisual 
+{ 
+  z-index:-2;
+}
+
+#UnDockedModeHighlight2 
+{ 
+  z-index:5;
+}
+
+#UnDockedModeCurrentConditionsText 
+{ 
+  z-index:4; 
+}
+
+#UnDockedModeHighlight1 
+{ 
+  z-index:3;
+}
+
+#UnDockedModeCurrentConditionDetail
+{
+  top:12;
+  left:12;
+	z-index:8;
+	visibility:hidden;
+}
+
+#UnDockedModeCurrentConditionDetailBase, #UnDockedModeCurrentConditionDetailText
+{
+  position:absolute;
+  margin:0;
+  padding:0;
+  top:1;
+  left:1;
+  width:230px;
+  height:160px;
+}
+
+#UnDockedModeCurrentConditionDetailBase
+{
+	filter: alpha (opacity=65);
+}
+
+#UnDockedModeCurrentConditionDetailText
+{
+	z-index:1;
+}
+
+#UnDockedModeCurrentConditionDetailText table
+{
+	border:0;
+	top:0; 
+	left:0;
+	background:transparent;
+}
+
+#UnDockedModeCurrentConditionDetailText td
+{
+	border:0;
+	top:0;
+	left:0;
+	width:230;
+	height:160;
+	padding:2;
+	font-size:10px;
+	text-align:center;
+  vertical-align:middle;
+	color:white;
+	filter:Chroma(Color = #000000) Glow(Color=#000000, Strength=5);
+}
+
+#UnDockedModeCurrentConditionDetailText strong
+{
+	font-size:13px;
+}
+
+#TemperatureSeparator 
+{
+  text-align:center;
+  vertical-align:top;
+  visibility:inherit;
+  font-size:12px;
+}
+
+.BIDI #Today 
+{
+  margin-right:26px;
+}
+
+#TemperatureCurrentUnDockedMode 
+{
+  font-size: 32px;
+  text-align:right;
+  position:absolute;
+  left:145px;
+  width:95px;
+  top:5px;
+}
+
+#ConditionCurrentUnDockedMode 
+{
+  position:absolute;
+  left:32px;
+  top:33px;
+  padding-top:10px;
+  vertical-align:bottom;
+  font-size:12px;
+  text-align:right;
+  width:207px;
+}
+
+#PlaceUnDockedMode	
+{
+  margin-left:18px;
+  top:42px;
+  text-align:right;
+}
+
+#PlaceUnDockedMode a, #PlaceUnDockedMode visited 
+{
+  text-decoration:none;
+}
+
+#PlaceHrefUnDockedMode 
+{
+  width:222px;
+  font-size:14px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis; 
+  z-index:99;
+  text-align:right;
+}
+
+#PlaceHrefUnDockedMode:hover 
+{
+  text-decoration:underline;
+}
+
+.BIDI #PlaceUnDockedMode 
+{
+  margin-right:14px;
+  text-align:right; 
+}
+
+#UnDockedModeForecasts
+{
+  position:absolute;
+  bottom:20px;
+  left:14px;
+  right:20px; 
+  z-index:7; 
+}
+
+#Forecasts 
+{
+  border-collapse:separate;
+  table-layout: fixed;
+  width:230px;
+  margin:auto;
+  padding:0;
+}
+
+.ForecastDay 
+{
+  text-align:center;
+  font-weight:normal;
+  vertical-align: middle;
+  padding-left:4px;
+
+}
+
+.BIDI .ForecastDay 
+{
+  text-align:center;
+  font-weight:normal;
+  padding-right:4px;
+}
+
+.ForecastSeparator 
+{
+  text-align:center;
+  background:url('../images/divider-vertical.png') repeat-y;
+  float: left;
+  width: 2px;
+}
+
+.ForecastSeparatorHeaderSection 
+{
+  text-align:center;
+  vertical-align:bottom;
+}
+
+.ForecastSeparatorHeaderSection div 
+{
+  position:relative; 
+  top:10px;
+  height:2px;
+  vertical-align:bottom;
+  /*background:url('../images/divider-vertical.png') repeat-y;*/
+}
+
+#Separator 
+{
+  position:relative; 
+  top:2px;
+  height:2px;
+  vertical-align:bottom;
+  text-align:left;
+}
+
+#Separator div 
+{
+  background:url('../images/divider-horizontal.png') repeat-x;
+  width:228px;
+  left:0px;
+}
+
+#Attribution 
+{
+  width:224px; 
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:12px;
+  font-weight:lighter;
+  z-index: 99;
+  visibility:inherit;
+  padding-top:1px;
+  padding-bottom:3px;
+  padding-left:4px;
+  text-align:left;
+}
+
+.BIDI #Attribution 
+{
+  text-align:right;
+  padding-right:4px;
+}
+
+.TemperatureRange 
+{
+  margin:0;
+  padding:0;
+  padding-left:4px;  
+  text-align:center;
+  vertical-align:baseline;
+}
+
+.BIDI .TemperatureRange 
+{
+  padding-right:4px;
+  text-align:center;
+}
+.TemperatureRange label 
+{
+  text-align:center;
+}
+
+.BIDI .TemperatureRange label 
+{
+  text-align:center;
+}
+
+.TemperatureHigh, .TemperatureLow 
+{
+  float:center;
+  clear:both;
+  color: #c85b2a;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.BIDI .TemperatureHigh, .BIDI .TemperatureLow 
+{
+  float:right;
+}
+
+#TemperatureHigh0, #TemperatureLow0 
+{
+  width:40px;
+  text-align:center;
+}
+
+.DayOfWeek 
+{
+  text-decoration:none;
+  font-size:11px;
+  z-index:98;
+}
+
+.DayOfWeek:hover 
+{
+  text-decoration:underline;
+}
+
+.SkyCodeImage 
+{
+  position:relative;
+}
+
+.SkyCodeImage img 
+{
+  vertical-align:bottom;
+  margin:0;  
+  padding:0;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////
+//
+// BackDrop GRAY
+//
+//////////////////////////////////////////////////////////////////////////////*/
+.GRAY #TemperatureCurrent,
+.GRAY #PlaceDockedMode,
+.GRAY #TemperatureCurrentUnDockedMode, 
+.GRAY #PlaceUnDockedMode,
+.GRAY #PlaceHrefUnDockedMode, .GRAY #PlaceHrefUnDockedMode:visited
+{
+  color:black;
+}
+
+.GRAY #ConditionCurrentUnDockedMode a, .GRAY #TemperatureSeparator,
+.GRAY #TemperatureHigh0,
+.GRAY #TemperatureLow0  
+{
+	color: #5b6062;
+}
+
+.GRAY .DayOfWeek, 
+.GRAY .DayOfWeek:visited, 
+.GRAY #UnDockedModeForecasts .TemperatureLow,
+.GRAY #Attribution 
+{
+  color:#b5babe;
+}
+
+.GRAY #UnDockedModeForecasts .TemperatureHigh,
+.GRAY #UnDockedModeCurrentConditionDetailLink,
+.GRAY #UnDockedModeCurrentConditionDetailCloser
+{
+  color:#fbfbfb;
+}
+
+.GRAY #ForecastDayHeader
+{
+	background-color: Transparent;
+}
+
+
+.GRAY #UnDockedModeCurrentConditionDetailLink
+{
+	filter:Chroma(Color = #040404) Glow(Color=#040404, Strength=2);
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+//
+// BackDrop BLUE
+//
+//////////////////////////////////////////////////////////////////////////////*/
+.BLUE #TemperatureCurrent,
+.BLUE #TemperatureCurrentUnDockedMode, .BLUE #TemperatureSeparator,
+.BLUE #PlaceUnDockedMode, 
+.BLUE #ConditionCurrentUnDockedMode,
+.BLUE #UnDockedModeCurrentConditionDetailLink,
+.BLUE #UnDockedModeCurrentConditionDetailCloser,
+.BLUE #TemperatureHigh0,
+.BLUE #TemperatureLow0,
+#PlaceHrefUnDockedMode,
+#PlaceHrefUnDockedMode:visited 
+{
+  color:White;
+}
+
+.BLUE .DayOfWeek, 
+.BLUE .DayOfWeek:visited, 
+.BLUE #UnDockedModeForecasts .TemperatureLow,
+.BLUE #Attribution 
+{
+  color:#99CBFF; 
+}
+
+.BLUE #UnDockedModeForecasts .TemperatureHigh 
+{
+  color:#eeeeee;
+}
+
+.BLUE #ForecastDayHeader
+{
+	background-color: Transparent;
+}
+
+.BLUE #UnDockedModeCurrentConditionDetailLink
+{
+	filter:Chroma(Color = #FFFFFF) Glow(Color=#FFFFFF, Strength=2);
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+//
+// BackDrop BLACK
+//
+//////////////////////////////////////////////////////////////////////////////*/
+.BLACK #TemperatureCurrent,
+.BLACK #PlaceDockedMode,
+.BLACK #TemperatureCurrentUnDockedMode, 
+.BLACK #PlaceUnDockedMode,
+.BLACK #PlaceHrefUnDockedMode, .BLACK #PlaceHrefUnDockedMode:visited,
+.BLACK #ConditionCurrentUnDockedMode, .BLACK #TemperatureSeparator,
+.BLACK #UnDockedModeCurrentConditionDetailLink,
+.BLACK #UnDockedModeCurrentConditionDetailCloser,
+.BLACK #TemperatureHigh0,
+.BLACK #TemperatureLow0
+{
+  color:#F0F0F0;
+}
+
+.BLACK .DayOfWeek, 
+.BLACK .DayOfWeek:visited, 
+.BLACK #UnDockedModeForecasts .TemperatureLow,
+.BLACK #Attribution 
+{
+  color:#a6a6a6;
+}
+
+.BLACK #UnDockedModeForecasts .TemperatureHigh 
+{
+  color:White;
+}
+
+.BLACK #ForecastDayHeader
+{
+	background-color: Transparent;
+}
+
+.BLACK #UnDockedModeCurrentConditionDetailLink
+{
+	filter:Chroma(Color = #0f0f0f) Glow(Color=#0f0f0f, Strength=2);
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+//
+// SERVICE STATUS MESSAGE
+//
+//////////////////////////////////////////////////////////////////////////////*/
+#WeatherMessage 
+{
+  text-align:center;
+  z-index:99;
+}
+
+
+#WeatherMessage table td 
+{
+  padding:0;
+  margin:0;
+  vertical-align:middle;
+  text-align:center;
+  color: #F0F0F0;
+
+}
+
+#WeatherMessageIcon, #PleaseWaitLoadingSpinner
+{
+  width:16px;
+  margin-top:0px;
+}
+
+#message 
+{
+  padding-left:20px;
+  display:inline-block;
+}
+
+.BIDI #message 
+{
+  padding-right:20px;
+}
+
+#message span 
+{
+  float:left;
+  text-align:left;
+  overflow:visible;
+  vertical-align:bottom;
+  margin:0;
+  padding:0;
+}
+
+.BIDI #message span 
+{
+  text-align:right;
+  padding-right:20px;
+}
+
+.unDockedWeatherMessage 
+{
+  position:absolute;
+  width:264px;
+  height:194px;
+  left:0px;
+  padding:15px;
+}
+.unDockedWeatherMessage span 
+{
+  font-size:12px;
+}
+
+.dockedWeatherMessage span 
+{
+  font-size:12px;
+}
+
+.unDockedWeatherMessage table td 
+{
+  width:165px;
+  height:154px;
+}
+
+.dockedWeatherMessage 
+{
+  position:absolute;
+  width:115px;
+  height:57px;
+  top:4px;
+  left:6px;
+  overflow:hidden;
+}
+
+.dockedWeatherMessage table td 
+{
+  width:120px;
+  height:57px;
+}

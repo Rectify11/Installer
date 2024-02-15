@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+	<name>Display Sleep</name>
+	<namespace>microsoft.windows</namespace>
+	<version>1.2.0.0</version>
+	<author name="Exodus-Sx">
+		<logo src="images/mgLogo.png" />
+		<info url="www.microsoft.com" />
+	</author>
+	<copyright>Exodus-Sx</copyright>
+	<description>An Button to put your display to sleep. Useful for saving energy or for burn-in prevention in OLED screens. (Originally named Monitor Off)</description>
+	<icons>
+		<icon height="80" width="80" src="images/dell.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.2.0" src="run.html" />
+			<permissions>full</permissions>
+												<defaultImage src='drag.png' />
+			<platform minPlatformVersion="0.3" />
+		</host>
+	</hosts>
+</gadget>

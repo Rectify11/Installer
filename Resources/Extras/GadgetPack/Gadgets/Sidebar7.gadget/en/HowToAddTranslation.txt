@@ -1,0 +1,7 @@
+Hi,
+wanna translate the gadget to your language?
+Great! Go one folder up and create a folder with the language shortcut (eg "ja" for japanese) and copy Localized.js and gadget.xml from the main directory into it. Open both files with notepad and translate all texts which are inside two "quotation marks". Then you can restart the gadget and test your translation. Please verify that no text is cut in the settings dialog.
+
+When you are done, dont forget to send me the files via the feedback button or via 7sidebar [at] web.de ;)
+
+Thanks!

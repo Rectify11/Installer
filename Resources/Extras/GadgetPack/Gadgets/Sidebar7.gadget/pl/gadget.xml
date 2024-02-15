@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>7 Sidebar</name>
+  <namespace>Sidebar7</namespace>
+  <version>2.90</version>
+  <author name="Helmut Buhler">
+      <logo src="Images/Icon.png" />
+      <info url="http://tiny.cc/7sidebar2" text="8GadgetPack.net"/>
+  </author>
+  <copyright>© 2023</copyright>
+  <description>Sidebar, na którym można umieścić gadżety obok okien. Dodatkowo zawiera Menedżera okien z podglądem miniatur.
+  </description>
+  <icons>
+    <icon src="Images/Icon.png"/>
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="0.2.0" src="MainSidebar.html"/>
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="0.2"/>
+      <defaultImage src="drag.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

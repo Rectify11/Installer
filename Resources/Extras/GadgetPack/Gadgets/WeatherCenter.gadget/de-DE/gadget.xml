@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>WetterCenter</name>
+  <namespace>WetterCenter</namespace>
+  <version>2.6.2</version>
+  <author name="hadj">
+    <info url="weathercenter.narod2.ru" text="WeatherCenter Team" />
+    <logo src="images/logo.gif" />
+  </author>
+  <copyright>
+    <!--_locComment_text="{Locked}"-->&#169; 2009
+  </copyright>
+  <description>Sidebar Gadget, zeigt das aktuelle Wetter und Vorhersagen aus der ganzen Welt. Automatische Aktualisierungen werden von The Weather Channel, AccuWeather, Weather Underground, MSN, TheWeatherNetwork, WeatherBug und Gismeteo bezogen.</description>
+  <icons>
+    <icon height="80" width="62" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="Weather.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="0.3" /> <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

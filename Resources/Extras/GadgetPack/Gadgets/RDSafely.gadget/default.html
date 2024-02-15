@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RemoveDrive Safely</title>  
+<style>
+body {
+    width:130px;
+    height:25px;
+    font-family: 'Segoe UI';
+    font-size:11px;
+    margin:0px;
+    padding:0px;
+}
+#targets {
+	position: absolute; top: 0; left: 0; width:30px; height:1000px;
+}
+#targets2 {
+	position: absolute; top: 0; left: 109px; width:1500px; height:1000px;
+}
+.target {
+	position: absolute; cursor: hand;
+}
+</style>
+<script type="text/javascript" src="scripts.js"></script>
+<script>
+function init()
+{
+	shell = new ActiveXObject("WScript.Shell");
+	System.Gadget.settingsUI = "Settings.html";
+	initDrives();
+}
+</script>
+<body onload="init();">
+	<div id="targets" ondblclick="onBodyClick(event);" ></div>
+	<div id="targets2" onclick="onBodyClick(event);" ></div>
+	<g:background id="canvas" src="images/spacer.png" style="position: absolute; top: 0; left: 0; z-index: -999;" opacity="0" />
+</body>
+</html>

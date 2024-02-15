@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>ShutdownRestart</name>
+    <namespace></namespace>
+    <version>1.0</version>
+    <author name="Midnight Mick">
+	<logo src="src/logo.png" />
+	</author>
+    <copyright>January 2008</copyright>
+    <description>Shutdown and Restart. Simple.</description>
+    	<icons>
+		<icon src="src/icon.png" />
+	</icons>
+	
+    <hosts>
+        <host name="sidebar">
+            <base type="HTML" apiVersion="1.0.0" src="index.html" />
+            <permissions>full</permissions>
+						<defaultImage src="drag.png" />
+            <platform minPlatformVersion="0.3" />
+        </host>
+    </hosts>
+</gadget>

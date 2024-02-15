@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>Volume Control</name>
+	<namespace>soundcontrol</namespace>
+	<version>1.2</version>
+	<author name="Orbmu2k">
+		<info url="http://blog.orbmu2k.de" text="Orbmu2k Blog" />
+		<logo src="icon.png" />
+	</author>
+	<copyright>© 2007 by Orbmu2k</copyright>
+	<description>realtime peak meter, control volume level(mousewheel), toggle mute (middle mouse button), start vista mixer (doubleclick)</description>
+	<icons>
+		<icon height="48" width="48" src="screen.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0.0" src="gadget.html" />
+			<permissions>Full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="drag.png" />
+		</host>
+	</hosts>
+</gadget>

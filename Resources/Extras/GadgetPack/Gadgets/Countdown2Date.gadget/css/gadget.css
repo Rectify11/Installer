@@ -1,0 +1,73 @@
+body
+{
+	padding: 0px;
+	background-repeat: no-repeat;
+	line-height: normal;
+	font-size: 9pt;
+	font-family: 'Segoe UI' , Tahoma, Sans-Serif;
+    position:absolute;
+    margin:0px auto;
+    text-align: center;
+    overflow:hidden;
+    top: 0px;
+    left: 0px;
+	width:130px;
+	height:150px;
+}
+
+#gadgetMainFrame {
+    position:absolute;
+    margin:0px auto;
+    text-align: center;
+    overflow:hidden;
+    top: 0px;
+    left: 0px;
+	width:123px;
+	height:150px;
+}
+
+#noSettings 
+{
+	position:relative;
+	top:80px;
+	text-align:center;
+}
+
+#eventDetails
+{
+	position:relative;
+	top: 40px;
+	direction: ltr;
+	
+	}
+
+#eventTitle
+{
+    color:Black; 
+    top: 16px;
+
+}
+
+#daysToGoPrefix
+{
+    position:relative;
+    color:Black; 
+    top:3px;
+}
+
+
+#daysToGo
+{
+    position:relative;
+    color:Black; 
+    font-size: 40pt; 
+
+}
+
+#daysToGoSuffix
+{
+    position:relative;
+    color:Black;
+    top:-5px;
+
+}

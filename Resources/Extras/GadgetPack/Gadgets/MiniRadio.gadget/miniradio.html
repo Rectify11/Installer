@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <style type="text/css">
+	  body  {background-color: #2a2a2a ; font-family: Segoe UI,tahoma; font-size:12;width:130px;height:50px}
+	  .button1  {font-size:10; width:100px}
+	</style>
+	<script src="miniradio.js" language="jscript"></script>
+  </head>
+  <body onload="inlezenZenders();inlezenInstellingen();" onunload="stopRadio()">
+    <g:background id="myBg" style="position:absolute;width:0px;height:0px;z-index:-1" />
+    <img id="zwart" src="black.png" style="position:absolute;left:0px;top:0px;width:130px;height:28px;z-index:-1">
+  
+    <span id="evt"></span>
+	<img src="frontje1.png" id="frontje" style="position:absolute;top:0px;left:0px;z-index:34;width:130px;height:50px;visibility:hidden; border:0px" usemap="#frontMap" onclick="kijkGrootte();">
+    <div id="totaal" ondragenter="javascript:event.returnValue = false" ondragover="javascript:event.returnValue = false" ondrop="fileDragDropped();" style="position:absolute;top:0px;left:0px">
+
+
+    <object id="RealPlayer" classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" width="130" height="28" style="visibility:hidden; z-index:32">
+	  <param name="AUTOSTART" value="false">
+      <param name="SHUFFLE" value="false">
+      <param name="PREFETCH" value="0">
+      <param name="NOLABELS" value="-1">
+      <param name="SRC" value="">
+	  <param name="NOJAVA" value="true">
+      <param name="CONTROLS" value="ControlPanel">
+      <param name="CONSOLE" value="clip1">
+      <param name="LOOP" value="0">
+      <param name="NUMLOOP" value="0">
+      <param name="CENTER" value="0">
+      <param name="MAINTAINASPECT" value="0">
+      <param name="BACKGROUNDCOLOR" value="#000000">
+    </object>
+
+	
+    <OBJECT id="mediaPlayer" width="60" height="25" 
+      style="position:absolute; left:1px;top:2px;z-index:31"
+	  CLASSID="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"
+	  type="application/x-oleobject"  onmousewheel="muisVolume();">
+	
+	  <PARAM NAME="URL" VALUE="">
+	  <PARAM NAME="SendPlayStateChangeEvents" VALUE="True">
+	  <PARAM NAME="AutoStart" VALUE="True">
+	  <PARAM NAME="showControls" VALUE="true">
+	  <PARAM name="uiMode" value="none">
+	  <PARAM name="Volume" value="50">
+    </OBJECT>
+
+	<img src="play.png" id="play1" style="cursor:hand;position:absolute; top:1px; left:62px; z-index:31" onclick="javascript:afspelen();"  onmousewheel="muisVolume();">
+	<img src="stop.png" id="stop1" style="cursor:hand;position:absolute; top:1px; left:87px;z-index:31" onclick="javascript:stoppen();" onmousewheel="muisVolume();">
+    <img  src="up.png" title="volume up" style="cursor:hand;position:absolute; top:1px; left:114px;color:white;z-index:31" onmousedown="javascript:harder();" onmouseover="javascript:plusOver();" onmouseout="javascript:plusOut();" onmousewheel="muisVolume();">
+	<img  src="down.png" title="volume down" style="cursor:hand;position:absolute; top:16px; left:114px;color:white;z-index:31" onmousedown="javascript:zachter();" onmouseover="javascript:minOver();" onmouseout="javascript:minOut();" onmousewheel="muisVolume();">
+    <div id="plus" style="position:absolute; top:1px; left:113px;width:17px;height:7px; border:1px solid white;z-index:31;visibility:hidden"></div>
+	<div id="min" style="position:absolute; top:17px; left:113px;width:17px;height:7px; border:1px solid white;z-index:31;visibility:hidden"></div>
+    <br>
+
+   <div id="welkeStaat" style="position:absolute; top:10px;left:3px; color:yellow; font-size:10; font-family:arial; font-weight:bold; z-index:32"></div>
+   <div id="VolStandTekst" style="z-index:32; position:absolute;top:1px;left:65px;font-size:26;font-weight:bold;color:yellow; background-color:black"  onmousewheel="muisVolume();"></div>
+   
+   <img id="smooth" src="smooth.png" style="position:absolute; top:28px;left:0px; z-index:34" title="click on the arrow on the right the change radio-station." onclick="opnieuwRPtitel()">
+   <img id="realLogo" src="real.bmp" style="position:absolute; top:1px;left:7px; z-index:34;visibility:hidden">
+   
+   
+   <select style="position:absolute;left:0px; top:29px; width:130px;font:10; color:white;background-color:black; border:1px solid white; z-index:33" id="selector" onchange="bepaalZender()"  onmouseover="checkTitle()">
+     <option value="999"> - Random Station -
+<option value="http://www.danceradio1.nl/wmp.asx">NL: Dance Radio 1
+<option value="http://luister.deep.fm/deepfm.asx">NL: Deep FM
+<option value="http://server-07.stream-server.nl:8300/">NL: Nashville FM
+<option value="http://www.radioseven.se/r7_kabel.asx">SE: RadioSeven (Trance)
+<option value="http://www.rockradio1.com/192kwma.asx">UK: RockRadio1
+<option value="http://77.92.64.44:8022/">US - Hawaii: Hawaiian Rainbow
+<option value="http://listen.radionomy.com/1000hitsclassicalmusic.m3u">US: 1000 HITS Classical
+<option value="http://uplink.181.fm:8052/">US: 181.FM - 90s Alternative
+<option value="http://uplink.181.fm:8000/">US: 181.FM - Awesome 80s
+<option value="http://uplink.181.fm:8004/">US: 181.FM - Breeze
+<option value="http://uplink.181.fm:8020/">US: 181.FM - Classical Guitar
+<option value="http://uplink.181.fm:8040/">US: 181.FM - Lite 80s
+<option value="http://uplink.181.fm:8048/">US: 181.FM - Lite 90s
+<option value="http://uplink.181.fm:8002/">US: 181.FM - Lite 90s
+<option value="http://uplink.181.fm:8036/">US: 181.FM - Party
+<option value="http://uplink.181.fm:8094/">US: 181.FM - Smooth AC
+<option value="http://uplink.181.fm:8012/">US: 181.FM - Star 90s
+<option value="http://uplink.181.fm:8066/">US: 181.FM - Super 70s
+<option value="http://uplink.181.fm:8010/">US: 181.FM - The Point
+<option value="http://uplink.181.fm:8070/">US: 181.FM - UK Top 40 Hits
+<option value="http://tess.fast-serv.com:8570/">US: 1920s Radio Network - 1920s to 1950s
+<option value="http://209.9.238.5:9022/">US: AM 1710 Antioch OTR Radio - Old Time Radio Programs
+<option value="http://alltimeoldies.com/streams/theater.asx">US: Alltime Oldies - Old Time Radio Programs
+<option value="http://173.193.14.170:8020/">US: Big R Radio - 100.7 The Mix
+<option value="http://173.193.14.170:8006/">US: Big R Radio - 90s Alternative Rock
+<option value="http://173.193.14.170:8010/">US: Big R Radio - Warm 101.6
+<option value="http://www.c895worldwide.com/web/streaming/c895wm128.asx">US: Chill Radio C89.5 Seattle, Washington - Seattle's Home for Dance
+<option value="http://38.100.128.106:8000/fmlive">US: Classical U.S.A. - Washington, D.C. - Classical Music
+<option value="http://flow103.com/flow103.asx">US: FLOW 103 - Good Music
+<option value="http://listen.radionomy.com/flashbackalternatives.asx">US: Flashback Alternative Radio - 80s Alternative Music
+<option value="http://www.folkalley.com/folkalley.asx">US: Folk Alley - Kent State Folk Radio Station
+<option value="http://www.hawaiipublicradio.org/khpr.asx">US: Hawaii Public Radio
+<option value="http://listen.radionomy.com/1HITS70s.m3u">US: Hits 70s
+<option value="http://stream.infowars.com/;stream.nsv">US: InfoWars - Alternative Version of U.S. Politics
+<option value="http://69.12.217.101:8000/">US: KCEA 89.1 FM - "The Home of the Big Bands"
+<option value="http://asx.abacast.com/kcsm-kcsmwmp641-64.asx">US: KCSM - Jazz Music
+<option value="http://www.publicbroadcasting.net/kbc/ppr/kbc.m3u">US: KNBA 90.3 FM Anchorage, Alaska - True Variety, Good Music
+<option value="http://streams.kqed.org/kqedradio.m3u">US: KQED Bay Area / Northern California - National Public Radio
+<option value="http://provisioning.streamtheworld.com/asx/KROQFMdialup.asx">US: KROQ - Alternative Rock
+<option value="http://streaming.azpm.org/kuat192.mp3">US: KUAT - Classical Musical
+<option value="http://kut1.streamguys.net/">US: KUT 90.5 - Talk and Music - National Public Radio
+<option value="http://173.193.48.140:7777/">US: Old Radio - From the 1920s
+<option value="http://box1.pulsradio.com/">US: PULSE RADIO - Techno Electronic Dance
+<option value="http://208.53.158.48:8362/">US: Radio Bop - 50s and 60s Rock n Roll
+<option value="http://grace.fast-serv.com:9022/">US: Radio Spirts - Old Time Radio
+<option value="http://208.53.158.48:8100/">US: Radio Swing Worldwide - 30s and 40s Parade of Hits
+<option value="http://listen.radionomy.com:80/">US: Radionomy
+<option value="http://64.5.130.43:80/">US: The 1920s Radio Network - 1900 to 1950
+<option value="http://listen.radionomy.com/thepenthouse">US: The Penthouse - Cosmopolitan Easy Listening
+<option value="http://stream3.u7radio.org:8000/">US: U7 Radio - The Very Best of Art Bell
+<option value="http://audio-mp3.ibiblio.org:8000/wdav-56k">US: WDAV-FM DAVIDSON NC Classical Public Radio
+<option value="http://www.wers.org/wers.asx">US: WERS Boston - Modern Rock
+<option value="http://wers.org/hd2.asx">US: WERS Boston - Standing Room Only - Broadway Hits
+<option value="http://listen.weru.org/weru.m3u">US: WERU 89.9 Blue Hill, Maine - Community Radio
+<option value="http://www.wfmt.com/res/streaming/live/wfmtmp3stream.ram">US: WFMT 98.7 Chicago - Classical Musical
+<option value="http://www.whyy.org/91FM/whyy.asx">US: WHYY Philadelphia - National Public Radio
+<option value="http://live.wnar-am.com:8500/">US: WNAR 1600 AM - Music of the 30s, 40s and 50s
+<option value="http://provisioning.streamtheworld.com/asx/WDSYFMDIALUP.asx">US: Y 108 - Country Music
+	 
+    </select>   
+	<script>  showSelector();</script>
+    </div>
+    <map name="frontMap">
+      <area shape="rect" coords="0,0,60,27" href="javascript:showSelector();this.blur()">
+	  <area shape="rect" coords="66,5,85,25" href="javascript:document.getElementById('mediaPlayer').controls.play();this.blur()" alt="afspelen">
+	  <area shape="rect" coords="88,5,109,25" href="javascript:document.getElementById('mediaPlayer').controls.stop();this.blur()" alt="stop">
+	  <area shape="rect" coords="113,0,129,17" href="javascript:harder();this.blur()" alt="harder">
+	  <area shape="rect" coords="112,18,129,30" href="javascript:zachter();this.blur()" alt="zachter">
+	  <area shape="rect" coords="0,30,129,49" href="javascript:showSelector();this.blur()" alt="kies zender">
+	  <!--<area shape="rect" coords="5,34,111,43" href="javascript:;"> //zendernaam-->
+	</map>
+  </body>
+</html>  
+  
+  

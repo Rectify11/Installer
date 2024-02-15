@@ -1,0 +1,14 @@
+//
+// Countdown - Version 1.2.0.0
+// Alexander Burton.
+// All rights reserved.
+//
+// Please do not copy items within this gadget without permission.
+//
+// Datepicker courtesy Julian Robichaux -- http://www.nsftools.com
+//
+// Many thanks to Emmanuel Bresson, Marc Soester and Kenneth for translations.
+//
+//
+
+

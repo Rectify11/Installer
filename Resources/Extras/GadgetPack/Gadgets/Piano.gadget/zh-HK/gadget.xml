@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>鋼琴</name>
+  <namespace>microsoft.windows</namespace>
+  <version>1.0.0.3</version>
+  <author name="Photo-Bon.com">
+    <info url="www.photo-bon.com"  text="Photo-Bon.com"/>
+    <logo src="images/logo.png" />
+  </author>
+  <copyright>&#169; 2010</copyright>
+  <description>用電腦鍵盤就可以彈鋼琴，實現你隨時隨地的鋼琴夢。
+鋼琴亂彈琴，工作學習中的最好休息。
+放鬆身心，自我愉悅，舒展情志，充滿樂趣。
+大尺寸模式支援觸控式螢幕</description>
+  <icons>
+    <icon height="64" width="64" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="default.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="images/drop.png" />
+    </host>
+  </hosts>
+</gadget>

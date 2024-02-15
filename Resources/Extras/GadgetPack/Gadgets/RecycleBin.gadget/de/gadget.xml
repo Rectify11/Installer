@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>Papierkorb</name>
+	<namespace>WastePaperBasket</namespace>
+	<version>1.0.1.7</version>
+	<author name="Eiskalter Engel">
+		<logo src="dragndrop.png" />
+	</author>
+	<copyright>© 2007</copyright>
+
+	<description>Der Papierkorb findet nun auch seinen Platz bei den Minianwendungen. Man kann den Inhalt des Papierkorbs nun direkt löschen, seinen Inhalt anzeigen und sieht sofort seine Größe. Elemente, die man löschen will, kann man direkt auf den Korb ziehen.</description>
+	<icons>
+		<icon height="48" width="48" src="images/100.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0" src="wastepaperbasket.html" />
+			<permissions>full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="dragndrop.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+	</hosts>
+</gadget>

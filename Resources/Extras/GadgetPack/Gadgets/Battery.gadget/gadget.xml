@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>Battery Meter</name>
+    <namespace>Battery Meter</namespace>
+    <version>1.0</version>
+    <author name="Vitim.tk">
+		<logo src="icon.png" />
+    </author>
+    <copyright>2023</copyright>
+    <description>Battery meter gadget for portable devices.</description>
+	<icons>
+		<icon height="48" width="48" src="icon.png" />
+	</icons>
+    <hosts>
+        <host name="sidebar">
+            <base type="HTML" apiVersion="1.0.0" src="battery.html" />
+            <permissions>full</permissions>
+            <platform minPlatformVersion="0.3" />
+			      <defaultImage src="drag.png" />
+            <autoscaleDPI>true</autoscaleDPI>
+        </host>
+    </hosts>
+</gadget>

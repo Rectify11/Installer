@@ -1,0 +1,772 @@
+<html>
+  <head>
+    <style type="text/css">
+	  body  {width:800px;height:550px; font-family:Arial}
+	  input {font-size:13px}
+	  select {font-size:13px}
+	</style>
+    <script>
+	
+	  function doNothing(){return true}
+      window.onerror =doNothing
+	
+	  var alleZenders = '';
+	  var alleZendersNaamNaamAdres = '';
+	  zenderNaamNaamAdresArray = new Array;
+	  var completeGekozenRegel = '';
+      var completeGekozenRegel1 = '';
+	  var mapNaam;
+      var hernoemIndex;	  
+	  var verandering = false;
+	  var wilWeg = false;
+	  
+	  function wordtWaar(){
+	    verandering = true;
+	  }
+
+      function init(){
+	    pakMapNaam();
+		evtKolommenOpslaan();
+	    inlezenKolom1();
+		inlezenKolom2();
+	  }
+
+	  
+	  function pakMapNaam(){
+	    mapNaam = System.Gadget.path;
+		var nr = mapNaam.lastIndexOf("\\");
+		mapNaam = mapNaam.substr(0,nr);
+	  }
+	  
+	  
+	  function doe1(){
+	    if (document.getElementById('selector1').selectedIndex == -1){return false}
+		document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex].text, document.getElementById('selector1').value,false,false);
+		document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex] = null;
+	  }
+	  
+	  function doe2(){
+	    if (document.getElementById('selector2').selectedIndex == -1){return false}
+		document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option(document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text, document.getElementById('selector2').value,false,false);
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex] = null;
+	  }
+	  
+	  function maakString(){
+	    var zenderNaam, zenderAdres;
+		alleZenders = '';
+	    for (var i=0 ; i < document.getElementById('selector2').options.length; i++){
+		  zenderNaam = document.getElementById('selector2').options[i].text;
+		  zenderAdres = document.getElementById('selector2').options[i].value;
+		  alleZenders = alleZenders + '#' + zenderNaam + '**' + zenderAdres + '\n';
+		  alleZendersNaamNaamAdres = alleZendersNaamNaamAdres + '#' + zenderNaam + '!!' + zenderNaam + '**' + zenderAdres;
+		}
+		alert(alleZenders);
+	  }
+	  
+	  function sorteer(){
+	    var sorteerArray = new Array();
+		var huidigeSorteerRegel;
+	    for (var i=0;i<document.getElementById('selector2').options.length;i++){
+		  sorteerArray[i] = document.getElementById('selector2').options[i].text + '***' + document.getElementById('selector2').options[i].value;
+		}
+	    sorteerArray = sorteerArray.sort();
+		document.getElementById('selector2').options.length = 0;
+		for (var j=0;j<sorteerArray.length;j++){
+		  huidigeSorteerRegel = sorteerArray[j].split("***", sorteerArray[j].length);
+		  document.getElementById('selector2').options[j] = new Option(huidigeSorteerRegel[0],false,false);
+		  //document.getElementById('selector2').options[j].text = huidigeSorteerRegel[0];
+		  document.getElementById('selector2').options[j].value = huidigeSorteerRegel[1];
+		}
+		wordtWaar();
+	  }
+
+
+	  
+	  function goUp(){
+	    if (document.getElementById('selector2').selectedIndex == 0){return false;}
+		if (document.getElementById('selector2').selectedIndex == -1){return false;}
+	  
+	    huidigeIndex = document.getElementById('selector2').selectedIndex;
+	    tekst = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waarde = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex - 1;
+		tekstTemp = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waardeTemp = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekst;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waarde;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex + 1;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekstTemp;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waardeTemp;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex - 1;
+		wordtWaar();
+	  }
+	  
+	  function goDown(){
+	    if (document.getElementById('selector2').selectedIndex == document.getElementById('selector2').length-1){return false;}
+		if (document.getElementById('selector2').selectedIndex == -1){return false;}
+		
+	    huidigeIndex = document.getElementById('selector2').selectedIndex;
+	    tekst = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waarde = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex + 1;
+		tekstTemp = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		waardeTemp = document.getElementById('selector2').value;
+		
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekst;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waarde;
+				
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex - 1;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text = tekstTemp;
+		document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value = waardeTemp;
+		
+		document.getElementById('selector2').selectedIndex = document.getElementById('selector2').selectedIndex + 1;
+		wordtWaar();
+	  }
+	  
+	  function opslaan(){
+	    completeGekozenRegel = '';
+	    for (var i=0 ; i < document.getElementById('selector2').options.length; i++){
+		  zenderNaam = document.getElementById('selector2').options[i].text;
+		  zenderAdres = document.getElementById('selector2').options[i].value;
+		  completeGekozenRegel = completeGekozenRegel + '#' + zenderNaam + '*' + zenderAdres;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData2.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+		if (completeGekozenRegel !=''){
+          a.WriteLine(completeGekozenRegel);
+          a.Close();
+		  document.getElementById('info').innerText = 'The choosen radio stations have been saved...';
+		}
+		opslaanKolom1();
+		verandering = false;
+	    if (wilWeg == true){
+	      System.Gadget.Flyout.show = false;
+	    }
+	  }
+	  
+	  function opslaanKolom1(){
+	    completeGekozenRegel1 = '';
+	    for (var i=0 ; i < document.getElementById('selector1').options.length; i++){
+		  zenderNaam = document.getElementById('selector1').options[i].text;
+		  zenderAdres = document.getElementById('selector1').options[i].value;
+		  completeGekozenRegel1 = completeGekozenRegel1 + '#' + zenderNaam + '*' + zenderAdres;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData1.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+		if (completeGekozenRegel1 !=''){
+          a.WriteLine(completeGekozenRegel1);
+          a.Close();
+		  //document.getElementById('info').innerText = 'De gekozen zenders zijn opgeslagen...';
+		}
+	  }
+
+	  
+	  function inlezenKolom1(){
+	    var exportBestandsnaam = mapNaam + '\\ZenderData1.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+		if (getFileSize(exportBestandsnaam)==0){document.getElementById('selector1').options.length=0;}
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  document.getElementById('selector1').options.length=0;  // wis de complete lijst
+	      if (alleZenders != ""){
+            var zenderLijst = alleZenders.split("#", alleZenders.length);
+	        for (var i=1 ; i < zenderLijst.length; i++){   //???
+		      zenderRegel = zenderLijst[i].split("*", zenderLijst[i].length);
+		      zenderNaam = zenderRegel[0];
+		      zenderAdres = zenderRegel[1];
+              document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option(zenderNaam, zenderAdres,false,false);
+	        }
+          }
+		  f.Close();
+		}
+	  }
+	  
+	  
+	  
+	  function getFileSize(bestand){
+	    var fso, f, s;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+        f = fso.GetFile(bestand);
+        s = f.Size;
+		return s;
+	  }
+	  
+	    
+	  
+	  function inlezenKolom2(){
+	    var exportBestandsnaam = mapNaam + '\\ZenderData2.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+		if (getFileSize(exportBestandsnaam)==0){document.getElementById('selector2').options.length=0;}
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  document.getElementById('selector2').options.length=0;  // wis de complete lijst
+	      if (alleZenders != ""){
+            var zenderLijst = alleZenders.split("#", alleZenders.length);
+	        for (var i=1 ; i < zenderLijst.length; i++){   //???
+		      zenderRegel = zenderLijst[i].split("*", zenderLijst[i].length);
+		      zenderNaam = zenderRegel[0];
+		      zenderAdres = zenderRegel[1];
+              document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(zenderNaam, zenderAdres,false,false);
+	        }
+          }
+		  f.Close();
+		}
+	  }
+	  
+	  
+      function klaar(){
+	    if (verandering == false){ System.Gadget.Flyout.show = false; return;}
+	    if (verandering == true){
+	      document.getElementById('vraag').style.visibility= 'visible';
+	    }
+	  }
+	  
+	  
+	  //
+	  
+	  function opslaanEigen(){
+	    var nieuweZenderNaam = document.getElementById('naam1').value;
+	    var nieuweZenderAdres = document.getElementById('adres1').value;
+		
+		if (nieuweZenderNaam==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'You did not give the new station a name...';
+		  return false;
+		}
+		if (nieuweZenderAdres==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'You did not give the new station a web adress...';
+		  return false;
+		}
+	    var nieuweZender = '#' + nieuweZenderNaam + '*' + nieuweZenderAdres;
+		alleZenders = System.Gadget.Settings.read("alleZenders");
+		alleZenders = alleZenders + nieuweZender;
+	    System.Gadget.Settings.write("alleZenders",alleZenders);
+		document.getElementById('innerTextOpslaan').innerText = nieuweZenderNaam + ' is saved.';
+		//document.getElementById('temp').innerText = alleZenders;
+	  }
+	  
+	  function resetZenders(){
+	    System.Gadget.Settings.write("alleZenders",'');
+		document.getElementById('innerTextOpslaan').innerText = 'All stations have been deleted !';
+	  }
+	  
+     
+	  
+	  function exporteren(){
+	    alleZenders = System.Gadget.Settings.read("alleZenders");
+		if (alleZenders ==''){
+		  document.getElementById('innerTextOpslaan').innerText = 'There are no extra stations put in by hand yet. Exporting not possible.';
+		  return false;
+		}
+		var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var a = fso.CreateTextFile(exportBestandsnaam, true);
+	    a.WriteLine(alleZenders);
+        a.Close();
+		document.getElementById('innerTextOpslaan').innerText = 'All stations put in by hand are erased !';
+      }
+
+	  
+	  function importeren(){
+	  	var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+          r =  f.ReadLine();
+	      alleZenders = r;
+		  System.Gadget.Settings.write("alleZenders",alleZenders);
+		  document.getElementById('innerTextOpslaan').innerText = 'All stations put in by hand are imported and will be added.';
+		  f.Close();
+		  wordtWaar();
+		} else {document.getElementById('innerTextOpslaan').innerText = 'Importing not possible. No file with data found.'}
+	  }
+
+	  
+	  	  
+      function maakZichtbaar(){
+	    document.getElementById('resetDiv').style.visibility='visible';
+	  }
+	  
+	  function wisBackup(){
+        var fso;
+		var exportBestandsnaam = mapNaam + '\\ZenderData.txt';
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          fso.DeleteFile(exportBestandsnaam);
+		  document.getElementById('innerTextOpslaan').innerText = 'The backup-file is erased.';
+		} else {document.getElementById('innerTextOpslaan').innerText = 'Nothing erased. There is no backup-file yet.';}
+		document.getElementById('resetDiv').style.visibility='hidden';
+	  }
+	  
+	  
+	  function bewerken(){
+	    var fso;
+	    var deBestandsnaam = mapNaam + '\\ZenderData.txt';
+		fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(deBestandsnaam)){
+	      System.Shell.execute(deBestandsnaam);
+		}else {document.getElementById('innerTextOpslaan').innerText = 'The file does not exist yet. So you cannot edit it.';}
+	  }
+	  
+	  function toonHandmatig(){
+	    document.getElementById('handmatig').style.visibility = 'visible';
+		document.getElementById('mededeling1').style.visibility = 'hidden';
+	  }
+
+	  
+	  function laatstKolom1Veranderd(){
+        var fso, f, s;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		var zenders1 = mapNaam + '\\ZenderData1.txt';
+        f = fso.GetFile(zenders1);
+		s = f.DateLastModified; 
+        return(s);
+      }
+
+	  
+	  function toonCompleteNaam1(){
+	    var naam = document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex].text;
+	    document.getElementById('helenaam').innerText = 'Name of the station you last clicked on : ' + naam;
+	  }
+	  
+	  function toonCompleteNaam2(){
+	    var naam = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+	    document.getElementById('helenaam').innerText = 'Name of the station you last clicked on : ' + naam;
+	  }
+	  
+	  
+	  function myPopup(){
+	    document.getElementById('selector1').selectedIndex = -1;
+	    hernoemIndex = document.getElementById('selector2').selectedIndex;
+		if (hernoemIndex==-1){
+		  document.getElementById('info').innerText = 'First select a radio station in the second row.';
+		  return false;
+		}
+	    document.getElementById('popupMelding').innerText = '';
+		document.getElementById('popupTekst').value = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].text;
+		document.getElementById('popupValue').value = document.getElementById('selector2').options[document.getElementById('selector2').selectedIndex].value;
+	    document.getElementById('myPopup').style.visibility='visible';
+		document.getElementById('myPopup').style.zIndex = 2;
+	  }
+	  
+	  function clearPopup(){
+	    document.getElementById('popupTekst').value='';
+	    document.getElementById('myPopup').style.visibility='hidden';
+		document.getElementById('myPopup').style.zIndex = -1;
+	  }
+	  
+	  
+	  function hernoemStream(){
+	    if (document.getElementById('popupValue').value != ''){
+		  document.getElementById('selector2').options[hernoemIndex].value = document.getElementById('popupValue').value;
+		  document.getElementById('popupMelding').innerText = 'De url of the radio station is changed.';
+		  return false;
+		}
+		
+	  }
+	  
+	  
+	  function hernoemZender(){
+	     hernoemIndex = document.getElementById('selector2').selectedIndex;
+	     if (hernoemIndex==-1){
+		  document.getElementById('popupMelding').innerText = 'First select a radio station in the second row.';
+		  return false;
+		}
+	    		
+				
+		if (document.getElementById('popupTekst').value == ''){
+		  document.getElementById('popupMelding').innerText = 'Typ in a new station name... Or choose Cancel.';
+		  return false;
+		}
+				
+		document.getElementById('selector2').options[hernoemIndex].text = document.getElementById('popupTekst').value;
+		document.getElementById('popupMelding').innerText = 'The name of the radio station is changed.';
+	  }
+	
+
+      function reset(){
+	    maakCode();
+		document.getElementById('code').innerText = reeks;
+	    document.getElementById('myPopup2').style.visibility='visible';
+		document.getElementById('myPopup2').style.zIndex = 2;
+	  }
+	  
+	  function annuleerReset(){
+	    document.getElementById('myPopup2').style.visibility='hidden';
+		document.getElementById('myPopup2').style.zIndex = -1;
+	  }
+
+	  var reeks = '';
+	  function maakCode(){
+	    reeks= '';
+	    var getal, getal2;
+	    var letters = 'abcdefghijklmnopqrstuvwxyz';
+		for (var i=0; i<8;i++){
+		  getal = Math.floor(Math.random()*26 + 1);
+		  getal2 = letters.substr(getal-1,1);
+		  reeks = reeks + getal2;
+		}
+		return reeks
+	  }
+	  
+	  function controleerCode(){
+	    var bestaat = 0;
+	    var code1 = document.getElementById('codeStr').value;
+		if (code1==reeks){
+		  // indien bestandsgroottte nul, da probleem. waarom?
+		  var fso;
+		  var teWissenBestandsnaam = mapNaam + '\\ZenderData1.txt';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+		    document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option('dummy','dummy',false,false);
+		    opslaan();
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  teWissenBestandsnaam = mapNaam + '\\ZenderData2.txt';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  
+		  teWissenBestandsnaam = mapNaam + '\\ZenderData1.bak';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  teWissenBestandsnaam = mapNaam + '\\ZenderData2.bak';
+          fso = new ActiveXObject("Scripting.FileSystemObject");
+		  if (fso.FileExists(teWissenBestandsnaam)){
+            fso.DeleteFile(teWissenBestandsnaam);
+			bestaat = 1;
+	      }
+		  if (bestaat==1){
+		    document.getElementById('opm').innerText = 'Correct code...Files erased';
+			System.Gadget.Flyout.show = true;
+	      }
+		  if (bestaat==0){document.getElementById('opm').innerText = 'Files to erase are not found...';}
+		} else{
+		  document.getElementById('opm').innerText = 'Incorrect code...';
+		}
+	  }
+	  
+	  
+	  
+
+	  
+	  function keuzeInfo(){
+	    if (document.getElementById('selector3').value=='0'){
+		  document.getElementById('info').innerText = 'Make a choice... As long as you don\'t push \'Save\', you can try things out.';
+		}
+		if (document.getElementById('selector3').value=='1'){
+		  document.getElementById('info').innerText = 'When you push \'OK\', all inactive stations will be transported to the column active stations.';
+		}
+		if (document.getElementById('selector3').value=='2'){
+		  document.getElementById('info').innerText = 'When you push \'OK\', all active stations wil be transported to the column inactive stations.';
+		}
+		if (document.getElementById('selector3').value=='3'){
+		  document.getElementById('info').innerText = 'When you push \'OK\', an empty station will be put at the bottom of the list of active stations. It is probably better to add stations in  \'External Stations\'.';
+		}
+		if (document.getElementById('selector3').value=='4'){
+		  document.getElementById('info').innerText = 'When you push \'OK\', a selected station will be removed from the list inactive stations.';
+		}
+		if (document.getElementById('selector3').value=='5'){
+		  document.getElementById('info').innerText = 'When you push \'OK\', you can store all active stations in a textfile.';
+		}
+		if (document.getElementById('selector3').value=='6'){
+		  document.getElementById('info').innerText = 'When you push \'OK\', you can load a backup file with active stations earlier made.';
+		}
+	  }
+	  
+	  
+	  
+      function specialeKeuze(){
+        if (document.getElementById('selector3').value=='0'){
+		  document.getElementById('info').innerText = 'Make a choice... As long as you don\'t push \'Save\', you can try things out.';
+		}
+		
+		if (document.getElementById('selector3').value=='1'){
+		  for (var i=0;i<document.getElementById('selector1').options.length;i++){
+		    document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(document.getElementById('selector1').options[i].text, document.getElementById('selector1').options[i].value,false,false);
+		  }
+		  document.getElementById('selector1').options.length= 0;
+		}
+		
+		if (document.getElementById('selector3').value=='2'){
+		  for (var i=0;i<document.getElementById('selector2').options.length;i++){
+		    document.getElementById('selector1').options[document.getElementById('selector1').options.length]=new Option(document.getElementById('selector2').options[i].text, document.getElementById('selector2').options[i].value,false,false);
+		  }
+		  document.getElementById('selector2').options.length= 0;
+		}
+
+        if (document.getElementById('selector3').value=='3'){
+		  document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option('Empty station','leeg',false,false);
+		  document.getElementById('info').innerText = 'An \'Empty station\' is added at the bottom of the list Active Stations. You can rename this station and enter the desired streaming-url.';
+		}
+		
+		if (document.getElementById('selector3').value=='4'){ //wis inactieve zender
+		  if (document.getElementById('selector1').selectedIndex == -1){
+		    document.getElementById('info').innerText = 'First select an inactive station';
+		    return false;
+		  }
+		  document.getElementById('selector1').options[document.getElementById('selector1').selectedIndex] = null;
+		  document.getElementById('info').innerText = 'The selected inactive station is removed from the list.';
+		}
+		
+		if (document.getElementById('selector3').value=='5'){
+		  maakBackup();
+		  document.getElementById('info').innerText = 'The backup-file is created.';
+		}
+		
+		if (document.getElementById('selector3').value=='6'){
+		  importeerZenders();
+		  document.getElementById('info').innerText = 'The stations are imported.';
+		}
+		
+		
+		document.getElementById('selector3').selectedIndex=0;
+		document.getElementById('selector3').blur()
+		
+
+      }	  
+	  
+	  
+	  
+	  function evtKolommenOpslaan(){ //Wanneer Interne Zenders voor het eerst wordt geopend, worden de kolommen opgeslagen, zodat Externe zenders ook direct ingelezen gaan worden.
+	    var fso;
+		var bestandA = mapNaam + '\\ZenderData2.txt';
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(bestandA)==false){
+		  opslaan();
+		}
+	  }
+	  
+	  
+	  function maakBackup(){
+		oShellItem = System.Shell.saveFileDialog('',"tekstbestanden\0*.txt\0\0");
+		if (oShellItem==''){return false;}
+		var zenderNaamA, zenderAdresA;
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (oShellItem.indexOf('.txt')==-1){oShellItem = oShellItem + '.txt';}
+		var a = fso.CreateTextFile(oShellItem, true);
+	    for (var i=0 ; i < document.getElementById('selector2').options.length; i++){
+		  zenderNaamA = document.getElementById('selector2').options[i].text;
+		  zenderAdresA = document.getElementById('selector2').options[i].value;
+		  a.WriteLine(zenderNaamA + '*' + zenderAdresA);
+		}
+		a.Close();
+	  }
+	  
+	  
+
+      function importeerZenders(){
+  	    oShellItem = System.Shell.chooseFile(true,".dat files:*.dat:text-files:*.txt::",'',''); 
+		var pad = oShellItem.path;
+		var exportBestandsnaam = pad;
+        var fso, f, r;
+        var ForReading = 1, ForWriting = 2;
+        fso = new ActiveXObject("Scripting.FileSystemObject");
+		if (fso.FileExists(exportBestandsnaam)){
+          f = fso.OpenTextFile(exportBestandsnaam, ForReading);
+		  document.getElementById('selector2').options.length=0;  // wis de complete lijst
+		  r = 'dummy';
+		  do{
+		    r =  f.ReadLine();
+			zenderRegel = r.split("*");
+            zenderNaam = zenderRegel[0];
+		    zenderAdres = zenderRegel[1];
+            document.getElementById('selector2').options[document.getElementById('selector2').options.length]=new Option(zenderNaam, zenderAdres,false,false);
+		  } while (r !='');
+		  f.Close();
+		  wordtWaar();
+		} else {document.getElementById('info').innerText = 'Importerting not possible. No file with data found.'}
+	  }
+
+	  
+	  
+	</script>
+  </head>
+  <body onload="init();" style="background-color:black;color:white">
+    <div style="position:absolute;top:0px;left:0px">
+	
+	<div id="myPopup" style="position:absolute;top:20px;left:120px;height:400px;width:600px;visibility:hidden;z-index:-1; background-color:black; color:white; border:6px solid silver; padding:10px">
+	  <span><b>Edit the desired name for the selected station : </b></span>	  <br><br>
+	  <input id="popupTekst" type="text" size="50" style="background-color:lightyellow">
+	  <input type="button" value="Adjust name"  style="width:150px" onclick="hernoemZender()"> <br><br><br>
+	  <br><br><br>
+	  <span>When the URL of the stream is changed (wrong url = no music), please type the new url here : </span>	  <br><br>
+	  <input id="popupValue" type="text" size="50" style="background-color:lightyellow">
+	  <input type="button" value="Adjust Url" style="width:150px" onclick="hernoemStream()"> <br><br>
+	  <br><br>
+	  <center>
+	  <span id="popupMelding" style="color:yellow"></span>
+	  <br><br><br><br>
+	  <input type="button" value="Leave this screen" style="background-color:lightgreen" onclick="clearPopup()">
+	  </center>
+	</div>
+	<div id="myPopup2" style="position:absolute;top:100px;left:250px;height:200px;width:250px;visibility:hidden;z-index:-1; background-color:black; color:white; border:6px solid red; padding:10px">
+		<b>Back to default station-files</b>  <br><br>
+		Type the following code en push OK. <br><br>
+		<span id="code" style="color:darkblue; background-color:white;font-family:tahoma; padding:3px;"></span><br><br>
+		<input type="text" size="9" id="codeStr">
+		<input type="button" value="ok" onclick="controleerCode()" style="width:100px"><br>
+		When you do not know what this means, click cancel.<br><br>
+		<input type="button" value="cancel" onclick="javascript:annuleerReset()" style="width:100px"> <br><br>
+		<span id="opm"></span>
+	</div>
+  
+	<div id="info" style="position:absolute;top:420px;left:100px;width:600px; height:100px; font-size:12px; font-family: tahoma;text-align:justify;">Move the mouse-cursor over the different buttons and read here what function those buttons have.</div>
+    <div id="innerTextOpslaan" style="position:absolute;top:490px;left:100px; color:red;font-family:tahoma"></div>	
+
+	<div style="position:absolute;top:3px;left:25px;width:300px; font-family:tahoma; font-weight:bold; font-size:16px"> Inactive Stations :</div>
+    <select id="selector1" style="width:300px; position:absolute; top:30px; left:10px; background-color:red" size="20" ondblclick="doe1()" onclick="toonCompleteNaam1()">
+      <option value="http://www.rockantenne.de/webradio/rockantenne.wmx"> DE: Rock Antenne
+	  <option value="http://radioclubfm.mine.nu:9000/"> ES: Radio Club Fm
+	  <option value="http://media.rtvutrecht.nl/bingofm_hi"> NL: Bingo FM
+	  <option value="http://luister.deep.fm/deepfm.asx"> NL: Deep FM
+	  <option value="http://84.244.180.26:9040/"> NL: MOH Radio (Hardcore)
+      <option value="http://www.radioseven.se/r7_kabel.asx"> SE: RadioSeven (Trance)
+	  <option value="http://www.bbc.co.uk/radio/listen/live/r3.asx"> UK: BBC 3
+	  <option value="http://www.bbc.co.uk/radio/listen/live/r4.asx"> UK: BBC 4
+	  <option value="http://www.bbc.co.uk/fivelive/live/live_int.asx"> UK: BBC five live
+      <option value="http://www.bbc.co.uk/6music/ram/6music.asx"> UK: BBC 6 music
+      <option value="http://www.bbc.co.uk/worldservice/meta/tx/nb/live_news_au_nb.asx"> UK: BBC World Service
+	  <option value="http://www.heart1062.co.uk/">UK: Heart 106.2
+	  <option value="http://mars.radica.com/kerrang-70"> UK: Kerrang! radio
+	  <option value="http://www.ministryofsound.com/asx/radio/mosradio.asx"> UK: Ministry of Sound
+	  <option value="http://www.passionradio.co.uk/audio/passionhigh.asx"> UK: Passion Radio
+	  <option value="http://mediaweb.musicradio.com/V1/playlist.asx?streamid=23"> UK: Planet Rock
+      <option value="http://player.absoluteradio.co.uk/core/audio/wmp/live.asx?service=vrbb"> UK: Absolute Radio
+      <option value="http://www.smgradio.com/core/audio/wmp/live.asx?service=vcbb&source=radiofeeds">  UK: Virgin Radio Classic Rock
+      <option value="http://www.smgradio.com/core/audio/wmp/live.asx?service=vxbb&source=radiofeeds">UK: Virgin Radio Xtreme
+    </select>
+
+  <br><br>
+
+  <div style="position:absolute;top:3px;left:465px;width:300px; font-family:tahoma; font-weight:bold; font-size:16px"> Active Stations :</div>
+  <select id="selector2" style="width:300px; position:absolute; top:30px; left:450px; background-color:lightgreen" size="20" ondblclick="doe2()" onclick="toonCompleteNaam2()">
+   
+     <option value="http://www.danceradio1.nl/wmp.asx">NL: Dance Radio 1
+<option value="http://luister.deep.fm/deepfm.asx">NL: Deep FM
+<option value="http://server-07.stream-server.nl:8300/">NL: Nashville FM
+<option value="http://www.radioseven.se/r7_kabel.asx">SE: RadioSeven (Trance)
+<option value="http://www.rockradio1.com/192kwma.asx">UK: RockRadio1
+<option value="http://77.92.64.44:8022/">US - Hawaii: Hawaiian Rainbow
+<option value="http://listen.radionomy.com/1000hitsclassicalmusic.m3u">US: 1000 HITS Classical
+<option value="http://uplink.181.fm:8052/">US: 181.FM - 90s Alternative
+<option value="http://uplink.181.fm:8000/">US: 181.FM - Awesome 80s
+<option value="http://uplink.181.fm:8004/">US: 181.FM - Breeze
+<option value="http://uplink.181.fm:8020/">US: 181.FM - Classical Guitar
+<option value="http://uplink.181.fm:8040/">US: 181.FM - Lite 80s
+<option value="http://uplink.181.fm:8048/">US: 181.FM - Lite 90s
+<option value="http://uplink.181.fm:8002/">US: 181.FM - Lite 90s
+<option value="http://uplink.181.fm:8036/">US: 181.FM - Party
+<option value="http://uplink.181.fm:8094/">US: 181.FM - Smooth AC
+<option value="http://uplink.181.fm:8012/">US: 181.FM - Star 90s
+<option value="http://uplink.181.fm:8066/">US: 181.FM - Super 70s
+<option value="http://uplink.181.fm:8010/">US: 181.FM - The Point
+<option value="http://uplink.181.fm:8070/">US: 181.FM - UK Top 40 Hits
+<option value="http://tess.fast-serv.com:8570/">US: 1920s Radio Network - 1920s to 1950s
+<option value="http://209.9.238.5:9022/">US: AM 1710 Antioch OTR Radio - Old Time Radio Programs
+<option value="http://alltimeoldies.com/streams/theater.asx">US: Alltime Oldies - Old Time Radio Programs
+<option value="http://173.193.14.170:8020/">US: Big R Radio - 100.7 The Mix
+<option value="http://173.193.14.170:8006/">US: Big R Radio - 90s Alternative Rock
+<option value="http://173.193.14.170:8010/">US: Big R Radio - Warm 101.6
+<option value="http://www.c895worldwide.com/web/streaming/c895wm128.asx">US: Chill Radio C89.5 Seattle, Washington - Seattle's Home for Dance
+<option value="http://38.100.128.106:8000/fmlive">US: Classical U.S.A. - Washington, D.C. - Classical Music
+<option value="http://flow103.com/flow103.asx">US: FLOW 103 - Good Music
+<option value="http://listen.radionomy.com/flashbackalternatives.asx">US: Flashback Alternative Radio - 80s Alternative Music
+<option value="http://www.folkalley.com/folkalley.asx">US: Folk Alley - Kent State Folk Radio Station
+<option value="http://www.hawaiipublicradio.org/khpr.asx">US: Hawaii Public Radio
+<option value="http://listen.radionomy.com/1HITS70s.m3u">US: Hits 70s
+<option value="http://stream.infowars.com/;stream.nsv">US: InfoWars - Alternative Version of U.S. Politics
+<option value="http://69.12.217.101:8000/">US: KCEA 89.1 FM - "The Home of the Big Bands"
+<option value="http://asx.abacast.com/kcsm-kcsmwmp641-64.asx">US: KCSM - Jazz Music
+<option value="http://www.publicbroadcasting.net/kbc/ppr/kbc.m3u">US: KNBA 90.3 FM Anchorage, Alaska - True Variety, Good Music
+<option value="http://streams.kqed.org/kqedradio.m3u">US: KQED Bay Area / Northern California - National Public Radio
+<option value="http://provisioning.streamtheworld.com/asx/KROQFMdialup.asx">US: KROQ - Alternative Rock
+<option value="http://streaming.azpm.org/kuat192.mp3">US: KUAT - Classical Musical
+<option value="http://kut1.streamguys.net/">US: KUT 90.5 - Talk and Music - National Public Radio
+<option value="http://173.193.48.140:7777/">US: Old Radio - From the 1920s
+<option value="http://box1.pulsradio.com/">US: PULSE RADIO - Techno Electronic Dance
+<option value="http://208.53.158.48:8362/">US: Radio Bop - 50s and 60s Rock n Roll
+<option value="http://grace.fast-serv.com:9022/">US: Radio Spirts - Old Time Radio
+<option value="http://208.53.158.48:8100/">US: Radio Swing Worldwide - 30s and 40s Parade of Hits
+<option value="http://listen.radionomy.com:80/">US: Radionomy
+<option value="http://64.5.130.43:80/">US: The 1920s Radio Network - 1900 to 1950
+<option value="http://listen.radionomy.com/thepenthouse">US: The Penthouse - Cosmopolitan Easy Listening
+<option value="http://stream3.u7radio.org:8000/">US: U7 Radio - The Very Best of Art Bell
+<option value="http://audio-mp3.ibiblio.org:8000/wdav-56k">US: WDAV-FM DAVIDSON NC Classical Public Radio
+<option value="http://www.wers.org/wers.asx">US: WERS Boston - Modern Rock
+<option value="http://wers.org/hd2.asx">US: WERS Boston - Standing Room Only - Broadway Hits
+<option value="http://listen.weru.org/weru.m3u">US: WERU 89.9 Blue Hill, Maine - Community Radio
+<option value="http://www.wfmt.com/res/streaming/live/wfmtmp3stream.ram">US: WFMT 98.7 Chicago - Classical Musical
+<option value="http://www.whyy.org/91FM/whyy.asx">US: WHYY Philadelphia - National Public Radio
+<option value="http://live.wnar-am.com:8500/">US: WNAR 1600 AM - Music of the 30s, 40s and 50s
+<option value="http://provisioning.streamtheworld.com/asx/WDSYFMDIALUP.asx">US: Y 108 - Country Music
+	 
+	 
+  </select>
+  
+
+    
+  <br><br>
+  <input type="button" value="move -->" id="knop1" style="position:absolute; top:60px; left:330px; width:100px; cursor:hand" onclick="doe1()" onmouseover="javascript:document.getElementById('info').innerText='Move a selected radio-station from the left column to the right column, so that this station will be active too and you can listen to it. You can double-click too to do this.'" onmouseout="javascript:document.getElementById('info').innerText=''"> 
+  <input type="button" value="<--- move" id="knop2" style="position:absolute; top:100px; left:330px;width:100px; cursor:hand" onclick="doe2()" onmouseover="javascript:document.getElementById('info').innerText='Move a selected radio-station from the right column to the left column; do this with radio-stations you will never listen to. You can double-click too to do this.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+
+  <input type="button" value="up" id="omhoog" style="position:absolute; top:150px; left:330px;width:100px; cursor:hand" onclick="goUp()" onmouseover="javascript:document.getElementById('info').innerText='Selected radio-stations will be placed one position higher in the list in the column on the right. In this way you can define your own order of radio-stations.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value="down" id="omlaag" style="position:absolute; top:180px; left:330px;width:100px; cursor:hand" onclick="goDown()" onmouseover="javascript:document.getElementById('info').innerText='Selected radio-stations will be placed one position lower in the list in the column on the right. In this way you can define your own order of radio-stations.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value="rename" id="hernoem" style="position:absolute; top:210px; left:330px;width:100px; cursor:hand" onclick="myPopup()" onmouseover="javascript:document.getElementById('info').innerText='You can select a station in the second column and rename it.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value="ABC" id="abc" style="position:absolute; top:240px; left:330px;width:100px; cursor:hand" onclick="sorteer()" onmouseover="javascript:document.getElementById('info').innerText='All stations in the right column will be sorted in alphabetic order.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+<!--  <input type="button" value="countrycodes" id="landcodes" style="position:absolute; top:270px; left:330px;width:100px; cursor:hand" onclick="javascript:System.Shell.execute('http://members.lycos.nl/ronro/miniradio/countrycodes2.html')" onmouseover="javascript:document.getElementById('info').innerText='A new window will be opened with information about the use country codes.'" onmouseout="javascript:document.getElementById('info').innerText=''">-->
+    
+  <input type="button" value="Save" id="opslaan" onclick="opslaan()" style="width:100px; border:3px solid black; position:absolute; top:330px; left:330px; cursor:hand; background-color:yellow; color:blue" onmouseover="javascript:document.getElementById('info').innerText='The radio-stations in the columns on the left and on the right will be saved. From now on you can only listen to radio-stations that are visible in the column on the right.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  <input type="button" value=" Ready " id="ok"  onclick="klaar()" style="position:absolute; top:500px; left:650px; width:100px; cursor:hand" onmouseover="javascript:document.getElementById('info').innerText='You will leave this screen, without anything saved from now.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  
+  
+  
+  <!--<span id="helenaam" style="position:absolute;top:375px;left:200px; width:500px"></span>-->
+  <span id="helenaam" style="position:absolute;top:500px;left:30px; width:700px"></span>
+  <span style="position:absolute; top:1px;left:720px; color:black; background-color:silver;border:1px solid black;padding:2px; font-family:tahoma; font-size:10px; cursor:hand" onclick="javascript:reset()"  onmouseover="javascript:document.getElementById('info').innerText='Reset. This function is irreversible. Textfiles with data will be deleted. All standard stations will be there again and have their original names. Only use this when stations do not work right anymore.'" onmouseout="javascript:document.getElementById('info').innerText=''"> reset </span>
+  <img src="icons/close.png" style="position:absolute; top:1px;left:767px;cursor:hand" onclick="javascript:System.Gadget.Flyout.show = false;"  onmouseover="javascript:document.getElementById('info').innerText='Leave this screen.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+
+  
+  <span style="position:absolute; top:375px;left:450px; font-weight:bold">Extra : </span>
+  <select id="selector3" style="width:170px; position:absolute; top:370px; left:500px; background-color:black;color:white" size="1" onchange="keuzeInfo();document.getElementById('selector3').blur()"  onmouseover="javascript:document.getElementById('info').innerText='Here you can find additional options. When you click on an option, you can read here more information. Only when you hit \'OK\' the desired action will be executed.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+    <option value="0"> Make your choice...
+    <option value="1"> All stations active
+	<option value="2"> All stations inactive
+	<option value="3"> Add an empty station
+	<option value="4"> Delete inactive station
+	<option value="5"> Backup Active stations
+	<option value="6"> Import Active stations
+  </select>
+  <input type="button" value="OK" style="position:absolute;top:370px;left:690px; color:white;background-color:black;border:1px solid white;width:30px;cursor:hand" onclick="specialeKeuze()"  onmouseover="javascript:document.getElementById('info').innerText='Only when you push the \'OK\' button, the action described in the menu at the left of this button will be executed.'" onmouseout="javascript:document.getElementById('info').innerText=''">
+  
+	
+  <div id="vraag" style="position:absolute; top:460px;left:600px; width:190px; visibility:hidden; z-index:2; border:5px solid red; padding:10px; background-color:white; color:black;font-weight:bold"> 
+    Save changes ? <br><br>
+	<input type="button" value="Yes" onclick="wilWeg=true;opslaan();" style="width:75px">
+	<input type="button" value="No" onclick="System.Gadget.Flyout.show = false;" style="width:75px">
+  </div>
+   </div>
+  </body>
+</html>

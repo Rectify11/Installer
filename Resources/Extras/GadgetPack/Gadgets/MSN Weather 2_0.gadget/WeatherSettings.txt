@@ -1,0 +1,3 @@
+WeatherLocation=(closest location: Warsaw, Poland)
+WeatherLocationCode=wc:PLXX0028
+DisplayDegreesIn=Celsius

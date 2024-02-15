@@ -1,0 +1,230 @@
+<duixml>
+	<stylesheets>
+		<!-- ressheet(ImmersiveStyles, library(dui70.dll), Dark) -->
+		<style resid="SXStyles">
+			<HWNDElement width="880rp" height="720rp" accessible="true" layoutpos="client" background="themeable(gtc(DirectUI::ItemsView, 0, 0, 3802), window)"/>
+			<if id="atom(ElementContainer)">
+				<element padding="rect(24rp,0rp,24rp,24rp)"/>
+			</if>
+			<if class="WizardButtonBar">
+				<element padding="rect(16rp,16rp,16rp,16rp)" background="themeable(dtb(DialogRoot::Button, 6, 4), threedface)" height="64rp"/>
+			</if>
+			<if class="WizardPageTitle">
+				<element accessible="true" padding="rect(0rp,16rp,0rp,8rp)" accrole="StaticText" contentalign="wrapleft" font="themeable(gtf(AeroWizard, 2, 0), 'captionfont')" foreground="themeable(gtc(AeroWizard, 2, 0, 3803), windowtext)"/>
+			</if>
+			<if class="WizardPageSubTitle">
+				<element accessible="true" padding="rect(0rp,11rp,0rp,0rp)" accrole="StaticText" contentalign="wrapleft" font="themeable(gtf(AeroWizard, 3, 0), 'messagefont')" foreground="themeable(gtc(AeroWizard, 3, 0, 3803), windowtext)"/>
+			</if>
+			<if class="WizardPageContainer">
+				<element contentalign="wrapleft" font="resstr(303)" foreground="windowtext" margin="rect(0rp, 6rp, 0rp, 0rp)"/>
+			</if>
+			<if class="WizardPageContent">
+				<element contentalign="wrapleft" font="resstr(304)" foreground="windowtext"/>
+			</if>
+			<ScrollViewer padding="rect(0rp,0rp,0rp,0rp)"/>
+			<if class="ScrollViewer">
+				<CCHScrollBar accessible="true" layoutpos="ninebottom"/>
+				<CCVScrollBar accessible="true" layoutpos="nineright"/>
+				<viewer layoutpos="nineclient"/>
+			</if>
+			<if id="atom(Link)">
+				<richtext background="argb(0,0,0,0)"/>
+				<if mousewithin="true">
+					<richtext background="dtb(ItemsView::ListView,1,3)"/>
+				</if>
+			</if>
+			<if class="Card">
+				<TouchButton background="argb(0,0,0,0)"/>
+			</if>
+			<if id="atom(Card1)">
+				<TouchButton margin="rect(0,0,0rp,0rp)"/>
+			</if>
+			<if id="atom(Card2)">
+				<TouchButton margin="rect(0rp,0,0,0rp)"/>
+			</if>
+			<if id="atom(Card3)">
+				<TouchButton margin="rect(0,0rp,0rp,0)"/>
+			</if>
+			<if id="atom(Card4)">
+				<TouchButton margin="rect(0rp,0rp,0,0)"/>
+			</if>
+			<if class="CardTitle">
+				<RichText background="argb(0,0,0,0)" foreground="gtc(DirectUI::ItemsView,0,0,3803)" font="messagefont;133%" margin="rect(0,0,0,4rp)"/>
+			</if>
+			<if class="CardSubtitle">
+				<RichText background="argb(0,0,0,0)" foreground="gtc(ControlPanelStyle,8,0,3803)" font="messagefont" width="288rp" contentalign="wrapleft" margin="rect(0,0,0,12rp)"/>
+			</if>
+			<if class="ImageHolder">
+				<Element width="294rp" height="185rp" background="sgraphic(1000,7,-1,0,0,1,1)" padding="rect(21rp,16rp,21rp,27rp)"/>
+			</if>
+			<if class="Image">
+				<Element width="252rp" height="142rp" direction="ltr"/>
+			</if>
+		</style>
+		<style resid="RefDui" base="ressheet(ImmersiveStyles, library(dui70.dll), Dark)"/>
+		<style resid="CustomStyles" base="RefDui">
+			<Element background="20575"/>
+			<TouchButton handleenter="true" padding="rect(12rp,0rp,12rp,0rp)" borderthickness="rect(0rp,0rp,0rp,0rp)" contentalign="middlecenter|endellipsis" constrainlayout="NarrowClip" accessible="true" accrole="pushbutton" accdefaction="resstr(104, library(dui70.dll))"/>
+			<if keyfocused="true">
+				<TouchButton contentalign="middlecenter|endellipsis|focusrect"/>
+			</if>
+			<if class="commandrow">
+				<TouchButton height="47rp" minsize="size(0rp,0rp)" background="20575" borderthickness="rect(0,0,0,0)" foreground="20024" contentalign="middleleft|endellipsis" font="iconfont;115%;semibold"/>
+				<if keyfocused="true">
+					<TouchButton contentalign="middleleft|endellipsis|focusrect"/>
+				</if>
+				<if selected="true">
+					<TouchButton foreground="20234" bordercolor="20577"/>
+				</if>
+				<if mousewithin="true">
+					<TouchButton foreground="20025"/>
+				</if>
+				<if captured="true">
+					<TouchButton foreground="20024"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton foreground="20026"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton foreground="20027"/>
+				</if>
+			</if>
+			<unless class="commandrow">
+				<TouchButton height="32rp" minsize="size(90rp,0rp)" font="iconfont;115%"/>
+				<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 1), 20650)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 1, 3803), buttontext)" bordercolor="20654"/>
+				<if mousewithin="true">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 2), 20651)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 2, 3803), buttontext)" bordercolor="20655"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 5), 20650)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 5, 3803), buttontext)" bordercolor="20654"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 3), 20652)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 3, 3803))" bordercolor="20656"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="themeable(dtb(DirectUISecondary::Button, 1, 4), 20653)" foreground="themeable(gtc(DirectUISecondary::Button, 1, 4, 3803))" bordercolor="20657"/>
+				</if>
+			</unless>
+			<if class="default">
+				<TouchButton background="themeable(dtb(DirectUI::Button, 1, 1), 20100)" foreground="themeable(gtc(DirectUI::Button, 1, 1, 3803), threedface)" bordercolor="20676"/>
+				<if mousewithin="true">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 2), 20101)" foreground="themeable(gtc(DirectUI::Button, 1, 2, 3803), threedface)" bordercolor="20677"/>
+				</if>
+				<if captured="true">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 5), 20100)" foreground="themeable(gtc(DirectUI::Button, 1, 5, 3803), threedface)" bordercolor="20676"/>
+				</if>
+				<if Pressed="true">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 3), 20674)" foreground="themeable(gtc(DirectUI::Button, 1, 3, 3803))" bordercolor="20678"/>
+				</if>
+				<if Enabled="false">
+					<TouchButton background="themeable(dtb(DirectUI::Button, 1, 4), 20675)" foreground="themeable(gtc(DirectUI::Button, 1, 4, 3803), threedhighlight)" bordercolor="20679"/>
+				</if>
+			</if>
+			<TouchCheckBox contentalign="endellipsis" background="20575" foreground="20626" accessible="true" accrole="checkbutton" font="iconfont;115%" minsize="size(100rp,50rp)" padding="rect(0rp,12rp,0rp,0rp)"/>
+			<if checkedstate="unchecked">
+				<TouchCheckBox accdefaction="resstr(105, library(dui70.dll))"/>
+			</if>
+			<if checkedstate="checked">
+				<TouchCheckBox accdefaction="resstr(106, library(dui70.dll))"/>
+			</if>
+			<if Enabled="false">
+				<TouchCheckBox foreground="20629"/>
+			</if>
+			<if id="atom(TCB_Glyph)">
+				<TouchCheckBoxGlyph contentalign="middlecenter" height="20rp" width="20rp" background="themeable(dtb(DirectUI::Button, 3, 1))" foreground="20630" borderthickness="rect(0rp,0rp,0rp,0rp)" bordercolor="20622" constrainlayout="NarrowClip" font="0pt;;;"/>
+				<if keyfocused="true">
+					<TouchCheckBoxGlyph contentalign="middlecenter|focusrect"/>
+				</if>
+				<if mousefocused="true">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 2))" foreground="20631" bordercolor="20623"/>
+				</if>
+				<if captured="true">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 1))" foreground="20630" bordercolor="20622"/>
+				</if>
+				<if Pressed="true">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 3))" foreground="20632" bordercolor="20624"/>
+				</if>
+				<if Enabled="false">
+					<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 4))" foreground="20633" bordercolor="20625"/>
+				</if>
+				<if checkedstate="checked">
+					<TouchCheckBoxGlyph contentalign="middlecenter" height="20rp" width="20rp" background="themeable(dtb(DirectUI::Button, 3, 5))" foreground="20630" borderthickness="rect(0rp,0rp,0rp,0rp)" bordercolor="20622" constrainlayout="NarrowClip" font="0pt;;;"/>
+					<if mousefocused="true">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 6))" foreground="20631" bordercolor="20623"/>
+					</if>
+					<if captured="true">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 5))" foreground="20630" bordercolor="20622"/>
+					</if>
+					<if Pressed="true">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 7))" foreground="20632" bordercolor="20624"/>
+					</if>
+					<if Enabled="false">
+						<TouchCheckBoxGlyph background="themeable(dtb(DirectUI::Button, 3, 8))" foreground="20633" bordercolor="20625"/>
+					</if>
+				</if>
+			</if>
+			<if id="atom(TCB_Label)">
+				<richtext contentalign="wrapleft|endellipsis" padding="rect(8rp,0,8rp,0)" background="20575" foreground="gtc(DirectUI::ItemsView, 0, 0, 3803)" constrainlayout="narrow"/>
+			</if>
+		</style>
+	</stylesheets>
+	<HWNDElement resid="WizardMain" layout="FillLayout()" id="Atom(SXWizard)" sheet="SXStyles">
+		<element layout="borderlayout()" id="atom(ElementContainer)">
+			<RichText layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="resstr(102)" font="messagefont;192%;semibold" foreground="themeable(gtc(DirectUI::ItemsView, 0, 0, 3803), windowtext)" padding="rect(0rp,16rp,0rp,0rp)"/>
+			<!--element layoutpos="top" class="WizardPageSubTitle" id="Atom(SXSubTitle)" content="This is subtitle, or instruction, or body text."/-->
+			<element layoutpos="client" class="WizardPageContainer" layout="GridLayout(2,2)" id="Atom(SXWizardPageContainer)">
+				<TouchButton id="atom(Card1)" class="Card" layout="flowlayout(0,0,2,0)">
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout()">
+							<Element class="Image" id="atom(Image1)" background="sgraphic(1001,7,-1,0,0,1,1)"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="resstr(103)" class="CardTitle"/>
+							<RichText content="resstr(104)" class="CardSubtitle"/>
+							<TouchButton content="resstr(105)" class="default" sheet="CustomStyles" id="atom(BtnOpenCpl)"/>
+						</Element>
+					</Element>
+				</TouchButton>
+				<TouchButton id="atom(Card2)" class="Card" layout="flowlayout(0,0,2,0)">
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout()">
+							<Element class="Image" id="atom(Image2)" background="sgraphic(1002,7,-1,0,0,1,1)"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="resstr(106)" class="CardTitle"/>
+							<RichText content="resstr(107)" class="CardSubtitle"/>
+							<TouchButton content="resstr(108)" class="default" sheet="CustomStyles"/>
+						</Element>
+					</Element>
+				</TouchButton>
+				<TouchButton id="atom(Card3)" class="Card" layout="flowlayout(0,0,2,0)">
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout()">
+							<Element class="Image" id="atom(Image3)" background="sgraphic(1003,7,-1,0,0,1,1)"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="resstr(110)" class="CardTitle"/>
+							<RichText content="resstr(111)" class="CardSubtitle"/>
+						</Element>
+					</Element>
+				</TouchButton>
+				<TouchButton id="atom(Card4)" class="Card" layout="flowlayout(0,0,2,0)">
+					<Element layout="verticalflowlayout(0,0,2,0)">
+						<Element class="ImageHolder" layout="flowlayout(0,2,2,0)">
+							<RichText class="CardTitle" content="Image TBD"/>
+						</Element>
+						<Element layout="verticalflowlayout(0,0,0,0)">
+							<RichText content="resstr(112)" class="CardTitle"/>
+							<RichText content="resstr(113)" class="CardSubtitle"/>
+						</Element>
+					</Element>
+				</TouchButton>
+			</element>
+			<RichText id="atom(Link)" foreground="20005" content="View full changelog" font="iconfont;115%" layoutpos="bottom" margin="rect(0,0rp,0,0)" width="160rp" visible="false"/>
+		</element>
+		<element layoutpos="bottom" class="WizardButtonBar" contentalign="middleright" layout="BorderLayout()" id="Atom(SXWizardButtonBar)">
+			<TouchCheckBox accessible="true" layoutpos="left" sheet="CustomStyles" checkedstate="checked" padding="rect(0,6rp,0,0)" id="Atom(SXWizardCheckbox)" active="mouse | keyboard" content="resstr(114)"/>
+			<TouchButton accessible="true" layoutpos="right" minsize="size(96rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="resstr(115)"/>
+		</element>
+	</HWNDElement>
+</duixml>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>Remove Drive Safely</name>
+  <namespace>IPTSOLUTIONS.COM</namespace>
+  <version>1.2.1</version>
+  <author name="Plamen Todorov">
+      <logo src="logo.png"/>
+  </author>
+  <copyright>IPT Solutions Ltd. © 2023</copyright>
+  <description>The easiest way to remove your safely removal devices from the sidebar.</description>
+  <icons>
+    <icon height="64" width="64" src="icon.png"/>
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0" src="default.html"/>
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0"/>
+      <defaultImage src="drag.png"/>
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

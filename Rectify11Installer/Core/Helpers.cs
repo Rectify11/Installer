@@ -123,6 +123,11 @@ namespace Rectify11Installer.Core
                     return true;
 
                 var r11 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false)?.GetValue("OSVersion");
+                if (r11 == null)
+                {
+                    return false;
+                }
+
                 Version ver = Version.Parse(r11.ToString());
                 if (Environment.OSVersion.Version.Build > ver.Build || NativeMethods.GetUbr() > ver.Revision)
                 {

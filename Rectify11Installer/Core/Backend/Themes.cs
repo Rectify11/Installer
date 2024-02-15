@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
@@ -179,7 +180,19 @@ namespace Rectify11Installer.Core
 					Helper.OperationType.Copy);
 
 				Logger.WriteLine("Copied Themetool.");
-				Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
+				try
+				{
+                    Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " install", AppWinStyle.Hide, true);
+                }
+				catch
+				{
+                    UninstallThemeWallpapers();
+
+					MessageBox.Show("Failed to install UxTheme patcher as SecureUXHelper.exe is missing (most likely deleted by antivirus. Try excluding the C:\\Windows\\Rectify11 folder from your anti-virus, and rerun the installer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Logger.WriteLine("InstallThemes() failed as SecureUXHelper is missing (most likely deleted by antivirus. Please exclude the C:\\Windows\\Rectify11 folder from your anti-virus.");
+
+					return false;
+                }
 				Helper.ImportReg(Path.Combine(Variables.r11Folder, "themes", "Themes.reg"));
 
 				InstallCursors();
@@ -193,7 +206,14 @@ namespace Rectify11Installer.Core
 				UninstallCursors();
 				UninstallMsstyles();
 				Helper.SafeFileDeletion(Path.Combine(Variables.Windir, "ThemeTool.exe"));
-				Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " uninstall", AppWinStyle.Hide, true);
+				try
+				{
+                    Interaction.Shell(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe") + " uninstall", AppWinStyle.Hide, true);
+                }
+				catch
+				{
+
+				}
 				return false;
 			}
 		}

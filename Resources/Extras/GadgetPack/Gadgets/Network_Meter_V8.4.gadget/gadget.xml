@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>Network Meter</name>
+	<namespace>AddGadgets</namespace>
+	<version>9.6</version>
+	<author name="AddGadgets">
+		<info url="http://addgadgets.com" />
+		<logo src="icon.png" />
+	</author>
+	<copyright>© 2007 - 2013 AddGadgets.com</copyright>
+	<description>The Network Meter will show you SSID, Signal Quality, Internal IP address, External IP address, Blacklisted IP ratio, IP lookup with Google Maps, Speed test, Firewall check, Upload speed, download speed, usage remaining, total of usage and connection is secure or not secure.</description>
+	<icons>
+		<icon height="100" width="100" src="icon.png" />
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0.0" src="gadget.html" />
+			<permissions>Full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="drag.png" />
+			<autoscaleDPI>true</autoscaleDPI>
+		</host>
+	</hosts>
+</gadget>

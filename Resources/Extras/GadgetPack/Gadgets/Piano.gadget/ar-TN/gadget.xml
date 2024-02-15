@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>أرضية</name>
+  <namespace>microsoft.windows</namespace>
+  <version>1.0.0.3</version>
+  <author name="Photo-Bon.com">
+    <info url="www.photo-bon.com/en"  text="Photo-Bon.com"/>
+    <logo src="images/logo.png" />
+  </author>
+  <copyright>&#169; 2010</copyright>
+  <description>يمكنك العزف على البيانو عن طريق لوحة مفاتيح الكمبيوتر لك.
+أحب الموسيقى والعزف على البيانو لعب في أي وقت.
+الاسترخاء والسعادة في العمل الخاص بك الوقت.</description>
+  <icons>
+    <icon height="64" width="64" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="default.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+      <defaultImage src="images/drop.png" />
+    </host>
+  </hosts>
+</gadget>

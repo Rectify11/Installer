@@ -1,0 +1,272 @@
+﻿body {
+	background-color: transparent;
+	color: #595631;
+	margin: 0px;
+	font-family: Segoe UI, Arial, Microsoft Yahei ,Microsoft JhengHei , Helvetica, sans-serif, Simsun, Verana;
+	font-size: 12px;
+}
+body:hover #C4Position{
+	display:block;
+}
+#C4Position {
+	position:absolute;
+	display:none;
+}
+
+#keys {
+	position: absolute;
+}
+#PowerLight {
+	position:absolute;
+	cursor:pointer;
+	left:1px;
+	top:1px;
+}
+#PowerLight img{
+	position:absolute;
+}
+#div_update, #tooltip{
+	position:absolute;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	text-align: center;
+}
+.writekey,.blackkey{
+	position: absolute;
+	cursor: pointer;
+	top:0px;
+}
+
+.writekey .keyupimg,.writekey .keydownimg,.blackkey .keyupimg,.blackkey .keydownimg{
+	position:absolute;
+	width:100%;height:100%;
+}
+
+body.docked {
+	width: 133px;
+	height: 74px;
+}
+body.docked #keys{
+	width: 125px;
+	height:46px;left:3px;top:23px;
+}
+body.docked #div_update, body.docked #tooltip{
+	top:2px;
+	height:17px;
+	line-height: 18px;
+	width:105px;
+	left:18px;
+	font-size:11px;
+}
+
+body.docked .writekey{
+	width: 8px;
+	height:46px;
+	z-index:5;
+}
+body.docked .blackkey{
+	width: 7px;
+	height:31px;
+	z-index:10;
+}
+body.docked #C4Position {
+	width:6px;
+	height:6px;
+	bottom:3px;
+	left:1px;
+}
+body.docked #PowerLight img {
+	width:19px;
+	height:19px;
+	left:0px;
+	top:1px;
+}
+body.docked .key_F3{
+	left: 0px;
+}
+body.docked .key_F3S{
+	left: 5px;
+}
+body.docked .key_G3{
+	left: 9px;
+}
+body.docked .key_G3S{
+	left: 14px;
+}
+body.docked .key_A3{
+	left: 18px;
+}
+body.docked .key_A3S{
+	left: 23px;
+}
+body.docked .key_B3{
+	left: 27px;
+}
+body.docked .key_C4{
+	left: 36px;
+}
+body.docked .key_C4S{
+	left: 41px;
+}
+body.docked .key_D4{
+	left: 45px;
+}
+body.docked .key_D4S{
+	left: 50px;
+}
+body.docked .key_E4{
+	left: 54px;
+}
+body.docked .key_F4{
+	left: 63px;
+}
+body.docked .key_F4S{
+	left: 68px;
+}
+body.docked .key_G4{
+	left: 72px;
+}
+body.docked .key_G4S{
+	left: 77px;
+}
+body.docked .key_A4{
+	left: 81px;
+}
+body.docked .key_A4S{
+	left: 86px;
+}
+body.docked .key_B4{
+	left: 90px;
+}
+body.docked .key_C5{
+	left: 99px;
+}
+body.docked .key_C5S{
+	left: 104px;
+}
+body.docked .key_D5{
+	left: 108px;
+}
+body.docked .key_D5S{
+	left: 113px;
+}
+body.docked .key_E5{
+	left: 117px;
+}
+
+/* =====================================================*/
+
+
+body.undocked {
+	width: 592px;
+	height: 260px;
+}
+body.undocked #keys{
+	width: 551px;
+	height:206px;left:22px;top:44px;
+}
+body.undocked #div_update, body.undocked #tooltip{
+	top:10px;
+	height:24px;
+	line-height: 24px;
+	width:540px;
+	left:30px;
+	font-size:16px;
+}
+
+body.undocked .writekey{
+	width: 34px;
+	height:206px;
+	z-index:5;
+}
+body.undocked .blackkey{
+	width: 29px;
+	height:134px;
+	z-index:10;
+}
+body.undocked #C4Position {
+	width:10px;
+	height:10px;
+	bottom:11px;
+	left:12px;
+}
+body.undocked #PowerLight img {
+	width:34px;
+	height:33px;
+	left:0px;
+	top:4px;
+}
+body.undocked .key_F3{
+	left: 0px;
+}
+body.undocked .key_F3S{
+	left: 23px;
+}
+body.undocked .key_G3{
+	left: 39px;
+}
+body.undocked .key_G3S{
+	left: 61px;
+}
+body.undocked .key_A3{
+	left: 78px;
+}
+body.undocked .key_A3S{
+	left: 99px;
+}
+body.undocked .key_B3{
+	left: 117px;
+}
+body.undocked .key_C4{
+	left: 156px;
+}
+body.undocked .key_C4S{
+	left: 178px;
+}
+body.undocked .key_D4{
+	left: 195px;
+}
+body.undocked .key_D4S{
+	left: 217px;
+}
+body.undocked .key_E4{
+	left: 234px;
+}
+body.undocked .key_F4{
+	left: 273px;
+}
+body.undocked .key_F4S{
+	left: 296px;
+}
+body.undocked .key_G4{
+	left: 312px;
+}
+body.undocked .key_G4S{
+	left: 334px;
+}
+body.undocked .key_A4{
+	left: 351px;
+}
+body.undocked .key_A4S{
+	left: 372px;
+}
+body.undocked .key_B4{
+	left: 390px;
+}
+body.undocked .key_C5{
+	left: 429px;
+}
+body.undocked .key_C5S{
+	left: 451px;
+}
+body.undocked .key_D5{
+	left: 468px;
+}
+body.undocked .key_D5S{
+	left: 490px;
+}
+body.undocked .key_E5{
+	left: 507px;
+}

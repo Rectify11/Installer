@@ -1,0 +1,40 @@
+
+body {
+	font-family: 'Segoe UI', Tahoma, san-serif;
+	width: 150px;
+	height: 60px;
+	text-align: center;
+	vertical-align: middle;
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	padding: 4px 16px 4px 2px;
+}
+
+table {
+	margin: 0;
+	padding: 0;
+	width: 134px;
+	height: 52px;
+}
+
+a {
+	cursor: pointer;
+	display: block;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999999 #cccccc #cccccc #999999;
+	height: 100%;
+}
+
+td {
+	padding: 0;
+}
+
+#clrval {
+	font-size: xx-small;
+	text-align: center;
+}

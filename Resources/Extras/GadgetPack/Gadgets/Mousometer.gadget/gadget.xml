@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>Mousometer</name>
+    <namespace>Sven Bader</namespace>
+    <version>1.5</version>
+    <author name="Sven Bader">
+        <info url="https://www.mousometer.de" />
+    </author>
+    <copyright>2018</copyright>
+    <description>The mouse is probably the most used input device. What it really does day after day is revealed in this little gadget called Mousometer. It shows the distance traveled and the current speed of the mouse cursor. Top speed and daily kilometers are also recorded. There are numerous color schemes available.</description>
+    	<icons>
+		<icon src="logo.png" />
+	</icons>
+    <hosts>
+        <host name="sidebar">
+            <base type="HTML" apiVersion="1.0.0" src="Mousometer.html" />
+            <permissions>full</permissions>
+            <autoscaleDPI>false</autoscaleDPI>
+            <platform minPlatformVersion="0.3" />
+            <defaultImage src="icon.png" />
+        </host>
+    </hosts>
+</gadget>

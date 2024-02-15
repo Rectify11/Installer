@@ -1,0 +1,399 @@
+AT: ANTENNE VORARLBERG Partymix*http://194.208.21.29:8010
+AT: Apres Ski*http://dude.mp3streams.net/apresski
+AT: Bigvibez.com*http://bigvibez.com:7000
+AT: Chillaut FM*http://www.chillaut.fm:1974
+AT: Lounge FM*http://edge.live.mp3.mdn.newmedia.nacamar.net:80/loungefmoesterreich/livestream.mp3
+AT: ORF FM4*mms://apasf.apa.at/fm4_live_worldwide
+AT: ORF Hitradio Ö3*mms://v6305205B16FCF7gcsj2w07739FA61.proxitv.speednet.at/WSX/oe3_live
+AT: ORF Radio 1 International*mms://apasf.apa.at/oe1_live_worldwide
+AT: ORF Radio Burgenland*mms://apasf.apa.at/radio_bgl_worldwide
+AT: ORF Radio Kärnten*mms://gcssrv.pkf.speednet.at/WSX/oe2ktn
+AT: ORF Radio Niederösterreich*mms://radio-noe.streaming.kabsi.at/radio_noe
+AT: ORF Radio Oberösterreich*http://orfradio.liwest.at:8000/live
+AT: ORF Radio Salzburg*mms://streaming.conova.com/ORF_Salzburg_Live
+AT: ORF Radio Slovensky spored*mms://proxitv12.speednet.at/slowktn
+AT: ORF Radio Steiermark*mms://apasf.apa.at/radio_stmk_worldwide
+AT: ORF Radio Tirol*mms://apasf.apa.at/radio_tirol_worldwide
+AT: ORF Radio Vorarlberg*mms://apasf.apa.at/radio_vbg_worldwide
+AT: ORF Radio Wien*mms://apasf.apa.at/radio_wien_worldwide
+AT: ORF Ö1*mms://apasf.apa.at/oe1_live_worldwide
+AT: ORF Ö1 Campus*mms://apasf.apa.at/oe1_campus_worldwide
+AT: ORF Ö1 Journale*mms://apasf.apa.at/oe1_inforadio_worldwide
+AT: Radio Moonlight*http://server5.digital-webstream.de:12050
+AT: Radio Stephansdom*http://srvhost24.serverhosting.apa.net:8000/rsdstream128
+AT: Soundportal*http://www.soundportal.at:8000/live160
+BE: BRF1*http://stream1.rtbf.be:8000/brf1
+BE: BRF2*http://stream1.rtbf.be:8000/brf2
+CH: BlastFM*http://rs11.stream24.org:8020
+CH: DRS1*mms://DMS-CL-021.SKYPRO-MEDIA.NET/DRS1
+CH: DRS2*mms://DMS-CL-021.SKYPRO-MEDIA.NET/DRS2
+CH: DRS3*mms://dms-cl-021.skypro-media.net/drs3
+CH: DRS4*mms://DMS-CL-021.SKYPRO-MEDIA.NET/DRS4
+CH: Electro Radio*http://stream.electroradio.ch:26630
+CH: Kanal K*http://82.197.165.150
+CH: LOUNGE GROOVES*http://www.lounge-radio.com/listen_128k.ram
+CH: MW531*mms://dms-cl-021.skypro.tv/mw531
+CH: RADIO ZÜRISEE*mms://stream.green.ch/zuerisee
+CH: Radio Eviva*mms://dms-cl-022.skypro-media.net/radioeviva-64
+CH: Radio Swiss Classic*http://stream-3.ssatr.ch:80/rsc/mp3
+CH: Radio Swiss Jazz*http://stream-1.ssatr.ch:80/rsj/mp3
+CH: Radio Swiss Pop*http://stream-2.ssatr.ch/rsp/mp3
+CH: Radio Waveshape*http://waveshape.dyndns.org:8000
+CH: Radio4Humans*http://s2.global-streaming.net:6470
+CH: RadioCrazy Classical*http://stream2137.init7.net
+CH: RadioCrazy Jazz*http://stream2138.init7.net:80
+CH: RadioCrazy Modern Jazz*http://stream2140.init7.net:80
+CH: RadioCrazy Opera*http://stream2139.init7.net:80
+CH: SwissGroove*http://stream2141.init7.net:80
+CH: SwissGroove*http://swiss1.impek.tv
+CH: Top-128*mms://dms-cl-022.skypro-media.net/top-128
+CH: UZIC - Techno Minimal*http://128.178.10.31:9000
+CH: buureradio.ch*http://live-three.dmd2.ch
+CH: virus- Radio*http://stream-6.ssatr.ch/virus/mp3
+DE / AT / CH: Chaos-Radio*http://stream.chaos-radio.net:5678
+DE: 100.6 Motor FM*http://dude.mp3streams.net/motorfm
+DE: 106.4 TOP FM*http://85.214.91.242:8000/stream_hq.mp3
+DE: 14482 Babelsberg Hitradio*http://dus.radiostream.de:31115
+DE: 1LIVE*http://gffstream.ic.llnwd.net/stream/gffstream_stream_wdr_einslive_a
+DE: 1LIVE*http://metafiles.gl-systemhaus.de/wdr/channel_einslive.m3u
+DE: 1LIVE*http://www.wdr.de/wdrlive/media/einslive.m3u
+DE: 1LIVE Kassettendeck*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w87a
+DE: 1LIVE Klubbing*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w89a
+DE: 1LIVE Plan B*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w86a
+DE: 1LIVE Rocker*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w90a
+DE: 1LIVE diggi*http://gffstream.ic.llnwd.net/stream/gffstream_einslive_a
+DE: 1LIVE diggi*http://gffstream.ic.llnwd.net/stream/gffstream_einslive_b
+DE: 1LIVE diggi*http://metafiles.gl-systemhaus.de/wdr/channel_einslivediggi.m3u
+DE: 80er*http://dude.mp3streams.net/80ergvl
+DE: 89.0 RTL*http://62.75.176.45/rtl-high
+DE: 89.0 RTL*http://890rtl.radio.de:8000/relay-1394
+DE: 90er*http://dude.mp3streams.net/90er
+DE: 95.5 Charivari*http://955charivari.radio.de:8000/relay-2318
+DE: AgF-Radio*http://stream2006.de:9000
+DE: Alpenmelodie*http://212.123.103.171:8000
+DE: Angelsfox-Radio*http://87.118.64.197:3100
+DE: Antenne Bayern*http://mp3.webradio.antenne.de:80
+DE: Antenne Bayern*http://www.antenne.de/webradio/antenne.m3u
+DE: Antenne Bayern*mms://wms.webradio.antenne.de
+DE: Antenne Bayern - Chill out*mms://channels.webradio.antenne.de/chillout
+DE: Antenne Bayern - Die jungen Wilden*mms://channels.webradio.antenne.de/die-jungen-wilden
+DE: Antenne Bayern - Hits für Kids*mms://channels.webradio.antenne.de/hits-fuer-kids
+DE: Antenne Bayern - Oldies but Goldies*mms://channels.webradio.antenne.de/oldies-but-goldies
+DE: Antenne Bayern - Schlager*mms://channels.webradio.antenne.de/das-schlager-karussell
+DE: Antenne Bayern - Top 40*mms://channels.webradio.antenne.de/top-40
+DE: Antenne Brandenburg*mms://stream2.rbb-online.de/wmtencoder/antenne-live.wma
+DE: Antenne FM*http://85.214.25.122:8000
+DE: Antenne Münster*http://stream.antennemuenster.de:8000/am128k
+DE: Arabella Austropop*http://stream02.arabella-de.vss.kapper.net:8000
+DE: Arabella Christmas*http://stream06.arabella-de.vss.kapper.net:8000
+DE: Arabella Classic-Rock*http://stream05.arabella-de.vss.kapper.net:8000
+DE: Arabella Herzflimmern*http://stream03.arabella-de.vss.kapper.net:8000
+DE: Arabella Kultschlager*http://stream04.arabella-de.vss.kapper.net:8000
+DE: Arabella Webradio*http://stream01.arabella-de.vss.kapper.net:8000
+DE: B-Radio4U*http://b-radio4u.eu:8038
+DE: BHJMS -Radio1*http://bhjms-streamserver.mscs.net:8000
+DE: Ballermann Radio*http://www.ballermann-radio-live.de:9300
+DE: Bash.FM*http://www.bash-music.com:8000
+DE: BassClub-Radio*http://87.118.78.15:3550
+DE: BassLover*http://s7.relay-basslover.de:9000
+DE: BassTune*http://dsl.basstune.de:8200
+DE: Bayern 1*http://gffstream.ic.llnwd.net/stream/gffstream_w10a
+DE: Bayern 1*mms://gffstream-w1b.wm.llnwd.net/gffstream_w1b
+DE: Bayern 2*mms://gffstream-w3b.wm.llnwd.net/gffstream_w3b
+DE: Bayern 3*http://gffstream.ic.llnwd.net/stream/gffstream_w12a
+DE: Bayern 3*mms://gffstream-w5b.wm.llnwd.net/gffstream_w5b
+DE: Bayern 4 Klassik*mms://gffstream-w7b.wm.llnwd.net/gffstream_w7b
+DE: Bayern plus*mms://gffstream-w13b.wm.llnwd.net/gffstream_w13b
+DE: BeFM*http://server10.digital-webstream.de:19230
+DE: Best of 2008*http://dude.mp3streams.net/bestof2008
+DE: Black*http://dude.mp3streams.net/blackgvl
+DE: BlackBeats.FM*http://stream.blackbeats.fm
+DE: Blackmusic-radio*http://listen.bmradio.de
+DE: Blitz Radio*http://blitz-stream.de:8000
+DE: Blue-Radio*http://87.118.112.63:8811
+DE: Bollywoodradio*http://radio.bollywoodradio.de
+DE: Bremen Eins*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w48a
+DE: Bremen Vier*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w49a
+DE: Bremen Vier Zeiglers Welt*http://80.252.104.101:8000/zeiglerswwdp
+DE: BurnFM*http://stream100.inttech.de:8000/burnfm.mp3
+DE: CHROMANOVA Ambient*http://85.25.86.69:8100
+DE: CHROMANOVA Psy Trance*http://212.112.241.88:8000
+DE: CHROMANOVA Psy Trance*http://85.25.86.69:8000
+DE: Café 80s FM*http://87.230.92.163:8000
+DE: Casablanca Radio*http://casablancaradio.ice.streaming.spacenet.de/casablancaradio
+DE: Chatradiolive CRL*http://s2.dawebart.eu:8100
+DE: Citybull-Radio*http://citybull.net:11000
+DE: Cityredio*http://www.cityredio.de:8000
+DE: Club Lounge Radio*http://85.25.144.209:8888
+DE: ClubNature.FM*http://91.121.16.106:8000
+DE: Countrymusic24*http://countrymusic24.powerstream.de:9000
+DE: Crosschannel*http://c14000-l.i.core.cdn.streamfarm.net/3095crosschannel_dsl.mp3
+DE: Cue Radio Dreamlife*http://85.214.51.47:8888
+DE: DD-Radio*http://dd-radio.eu:8000
+DE: DEFJAY.DE*http://sc1.netstreamer.net:8040
+DE: DELUXE LOUNGE RADIO*http://c13000-l.i.core.cdn.streamfarm.net/13000deluxe/live/3304lounge/de_128.mp3
+DE: DELUXE LOUNGE RADIO*http://d852143781.i.sto.core008.cdn.streamfarm.net/13000deluxe/live/3304lounge/de_128.mp3
+DE: DELUXE RADIO*http://d85195728.i.tis.core005.cdn.streamfarm.net:80/13000deluxe/live/3258radiodeluxe/de_96.mp3
+DE: DONAU 3 FM*http://server1.webradiostreaming.de:2640
+DE: Dancefox-Radio*http://s5.pop-stream.de:9000
+DE: DasDing*http://62.26.214.248:80/swrdasdinglive/livestream.mp3
+DE: DasDing - Lautstark*mms://62.27.44.14/swrdasdingraka01$livestream.wma
+DE: Deutschlandfunk*http://dradio-mp3.t-bn.de/dlf_live
+DE: Deutschlandfunk*http://dradio-ogg.t-bn.de/dlf_high.ogg
+DE: Deutschlandradio Kultur*http://dradio-mp3.t-bn.de/dlf_live
+DE: Deutschlandradio Kultur*http://dradio-ogg.t-bn.de/dkultur_high.ogg
+DE: Die Neue 107.7*http://dieneue1077.ice.streaming.spacenet.de/dieneue1077
+DE: Die Neue 107.7*http://ice.streaming.spacenet.de/dieneue1077
+DE: Die Neue 107.7 - 80er*http://dieneue1077-80er.ice.streaming.spacenet.de/dieneue1077_80er
+DE: Die Neue 107.7 - 80er*http://ice.streaming.spacenet.de/dieneue1077_80er
+DE: Die Neue 107.7 - Livesong*http://dieneue1077-live.ice.streaming.spacenet.de/dieneue1077_live
+DE: Die Neue 107.7 - Livesong*http://ice.streaming.spacenet.de/dieneue1077_live
+DE: Die Neue Welle*http://live.meine-neue-welle.de/dnw_128.mp3
+DE: Disco-Beatz.com*http://94.23.28.116:1598
+DE: EBM-Radio*http://dus.radiostream.de:36715
+DE: ERF Radio*http://d85195728.i.tis.core005.cdn.streamfarm.net:80/3212erf_96_live.mp3
+DE: EaRADIO - Channel 1*http://85.214.25.102:8010
+DE: Eastcoast*http://staff.mp3streams.net/eastcoastgvl
+DE: FFH Black Power*mms://62.26.161.89/ffhchannels$black$livestream.wma
+DE: FFH Deutsch Pur*mms://62.26.161.89/ffhchannels$deutschpur$livestream.wma
+DE: FFH Die 80er*mms://62.26.161.89/ffhchannels$80er$livestream.wma
+DE: FFH Dolce Vita*mms://62.27.26.5/ffhchannels$dolcevita$livestream.wma
+DE: FFH Electro Beats*mms://62.26.161.89/ffhchannels$electro$livestream.wma
+DE: FFH Future*mms://62.26.161.89/ffhchannels$musicupdate$livestream.wma
+DE: FFH Hit Radio*mms://62.26.161.89/radioffh$livestream2.wma
+DE: FFH Hits für Kids*mms://62.26.161.89/ffhchannels$hits4kids$livestream.wma
+DE: FFH Jazz*mms://62.26.161.89/ffhchannels$jazz$livestream.wma
+DE: FFH Lounge*mms://62.26.161.89/ffhchannels$lounge$livestream.wma
+DE: FFH My Fun Radio*mms://62.26.161.89/myfunradio$livestream.wma
+DE: FFH Nachrichten*mms://62.27.44.14/ffhchannels$newschannel$livestream.wma
+DE: FFH One Hit Wonder*mms://62.26.161.89/ffhchannels$seasons$livestream.wma
+DE: FFH Rock over Germany*mms://62.26.161.89/ffhchannels$rock$livestream.wma
+DE: FFH Schlagerkult*mms://62.27.44.14/ffhchannels$schlager$livestream.wma
+DE: FFH Seasons*mms://62.27.26.5/ffhchannels$seasons$livestream.wma
+DE: FFH Soundtrack*mms://62.26.161.89/ffhchannels$movie$livestream.wma
+DE: FFH Top40*mms://62.26.161.89/ffhchannels$top40$livestream.wma
+DE: FIRERADIO.FM*http://91.121.158.44:9000
+DE: Flavor Mix*http://dude.mp3streams.net/flavormix
+DE: Fritz-live*mms://stream2.rbb-online.de/wmtencoder/fritz-live.wma
+DE: Frühlingsradio*http://dude.mp3streams.net/fruehlingsgefuehle
+DE: Funkhaus Europa*http://gffstream.ic.llnwd.net/stream/gffstream_w20a
+DE: Funkhaus Europa*mms://gffstream-wm-w32a.wm.llnwd.net/gffstream_wm_w32a
+DE: Gong 96,3*http://radiator.nci.de:8000/live
+DE: Gospelradio.de*http://87.106.15.93:9000
+DE: HELLWEG RADIO*http://s2.global-streaming.net:8100
+DE: HR Info*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w71a
+DE: HR1*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w67a
+DE: HR2*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w68a
+DE: HR3*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w69a
+DE: HR4*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w70a
+DE: HardBase FM*http://mp3.hb-stream.net
+DE: Hit-Radio Antenne Bremen*http://edge.live.mp3.mdn.newmedia.nacamar.net/stbantennebremen/livestream.mp3
+DE: Hit-Radio Antenne Niedersachsen*mms://62.26.161.89/stbantennends$livestream.wma
+DE: Hit-Radio Antenne Niedersachsen*mms://62.27.47.51/stbantennends$livestream.wma
+DE: Hitradio Antenne 1*http://62.27.44.15/antenne1/livestream.mp3
+DE: Hitradio RT1*http://duesseldorf.radiostream.de:32175
+DE: HouseTime FM*http://mp3.ht-stream.net
+DE: Hurricane-Rock*http://radio.hurricane-rock.de:10830
+DE: ILoveRadio*http://87.118.94.208
+DE: Internetradio.de*mms://stream.internetradio.de/audio
+DE: JACK FM*http://sc1.streamfox.com:8050
+DE: JUMP*http://c22033-l.i.core.cdn.streamfarm.net/22004mdrjump/live/3087mdr_jump/live_de_128.mp3
+DE: JUMP*mms://c22033-l.w.core.cdn.streamfarm.net/22004mdrjump/live/3087mdr_jump/live_de_48.wma
+DE: Jazz*http://dude.mp3streams.net/jazzgeneralgvl
+DE: Karneval*http://dude.mp3streams.net/karnevalstream
+DE: Klassik Radio*http://str31.creacast.com/klassik1
+DE: Krautrock-World*http://krautrock.pop-stream.de:7592
+DE: MDR Figaro*http://c22033-l.i.core.cdn.streamfarm.net/22007mdrfigaro/live/3087mdr_figaro/live_de_128.mp3
+DE: MDR Info*http://c22033-l.i.core.cdn.streamfarm.net/22006mdr/live/3087mdr_info/live_de_128.mp3
+DE: MDR Klassik*http://c22033-l.i.core.cdn.streamfarm.net/22008mdrklassik/live/3087mdrklassik/live_de_128.mp3
+DE: MDR Sputnik*http://c22033-l.i.core.cdn.streamfarm.net/22005mdrsputnik/live/3087mdr_sputnik/live_de_128.mp3
+DE: MDR Sputnik Black*http://c22033-l.i.core.cdn.streamfarm.net/22005mdr/live/3087mdr_sputnik_ch_black.mp3
+DE: MDR Sputnik Club*http://c22033-l.i.core.cdn.streamfarm.net/22005mdr/live/3087mdr_sputnik_ch_club.mp3
+DE: MDR Sputnik Insomnia*http://c22033-l.i.core.cdn.streamfarm.net/22005mdr/live/3087mdr_sputnik_ch_cd1.mp3
+DE: MDR Sputnik Makossa*http://c22033-l.i.core.cdn.streamfarm.net/22033mdr/live/3087mdr_sputnik/ch_makossa_128.mp3
+DE: MDR Sputnik Popkult*http://c22033-l.i.core.cdn.streamfarm.net/22005mdr/live/3087mdr_sputnik_ch_cd2.mp3
+DE: MDR Sputnik Rock*http://c22033-l.i.core.cdn.streamfarm.net/22005mdr/live/3087mdr_sputnik_ch_rock.mp3
+DE: MDR Sputnik Soundcheck*http://c22033-l.i.core.cdn.streamfarm.net/22033mdr/live/3087mdr_sputnik/ch_soundcheck_128.mp3
+DE: MDR1 Sachsen*http://c22033-l.i.core.cdn.streamfarm.net/22001mdr1sachsen/live/3087mdr_sachsen/live_de_128.mp3
+DE: MDR1 Sachsen-Anhalt*http://c22033-l.i.core.cdn.streamfarm.net/22002mdr1sachsenanhalt/live/3087mdr_mdr1sa/live_de_128.mp3
+DE: MDR1 Thüringen*http://c22033-l.i.core.cdn.streamfarm.net/22003mdr1thueringen/live/3087mdr_thue/live_de_128.mp3
+DE: METROPOL FM*http://metropolfm.webradiostreaming.de:8200
+DE: MMORPG-Radio*http://www.gilde-gothic.de:8000
+DE: Merry Christmas*http://staff.mp3streams.net/xmas
+DE: Metal Refinement*http://www.metal-refinement.de:8088
+DE: Metal-Only*http://metalonly.t-n-media.de:6666
+DE: Minimalradio*http://1mediaserver.de:8000
+DE: Munich's Hardest Hits*http://84.19.188.7:8010
+DE: Munich-Radio*http://www.munich-radio.de:8000
+DE: Musik.BigCityBeats*http://78.159.104.197
+DE: Musik.Club*http://scfire-mtc-aa01.stream.aol.com/stream/1081
+DE: Musik.Funky*http://scfire-mtc-aa02.stream.aol.com/stream/1058
+DE: Musik.Goldies*http://scfire-dtc-aa04.stream.aol.com/stream/1060
+DE: Musik.HarderR*http://78.159.104.191:15000
+DE: Musik.JaM*http://scfire-mtc-aa05.stream.aol.com/stream/1054
+DE: Musik.Lounge*http://scfire-mtc-aa04.stream.aol.com/stream/1080
+DE: Musik.Main*http://scfire-mtc-aa04.stream.aol.com/stream/1051
+DE: Musik.eXTreMe*http://scfire-mtc-aa01.stream.aol.com/stream/1052
+DE: Musik.eXTreMe*http://scfire-mtc-aa04.stream.aol.com/stream/1052
+DE: N-JOY*http://ndr.ic.llnwd.net/stream/ndr_n-joy_hi_mp3
+DE: NDR 1 Niedersachsen*http://ndr.ic.llnwd.net/stream/ndr_ndr1niedersachsen_hi_mp3
+DE: NDR 1 Radio MV*http://ndr.ic.llnwd.net/stream/ndr_ndr1radiomv_hi_mp3
+DE: NDR 1 Welle Nord*http://ndr.ic.llnwd.net/stream/ndr_ndr1wellenord_hi_mp3
+DE: NDR 2*http://ndr.ic.llnwd.net/stream/ndr_ndr2_hi_mp3
+DE: NDR 90,3*http://ndr.ic.llnwd.net/stream/ndr_ndr903_hi_mp3
+DE: NDR Info*http://ndr.ic.llnwd.net/stream/ndr_ndrinfo_hi_mp3
+DE: NDR Kultur*http://ndr.ic.llnwd.net/stream/ndr_ndrkultur_hi_mp3
+DE: NIGHTLINE RADIO*http://radio1.nightline-radio.de:8000
+DE: NRW Chaosradio*http://85.214.67.130:8020
+DE: NightFly Radio*http://pia-server.com:8080
+DE: Ohrfunk Radio*http://server1.digital-webstream.de:8000
+DE: Oldie95*http://edge.live.mp3.mdn.newmedia.nacamar.net/stboldie95/livestream.mp3
+DE: Oldies*http://dude.mp3streams.net/oldies
+DE: Onkelz Rock Radio ORR*http://orr.radiospy.de:8010
+DE: POP-Radio POP one*http://tobit.pop-radio.de:8000
+DE: POP-Radio POP two*http://tobit.pop-radio.de:8030
+DE: PRIDE1*http://p1standby.serveftp.org:8100
+DE: PROJECT RELOADED*http://62.26.4.172:8010
+DE: Primavera online radio*http://hellfireserver.de:8000/primavera.mp3
+DE: PsyRadio Chillout*http://komplex2.psyradio.org:8030
+DE: PsyRadio Progressive*http://komplex2.psyradio.org:8010
+DE: Pure-Metal World Radio*http://pure-metal.org:29000
+DE: Q-Lounge@electrosound.tv*http://85.25.123.93:9000
+DE: R.SH*http://edge.live.mp3.mdn.newmedia.nacamar.net/stbrsh/livestream.mp3
+DE: RADIO BOB!*http://edge.live.mp3.mdn.newmedia.nacamar.net/stbradiobob/livestream.mp3
+DE: RADIO CHEMNITZ*mms://stream.green.ch/RadioChemnitz
+DE: RADIO DRESDEN*mms://stream.green.ch/RadioDresden
+DE: RADIO ELECTRACKS*http://peace.str3am.com:6390
+DE: RADIO LAUSITZ*mms://stream.green.ch/RadioLausitz
+DE: RADIO LEIPZIG*mms://stream.green.ch/RadioLeipzig
+DE: RADIO MUNDUS*http://www.radiomundus.de:7000
+DE: RBB inforadio*mms://192.108.72.74/wmtencoder/inforadio-live.wma
+DE: RBB radioeins-live*mms://stream2.rbb-online.de/wmtencoder/radioeins-live.wma
+DE: RMN powerstream*http://server.powerstream.de:30846
+DE: RMN radio*http://streamserver1.radiomelodienet.de:8022
+DE: RMN relax*http://91.121.176.177:8023
+DE: RMN schlagerhoelle*http://server1.schlagerhoelle.de:30842
+DE: RMN soulstar*http://server1.rmnsoulstar.de:8010
+DE: RPR1*http://217.151.151.46/rpr1
+DE: RPR1.80er*http://217.151.151.46/80er
+DE: RPR1.NewSongs*http://217.151.151.46/newsongs
+DE: RPR1.Rock*http://217.151.151.46/rock
+DE: RPR2*http://217.151.151.46/rpr2
+DE: Radio 21 - Classic Rock*http://radio21.ice.streaming.spacenet.de/radio21
+DE: Radio 7*http://str0.creacast.com/radio7_a
+DE: Radio 700*http://s1.global-streaming.net:11600
+DE: Radio AENA*http://85.214.85.83:8055/dslTest
+DE: Radio Arabella*http://stream01.arabella-de.vss.kapper.net:8000
+DE: Radio Bonn / Rhein-Sieg*http://ga-stream01.ga-bonn.de:80/live128
+DE: Radio Brocken*http://stream.telvi.de:8000/radiobrocken
+DE: Radio Chiemgau*http://chiemgau.blm.netlantic.net:80/live.mp3
+DE: Radio Cottbus 94.5*http://stream.telvi.de:8000/radio_cottbus
+DE: Radio Fantasy 93.4 FM*http://stream.fantasy.de:8000/radiofantasy.mp3
+DE: Radio Flensburg*http://server4.digital-webstream.de:10885
+DE: Radio Free FM*http://stream.lauschangriff.org:8100
+DE: Radio Gong 96.3*http://radiator.nci.de:8000/high_q
+DE: Radio Hamburg*mms://62.27.47.46/radiohamburg$livestream2.wma
+DE: Radio Hazzard of Darkness*http://radio.hazzardofdarkness.com:8000
+DE: Radio Hitwelle Landkreis Erding*mms://stream.hitwelle.de/hitwelle
+DE: Radio Oberkrain*http://87.118.64.216:8100
+DE: Radio Okerwelle*http://dus.radiostream.de:35575
+DE: Radio Okerwelle*http://radiostream.de/stream/35575.m3u
+DE: Radio Paloma*http://sc1.netstreamer.net:8140
+DE: Radio SAW*mms://62.27.47.47/radiosaw$livestream.wma
+DE: Radio SAW 80er*mms://62.27.47.51/radiosaw$80er
+DE: Radio SAW Neuheiten*mms://62.27.47.51/radiosaw$neu
+DE: Radio SAW Party*mms://62.27.47.51/radiosaw$party
+DE: Radio SAW Pop*mms://62.27.47.51/radiosaw$livestream.wma
+DE: Radio SAW Rock*mms://62.27.47.51/radiosaw$rock
+DE: Radio SWS Norderney*http://s2.onlinestream.de:6420
+DE: Radio Salü*http://62.27.44.59/radiosalue/livestream96s.mp3
+DE: Radio Schwarze Welle*http://85.25.120.73:7500
+DE: Radio Seefunk*http://webradio.radio-seefunk.de:8000
+DE: Radio TEDDY 106.8*http://sc1.streamfox.com:9000
+DE: Radio Ton Bad Mergentheim*http://live.radio-ton.de/live-mgh
+DE: Radio Ton Neckaralb*http://live.radio-ton.de/live-na
+DE: Radio Ton Ostwürttemberg*http://live.radio-ton.de/live-owb
+DE: Radio eWahn*http://steven-dark.com:8000
+DE: Radio fresh80s*http://87.118.64.217:8010
+DE: Radio harmony.fm*mms://62.27.26.40/harmony$livestream2.wma
+DE: Radio im Internet*http://radioiminternet.ham-radio-op.net:8602
+DE: Ramasuri*http://ramasuri.blm.netlantic.net:80/live_ramasuri.mp3
+DE: Rock*http://dude.mp3streams.net/rockgeneralgvl
+DE: RockUnity.com ClubNation*http://91.121.105.34:1054
+DE: RockUnity.com RockUnity*http://91.121.105.34:7077
+DE: RockUnity.com SoundOne*http://91.121.105.34:9090
+DE: Rockantenne*http://mp3.webradio.rockantenne.de:80
+DE: Rockantenne*mms://wms.webradio.rockantenne.de
+DE: Rockland Radio*http://ice.streaming.spacenet.de:80/rockland
+DE: Rocky.FM*http://sc1.netstreamer.net:8020
+DE: Russian Radio*http://play.russian-radio.de:8000
+DE: SR1*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w56a
+DE: SR2*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w58a
+DE: SR3*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w60a
+DE: SWR Cont.Ra*http://62.26.214.248:80/swrcontralive/livestream.mp3
+DE: SWR Cont.Ra*http://62.27.26.45/swrcontralive/livestream.mp3
+DE: SWR1 Baden-Württemberg*http://62.26.214.248/swr1bwlive/livestream.mp3
+DE: SWR1 Baden-Württemberg*http://62.27.44.60/swr1bwlive/livestream.mp3
+DE: SWR1 Rheinland-Pfalz*http://62.27.44.15:80/swr1rplive/livestream.mp3
+DE: SWR1 Rheinland-Pfalz*http://62.27.44.59/swr1rplive/livestream.mp3
+DE: SWR2*http://62.26.214.248:80/swr2live/livestream.mp3
+DE: SWR2*http://62.27.26.45/swr2live/livestream.mp3
+DE: SWR3*http://62.27.44.60/swr3live/livestream.mp3
+DE: SWR3*http://62.27.47.26/swr3live/livestream.mp3
+DE: SWR4 Baden-Württemberg*http://62.26.214.248:80/swr4bwlive/livestream.mp3
+DE: SWR4 Baden-Württemberg*http://62.27.44.60/swr4bwlive/livestream.mp3
+DE: SWR4 Rheinland-Pfalz*http://62.26.214.248:80/swr4rplive/livestream.mp3
+DE: Schwarzwaldradio*http://str31.creacast.com/hitradio_ohr_thema1
+DE: Sound-Generation.FM Club*http://78.159.104.157
+DE: Sound-Generation.FM Extreme*http://78.159.104.154
+DE: Sound-Generation.FM House*http://housestream.sound-generation.fm:80
+DE: Sound-Generation.FM Main*http://217.20.115.91:8000
+DE: StadtRadio Goettingen*http://stream.stadtradio-goettingen.de:8000/stadtradio.mp3
+DE: Suedstars-Radio.de*http://stream1.suedstars-radio.de:8000
+DE: Sunray FM*http://sunray-fm.de:8000
+DE: TIMM House*http://dude.mp3streams.net/timmhouse
+DE: TOP FM*mms://www.top-fm-webstream.de/top_fm
+DE: Techno4ever*http://listen.to.techno4ever.net
+DE: TechnoBase.FM*http://dsl.tb-stream.net:80
+DE: Tiger-Radio!*http://85.25.150.17:8000
+DE: Top 100 Station*http://87.118.78.7:8030
+DE: TranceBase.FM*http://mp3.trb-stream.net
+DE: TrueHipHop.FM*http://truehiphop.dyndns.org:9020
+DE: UnserDing - Schwarz*http://gffstream.ic.llnwd.net/stream/gffstream_gffstream3
+DE: UnserDing - Zukunft*http://gffstream.ic.llnwd.net/stream/gffstream_gffstream2
+DE: Vox Noctem*http://91.121.11.196:13030
+DE: WDR 2*http://gffstream.ic.llnwd.net/stream/gffstream_w17a
+DE: WDR 3*http://gffstream.ic.llnwd.net/stream/gffstream_w21a
+DE: WDR 4*http://gffstream.ic.llnwd.net/stream/gffstream_w18a
+DE: WDR 5*http://gffstream.ic.llnwd.net/stream/gffstream_w19a
+DE: WDR Kiraka*http://gffstream.ic.llnwd.net/stream/gffstream_gffwdr1a
+DE: WE LOVE HOUSE FM*http://we-love-house.fm:8000/stream
+DE: WebRadio Troisdorf*http://80.237.152.110:9000
+DE: WoED.fm*http://stream1-1.woed.de:80
+DE: World of Sunshine*http://s2.global-streaming.net:9500
+DE: Wunschradio.fm*http://stream.wunschradio.de/wunschradio/livestream.mp3
+DE: YOU fm*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w72a
+DE: YOU fm Black*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w75a
+DE: YOU fm Club*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w76a
+DE: YOU fm Rock*http://gffstream.ic.llnwd.net/stream/gffstream_mp3_w77a
+DE: alster radio 106!8 rock 'n pop*http://62.75.132.19
+DE: apollo radio)))*http://217.68.161.157:6300
+DE: bigFM*http://bigfm.radio.de:8000/relay-1444
+DE: delta radio*http://edge.live.mp3.mdn.newmedia.nacamar.net/stbdeltaradio/livestream.mp3
+DE: eRadio One - Stage Blue*http://stage-blue-high.eradio-one.de:62000
+DE: eRadio One - Stage Red*http://stage-red-mid.eradio-one.de:63010
+DE: egoFM*http://h1433204.stratoserver.net:8000/live
+DE: eldoradio*http://eldoweb.eldoradio.de:8000/128
+DE: enSonic.FM*http://stream3.ensonic.fm:8700
+DE: ffn*http://rs35.stream24.org/stream
+DE: gamer-FM.de*http://82.149.224.55:8500
+DE: jenny.fm*http://stream2.jenny.fm:9000
+DE: laut.fm/herrmerktradio*http://stream.laut.fm/herrmerktradio
+DE: laut.fm/travel-trends*http://stream.laut.fm/travel-trends
+DE: love*http://dude.mp3streams.net/love
+DE: memoryradio*http://www.memoryradio.de:4000
+DE: newcomerradio.com*http://87.118.78.3:3150
+DE: oldiestar*http://www.digitalradiostream.de:8000
+DE: on3radio*http://gffstream.ic.llnwd.net/stream/gffstream_w9b
+DE: rockradio.de*http://rockradio.de:8090
+IT: Antenne Südtirol*http://server2.digital-webstream.de:23780

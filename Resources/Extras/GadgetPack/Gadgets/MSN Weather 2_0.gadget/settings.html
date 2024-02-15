@@ -1,0 +1,53 @@
+﻿<!--//
+////////////////////////////////////////////////////////////////////////////////
+//
+//  THIS CODE IS NOT APPROVED FOR USE IN/ON ANY OTHER UI ELEMENT OR PRODUCT COMPONENT.  
+//  Copyright (c) 2006 Microsoft Corporation.  All rights reserved.
+//
+////////////////////////////////////////////////////////////////////////////////
+//-->
+
+<html dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Weather Settings</title>
+    <link href="css/settings.css" rel="stylesheet" type="text/css"/>
+    <script src="js/localizedStrings.js" type="text/javascript" language="javascript"></script>
+    <script src="js/localizedLibrary.js" type="text/javascript" language="javascript"></script>
+    <script src="js/library.js" type="text/javascript" language="javascript"></script>
+    <script src="js/settings.js" type="text/javascript" language="javascript"></script>
+    <script src="js/persistentSettings.js" type="text/javascript" language="javascript"></script>
+   </head>
+  <body onload="setup();">
+    <span id='PleaseWaitLoadingSpinner'></span>
+    <div id="PlaceTitle" class="SettingsTitle"></div>
+    <div id="PlaceCurrent" class="SettingsTitle"></div>
+    <div>
+      <div id="textBoxBackground"></div>
+      <input type="text" id="txtInputPlace" class="TextInputInactiveDefaultText" onkeydown="return textBoxSearch();" onmousedown="doBeginInput()" onblur="doBlurInputBox();" onfocus="doFocusInputBox()" onmouseover="doSetHelperText()"/>
+      <a href="javascript:doMouseUpSearchButton();"  id="btnSearchForPlace" class="btnSearch" onmousedown="doMouseDownSearchButton();" onmouseup="" onmouseover="doMouseOverSearchButton();" onmouseout="doMouseOutSearchButton();" onkeydown="if (event.keyCode==13) { doMouseUpSearchButton(); }"></a>
+      <div id="PlacePossibilities"></div>
+    </div>
+    <input type="hidden" id="WeatherLocationCode" />
+    <input type="hidden" id="WeatherLocation" />
+    <div id="DisplayDegreesRadioSetDiv">
+      <table id="DisplayDegreesRadioSet" cellpadding="0" cellspacing="0">
+        <tr>
+          <td colspan="2">
+            <span id="lgdDisplayTemperatureIn" class="SettingsTitle"></span> 
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input id="radioFahrenheit" type="radio" name="radioDegrees" value="F" /><label id="lblFahrenheit" class="RadioDegree" for="radioFahrenheit"></label>
+          </td>
+        </tr>
+        <tr>        
+          <td>
+            <input id="radioCelsius" type="radio" name="radioDegrees" value="C" /><label id="lblCelsius" class="RadioDegree" for="radioCelsius"></label>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

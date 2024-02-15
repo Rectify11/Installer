@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>MiniRadio</name>
+  <namespace>
+    Ron Rodermond
+  </namespace>
+  <version>
+    0.9.9.8
+  </version>
+  <author name="Ron Rodermond">
+    <info url="http://www.miniradio.nl/" text="Website"/>
+    <logo src="ron.png"/>
+  </author>
+  <copyright>
+    2007-2021
+  </copyright>
+  <description>Listen with comfort to this radio player with the ability to add all stations you want.</description>
+  <icons>
+    <icon height="48" width="48" src="icon.png"/>
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="miniradio.html"/>
+      <permissions>
+        Full
+      </permissions>
+      <platform minPlatformVersion="1.0"/>
+      <defaultImage src="drag.png"/>
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

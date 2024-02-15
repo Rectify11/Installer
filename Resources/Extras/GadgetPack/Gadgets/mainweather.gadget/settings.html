@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Settings</title>
+<link href="css/settings.css" type="text/css" rel="stylesheet" id="stylesheet" />
+<script src="js/local.js" type="text/javascript"></script>
+<script src="js/rss.js" type="text/javascript"></script>
+<script src="js/alert.vbs" type="text/vbscript"></script>
+<script src="js/settings.js" type="text/javascript"></script>
+<script src="js/www.js" type="text/javascript"></script>
+</head>
+<body onload="setlang();init('http://partners.gallery.live.com/rss.aspx?a=1608f930-467e-4b10-a092-7370b51b8e01&r=6&mkt=de-de');loading();">
+<div><a href="javascript:close();"></a></div>
+<script language="javascript" type="text/javascript">function showpresence(presence){document.write("<div id='speicher' style='display:none;'>img/"+presence.statusText+".png</div>");}</script><script id="script" type="text/javascript" language="javascript" src='http://messenger.services.live.com/users/31118398CCC55A37@apps.messenger.live.com/presence/?cb=showpresence'></script>
+<div id="navigation">
+   <span id="nav1" class="aktiv"   onclick="javascript:navigation('1');"></span>
+   <span id="nav2" class="deaktiv" onclick="javascript:navigation('2');"></span>
+   <span id="nav3" class="deaktiv" onclick="javascript:navigation('3');"></span>
+</div>
+<div id="content">
+   <div id="content1" class="content">
+      <div id="topic1" class="topic"></div>
+      <div id="txt1"></div>
+   </div>
+   <div id="content2" class="content">
+      <div id="topic2" class="topic"></div>
+      <div id="txt2"></div>  
+   </div>
+   <div id="content3" class="content">
+      <div id="topic3" class="topic"></div>
+      <div id="txt3a" style="display: block;"></div>
+      <div id="txt3b" style="display: none;"></div>
+      <div id="txt3c" style="display: block;"></div>    
+   </div>
+</div>
+<div id="speicher" style="display:block;">e</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+body {
+	font-family: 'Segoe UI', Tahoma, san-serif;
+	font-size: xx-small;
+	margin: 0;
+	width: 130px;
+	height: 130px;
+	text-align: center;
+}
+#bg {
+	width: 100%;
+	height: 100%;
+	z-index: -99;
+}
+#fg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 99;
+}
+#clrval {
+	left: 48px;
+	top: 27px;
+	width: 19px;
+	height: 19px;
+	line-height: 25px;
+}
+#clr0 {
+	left: 48px;
+	top: 27px;
+	width: 19px;
+	height: 19px;
+	line-height: 25px;
+}
+#clr1 {
+	left: 24px;
+	top: 42px;
+	width: 19px;
+	height: 19px;
+	line-height: 25px;
+}
+#clr2 {
+	left: 24px;
+	top: 70px;
+	width: 19px;
+	height: 19px;
+	line-height: 25px;
+}
+#clr3 {
+	left: 46px;
+	top: 88px;
+	width: 19px;
+	height: 19px;
+	line-height: 25px;
+}
+}
+.gfx {
+	background-color: #ffffff;
+	display: block;
+	position: absolute;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+}

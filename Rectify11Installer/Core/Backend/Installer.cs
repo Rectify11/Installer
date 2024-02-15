@@ -63,6 +63,17 @@ namespace Rectify11Installer.Core
             // some random issue where the installer's frame gets extended
             if (!Theme.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
 
+            // extract files, delete if folder exists
+            frm.InstallerProgress = "Extracting files...";
+            Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "files"), false);
+             if (!Helper.SafeFileOperation(
+                 Path.Combine(Variables.r11Folder, "files.7z"),
+                 Properties.Resources.files,
+                 Helper.OperationType.Write))
+                 return false;
+
+            // extract the 7z
+            Helper.SvExtract("files.7z", "files");
 
             // theme
             if (InstallOptions.InstallThemes)
@@ -90,6 +101,8 @@ namespace Rectify11Installer.Core
                 File.Copy(Path.Combine(Variables.r11Files, "duires.dll"), Path.Combine(Variables.sys32Folder, "duires.dll"), true);
             }
 
+            InstallChangelogApp();
+
             frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.creatingUninstaller;
             Common.CreateUninstall();
 
@@ -101,6 +114,14 @@ namespace Rectify11Installer.Core
             Common.Cleanup();
             Logger.CommitLog();
             return true;
+        }
+
+        private void InstallChangelogApp()
+        {
+            // Register RectifyStart.exe to run on startup
+            var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+            key?.SetValue("RectifyStart", Path.Combine(Variables.r11Folder, "RectifyStart.exe"), RegistryValueKind.String);
+            key.Close();
         }
         #endregion
     }

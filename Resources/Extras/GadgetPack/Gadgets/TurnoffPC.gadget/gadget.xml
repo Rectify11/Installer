@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<gadget> 
+	<name>Turn off PC</name> 
+	<namespace>Windows.sdk</namespace> 
+	<version>1.1</version> 
+	<author name="Carlos A. Prialé Condori"> 
+		<logo src="imgs/logopc.png"/> 
+	</author> 
+	<copyright>&#169; 2010</copyright> 
+	<description>Turn off, Restart or Lock your computer at the time you want to do</description> 
+	<icons> 
+		<icon height="48" width="48" src="imgs/logo.png" /> 
+	</icons> 
+	<hosts> 
+		<host name="sidebar"> 
+			<base type="HTML" apiVersion="1.0.0" src="index.html" /> 
+			<permissions>full</permissions> 
+			<platform minPlatformVersion="1.0" /> 
+			<defaultImage src="drag.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host> 
+	</hosts> 
+</gadget>

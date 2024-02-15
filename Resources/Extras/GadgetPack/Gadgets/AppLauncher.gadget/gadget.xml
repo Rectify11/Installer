@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>App Launcher</name>
+  <namespace>Dean Laforet</namespace>
+  <version>3.3.4.6</version>
+  <author name="Dean Laforet">
+    <info url="http://www.aeroxp.org/board/index.php" />
+    <logo src="images/logo.png" />
+  </author>
+  <copyright>&#169; 2007</copyright>
+  <description>Launch apps easily from the sidebar.</description>
+  <icons>
+    <icon height="48" width="48" src="images/icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="launcher.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="0.3" />
+      <defaultImage src="drag.png" />
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+  </hosts>
+</gadget>

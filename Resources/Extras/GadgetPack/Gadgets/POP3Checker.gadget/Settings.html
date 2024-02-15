@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Settings</title>
+	<style type="text/css">
+		body{ 
+			width:250;
+			height:205;
+		}
+	</style>
+	<script type="text/jscript">
+	function init() {
+		var gOpacitySetting = System.Gadget.Settings.read("gOpacity");
+		var pUser = System.Gadget.Settings.read("pUser");
+		var pPass = System.Gadget.Settings.read("pPass");
+		var pServer = System.Gadget.Settings.read("pServer");
+	
+		if (gOpacitySetting != "")
+			gOpacity.value = gOpacitySetting;
+	
+		if (pUser != "")
+			User.value = pUser;
+	
+		if (pPass != "")
+			Pass.value = pPass;
+	
+		if (pServer != "")
+			Server.value = pServer;
+	
+	}
+
+	System.Gadget.onSettingsClosing = SettingsClosing;
+	function SettingsClosing(event)
+	{
+ 		if (event.closeAction == event.Action.commit) 
+		{
+			System.Gadget.Settings.write("gOpacity", gOpacity.value);
+			System.Gadget.Settings.write("pUser", User.value);
+			System.Gadget.Settings.write("pPass", Pass.value);
+			System.Gadget.Settings.write("pServer", Server.value);
+		
+		}
+		
+		event.cancel = false;
+	}
+	</script>
+</head>
+<body onload="init();">
+	<span id="mySpan" style="font-family: Segoe UI; font-size: 10pt;">
+	Username: <input name="User" type="text" style="width: 230;"/><br />
+	Password: <input name="Pass" type="password" style="width: 230;"/><br />
+	Server:   <input name="Server" type="text" style="width: 230;"/><br />
+	Gadget Opacity:
+	  <select name="station" id="gOpacity" style="width: 230;">
+		        <option value="100">100 (visibly opaque)</option>
+        	    <option value="90">90</option>
+                <option value="80">80</option>
+                <option value="70">70</option>
+                <option value="60">60</option>
+                <option value="50">50</option>
+                <option value="40">40</option>
+                <option value="30">30</option>
+                <option value="20">20</option>
+                <option value="10">10</option>
+                <option value="0.01">0 (transparent)</option>
+          </select><br />
+	</span>
+</body>
+</html>

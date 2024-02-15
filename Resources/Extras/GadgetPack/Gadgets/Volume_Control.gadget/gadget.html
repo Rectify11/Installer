@@ -1,0 +1,55 @@
+﻿<!--//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+     Original Volume Control gadget created and developed by Orbmu2k http://blog.orbmu2k.de
+     Email: sidebargadget@orbmu2k.de
+      
+     Background designs created by SFkilla ( Johan Bourtembour )
+     Email: sfkilla@thehobbylounge.com 
+     All Rights Reserved Copyright © 2007
+     http://www.thehobbylounge.com 
+    
+     Modification of the Volume Control gadget by Morpheus ( Patrice Billon ) © 2007
+     Design modification + multiple skin selection    
+     Email: billonp@hotmail.fr
+     http://www.morpheusvista.deviantart.com
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-->
+<html>
+<head>
+	<title>VolumeControl</title>
+	<link href="gadget.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" language="javascript" src="libhelper.js"></script>
+	<script type="text/javascript" language="javascript" src="gadget.js"></script>
+</head>
+<body onload="init();" onunload="terminate()" >
+    <div ondblclick="runMixer();" onmousedown="muteVolume();" onmousemove="onMouseMove();" onmousewheel="changeVolume();">
+        <g:background id="background" src="background.png" style="width:130;height:80;" />
+        <img id="win10back" src="background-win10.png" style="position:absolute;top:0px; left:0px;-ms-interpolation-mode: nearest-neighbor;" />
+
+        <div id="txtVolume" style="position:absolute; color:White; top:7px; left:34px;"></div>
+
+        <img id="imgSpeaker" src="kmix.png" style="position:absolute;top:8px; left:8px; width:24px; height:24px;" />
+        <img id="imgCross" src="cross.png" style="position:absolute;top:22px; left:18px; width:12px; height:12px;" />
+
+
+        <img src="volback.png" style="position:absolute;top:24px; left:13px;width:102px; height:30px;" />
+        <div id="divvol" style="position:absolute;overflow:hidden; width:64px; top:24px; left:13px;">
+            <img id="vol" src="vol.png" style="width:102px; height:30px;"/>
+        </div>
+
+        <img src="peakback.png" style="position:absolute;top:58px; left:13px;" />
+        <div id="divpeakleft" style="position:absolute;overflow:hidden; width:50px; top:49px; left:13px;">
+            <img id="peakleft" src="peak.png" />
+        </div>
+
+        <img src="peakback.png" style="position:absolute;top:64px; left:13px;" />
+        <div id="divpeakright" style="position:absolute;overflow:hidden; width:50px; top:55px; left:13px;">
+            <img id="peakright" src="peak.png" />
+        </div>
+    </div>
+</body>
+
+
+</html>

@@ -1,0 +1,231 @@
+538 Dance Department*http://development.radiodigitaal.nl/frame/asx/247dance/247dance.asx
+538 Jumpstyle Radio*http://development.radiodigitaal.nl/frame/asx/jumpstyle/jumpstyle.asx
+538 top 40*http://development.radiodigitaal.nl/frame/asx/nonstop40/nonstop40.asx
+8FM*http://www.stream-server.nl/streams/radio8fm/zuidoost-breedband.wax
+AalburgFM*http://aalburgfm.dahstream.nl/stream.m3u
+Aarschok radio*http://www.garnierstreamingmedia.com/asx/aardschok.asp
+Action Radio*http://www.actionradio.nl/listen.asx
+Alpenmelodie*http://testserver1.ip-exchange.de/Alpenmelodie-Live
+Antena1*http://195.245.168.21/antena1
+Arion 2.Laikos*http://www.arionradio.com/live/arionlaikos.asx
+AVRO Classic: Het beste van het beste*http://shoutcast.omroep.nl:8072/
+AVRO Easy Listening*http://145.58.33.31:8058
+AVRO Operette*http://shoutcast.omroep.nl:8060/
+Avro Steenen Tp. ´50*http://shoutcast.omroep.nl:8064/
+Avro Steenen Tp. ´60*http://shoutcast.omroep.nl:8066/
+Azona Internet Radio uit Hoogeveen*http://83.149.82.138:8032
+b92*http://xs3.b92.net:7999/radio-b92.mp3.m3u
+Back to the Oldschool*http://shoutcast.omroep.nl:8056/
+BBC XTRA*http://www.bbc.co.uk/1xtra/realmedia/1xtra.asx
+Be one radioa*http://www.beoneradio.be/stream/listen.asx
+Bingo FM*http://media.rtvutrecht.nl/bingofm_hi
+BM Radio*http://www.bmradio.net/playlist.asx
+BOB-FM*http://www.bobradio.fm/live.asx
+Bonanza-radio*http://www.bonanza-radio.nl/luisteren/rbo.asx
+Branding RTV*http://brandingrtv.nl/liveluisteren/branding.asx
+Bremen 4*http://www.radiobremen.de/stream/live.php?welle=bremenvier
+Buureradio*http://www.dmd2.net/sc/pl/buureradio.m3u
+Calimero radio*http://hetcalimero10.dahstream.nl:8036/
+Candlelight*http://www.candlelight.nl/Candlelight_playlist.m3u
+CBC Radio 2 Toront0*http://mfile2.akamai.com/9617/live/reflector:36813.asx?bkup=36814
+City FM Rockballads*http://stream.nxs.nl/asx/cityfm/stream2
+Classic 21*http://www.classic21.be/rtbf_2000/radios/21128.m3u
+Club 977 (high)*http://www.club977.com/club977.asx
+Club 977 HITS*http://www.977music.com/tunein/web/hitz.asx
+CroozeFM*http://217.22.60.19:2590
+D.I. Chillout*http://www.di.fm/wma/chillout.asx
+D.I. house*http://www.di.fm/wma/house.asx
+D.I. Trance*http://www.di.fm/wma/trance.asx
+Dance Groove Radio*http://server3.digital-webstream.de:12160/
+DBS radio*http://www.dbsradio.net/dbslive.asx24/7 Nonstop Dance Music
+DDance*http://radio.ddance.fm/128.asx
+Deep FM*http://luister.deep.fm/deepfm.asx
+Delta FM*http://www.deltafm.nl/stream/live.asx
+Deltapiraat*http://www.deltapiraat.nl/stream/live.asx
+Deutsche Welle*http://metafiles.gl-systemhaus.de/dw/radio_en_50.asx
+DigitaalHitFm*http://www.digitaalhitfm.com/digitaalhitfm.wax
+Digitally Imported*http://www.di.fm/wma/vocaltrance.asx
+DJ Doboy*http://www.djdoboy.com/www.djdoboy.com.m3u
+Dolfijn FM *http://dolfijnfm.dahstream.nl/wma8250.asx
+Donna Hit Bits*http://mp3.streampower.be/donnahitbits-high
+Double z*http://www.internetpiraten.com/wma192.wax
+DR Allegro*http://www.dr.dk/netradio/metafiler/asx/DR_Allegro_128.asx
+DR Barometer*http://www.dr.dk/netradio/metafiler/asx/DR_Barometer_128.asx
+DR Coco*http://www.dr.dk/netradio/metafiler/asx/DR_Coco_128.asx
+DR DanskTop*http://www.dr.dk/netradio/metafiler/asx/DR_DanskTop_128.asx
+DR Electronica*http://www.dr.dk/netradio/metafiler/asx/DR_Electronica_128.asx
+DR Evergreen*http://www.dr.dk/netradio/metafiler/asx/DR_Evergreen_128.asx
+DR HipHop*http://www.dr.dk/netradio/metafiler/asx/DR_HipHop_128.asx
+DR Jazz*http://www.dr.dk/netradio/metafiler/asx/DR_Jazz_128.asx
+DR Klassisk*http://www.dr.dk/netradio/metafiler/asx/DR_Klassisk_128.asx
+DR MGP*http://www.dr.dk/netradio/metafiler/asx/DR_MGP_128.asx
+DR Pop DK*http://www.dr.dk/netradio/metafiler/asx/DR_Pop_DK_128.asx
+DR R*http://www.dr.dk/netradio/metafiler/asx/DR_RogB_128.asx
+DR Soft*http://www.dr.dk/netradio/metafiler/asx/DR_soft_128.asx
+DR Spillemand*http://www.dr.dk/netradio/metafiler/asx/DR_Spillemand_128.asx
+DR World*http://www.dr.dk/netradio/metafiler/asx/DR_World_128.asx
+Drechtstad FM*http://www.rtvdordrecht.nl/radio/DrechtstadFMwma.asx
+DRS Musikwelle*http://asx.skypro.ch/radio/internet-64/mw531.asx
+E2-Radio*http://stream01.streamhier.nl:9000
+EvilLight FM*http://evillightfm.dahstream.nl/stream.asx
+Falcon FM*http://www.falconfm.nl/site/radio/falcon.asx
+Fear FM*http://internetradio.fearfm.nl/customplayer/fearfm_hard_high.asx
+FFN Niedersachsen*http://www.ffn.de/tune-in/tunein_ffn.asx
+Flaix FM*http://flaix.stream.flumotion.com/flaix/FLAIXfm.mp3.m3u
+FM Goud*http://www.powerstationlimburg.be/fmgoud/html/live.asx
+Fresh fm*http://www.fresh.fm/media/audio/FreshFM.asx
+Friday Madness Radio*http://stream.fm-r.nl
+funradiofm*http://78.157.192.88:8046
+GigantFM*http://www.gigantfm.nl/listen/listen.asx
+Hardcorenetworks.*http://www.hardcorenetworks.co.uk/listen.m3u
+Het Gelders Geluid*http://www.hetgeldersgeluid.nl/listen.asx
+Heuvelland Express*http://heuvellandexpress.dahstream.nl/stream.m3u
+HitFm Alkmaar*http://hit-fm.dahstream.nl/stream.asx
+Holland FM*http://www.sonicmedia.nl/hollandfm/hfm_wmp.asx
+Hot 108 jamz*http://www.hot108.com/hot108_128k.asx
+Hot FM*http://www.um.com.my/tv_channels/malaysia/radio/hotfm.asx
+Hotmixradio Hit*http://www.hotmixradio.fr/stream/hotmixhit.asx
+Hotradio Plus*http://93fm.hotradio.nl/html/streamplus128.asx
+Hotradio*http://93fm.hotradio.nl/html/stream93fm128.asx
+iFM*mms://info-ss.dagupan.com/ifm
+Indigo*http://indigo.dahstream.nl/stream.asx
+Inspired Faith Radio*http://ifbn.inspiredfaith.org/ifbn_israel
+Internetradiopiraat*http://213.189.27.196:8148
+Jumopstation*http://www.jumpstation-be.nl02.members.pcextreme.nl/jumpstation.asx
+Jumpstation*http://development.radiodigitaal.nl/frame/asx/jumpstyle/jumstyle.asx
+Keizerstad Radio*http://www.stream-server.nl/streams/Nijmegen.wax
+kempenfm*http://www.kempen.fm/listenKfm.asx
+Ketnet Radio*http://mp3.streampower.be/ketnetradio-high.mp3
+Killed By Hardcore*http://205.188.215.227:8098
+Klara continuo*http://mp3.streampower.be/klaracontinuo-high
+Klara*http://mp3.streampower.be/klara-mid
+LocalFM*http://stream.nxs.nl/asx/local/Local-FM-livestream
+Loe FM*http://www.xs4all.tv/allediensten/livestream/play.asx?alias=LOEFM
+lorali*http://78.157.192.21:8030
+Lounge-Radio*mms://wms.global-streaming.net/lounge-radio
+Maasland Radio*icyx://84.244.180.137:8012
+Mascotte Radio*http://www.mascotteradio.nl/plugins/128.asx
+Metro Radio*http://earth.radica.com/metro-70
+Mexico fm*http://www.stream-server.nl/streams/mexicofm.wax
+Midpoint*http://midpoint.a-side.nl:8000
+Mix Fm Leuven België*http://www.mixfm.be/live.asx
+Musica Religiosa*http://www.omroep.nl/live/ikon_musicareligiosa.asx
+Neo zwei*http://stream-02.zic-network.ch:8000/neo2.m3u
+NGK*http://audioserver.nl/stream/?id=221
+NieuwkoopFM*http://www.nieuwkoopfm.nl/wma128.asx
+NorthSide FM*http://realitymod.nl:8000
+Nostalgie*http://player.nostalgie.fr/V4/nostalgie/nostalgie.asx
+Omroep Brabant*mms://213.75.12.106/omroepbrabant_64k
+Omroep Groesbeek*http://www.omroepgroesbeek.nl/live.asx
+Omroep Venlo*http://streaming.omroepvenlo.nl/omroepvenlofm
+Optimaal fm*http://optimaalfm-05.isp-services.nl:7007/optimaalfm
+Oui FM*http://broadcast.infomaniak.ch/ouifm-high.mp3.asx
+Pam Radio*http://212.48.126.106/Newtone
+Peiratikos*http://listen.onestreaming.com/pls/peiratikos.pls
+Positive hits*http://zradio.org/streams/Z88-64S.asx
+Powerhitz*http://www.powerhitz.com/powerhitz.asx
+Puls Radio*http://www.pulsradio.com/pls/puls-wmp.asx
+PulsRadio Version 8.0*http://stream80.pulsradio.com:6000
+Q-Music NL*http://www.q-music.nl/asx/q-music.asx
+Radio 2 Limburg*http://mp3.streampower.be/ra2lim-high
+Radio 350 Rijssen-Holten*http://www.radio350.nl/radio350.asx
+Radio 538*http://garnierstreamingmedia.com/asx/radio538.asp
+Radio 6*http://www.omroep.nl/live/nieuw-concertzender-bb.asx
+Radio ABC*http://200.2.165.7:8000
+Radio Centraal*http://shoutcast01.edpnet.net:10370/
+Radio Columbia*http://www.radiocolumbia.nl/wma9850.asx
+Radio Continu*http://www.radiocontinue.nl/winamp/wma.asx
+Radio Decibel Amsterdam*mms://212.61.66.79/Radio Decibel Amsterdam
+Radio Direct 92.7*http://Live921.hotwavestreams.com:8000
+Radio Donna*http://mp3.streampower.be/donna-high
+Radio Europe*http://streaming.cashmoneybrothers.be:8046
+Radio Flevoland*http://streams.omroepflevoland.nl:8000/flevoland64k.m3u
+Radio fruz*http://radiofruz.com/modules/mod_shoutcastextended/listen.asx
+Radio Garuda*http://78.157.192.21:8010
+Radio Hoyer*http://www.radiohoyer.com/streaming/hoyer1.php
+Radio Italia*mms://radioitalia.wm.p1.str3.com/rditaliahq
+Radio Karnten*mms://gcssrv.pkf.speednet.at/wsx/oe2ktn
+Radio Kontakt*mms://audio.kontaktfm.nl/radiokontakt
+Radio libra*http://radiolibra.dahstream.nl:8266
+Radio Liechtenstein*http://88.82.102.9:8000/live
+Radio M*http://media.rtvutrecht.nl/radiomutrecht_hi
+Radio M-Utrecht*http://media.rtvutrecht.nl/radiomutrecht_hi
+Radio Mi Amigo *http://mystreamradio.com:6100
+Radio Moonlight*http://www.radiomoonlight.nl/wma8010.asx
+Radio Noord Holland*http://stream.rtvnh.nl/RNH/
+Radio Norvicus*http://www.radionorvicus.nl/uitzending/Radio Norvicus.asx
+Radio Oberosterreich*mms://212.33.55.236/radioooe
+Radio Paradise*http://www.radioparadise.com/musiclinks/rp_128-5.m3u
+Radio Peel en Maas*http://www.xs4all.tv/play.asx?alias=peelmaas
+Radio Rembrandt*http://213.193.251.58:8000/radiorembrandt.m3u
+Radio Rijmond*mms://vogelzang.nijmegen.internl.net/radiorijnmond
+Radio Rosita*http://listen.rosita.nl:8000
+Radio Salzburg*mms://streaming.conova.com/ORF_Salzburg_live
+Radio seven*http://www.radioseven.se/r7_kabel.asx
+Radio Simone*http://simonefm.ic-stream.nl:7082
+Radio Stad Den Haag 97.2 FM*http://213.132.182.120:80
+Radio Steiermark*mms://stream2.orf.at/radio_stmk
+Radio Subasio*http://www.xdevel.com/radio/subasio.asx
+Radio Swiss Jazz*http://www.radioswissjazz.ch/live/mp3.asx
+Radio Tirol*mms://stream4.orf.at/radio_tirol
+Radio traditional*mms://38.117.93.10/traditional
+Radio Voralberg*mms://stream0.orf.at/vbglive
+Radio vorarlberg*http://your.orf.at/vbgwebcam/radio/radiovbg_32.m3u
+Radio Vukovar *mms://wms.iskon.hr/Hrvatski radio Vukovar
+Radio Wien*mms://stream2.orf.at/radio_wien
+Radio-bremar*http://85.214.121.173:8000/
+Radio-Chatmee*http://server3.ic-stream.nl:6134/
+Radio5FM*http://www.happyfm.nl/wma128.wax
+RadioNoord*http://www.rtvnoord.nl/stream/radio.asx
+Reflex FM*http://live.reflexfm.nl/live.wax
+Reformatorische omroep*http://212.45.52.128:8000/ro-bb
+RgrFm*http://www.rgrfm.be/rgrsite/stream/rgrstreaming.php?id=wmp
+Right on scales*http://tess.fast-serv.com:9312/
+RightOnScales Reggae radio*http;//www.radio.rightonscales.com
+RISING FLOW RADIO*http://luister.risingflowradio.nl/windows/
+Rix FM*http://www.rixfm.com/stream/stream.asx
+RMC. - 60*http://www.radiomontecarlo.net/Radio/asx/rmc60.asx
+RMC. - 70*http://www.radiomontecarlo.net/Radio/asx/rmc70.asx
+RMC. - 80*http://www.radiomontecarlo.net/Radio/asx/rmc80.asx
+RMC. - 90*http://www.radiomontecarlo.net/Radio/asx/rmc90.asx
+RMC. - Film*http://www.radiomontecarlo.net/Radio/asx/rmc_film_64.asx
+RMC. The best*http://www.radiomontecarlo.net/Radio/asx/thebest.asx
+Rockklassiker*http://webbradio.rockklassiker.se/playlist.aspx?uselive=mms://streaming.sbsradio.se/03872_Rockklassiker_high
+Rosita*http://listen.rosita.nl:8000/
+RTE2*http://dynamic.rte.ie/av/live/radio/2fm.asx
+RTV Rijnmond*mms://vogelzang.nijmegen.internl.net/radiorijnmond
+Simone fm*http://simonefm.ic-stream.nl:7082/
+Skyrock*http://cache.yacast.fr/V4/skyrock/skyrock.asx
+SLAM!FM*http://www.true.nl/streams/slamfmlivestream.asx
+Somafm*http://somafm.com/wma128/groovesalad.asx
+Springsteen radio*http://bruce.springsteenradio.com:9000
+stadsradio Breda*http://icecast.streamone.nl:9023/live
+Stadsradio Delft*http://80.61.184.145:85/broadwave.m3u?src=1
+Studio Brussel*http://mp3.streampower.be/stubru-high
+Techno4ever*http://www.techno4ever.net/t4e/stream/dsl_listen.asx
+Topradio Topgeneration*http://ns25042.ovh.net:8000
+Topradio*http://ns24907.ovh.net:8000
+Trendy FM*http://www.trendyfm.be/stream/trendystream.asx
+UJALA*mms://wm0.xs4all.nl/ujala/
+Urk FM*http://www.urk.fm/urkfm.asx
+Uruzgan.fm*http://81.173.3.138:80/
+V-radio*http://www.garnierstreamingmedia.com/asx/v-radio.asp
+Veronica 192*http://lasermedia.nl:80/veronica192
+Virgin Clasic Rock*http://player.virginradio.co.uk/core/audio/wmp/live.asx?service=vcbb
+Volksmusikanten*http://www.volksmusikanten.de/live/live.asx
+Vpro3voor12centraal*http://www.omroep.nl/live/vpro3voor12radioalternative.asx
+VRT Radio 1*http://mp3.streampower.be/radio1-high
+VRT Radio 2 West Vlaanderen*http://mp3.streampower.be/ra2wvl-high
+VRT Sporza*http://mp3.streampower.be/sporza-high
+Wazee*http://www.wazee.org/128.asx
+WDR-4*http://www.wdr.de/wdrlive/media/wdr4-wm32.asx
+Wdr4*http://www.wdr.de/wdrlive/media/wdr4-wm32.asx
+Wereldomroep*http://www.rnw.nl/distrib/realaudio/ram/live/rnw_live_1.asx
+Westfriesland Radio*http://78.157.192.62:8074
+Wfuv*http://www.wfuv.org/audio/wfuvlive.asx
+Wild FM*http://www.wildfm.nl/wildfm.asx
+WWOZ*http://wwoz-wm.streamguys.com/wwoz
+XFM*http://broadband.xfm.nl:8100/
+XNOIZZ*http://www.omroep.nl/live/eo-ronduitwebradio.asx
+YOU FM*mms://195.238.86.58/YouFm
+ZoetermeerFM*mms://flakkeehost.nl/ZoetermeerFM

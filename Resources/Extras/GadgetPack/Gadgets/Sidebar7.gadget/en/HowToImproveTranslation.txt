@@ -1,0 +1,7 @@
+Hi,
+the localization of your language may be mixed with some english texts. You are welcome to complete the translation!
+Go one folder up, then to the folder with your languagecode, open Localized.js with a texteditor and translate the english texts (only text between two "quotation marks"). You can also check the existing translation for errors.
+
+Dont forget to send me the file via the feedback button or to 7sidebar [at] web.de ;) 
+
+Thanks!

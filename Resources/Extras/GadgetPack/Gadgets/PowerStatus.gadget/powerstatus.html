@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Power Status</title>
+    <style type="text/css">
+        body {
+            font-family: Segoe UI, Tahoma, Sans-Serif;
+            width: 130px;
+            height: 60px;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+    <script type="text/javascript" language="javascript" src="powerstatus.js"></script>
+</head>
+<body onload="AA();" ondblclick="AF();">
+    <g:background id="At" src="images/backgrounds/orb_back.png" style="position:absolute;top:0;left:0;width:130;height:60;z-index:-2" />
+    <img id="At_" src="images/backgrounds/orb_back_.png" style="position:absolute;top:0px; left:0px;-ms-interpolation-mode: nearest-neighbor;" />
+    <div id="Au" style="position:absolute;top:6;left:24;width:118;height:16;color:White;font-size:9pt;font-weight:bold;font-family:Candara;overflow:hidden;">Unknown</div>
+    <div id="Av" style="position:absolute;top:35;left:93;width:30;color:White;font-size:12pt;font-family:Candara;text-decoration:none;font-weight:bold;text-align:center;">89%</div>
+    <div id="Aw" style="position:absolute;top:21;left:6;color:White;font-size:8pt;font-family:Candara;text-decoration:none;font-style:italic;">~02:55h remaining</div>
+    <img id="Ax" src="images/status/bat16net.png" ondblclick="AF();" style="position:absolute;z-index:1;top:6;left:6;" />
+    <img id="Ay" src="images/battery/bat0.png" ondblclick="AF();" style="position:absolute;z-index:4;top:8;left:98;" />
+    <img id="Az" src="images/battery/bat_ac.png" ondblclick="AF();" style="position:absolute;z-index:5;top:6;left:109;" />
+    <img id="BA" src="images/profiles/highperf_d.png" onclick="AJ();" style="position:absolute;z-index:6;top:35;left:6;cursor:pointer;" />
+    <img id="BB" src="images/profiles/balanced_d.png" onclick="AK();" style="position:absolute;z-index:6;top:35;left:35;cursor:pointer;" />
+    <img id="BC" src="images/profiles/pwrsav_d.png" onclick="AL();" style="position:absolute;z-index:6;top:35;left:64;cursor:pointer;" />
+</body>
+</html>

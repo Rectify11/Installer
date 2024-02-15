@@ -1,0 +1,13 @@
+﻿body{
+	font-family: Segoe UI;
+	font-size:10;
+	width:130px;
+	height:186px;
+	margin:0px;
+	padding:0px;
+}
+#hr1,#hr2,#hr3
+{
+	border-bottom: 1px solid #457081;
+	margin-bottom: 5px;
+}

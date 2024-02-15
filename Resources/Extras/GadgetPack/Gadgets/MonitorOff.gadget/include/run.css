@@ -1,0 +1,48 @@
+/* CSS Document */
+
+body {
+height:  98px;
+width:  135px;
+text-align:  center;
+margin:  0px;
+color:  #CCCCCC;
+font-size:  9px;
+font-family:  Verdana;
+margin-top: 4px;
+
+}
+
+#main {
+color:  #CCCCCC;
+font-size:  9px;
+font-family:  Verdana;
+z-index: auto;
+}
+
+#Submit1 {
+font-size:  9px;
+position: absolute;
+top: 0px;
+left: 0px;
+height: 98px;
+width: 135px;
+background-color: transparent;
+
+}
+
+#runTag {
+border:  1px solid #AAAAEE;
+font-size:  9px;
+font-family: 'Segoe UI';
+background-color:  #FFFFFF;
+color:  #000000;
+width: 1px;
+}
+
+a {
+border: none;
+}
+
+img {
+border: none;
+}

@@ -1,0 +1,15 @@
+body
+{
+	width: 130px;
+	height: 120px;
+	margin: 0;
+	padding: 0;
+}
+#dpi
+{
+  height: 1in;
+  left: -100%;
+  position: absolute;
+  top: -100%;
+  width: 1in;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gadget>
+	<name>Drive Activity</name>
+	<version>1.3.0.0</version>
+	<author name="Sascha Katzner">
+		<info url="sascha.katzner.de"/>
+		<logo src="images/logo.png"/>
+	</author>
+	<copyright>&#169; 1977-2277 Sascha Katzner</copyright>
+	<description>Displays activity of your hard drives.</description>
+	<icons>
+		<icon height="38" width="64" src="images/icon.png"/>
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0" src="gadget.html"/>
+			<permissions>Full</permissions>
+			<platform minPlatformVersion="1.0"/>
+			<defaultImage src="drag.png"/>
+      <autoscaleDPI>true</autoscaleDPI>
+    </host>
+	</hosts>
+</gadget>
