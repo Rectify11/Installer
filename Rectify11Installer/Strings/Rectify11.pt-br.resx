@@ -3,20 +3,20 @@
   <!-- 
     Microsoft ResX Schema 
     
-    Version 2.0
+    Versão 2.0
     
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
+    Os principais objetivos desse formato são permitir um formato XML simples 
+    simples que seja legível principalmente por humanos. A geração e a análise dos 
+    vários tipos de dados são feitos por meio das classes TypeConverter 
+    associadas aos tipos de dados.
     
-    Example:
+    Exemplo:
     
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourcIeWriter, System.Windows.Forms, ...</resheader>
     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
@@ -24,25 +24,25 @@
     </data>
     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
+        <comment>Isso é um comentário</comment>
     </data>
                 
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
+    Há um grande número de linhas de "resheader" que contêm pares simples de 
+    pares nome/valor.
     
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
+    Cada linha de dados contém um nome e um valor. A linha também contém um 
+    tipo ou mimetype. O tipo corresponde a uma classe .NET que oferece suporte à conversão de 
+    conversão de texto/valor por meio da arquitetura TypeConverter. 
+    As classes que não são compatíveis com isso são serializadas e armazenadas com o conjunto 
+    definido como mimetype.
     
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
+    O mimetype é usado para objetos serializados e informa ao 
+    ResXResourceReader como dispersar o objeto. No momento, isso não é 
+    extensível. Para um determinado mimetype, o valor deve ser definido de acordo:
     
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
+    Observação - application/x-microsoft.net.object.binary.base64 é o formato 
+    que o ResXResourceWriter gerará, mas o leitor pode ler qualquer 
+    ler qualquer um dos formatos listados abaixo.
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
@@ -151,10 +151,10 @@
     <value>Atualiza a sua instalação existente do Rectify11.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
-    <value>Aualizar agora</value>
+    <value>Atualizar agora</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version: </value>
+    <value>Versão: </value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Bem-vindo</value>
@@ -172,7 +172,7 @@
     <value>Selecione seu tema desejado.</value>
   </data>
   <data name="themeHeader" xml:space="preserve">
-    <value>Personalize sua experiencia</value>
+    <value>Personalize sua experiência</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Instalador do Rectify11</value>
@@ -190,7 +190,7 @@
     <value>Usar a Ribbon melhorada</value>
   </data>
   <data name="epExtMica" xml:space="preserve">
-    <value>Extender o mica para a barra de navegação do explorer</value>
+    <value>Extender o mica para a barra de navegação do Explorer</value>
   </data>
   <data name="epHeader" xml:space="preserve">
     <value>Customize sua área de trabalho</value>
@@ -252,211 +252,210 @@
   <data name="exitText" xml:space="preserve">
     <value>Você tem certeza de que quer cancelar a instalação?</value>
   </data>
-
   <!--translate-->
   <data name="buttonReboot" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Reiniciar agora</value>
   </data>
   <data name="installASDF" xml:space="preserve">
-    <value>Accent Color Colorizing</value>
+    <value>Coloração das Cores de Destaque</value>
   </data>
   <data name="installIcons" xml:space="preserve">
-    <value>Patch Icons</value>
+    <value>Corrigir Ícones</value>
   </data>
   <data name="userAvatars" xml:space="preserve">
-    <value>Install User avatars</value>
+    <value>Instalar avatares de usuário</value>
   </data>
   <data name="CMenuPageHeader" xml:space="preserve">
-    <value>Context menu style</value>
+    <value>Estilo do menu contextual</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
-    <value>Rectified Gadgets</value>
+    <value>Gadgets Retificados</value>
   </data>
   <data name="installUserAV" xml:space="preserve">
-    <value>Remastered user avatars</value>
+    <value>Avatares de usuário remasterizados</value>
   </data>
   <data name="uninstallChoiceDescription" xml:space="preserve">
-    <value>You can choose what will be restored.</value>
+    <value>Você pode escolher o que será restaurado.</value>
   </data>
   <data name="installMFE" xml:space="preserve">
-    <value>Skip MicaForEveryone installation</value>
+    <value>Pular a instalação do MicaForEveryone</value>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
-    <value>Use Mica Alt instead of Mica</value>
+    <value>Usar Mica Alt ao invés do Mica</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
-    <value>Classic Context Menus</value>
+    <value>Menus de Contexto Clássicos</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>Classic Menus with transparency</value>
+    <value>Menus Clássicos com Transparência</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
-    <value>Enhanced Fluent Menus (More Options)</value>
+    <value>Menus de Contexto Melhorados (Mais Opções)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>Enhanced Fluent Menus (All Items in root)</value>
+    <value>Menus de Contexto Melhorados (Todos os Itens na Raiz)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
-    <value>Add features to your existing installation.</value>
+    <value>Adicione recursos a sua instalação existente.</value>
   </data>
   <data name="modifyTitle" xml:space="preserve">
-    <value>Modify</value>
+    <value>Modificar</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>You cannot install Rectify11 as Windows Updates are pending. Please reboot your system.</value>
+    <value>É impossível instalar o Rectify11 porque há atualizações do Windows em andamento. Reinicie o sistema.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
-    <value>Create a restore point</value>
+    <value>Criar um ponto de restauração</value>
   </data>
   <data name="installShell" xml:space="preserve">
-    <value>Enhanced context menus</value>
+    <value>Menus de Contexto Melhorados</value>
   </data>
     <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
-    <value>Basic</value>
+    <value>Básico</value>
   </data>
   <data name="optionAdvanced" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Avançado</value>
   </data>
   <data name="restartNow" xml:space="preserve">
-    <value>Restart now</value>
+    <value>Reiniciar agora</value>
   </data>
   <data name="restartLater" xml:space="preserve">
-    <value>Restart later</value>
+    <value>Reiniciar depois</value>
   </data>
   <data name="previewTheme" xml:space="preserve">
-    <value>Preview</value>
+    <value>Pré-visualizar</value>
   </data>
   <data name="themePartialDark" xml:space="preserve">
-    <value>Dark (partial)</value>
+    <value>Escuro (parcial)</value>
   </data>
   <data name="compatErrorText" xml:space="preserve">
-    <value>Windows 10 version 1903 or higher is required in order to install Rectify11.</value>
+    <value>O Windows 10, versão 1903 ou mais recente é exigido para instalar o Rectify11.</value>
   </data>
   <data name="compatErrorInstruc" xml:space="preserve">
-    <value>Compatibility Error</value>
+    <value>Erro de Compatibilidade</value>
   </data>
   <data name="compatWarnText" xml:space="preserve">
-    <value>Windows 10 build 21343 or higher is recommended in order to install Rectify11.</value>
+    <value>O Windows 10, compilação 21343 ou mais recente é recomendado para instalar o Rectify11.</value>
   </data>
   <data name="compatWarnInstruc" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Aviso de Compatibilidade</value>
   </data>
   <data name="moreInfo" xml:space="preserve">
-    <value>More information</value>
+    <value>Mais informações</value>
   </data>
   <data name="lessInfo" xml:space="preserve">
-    <value>Less information</value>
+    <value>Menos informações</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Are you sure you want to uninstall Rectify11?</value>
+    <value>Tem certeza que deseja desinstalar o Rectify11?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
-    <value>Installation of </value>
+    <value>Instalação de(o) </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> has failed. You'll need to install it manually.</value>
+    <value> falhou. É preciso instalá-lo manualmente.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
-    <value>Runtime installation failed</value>
+    <value>A instalação dos runtimes falhou</value>
   </data>
   <data name="preparingInstall" xml:space="preserve">
-    <value>Preparing installation</value>
+    <value>Preparando-se para instalar</value>
   </data>
   <data name="creatingRestorePoint" xml:space="preserve">
-    <value>Creating a restore point</value>
+    <value>Criando ponto de restauração</value>
   </data>
   <data name="installingRt" xml:space="preserve">
-    <value>Installing runtimes</value>
+    <value>Instalando runtimes</value>
   </data>
   <data name="installingThemes" xml:space="preserve">
-    <value>Installing themes</value>
+    <value>Instalando temas</value>
   </data>
   <data name="installingExtras" xml:space="preserve">
-    <value>Installing extras</value>
+    <value>Instalando extras</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Creating uninstaller</value>
+    <value>Criando desinstalador</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
-    <value>Cleaning up</value>
+    <value>Limpando</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>Uninstalling icons</value>
+    <value>Desinstalando ícones</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>Uninstalling themes</value>
+    <value>Desinstalando temas</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>Uninstalling extras</value>
+    <value>Desinstalando extras</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
-    <value>Done. You can close this window.</value>
+    <value>Tudo pronto. Você pode fechar essa janela.</value>
   </data>
   <data name="changedEverythingTitle" xml:space="preserve">
-    <value>Rectify11 has changed everything</value>
+    <value>O Rectify11 mudou tudo</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>We have modernized icons across the whole system, resulting in a more consistent and fluent user experience.</value>
+    <value>Modernizamos os ícones através do sistema inteiro, resultando em uma experiência de usuário mais consistente e fluente.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
-    <value>Did you know?</value>
+    <value>Você sabia?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 has better Win32 DPI support because we scale controls correctly.</value>
+    <value>O Rectify11 tem um suporte melhor a DPI Win32 porque escalonamos os controles corretamente.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 has a more consistent theme</value>
+    <value>O Rectify11 possui um tema mais consistente</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>We have tried our best to replicate WinUI controls in our themes and the dark theme is just amazing.</value>
+    <value>Tentamos nosso melhor para replicar os controles da WinUI e o tema escuro é simplesmente demais.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 has better performance</value>
+    <value>O Rectify11 tem uma performance melhor</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>We strongly value performance. In future releases, you will be able to choose things that you want to debloat in your system.</value>
+    <value>Fortemente valorizamos performance. Em uma atualização futura, você poderá escolher coisas que gostaria de remover de seu sistema.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
-    <value>Rectified Control Panel</value>
+    <value>Painel de Controle Retificado</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>We improved many details in the control panel, such as modernizing old visuals and adding back removed items</value>
+    <value>Melhoramos muitos detalhes no Painel de Controle, como modernizar visuais antigos e adicionar itens removidos.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
-    <value>Need help or technical support?</value>
+    <value>Precisa de ajuda ou suporte técnico?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>You can ask us anything on our official Discord server. The link is on the GitHub page, where you have downloaded the installer.</value>
+    <value>Chama a gente e pergunte qualquer coisa no nosso servidor do Discord. O link está na página do Github, aonde você baixou o instalador.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
-    <value>Thank you!</value>
+    <value>Muito obrigado!</value>
   </data>
   <data name="thankYouText" xml:space="preserve">
-    <value>We appreciate your support, thank you for installing Rectify11.</value>
+    <value>Apreciamos seu apoio, obrigado por instalar o Rectify11.</value>
   </data>
   <data name="restartingYourPC" xml:space="preserve">
-    <value>Restarting your PC</value>
+    <value>Reiniciando seu PC</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished uninstalling. Please restart your PC to complete the changes.</value>
+    <value>O Rectify11 terminou sua desinstalação. Por favor reinicie o PC para completar as mudanças.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
+    <value>O Rectify11 terminou sua instalação. Por favor reinicie o PC para completar as mudanças.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>Houve um problema ao instalar o Rectify11. Por favor envie </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
+    <value> e abra um "issue" no Github ou envie no servidor Discord do Rectify11 para receber ajuda.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
-    <value>Thank you for using Rectify11</value>
+    <value>Obrigado por usar o Rectify11</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Uninstallation will be done in a few minutes.</value>
+    <value>A desinstalação terminará em alguns minutos.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+	<value>Você está usando uma versão do Windows que é muito nova para ser totalmente suportada pelo Rectify11.</value>
   </data>
 </root>
