@@ -16,24 +16,24 @@ jobs:
     env:
       NUGET_CERT_REVOCATION_MODE: offline
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.1.1
       with: 
         token: ${{ secrets.GITHUB_TOKEN }}
         submodules: true
         lfs: true
-    - name: Git Sumbodule Update
-      run: |
-        git submodule update --init --recursive
-        git submodule update --recursive --remote
+
     - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.1.3
+      uses: microsoft/setup-msbuild@v2
     - name: Restore NuGet Packages
       run: |
         nuget restore Rectify11Installer.sln
+
     - name: Build
       run: msbuild Rectify11Installer.sln /p:Configuration=Release /p:platform=x64
+      
     - name: Create single exe
-      run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Release\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Release\Rectify11Installer.exe Rectify11Installer\bin\Release\libmsstyle.dll Rectify11Installer\bin\Release\TaskDialog.dll 
+      run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Release\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Release\Rectify11Installer.exe Rectify11Installer\bin\Release\libmsstyle.dll Rectify11Installer\bin\Release\TaskDialog.dll
+      
     - name: Upload Rectify11Installer
       uses: actions/upload-artifact@v4.3.1
       with:
