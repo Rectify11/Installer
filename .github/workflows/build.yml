@@ -15,6 +15,7 @@ jobs:
     runs-on: windows-latest
     env:
       NUGET_CERT_REVOCATION_MODE: offline
+      
     steps:
     - uses: actions/checkout@v4.1.1
       with: 
@@ -24,9 +25,9 @@ jobs:
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
+      
     - name: Restore NuGet Packages
-      run: |
-        nuget restore Rectify11Installer.sln
+      run: nuget restore Rectify11Installer.sln
 
     - name: Build
       run: msbuild Rectify11Installer.sln /p:Configuration=Release /p:platform=x64
@@ -37,8 +38,6 @@ jobs:
     - name: Upload Rectify11Installer
       uses: actions/upload-artifact@v4.3.1
       with:
-        # Artifact name
         name: Rectify11Installer (x64)
-        # A file, directory or wildcard pattern that describes what to upload
         path: Rectify11Installer\bin\output\Release\Rectify11Installer.exe
         compression-level: 0
