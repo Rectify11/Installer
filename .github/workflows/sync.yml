@@ -1,28 +1,20 @@
-name: 'Submodules Sync'
+name: Submodules Sync
 
 on:
-  # Allows you to run this workflow manually from the Actions tab or through HTTP API
   workflow_dispatch:
 
 jobs:
   sync:
-    name: 'Submodules Sync'
+    name: Submodules Sync
     runs-on: ubuntu-latest
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
-
     steps:
-    # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4.1.1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         submodules: true
 
-    # Update references
     - name: Git Sumbodule Update
       run: |
         git pull --recurse-submodules
@@ -30,7 +22,7 @@ jobs:
 
     - name: Commit update
       run: |
-        git config --global user.name 'Github'
-        git config --global user.email 'bot@noreply.github.com'
+        git config --global user.name "Github"
+        git config --global user.email "bot@noreply.github.com"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git commit -am "Updated submodule references" && git push || echo "No changes to commit"
