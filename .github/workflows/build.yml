@@ -18,7 +18,8 @@ jobs:
       NUGET_CERT_REVOCATION_MODE: offline
       
     steps:
-    - uses: actions/checkout@v4.1.1
+    - name: Checkout
+      uses: actions/checkout@v4.1.1
       with: 
         token: ${{ secrets.GITHUB_TOKEN }}
         submodules: recursive
