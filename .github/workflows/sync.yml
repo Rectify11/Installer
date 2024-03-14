@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v4.1.1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        submodules: true
+        submodules: recursive
 
     - name: Git Sumbodule Update
       run: |
