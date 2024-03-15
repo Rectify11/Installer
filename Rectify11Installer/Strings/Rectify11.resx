@@ -440,7 +440,7 @@
     <value>Rectify11 has finished installing. Please restart your PC to complete the changes.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Installation of Rectify11 has failed. Please send </value>
+    <value>Installation of Rectify11 has failed. Please try disabling your Antivirus Software. If that does not work, then Please Send </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
     <value> and open an issue on GitHub or send it on the Rectify11 Discord server for help.</value>
