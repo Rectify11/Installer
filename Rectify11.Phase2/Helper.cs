@@ -45,7 +45,7 @@ namespace Rectify11.Phase2
         }
         public static bool SafeFileCopy(string file)
         {
-            // whatever, its only for one case
+            // whatever, its only for a few cases
             try
             {
                 if (!SafeFileDeletion(Path.Combine(Variables.sys32Folder, file))) return false;
@@ -58,6 +58,33 @@ namespace Rectify11.Phase2
             }
         }
         public static bool SafeFileCopy(string src, string dest)
+        {
+            try
+            {
+                if (!SafeFileDeletion(dest)) return false;
+                File.Copy(src, dest, true);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+		public static bool SafeFileCopyWOW64(string file)
+        {
+            // whatever, its only for a few cases
+            try
+            {
+                if (!SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, file))) return false;
+                File.Copy(Path.Combine(Variables.r11Files, file), Path.Combine(Variables.sysWOWFolder, file), true);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool SafeFileCopyWOW64(string src, string dest)
         {
             try
             {

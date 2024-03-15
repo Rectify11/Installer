@@ -49,6 +49,10 @@ namespace Rectify11.Phase2
                 SafeFileCopy("duires.dll");
                 SafeFileCopy("ImmersiveFontHandler.dll");
                 SafeFileCopy("twinuifonts.dll");
+	            SafeFileCopyWOW64("iconres.dll");
+                SafeFileCopyWOW64("duires.dll");
+                SafeFileCopyWOW64("ImmersiveFontHandler.dll");
+                SafeFileCopyWOW64("twinuifonts.dll");
                 InstallFonts();
 
                 r11Reg?.Close();
@@ -325,6 +329,10 @@ namespace Rectify11.Phase2
                 SafeFileDeletion(Path.Combine(Variables.sys32Folder, "duires.dll"));
                 SafeFileDeletion(Path.Combine(Variables.sys32Folder, "ImmersiveFontHandler.dll"));
                 SafeFileDeletion(Path.Combine(Variables.sys32Folder, "twinuifonts.dll"));
+				SafeFileDeletion(Path.Combine(Variables.sysWOWFolder,"iconres.dll"));
+                SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, "duires.dll"));
+                SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, "ImmersiveFontHandler.dll"));
+                SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, "twinuifonts.dll"));
 
                 Console.WriteLine("");
                 Console.Write("Press any key to continue...");
