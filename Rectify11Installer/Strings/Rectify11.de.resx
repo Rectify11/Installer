@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -130,7 +130,7 @@
     <value>Lizenzvereinbarung</value>
   </data>
   <data name="eulaR11" xml:space="preserve">
-    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}This software is provided 'as-is', without any express or implied warranty. In NO event will the author be held liable for any damages arising from the use of this software.\par{\pntext\f0 2.\tab}Rectify11 is free to use by anyone, but you cannot sell it. You cannot bundle this product as a part of another product without written permission from the author.\par{\pntext\f0 3.\tab}You cannot claim that you made the software.\par{\pntext\f0 4.\tab}This notice may not be removed or altered from any distribution.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation and the Rectify11 Team.\par{\pntext\f0\space}We are NOT affiliated with Microsoft Corporation in ANY way. This is a community made project.\par}</value>
+    <value>{\rtf1\ansi\pard{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}\fi-360\li360\f0\fs20{\pntext\f0 1.\tab}Diese Software wird so geliefert, wie sie ist, ohne jegliche ausdrückliche oder stillschweigende Garantie. Der Autor kann in keinem Fall für Schäden haftbar gemacht werden, die durch die Nutzung bzw. der Installation dieser Software entstehen können.\par{\pntext\f0 2.\tab}Rectify11 kann von jedem kostenlos genutzt werden, aber Sie können es nicht verkaufen. Sie können dieses Produkt nicht als Teil eines anderen Produkts ohne einer Genehmigung des Autors verwenden.\par{\pntext\f0 3.\tab}Sie können nicht behaupten, dass Sie die Software hergestellt haben.\par{\pntext\f0 4.\tab}Dieser Hinweis darf nicht aus einer Verteilung entfernt oder verändert werden.\par\pard\par{\pntext\f0\space}Copyright \'a9 Microsoft Corporation und das Rectify11-Team.\par{\pntext\f0\space}Wir sind NICHT mit Microsoft in irgendeiner Weise verbunden. Dies ist ein von unserer Community gemachtes Projekt.\par}</value>
   </data>
   <data name="eulaTitle" xml:space="preserve">
     <value>Bevor Sie Rectify11 installieren können, müssen Sie der Lizenzvereinbarung zustimmen:</value>
@@ -142,13 +142,13 @@
     <value>Installieren</value>
   </data>
   <data name="uninstallNote" xml:space="preserve">
-    <value>Stellt den originalen Windows-Look wieder her.</value>
+    <value>Stellt das originale Windows-Design wieder her.</value>
   </data>
   <data name="uninstallTitle" xml:space="preserve">
     <value>Deinstallieren</value>
   </data>
   <data name="updateNote" xml:space="preserve">
-    <value>Aktualisieren Sie Ihre bestehende Rectify11-Installation.</value>
+    <value>Ändern Sie Ihre bestehende Rectify11-Installation.</value>
   </data>
   <data name="updateTitle" xml:space="preserve">
     <value>Aktualisieren</value>
@@ -160,10 +160,10 @@
     <value>Willkommen</value>
   </data>
   <data name="welcomeDescription" xml:space="preserve">
-    <value>Das Installationsprogramm wird alle nötigen Schritte ausführen, um Rectify11 auf Ihrem System für eine konsistentere Erfahrung zu installieren. Bitte wählen Sie die gewünschte Option, um fortzufahren.</value>
+    <value>Das Installationsprogramm wird alle nötigen Schritte ausführen, um Rectify11 auf Ihrem System für eine bessere Erfahrung zu installieren. Bitte wählen Sie die gewünschte Option, um fortzufahren.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Sie können auswählen, welche Teile des Systems verbessert werden.</value>
+    <value>Sie können auswählen, welche Teile des Systems verbessert werdenen sollen.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Wählen Sie die zu installierenden Inhalte</value>
@@ -217,7 +217,7 @@
     <value>Rectify11 für diese Windows-Installation installieren.</value>
   </data>
   <data name="summaryTitle" xml:space="preserve">
-    <value>Sie sind im Begriff, Folgendes zu tun:</value>
+    <value>Sie sind nun so weit, Folgendes zu tun:</value>
   </data>
   <data name="buttonInstall" xml:space="preserve">
     <value>Installieren</value>
@@ -250,7 +250,7 @@
     <value>Jetzt neu starten</value>
   </data>
   <data name="installASDF" xml:space="preserve">
-    <value>Akzentfarben-Kolorierung</value>
+    <value>Erweiterte Akzentfarben</value>
   </data>
   <data name="installIcons" xml:space="preserve">
     <value>Icons patchen</value>
@@ -262,7 +262,7 @@
     <value>Stil des Kontextmenüs</value>
   </data>
   <data name="installGadgets" xml:space="preserve">
-    <value>Verbesserte Gadgets</value>
+    <value>Verbesserte Desktop-Gadgets</value>
   </data>
   <data name="installUserAV" xml:space="preserve">
     <value>Überarbeitete Benutzeravatare</value>
@@ -277,28 +277,28 @@
     <value>Mica Alt anstelle von Mica verwenden</value>
   </data>
   <data name="cmenuClassic" xml:space="preserve">
-    <value>Klassische Kontextmenüs</value>
+    <value>Klassisches Kontextmenü</value>
   </data>
   <data name="cmenuClassicA" xml:space="preserve">
-    <value>Klassische Kontextmenüs mit Transparenz</value>
+    <value>Klassisches Kontextmenü (Transparent)</value>
   </data>
   <data name="cmenuFluent1" xml:space="preserve">
-    <value>Verbesserte Kontextmenüs (mehr Optionen)</value>
+    <value>Verbessertes Kontextmenü (Weitere Optionen Anzeigen)</value>
   </data>
   <data name="cmenuFluent2" xml:space="preserve">
-    <value>Verbesserte Kontextmenüs (alle Elemente im Hauptmenü)</value>
+    <value>Verbessertes Kontextmenü (Alle Optionen Anzeigen)</value>
   </data>
   <data name="modifyNote" xml:space="preserve">
     <value>Fügen Sie Ihrer bestehenden Installation weitere Funktionen hinzu.</value>
   </data>
   <data name="modifyTitle" xml:space="preserve">
-    <value>Modifizieren</value>
+    <value>Ändern</value>
   </data>
   <data name="installThemes" xml:space="preserve">
     <value>Designs installieren</value>
   </data>
   <data name="updatePending" xml:space="preserve">
-    <value>Sie können Rectify11 nicht installieren, da Windows-Updates anstehen. Bitte starten Sie Ihr System neu.</value>
+    <value>Sie können Rectify11 nicht installieren, da ein Windows-Update installiert werden muss . Bitte starten Sie Ihr System neu.</value>
   </data>
   <data name="createRestore" xml:space="preserve">
     <value>Einen Wiederherstellungspunkt erstellen</value>
@@ -340,13 +340,13 @@
     <value>Weniger</value>
   </data>
   <data name="uninstallConfirmText" xml:space="preserve">
-    <value>Wollen sie Rectify11 deinstallieren?</value>
+    <value>Wollen sie Rectify11 wirklich deinstallieren?</value>
   </data>
   <data name="rtInstallFailPart1" xml:space="preserve">
     <value>Die Installation von </value>
   </data>
   <data name="rtInstallFailPart2" xml:space="preserve">
-    <value> schlug fehl. Sie müssen es manuell installieren.</value>
+    <value> ist fehlgeschlagen. Sie müssen dies manuell installieren.</value>
   </data>
   <data name="rtInstallFailInstruc" xml:space="preserve">
     <value>Runtime-Installation fehlgeschlagen</value>
@@ -367,19 +367,19 @@
     <value>Extras werden installert</value>
   </data>
   <data name="creatingUninstaller" xml:space="preserve">
-    <value>Uninstaller wird erstellt</value>
+    <value>Deinstallationsprogramm wird erstellt</value>
   </data>
   <data name="cleaningUp" xml:space="preserve">
-    <value>Aufräumen</value>
+    <value>Breinigen</value>
   </data>
   <data name="uninstallingIcons" xml:space="preserve">
-    <value>Entferne Icons</value>
+    <value>Icons entfernen</value>
   </data>
   <data name="uninstallingThemes" xml:space="preserve">
-    <value>Entferne Designs</value>
+    <value>Designs entfernen</value>
   </data>
   <data name="uninstallingExtras" xml:space="preserve">
-    <value>Entferne Extras</value>
+    <value>Extras entfernen</value>
   </data>
   <data name="doneYouCanClose" xml:space="preserve">
     <value>Fertig. Sie können dieses Fenster nun schließen.</value>
@@ -388,37 +388,37 @@
     <value>Rectify11 verändert alles</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>Wir haben Icons im gesamten System modernisiert, was zu einer konsistenteren und flüssigeren Benutzererfahrung führt.</value>
+    <value>Wir haben die Symbole im gesamten System modernisiert, was zu einer bessrern und besseren Benutzererfahrung führt.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
     <value>Wussten sie schon?</value>
   </data>
   <data name="betterDpiText" xml:space="preserve">
-    <value>Rectify11 hat bessere Win32 DPI Unterstützung, da wir Controls besser skalieren.</value>
+    <value>Rectify11 hat bessere Win32 DPI Unterstützung, da wir Steuerelemente besser skalieren.</value>
   </data>
   <data name="betterThemeTitle" xml:space="preserve">
-    <value>Rectify11 ist konsistenter</value>
+    <value>Rectify11 ist einheitlich</value>
   </data>
   <data name="betterThemeText" xml:space="preserve">
-    <value>Wir haben unser Bestes gegeben um WinUI Controls in unseren Designs zu replizieren.</value>
+    <value>Wir haben unser Bestes gegeben um WinUI Steuerelemente in unseren Designs zu replizieren.</value>
   </data>
   <data name="betterPerfTitle" xml:space="preserve">
-    <value>Rectify11 verbessert Performance</value>
+    <value>Rectify11 verbessert die Performance</value>
   </data>
   <data name="betterPerfText" xml:space="preserve">
-    <value>Wir setzen Geschwindigkeit an die erste Stelle. In späteren Releases können sie Funktionen auswählen, um ihr System zu debloaten.</value>
+    <value>Wir setzen Geschwindigkeit an erste Stelle. In späteren Updates können sie Funktionen auswählen, um ihr System zu entbloaten.</value>
   </data>
   <data name="betterCplTitle" xml:space="preserve">
     <value>Verbesserte Systemsteuerung</value>
   </data>
   <data name="betterCplText" xml:space="preserve">
-    <value>Wir verbessern viele Details in der Systemsteuerung. So modernisieren wir alte Grafiken und stellen entfernte Elemente wieder her.</value>
+    <value>Wir verbessern viele Details in der Systemsteuerung. So modernisieren wir alte Design-Elemente und stellen entfernte Elemente wieder her.</value>
   </data>
   <data name="supportTitle" xml:space="preserve">
     <value>Benötigen sie Hilfe?</value>
   </data>
   <data name="supportText" xml:space="preserve">
-    <value>Sie können uns auf unserem offiziellen Discord-Server fragen. Der Link befindet sich auf der GitHub Seite, von wo Sie den Installer heruntergeladen haben.</value>
+    <value>Sie können uns auf unserem offiziellen Discord-Server fragen. Der Link befindet sich auf unserer GitHub Seite, von wo Sie den Installer heruntergeladen haben.</value>
   </data>
   <data name="thankYouTitle" xml:space="preserve">
     <value>Danke!</value>
@@ -430,24 +430,24 @@
     <value>PC neu starten</value>
   </data>
   <data name="uninstallFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 wurde erfolgreich deinstallert. Bitte starten Sie Ihr Gerät neu, um die Änderungen anzuwenden.</value>
+    <value>Rectify11 wurde erfolgreich deinstallert. Bitte starten Sie Ihr Gerät neu, um die Änderungen zu übernehmen.</value>
   </data>
   <data name="installFinishedPrompt" xml:space="preserve">
-    <value>Rectify11 wurde erfolgreich installiert. Bitte starten Sie Ihr Gerät neu, um die Änderungen anzuwenden.</value>
+    <value>Rectify11 wurde erfolgreich installiert. Bitte starten Sie Ihr Gerät neu, um die Änderungen zu übernehmen.</value>
   </data>
   <data name="r11InstallErrorPart1" xml:space="preserve">
-    <value>Die Installation von Rectify11 ist fehlgeschlagen. Bitte senden Sie </value>
+    <value>Die Installation von Rectify11 ist fehlgeschlagen. Bitte melden Sie uns </value>
   </data>
   <data name="r11InstallErrorPart2" xml:space="preserve">
-    <value> und öffnen Sie ein Issue auf GitHub oder senden Sie es in den Rectify11 Discord Server, um Unterstützung zu erhalten.</value>
+    <value> und erstellen Sie ein neues Problem im Rieter issues auf GitHub oder melden Sie sich bei uns im Rectify11 Discord Server, um Unterstützung zu erhalten.</value>
   </data>
   <data name="r11UninstallThanks" xml:space="preserve">
     <value>Danke, das Sie Rectify11 verwendet haben.</value>
   </data>
   <data name="r11UninstallSubTitle" xml:space="preserve">
-    <value>Deinstallation wird in einigen Minuten fertig sein.</value>
+    <value>Die Deinstallation kann einen Moment dauern.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>Sie verwenden eine Windows-Version, welche so neu ist, das Rectify11 sie noch nicht vollständig unterstützt.</value>
+	<value>Sie verwenden eine Windows-Version welche neuer ist, die Rectify11 sie noch nicht vollständig unterstützt.</value>
   </data>
 </root>
