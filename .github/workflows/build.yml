@@ -3,9 +3,7 @@ name: Rectify11
 on:
   workflow_dispatch:
   push:
-    branches: [ master impl/* ]
   pull_request:
-    branches: [ master impl/* ]
   workflow_run:
     workflows: ["Submodules Sync"]
     types:
