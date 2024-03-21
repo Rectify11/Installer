@@ -3,7 +3,7 @@ name: Rectify11
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ * ]
   pull_request:
     branches: [ master ]
   workflow_run:
