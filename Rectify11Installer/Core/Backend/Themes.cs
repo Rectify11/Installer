@@ -110,7 +110,7 @@ namespace Rectify11Installer.Core
 
                 UninstallThemeWallpapers();
 
-                int hr = RectifyThemeUtil.Utility.UninstallThemeTool();
+                nint hr = RectifyThemeUtil.Utility.UninstallThemeTool();
                 if (hr != 0)
                 {
                     Logger.WriteLine("FAILED TO REMOVE THEMETOOL: " + hr);
@@ -179,7 +179,7 @@ namespace Rectify11Installer.Core
                     Helper.OperationType.Copy);
 
                 Logger.WriteLine("Copied Themetool.");
-                int hr = 0;
+                nint hr = 0;
                 try
                 {
                     hr = RectifyThemeUtil.Utility.InstallThemeTool();
@@ -213,7 +213,7 @@ namespace Rectify11Installer.Core
                 UninstallMsstyles();
                 Helper.SafeFileDeletion(Path.Combine(Variables.Windir, "ThemeTool.exe"));
 
-                int hr = 0;
+                nint hr = 0;
                 try
                 {
                     hr = RectifyThemeUtil.Utility.UninstallThemeTool();

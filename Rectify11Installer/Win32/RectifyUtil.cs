@@ -12,16 +12,17 @@ namespace Rectify11Installer.Win32
     }
 
     [Guid("A7BCDC3B-C5A2-44BB-B8EC-560B24ACAAD8")]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRectifyUtil
     {
-        public int GetMicaSettings(ref bool enabled, ref bool tabbed);
-        public int SetMicaForEveryoneEnabled(ref bool enabled, ref bool tabbed);
-        public int GetCurrentMenuIndex(ref int index);
-        public int SetCurrentMenuByIndex(ref int index);
+        public nint GetMicaSettings(ref bool enabled, ref bool tabbed);
+        public nint SetMicaForEveryoneEnabled(ref bool enabled, ref bool tabbed);
+        public nint GetCurrentMenuIndex(ref int index);
+        public nint SetCurrentMenuByIndex(ref int index);
 
-        public int ApplyTheme(string themeName);
-        public int InstallThemeTool();
-        public int UninstallThemeTool();
+        public nint ApplyTheme(string themeName);
+        public nint InstallThemeTool();
+        public nint UninstallThemeTool();
     }
 
     public static class RectifyThemeUtil
