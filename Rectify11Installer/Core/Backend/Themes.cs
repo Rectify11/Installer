@@ -545,27 +545,29 @@ namespace Rectify11Installer.Core
             {
                 if (InstallOptions.ThemeLight)
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme"));
+                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme"), RegistryValueKind.String);
                     RectifyThemeUtil.Utility.ApplyTheme("Rectify11 light theme");
                 }
                 else if (InstallOptions.ThemeDark)
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme"));
+                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme"), RegistryValueKind.String);
                     RectifyThemeUtil.Utility.ApplyTheme("Rectify11 dark theme");
                 }
                 else if (InstallOptions.ThemePDark)
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkpartial.theme"));
+                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "darkpartial.theme"), RegistryValueKind.String);
                     RectifyThemeUtil.Utility.ApplyTheme("Rectify11 partial dark theme");
                 }
                 else
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme"));
+                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme"), RegistryValueKind.String);
                     RectifyThemeUtil.Utility.ApplyTheme("Rectify11 Dark theme with Mica");
                 }
+
+
+                key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(Environment.SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
+                key.Close();
             }
-            key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(Environment.SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
-            key.Close();
         }
         #endregion
     }
