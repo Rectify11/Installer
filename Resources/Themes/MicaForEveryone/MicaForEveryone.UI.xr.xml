@@ -310,6 +310,7 @@
       <RootProperty Name="Command" />
       <RootProperty Name="Width" />
       <RootProperty Name="LabelPosition" />
+      <RootEvent Name="Loaded" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">

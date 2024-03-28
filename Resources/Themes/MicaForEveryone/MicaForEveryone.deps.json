@@ -8,32 +8,30 @@
     ".NETCoreApp,Version=v3.1": {
       "MicaForEveryone/1.0.0": {
         "dependencies": {
-          "CommunityToolkit.Mvvm": "8.0.0",
-          "MicaForEveryone.Shared": "1.0.0",
+          "MicaForEveryone.Core": "1.0.0",
           "MicaForEveryone.UI": "1.0.0",
           "MicaForEveryone.Win32": "1.0.0",
           "Microsoft.Bcl.AsyncInterfaces": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Toolkit.UI.XamlHost": "6.1.2",
           "Microsoft.VCRTForwarders.140": "1.0.7",
           "Microsoft.Win32.Registry": "5.0.0",
           "TaskScheduler": "2.10.1",
-          "XclParser": "1.0.7",
+          "XclParser": "1.0.8",
           "Microsoft.Toolkit.Win32.UI.XamlHost": "255.255.255.255"
         },
         "runtime": {
           "MicaForEveryone.dll": {}
         }
       },
-      "CommunityToolkit.Mvvm/8.0.0": {
+      "CommunityToolkit.Mvvm/8.2.0": {
         "dependencies": {
           "System.ComponentModel.Annotations": "5.0.0",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/CommunityToolkit.Mvvm.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.0.1"
+            "assemblyVersion": "8.2.0.0",
+            "fileVersion": "8.2.0.1"
           }
         }
       },
@@ -717,23 +715,29 @@
           }
         }
       },
-      "XclParser/1.0.7": {
+      "XclParser/1.0.8": {
         "runtime": {
           "lib/netstandard2.0/XclParser.dll": {
-            "assemblyVersion": "1.0.7.1",
-            "fileVersion": "1.0.7.1"
+            "assemblyVersion": "1.0.8.2",
+            "fileVersion": "1.0.8.2"
           }
         }
       },
-      "MicaForEveryone.Shared/1.0.0": {
+      "MicaForEveryone.Core/1.0.0": {
+        "dependencies": {
+          "CommunityToolkit.Mvvm": "8.2.0",
+          "MicaForEveryone.Win32": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "XclParser": "1.0.8"
+        },
         "runtime": {
-          "MicaForEveryone.Shared.dll": {}
+          "MicaForEveryone.Core.dll": {}
         }
       },
       "MicaForEveryone.UI/1.0.0": {
         "dependencies": {
-          "CommunityToolkit.Mvvm": "8.0.0",
-          "MicaForEveryone.Shared": "1.0.0",
+          "CommunityToolkit.Mvvm": "8.2.0",
+          "MicaForEveryone.Core": "1.0.0",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.14",
           "Microsoft.Toolkit.Win32.UI.XamlApplication": "6.1.3",
           "Microsoft.UI.Xaml": "2.8.2-prerelease.220830001",
@@ -744,9 +748,6 @@
         }
       },
       "MicaForEveryone.Win32/1.0.0": {
-        "dependencies": {
-          "MicaForEveryone.Shared": "1.0.0"
-        },
         "runtime": {
           "MicaForEveryone.Win32.dll": {}
         }
@@ -775,12 +776,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "CommunityToolkit.Mvvm/8.0.0": {
+    "CommunityToolkit.Mvvm/8.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Jiu2g5WUdXRwzhJkHB+B4JBKP5A5+fp8xKiW/ZQo5PI+DruI7MbPEcK9K/Aw0YzTiWRuG6CBluzYIWN5Eo7BkQ==",
-      "path": "communitytoolkit.mvvm/8.0.0",
-      "hashPath": "communitytoolkit.mvvm.8.0.0.nupkg.sha512"
+      "sha512": "sha512-F883u+B0AVUkRZS+VQBiZEJiqlGiiQhGA8Ejy1/Y8fl4ecBmSd+HYuDso0iiUhh+UxRDjp2aTQ7jGkuL2S4NrA==",
+      "path": "communitytoolkit.mvvm/8.2.0",
+      "hashPath": "communitytoolkit.mvvm.8.2.0.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
       "type": "package",
@@ -1034,14 +1035,14 @@
       "path": "win2d.uwp/1.26.0",
       "hashPath": "win2d.uwp.1.26.0.nupkg.sha512"
     },
-    "XclParser/1.0.7": {
+    "XclParser/1.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6Ioxo1Cb2s6bpl8urPBv1cEeTJp1NKG4R0F5DBGVfseIz3gFeCmnIJNWdZUM+e1YNehFe0Nd1gHbQg82npJ9ew==",
-      "path": "xclparser/1.0.7",
-      "hashPath": "xclparser.1.0.7.nupkg.sha512"
+      "sha512": "sha512-YoQlVyWHQrHWSJEQpA4IxsupPbKFxnFR/Odg/gKk87k7ji6m40MkhWC9ur2SbVyYOFqAxnzqqrfuOdriZsAQtQ==",
+      "path": "xclparser/1.0.8",
+      "hashPath": "xclparser.1.0.8.nupkg.sha512"
     },
-    "MicaForEveryone.Shared/1.0.0": {
+    "MicaForEveryone.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
