@@ -541,30 +541,36 @@ namespace Rectify11Installer.Core
         private static void ApplyScheme()
         {
             var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce", true);
-            if (key != null)
+
+            var config = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Rectify11", true);
+            if (key != null && config != null)
             {
+                // The goal here is to apply the theme and visual style. For some reason, running the .theme
+                // file only applies cursors, wallpaper, etc but does not change the visual style. Because of that,
+                // RectifyStart applies it on the next boot after theme patcher is installed. It is ran on the next boot
+                // to ensure that the UxTheme patcher is running.
                 if (InstallOptions.ThemeLight)
                 {
-                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme"), RegistryValueKind.String);
-                    RectifyThemeUtil.Utility.ApplyTheme("Rectify11 light theme");
+                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme"));
+                    config.SetValue("ApplyThemeOnNextRun", "Rectify11 light theme");
                 }
                 else if (InstallOptions.ThemeDark)
                 {
-                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme"), RegistryValueKind.String);
-                    RectifyThemeUtil.Utility.ApplyTheme("Rectify11 dark theme");
+                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme"));
+                    config.SetValue("ApplyThemeOnNextRun", "Rectify11 dark theme");
                 }
                 else if (InstallOptions.ThemePDark)
                 {
-                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "darkpartial.theme"), RegistryValueKind.String);
-                    RectifyThemeUtil.Utility.ApplyTheme("Rectify11 partial dark theme");
+                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkpartial.theme"));
+                    config.SetValue("ApplyThemeOnNextRun", "Rectify11 partial dark theme");
                 }
                 else
                 {
-                    key.SetValue("ApplyR11Theme", Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme"), RegistryValueKind.String);
-                    RectifyThemeUtil.Utility.ApplyTheme("Rectify11 Dark theme with Mica");
+                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme"));
+                    config.SetValue("ApplyThemeOnNextRun", "Rectify11 Dark theme with Mica");
                 }
 
-
+                config.Close();
                 key.SetValue("DeleteJunk", "rmdir /s /q " + Path.Combine(Environment.SpecialFolder.LocalApplicationData.ToString(), "junk"), RegistryValueKind.String);
                 key.Close();
             }

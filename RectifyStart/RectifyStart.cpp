@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "RectifyStart.h"
 #include "..\RectifyControlPanel2\dui70\DirectUI\DirectUI.h"
+#include "..\RectifyControlPanel2\Rectify11CPL\Guid.h"
+#include "..\RectifyControlPanel2\Rectify11CPL\IRectifyUtil_h.h"
 #pragma comment(lib,"dui70.lib")
 using namespace DirectUI;
 
@@ -15,6 +17,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 HWNDElement* hwnd_element = NULL;
 NativeHWNDHost* pwnd = NULL;
+static HWND hwnd = NULL;
 struct EventListener : public IElementListener {
 
 	using handler_t = std::function<void(Element*, Event*)>;
@@ -85,6 +88,59 @@ bool GetStartup()
 	return false;
 }
 
+void ApplyThemeIfNeeded()
+{
+	// Apply theme after rectify11 was installed. For more details see Rectify11Installer/Core/Backend/Themes.cs
+	HKEY Rectify11;
+	if (RegCreateKey(HKEY_CURRENT_USER, TEXT("SOFTWARE\\Rectify11"), &Rectify11))
+	{
+		MessageBox(hwnd, TEXT("Failed to create rectify11 key"), TEXT("RectifyStart application"), MB_ICONERROR);
+		return;
+	}
+
+	// Buffer to store string read from registry
+	TCHAR szValue[1024];
+	DWORD cbValueLength = sizeof(szValue);
+
+	// Query string value
+	LSTATUS hr = RegQueryValueEx(
+		Rectify11,
+		TEXT("ApplyThemeOnNextRun"),
+		NULL,
+		NULL,
+		reinterpret_cast<LPBYTE>(&szValue),
+		&cbValueLength);
+	if (hr != ERROR_SUCCESS)
+	{
+		if (hr != ERROR_FILE_NOT_FOUND)
+		{
+			MessageBox(hwnd, TEXT("Failed to query ApplyThemeOnNextRun registry value. The rectify11 theme may not be applied correctly."), TEXT("RectifyStart application"), MB_ICONERROR);
+		}
+		return;
+	}
+
+	IRectifyUtil* util;
+	hr = CoCreateInstance(CLSID_CRectifyUtil, NULL, CLSCTX_INPROC_SERVER, IID_IRectifyUtil,
+		reinterpret_cast<void**>(&util));
+
+	if (util == NULL || hr != S_OK)
+	{
+		MessageBox(hwnd, TEXT("Failed to create CRectifyUtil COM Object when trying to apply theme. Please rerun the Rectify11 installer. If that doesn't work, report an issue on github."), TEXT("RectifyStart application: Critical error"), MB_ICONERROR);
+		return;
+	}
+
+	hr = util->ApplyTheme(szValue);
+	if (FAILED(hr))
+	{
+		MessageBox(hwnd, TEXT("Failed to apply the rectify11 theme."), TEXT("RectifyStart application"), MB_ICONERROR);
+		return;
+	}
+
+	util->Release();
+
+	// we are done
+	RegDeleteValue(Rectify11, TEXT("ApplyThemeOnNextRun"));
+}
 void HandleCloseButton(Element* elem, Event* iev)
 {
 	if (iev->type == TouchButton::Click)
@@ -139,7 +195,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		CW_USEDEFAULT, CW_USEDEFAULT, 880, 720,
 		0, WS_EX_TOOLWINDOW | WS_VISIBLE | WS_SYSMENU, 0, &pwnd);
 
-	static HWND hwnd = pwnd->GetHWND();
+	hwnd = pwnd->GetHWND();
+
+	// apply theme after installation
+	ApplyThemeIfNeeded();
 
 	// Center the window on the screen
 	RECT rc;
