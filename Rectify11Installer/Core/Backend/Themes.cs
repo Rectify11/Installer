@@ -250,6 +250,10 @@ namespace Rectify11Installer.Core
 
             File.WriteAllBytes(cplPath, Properties.Resources.Rectify11CPL);
 
+            // write SecureUxTheme helper dll
+            if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11CPL", "ThemeDLL.dll"), Properties.Resources.ThemeDLL, Helper.OperationType.Write))
+                return;
+
             // create shortcut
             using ShellLink shortcut = new();
             shortcut.Target = Path.Combine(Variables.sys32Folder, "control.exe");
