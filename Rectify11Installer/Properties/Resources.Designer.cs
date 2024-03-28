@@ -582,26 +582,6 @@ namespace Rectify11Installer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] secureux_arm64 {
-            get {
-                object obj = ResourceManager.GetObject("secureux_arm64", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] secureux_x64 {
-            get {
-                object obj = ResourceManager.GetObject("secureux_x64", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap sound {
@@ -624,19 +604,9 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ThemeDll_arm64 {
+        internal static byte[] ThemeDLL {
             get {
-                object obj = ResourceManager.GetObject("ThemeDll_arm64", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ThemeDll_x64 {
-            get {
-                object obj = ResourceManager.GetObject("ThemeDll_x64", resourceCulture);
+                object obj = ResourceManager.GetObject("ThemeDLL", resourceCulture);
                 return ((byte[])(obj));
             }
         }

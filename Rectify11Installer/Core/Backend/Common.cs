@@ -33,14 +33,6 @@ namespace Rectify11Installer.Core
                 {
                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "themes.7z"), Properties.Resources.themes, Helper.OperationType.Write))
                         return false;
-
-                    var s = NativeMethods.IsArm64() ? Properties.Resources.secureux_arm64 : Properties.Resources.secureux_x64;
-                    var dll = NativeMethods.IsArm64() ? Properties.Resources.ThemeDll_arm64 : Properties.Resources.ThemeDll_x64;
-
-                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "SecureUXHelper.exe"), s, Helper.OperationType.Write))
-                        return false;
-                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "ThemeDll.dll"), dll, Helper.OperationType.Write))
-                        return false;
                 }
                 if (!themes && !icons)
                 {
