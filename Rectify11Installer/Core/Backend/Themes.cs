@@ -341,7 +341,7 @@ namespace Rectify11Installer.Core
             {
                 val = t + "black.conf";
                 string amdorarm = NativeMethods.IsArm64() ? "ARM" : "AMD";
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn micafix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide, true);
+                Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfefix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide, true);
             }
 
             if (!string.IsNullOrWhiteSpace(val))
@@ -525,6 +525,7 @@ namespace Rectify11Installer.Core
                 Helper.KillProcess("explorerframe.exe");
                 Helper.DeleteTask("mfe");
                 Helper.DeleteTask("micafix");
+                Helper.DeleteTask("mfefix");
                 if (!Helper.SafeDirectoryDeletion(Path.Combine(Variables.Windir, "MicaForEveryone"), false))
                 {
                     Logger.WriteLine("Deleting " + Path.Combine(Variables.Windir, "MicaForEveryone") + " failed. ");
