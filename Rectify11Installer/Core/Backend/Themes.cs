@@ -334,6 +334,9 @@ namespace Rectify11Installer.Core
             Helper.SafeDirectoryDeletion(path, false);
             string t = InstallOptions.TabbedNotMica ? "T" : "";
             string val = "";
+
+            // TODO: Use CRectifyUtil
+
             if (InstallOptions.ThemeLight) val = t + "lightrectified.conf";
             else if (InstallOptions.ThemeDark) val = t + "darkrectified.conf";
             else if (InstallOptions.ThemePDark) val = t + "darkrectified.conf";
