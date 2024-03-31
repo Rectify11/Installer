@@ -163,7 +163,7 @@
     <value>Das Installationsprogramm wird alle nötigen Schritte ausführen, um Rectify11 auf Ihrem System für eine bessere Erfahrung zu installieren. Bitte wählen Sie die gewünschte Option, um fortzufahren.</value>
   </data>
   <data name="installChoiceDescription" xml:space="preserve">
-    <value>Sie können auswählen, welche Teile des Systems verbessert werdenen sollen.</value>
+    <value>Zu installierende Inhalte auswählen.</value>
   </data>
   <data name="installChoiceTitle" xml:space="preserve">
     <value>Wählen Sie die zu installierenden Inhalte</value>
@@ -388,7 +388,7 @@
     <value>Rectify11 verändert alles</value>
   </data>
   <data name="changedEverythingText" xml:space="preserve">
-    <value>Wir haben die Symbole im gesamten System modernisiert, was zu einer bessrern und besseren Benutzererfahrung führt.</value>
+    <value>Wir haben die Symbole im gesamten System modernisiert, was zu einer besseren Benutzererfahrung führt.</value>
   </data>
   <data name="betterDpiTitle" xml:space="preserve">
     <value>Wussten sie schon?</value>
