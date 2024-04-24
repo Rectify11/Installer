@@ -6,10 +6,11 @@ using Rectify11Installer.Win32;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using TaskDialog = KPreisser.UI.TaskDialog;
 
 namespace Rectify11Installer
 {
-    public sealed partial class FrmWizard : Form
+    public partial class FrmWizard : Form
     {
         #region Variables
         public int _timerFrames;

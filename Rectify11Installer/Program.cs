@@ -7,16 +7,29 @@ using System.IO;
 using System.Runtime;
 using System.Threading;
 using System.Windows.Forms;
+using TaskDialogExpander = KPreisser.UI.TaskDialogExpander;
+using TaskDialog = KPreisser.UI.TaskDialog;
+using WinUIForms;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.XamlTypeInfo;
+using Application = System.Windows.Forms.Application;
+using WinRT;
+using Microsoft.UI.Dispatching;
 
 namespace Rectify11Installer
 {
-    internal static class Program
+    internal class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        private static void Main(string[] args)
+
+        static void Main(string[] args)
         {
             // check if another instance is running
             using var mutex = new Mutex(false, "Rectify11Setup");
@@ -33,6 +46,15 @@ namespace Rectify11Installer
                 if (arg == "--allow")
                 {
                     skipVersionCheck = true;
+                }
+            }
+
+            bool disablexaml = true;
+            foreach (var arg in args)
+            {
+                if (arg == "--protoui")
+                {
+                    disablexaml = false;
                 }
             }
 
@@ -87,8 +109,29 @@ namespace Rectify11Installer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-            Application.Run(new FrmWizard());
+            if (!disablexaml)
+            {
+                starat();
+            }
 
+
+            void starat()
+            {
+                ComWrappersSupport.InitializeComWrappers();
+                Microsoft.UI.Xaml.Application.Start(delegate
+                {
+                    DispatcherQueueSynchronizationContext synchronizationContext = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
+                    SynchronizationContext.SetSynchronizationContext(synchronizationContext);
+                    if (!disablexaml)
+                    {
+                        new App();
+                    }
+                });
+            }
+            if (disablexaml)
+            {
+                Application.Run(new FrmWizard());
+            }
             // Release mutex once installer exists
             mutex.ReleaseMutex();
         }
