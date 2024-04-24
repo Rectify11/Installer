@@ -3,7 +3,7 @@ REM This script generates the files.7z, extras.7z, and themes.7z needed for the 
 
 REM load command line arguments
 set SolutionDir=%1
-set ProjectDir=%2
+set ProjectDir=%2\
 
 REM Validate command line
 if not exist %SolutionDir% (
