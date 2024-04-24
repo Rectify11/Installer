@@ -1640,7 +1640,7 @@
     <value>..\Resources\ResourceHacker.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Rectify11Phase2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rectify11.Phase2.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\net7.0-windows10.0.20348.0\Rectify11.Phase2.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rectify11xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Core\rectify11.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

@@ -9,83 +9,81 @@ using Microsoft.UI.Xaml.XamlTypeInfo;
 using WinUIForms;
 using Application = Microsoft.UI.Xaml.Application;
 
-namespace Rectify11Installer
+namespace Rectify11Installer;
+
+/// <summary>
+/// C# equivalent of App.xaml
+/// </summary>
+internal class App : Application, IXamlMetadataProvider
 {
+    private static XamlControlsXamlMetaDataProvider? xamlMetaDataProvider = null;
+    private bool _contentLoaded;
+    private Window _mainWindow;
 
-    /// <summary>
-    /// C# equivalent of App.xaml
-    /// </summary>
-    internal class App : Application, IXamlMetadataProvider
+    private XamlControlsXamlMetaDataProvider _AppProvider
     {
-        private static XamlControlsXamlMetaDataProvider? xamlMetaDataProvider = null;
-        private bool _contentLoaded;
-        private Window _mainWindow;
-
-        private XamlControlsXamlMetaDataProvider _AppProvider
+        get
         {
-            get
+            if (xamlMetaDataProvider == null)
             {
-                if (xamlMetaDataProvider == null)
-                {
-                    xamlMetaDataProvider = new XamlControlsXamlMetaDataProvider();
-                }
-                return xamlMetaDataProvider;
+                xamlMetaDataProvider = new XamlControlsXamlMetaDataProvider();
             }
+            return xamlMetaDataProvider;
         }
+    }
 
-        public App()
+    public App()
+    {
+        InitializeComponent();
+    }
+
+    public IXamlType GetXamlType(Type type)
+    {
+        return _AppProvider.GetXamlType(type);
+    }
+
+    public IXamlType GetXamlType(string fullName)
+    {
+        return _AppProvider.GetXamlType(fullName);
+    }
+
+    public XmlnsDefinition[] GetXmlnsDefinitions()
+    {
+        return _AppProvider.GetXmlnsDefinitions();
+    }
+
+    public void InitializeComponent()
+    {
+        if (_contentLoaded)
         {
-            InitializeComponent();
+            return;
         }
-
-        public IXamlType GetXamlType(Type type)
+        _contentLoaded = true;
+        base.DebugSettings.BindingFailed += delegate (object sender, BindingFailedEventArgs args)
         {
-            return _AppProvider.GetXamlType(type);
-        }
-
-        public IXamlType GetXamlType(string fullName)
+            Debug.WriteLine(args.Message);
+        };
+        base.DebugSettings.XamlResourceReferenceFailed += delegate (DebugSettings sender, XamlResourceReferenceFailedEventArgs args)
         {
-            return _AppProvider.GetXamlType(fullName);
-        }
-
-        public XmlnsDefinition[] GetXmlnsDefinitions()
+            Debug.WriteLine(args.Message);
+        };
+        base.UnhandledException += delegate
         {
-            return _AppProvider.GetXmlnsDefinitions();
-        }
-
-        public void InitializeComponent()
-        {
-            if (_contentLoaded)
+            if (Debugger.IsAttached)
             {
-                return;
+                Debugger.Break();
             }
-            _contentLoaded = true;
-            base.DebugSettings.BindingFailed += delegate (object sender, BindingFailedEventArgs args)
-            {
-                Debug.WriteLine(args.Message);
-            };
-            base.DebugSettings.XamlResourceReferenceFailed += delegate (DebugSettings sender, XamlResourceReferenceFailedEventArgs args)
-            {
-                Debug.WriteLine(args.Message);
-            };
-            base.UnhandledException += delegate
-            {
-                if (Debugger.IsAttached)
-                {
-                    Debugger.Break();
-                }
-            };
-        }
+        };
+    }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
-        {
-            base.OnLaunched(args);
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    {
+        base.OnLaunched(args);
 
-            this.Resources.MergedDictionaries.Add(new XamlControlsResources());
+        this.Resources.MergedDictionaries.Add(new XamlControlsResources());
 
-            Form tmp = new FrmWizard();
-            _mainWindow = tmp.ToWinUI(new MicaBackdrop());
-            _mainWindow.Activate();
-        }
+        Form tmp = new FrmWizard();
+        _mainWindow = tmp.ToWinUI(new MicaBackdrop());
+        _mainWindow.Activate();
     }
 }
