@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TaskDialog = KPreisser.UI.TaskDialog;
 namespace Rectify11Installer.Pages
 {
 	public partial class ProgressPage : WizardPage
