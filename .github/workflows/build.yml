@@ -33,11 +33,11 @@ jobs:
       run: msbuild Rectify11Installer.sln /p:Configuration=Release /p:platform=x64
       
     - name: Create single exe
-      run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Release\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Release\Rectify11Installer.exe Rectify11Installer\bin\Release\libmsstyle.dll Rectify11Installer\bin\Release\TaskDialog.dll
+      run: Rectify11Installer\ILRepack.exe Rectify11Installer\bin\Release\net7.0-windows10.0.20348.0\Rectify11Installer.exe /out:Rectify11Installer\bin\output\Release\net7.0-windows10.0.20348.0\Rectify11Installer.exe Rectify11Installer\bin\Release\net7.0-windows10.0.20348.0\libmsstyle.dll Rectify11Installer\bin\Release\net7.0-windows10.0.20348.0\TaskDialog.dll
       
     - name: Upload Rectify11Installer
       uses: actions/upload-artifact@v4.3.1
       with:
         name: Rectify11Installer (x64)
-        path: Rectify11Installer\bin\output\Release\Rectify11Installer.exe
+        path: Rectify11Installer\bin\output\Release\net7.0-windows10.0.20348.0\Rectify11Installer.exe
         compression-level: 0
