@@ -45,7 +45,8 @@
 			Core.TabPages.cmenupage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
 			Core.TabPages.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            Core.TabPages.defenderPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.progressLabel = new Controls.DarkAwareLabel();
 			this.versionLabel = new Controls.DarkAwareLabel();
 			this.timer = new System.Windows.Forms.Timer();
@@ -174,7 +175,8 @@
 			this.navPane.Controls.Add(Core.TabPages.cmenupage);
 			this.navPane.Controls.Add(Core.TabPages.summaryPage);
 			this.navPane.Controls.Add(Core.TabPages.progressPage);
-			this.navPane.ItemSize = new System.Drawing.Size(10, 20);
+            this.navPane.Controls.Add(Core.TabPages.defenderPage);
+            this.navPane.ItemSize = new System.Drawing.Size(10, 20);
 			this.navPane.Location = new System.Drawing.Point(280, 0);
 			this.navPane.Multiline = true;
 			this.navPane.Name = "navPane";
@@ -279,10 +281,20 @@
 			Core.TabPages.progressPage.Size = new System.Drawing.Size(333, 284);
 			Core.TabPages.progressPage.TabIndex = 6;
 			Core.TabPages.progressPage.Text = "Progress";
-			// 
-			// versionLabel
-			// 
-			this.versionLabel.AutoSize = true;
+            // 
+            // defenderPage
+            // 
+            Core.TabPages.defenderPage.BackColor = System.Drawing.Color.White;
+            Core.TabPages.defenderPage.ForeColor = System.Drawing.Color.Black;
+            Core.TabPages.defenderPage.Location = new System.Drawing.Point(4, 44);
+            Core.TabPages.defenderPage.Name = "defenderPage";
+            Core.TabPages.defenderPage.Size = new System.Drawing.Size(333, 284);
+            Core.TabPages.defenderPage.TabIndex = 7;
+            Core.TabPages.defenderPage.Text = "Defender Disable Page";
+            // 
+            // versionLabel
+            // 
+            this.versionLabel.AutoSize = true;
 			this.versionLabel.BackColor = System.Drawing.Color.Transparent;
 			this.versionLabel.ForeColor = System.Drawing.Color.Black;
 			this.versionLabel.Location = new System.Drawing.Point(6, 426);

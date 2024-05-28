@@ -31,7 +31,7 @@
 			this.summaryTitle = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.summaryItems = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.summaryFooter = new Rectify11Installer.Controls.DarkAwareLabel();
-			this.restoreCheckbox = new();
+			this.restoreCheckbox = new Rectify11Installer.Controls.DarkAwareCheckBox();
 			this.SuspendLayout();
 			// 
 			// summaryTitle

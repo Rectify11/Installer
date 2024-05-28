@@ -93,7 +93,7 @@ namespace Rectify11Installer
             TabPages.cmenupage.Controls.Add(RectifyPages.CMenuPage);
             TabPages.debPage.Controls.Add(RectifyPages.DebugPage);
             TabPages.progressPage.Controls.Add(RectifyPages.ProgressPage);
-            TabPages.summaryPage.Controls.Add(RectifyPages.InstallConfirmation);
+            TabPages.defenderPage.Controls.Add(RectifyPages.DefenderPage);
 
             RectifyPages.WelcomePage.InstallButton.Click += InstallButton_Click;
             RectifyPages.WelcomePage.UninstallButton.Click += UninstallButton_Click;
@@ -179,7 +179,12 @@ namespace Rectify11Installer
         }
         private void NextButton_Click(object sender, EventArgs e)
         {
-            if (navPane.SelectedTab == TabPages.eulPage)
+            if (navPane.SelectedTab == TabPages.defenderPage)
+            {
+                if (!_acknowledged) Navigate(RectifyPages.EulaPage);
+                else Navigate(RectifyPages.InstallOptnsPage);
+            }
+            else if (navPane.SelectedTab == TabPages.eulPage)
             {
                 if (!_acknowledged)
                 {
@@ -216,7 +221,7 @@ namespace Rectify11Installer
             }
             else if (navPane.SelectedTab == TabPages.cmenupage)
             {
-                    Navigate(RectifyPages.InstallConfirmation);
+                Navigate(RectifyPages.InstallConfirmation);
             }
             else if (navPane.SelectedTab == TabPages.summaryPage)
             {
@@ -226,9 +231,13 @@ namespace Rectify11Installer
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            if (navPane.SelectedTab == TabPages.eulPage)
+            if (navPane.SelectedTab == TabPages.defenderPage)
             {
                 Navigate(RectifyPages.WelcomePage);
+            }
+            else if (navPane.SelectedTab == TabPages.eulPage)
+            {
+                Navigate(RectifyPages.DefenderPage);
             }
             else if (navPane.SelectedTab == TabPages.installPage)
             {
@@ -274,8 +283,7 @@ namespace Rectify11Installer
         {
             if (Helper.CheckIfUpdatesPending())
             {
-                if (!_acknowledged) Navigate(RectifyPages.EulaPage);
-                else Navigate(RectifyPages.InstallOptnsPage);
+                Navigate(RectifyPages.DefenderPage);
             }
         }
 
@@ -283,16 +291,16 @@ namespace Rectify11Installer
         {
             if (Helper.CheckIfUpdatesPending())
             {
-				var res = TaskDialog.Show(text: Strings.Rectify11.uninstallConfirmText,
-								title: Strings.Rectify11.uninstallTitle,
-								buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
-								icon: TaskDialogStandardIcon.Information);
+                var res = TaskDialog.Show(text: Strings.Rectify11.uninstallConfirmText,
+                                title: Strings.Rectify11.uninstallTitle,
+                                buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
+                                icon: TaskDialogStandardIcon.Information);
                 if (res == TaskDialogResult.Yes)
                 {
                     Variables.IsUninstall = true;
                     Navigate(RectifyPages.ProgressPage);
                 }
-			}
+            }
         }
 
         private void VersionLabel_Click(object sender, EventArgs e)
