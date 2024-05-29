@@ -214,8 +214,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	DUIXmlParser::Create(&pParser, NULL, NULL, NULL, NULL);
 	pParser->SetParseErrorCallback(
 		[](UCString err1, UCString err2, int unk, void* ctx) {
-			MessageBox(hwnd, std::format(L"err: {}; {}; {}\n", (LPCWSTR)err1, (LPCWSTR)err2, unk).c_str(),
-			L"Error while parsing DirectUI", S_OK);
+			MessageBox(hwnd, std::format(L"Error from DirectUI: {}; {}; {}\n", (LPCWSTR)err1, (LPCWSTR)err2, unk).c_str(),
+				L"Error while parsing DirectUI", MB_ICONERROR);
 		}, NULL);
 
 	hr = pParser->SetXMLFromResource(IDR_UIFILE, hInstance, (HINSTANCE)hInstance);
@@ -224,9 +224,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	HWNDElement::Create(pwnd->GetHWND(), true, 0, NULL, &defer_key, (Element**)&hwnd_element);
 
 	// Create the root element
-	Element* pWizardMain;
+	Element* pWizardMain = NULL;
 	hr = pParser->CreateElement((UCString)L"WizardMain", hwnd_element, NULL, NULL, (Element**)&pWizardMain);
 
+	if (pWizardMain == NULL)
+	{
+		MessageBox(hwnd, TEXT("A error has occured while creating the main element. The application will now close."), L"Error while creating main window", MB_ICONERROR);
+		return -1;
+	}
 	// Host the window with the element
 	pWizardMain->SetVisible(true);
 	pWizardMain->EndDefer(defer_key);

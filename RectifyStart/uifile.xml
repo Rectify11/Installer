@@ -2,12 +2,12 @@
 	<stylesheets>
 		<!-- ressheet(ImmersiveStyles, library(dui70.dll), Dark) -->
 		<style resid="SXStyles">
-			<HWNDElement width="880rp" height="720rp" accessible="true" layoutpos="client" background="themeable(gtc(DirectUI::ItemsView, 0, 0, 3802), window)"/>
+			<HWNDElement width="880rp" height="720rp" accessible="true" layoutpos="client" background="themeable(gradient(gtc(DirectUI::ItemsView, 0, 0, 3802), gtc(DirectUI::ItemsView, 0, 0, 3802), 1), window)"/>
 			<if id="atom(ElementContainer)">
 				<element padding="rect(24rp,0rp,24rp,24rp)"/>
 			</if>
 			<if class="WizardButtonBar">
-				<element padding="rect(16rp,16rp,16rp,16rp)" background="themeable(dtb(DialogRoot::Button, 6, 4), threedface)" height="64rp"/>
+				<element padding="rect(14rp,10rp,10rp,10rp)" background="themeable(dtb(DialogRoot::Button, 6, 4), threedface)" height="48rp"/>
 			</if>
 			<if class="WizardPageTitle">
 				<element accessible="true" padding="rect(0rp,16rp,0rp,8rp)" accrole="StaticText" contentalign="wrapleft" font="themeable(gtf(AeroWizard, 2, 0), 'captionfont')" foreground="themeable(gtc(AeroWizard, 2, 0, 3803), windowtext)"/>
@@ -54,11 +54,118 @@
 			<if class="CardSubtitle">
 				<RichText background="argb(0,0,0,0)" foreground="gtc(ControlPanelStyle,8,0,3803)" font="messagefont" width="288rp" contentalign="wrapleft" margin="rect(0,0,0,12rp)"/>
 			</if>
+			<if class="CardWarningSubtitle">
+				<RichText background="argb(0,0,0,0)" foreground="gtc(DragDrop,5,0,3803)" font="messagefont" contentalign="endellipsis" padding="rect(6rp,4rp,0,0)"/>
+			</if>
 			<if class="ImageHolder">
-				<Element width="294rp" height="185rp" background="sgraphic(1000,7,-1,0,0,1,1)" padding="rect(21rp,16rp,21rp,27rp)"/>
+				<Element width="237rp" height="146rp" background="argb(0,0,0,0)" padding="rect(0rp,0rp,0rp,0rp)"/>
 			</if>
 			<if class="Image">
-				<Element width="252rp" height="142rp" direction="ltr"/>
+				<Element width="237rp" height="146rp" direction="ltr"/>
+				<if id="atom(Image1)">
+					<if dpi="96" highdpi="false">
+						<Element background="sgraphic(1001,7,-1,0,0,1,1)"/>
+					</if>
+					<iflesserequal dpi="120">
+						<Element background="sgraphic(1002,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="144">
+						<Element background="sgraphic(1003,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="192">
+						<Element background="sgraphic(1004,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="240">
+						<Element background="sgraphic(1005,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="288">
+						<Element background="sgraphic(1006,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="384">
+						<Element background="sgraphic(1007,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="480">
+						<Element background="sgraphic(1008,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+				</if>
+				<if id="atom(Image2)">
+					<if dpi="96" highdpi="false">
+						<Element background="sgraphic(1009,7,-1,0,0,1,1)"/>
+					</if>
+					<iflesserequal dpi="120">
+						<Element background="sgraphic(1010,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="144">
+						<Element background="sgraphic(1011,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="192">
+						<Element background="sgraphic(1012,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="240">
+						<Element background="sgraphic(1013,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="288">
+						<Element background="sgraphic(1014,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="384">
+						<Element background="sgraphic(1015,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="480">
+						<Element background="sgraphic(1016,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+				</if>
+				<if id="atom(Image3)">
+					<if dpi="96" highdpi="false">
+						<Element background="sgraphic(1017,7,-1,0,0,1,1)"/>
+					</if>
+					<iflesserequal dpi="120">
+						<Element background="sgraphic(1018,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="144">
+						<Element background="sgraphic(1019,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="192">
+						<Element background="sgraphic(1020,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="240">
+						<Element background="sgraphic(1021,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="288">
+						<Element background="sgraphic(1022,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="384">
+						<Element background="sgraphic(1023,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="480">
+						<Element background="sgraphic(1024,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+				</if>
+				<if id="atom(Image4)">
+					<if dpi="96" highdpi="false">
+						<Element background="sgraphic(1025,7,-1,0,0,1,1)"/>
+					</if>
+					<iflesserequal dpi="120">
+						<Element background="sgraphic(1026,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="144">
+						<Element background="sgraphic(1027,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="192">
+						<Element background="sgraphic(1028,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="240">
+						<Element background="sgraphic(1029,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="288">
+						<Element background="sgraphic(1030,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="384">
+						<Element background="sgraphic(1031,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+					<iflesserequal dpi="480">
+						<Element background="sgraphic(1032,7,-1,0,0,1,1)"/>
+					</iflesserequal>
+				</if>
 			</if>
 		</style>
 		<style resid="RefDui" base="ressheet(ImmersiveStyles, library(dui70.dll), Dark)"/>
@@ -170,61 +277,64 @@
 	</stylesheets>
 	<HWNDElement resid="WizardMain" layout="FillLayout()" id="Atom(SXWizard)" sheet="SXStyles">
 		<element layout="borderlayout()" id="atom(ElementContainer)">
-			<RichText layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="resstr(102)" font="messagefont;192%;semibold" foreground="themeable(gtc(DirectUI::ItemsView, 0, 0, 3803), windowtext)" padding="rect(0rp,16rp,0rp,0rp)"/>
+			<RichText layoutpos="top" class="WizardPageTitle" id="Atom(SXTitle)" content="resstr(106)" font="messagefont;192%;semibold" foreground="themeable(gtc(DirectUI::ItemsView, 0, 0, 3803), windowtext)" padding="rect(0rp,16rp,0rp,0rp)"/>
 			<!--element layoutpos="top" class="WizardPageSubTitle" id="Atom(SXSubTitle)" content="This is subtitle, or instruction, or body text."/-->
 			<element layoutpos="client" class="WizardPageContainer" layout="GridLayout(2,2)" id="Atom(SXWizardPageContainer)">
 				<TouchButton id="atom(Card1)" class="Card" layout="flowlayout(0,0,2,0)">
 					<Element layout="verticalflowlayout(0,0,2,0)">
 						<Element class="ImageHolder" layout="flowlayout()">
-							<Element class="Image" id="atom(Image1)" background="sgraphic(1001,7,-1,0,0,1,1)"/>
+							<Element class="Image" id="atom(Image1)"/>
 						</Element>
-						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(103)" class="CardTitle"/>
-							<RichText content="resstr(104)" class="CardSubtitle"/>
-							<TouchButton content="resstr(105)" class="default" sheet="CustomStyles" id="atom(BtnOpenCpl)"/>
+						<Element layout="verticalflowlayout(0,0,0,0)" padding="rect(8rp,0,0,0)">
+							<RichText content="resstr(107)" class="CardTitle"/>
+							<RichText content="resstr(108)" class="CardSubtitle"/>
+							<TouchButton content="resstr(109)" class="default" sheet="CustomStyles" id="atom(BtnOpenCpl)"/>
 						</Element>
 					</Element>
 				</TouchButton>
 				<TouchButton id="atom(Card2)" class="Card" layout="flowlayout(0,0,2,0)">
 					<Element layout="verticalflowlayout(0,0,2,0)">
 						<Element class="ImageHolder" layout="flowlayout()">
-							<Element class="Image" id="atom(Image2)" background="sgraphic(1002,7,-1,0,0,1,1)"/>
+							<Element class="Image" id="atom(Image2)"/>
 						</Element>
-						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(106)" class="CardTitle"/>
-							<RichText content="resstr(107)" class="CardSubtitle"/>
-							<TouchButton content="resstr(108)" class="default" sheet="CustomStyles"/>
+						<Element layout="verticalflowlayout(0,0,0,0)" padding="rect(8rp,0,0,0)">
+							<RichText content="resstr(110)" class="CardTitle"/>
+							<RichText content="resstr(111)" class="CardSubtitle"/>
+							<TouchButton content="resstr(112)" class="default" sheet="CustomStyles"/>
 						</Element>
 					</Element>
 				</TouchButton>
 				<TouchButton id="atom(Card3)" class="Card" layout="flowlayout(0,0,2,0)">
 					<Element layout="verticalflowlayout(0,0,2,0)">
 						<Element class="ImageHolder" layout="flowlayout()">
-							<Element class="Image" id="atom(Image3)" background="sgraphic(1003,7,-1,0,0,1,1)"/>
+							<Element class="Image" id="atom(Image3)"/>
 						</Element>
-						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(110)" class="CardTitle"/>
-							<RichText content="resstr(111)" class="CardSubtitle"/>
+						<Element layout="verticalflowlayout(0,0,0,0)" padding="rect(8rp,0,0,0)">
+							<RichText content="resstr(114)" class="CardTitle"/>
+							<RichText content="resstr(115)" class="CardSubtitle"/>
 						</Element>
 					</Element>
 				</TouchButton>
 				<TouchButton id="atom(Card4)" class="Card" layout="flowlayout(0,0,2,0)">
 					<Element layout="verticalflowlayout(0,0,2,0)">
-						<Element class="ImageHolder" layout="flowlayout(0,2,2,0)">
-							<RichText class="CardTitle" content="Image TBD"/>
+						<Element class="ImageHolder" layout="flowlayout()">
+							<Element class="Image" id="atom(Image4)"/>
 						</Element>
-						<Element layout="verticalflowlayout(0,0,0,0)">
-							<RichText content="resstr(112)" class="CardTitle"/>
-							<RichText content="resstr(113)" class="CardSubtitle"/>
+						<Element layout="verticalflowlayout(0,0,0,0)" padding="rect(8rp,0,0,0)">
+							<Element layout="flowlayout(0,0,0,0)">
+								<RichText content="resstr(116)" class="CardTitle"/>
+								<RichText content="resstr(120)" class="CardWarningSubtitle"/>
+							</Element>
+							<RichText content="resstr(117)" class="CardSubtitle"/>
 						</Element>
 					</Element>
 				</TouchButton>
 			</element>
-			<RichText id="atom(Link)" foreground="20005" content="View full changelog" font="iconfont;115%" layoutpos="bottom" margin="rect(0,0rp,0,0)" width="160rp" visible="false"/>
+			<!--RichText id="atom(Link)" foreground="20005" content="View full changelog" font="iconfont;115%" layoutpos="bottom" margin="rect(0,0rp,0,0)" width="160rp" visible="false"/-->
 		</element>
 		<element layoutpos="bottom" class="WizardButtonBar" contentalign="middleright" layout="BorderLayout()" id="Atom(SXWizardButtonBar)">
-			<TouchCheckBox accessible="true" layoutpos="left" sheet="CustomStyles" checkedstate="checked" padding="rect(0,6rp,0,0)" id="Atom(SXWizardCheckbox)" active="mouse | keyboard" content="resstr(114)"/>
-			<TouchButton accessible="true" layoutpos="right" minsize="size(96rp,32rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="resstr(115)"/>
+			<TouchCheckBox accessible="true" layoutpos="left" sheet="CustomStyles" checkedstate="checked" padding="rect(0,4rp,0,0)" id="Atom(SXWizardCheckbox)" active="mouse | keyboard" content="resstr(118)"/>
+			<TouchButton accessible="true" layoutpos="right" height="28rp" minsize="size(96rp,28rp)" margin="rect(6rp,0rp,0rp,0rp)" sheet="CustomStyles" accrole="pushbutton" id="Atom(SXWizardDefaultButton)" active="mouse | keyboard" content="resstr(119)"/>
 		</element>
 	</HWNDElement>
 </duixml>

@@ -22,6 +22,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -77,13 +78,38 @@ IDR_UIFILE              UIFILE                  "uifile.xml"
 // IMAGE
 //
 
-IDB_BLANK               IMAGE                   "blank.png"
-
-IDB_CPL                 IMAGE                   "cpl.png"
-
-IDB_THEMESWITCH         IMAGE                   "themeswitch.png"
-
-IDB_ANIMATIONS          IMAGE                   "animations.png"
+1001          IMAGE                   "1001.png"
+1002          IMAGE                   "1002.png"
+1003          IMAGE                   "1003.png"
+1004          IMAGE                   "1004.png"
+1005          IMAGE                   "1005.png"
+1006          IMAGE                   "1006.png"
+1007          IMAGE                   "1007.png"
+1008          IMAGE                   "1008.png"
+1009          IMAGE                   "1009.png"
+1010          IMAGE                   "1010.png"
+1011          IMAGE                   "1011.png"
+1012          IMAGE                   "1012.png"
+1013          IMAGE                   "1013.png"
+1014          IMAGE                   "1014.png"
+1015          IMAGE                   "1015.png"
+1016          IMAGE                   "1016.png"
+1017          IMAGE                   "1017.png"
+1018          IMAGE                   "1018.png"
+1019          IMAGE                   "1019.png"
+1020          IMAGE                   "1020.png"
+1021          IMAGE                   "1021.png"
+1022          IMAGE                   "1022.png"
+1023          IMAGE                   "1023.png"
+1024          IMAGE                   "1024.png"
+1025          IMAGE                   "1025.png"
+1026          IMAGE                   "1026.png"
+1027          IMAGE                   "1027.png"
+1028          IMAGE                   "1028.png"
+1029          IMAGE                   "1029.png"
+1030          IMAGE                   "1030.png"
+1031          IMAGE                   "1031.png"
+1032          IMAGE                   "1032.png"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -108,62 +134,23 @@ BEGIN
     IDS_ALREADYON           "Already turned on"
     IDS_SMOOTHUI            "Smoother UI"
     IDS_SMOOTHUIDESC        "Rectify11 v3.2 adds smooth animations to more Windows UI components, as well as making existing UI animations smoother."
-    IDS_CARD                "Title TBD"
-    IDS_CARDDESC            "Description TBD"
+    IDS_CARD                "Better File Explorer"
+    IDS_CARDDESC            "Rectify11 enhances File Explorer by adding a new selection indicator, large check boxes, and subtle animations."
     IDS_STARTUP             "Show this window when Windows starts."
     IDS_CLOSE               "Close"
+    IDS_WIN11ONLY           "Only on Windows 11."
 END
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
-
-/////////////////////////////////////////////////////////////////////////////
-// German (Germany) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
-LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
-
-STRINGTABLE
-BEGIN
-    IDS_APP_TITLE           "RectifyStart"
-    IDS_WHATSNEW            "Was ist neu in v3.2 ?"
-    IDS_NEWCPL              "Die neuen Rectify11 Einstellungen"
-    IDS_NEWCPLDESC          "In den Rectify11-Einstellungen kรถnnen Sie alles, was Rectify11 betrifft, bequem รคndern und optimieren."
-    IDS_CHECKITOUT          "Probier es aus"
-    IDS_THEMESWITCH         "Einfacher Designwechsel"
-    IDS_THEMESWITCHDESC     "Mit dem neuen Rectify11-Menรผ im Infobereich kรถnnen Sie direkt von Ihrer Taskleiste aus das Design wechseln."
-END
-
-STRINGTABLE
-BEGIN
-    IDS_TURNON              "Aktivieren"
-    IDS_ALREADYON           "Bereits aktiviert"
-    IDS_SMOOTHUI            "Eine flรผssigere Benutzeroberflรคche"
-    IDS_SMOOTHUIDESC        "Rectify11 v3.2 fรผgt einige Animationen zu weiteren Komponenten der Windows-Benutzeroberflรคche hinzu und macht bestehende Animationen flรผssiger."
-    IDS_CARD                "Titel NZD"
-    IDS_CARDDESC            "Beschreibung NZD"
-    IDS_STARTUP             "RectifyStart mit Windows starten."
-    IDS_CLOSE               "Schlieรen"
-END
-
-#endif    // German (Germany) resources
-/////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // Arabic (Saudi Arabia) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ARA)
 LANGUAGE LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA
+#pragma code_page(1256)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -173,24 +160,25 @@ LANGUAGE LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA
 STRINGTABLE
 BEGIN
     IDS_APP_TITLE           "RectifyStart"
-    IDS_WHATSNEW            "ุงูุฌุฏูุฏ ูู ุงูุฅุตุฏุงุฑ 3.2"
-    IDS_NEWCPL              "ุฅุนุฏุงุฏุงุช Rectify11 ุงูุฌุฏูุฏุฉ"
-    IDS_NEWCPLDESC          "ู…ูุงู ุณูู ุงูุงุณุชุฎุฏุงู… ูุชุบููุฑ ูุถุจุท ูู ุดูุก ู…ุชุนูู ุจู€ Rectify11"
-    IDS_CHECKITOUT          "ุงูุงุทูุงุน ุนููู"
-    IDS_THEMESWITCH         "ุชุบููุฑ ุงูุฃููุงู ุจุณูููุฉ"
-    IDS_THEMESWITCHDESC     "ู…ุน ุฃุฏุงุฉ ุดุฑูุท ุงูู…ูุงู… ุงูุฌุฏูุฏุฉุ ูู…ููู ุถุจุท ุงููุถุน ุงููุงุชุญ ุฃู ุงูุฏุงูู"
+    IDS_WHATSNEW            "วแฬฯํฯ Ýํ วแลีฯวั 3.2"
+    IDS_NEWCPL              "ลฺฯวฯวส Rectify11 วแฬฯํฯษ"
+    IDS_NEWCPLDESC          "ใ฿วไ ำๅแ วแวำสฮฯวใ แสÛํํั ๆึศุ ฿แ ิํม ใสฺแÞ ศÜ Rectify11"
+    IDS_CHECKITOUT          "วแวุแวฺ ฺแํๅ"
+    IDS_THEMESWITCH         "สÛํํั วแรแๆวไ ศำๅๆแษ"
+    IDS_THEMESWITCHDESC     "ใฺ รฯวษ ิัํุ วแใๅวใ วแฬฯํฯษก ํใ฿ไ฿ ึศุ วแๆึฺ วแÝวสอ รๆ วแฯว฿ไ"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_TURNON              "ุชูุนูู"
-    IDS_ALREADYON           "ุชู… ุงูุชูุนูู"
-    IDS_SMOOTHUI            "ูุงุฌูุฉ ุณูุณุฉ"
-    IDS_SMOOTHUIDESC        "ุชู… ุฅุถุงูุฉ ุนูุงุตุฑ ู…ุชุญุฑูุฉ ูู ุงููุธุงู…ุ ูุฌุนู ุงูุญุฑูุงุช ุงูุงูุชุฑุงุถูุฉ ุฃูุซุฑ ุณูุงุณุฉ"
-    IDS_CARD                "ุนููุงู"
-    IDS_CARDDESC            "ูุตู"
-    IDS_STARTUP             "ุนุฑุถ ุงููุงูุฐุฉ ุนูุฏ ุชุดุบูู ุงูุฌูุงุฒ"
-    IDS_CLOSE               "ุฅุบูุงู"
+    IDS_TURNON              "สÝฺํแ"
+    IDS_ALREADYON           "สใ วแสÝฺํแ"
+    IDS_SMOOTHUI            "ๆวฬๅษ ำแำษ"
+    IDS_SMOOTHUIDESC        "สใ ลึวÝษ ฺไวีั ใสอั฿ษ Ýํ วแไูวใก ๆฬฺแ วแอั฿วส วแวÝสัวึํษ ร฿หั ำแวำษ"
+    IDS_CARD                "สอำํไวส ใำส฿ิÝ วแใแÝวส"
+    IDS_CARDDESC            "ํึÝ Rectify11 สอำํไวส แใำส฿ิÝ วแใแÝวส ใหแ ใอฯฯ วแใแÝวส วแใฮสวัษ ๆใำวอษ ร฿ศั แวฮสํวัๅว"
+    IDS_STARTUP             "ฺัึ วแไวÝะษ ฺไฯ สิÛํแ วแฬๅวา"
+    IDS_CLOSE               "ลÛแวÞ"
+    IDS_WIN11ONLY           "ฬีัํว๐ ฺแ์ Windows 11"
 END
 
 #endif    // Arabic (Saudi Arabia) resources
