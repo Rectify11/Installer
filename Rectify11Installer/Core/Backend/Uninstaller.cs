@@ -51,6 +51,11 @@ namespace Rectify11Installer.Core
             Helper.SafeFileDeletion(Path.Combine(Variables.sys32Folder, "ImmersiveFontHandler.dll"));
             Helper.SafeFileDeletion(Path.Combine(Variables.sys32Folder, "twinuifonts.dll"));
 
+            Helper.SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, "iconres.dll"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, "duires.dll"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, "ImmersiveFontHandler.dll"));
+            Helper.SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, "twinuifonts.dll"));
+
             Logger.CommitLog();
             // complete uninstall
             if (Variables.CompleteUninstall)
