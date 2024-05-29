@@ -56,13 +56,6 @@ namespace Rectify11Installer
                     if (!ShowCompatibilityMessage(true, Strings.Rectify11.compatWarnText, Strings.Rectify11.compatWarnInstruc))
                         return;
                 }
-
-                // Windows 11 builds greater than 25977 have known issues
-                if (Environment.OSVersion.Version.Build >= 25977)
-                {
-                    if (!ShowCompatibilityMessage(true, Strings.Rectify11.compatWarnText, Strings.Rectify11.tooNewBuild))
-                        return;
-                }
             }
 
             if (Environment.OSVersion.Version.Build >= 10240)
