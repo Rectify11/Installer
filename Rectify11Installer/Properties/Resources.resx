@@ -121,7 +121,7 @@
   <data name="eula" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANQAAADBCAYAAAC3xZ4wAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAdnJJREFUeF7tvQd4VVd29v/ly5RMSTJf/kkmZZLMZLo944IbmN6rEGqIJnrv3caY
+        DAAACwwBP0AiyAAAdnJJREFUeF7tvQd4VVd29v/ly5RMSTJf/kkmZZLMZLo944IbmN6rEGqIJnrv3caY
         3nvvvWM66gUQmGabYmM6iCIkIQEqIIoAAfv/vrucu+/RlY3HGBBz9/O8rHOrCuend+211z73/zztsejU
         uL9fnDGz1MJL0xotTp06eMGFKXOgLQvOT9027/yUT+eem6yUMmX73LOTtsw9M3nO3LMTB885PaHRvLNT
         Sum38Q//+OsdhGjJpZmNFl2aNmdx6vTtU86N2D3yVL/k9453SupxpGV8u8OhMS0PBEY3+7ROZJP9tSOb
@@ -632,7 +632,7 @@
   <data name="installoptns" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAJnBJREFUeF7tnUlQHce+5m9H9LI7ovcdL+KtO7rv9Wxf+15LsmXJsyVf2xoYhNCE
+        DAAACwwBP0AiyAAAJnBJREFUeF7tnUlQHce+5m9H9LI7ovcdL+KtO7rv9Wxf+15LsmXJsyVf2xoYhNCE
         BIh5FCAEmmeJSRKTZkADM0i6m168fb/127xedERv3+udd9nfl5XnqCgSgSSg6pzz/SN+IQfUOWRm5ffL
         rDoF/oNKpVKpVCqVSqVSqVQqlUqlUqlUKpVKpVKpVCqVSqVSqVQqlUqlUqlUKpVKpVKpVCqVSqVSqVQq
         lUqlUqlUKpVKpVKpVCqVSqVSqVQqlUqlUqlUKpVKpVKpVCqVSqVSqVQqlUqlUqlUKpVKpVKpVCrVcjVY
@@ -2072,7 +2072,7 @@
   <data name="perf" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAJwAAADCCAYAAAC8PKvKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAASZVJREFUeF7tvWdYVOfe//u8e86r/znXOdd5t0+7nv+zU/be2THN3ktsqGCjzQwg
+        DAAACwwBP0AiyAAASZVJREFUeF7tvWdYVOfe//u8e86r/znXOdd5t0+7nv+zU/be2THN3ktsqGCjzQwg
         2Av2AoIoioJ0ZigmJrHEXqPR2LuI3ZhEw040MZqqJroVZtaQ+3y/91oLF8MaGGEo6tzX9b1msWbNMMz6
         8Gt3+49Ae7GaKD/5X9phoAVa0zd3eWmMKC/9H9qPgRZoTduqykvjlfLSPtqPgRZoTddE+bH/s+qLY2Or
         rp+ayGPtdKAFWtM0uNK/uK/si3KfWhMM1zpMOx1ogdY0zVV+to371PrhruLRbQNWLtCavLnLTwe5j3wQ
@@ -3194,7 +3194,7 @@
   <data name="incomplete" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAOEAAADqCAYAAABUdCK5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAA4VVJREFUeF7snQecJFW1//9GzO/pM6EooLB5FxQJgsiiT1BJAhIkiQTJOccl58zm
+        DAAACwwBP0AiyAAA4VVJREFUeF7snQecJFW1//9GzO/pM6EooLB5FxQJgsiiT1BJAhIkiQTJOccl58zm
         nHOcvJNzzjn35O7pntiTu7vq/M85996qWz2zwPL0PdCpz+f3ObdqZmeHYb77O+fcUP9v+pq+PumXx+P5
         anNz8/fa29sXdHZ2/u5Q6ujo+CV9Dn7+T+Qfnb6mr+nro14EGsFDMLW1td2K8WmEagNCtaerqyvW7XbH
         er3euL6+vhipWG3M6u3tjcHPie3u7o7FPxeHf34JxtdQ10g4vyr/uulr+pq+CDgE42IE7gGCjUBDeBiy
@@ -4161,7 +4161,7 @@
   <data name="install" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANUAAADfCAYAAABh25blAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAp5xJREFUeF7tnQd4HNXV/pNQbDA9lFBCCzZumCSEEkJxki89hDRSCCSEhIQQWmih
+        DAAACwwBP0AiyAAAp5xJREFUeF7tnQd4HNXV/pNQbDA9lFBCCzZumCSEEkJxki89hDRSCCSEhIQQWmih
         m9477uAGBmyMC1Z1L3LvXS6SZUuWJUuW5G5LuzPzP+8pd+6sZJvvC/9gsOZ53ufcmV0vstif33POvXPn
         c81H87GvH5WVla1Wr159QllZWafy8vLv7U7r1q37Jt5D7z9T/2jz0XzsvwfAAQyAo7S09EaKDxMkAwiS
         oevXr8+rqKjIq6qqyq+trc1V5XljVk1NTS69J2/Dhg159Ofy6c93o/gc6RqFrZX+55qP5uOzdwAg+qL/
@@ -40408,7 +40408,7 @@
   <data name="asdf" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMUAAADNCAYAAAAIa7SdAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAXEVJREFUeF7tnQd4FVX6//3p+l9F7HSQ3psCVpoo0jG00HsvoSVACAlJSELvHQRZ
+        DAAACwwBP0AiyAAAXEVJREFUeF7tnQd4FVX6//3p+l9F7HSQ3psCVpoo0jG00HsvoSVACAlJSELvHQRZ
         +66rrrqr61pwRV0VsYMKAtIJNSGUhJCQe/7f7+G847mTmxAQQcO8z/N9zszcNnfm/Zz3fc+ZO/cazzzz
         zDPPLrMppf7PLHrmWf4zOLhZym7WY/9nltkSCK3Y2NhrzbIGxTymzXqtZ5798czl0I7T5yYDBM1vO2Gw
         3k9Ek9Yzz353Zjup48SyDl1rHF6igF62tvltp1yP2dLvyc8wrazrlhs98+xymuOQljPKsp/Tctk49nVc
@@ -40828,5 +40828,8 @@
   </data>
   <data name="Rectify11.Phase2Dll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rectify11.Phase2.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Rectify11TrayTool" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rectify11TrayTool.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

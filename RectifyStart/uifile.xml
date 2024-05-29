@@ -300,7 +300,7 @@
 						<Element layout="verticalflowlayout(0,0,0,0)" padding="rect(8rp,0,0,0)">
 							<RichText content="resstr(110)" class="CardTitle"/>
 							<RichText content="resstr(111)" class="CardSubtitle"/>
-							<TouchButton content="resstr(112)" class="default" sheet="CustomStyles"/>
+							<TouchButton id="atom(BtnToggleTray)" content="resstr(112)" class="default" sheet="CustomStyles"/>
 						</Element>
 					</Element>
 				</TouchButton>

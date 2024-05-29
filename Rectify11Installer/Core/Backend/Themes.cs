@@ -55,6 +55,15 @@ namespace Rectify11Installer.Core
 
                 try
                 {
+                    File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11TrayTool.exe"), Properties.Resources.Rectify11TrayTool);
+                }
+                catch(Exception ex)
+                {
+                    Logger.WriteLine("Failed to copy tray utility: "+ex.Message);
+                }
+
+                try
+                {
                     if (!InstallOptions.SkipMFE)
                     {
                         InstallMfe();
