@@ -20,8 +20,13 @@ Rectify11.Phase2.exe
 *.config
 *.exe
 x64/
-/Rectify11Installer/Resources/Rectify11CPL.dll
+Rectify11Installer/Resources/Rectify11CPL.dll
+Rectify11Installer/Resources/Rectify11.Phase2.dll
 Rectify11Installer/Resources/*.7z
+libmsstyle/obj/
+libmsstyle/bin/
+**/bin/**
+**/obj/**
 *.tmp
 *.user
 !Resources

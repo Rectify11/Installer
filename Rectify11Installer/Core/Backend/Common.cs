@@ -89,7 +89,7 @@ namespace Rectify11Installer.Core
 
                 // backup
                 // fails anyways if you use uninstaller.exe
-                Helper.SafeFileOperation(Assembly.GetExecutingAssembly().Location, Path.Combine(Variables.r11Folder, "Uninstall.exe"), Helper.OperationType.Copy);
+                Helper.SafeFileOperation(AppDomain.CurrentDomain.BaseDirectory, Path.Combine(Variables.r11Folder, "Uninstall.exe"), Helper.OperationType.Copy);
                 Logger.WriteLine("Installer copied to " + Path.Combine(Variables.r11Folder, "Uninstall.exe"));
 
                 var r11key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true)?.CreateSubKey("Rectify11", true);

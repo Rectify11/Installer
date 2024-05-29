@@ -1,5 +1,4 @@
-﻿using KPreisser.UI;
-using Rectify11Installer.Core;
+﻿using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using System;
 using System.Globalization;
@@ -18,6 +17,10 @@ namespace Rectify11Installer
         [STAThread]
         private static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+
             // check if another instance is running
             using var mutex = new Mutex(false, "Rectify11Setup");
             bool isAnotherInstanceOpen = !mutex.WaitOne(TimeSpan.Zero);
@@ -84,8 +87,6 @@ namespace Rectify11Installer
             ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));
             ProfileOptimization.StartProfile("Startup.Profile");
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
             Application.Run(new FrmWizard());
 
@@ -99,37 +100,41 @@ namespace Rectify11Installer
             {
                 // in this case, we can skip the warning
                 bool yes = false;
-                TaskDialog td = new();
-                td.Page.Text = header;
-                td.Page.Instruction = text;
-                td.Page.Title = Strings.Rectify11.Title;
-                td.Page.StandardButtons = TaskDialogButtons.OK;
-                td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
-                td.Page.EnableHyperlinks = true;
+                TaskDialogPage pg = new TaskDialogPage();
+                pg.Heading = text;
+                pg.Text = header;
+                pg.Buttons = [TaskDialogButton.OK];
+                pg.Icon = TaskDialogIcon.ShieldWarningYellowBar;
+                pg.EnableLinks = true;
+
                 TaskDialogExpander tde = new();
                 tde.Text = "<a href=\"link1\">Run anyway (not recommended)</a>";
                 tde.Expanded = false;
                 tde.CollapsedButtonText = Strings.Rectify11.moreInfo;
                 tde.ExpandedButtonText = Strings.Rectify11.lessInfo;
-                td.Page.HyperlinkClicked += (s, e) =>
+
+                pg.Expander = tde;
+
+                pg.LinkClicked += delegate (object s, TaskDialogLinkClickedEventArgs e)
                 {
-                    yes = true;
-                    td.Close();
+                    if (e.LinkHref == "link1")
+                    {
+                        pg.BoundDialog.Close();
+                    }
                 };
-                td.Page.Expander = tde;
-                td.Show();
-                return yes;
+
+                if (TaskDialog.ShowDialog(pg) == TaskDialogButton.OK)
+                    return false;
+                return true;
             }
             else
             {
-                TaskDialog td = new();
-                td.Page.Text = header;
-                td.Page.Instruction = text;
-                td.Page.Title = Strings.Rectify11.Title;
-                td.Page.StandardButtons = TaskDialogButtons.OK;
-                td.Page.Icon = TaskDialogStandardIcon.SecurityErrorRedBar;
-                td.Page.EnableHyperlinks = false;
-                td.Show();
+                TaskDialogPage pg = new();
+                pg.Text = header;
+                pg.Heading = text;
+                pg.Buttons = [TaskDialogButton.OK];
+                pg.Icon = TaskDialogIcon.ShieldErrorRedBar;
+                TaskDialog.ShowDialog(pg);
                 return false;
             }
         }

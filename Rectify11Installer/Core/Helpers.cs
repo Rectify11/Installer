@@ -5,6 +5,7 @@ using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -90,19 +91,19 @@ namespace Rectify11Installer.Core
             if (InstallOptions.iconsList.Contains("gadgetsNode"))
                 finalstr.AppendLine("+ " + Strings.Rectify11.installGadgets);
             else if (UninstallOptions.uninstExtrasList.Contains("gadgetsNode"))
-				finalstr.AppendLine("- " + Strings.Rectify11.installGadgets);
+                finalstr.AppendLine("- " + Strings.Rectify11.installGadgets);
 
             if (InstallOptions.iconsList.Contains("wallpapersNode"))
                 finalstr.AppendLine("+ " + Strings.Rectify11.installWallpapers);
-			else if (UninstallOptions.uninstExtrasList.Contains("wallpapersNode"))
-				finalstr.AppendLine("- " + Strings.Rectify11.installWallpapers);
+            else if (UninstallOptions.uninstExtrasList.Contains("wallpapersNode"))
+                finalstr.AppendLine("- " + Strings.Rectify11.installWallpapers);
 
             if (InstallOptions.iconsList.Contains("useravNode"))
                 finalstr.AppendLine("+ " + Strings.Rectify11.installUserAV);
-			else if (UninstallOptions.uninstExtrasList.Contains("useravNode"))
-				finalstr.AppendLine("- " + Strings.Rectify11.installUserAV);
+            else if (UninstallOptions.uninstExtrasList.Contains("useravNode"))
+                finalstr.AppendLine("- " + Strings.Rectify11.installUserAV);
 
-			return finalstr;
+            return finalstr;
         }
 
         public static bool CheckUBR()
@@ -374,11 +375,30 @@ namespace Rectify11Installer.Core
                 return false;
             }
         }
-        public static void RunAsTI(string file,string param)
+        public static void RunAsTI(string file, string param)
         {
             Interaction.Shell(Path.Combine(Variables.r11Folder, "NSudoL.exe")
                     + " -U:T -P:E -Wait -UseCurrentConsole " + file
                     + " " + param, AppWinStyle.NormalFocus, true);
+        }
+        /// <summary>
+        /// Start process using ShellExecute Api
+        /// </summary>
+        /// <param name="v"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        internal static void RunShellExec(string proc)
+        {
+            try
+            {
+                ProcessStartInfo info = new ProcessStartInfo();
+                info.FileName = proc;
+                info.UseShellExecute = true;
+                Process.Start(info).WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn("Failed to start process: " + proc + "\n" + ex.ToString());
+            }
         }
         #endregion
         #region Private Methods
@@ -451,7 +471,7 @@ namespace Rectify11Installer.Core
         public static bool ThemeBlack { get; set; }
         public static bool ThemeLight { get; set; }
         public static bool ThemePDark { get; set; }
-		public static bool InstallShell { get; set; }
+        public static bool InstallShell { get; set; }
         public static bool InstallSounds { get; set; }
         public static bool SkipMFE { get; set; }
         public static bool TabbedNotMica { get; set; }
@@ -460,7 +480,7 @@ namespace Rectify11Installer.Core
         public static List<string> iconsList = new();
         public static List<string> origList = new();
 
-		public static bool InstallExtras()
+        public static bool InstallExtras()
         {
             return InstallEP
                    || InstallASDF

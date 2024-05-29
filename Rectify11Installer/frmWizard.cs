@@ -169,7 +169,7 @@ namespace Rectify11Installer
             if (Variables.IsUninstall) { }
             else if (!Variables.isInstall)
             {
-                if (TaskDialog.Show(text: Strings.Rectify11.exitText,
+                if (KPreisser.UI.TaskDialog.Show(text: Strings.Rectify11.exitText,
                     title: Strings.Rectify11.Title,
                     buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
                     icon: TaskDialogStandardIcon.Information) == TaskDialogResult.No) e.Cancel = true;
@@ -291,10 +291,10 @@ namespace Rectify11Installer
         {
             if (Helper.CheckIfUpdatesPending())
             {
-                var res = TaskDialog.Show(text: Strings.Rectify11.uninstallConfirmText,
-                                title: Strings.Rectify11.uninstallTitle,
-                                buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
-                                icon: TaskDialogStandardIcon.Information);
+				var res = KPreisser.UI.TaskDialog.Show(text: Strings.Rectify11.uninstallConfirmText,
+								title: Strings.Rectify11.uninstallTitle,
+								buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
+								icon: TaskDialogStandardIcon.Information);
                 if (res == TaskDialogResult.Yes)
                 {
                     Variables.IsUninstall = true;

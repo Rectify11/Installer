@@ -149,7 +149,7 @@ namespace Rectify11Installer.Pages
 					{
 						Common.Cleanup();
 						Logger.CommitLog();
-						TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
+						KPreisser.UI.TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
 							title: "Error",
 							buttons: TaskDialogButtons.OK,
 							icon: TaskDialogStandardIcon.Error);
@@ -184,7 +184,7 @@ namespace Rectify11Installer.Pages
 						{
 							Common.Cleanup();
 							Logger.CommitLog();
-							TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
+                            KPreisser.UI.TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
 								title: "Error",
 								buttons: TaskDialogButtons.OK,
 								icon: TaskDialogStandardIcon.Error);
@@ -199,7 +199,7 @@ namespace Rectify11Installer.Pages
 						{
 							Common.Cleanup();
 							Logger.CommitLog();
-							TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
+                            KPreisser.UI.TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
 								title: "Error",
 								buttons: TaskDialogButtons.OK,
 								icon: TaskDialogStandardIcon.Error);

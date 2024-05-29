@@ -104,7 +104,7 @@ namespace Rectify11Installer.Core
             {
                 string mode = Theme.IsUsingDarkMode ? "dark.theme" : "aero.theme";
                 if (File.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", mode)))
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", mode));
+                    Helper.RunShellExec(Path.Combine(Variables.Windir, "Resources", "Themes", mode));
                 string theme = Theme.IsUsingDarkMode ? "Windows (dark)" : "Windows (light)";
                 RectifyThemeUtil.Utility.ApplyTheme(theme);
 
