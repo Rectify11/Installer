@@ -526,6 +526,26 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Rectify11_Phase2_runtimeconfig {
+            get {
+                object obj = ResourceManager.GetObject("Rectify11.Phase2.runtimeconfig", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Rectify11_Phase2Dll {
+            get {
+                object obj = ResourceManager.GetObject("Rectify11.Phase2Dll", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Rectify11CPL {
             get {
                 object obj = ResourceManager.GetObject("Rectify11CPL", resourceCulture);
@@ -536,9 +556,9 @@ namespace Rectify11Installer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Rectify11Phase2 {
+        internal static byte[] Rectify11Phase2Exe {
             get {
-                object obj = ResourceManager.GetObject("Rectify11Phase2", resourceCulture);
+                object obj = ResourceManager.GetObject("Rectify11Phase2Exe", resourceCulture);
                 return ((byte[])(obj));
             }
         }

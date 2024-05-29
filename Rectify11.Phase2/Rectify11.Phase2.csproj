@@ -21,8 +21,8 @@
 		<Company>Rectify11</Company>
 		<Product>Rectify11Installer.</Product>
 		<Copyright>Copyright © 2024 The Rectify11 Team</Copyright>
-		<AssemblyVersion>3.2.63.4</AssemblyVersion>
-		<FileVersion>3.2.63.4</FileVersion>
+		<AssemblyVersion>3.2.67</AssemblyVersion>
+		<FileVersion>3.2.67</FileVersion>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 	<ItemGroup>
@@ -52,7 +52,7 @@
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<PropertyGroup>
-			<PostBuildCommands>copy /Y "$(TargetDir)Rectify11.Phase2.dll" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.dll" &amp;&amp; copy /Y "$(TargetDir)Rectify11.Phase2.exe" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.exe"</PostBuildCommands>
+			<PostBuildCommands>copy /Y "$(TargetDir)Rectify11.Phase2.dll" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.dll" &amp;&amp; copy /Y "$(TargetDir)Rectify11.Phase2.exe" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.exe" &amp;&amp; copy /Y "$(TargetDir)Rectify11.Phase2.runtimeconfig.json" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.runtimeconfig.json"</PostBuildCommands>
 		</PropertyGroup>
 		<Exec Command="$(PostBuildCommands)" />
 	</Target>

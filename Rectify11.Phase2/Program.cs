@@ -19,6 +19,7 @@ namespace Rectify11.Phase2
         {
             if (args.Length == 0)
             {
+                Console.WriteLine("Rectify11 Legacy Resource Installation Utility. Do not call this directly, instead use Rectify11Installer.");
                 Environment.Exit(1);
             }
             if (args[0] == "/install")
@@ -44,15 +45,15 @@ namespace Rectify11.Phase2
                 }
 
                 // copy necessary files
-                SafeFileCopy("iconres.dll");
+                InstallSys32Dll("iconres.dll");
                 ImportReg(Path.Combine(Variables.r11Files, "icons.reg"));
-                SafeFileCopy("duires.dll");
-                SafeFileCopy("ImmersiveFontHandler.dll");
-                SafeFileCopy("twinuifonts.dll");
-	            SafeFileCopyWOW64("iconres.dll");
-                SafeFileCopyWOW64("duires.dll");
-                SafeFileCopyWOW64("ImmersiveFontHandler.dll");
-                SafeFileCopyWOW64("twinuifonts.dll");
+                InstallSys32Dll("duires.dll");
+                InstallSys32Dll("ImmersiveFontHandler.dll");
+                InstallSys32Dll("twinuifonts.dll");
+	            InstallWow64Dlll("iconres.dll");
+                InstallWow64Dlll("duires.dll");
+                InstallWow64Dlll("ImmersiveFontHandler.dll");
+                InstallWow64Dlll("twinuifonts.dll");
                 InstallFonts();
 
                 r11Reg?.Close();

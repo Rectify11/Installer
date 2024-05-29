@@ -26,7 +26,13 @@ namespace Rectify11Installer.Core
                 {
                     if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "NSudoL.exe"), Properties.Resources.NSudoL, Helper.OperationType.Write))
                         return false;
-                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2, Helper.OperationType.Write))
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.exe"), Properties.Resources.Rectify11Phase2Exe, Helper.OperationType.Write))
+                        return false;
+
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.dll"), Properties.Resources.Rectify11_Phase2Dll, Helper.OperationType.Write))
+                        return false;
+
+                    if (!Helper.SafeFileOperation(Path.Combine(Variables.r11Folder, "Rectify11.Phase2.runtimeconfig.json"), Properties.Resources.Rectify11_Phase2_runtimeconfig, Helper.OperationType.Write))
                         return false;
                 }
                 if (themes)

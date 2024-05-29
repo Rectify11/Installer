@@ -38,12 +38,13 @@ namespace Rectify11.Phase2
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("Failure deleting file: " + path + Environment.NewLine + ex.ToString());
                 return false;
             }
         }
-        public static bool SafeFileCopy(string file)
+        public static bool InstallSys32Dll(string file)
         {
             // whatever, its only for a few cases
             try
@@ -70,12 +71,13 @@ namespace Rectify11.Phase2
                 return false;
             }
         }
-		public static bool SafeFileCopyWOW64(string file)
+        public static bool InstallWow64Dlll(string file)
         {
             // whatever, its only for a few cases
             try
             {
                 if (!SafeFileDeletion(Path.Combine(Variables.sysWOWFolder, file))) return false;
+
                 File.Copy(Path.Combine(Variables.r11Files, file), Path.Combine(Variables.sysWOWFolder, file), true);
                 return true;
             }
@@ -84,12 +86,12 @@ namespace Rectify11.Phase2
                 return false;
             }
         }
-        public static bool SafeFileCopyWOW64(string src, string dest)
+        public static bool SafeFileMove(string src, string dest)
         {
             try
             {
                 if (!SafeFileDeletion(dest)) return false;
-                File.Copy(src, dest, true);
+                File.Move(src, dest);
                 return true;
             }
             catch
@@ -97,20 +99,7 @@ namespace Rectify11.Phase2
                 return false;
             }
         }
-		public static bool SafeFileMove(string src, string dest)
-		{
-			try
-			{
-				if (!SafeFileDeletion(dest)) return false;
-				File.Move(src, dest);
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
-		public static void ImportReg(string path)
+        public static void ImportReg(string path)
         {
             try
             {
