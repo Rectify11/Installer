@@ -160,25 +160,24 @@ LANGUAGE LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA
 STRINGTABLE
 BEGIN
     IDS_APP_TITLE           "RectifyStart"
-    IDS_WHATSNEW            "วแฬฯํฯ Ýํ วแลีฯวั 3.2"
-    IDS_NEWCPL              "ลฺฯวฯวส Rectify11 วแฬฯํฯษ"
-    IDS_NEWCPLDESC          "ใ฿วไ ำๅแ วแวำสฮฯวใ แสÛํํั ๆึศุ ฿แ ิํม ใสฺแÞ ศÜ Rectify11"
-    IDS_CHECKITOUT          "วแวุแวฺ ฺแํๅ"
-    IDS_THEMESWITCH         "สÛํํั วแรแๆวไ ศำๅๆแษ"
-    IDS_THEMESWITCHDESC     "ใฺ รฯวษ ิัํุ วแใๅวใ วแฬฯํฯษก ํใ฿ไ฿ ึศุ วแๆึฺ วแÝวสอ รๆ วแฯว฿ไ"
+    IDS_WHATSNEW            "ุงูุฌุฏูุฏ ูู ุงูุฅุตุฏุงุฑ 3.2"
+    IDS_NEWCPL              "ุฅุนุฏุงุฏุงุช Rectify11 ุงูุฌุฏูุฏุฉ"
+    IDS_NEWCPLDESC          "ู…ูุงู ุณูู ุงูุงุณุชุฎุฏุงู… ูุชุบููุฑ ูุถุจุท ูู ุดูุก ู…ุชุนูู ุจู€ Rectify11"
+    IDS_CHECKITOUT          "ุงูุงุทูุงุน ุนููู"
+    IDS_THEMESWITCH         "ุชุบููุฑ ุงูุฃููุงู ุจุณูููุฉ"
+    IDS_THEMESWITCHDESC     "ู…ุน ุฃุฏุงุฉ ุดุฑูุท ุงูู…ูุงู… ุงูุฌุฏูุฏุฉุ ูู…ููู ุถุจุท ุงููุถุน ุงููุงุชุญ ุฃู ุงูุฏุงูู"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_TURNON              "สÝฺํแ"
-    IDS_ALREADYON           "สใ วแสÝฺํแ"
-    IDS_SMOOTHUI            "ๆวฬๅษ ำแำษ"
-    IDS_SMOOTHUIDESC        "สใ ลึวÝษ ฺไวีั ใสอั฿ษ Ýํ วแไูวใก ๆฬฺแ วแอั฿วส วแวÝสัวึํษ ร฿หั ำแวำษ"
-    IDS_CARD                "สอำํไวส ใำส฿ิÝ วแใแÝวส"
-    IDS_CARDDESC            "ํึÝ Rectify11 สอำํไวส แใำส฿ิÝ วแใแÝวส ใหแ ใอฯฯ วแใแÝวส วแใฮสวัษ ๆใำวอษ ร฿ศั แวฮสํวัๅว"
-    IDS_STARTUP             "ฺัึ วแไวÝะษ ฺไฯ สิÛํแ วแฬๅวา"
-    IDS_CLOSE               "ลÛแวÞ"
-    IDS_WIN11ONLY           "ฬีัํว๐ ฺแ์ Windows 11"
+	IDS_TURNON              "ุชูุนูู"
+    IDS_ALREADYON           "ุชู… ุงูุชูุนูู"
+    IDS_SMOOTHUI            "ูุงุฌูุฉ ุณูุณุฉ"
+    IDS_SMOOTHUIDESC        "ุชู… ุฅุถุงูุฉ ุนูุงุตุฑ ู…ุชุญุฑูุฉ ูู ุงููุธุงู…ุ ูุฌุนู ุงูุญุฑูุงุช ุงูุงูุชุฑุงุถูุฉ ุฃูุซุฑ ุณูุงุณุฉ"
+    IDS_CARD                "ุนููุงู"
+    IDS_CARDDESC            "ูุตู"
+    IDS_STARTUP             "ุนุฑุถ ุงููุงูุฐุฉ ุนูุฏ ุชุดุบูู ุงูุฌูุงุฒ"
+    IDS_CLOSE               "ุฅุบูุงู"
 END
 
 #endif    // Arabic (Saudi Arabia) resources
