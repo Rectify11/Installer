@@ -107,10 +107,10 @@ namespace Rectify11Installer.Core
         {
             try
             {
-                string mode = Theme.IsUsingDarkMode ? "dark.theme" : "aero.theme";
+                string mode = ThemeUtil.IsUsingDarkMode ? "dark.theme" : "aero.theme";
                 if (File.Exists(Path.Combine(Variables.Windir, "Resources", "Themes", mode)))
                     Helper.RunShellExec(Path.Combine(Variables.Windir, "Resources", "Themes", mode));
-                string theme = Theme.IsUsingDarkMode ? "Windows (dark)" : "Windows (light)";
+                string theme = ThemeUtil.IsUsingDarkMode ? "Windows (dark)" : "Windows (light)";
                 RectifyThemeUtil.Utility.ApplyTheme(theme);
 
                 UninstallThemeWallpapers();

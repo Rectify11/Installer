@@ -67,7 +67,7 @@ namespace Rectify11Installer
 
             if (Environment.OSVersion.Version.Build >= 10240)
             {
-                Theme.InitTheme();
+                ThemeUtil.InitTheme();
                 if ((Environment.OSVersion.Version.Build >= 17763) && (Environment.OSVersion.Version.Build < 18362))
                 {
                     DarkMode.AllowDarkModeForApp(true);
@@ -81,7 +81,7 @@ namespace Rectify11Installer
             // Load the Rectify11 theme to skin the installer with it
             File.WriteAllBytes(Path.Combine(Path.GetTempPath(), "Dark.msstyles"), Properties.Resources.Dark);
             File.WriteAllBytes(Path.Combine(Path.GetTempPath(), "light.msstyles"), Properties.Resources.light);
-            Theme.LoadTheme();
+            ThemeUtil.LoadTheme();
 
             // Optimize the installer
             ProfileOptimization.SetProfileRoot(Path.Combine(Path.GetTempPath(), "Rectify11"));

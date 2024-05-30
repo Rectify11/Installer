@@ -7,7 +7,7 @@ namespace Rectify11Installer.Pages
 		public ThemeChoicePage()
 		{
 			InitializeComponent();
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				themePreview.BackgroundImage = Properties.Resources.darkPreview;
 				InstallOptions.ThemeLight = false;

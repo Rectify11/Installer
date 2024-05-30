@@ -119,10 +119,10 @@ namespace Rectify11Installer.Controls
 			//IsDesignMode and licensing did not work for me
 			if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
 			{
-				var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+				var currentTheme = ThemeUtil.IsUsingDarkMode ? ThemeUtil.DarkStyle : ThemeUtil.LightStyle;
 				if (currentTheme != null)
 				{
-					var part = Theme.GetNavArrowPart(currentTheme, t);
+					var part = ThemeUtil.GetNavArrowPart(currentTheme, t);
 					var renderer2 = new PartRenderer(currentTheme, part);
 					Glyph = renderer2.RenderPreview(c, Width, Height);
 				}

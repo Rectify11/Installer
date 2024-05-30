@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Rectify11Installer.Core
 {
-    public class Theme
+    public class ThemeUtil
     {
         #region Variables
         public static VisualStyle DarkStyle = new();

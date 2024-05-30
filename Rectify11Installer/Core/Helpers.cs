@@ -122,6 +122,8 @@ namespace Rectify11Installer.Core
                 // more priority
                 using (RegistryKey buildkey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false))
                 {
+                    if (buildkey == null)
+                        return false;
                     var build = buildkey.GetValue("Build");
                     if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
                         return true;
@@ -154,7 +156,7 @@ namespace Rectify11Installer.Core
             {
                 case "shellNode":
                     _frmWizard.UpdateSideImage = Properties.Resources.menus;
-                    if (Theme.IsUsingDarkMode) _frmWizard.UpdateSideImage = Properties.Resources.menusD;
+                    if (ThemeUtil.IsUsingDarkMode) _frmWizard.UpdateSideImage = Properties.Resources.menusD;
                     break;
                 case "gadgetsNode":
                     _frmWizard.UpdateSideImage = Properties.Resources.gadgets;
@@ -423,6 +425,8 @@ namespace Rectify11Installer.Core
             get
             {
                 var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+                if (key == null)
+                    return false;
                 var result = (int?)key.GetValue("IsInstalled") == 1;
 
                 key.Close();

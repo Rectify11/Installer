@@ -48,7 +48,7 @@ namespace Rectify11Installer
                 cancelButton.ButtonText = "Finish";
                 cancelButton.Click -= CancelButton_Click;
                 tableLayoutPanel2.Visible = value;
-                if (!Theme.IsUsingDarkMode)
+                if (!ThemeUtil.IsUsingDarkMode)
                 {
                     DarkMode.UpdateFrame(this, true);
                 }
@@ -70,7 +70,7 @@ namespace Rectify11Installer
             }
             InitializeComponent();
             DarkMode.RefreshTitleBarColor(Handle);
-            if (Theme.IsUsingDarkMode) DarkMode.UpdateFrame(this, true);
+            if (ThemeUtil.IsUsingDarkMode) DarkMode.UpdateFrame(this, true);
             Shown += FrmWizard_Shown;
             FormClosing += FrmWizard_FormClosing;
             Application.Idle += Application_Idle;
@@ -100,13 +100,13 @@ namespace Rectify11Installer
             navBackButton.Click += BackButton_Click;
             cancelButton.Click += CancelButton_Click;
             versionLabel.Text += ProductVersion;
-            Theme.OnThemeChanged += SystemEvents_UserPreferenceChanged;
+            ThemeUtil.OnThemeChanged += SystemEvents_UserPreferenceChanged;
             _idleInit = true;
         }
 
         private void FrmWizard_Shown(object sender, EventArgs e)
         {
-            if (Theme.IsUsingDarkMode)
+            if (ThemeUtil.IsUsingDarkMode)
             {
                 BackColor = Color.Black;
                 ForeColor = Color.White;
@@ -140,7 +140,7 @@ namespace Rectify11Installer
             navPane.SelectedTab = page.Page;
             if (!sideImage.Enabled)
                 sideImage.Enabled = true;
-            if (!Theme.IsUsingDarkMode)
+            if (!ThemeUtil.IsUsingDarkMode)
             {
                 DarkMode.UpdateFrame(this, page.UpdateFrame);
             }
@@ -171,7 +171,7 @@ namespace Rectify11Installer
                 if (MessageBox.Show(Strings.Rectify11.exitText, Strings.Rectify11.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) e.Cancel = true;
             }
             else if (e.CloseReason == CloseReason.UserClosing) e.Cancel = true;
-            Theme.OnThemeChanged -= SystemEvents_UserPreferenceChanged;
+            ThemeUtil.OnThemeChanged -= SystemEvents_UserPreferenceChanged;
         }
         private void NextButton_Click(object sender, EventArgs e)
         {
@@ -315,7 +315,7 @@ namespace Rectify11Installer
             if (ev.Category == UserPreferenceCategory.General)
             {
                 DarkMode.RefreshTitleBarColor(Handle);
-                if (Theme.IsUsingDarkMode)
+                if (ThemeUtil.IsUsingDarkMode)
                 {
                     BackColor = Color.Black;
                     ForeColor = Color.White;
@@ -327,11 +327,11 @@ namespace Rectify11Installer
                     BackColor = Color.White;
                     ForeColor = Color.Black;
                 }
-                if (_isWelcomePage && !Theme.IsUsingDarkMode)
+                if (_isWelcomePage && !ThemeUtil.IsUsingDarkMode)
                 {
                     DarkMode.UpdateFrame(this, false);
                 }
-                else if (Variables.isInstall && !Theme.IsUsingDarkMode)
+                else if (Variables.isInstall && !ThemeUtil.IsUsingDarkMode)
                 {
                     DarkMode.UpdateFrame(this, false);
                 }

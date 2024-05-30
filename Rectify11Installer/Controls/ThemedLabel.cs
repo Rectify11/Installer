@@ -65,7 +65,7 @@ namespace AeroWizard
 
 			using (NativeMethods.SafeThemeHandle hTheme = new(NativeMethods.OpenThemeData(Handle, "Window")))
 			{
-				if (!hTheme.IsInvalid && (Application.RenderWithVisualStyles || Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled()))
+				if (!hTheme.IsInvalid && (Application.RenderWithVisualStyles || NativeMethods.IsCompositionEnabled()))
 				{
 					using NativeMethods.SafeDCHandle hdc = new(e.Graphics);
 					NativeMethods.DrawThemeParentBackground(Handle, hdc, ClientRectangle);
@@ -76,7 +76,7 @@ namespace AeroWizard
 				{
 					if (ImageList != null && ImageIndex == 0)
 					{
-						if (!hTheme.IsInvalid && !IsDesignMode(this) && Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled())
+						if (!hTheme.IsInvalid && !IsDesignMode(this) && NativeMethods.IsCompositionEnabled())
 						{
 							VisualStyleRendererExtension.DrawWrapper(e.Graphics, r, g => NativeMethods.DrawThemeIcon(hTheme, g, 1, 1, ref rR, ImageList.Handle, ImageIndex));
 						}
@@ -85,7 +85,7 @@ namespace AeroWizard
 							ImageList.Draw(e.Graphics, r.X, r.Y, r.Width, r.Height, ImageIndex);
 						}
 					}
-					else if (!hTheme.IsInvalid && !IsDesignMode(this) && Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled())
+					else if (!hTheme.IsInvalid && !IsDesignMode(this) && NativeMethods.IsCompositionEnabled())
 					{
 						VisualStyleRendererExtension.DrawWrapper(e.Graphics, r, g => Graphics.FromHdc(g.DangerousGetHandle()).DrawImage(Image, r));
 					}
@@ -99,9 +99,9 @@ namespace AeroWizard
 					return;
 				}
 
-				if (IsDesignMode(this) || hTheme.IsInvalid || !Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled())
+				if (IsDesignMode(this) || hTheme.IsInvalid || !NativeMethods.IsCompositionEnabled())
 				{
-					var brush = Vanara.Interop.DesktopWindowManager.DesktopWindowManager.IsCompositionEnabled() ? SystemBrushes.ActiveCaptionText : SystemBrushes.ControlText;
+					var brush = NativeMethods.IsCompositionEnabled() ? SystemBrushes.ActiveCaptionText : SystemBrushes.ControlText;
 					var format = new StringFormat(StringFormat.GenericDefault);
 					if (GetRightToLeftProperty(this) == RightToLeft.Yes)
 					{

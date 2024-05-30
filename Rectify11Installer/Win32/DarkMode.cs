@@ -53,13 +53,13 @@ namespace Rectify11Installer.Win32
         {
             if (Environment.OSVersion.Version.Build < 18362)
             {
-                SetProp(hWnd, "UseImmersiveDarkModeColors", new IntPtr(Theme.IsUsingDarkMode ? 1 : 0));
+                SetProp(hWnd, "UseImmersiveDarkModeColors", new IntPtr(ThemeUtil.IsUsingDarkMode ? 1 : 0));
             }
             else
             {
-                var size = Marshal.SizeOf(Theme.IsUsingDarkMode);
+                var size = Marshal.SizeOf(ThemeUtil.IsUsingDarkMode);
                 var ptr = Marshal.AllocHGlobal(size);
-                Marshal.StructureToPtr(Theme.IsUsingDarkMode, ptr, false);
+                Marshal.StructureToPtr(ThemeUtil.IsUsingDarkMode, ptr, false);
                 var data = new WINDOWCOMPOSITIONATTRIBDATA
                 {
                     Attrib = WINDOWCOMPOSITIONATTRIB.WCA_USEDARKMODECOLORS,
@@ -71,7 +71,7 @@ namespace Rectify11Installer.Win32
         }
         public static void UpdateFrame(FrmWizard frm, bool yes)
         {
-            var extend = Theme.IsUsingDarkMode;
+            var extend = ThemeUtil.IsUsingDarkMode;
 
             if (Environment.OSVersion.Version.Build >= 22523)
             {
@@ -92,7 +92,7 @@ namespace Rectify11Installer.Win32
                 var trueValue = 0x01;
                 DwmSetWindowAttribute(frm.Handle, DWMATTRIB.DWMWA_MICA_EFFECT, ref trueValue, Marshal.SizeOf(typeof(int)));
             }
-            var DarkMode = Theme.IsUsingDarkMode;
+            var DarkMode = ThemeUtil.IsUsingDarkMode;
             var m = new NativeMethods.MARGINS();
 
             if (DarkMode)

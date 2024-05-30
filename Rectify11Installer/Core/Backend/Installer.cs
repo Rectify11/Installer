@@ -61,7 +61,7 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("══════════════════════════════════════════════");
 
             // some random issue where the installer's frame gets extended
-            if (!Theme.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
+            if (!ThemeUtil.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
 
             // extract files, delete if folder exists
             frm.InstallerProgress = "Extracting files...";
