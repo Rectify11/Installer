@@ -120,24 +120,27 @@ namespace Rectify11Installer.Core
             try
             {
                 // more priority
-                var build = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false)?.GetValue("Build");
-                if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
-                    return true;
-
-                var r11 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false)?.GetValue("OSVersion");
-                if (r11 == null)
+                using (RegistryKey buildkey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false))
                 {
+                    var build = buildkey.GetValue("Build");
+                    if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+                        return true;
+
+                    var r11 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false)?.GetValue("OSVersion");
+                    if (r11 == null)
+                    {
+                        return false;
+                    }
+
+                    Version ver = Version.Parse(r11.ToString());
+                    if (Environment.OSVersion.Version.Build > ver.Build || NativeMethods.GetUbr() > ver.Revision)
+                    {
+                        Variables.WindowsUpdate = true;
+                        return true;
+                    }
+
                     return false;
                 }
-
-                Version ver = Version.Parse(r11.ToString());
-                if (Environment.OSVersion.Version.Build > ver.Build || NativeMethods.GetUbr() > ver.Revision)
-                {
-                    Variables.WindowsUpdate = true;
-                    return true;
-                }
-
-                return false;
             }
             catch
             {
@@ -417,7 +420,14 @@ namespace Rectify11Installer.Core
         #region Public Methods
         public static bool IsRectify11Installed
         {
-            get => (int?)Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11")?.GetValue("IsInstalled") == 1;
+            get
+            {
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+                var result = (int?)key.GetValue("IsInstalled") == 1;
+
+                key.Close();
+                return result;
+            }
             set => Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11")?.SetValue("IsInstalled", value ? 1 : 0);
         }
         public static string InstalledVersion
