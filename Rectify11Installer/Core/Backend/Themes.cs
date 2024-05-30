@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using static Rectify11Installer.Win32.NativeMethods;
 
 namespace Rectify11Installer.Core
 {

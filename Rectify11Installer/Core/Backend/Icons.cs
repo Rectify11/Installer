@@ -1,14 +1,11 @@
-﻿using KPreisser.UI;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using static System.Environment;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Rectify11Installer.Core
 {

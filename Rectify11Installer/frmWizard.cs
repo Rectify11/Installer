@@ -1,5 +1,4 @@
-﻿using KPreisser.UI;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Rectify11Installer.Core;
 using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
@@ -169,10 +168,7 @@ namespace Rectify11Installer
             if (Variables.IsUninstall) { }
             else if (!Variables.isInstall)
             {
-                if (KPreisser.UI.TaskDialog.Show(text: Strings.Rectify11.exitText,
-                    title: Strings.Rectify11.Title,
-                    buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
-                    icon: TaskDialogStandardIcon.Information) == TaskDialogResult.No) e.Cancel = true;
+                if (MessageBox.Show(Strings.Rectify11.exitText, Strings.Rectify11.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) e.Cancel = true;
             }
             else if (e.CloseReason == CloseReason.UserClosing) e.Cancel = true;
             Theme.OnThemeChanged -= SystemEvents_UserPreferenceChanged;
@@ -291,11 +287,7 @@ namespace Rectify11Installer
         {
             if (Helper.CheckIfUpdatesPending())
             {
-				var res = KPreisser.UI.TaskDialog.Show(text: Strings.Rectify11.uninstallConfirmText,
-								title: Strings.Rectify11.uninstallTitle,
-								buttons: TaskDialogButtons.Yes | TaskDialogButtons.No,
-								icon: TaskDialogStandardIcon.Information);
-                if (res == TaskDialogResult.Yes)
+                if (MessageBox.Show(Strings.Rectify11.uninstallConfirmText, Strings.Rectify11.uninstallTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     Variables.IsUninstall = true;
                     Navigate(RectifyPages.ProgressPage);

@@ -1,5 +1,4 @@
-﻿using KPreisser.UI;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
@@ -10,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Rectify11Installer.Core
 {
@@ -21,11 +21,12 @@ namespace Rectify11Installer.Core
             if (Variables.skipUpdateCheck) return true;
             if (!RebootRequired()) return true;
 
-            TaskDialog.Show(text: Strings.Rectify11.updatePending,
-                instruction: "Compatibility Error",
-                title: Strings.Rectify11.Title,
-                buttons: TaskDialogButtons.OK,
-                icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+            TaskDialogPage pg = new TaskDialogPage();
+            pg.Text = Strings.Rectify11.updatePending;
+            pg.Caption = Strings.Rectify11.Title;
+            pg.Heading = "Compatibility check failed";
+            pg.Icon = TaskDialogIcon.ShieldErrorRedBar;
+            TaskDialog.ShowDialog(pg);
 
             return false;
         }

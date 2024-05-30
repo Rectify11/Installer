@@ -1,4 +1,3 @@
-using KPreisser.UI;
 using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using System;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace Rectify11Installer.Pages
 {
-	public partial class ProgressPage : WizardPage
+    public partial class ProgressPage : WizardPage
 	{
 		#region Variables
 		private FrmWizard frmwiz;
@@ -149,10 +148,7 @@ namespace Rectify11Installer.Pages
 					{
 						Common.Cleanup();
 						Logger.CommitLog();
-						KPreisser.UI.TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
-							title: "Error",
-							buttons: TaskDialogButtons.OK,
-							icon: TaskDialogStandardIcon.Error);
+						MessageBox.Show(Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Strings.Rectify11.r11InstallErrorPart2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						Application.Exit();
 					}
 					//Logger.CommitLog();
@@ -184,10 +180,7 @@ namespace Rectify11Installer.Pages
 						{
 							Common.Cleanup();
 							Logger.CommitLog();
-                            KPreisser.UI.TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
-								title: "Error",
-								buttons: TaskDialogButtons.OK,
-								icon: TaskDialogStandardIcon.Error);
+                            MessageBox.Show(text: Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Strings.Rectify11.r11InstallErrorPart2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 							Application.Exit();
 						}
 						Logger.CommitLog();
@@ -199,10 +192,7 @@ namespace Rectify11Installer.Pages
 						{
 							Common.Cleanup();
 							Logger.CommitLog();
-                            KPreisser.UI.TaskDialog.Show(text: Rectify11Installer.Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Rectify11Installer.Strings.Rectify11.r11InstallErrorPart2,
-								title: "Error",
-								buttons: TaskDialogButtons.OK,
-								icon: TaskDialogStandardIcon.Error);
+                            MessageBox.Show(Strings.Rectify11.r11InstallErrorPart1 + Path.Combine(Variables.r11Folder, "installer.log") + Strings.Rectify11.r11InstallErrorPart2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 							Application.Exit();
 						}
 						Logger.CommitLog();
