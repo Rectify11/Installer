@@ -3,7 +3,7 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<MapFileExtensions>true</MapFileExtensions>
-		<Version>3.2.68.1</Version>
+		<Version>3.2.68.2</Version>
 		<LangVersion>latest</LangVersion>
 		<PublishSingleFile>true</PublishSingleFile>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -26,12 +26,6 @@
 		<Content Include="Core\rectify11.xml">
 			<SubType>Designer</SubType>
 		</Content>
-		<None Include="Resources\wsudo.exe" />
-		<None Include="Resources\ThemeDll-x64.dll" />
-		<None Include="Resources\ThemeDll-arm64.dll" />
-		<None Include="Resources\secureux-x64.exe" />
-		<None Include="Resources\secureux-arm64.exe" />
-		<None Include="Resources\Rectify11ControlCenter.exe" />
 		<Content Include="Resources\ResourceHacker.exe" />
 		<Content Include="r11.ico" />
 	</ItemGroup>

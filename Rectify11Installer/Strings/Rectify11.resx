@@ -275,7 +275,7 @@
     <value>You can choose what will be restored.</value>
   </data>
   <data name="installMFE" xml:space="preserve">
-    <value>Skip MicaForEveryone installation</value>
+    <value>Enable Mica effect</value>
   </data>
   <data name="installMicaAlt" xml:space="preserve">
     <value>Use Mica Alt instead of Mica</value>
@@ -452,6 +452,6 @@
     <value>Uninstallation will be done in a few minutes.</value>
   </data>
   <data name="tooNewBuild" xml:space="preserve">
-	<value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
+    <value>You are running a build of Windows that is too new to be fully supported by Rectify11.</value>
   </data>
 </root>

@@ -18,7 +18,7 @@ namespace Rectify11Installer.Win32
         public nint GetMicaSettings(ref bool enabled, ref bool tabbed);
         public nint SetMicaForEveryoneEnabled(ref bool enabled, ref bool tabbed);
         public nint GetCurrentMenuIndex(ref int index);
-        public nint SetCurrentMenuByIndex(ref int index);
+        public nint SetCurrentMenuByIndex(int index);
 
         public nint ApplyTheme(string themeName);
         public nint InstallThemeTool();

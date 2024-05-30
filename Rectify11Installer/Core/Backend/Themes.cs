@@ -57,18 +57,15 @@ namespace Rectify11Installer.Core
                 {
                     File.WriteAllBytes(Path.Combine(Variables.r11Folder, "Rectify11TrayTool.exe"), Properties.Resources.Rectify11TrayTool);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    Logger.WriteLine("Failed to copy tray utility: "+ex.Message);
+                    Logger.WriteLine("Failed to copy tray utility: " + ex.Message);
                 }
 
                 try
                 {
-                    if (!InstallOptions.SkipMFE)
-                    {
-                        InstallMfe();
-                        Logger.WriteLine("InstallMfe() succeeded.");
-                    }
+                    InstallMfe();
+                    Logger.WriteLine("InstallMfe() succeeded.");
                 }
                 catch (Exception ex)
                 {
@@ -157,7 +154,7 @@ namespace Rectify11Installer.Core
                 catch { }
 
                 UninstallR11Cpl();
-                Logger.WriteLine("Deleted Rectify11 Control Center.");
+                Logger.WriteLine("Deleted Rectify11 Control Panel");
 
                 Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 0 /f");
                 Helper.SafeFileDeletion(Path.Combine(Variables.sys32Folder, "mmc.exe.manifest"));
@@ -186,7 +183,6 @@ namespace Rectify11Installer.Core
                     Path.Combine(Variables.r11Folder, "themes", "ThemeTool.exe"),
                     Path.Combine(Variables.Windir, "ThemeTool.exe"),
                     Helper.OperationType.Copy);
-
                 Logger.WriteLine("Copied Themetool.");
                 nint hr = 0;
                 try
@@ -339,28 +335,16 @@ namespace Rectify11Installer.Core
             Directory.Move(Path.Combine(Variables.r11Folder, "Themes", "MicaForEveryone"), Path.Combine(Variables.Windir, "MicaForEveryone"));
             Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfe /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "mfe.xml"), AppWinStyle.Hide, true);
 
+            // Remove any old configuraion
             string path = Path.Combine(Environment.GetEnvironmentVariable("localappdata"), "Mica For Everyone");
             Helper.SafeDirectoryDeletion(path, false);
-            string t = InstallOptions.TabbedNotMica ? "T" : "";
-            string val = "";
 
-            // TODO: Use CRectifyUtil
 
-            if (InstallOptions.ThemeLight) val = t + "lightrectified.conf";
-            else if (InstallOptions.ThemeDark) val = t + "darkrectified.conf";
-            else if (InstallOptions.ThemePDark) val = t + "darkrectified.conf";
-            else if (InstallOptions.ThemeBlack)
-            {
-                val = t + "black.conf";
-                string amdorarm = NativeMethods.IsArm64() ? "ARM" : "AMD";
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "schtasks.exe") + " /create /tn mfefix /xml " + Path.Combine(Variables.Windir, "MicaForEveryone", "XML", "micafix" + amdorarm + "64.xml"), AppWinStyle.Hide, true);
-            }
-
-            if (!string.IsNullOrWhiteSpace(val))
-            {
-                File.Copy(Path.Combine(Variables.Windir, "MicaForEveryone", "CONF", val),
-                    Path.Combine(Variables.Windir, "MicaForEveryone", "MicaForEveryone.conf"), true);
-            }
+            // Enable MFE
+            bool bEnabled = InstallOptions.EnableMicaEffect;
+            bool bTabbed = InstallOptions.UseTabbedInsteadOfMica;
+            Console.WriteLine("Installing MFE: bEnabled: " + bEnabled + ",bTabbed: " + bTabbed);
+            RectifyThemeUtil.Utility.SetMicaForEveryoneEnabled(ref bEnabled, ref bTabbed);
         }
 
         #region Internal
@@ -564,22 +548,22 @@ namespace Rectify11Installer.Core
                 // to ensure that the UxTheme patcher is running.
                 if (InstallOptions.ThemeLight)
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme"));
+                    Helper.RunShellExec(Path.Combine(Variables.Windir, "Resources", "Themes", "lightrectified.theme"));
                     config.SetValue("ApplyThemeOnNextRun", "Rectify11 light theme");
                 }
                 else if (InstallOptions.ThemeDark)
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme"));
+                    Helper.RunShellExec(Path.Combine(Variables.Windir, "Resources", "Themes", "darkrectified.theme"));
                     config.SetValue("ApplyThemeOnNextRun", "Rectify11 dark theme");
                 }
                 else if (InstallOptions.ThemePDark)
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "darkpartial.theme"));
+                    Helper.RunShellExec(Path.Combine(Variables.Windir, "Resources", "Themes", "darkpartial.theme"));
                     config.SetValue("ApplyThemeOnNextRun", "Rectify11 partial dark theme");
                 }
                 else
                 {
-                    Process.Start(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme"));
+                    Helper.RunShellExec(Path.Combine(Variables.Windir, "Resources", "Themes", "black.theme"));
                     config.SetValue("ApplyThemeOnNextRun", "Rectify11 Dark theme with Mica");
                 }
 

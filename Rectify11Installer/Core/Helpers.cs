@@ -473,10 +473,10 @@ namespace Rectify11Installer.Core
         public static bool ThemePDark { get; set; }
         public static bool InstallShell { get; set; }
         public static bool InstallSounds { get; set; }
-        public static bool SkipMFE { get; set; }
-        public static bool TabbedNotMica { get; set; }
+        public static bool EnableMicaEffect { get; set; } = false;
+        public static bool UseTabbedInsteadOfMica { get; set; } = false;
         public static bool userAvatars { get; set; }
-        public static int CMenuStyle = 1;
+        public static MenuStyles MenuStyle = MenuStyles.Windows11Default;
         public static List<string> iconsList = new();
         public static List<string> origList = new();
 
@@ -491,6 +491,14 @@ namespace Rectify11Installer.Core
                    || InstallSounds
                    || userAvatars;
         }
+    }
+    public enum MenuStyles
+    {
+        Windows11Default = 0,
+        NilesoftSmall = 1,
+        NilesoftShellAll = 2,
+        ClassicMenu = 3,
+        AcrylicMenu = 4
     }
     public class UninstallOptions
     {

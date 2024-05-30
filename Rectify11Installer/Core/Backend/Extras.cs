@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using Rectify11Installer.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -44,15 +45,13 @@ namespace Rectify11Installer.Core
                     InstallGadgets();
                     Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "GadgetPack"), false);
                 }
-                if (InstallOptions.InstallShell)
-                {
-                    frm.InstallerProgress = "Installing extras: Enhanced context menu";
+                frm.InstallerProgress = "Installing extras: Enhanced context menu";
 
-                    InstallShell();
+                InstallShell();
 
-                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), false);
-                    Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), false);
-                }
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "Nilesoft"), false);
+                Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "extras", "NilesoftArm64"), false);
+
                 if (InstallOptions.userAvatars)
                 {
                     frm.InstallerProgress = "Installing extras: User avatars";
@@ -236,38 +235,20 @@ namespace Rectify11Installer.Core
                 string s = "";
                 if (IsArm64()) s = "Arm64";
                 Directory.Move(Path.Combine(Variables.r11Folder, "extras", "nilesoft" + s), Path.Combine(Variables.Windir, "nilesoft"));
-                ProcessStartInfo shlinfo2 = new()
+
+                Logger.WriteLine("Setting menu type: " + InstallOptions.MenuStyle);
+                nint hr = RectifyThemeUtil.Utility.SetCurrentMenuByIndex((int)InstallOptions.MenuStyle);
+                if (hr != 0)
                 {
-                    FileName = Path.Combine(Variables.Windir, "nilesoft", "shell.exe"),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    Arguments = " -r"
-                };
-                int num = InstallOptions.CMenuStyle;
-                if (num == 1 || num == 2)
-                {
-					string text = (string)Properties.Resources.ResourceManager.GetObject("config" + num);
-					File.WriteAllText(Path.Combine(Variables.Windir, "nilesoft", "shell.nss"), text);
-					var shlInstproc2 = Process.Start(shlinfo2);
-                    shlInstproc2.WaitForExit();
+                    Logger.WriteLine("FAILED TO UPDATE MENU CONFIG: " + hr);
                 }
-                if (num == 3 || num == 4)
-                {
-                    Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), " add \"HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32\" /f /ve");
-                }
-                if (num == 4)
-                {
-                    using ShellLink shortcut = new();
-                    shortcut.Target = Path.Combine(Variables.Windir, "nilesoft", "AcrylicMenus", "AcrylicMenusLoader.exe");
-                    shortcut.WorkingDirectory = @"%windir%\nilesoft\AcrylicMenus";
-                    shortcut.DisplayMode = ShellLink.LinkDisplayMode.edmNormal;
-                    shortcut.Save(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
-                }
-                if (!Variables.RestartRequired)
+
+                if (!Variables.RestartRequired && InstallOptions.MenuStyle != MenuStyles.Windows11Default)
                 {
                     Interaction.Shell(Path.Combine(Variables.sys32Folder, "taskkill.exe") + " /f /im explorer.exe", AppWinStyle.Hide, true);
                     Interaction.Shell(Path.Combine(Variables.Windir, "explorer.exe"), AppWinStyle.NormalFocus);
                     Thread.Sleep(3000);
-                    if (num == 4) Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
+                    if (InstallOptions.MenuStyle == MenuStyles.AcrylicMenu) Process.Start(Path.Combine(GetFolderPath(SpecialFolder.CommonStartMenu), "programs", "startup", "acrylmenu.lnk"));
                 }
 
                 Logger.WriteLine("InstallShell() succeeded.");

@@ -35,7 +35,7 @@ namespace Rectify11Installer.Pages
 				string a = "L";
 				if (Theme.IsUsingDarkMode) a = "D";
 				PrevImg.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject("_" + num + a);
-				InstallOptions.CMenuStyle = num;
+				InstallOptions.MenuStyle = (MenuStyles)num;
 			}
 			return rad;
 		}

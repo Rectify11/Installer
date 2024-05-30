@@ -34,8 +34,8 @@
 			this.themeSelection = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.patcherSelection = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.ultraRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
-			this.randomCheckbox1 = new();
-			this.randomCheckbox2 = new();
+			this.randomCheckbox1 = new Rectify11Installer.Controls.DarkAwareCheckBox();
+			this.randomCheckbox2 = new Rectify11Installer.Controls.DarkAwareCheckBox();
 			this.secureRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
 			this.themeSel = new Controls.DarkAwareComboBox();
 			this.tableLayoutPanel1.SuspendLayout();

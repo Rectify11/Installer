@@ -122,7 +122,7 @@ namespace Rectify11Installer.Core
             var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
             key?.SetValue("RectifyStart", Path.Combine(Variables.r11Folder, "RectifyStart.exe"), RegistryValueKind.String);
             key.Close();
-        }
+        }   
         #endregion
     }
 }

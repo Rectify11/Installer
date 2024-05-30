@@ -21,8 +21,8 @@
 		<Company>Rectify11</Company>
 		<Product>Rectify11Installer.</Product>
 		<Copyright>Copyright © 2024 The Rectify11 Team</Copyright>
-		<AssemblyVersion>3.2.68</AssemblyVersion>
-		<FileVersion>3.2.68</FileVersion>
+		<AssemblyVersion>3.2.68.2</AssemblyVersion>
+		<FileVersion>3.2.68.2</FileVersion>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 	<ItemGroup>
