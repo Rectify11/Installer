@@ -31,3 +31,7 @@ libmsstyle/bin/
 *.user
 !Resources
 Resources/DoNotBuild.txt
+!Rectify11Installer/Resources/7za.exe
+!Rectify11Installer/Resources/NSudoL.exe
+!Rectify11Installer/Resources/Rectify11TrayTool.exe
+!Rectify11Installer/Resources/ResourceHacker.exe
