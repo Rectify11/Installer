@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PlatformTarget>x64</PlatformTarget>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PlatformTarget>x64</PlatformTarget>
+		<PublishSingleFile>true</PublishSingleFile>
+	</PropertyGroup>
+	<PropertyGroup>
+		<StartupObject />
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationIcon>r11.ico</ApplicationIcon>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AssemblyTitle>Rectify11 Installer</AssemblyTitle>
+		<Description>Phase 2</Description>
+		<Company>Rectify11</Company>
+		<Product>Rectify11Installer.</Product>
+		<Copyright>Copyright © 2024 The Rectify11 Team</Copyright>
+		<AssemblyVersion>3.2.68.3</AssemblyVersion>
+		<FileVersion>3.2.68.3</FileVersion>
+		<NeutralLanguage>en</NeutralLanguage>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="r11.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<PostBuildEvent></PostBuildEvent>
+	</PropertyGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<PropertyGroup>
+			<PostBuildCommands>copy /Y "$(TargetDir)Rectify11.Phase2.dll" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.dll" &amp;&amp; copy /Y "$(TargetDir)Rectify11.Phase2.exe" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.exe" &amp;&amp; copy /Y "$(TargetDir)Rectify11.Phase2.runtimeconfig.json" "$(SolutionDir)Rectify11Installer/Resources/Rectify11.Phase2.runtimeconfig.json"</PostBuildCommands>
+		</PropertyGroup>
+		<Exec Command="$(PostBuildCommands)" />
+	</Target>
+</Project>
