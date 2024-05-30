@@ -1,5 +1,4 @@
-﻿using KPreisser.UI;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using Rectify11Installer.Pages;
 using Rectify11Installer.Win32;
@@ -10,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Rectify11Installer.Core
 {
@@ -21,11 +21,12 @@ namespace Rectify11Installer.Core
             if (Variables.skipUpdateCheck) return true;
             if (!RebootRequired()) return true;
 
-            TaskDialog.Show(text: Strings.Rectify11.updatePending,
-                instruction: "Compatibility Error",
-                title: Strings.Rectify11.Title,
-                buttons: TaskDialogButtons.OK,
-                icon: TaskDialogStandardIcon.SecurityErrorRedBar);
+            TaskDialogPage pg = new TaskDialogPage();
+            pg.Text = Strings.Rectify11.updatePending;
+            pg.Caption = Strings.Rectify11.Title;
+            pg.Heading = "Compatibility check failed";
+            pg.Icon = TaskDialogIcon.ShieldErrorRedBar;
+            TaskDialog.ShowDialog(pg);
 
             return false;
         }
@@ -119,24 +120,29 @@ namespace Rectify11Installer.Core
             try
             {
                 // more priority
-                var build = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false)?.GetValue("Build");
-                if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
-                    return true;
-
-                var r11 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false)?.GetValue("OSVersion");
-                if (r11 == null)
+                using (RegistryKey buildkey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Rectify11", false))
                 {
+                    if (buildkey == null)
+                        return false;
+                    var build = buildkey.GetValue("Build");
+                    if (build != null && int.Parse(build.ToString()) < Assembly.GetEntryAssembly().GetName().Version.Build)
+                        return true;
+
+                    var r11 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11", false)?.GetValue("OSVersion");
+                    if (r11 == null)
+                    {
+                        return false;
+                    }
+
+                    Version ver = Version.Parse(r11.ToString());
+                    if (Environment.OSVersion.Version.Build > ver.Build || NativeMethods.GetUbr() > ver.Revision)
+                    {
+                        Variables.WindowsUpdate = true;
+                        return true;
+                    }
+
                     return false;
                 }
-
-                Version ver = Version.Parse(r11.ToString());
-                if (Environment.OSVersion.Version.Build > ver.Build || NativeMethods.GetUbr() > ver.Revision)
-                {
-                    Variables.WindowsUpdate = true;
-                    return true;
-                }
-
-                return false;
             }
             catch
             {
@@ -150,7 +156,7 @@ namespace Rectify11Installer.Core
             {
                 case "shellNode":
                     _frmWizard.UpdateSideImage = Properties.Resources.menus;
-                    if (Theme.IsUsingDarkMode) _frmWizard.UpdateSideImage = Properties.Resources.menusD;
+                    if (ThemeUtil.IsUsingDarkMode) _frmWizard.UpdateSideImage = Properties.Resources.menusD;
                     break;
                 case "gadgetsNode":
                     _frmWizard.UpdateSideImage = Properties.Resources.gadgets;
@@ -416,7 +422,16 @@ namespace Rectify11Installer.Core
         #region Public Methods
         public static bool IsRectify11Installed
         {
-            get => (int?)Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11")?.GetValue("IsInstalled") == 1;
+            get
+            {
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Rectify11");
+                if (key == null)
+                    return false;
+                var result = (int?)key.GetValue("IsInstalled") == 1;
+
+                key.Close();
+                return result;
+            }
             set => Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Rectify11")?.SetValue("IsInstalled", value ? 1 : 0);
         }
         public static string InstalledVersion
@@ -447,18 +462,6 @@ namespace Rectify11Installer.Core
         public static DebugPage DebugPage = new();
         public static DefenderPage DefenderPage = new();
     }
-    public class TabPages
-    {
-        public static Controls.DarkAwareTabPage eulPage;
-        public static Controls.DarkAwareTabPage installPage;
-        public static Controls.DarkAwareTabPage themePage;
-        public static Controls.DarkAwareTabPage cmenupage;
-        public static Controls.DarkAwareTabPage debPage;
-        public static Controls.DarkAwareTabPage progressPage;
-        public static Controls.DarkAwareTabPage summaryPage;
-        public static Controls.DarkAwareTabPage wlcmPage;
-        public static Controls.DarkAwareTabPage defenderPage;
-    }
     public class InstallOptions
     {
         public static bool InstallEP { get; set; }
@@ -473,10 +476,10 @@ namespace Rectify11Installer.Core
         public static bool ThemePDark { get; set; }
         public static bool InstallShell { get; set; }
         public static bool InstallSounds { get; set; }
-        public static bool SkipMFE { get; set; }
-        public static bool TabbedNotMica { get; set; }
+        public static bool EnableMicaEffect { get; set; } = false;
+        public static bool UseTabbedInsteadOfMica { get; set; } = false;
         public static bool userAvatars { get; set; }
-        public static int CMenuStyle = 1;
+        public static MenuStyles MenuStyle = MenuStyles.Windows11Default;
         public static List<string> iconsList = new();
         public static List<string> origList = new();
 
@@ -491,6 +494,14 @@ namespace Rectify11Installer.Core
                    || InstallSounds
                    || userAvatars;
         }
+    }
+    public enum MenuStyles
+    {
+        Windows11Default = 0,
+        NilesoftSmall = 1,
+        NilesoftShellAll = 2,
+        ClassicMenu = 3,
+        AcrylicMenu = 4
     }
     public class UninstallOptions
     {

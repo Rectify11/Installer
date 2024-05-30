@@ -1,10 +1,10 @@
-﻿using KPreisser.UI;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Rectify11Installer.Win32;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace Rectify11Installer.Core
 {
@@ -196,21 +196,22 @@ namespace Rectify11Installer.Core
         /// <param name="link">link to download the app</param>
         public static void RuntimeInstallError(string app, string info, string link)
         {
-            TaskDialog td = new();
-            td.Page.Text = Rectify11Installer.Strings.Rectify11.rtInstallFailPart1 + app + Rectify11Installer.Strings.Rectify11.rtInstallFailPart2;
-            td.Page.Instruction = Rectify11Installer.Strings.Rectify11.rtInstallFailInstruc;
-            td.Page.Title = Rectify11Installer.Strings.Rectify11.Title;
-            td.Page.StandardButtons = TaskDialogButtons.OK;
-            td.Page.Icon = TaskDialogStandardIcon.SecurityWarningYellowBar;
-            td.Page.EnableHyperlinks = true;
+            TaskDialogPage td = new();
+            td.Text = Strings.Rectify11.rtInstallFailPart1 + app + Strings.Rectify11.rtInstallFailPart2;
+            td.Heading = Strings.Rectify11.rtInstallFailInstruc;
+            td.Caption = Strings.Rectify11.Title;
+            td.Buttons = [TaskDialogButton.OK];
+            td.Icon = TaskDialogIcon.ShieldErrorRedBar;
+            td.EnableLinks = true;
+
             TaskDialogExpander tde = new();
             tde.Text = info + " \nDownload from <a href=\"" + link + "\">here</a>";
             tde.Expanded = false;
-            tde.ExpandFooterArea = true;
-            tde.CollapsedButtonText = Rectify11Installer.Strings.Rectify11.moreInfo;
-            tde.ExpandedButtonText = Rectify11Installer.Strings.Rectify11.lessInfo;
-            td.Page.Expander = tde;
-            td.Show();
+            tde.CollapsedButtonText = Strings.Rectify11.moreInfo;
+            tde.ExpandedButtonText = Strings.Rectify11.lessInfo;
+            
+            td.Expander = tde;
+            TaskDialog.ShowDialog(td);
         }
 
         /// <summary>

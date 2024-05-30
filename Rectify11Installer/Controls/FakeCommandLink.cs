@@ -9,11 +9,11 @@ namespace Rectify11Installer.Controls
 {
 	public sealed partial class FakeCommandLink : UserControl
 	{
-		private static Color DefaultText => Theme.IsUsingDarkMode ? Color.FromArgb(192, 192, 192) : Color.FromArgb(64, 64, 64);
+		private static Color DefaultText => ThemeUtil.IsUsingDarkMode ? Color.FromArgb(192, 192, 192) : Color.FromArgb(64, 64, 64);
 
-		private static Color HotText => Theme.IsUsingDarkMode ? Color.FromArgb(255, 255, 255) : Color.FromArgb(0, 0, 0);
+		private static Color HotText => ThemeUtil.IsUsingDarkMode ? Color.FromArgb(255, 255, 255) : Color.FromArgb(0, 0, 0);
 
-		private static Color PressedText => Theme.IsUsingDarkMode ? Color.FromArgb(160, 160, 160) : Color.FromArgb(96, 96, 96);
+		private static Color PressedText => ThemeUtil.IsUsingDarkMode ? Color.FromArgb(160, 160, 160) : Color.FromArgb(96, 96, 96);
 
 		public string Note
 		{
@@ -46,7 +46,7 @@ namespace Rectify11Installer.Controls
 			this.MouseUp += TheMouseUp;
 			base.Click += TheMouseClick;
 
-			BackColor = Theme.IsUsingDarkMode ? Color.Black : Color.White;
+			BackColor = ThemeUtil.IsUsingDarkMode ? Color.Black : Color.White;
 
 			pictureBox1.BackColor = Color.Transparent;
 			lblTitle.BackColor = Color.Transparent;
@@ -68,9 +68,9 @@ namespace Rectify11Installer.Controls
 			//IsDesignMode and licensing did not work for me
 			if (Application.ExecutablePath.Contains("DesignToolsServer.exe") ||
 				Application.ExecutablePath.Contains("devenv.exe")) return;
-			var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+			var currentTheme = ThemeUtil.IsUsingDarkMode ? ThemeUtil.DarkStyle : ThemeUtil.LightStyle;
 			if (currentTheme == null) return;
-			var part = Theme.GetCommandLinkPart(currentTheme);
+			var part = ThemeUtil.GetCommandLinkPart(currentTheme);
 			var renderer2 = new PartRenderer(currentTheme, part);
 			BackgroundImage = renderer2.RenderPreview(s, Width, Height);
 		}
@@ -87,9 +87,9 @@ namespace Rectify11Installer.Controls
 		{
 			if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
 			{
-				var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+				var currentTheme = ThemeUtil.IsUsingDarkMode ? ThemeUtil.DarkStyle : ThemeUtil.LightStyle;
 				if (currentTheme == null) return null;
-				var part = Theme.GetCommandLinkGlyphPart(currentTheme);
+				var part = ThemeUtil.GetCommandLinkGlyphPart(currentTheme);
 				var renderer2 = new PartRenderer(currentTheme, part);
 				return renderer2.RenderPreview(s, pictureBox1.Width, pictureBox1.Height);
 			}
@@ -115,7 +115,7 @@ namespace Rectify11Installer.Controls
 			if (!Enabled) return;
 			SetState(ThemeParts.Hot);
 			pictureBox1.Image = GetGlyphImage(ThemeParts.Hot);
-			var forecolor = Theme.IsUsingDarkMode ? DefaultBackColor : Color.Black;
+			var forecolor = ThemeUtil.IsUsingDarkMode ? DefaultBackColor : Color.Black;
 			lblTitle.ForeColor = forecolor;
 			lblBody.ForeColor = forecolor;
 		}

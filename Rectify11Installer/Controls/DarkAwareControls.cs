@@ -23,7 +23,7 @@ namespace Rectify11Installer.Controls
 		}
 		public DarkAwareTreeView()
 		{
-			Theme.OnThemeChanged += delegate
+			ThemeUtil.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -48,7 +48,7 @@ namespace Rectify11Installer.Controls
 		}
 		private void UpdateTheming()
 		{
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				SetWindowTheme(Handle, "DarkMode_Explorer", null);
 				ForeColor = Color.White;
@@ -66,7 +66,7 @@ namespace Rectify11Installer.Controls
 	{
 		public DarkAwareLabel()
 		{
-			Theme.OnThemeChanged += delegate
+			ThemeUtil.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -78,7 +78,7 @@ namespace Rectify11Installer.Controls
 		}
 		private void UpdateTheming()
 		{
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				BackColor = Color.Black;
 				ForeColor = Color.White;
@@ -94,7 +94,7 @@ namespace Rectify11Installer.Controls
 	{
 		public DarkAwareRichTextBox()
 		{
-			Theme.OnThemeChanged += delegate
+			ThemeUtil.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -106,7 +106,7 @@ namespace Rectify11Installer.Controls
 		}
 		private void UpdateTheming()
 		{
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				BackColor = Color.Black;
 				ForeColor = Color.White;
@@ -123,7 +123,7 @@ namespace Rectify11Installer.Controls
 	{
 		public DarkAwareTabPage()
 		{
-			Theme.OnThemeChanged += delegate
+			ThemeUtil.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -135,7 +135,7 @@ namespace Rectify11Installer.Controls
 		}
 		private void UpdateTheming()
 		{
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				BackColor = Color.Black;
 				ForeColor = Color.White;
@@ -153,7 +153,7 @@ namespace Rectify11Installer.Controls
 		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareRadioButton()
 		{
-			Theme.OnThemeChanged += delegate
+			ThemeUtil.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -165,7 +165,7 @@ namespace Rectify11Installer.Controls
 		}
 		private void UpdateTheming()
 		{
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				SetWindowTheme(Handle, "DarkMode_Explorer", null);
 				ForeColor = Color.White;
@@ -183,7 +183,7 @@ namespace Rectify11Installer.Controls
 		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareCheckBox()
 		{
-			Theme.OnThemeChanged += delegate
+			ThemeUtil.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -195,7 +195,7 @@ namespace Rectify11Installer.Controls
 		}
 		private void UpdateTheming()
 		{
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				SetWindowTheme(Handle, "DarkMode_Explorer", null);
 				ForeColor = Color.White;
@@ -213,7 +213,7 @@ namespace Rectify11Installer.Controls
 		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 		public DarkAwareComboBox()
 		{
-			Theme.OnThemeChanged += delegate
+			ThemeUtil.OnThemeChanged += delegate
 			{
 				UpdateTheming();
 			};
@@ -225,7 +225,7 @@ namespace Rectify11Installer.Controls
 		}
 		private void UpdateTheming()
 		{
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				SetWindowTheme(Handle, "DarkMode_CFD", null);
 				ForeColor = Color.White;

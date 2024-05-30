@@ -21,6 +21,7 @@ namespace Rectify11Installer.Pages
 			Application.Idle += Application_Idle;
 			treeView1.AfterSelect += TreeView1_AfterSelect;
 			NavigationHelper.OnNavigate += NavigationHelper_OnNavigate;
+
 		}
 
 		private void NavigationHelper_OnNavigate(object sender, EventArgs e)
@@ -29,7 +30,17 @@ namespace Rectify11Installer.Pages
 			{
 				_frmWizard.nextButton.Enabled = Variables.IsItemsSelected;
 			}
-		}
+
+            if (InstallStatus.IsRectify11Installed && !Helper.CheckIfUpdate())
+                this.label1.Text = Rectify11Installer.Strings.Rectify11.modifyNote;
+            else
+                this.label1.Text = Rectify11Installer.Strings.Rectify11.installChoiceDescription;
+
+            if (InstallStatus.IsRectify11Installed && !Helper.CheckIfUpdate())
+                this.WizardHeader = Rectify11Installer.Strings.Rectify11.modifyTitle;
+            else
+                this.WizardHeader = Rectify11Installer.Strings.Rectify11.installChoiceTitle;
+        }
 
 		void Application_Idle(object sender, EventArgs e)
 		{

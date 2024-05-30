@@ -34,8 +34,8 @@
 			this.themeSelection = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.patcherSelection = new Rectify11Installer.Controls.DarkAwareLabel();
 			this.ultraRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
-			this.randomCheckbox1 = new();
-			this.randomCheckbox2 = new();
+			this.randomCheckbox1 = new Rectify11Installer.Controls.DarkAwareCheckBox();
+			this.randomCheckbox2 = new Rectify11Installer.Controls.DarkAwareCheckBox();
 			this.secureRadio = new Rectify11Installer.Controls.DarkAwareRadioButton();
 			this.themeSel = new Controls.DarkAwareComboBox();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -136,7 +136,6 @@
 			this.FooterVisible = true;
 			this.NextButtonEnabled = true;
 			this.UpdateFrame = true;
-			this.Page = Rectify11Installer.Core.TabPages.themePage;
 			this.WizardHeader = Rectify11Installer.Strings.Rectify11.themeHeader;
 			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
             ((System.ComponentModel.ISupportInitialize)(this.themePreview)).EndInit();

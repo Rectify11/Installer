@@ -61,7 +61,7 @@ namespace Rectify11Installer.Core
             Logger.WriteLine("══════════════════════════════════════════════");
 
             // some random issue where the installer's frame gets extended
-            if (!Theme.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
+            if (!ThemeUtil.IsUsingDarkMode) DarkMode.UpdateFrame(frm, false);
 
             // extract files, delete if folder exists
             frm.InstallerProgress = "Extracting files...";
@@ -122,7 +122,7 @@ namespace Rectify11Installer.Core
             var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
             key?.SetValue("RectifyStart", Path.Combine(Variables.r11Folder, "RectifyStart.exe"), RegistryValueKind.String);
             key.Close();
-        }
+        }   
         #endregion
     }
 }

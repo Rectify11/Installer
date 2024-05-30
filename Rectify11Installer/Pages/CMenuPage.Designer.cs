@@ -125,12 +125,11 @@ namespace Rectify11Installer.Pages
 			this.Controls.Add(this.darkAwareLabel1);
 			this.Name = "EPPage";
 			this.SideImage = global::Rectify11Installer.Properties.Resources.menus;
-			if (Theme.IsUsingDarkMode) this.SideImage = global::Rectify11Installer.Properties.Resources.menusD;
+			if (ThemeUtil.IsUsingDarkMode) this.SideImage = global::Rectify11Installer.Properties.Resources.menusD;
 			this.HeaderVisible = true;
 			this.FooterVisible = true;
 			this.UpdateFrame = true;
 			this.NextButtonEnabled = true;
-			this.Page = Rectify11Installer.Core.TabPages.cmenupage;
 			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
 			this.WizardHeader = Rectify11Installer.Strings.Rectify11.CMenuPageHeader;
             ((System.ComponentModel.ISupportInitialize)(this.PrevImg)).EndInit();

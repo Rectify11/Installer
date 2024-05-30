@@ -26,7 +26,7 @@ namespace Rectify11Installer.Controls
 			this.Location = new Point(3, 28);
 			this.Size = new Size(345, 294);
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
-			this.BackColor = Theme.IsUsingDarkMode ? Color.Black : Color.White;
+			this.BackColor = ThemeUtil.IsUsingDarkMode ? Color.Black : Color.White;
 			SetState(ThemeParts.Normal);
 			this.MouseUp += NavigationButton_MouseUp;
 
@@ -46,10 +46,10 @@ namespace Rectify11Installer.Controls
 			//IsDesignMode and licensing did not work for me
 			if (!Application.ExecutablePath.Contains("DesignToolsServer.exe") && !Application.ExecutablePath.Contains("devenv.exe"))
 			{
-				var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+				var currentTheme = ThemeUtil.IsUsingDarkMode ? ThemeUtil.DarkStyle : ThemeUtil.LightStyle;
 				if (currentTheme != null)
 				{
-					var part = Theme.GetGroupBox(currentTheme);
+					var part = ThemeUtil.GetGroupBox(currentTheme);
 					var renderer2 = new PartRenderer(currentTheme, part);
 					Glyph = renderer2.RenderPreview(c, Width, Height);
 				}

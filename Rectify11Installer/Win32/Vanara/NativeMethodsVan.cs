@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -169,7 +170,16 @@ namespace Vanara.Interop
 		  int iPropId,
 		  out NativeMethods.LOGFONT pFont);
 
-		public enum BitmapCompressionMode : uint
+        internal static bool IsCompositionEnabled()
+        {
+            if (Environment.OSVersion.Version.Major < 6 || !File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "dwmapi.dll")))
+                return false;
+            var pfEnabled = 0;
+            DwmIsCompositionEnabled(ref pfEnabled);
+            return pfEnabled != 0;
+        }
+
+        public enum BitmapCompressionMode : uint
 		{
 			BI_RGB,
 			BI_RLE8,

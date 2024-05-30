@@ -72,12 +72,12 @@ namespace Rectify11Installer.Controls
 			Bitmap buttonImage = null;
 
 			//Hack to fix black borders, but we lose transpancy
-			args.Graphics.Clear(Theme.IsUsingDarkMode ? Color.White : Color.Black);
+			args.Graphics.Clear(ThemeUtil.IsUsingDarkMode ? Color.White : Color.Black);
 
-			var currentTheme = Theme.IsUsingDarkMode ? Theme.DarkStyle : Theme.LightStyle;
+			var currentTheme = ThemeUtil.IsUsingDarkMode ? ThemeUtil.DarkStyle : ThemeUtil.LightStyle;
 
 			//Update text borders
-			if (Theme.IsUsingDarkMode)
+			if (ThemeUtil.IsUsingDarkMode)
 			{
 				ForeColor = Color.White;
 			}
@@ -118,7 +118,7 @@ namespace Rectify11Installer.Controls
 			}
 			else
 			{
-				var part = Theme.GetButtonPart(currentTheme);
+				var part = ThemeUtil.GetButtonPart(currentTheme);
 				var renderer2 = new PartRenderer(currentTheme, part);
 				buttonImage = renderer2.RenderPreview(tpart, Width, Height);
 			}
@@ -152,7 +152,7 @@ namespace Rectify11Installer.Controls
 				for (var x = 0; x < buttonImage.Width; x++)
 				{
 					var pixel = buttonImage.GetPixel(x, y);
-					var d = Theme.IsUsingDarkMode ? Color.Black : Color.White;
+					var d = ThemeUtil.IsUsingDarkMode ? Color.Black : Color.White;
 
 					*pixels++ = pixel.ToArgb();
 				}
