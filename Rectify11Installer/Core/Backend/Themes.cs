@@ -133,6 +133,9 @@ namespace Rectify11Installer.Core
 
                 UninstallMfe();
 
+                // kill tray tool
+                Helper.KillProcess("rectify11traytool.exe");
+
                 try
                 {
                     var key = Registry.ClassesRoot.OpenSubKey(@"CLSID", true);
