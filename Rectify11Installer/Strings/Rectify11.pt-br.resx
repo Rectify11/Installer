@@ -307,9 +307,6 @@
   <data name="createRestore" xml:space="preserve">
     <value>Criar um ponto de restauração</value>
   </data>
-  <data name="installShell" xml:space="preserve">
-    <value>Menus de Contexto Melhorados</value>
-  </data>
     <!--Please translate-->
   <data name="optionBasic" xml:space="preserve">
     <value>Básico</value>

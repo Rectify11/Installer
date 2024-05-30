@@ -213,9 +213,6 @@
   <data name="optionThemes" xml:space="preserve">
     <value>Motywy</value>
   </data>
-  <data name="installWallpapers" xml:space="preserve">
-    <value>Tapety Rectify11</value>
-  </data>
   <data name="installIcons" xml:space="preserve">
     <value>Instaluj ikony</value>
   </data>
