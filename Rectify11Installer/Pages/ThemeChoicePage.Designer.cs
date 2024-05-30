@@ -136,7 +136,6 @@
 			this.FooterVisible = true;
 			this.NextButtonEnabled = true;
 			this.UpdateFrame = true;
-			this.Page = Rectify11Installer.Core.TabPages.themePage;
 			this.WizardHeader = Rectify11Installer.Strings.Rectify11.themeHeader;
 			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
             ((System.ComponentModel.ISupportInitialize)(this.themePreview)).EndInit();

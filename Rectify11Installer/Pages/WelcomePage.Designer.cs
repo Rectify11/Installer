@@ -92,7 +92,6 @@
 			this.FooterVisible = false;
 			this.UpdateFrame = false;
 			this.IsWelcomePage = true;
-			this.Page = Rectify11Installer.Core.TabPages.wlcmPage;
 			this.Size = new System.Drawing.Size(333, 322);
 			this.ResumeLayout(false);
 			this.PerformLayout();

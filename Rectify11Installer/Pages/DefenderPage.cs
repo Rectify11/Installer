@@ -8,7 +8,6 @@ namespace Rectify11Installer.Pages
 		public DefenderPage()
 		{
 			InitializeComponent();
-            this.Page = Rectify11Installer.Core.TabPages.defenderPage;
         }
 		#endregion
 	}

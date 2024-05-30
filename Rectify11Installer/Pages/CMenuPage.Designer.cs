@@ -130,7 +130,6 @@ namespace Rectify11Installer.Pages
 			this.FooterVisible = true;
 			this.UpdateFrame = true;
 			this.NextButtonEnabled = true;
-			this.Page = Rectify11Installer.Core.TabPages.cmenupage;
 			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
 			this.WizardHeader = Rectify11Installer.Strings.Rectify11.CMenuPageHeader;
             ((System.ComponentModel.ISupportInitialize)(this.PrevImg)).EndInit();

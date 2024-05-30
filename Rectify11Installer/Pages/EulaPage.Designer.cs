@@ -69,7 +69,6 @@
 			this.IsWelcomePage = false;
 			this.NextButtonEnabled = true;
 			this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonAgree;
-            this.Page = Rectify11Installer.Core.TabPages.eulPage;
 			this.ResumeLayout(false);
 		}
 

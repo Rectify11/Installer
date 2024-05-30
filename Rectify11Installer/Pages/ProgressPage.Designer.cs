@@ -103,7 +103,6 @@
 			this.HeaderVisible = false;
 			this.FooterVisible = false;
 			this.UpdateFrame = false;
-			this.Page = Rectify11Installer.Core.TabPages.progressPage;
 			this.ResumeLayout(false);
 
 		}

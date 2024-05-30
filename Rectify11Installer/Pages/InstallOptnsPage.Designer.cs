@@ -103,7 +103,6 @@ namespace Rectify11Installer.Pages
             this.HeaderVisible = true;
             this.FooterVisible = true;
             this.UpdateFrame = true;
-            this.Page = Rectify11Installer.Core.TabPages.installPage;
             this.NextButtonText = Rectify11Installer.Strings.Rectify11.buttonNext;
             this.ResumeLayout(false);
             this.PerformLayout();

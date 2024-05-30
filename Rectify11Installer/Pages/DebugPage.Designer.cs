@@ -121,7 +121,6 @@ namespace Rectify11Installer.Pages
 			this.HeaderVisible = true;
 			this.Name = "DebugPage";
 			this.NextButtonEnabled = false;
-			this.Page = Rectify11Installer.Core.TabPages.debPage;
 			this.SideImage = global::Rectify11Installer.Properties.Resources.incomplete;
 			this.UpdateFrame = true;
 			this.IsWelcomePage = false;

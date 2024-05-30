@@ -36,16 +36,7 @@
 			this.cancelButton = new Rectify11Installer.Controls.WinUIButton();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.sideImage = new System.Windows.Forms.PictureBox();
-			this.navPane = new Rectify11Installer.Controls.TabControlWithoutHeader();
-			Core.TabPages.wlcmPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.eulPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.debPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.installPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.themePage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.cmenupage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.summaryPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-			Core.TabPages.progressPage = new Rectify11Installer.Controls.DarkAwareTabPage();
-            Core.TabPages.defenderPage = new Rectify11Installer.Controls.DarkAwareTabPage();
+			this.navPane = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.progressLabel = new Controls.DarkAwareLabel();
 			this.versionLabel = new Controls.DarkAwareLabel();
@@ -167,20 +158,8 @@
 			this.navPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 			| System.Windows.Forms.AnchorStyles.Left)
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.navPane.Controls.Add(Core.TabPages.wlcmPage);
-			this.navPane.Controls.Add(Core.TabPages.eulPage);
-			this.navPane.Controls.Add(Core.TabPages.debPage);
-			this.navPane.Controls.Add(Core.TabPages.installPage);
-			this.navPane.Controls.Add(Core.TabPages.themePage);
-			this.navPane.Controls.Add(Core.TabPages.cmenupage);
-			this.navPane.Controls.Add(Core.TabPages.summaryPage);
-			this.navPane.Controls.Add(Core.TabPages.progressPage);
-            this.navPane.Controls.Add(Core.TabPages.defenderPage);
-            this.navPane.ItemSize = new System.Drawing.Size(10, 20);
 			this.navPane.Location = new System.Drawing.Point(280, 0);
-			this.navPane.Multiline = true;
 			this.navPane.Name = "navPane";
-			this.navPane.SelectedIndex = 0;
 			this.navPane.Size = new System.Drawing.Size(361, 342);
 			this.navPane.KeyDown += tabControl1_KeyDown;
             this.navPane.TabIndex = 1;
@@ -201,96 +180,6 @@
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel3.Size = new System.Drawing.Size(644, 348);
 			this.tableLayoutPanel3.TabIndex = 3;
-			// 
-			// wlcmPage
-			// 
-			Core.TabPages.wlcmPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.wlcmPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.wlcmPage.Location = new System.Drawing.Point(0, 44);
-			Core.TabPages.wlcmPage.Name = "wlcmPage";
-			Core.TabPages.wlcmPage.Size = new System.Drawing.Size(361, 284);
-			Core.TabPages.wlcmPage.TabIndex = 8;
-			Core.TabPages.wlcmPage.Text = "Welcome";
-			// 
-			// eulPage
-			// 
-			Core.TabPages.eulPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.eulPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.eulPage.Location = new System.Drawing.Point(0, 44);
-			Core.TabPages.eulPage.Name = "eulPage";
-			Core.TabPages.eulPage.Size = new System.Drawing.Size(365, 284);
-			Core.TabPages.eulPage.TabIndex = 9;
-			Core.TabPages.eulPage.Text = "Eula";
-			// 
-			// debPage
-			// 
-			Core.TabPages.debPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.debPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.debPage.Location = new System.Drawing.Point(0, 44);
-			Core.TabPages.debPage.Name = "debPage";
-			Core.TabPages.debPage.Size = new System.Drawing.Size(365, 284);
-			Core.TabPages.debPage.TabIndex = 9;
-			Core.TabPages.debPage.Text = "Debug";
-			// 
-			// installPage
-			// 
-			Core.TabPages.installPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.installPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.installPage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.installPage.Name = "installPage";
-			Core.TabPages.installPage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.installPage.TabIndex = 2;
-			Core.TabPages.installPage.Text = "Install";
-			// 
-			// themePage
-			// 
-			Core.TabPages.themePage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.themePage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.themePage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.themePage.Name = "themePage";
-			Core.TabPages.themePage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.themePage.TabIndex = 3;
-			Core.TabPages.themePage.Text = "Theme";
-			// 
-			// cmenupage
-			// 
-			Core.TabPages.cmenupage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.cmenupage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.cmenupage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.cmenupage.Name = "cmenupage";
-			Core.TabPages.cmenupage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.cmenupage.TabIndex = 4;
-			Core.TabPages.cmenupage.Text = "CMenu";
-			// 
-			// summaryPage
-			// 
-			Core.TabPages.summaryPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.summaryPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.summaryPage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.summaryPage.Name = "summaryPage";
-			Core.TabPages.summaryPage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.summaryPage.TabIndex = 5;
-			Core.TabPages.summaryPage.Text = "Summary";
-			// 
-			// progressPage
-			// 
-			Core.TabPages.progressPage.BackColor = System.Drawing.Color.White;
-			Core.TabPages.progressPage.ForeColor = System.Drawing.Color.Black;
-			Core.TabPages.progressPage.Location = new System.Drawing.Point(4, 44);
-			Core.TabPages.progressPage.Name = "progressPage";
-			Core.TabPages.progressPage.Size = new System.Drawing.Size(333, 284);
-			Core.TabPages.progressPage.TabIndex = 6;
-			Core.TabPages.progressPage.Text = "Progress";
-            // 
-            // defenderPage
-            // 
-            Core.TabPages.defenderPage.BackColor = System.Drawing.Color.White;
-            Core.TabPages.defenderPage.ForeColor = System.Drawing.Color.Black;
-            Core.TabPages.defenderPage.Location = new System.Drawing.Point(4, 44);
-            Core.TabPages.defenderPage.Name = "defenderPage";
-            Core.TabPages.defenderPage.Size = new System.Drawing.Size(333, 284);
-            Core.TabPages.defenderPage.TabIndex = 7;
-            Core.TabPages.defenderPage.Text = "Defender Disable Page";
             // 
             // versionLabel
             // 
@@ -375,7 +264,7 @@
 		public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
 		private System.Windows.Forms.PictureBox sideImage;
-		private Controls.TabControlWithoutHeader navPane;
+		private System.Windows.Forms.Panel navPane;
 		public Controls.DarkAwareLabel versionLabel;
 		public Controls.DarkAwareLabel progressLabel;
 		public Controls.WinUIButton nextButton;

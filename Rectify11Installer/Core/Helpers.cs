@@ -462,18 +462,6 @@ namespace Rectify11Installer.Core
         public static DebugPage DebugPage = new();
         public static DefenderPage DefenderPage = new();
     }
-    public class TabPages
-    {
-        public static Controls.DarkAwareTabPage eulPage;
-        public static Controls.DarkAwareTabPage installPage;
-        public static Controls.DarkAwareTabPage themePage;
-        public static Controls.DarkAwareTabPage cmenupage;
-        public static Controls.DarkAwareTabPage debPage;
-        public static Controls.DarkAwareTabPage progressPage;
-        public static Controls.DarkAwareTabPage summaryPage;
-        public static Controls.DarkAwareTabPage wlcmPage;
-        public static Controls.DarkAwareTabPage defenderPage;
-    }
     public class InstallOptions
     {
         public static bool InstallEP { get; set; }
