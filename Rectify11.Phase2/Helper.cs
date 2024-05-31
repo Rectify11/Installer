@@ -71,7 +71,7 @@ namespace Rectify11.Phase2
                 return false;
             }
         }
-        public static bool InstallWow64Dlll(string file)
+        public static bool InstallWow64Dll(string file)
         {
             // whatever, its only for a few cases
             try
@@ -107,7 +107,7 @@ namespace Rectify11.Phase2
             }
             catch (Exception ex)
             {
-                Console.WriteLine(Path.GetFileName(path) + " failed.", ex);
+                Console.WriteLine(Path.GetFileName(path) + " failed." + ex.ToString());
             }
         }
         public static string FixString(string path, bool x86)
