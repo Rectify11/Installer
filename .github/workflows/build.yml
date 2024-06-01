@@ -17,7 +17,7 @@ jobs:
       
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.1.1
+      uses: actions/checkout@v4.1.6
       with: 
         token: ${{ secrets.GITHUB_TOKEN }}
         submodules: recursive
@@ -25,11 +25,13 @@ jobs:
 
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
+      with:
+        msbuild-architecture: x64
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4.0.0
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: "8"
 
     - name: Restore NuGet Packages
       run: nuget restore Rectify11Installer.sln
@@ -41,7 +43,7 @@ jobs:
       run: dotnet publish Rectify11Installer -c Release -p:PublishProfile=FolderProfile -property:SolutionDir=${{ github.workspace }}\
       
     - name: Upload Rectify11Installer
-      uses: actions/upload-artifact@v4.3.1
+      uses: actions/upload-artifact@v4.3.3
       with:
         name: Rectify11Installer (x64)
         path: Rectify11Installer\bin\Release\net8.0-windows\publish\win-x64\Rectify11Installer.exe
