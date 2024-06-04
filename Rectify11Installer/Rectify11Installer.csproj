@@ -3,7 +3,7 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<MapFileExtensions>true</MapFileExtensions>
-		<Version>3.2.70.0</Version>
+		<Version>3.2.70.1</Version>
 		<LangVersion>latest</LangVersion>
 		<PublishSingleFile>true</PublishSingleFile>
 		<UseWindowsForms>true</UseWindowsForms>
