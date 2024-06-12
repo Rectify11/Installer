@@ -37,17 +37,7 @@ namespace Rectify11Installer.Core
                 // extract the 7z
                 Helper.SvExtract("themes.7z", "themes");
 
-                // Install/update r11cpl first to make RectifyUtil class work
-                try
-                {
-                    InstallR11Cpl();
-                    Logger.WriteLine("Installr11cpl() succeeded.");
-                }
-                catch (Exception ex)
-                {
-                    Logger.Warn("Installr11cpl() failed", ex);
-                    return false;
-                }
+          
 
                 if (!InstallThemes())
                     return false;
@@ -155,7 +145,14 @@ namespace Rectify11Installer.Core
                 }
                 catch { }
 
-                UninstallR11Cpl();
+                try
+                {
+                    UninstallR11Cpl();
+                }
+                catch(Exception ex)
+                {
+                    Logger.WriteLine("error while uninstalling r11cpl: ", ex);
+                }
                 Logger.WriteLine("Deleted Rectify11 Control Panel");
 
                 Process.Start(Path.Combine(Variables.sys32Folder, "reg.exe"), @" ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide /v PreferExternalManifest /t REG_DWORD /d 0 /f");
@@ -343,10 +340,8 @@ namespace Rectify11Installer.Core
 
 
             // Enable MFE
-            bool bEnabled = InstallOptions.EnableMicaEffect;
-            bool bTabbed = InstallOptions.UseTabbedInsteadOfMica;
-            Console.WriteLine("Installing MFE: bEnabled: " + bEnabled + ",bTabbed: " + bTabbed);
-            RectifyThemeUtil.Utility.SetMicaForEveryoneEnabled(ref bEnabled, ref bTabbed);
+            Console.WriteLine("Installing MFE: bEnabled: " + InstallOptions.EnableMicaEffect + ",bTabbed: " + InstallOptions.UseTabbedInsteadOfMica);
+            RectifyThemeUtil.Utility.SetMicaForEveryoneEnabled(InstallOptions.EnableMicaEffect, InstallOptions.UseTabbedInsteadOfMica);
         }
 
         #region Internal

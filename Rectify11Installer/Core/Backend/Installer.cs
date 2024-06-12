@@ -66,14 +66,29 @@ namespace Rectify11Installer.Core
             // extract files, delete if folder exists
             frm.InstallerProgress = "Extracting files...";
             Helper.SafeDirectoryDeletion(Path.Combine(Variables.r11Folder, "files"), false);
-             if (!Helper.SafeFileOperation(
-                 Path.Combine(Variables.r11Folder, "files.7z"),
-                 Properties.Resources.files,
-                 Helper.OperationType.Write))
-                 return false;
+            if (!Helper.SafeFileOperation(
+                Path.Combine(Variables.r11Folder, "files.7z"),
+                Properties.Resources.files,
+                Helper.OperationType.Write))
+                return false;
 
             // extract the 7z
             Helper.SvExtract("files.7z", "files");
+
+            if (InstallOptions.InstallThemes || InstallOptions.InstallExtras())
+            {
+                // Install/update r11cpl first to make RectifyUtil class work
+                try
+                {
+                    Themes.InstallR11Cpl();
+                    Logger.WriteLine("Installr11cpl() succeeded.");
+                }
+                catch (Exception ex)
+                {
+                    Logger.Warn("Installr11cpl() failed", ex);
+                    return false;
+                }
+            }
 
             // theme
             if (InstallOptions.InstallThemes)
@@ -96,7 +111,7 @@ namespace Rectify11Installer.Core
             }
 
             // copy duires if any icons were patched or if themes was selected (required for r11cpl)
-           if (InstallOptions.iconsList.Count > 0 || InstallOptions.InstallThemes)
+            if (InstallOptions.iconsList.Count > 0 || InstallOptions.InstallThemes)
             {
                 File.Copy(Path.Combine(Variables.r11Files, "duires.dll"), Path.Combine(Variables.sys32Folder, "duires.dll"), true);
             }
@@ -106,7 +121,7 @@ namespace Rectify11Installer.Core
             frm.InstallerProgress = Rectify11Installer.Strings.Rectify11.creatingUninstaller;
             Common.CreateUninstall();
 
-			InstallStatus.IsRectify11Installed = true;
+            InstallStatus.IsRectify11Installed = true;
             Logger.WriteLine("══════════════════════════════════════════════");
 
             // cleanup
@@ -122,7 +137,7 @@ namespace Rectify11Installer.Core
             var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
             key?.SetValue("RectifyStart", Path.Combine(Variables.r11Folder, "RectifyStart.exe"), RegistryValueKind.String);
             key.Close();
-        }   
+        }
         #endregion
     }
 }

@@ -16,7 +16,7 @@ namespace Rectify11Installer.Win32
     public interface IRectifyUtil
     {
         public nint GetMicaSettings(ref bool enabled, ref bool tabbed);
-        public nint SetMicaForEveryoneEnabled(ref bool enabled, ref bool tabbed);
+        public nint SetMicaForEveryoneEnabled(bool enabled, bool tabbed);
         public nint GetCurrentMenuIndex(ref int index);
         public nint SetCurrentMenuByIndex(int index);
 
