@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+//Ok
 namespace Rectify11Installer.Core
 {
     class ExtrasOptions
