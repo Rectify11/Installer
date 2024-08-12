@@ -1,6 +1,7 @@
 using Rectify11Installer.Core;
 using Rectify11Installer.Win32;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
@@ -253,7 +254,15 @@ namespace Rectify11Installer.Pages
 			Variables.IsUninstall = true;
 			if (r1.Checked)
 			{
-				NativeMethods.Reboot();
+				try
+				{
+                    NativeMethods.Reboot();
+                }
+				catch(Exception ex)
+				{
+					Logger.Warn("Reboot failed. " + ex.ToString());
+					Process.Start("shutdown", "/r /t 0").WaitForExit();
+				}
 			}
 			else if (r2.Checked)
 				Application.Exit();
