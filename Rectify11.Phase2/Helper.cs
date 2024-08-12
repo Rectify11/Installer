@@ -108,10 +108,11 @@ namespace Rectify11.Phase2
                 proc.StartInfo.Arguments = "import \"" + path + "\"";
                 proc.StartInfo.CreateNoWindow = true;
                 proc.Start();
+                proc.WaitForExit();
 
                 if (proc.ExitCode != 0)
                 {
-                    Console.WriteLine(path + " failed with exit code " +proc.ExitCode);
+                    Console.WriteLine(path + " failed with exit code " + proc.ExitCode);
                 }
             }
             catch (Exception ex)
