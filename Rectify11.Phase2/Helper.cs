@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using static Rectify11.Phase2.Program;
@@ -103,7 +103,16 @@ namespace Rectify11.Phase2
         {
             try
             {
-                Interaction.Shell(Path.Combine(Variables.sys32Folder, "reg.exe") + " import " + path, AppWinStyle.Hide, true);
+                Process proc = new Process();
+                proc.StartInfo.FileName = Path.Combine(Variables.sys32Folder, "reg.exe");
+                proc.StartInfo.Arguments = "import \"" + path + "\"";
+                proc.StartInfo.CreateNoWindow = true;
+                proc.Start();
+
+                if (proc.ExitCode != 0)
+                {
+                    Console.WriteLine(path + " failed with exit code " +proc.ExitCode);
+                }
             }
             catch (Exception ex)
             {
